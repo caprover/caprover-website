@@ -16,9 +16,9 @@ During installation, you'll be asked to point a wildcard DNS entry to your Capta
 
 Captain has to be installed on a machine with a public IP address. If you need help with Public IP, see [Server & Public IP address](server-purchase.md). This will cost you as low as $5 a month. If you use the DigitalOcean referral code, you'll get $10 credit - two months worth of free server: https://m.do.co/c/6410aa23d3f3 
 
-_**CPU Architecture**:_ Although CaptainDuckDuck source code is compatible with any CPU architecture, the Docker build available on Docker Hub is built for x86 CPU. Therefore, If your CPU is ARM, you can download the source code and build it on your ARM architecture in order to run it.
+_**CPU Architecture**:_ Although CapRover source code is compatible with any CPU architecture, the Docker build available on Docker Hub is built for x86 CPU. Therefore, If your CPU is ARM, you can download the source code and build it on your ARM architecture in order to run it.
 
-_**Recommended Stack**:_ CaptainDuckDuck is tested on Ubuntu 16.04 and Docker 17.06. If you're using CaptainDuckDuck on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
+_**Recommended Stack**:_ CapRover is tested on Ubuntu 16.04 and Docker 17.06. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
 
 _**Minimum RAM**:_ Note that the build process sometimes consumes too much RAM, and 512MB RAM might not be enough (see [this issue](https://github.com/githubsaturn/captainduckduck/issues/28)). Most providers offer a minimum of 1GB RAM on $5 instance including DigitalOcean, Vultr, Scaleway, Linode, SSD Nodes and etc.
 
@@ -66,13 +66,13 @@ To confirm, go to https://mxtoolbox.com/DNSLookup.aspx and enter `randomthing123
 Assuming you have npm installed, simply run (add `sudo` if needed):
 
 ```bash
- npm install -g captainduckduck
+ npm install -g caprover
 ```
 
 Then, run
 
 ```bash
- captainduckduck serversetup
+ caprover serversetup
 ```
 
 Follow the steps and login to your captain instance. When prompted to enter the root domain, enter `something.mydomain.com` assuming that you set `*.something.mydomain.com` to point to your IP address in step #2. Now you can access your captain from `captain.something.mydomain.com`
@@ -83,13 +83,13 @@ Follow the steps and login to your captain instance. When prompted to enter the 
 Go to the Captain in your browser, from the left menu select Apps and create a new app. Name it `my-first-app`. Then, download any of the test apps <a href="https://github.com/githubsaturn/captainduckduck/tree/master/captain-sample-apps">here</a>, unzip the content. and while inside the directory of the test app, run:
 
 ```bash
-/home/Desktop/captain-examples/captain-node$  captainduckduck deploy
+/home/Desktop/captain-examples/captain-node$  caprover deploy
 ```
 Follow the instructions, enter `my-first-app` when asked for app name. First time build takes about two minutes. After build is completed, visit `my-first-app.something.mydomain.com` where `something.mydomain.com` is your root domain. 
 CONGRATS! Your app is live!!
 
 You can connect multiple custom domains (like `www.my-app.com`) to a single app and enable HTTPS and do much more in the app's settings page.
 
-Note that when you run `captainduckduck deploy`, the current git commit will be sent over to your server. **IMPORTANT:** uncommited files and files in `gitignore` WILL NOT get pushed to the server.
+Note that when you run `caprover deploy`, the current git commit will be sent over to your server. **IMPORTANT:** uncommited files and files in `gitignore` WILL NOT get pushed to the server.
 
 You can visit Captain in the browser and set custom parameters for your app such as environment variables, and do much more! For more details regarding deployment, please see CLI docs. For details on `captain-definition` file, see [Captain Definition File](captain-definition-file.md).

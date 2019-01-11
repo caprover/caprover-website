@@ -47,7 +47,7 @@ To make this app, let's assume we decided to have the following components:
 ```
 
 ## Persistence or Not
-CaptainDuckDuck allows you to indicate whether your app/database/service has persistence data or not. Apps with persistence can have "persistent directories". These directories will be preserved if your app crashes and Captain starts a new instance of that app. All other directories will get wiped and reset to their default state if the application crashes and Captain starts a new instance of the app. In our example:
+CapRover allows you to indicate whether your app/database/service has persistence data or not. Apps with persistence can have "persistent directories". These directories will be preserved if your app crashes and Captain starts a new instance of that app. All other directories will get wiped and reset to their default state if the application crashes and Captain starts a new instance of the app. In our example:
 - WebApp: DOES NOT have/need any persistence.
 - Image Upload App: Needs a persistent directory where images get saved on disk (for example, `/uploaded_files`)
 - MongoDB. Of course, this needs persistency (where we store information), we don't want to lose the database, just because our MongoDB crashed or our server got restarted.

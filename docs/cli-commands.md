@@ -8,14 +8,14 @@ sidebar_label: CLI Commands
 
 You can use this CLI tool to deploy your apps. Before anything, install the CLI tool using npm:
 ```
-npm install -g captainduckduck
+npm install -g caprover
 ```
 
 ### Server Setup
 
 The very first thing you need to do is to setup your Captain server. You can either do this by visiting `HTTP://IP_ADDRESS_OF_SERVER:3000` in your browser, or the recommended way which is the command line tool. Simple run
 ```
-captainduckduck serversetup
+caprover serversetup
 ```
 
 Follow the steps as instructed, enter IP address of server. Enter the root domain to be used with this Captain instance. If you don't know what Captain root domain is, please visit www.CaptainDuckDuck.com for documentation. This is a very crucial step. After that, you'll be asked to enter your email address. This should be a valid email address as it will be used in your SSL certificate. After HTTPS is enabled, you'll be asked to change your password. And... Your are done! Go to Deploy section below to read more about app deployment.
@@ -30,7 +30,7 @@ The very first thing you need to do is to login to your Captain server. It is re
 To log in to server, simply run the following line and answer the questions.
 
 ```bash
-captainduckduck login
+caprover login
 ```
 
 If operation finishes successfully, you will be prompted with a success message.
@@ -56,14 +56,14 @@ See https://github.com/githubsaturn/captainduckduck/wiki/Captain-Definition-File
 After making sure that this file exists, run the following command and answers questions:
 
 ```bash
-captainduckduck deploy
+caprover deploy
 ```
 
 You will then see your application being uploaded, after that, your application getting built. Note that the build process takes multiple minutes, please be patient!
 
 You can also deploy directly with one command:
 ```bash
-captainduckduck deploy -s -h https://captain.root.domain.com -a app-name -p password -b branchName
+caprover deploy -s -h https://captain.root.domain.com -a app-name -p password -b branchName
 ```
 
 This can be useful if you want to integrate CI/CD pipeline.
@@ -74,7 +74,7 @@ This can be useful if you want to integrate CI/CD pipeline.
 To see a list of servers you are currently logged in to, run the following line:
 
 ```bash
-captainduckduck list
+caprover list
 ```
 
 ### Logout
@@ -82,5 +82,5 @@ captainduckduck list
 Run the following command:
 
 ```bash
-captainduckduck logout
+caprover logout
 ```

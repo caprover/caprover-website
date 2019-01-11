@@ -6,7 +6,7 @@ sidebar_label: Captain Definition File
 
 <br/>
 ## Basics
-One of the key components of CaptainDuckDuck is the `captain-definition` file that sits at the root of your project. In case of NodeJS app, it sits next to package.json, or next to index.php in case of PHP, or requirements.txt for Python app. It's a simple JSON like below:
+One of the key components of CapRover is the `captain-definition` file that sits at the root of your project. In case of NodeJS app, it sits next to package.json, or next to index.php in case of PHP, or requirements.txt for Python app. It's a simple JSON like below:
 
 
 ```
@@ -18,7 +18,7 @@ One of the key components of CaptainDuckDuck is the `captain-definition` file th
 
 `schemaVersion` is always 1. And `templateId` is the piece which defines the what sort of base you need in order to run your app. It is in `LANGUAGE/VERSION` format. LANGUAGE can be one of these: `node`, `php`, `python-django`, `ruby-rack`. See supported versions below for the versions.
 
-Note that although the current version of CaptainDuckDuck comes with 4 most popular web app languages: NodeJS, PHP and Python/Django, Ruby/Rack. It gives you the advanced option of defining your own Dockerfile. With a customized Dockerfile, you can deploy any laguage, Go, Java, .NET, you name it! Dockerfiles are quite easy to write. For example, the two captain-definition files below generate <b>the exact same result</b>.
+Note that although the current version of CapRover comes with 4 most popular web app languages: NodeJS, PHP and Python/Django, Ruby/Rack. It gives you the advanced option of defining your own Dockerfile. With a customized Dockerfile, you can deploy any laguage, Go, Java, .NET, you name it! Dockerfiles are quite easy to write. For example, the two captain-definition files below generate <b>the exact same result</b>.
 
 ### Simple version
 

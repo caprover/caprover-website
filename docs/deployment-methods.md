@@ -8,7 +8,7 @@ sidebar_label: Deployment Methods
 Regardless of your deployment method, make sure that you have a 'captain-definition' file in your project. See docs on [Captain Definition](captain-definition-file.md) for more details.
 
 ## Deploy via CLI
-Simply run `captainduckduck deploy` in your git repo and follow the steps. This is the best method as it's the only method that reports potential build failures to you. Read more about it here:
+Simply run `caprover deploy` in your git repo and follow the steps. This is the best method as it's the only method that reports potential build failures to you. Read more about it here:
  [Get Started - Step 4](get-started.md#step-4-deploy-the-test-app).
 
 ## Deploy via Web Dashboard

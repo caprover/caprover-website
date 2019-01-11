@@ -6,7 +6,7 @@ sidebar_label: Enabling HTTPS
 
 <br/>
 
-CaptainDuckDuck has built-in support for Let's Encrypt and it enables you to easily put your websites behind secure HTTPS without being concerned with the cost of SSL certificates (Let's Encrypt is free) and without any hassle of setting up configs and renewing certificates.
+CapRover has built-in support for Let's Encrypt and it enables you to easily put your websites behind secure HTTPS without being concerned with the cost of SSL certificates (Let's Encrypt is free) and without any hassle of setting up configs and renewing certificates.
 
 ## Enable HTTPS on Captain:
 

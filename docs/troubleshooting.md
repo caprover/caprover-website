@@ -11,7 +11,7 @@ This section covers most frequent issues that uses may encounter.
 ## Cannot connect <ip_server>:3000?
 There is a whole set of reasons for this.
 
-First you need to make sure that CaptainDuckDuck is running on your server. To check this, ssh to your server and run `docker service ps captain-captain --no-trunc`. You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see [here](https://github.com/githubsaturn/captainduckduck/issues/14#issuecomment-345447689)
+First you need to make sure that CapRover is running on your server. To check this, ssh to your server and run `docker service ps captain-captain --no-trunc`. You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see [here](https://github.com/githubsaturn/captainduckduck/issues/14#issuecomment-345447689)
 
 Linode for example is notorious for [this kind of problem](https://github.com/docker/machine/issues/2753#issuecomment-171822791) and [this](https://github.com/docker/machine/issues/2753#issuecomment-188353704)
 
@@ -47,13 +47,13 @@ Note that Docker service name is prefixed with `srv-captain--`. Also, you can re
 ## How to restart my application?
 If your application is not behaving well, you can try force restarting it by going to the web dashboard and select your app, then click on "Save Configuration & Update" button. It will forcefully restarts your application.
 
-## How to restart CaptainDuckDuck
-If your CaptainDuckDuck is not behaving well, you can try force restarting CaptainDuckDuck using:
+## How to restart CapRover
+If your CapRover is not behaving well, you can try force restarting CapRover using:
 ```
 docker service update captain-captain --force
 ```
 
-Alternatively, you can go to CaptainDuckDuck dashboard, select your app, without changing anything, simply click on SAVE AND UPDATE CONFIGURATIONS button at the bottom of the page. This will force restart your app.
+Alternatively, you can go to CapRover dashboard, select your app, without changing anything, simply click on SAVE AND UPDATE CONFIGURATIONS button at the bottom of the page. This will force restart your app.
 
 ## How to stop and remove Captain?
 Captain uses docker swarm to support clustering and restarting containers if they stop. That's why it keeps re-appearing. Try this:

@@ -5,7 +5,7 @@ sidebar_label: Run Locally
 ---
 
 <br/>
-Note that this is an advanced process. Some of the concepts used in this section are not easy for the beginners. In order to run CaptainDuckDuck on your local machine (just for testing and development) you need:
+Note that this is an advanced process. Some of the concepts used in this section are not easy for the beginners. In order to run CapRover on your local machine (just for testing and development) you need:
 
 - Docker installed on your machine.
 - A local DNS server on your machine. You need to point `*.captain.x` to `127.0.0.1` or `192.168.1.2` (your local ip). **NOTE** that `etc/hosts` won't be enough as Captain needs a wildcard entry and `etc/hosts` does not allow wildcards, i.e. `*.something`.
@@ -28,9 +28,9 @@ Address: 192.168.1.2
 Once you confirmed that you have the prereqs ready, you can go ahead and install Captain on your machine, similar to what you do on server. Make sure you run as a user with sufficient permission, i.e. `sudo` on linux based systems. Just follow the steps outlined here: [Captain Installation](get-started#step-1-captain-installation)
 
 **EXCEPT** 
-Do not run `captainduckduck serversetup`. Instead, go to http://localhost:3000 and manually set root domain to `captain.x`. DO NOT enable/force HTTPS. Obviously, you cannot enable HTTPS on your local domain (captain.x).
+Do not run `caprover serversetup`. Instead, go to http://localhost:3000 and manually set root domain to `captain.x`. DO NOT enable/force HTTPS. Obviously, you cannot enable HTTPS on your local domain (captain.x).
 
-Once you set your root domain as `captain.x`, use `captainduckduck login` and enter `captain.captain.x` as your captain URL and captain42 as your password. 
+Once you set your root domain as `captain.x`, use `caprover login` and enter `captain.captain.x` as your captain URL and captain42 as your password. 
 
 
 **NON-LINUX USERS**
