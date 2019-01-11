@@ -13,26 +13,26 @@ const users = [
   {
     caption: 'User1',
     // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/captainduckduck.png'.
-    image: '/img/captainduckduck.png',
+    // if it is not '/', like: '/test-site/img/logo.png'.
+    image: '/img/logo.png',
     infoLink: 'https://www.facebook.com',
     pinned: true,
   },
 ];
 
 const siteConfig = {
-  title: 'CaptainDuckDuck' /* title for your website */,
+  title: 'CapRover' /* title for your website */,
   tagline: 'Build your own PaaS in a few minutes!',
-  cname: 'captainduckduck.com',
-  url: 'https://www.captainduckduck.com' /* your website url */,
+  cname: 'caprover.com',
+  url: 'https://www.CapRover.com' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'captainduckduck',
-  organizationName: 'githubsaturn',
+  projectName: 'CapRover',
+  organizationName: 'CapRover',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
@@ -41,7 +41,7 @@ const siteConfig = {
   headerLinks: [
       {doc: 'get-started', label: 'Docs'},
       {
-          href: 'https://github.com/githubsaturn/captainduckduck',
+          href: 'https://github.com/CapRover/CapRover',
           label: 'GitHub',
       },
   ],
@@ -50,14 +50,14 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/captainduckduck.png',
-  footerIcon: 'img/captainduckduck.png',
+  headerIcon: 'img/logo.png',
+  footerIcon: 'img/logo.png',
   favicon: 'img/favicon.ico',
 
   /* colors for website */
   colors: {
-    primaryColor: '#15679d',
-    secondaryColor: '#125682',
+    primaryColor: '#135c8c',
+    secondaryColor: '#0e4468',
   },
 
   /* custom fonts for website */
@@ -90,12 +90,12 @@ const siteConfig = {
   onPageNav: 'separate',
 
   /* Open Graph and Twitter card images */
-  ogImage: 'img/captainduckduck.png',
-  twitterImage: 'img/captainduckduck.png',
+  ogImage: 'img/logo.png',
+  twitterImage: 'img/logo.png',
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-    repoUrl: 'https://github.com/githubsaturn/captainduckduck',
+    repoUrl: 'https://github.com/CapRover/CapRover',
 };
 
 module.exports = siteConfig;

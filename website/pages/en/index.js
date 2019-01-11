@@ -77,12 +77,12 @@ class HomeSplash extends React.Component {
         let language = this.props.language || '';
         return (
             <SplashContainer>
-                <Logo img_src={imgUrl('captainduckduck.png')}/>
+                <Logo img_src={imgUrl('logo.png')}/>
                 <div className="inner">
                     <ProjectTitle/>
                     <PromoSection>
                         <Button href={docUrl('get-started.html', language)}>Get Started Now</Button>
-                        <Button href="https://github.com/githubsaturn/captainduckduck"
+                        <Button href="https://github.com/CapRover/CapRover"
                                 target="_blank"
                                 rel="noreferrer noopener">
                             View on Github</Button>
@@ -158,7 +158,7 @@ const FeatureCallout = props => (
         style={{textAlign: 'center'}}>
         <h2>What's this?</h2>
         <MarkdownBlock>
-            Captain is an extremely easy to use app/database deployment & web server manager for your NodeJS,
+            CapRover is an extremely easy to use app/database deployment & web server manager for your NodeJS,
             Python, PHP, Ruby, MySQL, MongoDB, Postgres, WordPress (and etc) applications. It's blazingly fast and very
             robust as
             it uses Docker, nginx, LetsEncrypt and NetData under the hood behind its simple-to-use interface.
@@ -173,7 +173,7 @@ const CaptainInOnePhoto = props => (
         <Block background="light">
             {[
                 {
-                    title: 'CaptainDuckDuck Workflow at a Glance',
+                    title: 'CapRover Workflow at a Glance',
                     image: imgUrl('captain-in-one-picture.png'),
                     imageAlign: 'bottom',
                 },
@@ -182,7 +182,7 @@ const CaptainInOnePhoto = props => (
         <Block background="light">
             {[
                 {
-                    title: 'Captain Architecture at a Glance',
+                    title: 'CapRover Architecture at a Glance',
                     image: imgUrl('captain-architecture.png'),
                     imageAlign: 'bottom',
                 },
@@ -229,7 +229,7 @@ const MainFeatures = props => (
                 },
                 {
                     content:
-                        'Many ways to deploy: upload your source from dashboard, use command line `captainduckduck deploy`, use webhooks and build upon `git push`',
+                        'Many ways to deploy: upload your source from dashboard, use command line `caprover deploy`, use webhooks and build upon `git push`',
                     title: 'Easy Deploy',
                 },
             ]}
@@ -248,7 +248,7 @@ const MainFeatures = props => (
                 },
                 {
                     content:
-                        'Attach more nodes and create a cluster in seconds! Captain automatically configures nginx to load balance.',
+                        'Attach more nodes and create a cluster in seconds! CapRover automatically configures nginx to load balance.',
                     title: 'Cluster Ready',
                 },
                 {
@@ -291,7 +291,7 @@ const Showcase = props => {
     return (
         <div className="productShowcaseSection paddingBottom">
             <h2>{"Ready to give it a shot?"}</h2>
-            <p>Setting up and playing with CaptainDuckDuck takes around 10 minutes on the first try</p>
+            <p>Setting up and playing with CapRover takes around 10 minutes on the first try</p>
             <Button href={docUrl('get-started.html', language)}>Get Started Now</Button>
         </div>
     );
