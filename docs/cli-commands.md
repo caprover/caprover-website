@@ -18,7 +18,7 @@ The very first thing you need to do is to setup your Captain server. You can eit
 caprover serversetup
 ```
 
-Follow the steps as instructed, enter IP address of server. Enter the root domain to be used with this Captain instance. If you don't know what Captain root domain is, please visit www.CaptainDuckDuck.com for documentation. This is a very crucial step. After that, you'll be asked to enter your email address. This should be a valid email address as it will be used in your SSL certificate. After HTTPS is enabled, you'll be asked to change your password. And... Your are done! Go to Deploy section below to read more about app deployment.
+Follow the steps as instructed, enter IP address of server. Enter the root domain to be used with this Captain instance. If you don't know what Captain root domain is, please visit www.caprover.com for documentation. This is a very crucial step. After that, you'll be asked to enter your email address. This should be a valid email address as it will be used in your SSL certificate. After HTTPS is enabled, you'll be asked to change your password. And... Your are done! Go to Deploy section below to read more about app deployment.
 
 
 ### Login
@@ -51,7 +51,7 @@ Captain definition file for a nodejs application is:
 ```
 
 
-See https://github.com/githubsaturn/captainduckduck/wiki/Captain-Definition-File for more details on Captain Definition file.
+See https://CapRover.com/docs/captain-definition-file.html for more details on Captain Definition file.
 
 After making sure that this file exists, run the following command and answers questions:
 

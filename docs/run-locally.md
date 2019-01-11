@@ -63,7 +63,7 @@ Installation failed.
 You can try this:
 
 ```
-docker run -e "MAIN_NODE_IP_ADDRESS=192.168.1.2" -v /var/run/docker.sock:/var/run/docker.sock dockersaturn/captainduckduck
+docker run -e "MAIN_NODE_IP_ADDRESS=192.168.1.2" -v /var/run/docker.sock:/var/run/docker.sock caprover/caprover
 ```
 
 and replace `192.168.1.2` with your own local IP.
