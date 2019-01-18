@@ -8,7 +8,7 @@ Note: This second is only intended if you want to upgrade your CaptainDuckDuck s
 
 ### Steps
 
-We are currently working on migration steps. Once it is developed and tested properly, we'll release details. You can have access to the migration script as soon as it becomes available by registering to the email updates.
+We are currently working on migration steps. Once it is developed and tested properly, we'll release details. You can have access to the migration script as soon as it becomes available by registering to the email updates. Make sure to [**Subscribe to Updates**](/#email-sub) to get an email when the migration process is ready to be used.
 
 
 ### Breaking Changes:

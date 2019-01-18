@@ -309,8 +309,8 @@ class Index extends React.Component {
                 <HomeSplash language={language}/>
                 <div className="mainContainer">
                     <FeatureCallout/>
-                    <div style={{textAlign:'center'}}>
-                        <iframe style={{width:450, height:400}} src='/email'>
+                    <div id="email-sub" style={{textAlign:'center'}}>
+                        <iframe style={{maxWidth:550, height:200}} src='/email'>
                         </iframe>
                     </div>
                     <QuickDemo/>
