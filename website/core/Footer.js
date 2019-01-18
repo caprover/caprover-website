@@ -76,7 +76,7 @@ class Footer extends React.Component {
 
           <script
               async
-              src={`https://www.googletagmanager.com/gtag/js?id=UA-121064489-1`}
+              src={`https://www.googletagmanager.com/gtag/js?id=UA-132762521-1`}
           />
           <script
               dangerouslySetInnerHTML={{
@@ -84,7 +84,7 @@ class Footer extends React.Component {
                           window.dataLayer = window.dataLayer || [];
                           function gtag(){dataLayer.push(arguments);}
                           gtag('js', new Date());
-                          gtag('config', 'UA-121064489-1');
+                          gtag('config', 'UA-132762521-1');
                             `
               }}/>
 
