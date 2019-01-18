@@ -3,9 +3,8 @@ id: recipe-deploy-create-react-app
 title: Static React App
 sidebar_label: Static React App
 ---
-<br/>
 
-# Deploying as `create-react-app` in a static container
+# Deploying `create-react-app`
 
 Here is a small step-by-step guide to deploy a `create-react-app` as a static site.
 Unlike the regular `caprover deploy` that would deploy source files on a `NodeJS` container then build your app and run a small node server to serve your files, this guide shows how you can build locally and deploy the static bundle in a simple static server container.
@@ -28,14 +27,18 @@ Then create a `captain-definition` at the root of your project:
 
 ```json
 {
-  "schemaVersion": 1,
-  "dockerfileLines": ["FROM socialengine/nginx-spa:latest", "COPY ./src/build /app", "RUN chmod -R 777 /app"]
+  "schemaVersion": 2,
+  "dockerfileLines": [
+    "FROM socialengine/nginx-spa:latest", 
+    "COPY ./build /app", 
+    "RUN chmod -R 777 /app"
+  ]
 }
 ```
 
 This `captain-definition` uses `socialengine/nginx-spa` which is a simple static ngninx server that handle `pushState` (every request is routed to `/index.html` so you can use frontend routing).
 
-**Note**: If your `build` output in a diffent folder than `build` you need to change the `COPY ./src/build /app` into `COPY ./src/[my-output-folder] /app`
+**Note**: If your `build` output in a different folder than `build` you need to change the `COPY ./build /app` into `COPY ./[my-output-folder] /app`
 
 ## Create the `tar` file
 
@@ -45,7 +48,7 @@ Now you need to create a `tar` file, usually you don't have to do this because `
 tar -cvf ./deploy.tar --exclude='*.map' ./captain-definition ./build/*
 ```
 
-**Note**: If your `build` output in a diffent folder than `build` you need to replace `./build/*` with `./[my-output-folder]/*`
+**Note**: If your `build` output in a different folder than `build` you need to replace `./build/*` with `./[my-output-folder]/*`
 
 **Note**: We also exclude `.map` files because these are usually quite big and make the upload longer. If you want `.map` files in production just remove the `--exclude='*.map'`.
 

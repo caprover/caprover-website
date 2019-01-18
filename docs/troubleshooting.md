@@ -11,7 +11,7 @@ This section covers most frequent issues that uses may encounter.
 ## Cannot connect <ip_server>:3000?
 There is a whole set of reasons for this.
 
-First you need to make sure that CapRover is running on your server. To check this, ssh to your server and run `docker service ps captain-captain --no-trunc`. You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see [here](https://github.com/githubsaturn/captainduckduck/issues/14#issuecomment-345447689)
+First you need to make sure that CapRover is running on your server. To check this, ssh to your server and run `docker service ps captain-captain --no-trunc`. You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see [here](https://github.com/caprover/caprover/issues/14#issuecomment-345447689)
 
 Linode for example is notorious for [this kind of problem](https://github.com/docker/machine/issues/2753#issuecomment-171822791) and [this](https://github.com/docker/machine/issues/2753#issuecomment-188353704)
 
@@ -20,15 +20,15 @@ If you don't see any errors when your ran `docker service ps captain-captain --n
 ## Successful Deploy but 502 bad gateway error!
 This applies to you if:
 - You have been able to setup your server and access it via `captain.rootdomain.example.com`.
-- You have been able to deploy one of the samples apps (see [here](https://github.com/githubsaturn/captainduckduck/tree/master/captain-sample-apps)) successfully and it worked.
+- You have been able to deploy one of the samples apps (see [here](https://github.com/caprover/caprover/tree/master/captain-sample-apps)) successfully and it worked.
 - You tried to deploy your own application and it deployed successfully, but when you try to access it via `yourappname.root.example.com` you get a 502 error.
 
 If all above points are correct, this is how to troubleshoot:
 - SSH to your server and view your application logs. Make sure it hasn't crashed and it's running. To view logs, please see the section at the end of this page "[How to view my application's log](#how-to-view-my-applications-log)"
-- If you application logs show that your application is running, the most common case is that your application is binding to a custom port, not port 80. See here for [the fix](https://github.com/githubsaturn/captainduckduck/issues/130) .
+- If you application logs show that your application is running, the most common case is that your application is binding to a custom port, not port 80. For example, CouchDB runs at port 5984. In this case, go to app's settings on CapRover, go to HTTP Settings, then select 5984 as the "Container Port".
 
-## Want to customize a captain dashboard URL (or any other constants)
-You can customize any constant defined in [CaptainConstants](https://github.com/githubsaturn/captainduckduck/blob/master/app-backend/src/utils/CaptainConstants.js) by adding a JSON file to `/captain/constants.conf`. For example, to change `defaultMaxLogSize`, the content of `/captain/constants.conf` will be:
+## Customize Config Settings
+You can customize any constant defined in [CaptainConstants](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) by adding a JSON file to `/captain/data/config-override.json`. For example, to change `defaultMaxLogSize`, the content of `/captain/data/config-override.json` will be:
 ```
 {
  "defaultMaxLogSize":"128m"

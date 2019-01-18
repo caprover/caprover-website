@@ -15,9 +15,17 @@ By default, any webapp that you deploy gets a Captain domain assigned to it in t
 
 One of the most basic configuration that you can set for your app is environmental variables. These variables are usually used to pass in data that does not live in the code. Examples, include API key for a 3rd party service, database connection URI and etc. 
 
+## Port Mapping
+
+CapRover allows you to map ports from a container to the host. You should use this feature if you want a specific port of your apps/containers to be publicly accessible. The most common use case is when you want to **connect to a database container from your local machine**.
+
+Note that even if you don't set any port mapping, all ports are accessible from other containers on the same Captain cluster. Therefore, you should only use this option if you want the port to be publicly accessible. Make sure to have the port open, see [firewall settings](firewall.md).
+
+For example, if you want your NodeJS app to access your MongoDB database, and you do not need to access your MongoDB from your laptop, you don't need Port Mapping. Instead, you can use the fully qualified name for the MongoDB instance which is `srv-captain--mongodb-app-name` (replace `mongodb-app-name` with the app name you used). 
+
 ## Persistent or Not
 
-When you want to create an app you have the option of creating the app with "Persistent Data" or not. 
+When you want to create an app you have the option of creating the app with "Persistent Data" or not. By default, you should always prefer no persistence. However, they are cases where you need to create an app with persistence, see below.
 
 ### Persistent Apps: 
 These are the apps that have some data that need to survive restart, crash, container update and etc. Because these apps store data on disk, once they get created they get locked down on a specific server (if you have multiple servers). You can still change the constraint so that they will be moved to another machine, but if they will lose anything that might have been stored on the current host. Examples that use persistent apps include:
@@ -27,7 +35,7 @@ These are the apps that have some data that need to survive restart, crash, cont
 
 The main limitation of apps with Persistent Data is that they cannot be run as multiple instances. That's because they would access the same storage area and the data can be corrupted if multiple apps try to write on the same path.
 
-Note that NOT ALL DIRECTORIES will be treated as persistent directories. After you created the app as an app with persistent data, you'll have to define directories that you want to be persistent in the app details page on web dashboard. You can let CapRover manage the stored directories for you, in that case, they will be placed in `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data`. Alternatively, you can set specific path on your host machine to be mapped to a directory in your container. For example, you can map `/var/usr` on your server to `/my-host-usr-something` in your container. This way you can save a file in your container at `/my-host-usr-something/myfile.txt` and the file will be available on your server at `/var/usr/myfile.txt`. If you choose to use this option (specifying a specific host path), you'll have to make sure that the path already exists in your host before assigning it.
+Note that even for Persistent Apps, NOT ALL DIRECTORIES will be treated as persistent directories. After you created the app as an app with persistent data, you'll have to define directories that you want to be persistent in the app details page on web dashboard. You can let CapRover manage the stored directories for you, in that case, they will be placed in `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data`. Alternatively, you can set specific path on your host machine to be mapped to a directory in your container. For example, you can map `/var/usr` on your server to `/my-host-usr-something` in your container. This way you can save a file in your container at `/my-host-usr-something/myfile.txt` and the file will be available on your server at `/var/usr/myfile.txt`. If you choose to use this option (specifying a specific host path), you'll have to make sure that the path already exists in your host before assigning it.
 
 ### Removing Persistent Apps: 
 Persistent directories need to be manually removed after you remove an app from Captain dashboard. This is to avoid accidential delete of important data. To delete persisten directories, depending on the type of persistent directories, steps are different:
@@ -45,9 +53,3 @@ Also, multiple instances of non-persistent apps can be running at the same time 
 - A image processor which takes a photo and runs some logic to figure out what is in the picture. This is a good example of an app that can benefit from getting spawned as multiple instances as it's CPU heavy.
 - A TODO web app. Note that this app will definitely uses some sort of database which is persistent. But the webapp itself does not store anything directly on disk.
 - An image upload app that uses Amazon S3 as the storage engine rather than storing images locally on disk
-
-## Port Mapping
-
-CapRover allows you to map ports from a container to the host. You should use this feature if you want a specific port of your apps/containers to be publicly accessible. The most common use case is when you want to connect to a database container from your local machine. Note that even if you don't set any port mapping, all ports are accessible from other containers on the same Captain cluster. Therefore, you should only use this option if you want the port to be publicly accessible. Make sure to have the port open, see [firewall settings](firewall.md).
-
-Note that you only need port mapping if your database is being accessed from an external machine. For example, if you want your NodeJS app to access your MongoDB database, and you do not need to access your MongoDB from your laptop, you don't need Port Mapping. Instead, you can use the fully qualified name for the MongoDB instance which is `srv-captain--mongodb-app-name` (replace `mongodb-app-name` with the app name you used). 

@@ -24,7 +24,7 @@ var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
 
 Note that `captainAppObj`, is the app object as saved in `/captain/config.conf` file, and `dockerUpdateObject` is the service update object that is being passed to Docker to update the service (environmental vars, image version and etc). This object is as per [Docker docs](https://docs.docker.com/engine/api/v1.30/#operation/ServiceUpdate).
 
-Since this script will be executed in CapRover process, you'll get access to all node dependecies that CapRover has, see [CaptainDuckDuck/app-backend/package.json](https://github.com/githubsaturn/captainduckduck/blob/master/app-backend/package.json). For example, the following script injects a UUID mapped to the deployed version to service label with every update:
+Since this script will be executed in CapRover process, you'll get access to all node dependecies that CapRover has, see [CaptainDuckDuck/app-backend/package.json](https://github.com/caprover/caprover/blob/master/package.json). For example, the following script injects a UUID mapped to the deployed version to service label with every update:
 
 ```
 var uuid = require('uuid/v4');
@@ -47,4 +47,4 @@ Note that this pre-deploy script, particularly Docker service update object, is 
 dockerUpdateObject.TaskTemplate.ContainerSpec.Labels[uuid()] = captainAppObj.deployedVersion+ '';
 ```
 
-Removing this causes an error. To see logs, you need to run `docker service logs captain-captain --follow`. Even the error from Docker is not very clear. All in all, this is an advanced feature and is not recommended for beginners and intermiate users.
+Removing this simple hack, will throw an error when deploying apps. To see logs, you need to run `docker service logs captain-captain --follow`. Even the error from Docker is not very clear. All in all, this is an advanced feature and is not recommended for beginners and intermiate users.

@@ -60,6 +60,9 @@ const Logo = props => (
 const ProjectTitle = props => (
     <h2 className="projectTitle">
         {siteConfig.title}
+        <div style={{fontSize:'30%',opacity:0.5}}>
+        <i>Previously Known as CaptainDuckDuck <br/></i>
+        </div>
         <small>{siteConfig.tagline}</small>
     </h2>
 );
@@ -158,7 +161,7 @@ const FeatureCallout = props => (
         style={{textAlign: 'center'}}>
         <h2>What's this?</h2>
         <MarkdownBlock>
-            CapRover is an extremely easy to use app/database deployment & web server manager for your NodeJS,
+            CapRover is an extremely easy to use app/database deployment &amp; web server manager for your NodeJS,
             Python, PHP, Ruby, MySQL, MongoDB, Postgres, WordPress (and etc) applications. It's blazingly fast and very
             robust as
             it uses Docker, nginx, LetsEncrypt and NetData under the hood behind its simple-to-use interface.

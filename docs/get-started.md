@@ -20,9 +20,9 @@ _**CPU Architecture**:_ Although CapRover source code is compatible with any CPU
 
 _**Recommended Stack**:_ CapRover is tested on Ubuntu 16.04 and Docker 17.06. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
 
-_**Minimum RAM**:_ Note that the build process sometimes consumes too much RAM, and 512MB RAM might not be enough (see [this issue](https://github.com/githubsaturn/captainduckduck/issues/28)). Most providers offer a minimum of 1GB RAM on $5 instance including DigitalOcean, Vultr, Scaleway, Linode, SSD Nodes and etc.
+_**Minimum RAM**:_ Note that the build process sometimes consumes too much RAM, and 512MB RAM might not be enough (see [this issue](https://github.com/caprover/caprover/issues/28)). Most providers offer a minimum of 1GB RAM on $5 instance including DigitalOcean, Vultr, Scaleway, Linode, SSD Nodes and etc.
 
-You can install Captain on your laptop which is behind NAT (your router) for testing purposes, but it requires some special setup, like port forwarding. 
+You can install Captain on your laptop which is behind NAT (your router). But if you want to enable HTTPS and/or access the apps from outside of your private network, it requires some special setup, like port forwarding. 
 
 #### C) Install Docker on Server (at least, version 17.06.x)
 
@@ -49,7 +49,7 @@ Just run the following line, sit back and enjoy!
  mkdir /captain && docker run -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock caprover/caprover
 ```
 
-You will see a bunch of outputs on your screen. Once the Captain is initialized, you can visit `http://[IP_OF_YOUR_SERVER]:3000` in your browser and login to Captain using the default password `captain42`. You can change your password later. Do not make any changes in the dashboard. We'll use the command line tool to setup the server.
+You will see a bunch of outputs on your screen. Once the Captain is initialized, you can visit `http://[IP_OF_YOUR_SERVER]:3000` in your browser and login to Captain using the default password `captain42`. You can change your password later. **Do not make any changes in the dashboard**. We'll use the command line tool to setup the server.
 
 ## Step 2: Connect Root Domain
 
@@ -80,7 +80,7 @@ Follow the steps and login to your captain instance. When prompted to enter the 
 
 ## Step 4: Deploy the Test App
 
-Go to the Captain in your browser, from the left menu select Apps and create a new app. Name it `my-first-app`. Then, download any of the test apps <a href="https://github.com/githubsaturn/captainduckduck/tree/master/captain-sample-apps">here</a>, unzip the content. and while inside the directory of the test app, run:
+Go to the Captain in your browser, from the left menu select Apps and create a new app. Name it `my-first-app`. Then, download any of the test apps <a href="https://github.com/caprover/caprover/tree/master/captain-sample-apps">here</a>, unzip the content. and while inside the directory of the test app, run:
 
 ```bash
 /home/Desktop/captain-examples/captain-node$  caprover deploy
@@ -90,6 +90,6 @@ CONGRATS! Your app is live!!
 
 You can connect multiple custom domains (like `www.my-app.com`) to a single app and enable HTTPS and do much more in the app's settings page.
 
-Note that when you run `caprover deploy`, the current git commit will be sent over to your server. **IMPORTANT:** uncommited files and files in `gitignore` WILL NOT get pushed to the server.
+Note that when you run `caprover deploy`, the current git commit will be sent over to your server. **IMPORTANT:** uncommited files and files in `gitignore` WILL NOT be sent to the server.
 
 You can visit Captain in the browser and set custom parameters for your app such as environment variables, and do much more! For more details regarding deployment, please see CLI docs. For details on `captain-definition` file, see [Captain Definition File](captain-definition-file.md).

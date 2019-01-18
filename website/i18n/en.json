@@ -17,6 +17,10 @@
         "title": "Captain Definition File",
         "sidebar_label": "Captain Definition File"
       },
+      "cdd-migration": {
+        "title": "CaptainDuckDuck Upgrade",
+        "sidebar_label": "CaptainDuckDuck Upgrade"
+      },
       "cli-commands": {
         "title": "CLI Commands",
         "sidebar_label": "CLI Commands"

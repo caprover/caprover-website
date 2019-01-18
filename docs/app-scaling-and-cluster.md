@@ -34,9 +34,9 @@ Note: for cluster mode you will need to setup a Docker Registry.
 
 ### Setup Docker Registry:
 
-Docker Registry is simply the repository that different nodes in a cluster can access to download your app and run it. If you are not running your instance on a cluster, there is pretty much no benefit to setting up Docker Registry.
+Docker Registry is simply the repository that different nodes in a cluster can access to download your app and run it. If only have one server (no cluster), there is pretty much no benefit to setting up Docker Registry.
 
-On the other hand, Docker Registry is necessary for clusters. To setup Registry, simply go to your Captain web dashboard and follow the instructions. You will be given two options:
+On the other hand, Docker Registry needs to be set up and ready for clusters. To setup Registry, simply go to your Captain web dashboard, select Cluster from the menu, and follow the instructions. You will be given two options:
 - Docker Registry managed by Captain.
 - Docker Registry managed by a 3rd party provider.
 

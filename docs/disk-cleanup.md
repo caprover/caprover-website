@@ -15,7 +15,7 @@ docker container prune --force
 docker image prune --all
 ```
 
-Important Note: Use this approach only if you have a Docker registry set up (local or remote). This is due to an existing bug in Docker, see [here](https://github.com/githubsaturn/captainduckduck/issues/180) for more details on the problem and also see the related [Docker Issue](https://github.com/moby/moby/issues/36295)
+Important Note: Use this approach only if you have a Docker registry set up (local or remote). This is due to an existing bug in Docker, see [here](https://github.com/caprover/caprover/issues/180) for more details on the problem and also see the related [Docker Issue](https://github.com/moby/moby/issues/36295)
 
 ## Docker Volumes
 Volumes, aka "Persistent Directories". When you create an app with persistent data, like a database, you will assign it a persistent directory. When you change the persistent directory, or when you delete your app, you don't need the volumes anymore. Cleaning up orphaned volumes are tricky. If you have a useful volume for an app that is "currently" crashing and not-running, that volume is considered as "orphaned" by Docker :( So, to safely clean up orphaned volumes, first, check to see if all your services are running by:

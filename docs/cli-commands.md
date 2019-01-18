@@ -45,13 +45,13 @@ Captain definition file for a nodejs application is:
 
 ```
  {
-  "schemaVersion" :1 ,
+  "schemaVersion" :2 ,
   "templateId" :"node/8.7.0"
  }
 ```
 
 
-See https://CapRover.com/docs/captain-definition-file.html for more details on Captain Definition file.
+See  [Captain Definition File](captain-definition-file.md) for more details on Captain Definition file.
 
 After making sure that this file exists, run the following command and answers questions:
 
@@ -61,9 +61,9 @@ caprover deploy
 
 You will then see your application being uploaded, after that, your application getting built. Note that the build process takes multiple minutes, please be patient!
 
-You can also deploy directly with one command:
+Alternatively, you can use the stateless mode and supply the CapRover server information inline:
 ```bash
-caprover deploy -s -h https://captain.root.domain.com -a app-name -p password -b branchName
+caprover deploy -h https://captain.root.domain.com -p password -b branchName -a app-name 
 ```
 
 This can be useful if you want to integrate CI/CD pipeline.

@@ -2,6 +2,7 @@
   "docs": {
     "Basics": [
       "get-started",
+      "cdd-migration",
       "captain-definition-file",
       "deployment-methods",
       "app-configuration",
