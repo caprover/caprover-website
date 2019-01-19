@@ -4,7 +4,7 @@
     "start": "docusaurus-start",
     "build": "docusaurus-build",
     "publish-gh-pages": "docusaurus-publish",
-    "publish": "rm -rf ./build && docusaurus-build && cp ./CNAME ./build/caprover/ && node publish_to_github_pages.js",
+    "publish": "rm -rf ./build && docusaurus-build && cp ./CNAME ./build/CapRover/ && node publish_to_github_pages.js",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version"
