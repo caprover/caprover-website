@@ -33,7 +33,7 @@ If you get your server from DigitalOcean, you can select a server with "pre-inst
 #### D) Disable Firewall
 Some server providers have strict firewall settings. To disable firewall on Ubuntu:
 ```bash
-ufw disable
+ufw allow 80,443,3000,996,7946,4789,2377/tcp; ufw allow 7946,4789,2377/udp;
 ```
 
 <br/>
