@@ -310,7 +310,7 @@ class Index extends React.Component {
                 <div className="mainContainer">
                     <FeatureCallout/>
                     <div id="email-sub" style={{textAlign:'center'}}>
-                        <iframe style={{maxWidth:550, height:200}} src='/email'>
+                        <iframe style={{maxWidth:550, height:220}} src='/email'>
                         </iframe>
                     </div>
                     <QuickDemo/>
