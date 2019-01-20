@@ -6,10 +6,10 @@
       "captain-definition-file",
       "deployment-methods",
       "app-configuration",
+      "persistent-apps",
       "complete-webapp-tutorial"
     ],
     "Do More": [
-      "enabling-https",
       "one-click-apps",
       "resource-monitoring",
       "nginx-customization",

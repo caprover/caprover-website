@@ -6,7 +6,10 @@ sidebar_label: Complete Webapp Tutorial
 
 
 <br/>
-We want to make a webapp version of [HOTDOG or NOT HOTDOG](https://www.theverge.com/2017/6/26/15876006/hot-dog-app-android-silicon-valley)!
+
+This is a quick general tutorial to help you understand how you should architecture an app that has multiple components.
+
+Let's say we want to make a webapp version of [HOTDOG or NOT HOTDOG](https://www.theverge.com/2017/6/26/15876006/hot-dog-app-android-silicon-valley)!
 
 
 

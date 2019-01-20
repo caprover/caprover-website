@@ -6,50 +6,55 @@ sidebar_label: App Configuration
 
 <br/>
 
-## Custom Domains & HTTPS
+## HTTP Settings
+
+This is where all HTTP related stuff sits. If your app is not an HTTP app, you can simply check "Do not expose as web app. This is used for anything that is not a webapp, like a database such as MongoDB or MySQL.
+
+![httpsettings](/img/docs/app-http.png)
 
 By default, any webapp that you deploy gets a Captain domain assigned to it in this format: `appname.root.domain.com`. However, you have the option to add as many domains as you want to this app. For example, you can add `www.myawesomeapp.com` and `myawesomeapp.com`.
 
+There are also some advanced options such as Edit Default Nginx config and Container HTTP Port which you usually do not need to edit.
 
-## Environmental Variables
+#### Enabling HTTPS
+
+CapRover has built-in support for Let's Encrypt and it enables you to easily put your websites behind secure HTTPS without being concerned with the cost of SSL certificates (Let's Encrypt is free) and without any hassle of setting up configs and renewing certificates.
+
+To enable HTTPS for any domain, just click on enable HTTPS! It takes a few seconds and it's done!
+
+After enabling HTTPS, you can optionally, although very recommended, enforce HTTPS for all requests, i.e. denying plain insecure HTTP connections and redirect them to HTTPS.
+
+
+## App Config
+
+This is where you can set runtime configuration and settings.
+
+![appconfig](/img/docs/app-vars.png)
+
+### Environmental Variables
 
 One of the most basic configuration that you can set for your app is environmental variables. These variables are usually used to pass in data that does not live in the code. Examples, include API key for a 3rd party service, database connection URI and etc. 
 
-## Port Mapping
+### Port Mapping
 
 CapRover allows you to map ports from a container to the host. You should use this feature if you want a specific port of your apps/containers to be publicly accessible. The most common use case is when you want to **connect to a database container from your local machine**.
 
 Note that even if you don't set any port mapping, all ports are accessible from other containers on the same Captain cluster. Therefore, you should only use this option if you want the port to be publicly accessible. Make sure to have the port open, see [firewall settings](firewall.md).
 
-For example, if you want your NodeJS app to access your MongoDB database, and you do not need to access your MongoDB from your laptop, you don't need Port Mapping. Instead, you can use the fully qualified name for the MongoDB instance which is `srv-captain--mongodb-app-name` (replace `mongodb-app-name` with the app name you used). 
+For example, if you want your NodeJS app to access your MongoDB database, and you do not need to access your MongoDB from your laptop, you don't need Port Mapping. Instead, you can use the fully qualified name for the MongoDB instance which is `srv-captain--mongodb-app-name` (replace `mongodb-app-name` with the app name you used).
 
-## Persistent or Not
+### Persistent Directories
 
-When you want to create an app you have the option of creating the app with "Persistent Data" or not. By default, you should always prefer no persistence. However, they are cases where you need to create an app with persistence, see below.
+Only used for [persistent apps](persistent-apps.md).
 
-### Persistent Apps: 
-These are the apps that have some data that need to survive restart, crash, container update and etc. Because these apps store data on disk, once they get created they get locked down on a specific server (if you have multiple servers). You can still change the constraint so that they will be moved to another machine, but if they will lose anything that might have been stored on the current host. Examples that use persistent apps include:
-- Any database that stores data on disk has to have persistent data enabled. Otherwise all data will be lost when the container restarts (due to crash, host restart and etc...)
-- A photo upload app which does not use third party storages like Amazon S3 to store images. Instead, it locally stores uploaded images.
-- A webapp that needs to store some user uploaded files and plugins locally on disk (like WordPress)
+### Node ID
 
-The main limitation of apps with Persistent Data is that they cannot be run as multiple instances. That's because they would access the same storage area and the data can be corrupted if multiple apps try to write on the same path.
+Only used for [persistent apps](persistent-apps.md). Persistent apps need to be locke down to a particular node (if you have a cluster of servers). NodeId defines what node this app should be locked down to.
 
-Note that even for Persistent Apps, NOT ALL DIRECTORIES will be treated as persistent directories. After you created the app as an app with persistent data, you'll have to define directories that you want to be persistent in the app details page on web dashboard. You can let CapRover manage the stored directories for you, in that case, they will be placed in `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data`. Alternatively, you can set specific path on your host machine to be mapped to a directory in your container. For example, you can map `/var/usr` on your server to `/my-host-usr-something` in your container. This way you can save a file in your container at `/my-host-usr-something/myfile.txt` and the file will be available on your server at `/var/usr/myfile.txt`. If you choose to use this option (specifying a specific host path), you'll have to make sure that the path already exists in your host before assigning it.
+### Instance Count
 
-### Removing Persistent Apps: 
-Persistent directories need to be manually removed after you remove an app from Captain dashboard. This is to avoid accidential delete of important data. To delete persisten directories, depending on the type of persistent directories, steps are different:
-- Volumes (persistent directories mapped to a label):
-![Volumes](http://i67.tinypic.com/2w7o0o0.png)
-For this type, you need to run `docker volume ls` to see the names of the volumes, and then run `docker volume rm NAME_OF_VOLUME` to remove the volume
-- Mapped directories on host: these are directories from your server that are mapped to a directory in your container (app). To remove them, simply remove the directory from your server via `rm -rf /path/to/directory`
-![mapped](http://i63.tinypic.com/2h4e07s.png)
+How many instances of this app should run at the same time. You may have as many instances as you want. However, you are limited by your hardware. If you increase this number and you don't have enough RAM or Disk. Your system crashes it's a difficult task to recover the server. CapRover makes it as easy as a simple click to scale your application. However, don't forget that you are always limited by your hardware!
 
-### Non-Persistent Apps: 
-Generally speaking, anything that does not directly stores data on disk can be made non-persistent. You should always prefer to have non-persistent apps as they are much more flexible. Let's say you have multiple servers, if a server becomes unhealthly, all "non-persistent" apps on that server will automatically get moved to other servers whereas persistent apps are locked down to that server due to some data that they saved on that server.
+### Predeploy Function
 
-Also, multiple instances of non-persistent apps can be running at the same time without causing any issues as they live in isolated environment and each of them has their very own disk space. Note that non persistent apps can still write data on disk, things on temporary cache and etc, but that data will get deleted once the container restarts due to a crash, deploy, configuration update or host restart. Examples include:
-
-- A image processor which takes a photo and runs some logic to figure out what is in the picture. This is a good example of an app that can benefit from getting spawned as multiple instances as it's CPU heavy.
-- A TODO web app. Note that this app will definitely uses some sort of database which is persistent. But the webapp itself does not store anything directly on disk.
-- An image upload app that uses Amazon S3 as the storage engine rather than storing images locally on disk
+This is a [very dangerous and advanced option](pre-deploy-script.md). Do not use it unless you really know what you are doing.

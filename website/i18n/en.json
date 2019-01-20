@@ -37,10 +37,6 @@
         "title": "Disk Clean-Up",
         "sidebar_label": "Disk Clean-Up"
       },
-      "enabling-https": {
-        "title": "Enabling HTTPS",
-        "sidebar_label": "Enabling HTTPS"
-      },
       "firewall": {
         "title": "Firewall & Port Forwarding",
         "sidebar_label": "Firewall & Port Forwarding"
@@ -56,6 +52,10 @@
       "one-click-apps": {
         "title": "One-Click Apps",
         "sidebar_label": "One-Click Apps"
+      },
+      "persistent-apps": {
+        "title": "Persistent Apps",
+        "sidebar_label": "Persistent Apps"
       },
       "pre-deploy-script": {
         "title": "Pre-deploy Script",
