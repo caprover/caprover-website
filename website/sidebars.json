@@ -7,15 +7,15 @@
       "deployment-methods",
       "app-configuration",
       "persistent-apps",
+      "cli-commands",
+      "one-click-apps",
       "complete-webapp-tutorial"
     ],
     "Do More": [
-      "one-click-apps",
       "resource-monitoring",
       "nginx-customization",
       "app-scaling-and-cluster",
       "pre-deploy-script",
-      "cli-commands",
       "run-locally"
     ],
     "Recipes and Tips": [

@@ -6,9 +6,20 @@ sidebar_label: One-Click Apps
 
 <br/>
 
-CapRover has built-in support for several popular apps that can be deployed as is. These include WordPress, MySQL, MongoDB and etc.
+CapRover has built-in support for several popular apps that can be deployed as is. These include WordPress, MySQL, MongoDB and many more.
+
+There is a repository of [One Click Apps on GitHub](https://github.com/caprover/one-click-apps) and it's continuously growing.
 
 ![OneClickAppsCapRover](https://i.imgur.com/Tlgbkmy.png)
+
+
+<br/>
+
+**IMPORTANT** just because an app or database is not available as a one click app, it doesn't mean that you can't deploy it. For example, before NextCould was available as a one click app, you could still deploy it manually like this
+![nextcloud](/img/docs/nextcloud-deploy-manually.png)
+
+
+<br/>
 
 ## Configuration Settings
 
@@ -25,3 +36,10 @@ However, if you want to connect to your database from a remote machine (e.g. you
 - Port 1002 of the server goes to mysql-2 port 3306
 
 Port mapping is needed if you want to connect to a database from a remote machine. You can read more about it [Captain Configuration - Port Mapping](app-configuration.md#port-mapping).
+
+
+**IMPORTANT:** After port mapping is done make sure to open the server port. For example, if you mapped port 4444 of your host (server) to port 3306 of your container, you need to run the following command:
+
+```
+ufw allow 4444
+```

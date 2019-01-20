@@ -15,7 +15,7 @@ During installation, you'll be asked to point a wildcard DNS entry to your CapRo
 ### B) Server with a Public IP
 
 
-*Side note: You can install CapRover on your laptop on a private network which is behind NAT (your router). But if you want to enable HTTPS and/or access the apps from outside of your private network, it requires some special setup, like port forwarding.*
+*Side note: You can [install CapRover locally](run-locally.md) on your laptop on a private network which is behind NAT (your router). But if you want to enable HTTPS and/or access the apps from outside of your private network, it requires some special setup, like port forwarding.*
 
 In standard installation, CapRover has to be installed on a machine with a public IP address. If you need help with Public IP, see [Server & Public IP address](server-purchase.md). This will cost you as low as $5 a month. If you use the DigitalOcean referral code, you'll get $10 credit - two months worth of free server: https://m.do.co/c/6410aa23d3f3 
 
