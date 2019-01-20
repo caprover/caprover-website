@@ -4,7 +4,7 @@ title: CaptainDuckDuck Upgrade
 sidebar_label: CaptainDuckDuck Upgrade
 ---
 
-Note: This second is only intended if you want to upgrade your CaptainDuckDuck server to CapRover.
+Note: This section is only intended if you want to upgrade your CaptainDuckDuck server to CapRover.
 
 ### Steps
 
