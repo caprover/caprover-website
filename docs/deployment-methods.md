@@ -14,19 +14,26 @@ Simply run `caprover deploy` in your git repo and follow the steps. This is the 
 ## Deploy via Web Dashboard
 Convert the content of your project into a tarball (`.tar`), go to your Captain web dashboard and upload the tar file. This deployment method is typically used for testing purposes only.
 
+For captain-definition files that do not require any source code, like [this](/docs/captain-definition-file.html#use-image-name), you can simply copy and paste the captain-definition content on web dashboard.
+
 
 ## Automatic Deploy using Github, Bitbucket and etc.
-This method is perhaps the most convenient one. This method automatically triggers a build when you push your repo to a specific branch (like `master` or `staging` or etc). To setup this, go to your apps settings and enter the repo information:
+This method is perhaps the most convenient one. This method automatically triggers a build when you push your repo to a specific branch (like `master` or `staging` or `release` or etc). To setup this, go to your apps settings and enter the repo information:
 - github/bitbucket username(email address): This is username that will be used when Captain downloads the repo.
 - github/bitbucket password: You can enter any non-empty text, like `123456`, for public projects.
 - repo: This is the main HTTPS address of repo, in case of github, it is in `github.com/someone/something` format. Make sure it does NOT include `https://` prefix and `.git` suffix.
-- branch: The branch you want to be tracked, for example `master` or `production`...
+- branch: The branch you want to be tracked, for example `master` or `staging` or `release`...
 
-After you enter this information, save your configuration. And go to your apps page again. Now, you'll see a new field call webhook. Simply copy this webhook to your github/bitbucket repo webhooks (see below). Captain listens to `POST` requests on this link and triggers a build.
+After you enter this information, save your configuration. And go to your apps page again. Now, you'll see a new field call webhook. Simply copy this webhook to your github/bitbucket repo webhooks (see below). Captain listens to POST requests on this link and triggers a build.
 
-On Github, webhooks can be added here:
+#### Github
+Webhooks can be added here:
 - Project > Settings > Add Webhook > URL: Captain Webhook from your apps page, Content Type: `application/json`, 
 Secret: <Leave empty>, Just the `push` event.
 
-On Bitbucket, webhooks can be added here:
+#### Bitbucket
+Webhooks can be added here:
 - Project > Settings > Webhooks > Add Webhook > Title: Captain Server, URL: Captain Webhook from your apps page.
+
+#### GitLab and Others
+Webhooks can be added in a similar fashion. As long as the webhook fires a POST request, CapRover is able to pick it up and starts a build from the latest commit on the specified branch.

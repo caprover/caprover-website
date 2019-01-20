@@ -6,7 +6,7 @@ sidebar_label: Captain Definition File
 
 <br/>
 ## Basics
-One of the key components of CapRover is the `captain-definition` file that sits at the root of your project. In case of NodeJS app, it sits next to package.json, or next to index.php in case of PHP, or requirements.txt for Python app. It's a simple JSON like below:
+One of the key components of CapRover is the `captain-definition` file that sits at the root of your project. In case of NodeJS app, it sits next to package.json, or next to index.php in case of PHP, or requirements.txt for Python app. It's a simple JSON like this:
 
 
 ```
@@ -16,11 +16,11 @@ One of the key components of CapRover is the `captain-definition` file that sits
  }
 ```
 
-`schemaVersion` is always 2. And `templateId` is the piece which defines the foundation you need in order to run your app. It is in `LANGUAGE/VERSION` format. LANGUAGE can be one of these: `node`, `php`, `python-django`, `ruby-rack`. See supported versions below for the versions.
+`schemaVersion` is always 2. And `templateId` is the piece which defines the foundation you need in order to run your app. It is in `LANGUAGE/VERSION` format. LANGUAGE can be one of these: `node`, `php`, `python-django`, `ruby-rack`. And VERSION is the version of the language you want to use - see [below](#versions-for-templateid).
 
 Note that although the `templateId` can be one of the 4 most popular web app languages: NodeJS, PHP and Python/Django, Ruby/Rack, you are NOT LIMITED to these predefined languages! With CapRover, you have the ability to define your own Dockerfile. With a customized Dockerfile, you can deploy any laguage, Go, Java, .NET, you name it! Dockerfiles are quite easy to write. For example, the two captain-definition files below generate <b>the exact same result</b>.
 
-### Simple version
+#### Simple version
 
 ```
  {
@@ -30,7 +30,7 @@ Note that although the `templateId` can be one of the 4 most popular web app lan
 ```
 
 
-### Advanced Version
+#### Advanced Version
 
 ```
  {
@@ -49,7 +49,7 @@ Note that although the `templateId` can be one of the 4 most popular web app lan
                     ]
  }
 ```
-## Convert Dockerfile to captain-definition:
+## Use Dockerfile in captain-definition:
 
 If you already have a Dockerfile a Dockerfile for your repo, you can reference it in captain-definition file:
 
@@ -64,9 +64,24 @@ Dockerfiles are so simple and easy to read. Even if you don't know anything abou
 
 Using this approach (pure Dockerfile) you can deploy Ruby, Java, Scala, literally anything! If you need more details on dockerfile, please see [Dockerfile Help](https://docs.docker.com/engine/reference/builder) and [Best Practices](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices).
 
+## Use Image Name
 
-## Sample versions for templateId:
-NOTE: Versions get pulled from official repositories at runtime, therefore you do not need to update your Captain in order to use a new version of NodeJS. For example, see here: https://hub.docker.com/_/node/
+If you are an advanced Docker user, you may know that there are plenty of pre-built applications sitting on DockerHub. You can deploy these images using captain-definition. For example to deploy https://hub.docker.com/r/nginxdemos/hello/, you use: 
+
+```
+ {
+  "schemaVersion" :2 ,
+  "imageName" :"nginxdemos/hello"
+ }
+```
+
+Tip: You can simply copy and paste the captain-definition file above on CapRover web dashboard under the deploy tab.
+
+## Versions for templateId:
+NOTE: Versions get pulled from official repositories at runtime, therefore you do not need to update your Captain in order to use a new version of NodeJS. For example, see [here](https://hub.docker.com/_/node/).
+
+**IMPORTANT:** Versions mentioned below are for **reference only**. For example, at the time that this document was generated Node 10 was not available, but it is available now. Therefore, you can use `node/10` or `node/10.15` or `node/10.15.0` as your templateId despite the fact that it is not mentioned below.
+
 
 ```bash
 node/
