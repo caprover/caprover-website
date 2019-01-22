@@ -55,6 +55,19 @@ docker service update captain-captain --force
 
 Alternatively, you can go to CapRover dashboard, select your app, without changing anything, simply click on SAVE AND UPDATE CONFIGURATIONS button at the bottom of the page. This will force restart your app.
 
+## How to use the Edge version
+Edge version gets automatically built with every push on master. If your version has a particular bug that is just fixed on master branch, you can temporarily update your CapRover to use the Edge version. Note that once you switch to edge, you won't receive updates. With the next release of CapRover, you have to manually switch back to CapRover. Note that this is an advance operations. Also, as a rule of thumb, once you switch to Edge, do not switch back to the regular version until a new version is released.
+
+To switch to edge
+```
+docker service update captain-captain --image caprover/caprover-edge:0.0.1
+```
+
+To switch back to the main image
+```
+docker service update captain-captain --image caprover/caprover:latest
+```
+
 ## How to stop and remove Captain?
 Captain uses docker swarm to support clustering and restarting containers if they stop. That's why it keeps re-appearing. Try this:
 
