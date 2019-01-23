@@ -15,7 +15,9 @@ There is a repository of [One Click Apps on GitHub](https://github.com/caprover/
 
 <br/>
 
-**IMPORTANT** just because an app or database is not available as a one click app, it doesn't mean that you can't deploy it. For example, before NextCould was available as a one click app, you could still deploy it manually like this
+
+## What about other apps?
+Just because an app or database is not available as a one click app, it doesn't mean that you can't deploy it. For example, before NextCould was available as a one click app, you could still deploy it manually like this
 ![nextcloud](/img/docs/nextcloud-deploy-manually.png)
 
 
