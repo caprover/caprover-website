@@ -21,7 +21,7 @@ Just because an app or database is not available as a one click app, it doesn't 
 ![nextcloud](/img/docs/nextcloud-deploy-manually.png)
 
 
-With CapRover v1, it's even easier that the method explained above. Since `captain-definition` now supports `imageName`. You can copy and past this into the deploy section of an app that you create. No more `tar` file creation is needed when all you need is `imageName`:
+With CapRover v1, it's even easier than the method explained above. Since `captain-definition` now supports `imageName`. You can copy and past this into the deploy section of an app that you create. No more `tar` file creation is needed when all you need is `imageName`:
 
 ```
 {
