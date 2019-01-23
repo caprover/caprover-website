@@ -17,9 +17,19 @@ There is a repository of [One Click Apps on GitHub](https://github.com/caprover/
 
 
 ## What about other apps?
-Just because an app or database is not available as a one click app, it doesn't mean that you can't deploy it. For example, before NextCould was available as a one click app, you could still deploy it manually like this
+Just because an app or database is not available as a one click app, it doesn't mean that you can't deploy it. All you need to do is to search for the Docker image of the app that you're looking for. For example, before NextCould was available as a one click app, you could still deploy it manually like this
 ![nextcloud](/img/docs/nextcloud-deploy-manually.png)
 
+
+With CapRover v1, it's even easier that the method explained above. Since `captain-definition` now supports `imageName`. You can copy and past this into the deploy section of an app that you create. No more `tar` file creation is needed when all you need is `imageName`:
+
+```
+{
+  "schemaVersion" :2 ,
+  "imageName" :"nextcloud:12-rc"
+}
+```
+All the environmental variables that you can set are listed on their DockerHub page: https://hub.docker.com/_/nextcloud/
 
 <br/>
 
