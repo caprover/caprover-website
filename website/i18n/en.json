@@ -13,6 +13,10 @@
         "title": "App Scaling & Cluster",
         "sidebar_label": "App Scaling & Cluster"
       },
+      "best-practices": {
+        "title": "Best Practices",
+        "sidebar_label": "Best Practices"
+      },
       "captain-definition-file": {
         "title": "Captain Definition File",
         "sidebar_label": "Captain Definition File"
