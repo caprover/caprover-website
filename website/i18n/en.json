@@ -77,6 +77,10 @@
         "title": "Run Locally",
         "sidebar_label": "Run Locally"
       },
+      "sample-apps": {
+        "title": "Sample Apps",
+        "sidebar_label": "Sample Apps"
+      },
       "server-purchase": {
         "title": "Server & Public IP address",
         "sidebar_label": "Server Purchase"

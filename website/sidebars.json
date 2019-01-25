@@ -19,6 +19,7 @@
       "run-locally"
     ],
     "Recipes and Tips": [
+      "sample-apps",
       "best-practices",
       "recipe-deploy-create-react-app"
     ],
