@@ -76,3 +76,8 @@ Captain uses docker swarm to support clustering and restarting containers if the
 then
 
 `docker swarm leave --force`
+
+If you also want to remove CapRover config directory:
+
+
+`rm -rf /captain`
