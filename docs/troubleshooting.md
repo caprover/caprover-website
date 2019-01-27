@@ -11,11 +11,34 @@ This section covers most frequent issues that uses may encounter.
 ## Cannot connect <ip_server>:3000?
 There is a whole set of reasons for this.
 
-First you need to make sure that CapRover is running on your server. To check this, ssh to your server and run `docker service ps captain-captain --no-trunc`. You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see [here](https://github.com/caprover/caprover/issues/14#issuecomment-345447689)
+#### First)
+You need to make sure that CapRover is running on your server. To check this, ssh to your server and run 
 
-Linode for example is notorious for [this kind of problem](https://github.com/docker/machine/issues/2753#issuecomment-171822791) and [this](https://github.com/docker/machine/issues/2753#issuecomment-188353704)
+```bash
+docker service ps captain-captain --no-trunc
+```
 
-If you don't see any errors when your ran `docker service ps captain-captain --no-trunc`, then try `curl localhost:3000 -v`. If successful, it's probably your firewall that's blocking the connection. See [Firewall Docs](firewall.md).
+You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see [error creating vxlan interface](https://github.com/caprover/caprover/issues/14#issuecomment-345447689), or [error while creating mount source path](https://github.com/caprover/caprover/issues/352). Linode, for example, has many problems, such as [subnet sandbox join failed](https://github.com/docker/machine/issues/2753#issuecomment-171822791) and [vxlan interface](https://github.com/docker/machine/issues/2753#issuecomment-188353704). Search [CapRover Github issues](https://github.com/CapRover/CapRover/issues) for your problem and if you can't find a solution, create a new issue on Github.
+
+#### Second)
+If you don't see any errors when your ran `docker service ps captain-captain --no-trunc`, then try
+
+```bash
+docker service logs captain-captain --since 60m
+```
+
+You might see that CapRover is getting restarted constantly due to an error. Search [CapRover Github issues](https://github.com/CapRover/CapRover/issues) for your problem and if you can't find a solution, create a new issue on Github.
+
+
+#### Third)
+
+If both "First" and "Second" debugging steps explained above worked fine and there is no error seen in the logs, run this command on your server:
+
+```bash
+ curl localhost:3000 -v
+```
+ 
+ If successful, it's probably your firewall that's blocking the connection. See [Firewall Docs](firewall.md).
 
 ## Successful Deploy but 502 bad gateway error!
 This applies to you if:
@@ -26,15 +49,6 @@ This applies to you if:
 If all above points are correct, this is how to troubleshoot:
 - SSH to your server and view your application logs. Make sure it hasn't crashed and it's running. To view logs, please see the section at the end of this page "[How to view my application's log](#how-to-view-my-applications-log)"
 - If you application logs show that your application is running, the most common case is that your application is binding to a custom port, not port 80. For example, CouchDB runs at port 5984. In this case, go to app's settings on CapRover, go to HTTP Settings, then select 5984 as the "Container Port".
-
-## Customize Config Settings
-You can customize any constant defined in [CaptainConstants](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) by adding a JSON file to `/captain/data/config-override.json`. For example, to change `defaultMaxLogSize`, the content of `/captain/data/config-override.json` will be:
-```
-{
- "defaultMaxLogSize":"128m"
-}
-```
-
 
 ## How to view my application's log?
 Your application is deployed as a Docker service. For example, if your app name in captain is `my-app` you can view your logs by connecting to your server via SSH and run the following command:
@@ -66,6 +80,14 @@ docker service update captain-captain --image caprover/caprover-edge:0.0.1
 To switch back to the main image
 ```
 docker service update captain-captain --image caprover/caprover:latest
+```
+
+## Customize Config Settings
+You can customize any constant defined in [CaptainConstants](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) under configs by adding a JSON file at `/captain/data/config-override.json`. For example, to change `defaultMaxLogSize`, the content of `/captain/data/config-override.json` will be:
+```
+{
+ "defaultMaxLogSize":"128m"
+}
 ```
 
 ## How to stop and remove Captain?
