@@ -10,7 +10,7 @@
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "docusaurus": "^1.5.1"
+    "docusaurus": "^1.7.1"
   },
   "dependencies": {
     "gh-pages": "^2.0.1"
