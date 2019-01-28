@@ -16,12 +16,12 @@ Note: For Ubuntu 18, read https://askubuntu.com/questions/1029882/how-can-i-set-
 
 To verify you have both prerequisites mentioned above:
 - Run `docker version` and make sure your version is at least the version mentioned in the [docs](get-started.md#c-install-docker-on-server-at-least-version-1706x) 
-- Run `nslookup randomstring123.captain.local` and make sure it resolves to `127.0.0.1` or your local ip (something like `192.168.1.2`):
+- Run `nslookup randomstring123.captain.localhost` and make sure it resolves to `127.0.0.1` or your local ip (something like `192.168.1.2`):
 ```
 Server:		127.0.1.1
 Address:	127.0.1.1#53
 
-Name:	randomstring123.captain.local
+Name:	randomstring123.captain.localhost
 Address: 192.168.1.2
 ```
 
@@ -29,9 +29,9 @@ Address: 192.168.1.2
 Once you confirmed that you have the prereqs ready, you can go ahead and install Captain on your machine, similar to what you do on server. Make sure you run as a user with sufficient permission, i.e. `sudo` on linux based systems. Just follow the steps outlined here: [Captain Installation](get-started#step-1-captain-installation)
 
 **EXCEPT** 
-Do not run `caprover serversetup`. Instead, go to http://captain.captain.local:3000 and manually set root domain to `captain.local`. DO NOT enable/force HTTPS. Obviously, you cannot enable HTTPS on your local domain (captain.local).
+Do not run `caprover serversetup`. Instead, go to http://captain.captain.localhost:3000 and manually set root domain to `captain.localhost`. DO NOT enable/force HTTPS. Obviously, you cannot enable HTTPS on your local domain (captain.localhost).
 
-Once you set your root domain as `captain.local`, use `caprover login` and enter `captain.captain.local` as your captain URL and `captain42` as your default password. 
+Once you set your root domain as `captain.localhost`, use `caprover login` and enter `captain.captain.localhost` as your captain URL and `captain42` as your default password. 
 
 
 **NON-LINUX USERS**
