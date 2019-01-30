@@ -276,7 +276,7 @@ const FullTutorial = props => (
                     'href="https://www.youtube.com/watch?v=XDrTmGSDW3s"' +
                     ' target="_blank" ' +
                     ' rel="noreferrer noopener">' +
-                    '<img src="/img/screenshots.gif"/></a>',
+                    '<img src="/img/screenshots-video.gif"/></a>',
                     imageAlign: 'left',
                     title: 'Full Video Tutorial',
                 },
