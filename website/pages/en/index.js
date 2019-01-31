@@ -161,10 +161,18 @@ const FeatureCallout = props => (
         style={{textAlign: 'center'}}>
         <h2>What's this?</h2>
         <MarkdownBlock>
-            CapRover is an extremely easy to use app/database deployment &amp; web server manager for your NodeJS,
-            Python, PHP, Ruby, MySQL, MongoDB, Postgres, WordPress (and etc) applications. It's blazingly fast and very
-            robust as
-            it uses Docker, nginx, LetsEncrypt and NetData under the hood behind its simple-to-use interface.
+            {`CapRover is an extremely easy to use app/database deployment &amp; web server manager for your NodeJS,
+Python, PHP, Ruby, MySQL, MongoDB, Postgres, WordPress (and etc) applications. It's blazingly fast and very
+robust as
+it uses Docker, nginx, LetsEncrypt and NetData under the hood behind its simple-to-use interface.
+<br/> <br/>
+✔ **CLI** for automation and scripting <br/>
+✔ **Web GUI** for ease of access and convenience <br/>
+✔ **No lock-in!** Remove CapRover and your applications keep working! <br/>
+✔ **Docker** under the hood for containerization <br/>
+✔ **Nginx** (fully customizable template) under the hood for load-balancing <br/>
+✔ **Let's Encrypt** under the hood for free SSL (HTTPS) <br/>
+`}
         </MarkdownBlock>
 
     </div>
