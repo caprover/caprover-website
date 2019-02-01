@@ -168,10 +168,10 @@ it uses Docker, nginx, LetsEncrypt and NetData under the hood behind its simple-
 <br/> <br/>
 ✔ **CLI** for automation and scripting <br/>
 ✔ **Web GUI** for ease of access and convenience <br/>
-✔ **No lock-in!** Remove CapRover and your applications keep working! <br/>
-✔ **Docker** under the hood for containerization <br/>
+✔ **No lock-in!** Remove CapRover and your apps keep working! <br/>
+✔ **Docker Swarm** under the hood for containerization and clustering <br/>
 ✔ **Nginx** (fully customizable template) under the hood for load-balancing <br/>
-✔ **Let's Encrypt** under the hood for free SSL (HTTPS) <br/>
+✔ **Let's Encrypt** under the hood for free SSL (HTTPS)
 `}
         </MarkdownBlock>
 
