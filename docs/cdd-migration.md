@@ -13,6 +13,7 @@ We are currently working on migration steps. Once it is developed and tested pro
 
 ### Breaking Changes:
 - `schemaVersion` for captain-definition file is changed to `2`.
+- If you previously had to edit the custom port to something other than 80 for your specific app, you no longer need to edit NGINX config, you can simply set the container port to any port from the UI.
 - If you previously used a customized dockerfileLines, you have prefixed all `ADD` and `COPY` statements with `./src`. This is no longer needed with CapRover. For example, you previously had 
 ```bash
 COPY ./src/package.json /usr/app/
