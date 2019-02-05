@@ -318,6 +318,11 @@ class Index extends React.Component {
                 <div className="mainContainer">
                     <FeatureCallout/>
                     <div id="email-sub" style={{textAlign:'center'}}>
+                        <div style={{ marginBottom: 30 }}>
+                            <a href="https://opencollective.com/caprover/donate" target="_blank">
+                                <img src="https://opencollective.com/caprover/donate/button@2x.png?color=blue" width={300} />
+                            </a>
+                        </div>
                         <iframe style={{maxWidth:550, height:220}} src='/email'>
                         </iframe>
                     </div>
