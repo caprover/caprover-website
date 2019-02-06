@@ -11,8 +11,8 @@ One of the key components of CapRover is the `captain-definition` file that sits
 
 ```
  {
-  "schemaVersion" :2 ,
-  "templateId" :"node/8.7.0"
+  "schemaVersion": 2,
+  "templateId": "node/8.7.0"
  }
 ```
 
@@ -24,8 +24,8 @@ Note that although the `templateId` can be one of the 4 most popular web app lan
 
 ```
  {
-  "schemaVersion" :2 ,
-  "templateId" :"node/8.7.0"
+  "schemaVersion": 2,
+  "templateId": "node/8.7.0"
  }
 ```
 
@@ -34,8 +34,8 @@ Note that although the `templateId` can be one of the 4 most popular web app lan
 
 ```
  {
-  "schemaVersion" :2 ,
-  "dockerfileLines" :[
+  "schemaVersion": 2,
+  "dockerfileLines": [
                         "FROM node:8.7.0-alpine",
                         "RUN mkdir -p /usr/src/app",
                         "WORKDIR /usr/src/app",
@@ -55,8 +55,8 @@ If you already have a Dockerfile for your repo, you can reference it in the capt
 
 ```
  {
-  "schemaVersion" :2 ,
-  "dockerfilePath" :"./myDockerFile"
+  "schemaVersion": 2,
+  "dockerfilePath": "./myDockerFile"
  }
 ```
 
@@ -70,8 +70,8 @@ If you are an advanced Docker user, you may know that there are plenty of pre-bu
 
 ```
  {
-  "schemaVersion" :2 ,
-  "imageName" :"nginxdemos/hello"
+  "schemaVersion": 2,
+  "imageName": "nginxdemos/hello"
  }
 ```
 
