@@ -39,9 +39,9 @@ NOTE: You can be logged in to several Captain servers at the same time. This is 
 
 ### Deploy
 
-In order to deploy your application, you first need to create captain-definition file and place it in the root of your project folder. In case of a nodejs application, this would sit in the same folder as your package.json.
+In order to deploy your application, you first need to create a captain-definition file and place it in the root of your project folder. In case of a nodejs application, this would sit in the same folder as your package.json.
 
-Captain definition file for a nodejs application is:
+A simple captain-definition file for a nodejs application is:
 
 ```
  {
@@ -50,16 +50,21 @@ Captain definition file for a nodejs application is:
  }
 ```
 
+See  [Captain Definition File](captain-definition-file.md) for more details on the Captain Definition file.
 
-See  [Captain Definition File](captain-definition-file.md) for more details on Captain Definition file.
-
-After making sure that this file exists, run the following command and answers questions:
+After making sure that this file exists, run the following command and answer the questions given:
 
 ```bash
 caprover deploy
 ```
 
-You will then see your application being uploaded, after that, your application getting built. Note that the build process takes multiple minutes, please be patient!
+You will then see your application being uploaded and, after that, your application getting built. Note that the build process can take several minutes, so please be patient!
+
+To use the previously-entered values for the current directory, without being asked again, use the `-d` option:
+
+```bash
+caprover deploy -d
+```
 
 Alternatively, you can use the stateless mode and supply the CapRover server information inline:
 ```bash
@@ -67,7 +72,6 @@ caprover deploy -h https://captain.root.domain.com -p password -b branchName -a 
 ```
 
 This can be useful if you want to integrate CI/CD pipeline.
-
 
 ### List logged in servers
 
