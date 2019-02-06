@@ -51,7 +51,7 @@ Note that although the `templateId` can be one of the 4 most popular web app lan
 ```
 ## Use Dockerfile in captain-definition:
 
-If you already have a Dockerfile a Dockerfile for your repo, you can reference it in captain-definition file:
+If you already have a Dockerfile for your repo, you can reference it in the captain-definition file:
 
 ```
  {
