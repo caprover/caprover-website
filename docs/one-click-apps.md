@@ -61,6 +61,11 @@ After port mapping, you can enter these values for your Database Client:
 
 For example, in the example explained above, `MAPPED-PORT-ON-HOST` is `1001` for `mysql-1` and `1002` for `mysql-2`.
 
+Assuming your server ip is `123.123.123.123` and your mapped port is `9999`:
+- For Mongo DB, you would use `mongodb://dbuser:dbpassword@123.123.123.123:9999/dbname`
+- For MySQL, you would use `HOST: 123.123.123.123`, `PORT: 9999`
+- and etc...
+
 **IMPORTANT:** After port mapping is done make sure to open the server port. For example, if you mapped port 4444 of your host (server) to port 3306 of your container, you need to run the following command:
 
 ```
