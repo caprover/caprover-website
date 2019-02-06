@@ -85,6 +85,10 @@
         "title": "Server & Public IP address",
         "sidebar_label": "Server Purchase"
       },
+      "support": {
+        "title": "Help and Support",
+        "sidebar_label": "Help and Support"
+      },
       "troubleshooting": {
         "title": "Troubleshooting",
         "sidebar_label": "Troubleshooting"
