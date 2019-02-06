@@ -41,7 +41,12 @@ It is important to mention that some of these configuration parameters, might sh
 
 ## Connecting to Databases
 
+### Connecting Within CapRover Cluster
+
 Note that since all these applications are Docker containers, you can have multiple MySQL databases on running on port 3306 without having any conflict. If you want to connect to two different MySQL databases, from a PHP app, where both PHP and MySQLs are under the same instance of CapRover, you can use `srv-captain--mysqlappname1:3306` and `srv-captain--mysqlappname2:3306`.
+
+
+### Connecting Remotely
 
 However, if you want to connect to your database from a remote machine (e.g. your laptop) you need to map a container port to a server port. In that case, you have to map two different ports on the server, for example:
 - Port 1001 of the server goes to mysql-1 port 3306
@@ -49,6 +54,12 @@ However, if you want to connect to your database from a remote machine (e.g. you
 
 Port mapping is needed if you want to connect to a database from a remote machine. You can read more about it [Captain Configuration - Port Mapping](app-configuration.md#port-mapping).
 
+After port mapping, you can enter these values for your Database Client:
+- Host: IP-ADDRESS-OF-SERVER
+- Port: MAPPED-PORT-ON-HOST
+
+
+For example, in the example explained above, `MAPPED-PORT-ON-HOST` is `1001` for `mysql-1` and `1002` for `mysql-2`.
 
 **IMPORTANT:** After port mapping is done make sure to open the server port. For example, if you mapped port 4444 of your host (server) to port 3306 of your container, you need to run the following command:
 
