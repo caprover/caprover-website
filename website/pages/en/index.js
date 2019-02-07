@@ -319,7 +319,7 @@ class Index extends React.Component {
                     <FeatureCallout/>
                     <div id="email-sub" style={{textAlign:'center'}}>
                         <div style={{ marginBottom: 30 }}>
-                            <a href="https://opencollective.com/caprover/donate" target="_blank">
+                            <a href="https://opencollective.com/caprover" target="_blank">
                                 <img src="https://opencollective.com/caprover/donate/button@2x.png?color=blue" width={300} />
                             </a>
                         </div>
