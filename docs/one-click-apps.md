@@ -25,8 +25,8 @@ With CapRover v1, it's even easier than the method explained above. Since `capta
 
 ```
 {
-  "schemaVersion" :2 ,
-  "imageName" :"nextcloud:12-rc"
+  "schemaVersion": 2,
+  "imageName": "nextcloud:12-rc"
 }
 ```
 All the environmental variables that you can set are listed on their DockerHub page: https://hub.docker.com/_/nextcloud/
