@@ -82,14 +82,22 @@ class HomeSplash extends React.Component {
             <SplashContainer>
                 <Logo img_src={imgUrl('logo.png')}/>
                 <div className="inner">
-                    <ProjectTitle/>
+                    <ProjectTitle />
                     <PromoSection>
                         <Button href={docUrl('get-started.html', language)}>Get Started Now</Button>
                         <Button href="https://github.com/CapRover/CapRover"
-                                target="_blank"
-                                rel="noreferrer noopener">
+                            target="_blank"
+                            rel="noreferrer noopener">
                             View on Github</Button>
                     </PromoSection>
+                    <br />
+                    <PromoSection>
+                        <Button href="https://captain.server.demo.caprover.com"
+                            target="_blank"
+                            rel="noreferrer noopener">
+                            <b>Live Demo</b></Button>
+                    </PromoSection>
+                    <div style={{opacity:0.5}}><small><i>password: captain42</i></small></div>
                 </div>
             </SplashContainer>
         );
