@@ -95,7 +95,7 @@ class HomeSplash extends React.Component {
                         <Button href="https://captain.server.demo.caprover.com"
                             target="_blank"
                             rel="noreferrer noopener">
-                            <b>Live Demo</b></Button>
+                            <b>Live Demo (desktop only)</b></Button>
                     </PromoSection>
                     <div style={{opacity:0.5}}><small><i>password: captain42</i></small></div>
                 </div>
