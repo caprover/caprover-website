@@ -67,8 +67,6 @@ If your CapRover is not behaving well, you can try force restarting CapRover usi
 docker service update captain-captain --force
 ```
 
-Alternatively, you can go to CapRover dashboard, select your app, without changing anything, simply click on SAVE AND UPDATE CONFIGURATIONS button at the bottom of the page. This will force restart your app.
-
 ## How to use the Edge version
 Edge version gets automatically built with every push on master. If your version has a particular bug that is just fixed on master branch, you can temporarily update your CapRover to use the Edge version. Note that once you switch to edge, you won't receive updates. With the next release of CapRover, you have to manually switch back to CapRover. Note that this is an advance operations. Also, as a rule of thumb, once you switch to Edge, do not switch back to the regular version until a new version is released.
 
