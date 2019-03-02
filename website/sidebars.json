@@ -21,6 +21,7 @@
     "Recipes and Tips": [
       "sample-apps",
       "best-practices",
+      "backup-and-restore",
       "recipe-deploy-create-react-app"
     ],
     "Help": [

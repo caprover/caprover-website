@@ -13,6 +13,10 @@
         "title": "App Scaling & Cluster",
         "sidebar_label": "App Scaling & Cluster"
       },
+      "backup-and-restore": {
+        "title": "Backup & Restore",
+        "sidebar_label": "Backup & Restore"
+      },
       "best-practices": {
         "title": "Best Practices",
         "sidebar_label": "Best Practices"
