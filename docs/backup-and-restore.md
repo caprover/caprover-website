@@ -9,11 +9,13 @@ sidebar_label: Backup & Restore
 
 _This feature was added in v1.3.0._
 
+_Backup/Restore feature is still in experimental stage. More changes to come in the future._
+
 
 Backup/restoration is a complicated process and requires understanding of how different components work in CapRover instance. If you plan to use this feature, make sure you read this document thoroughly, and practice with a test server and learn the process before actually using this feature in production.
 
 
-**TDLR;** Normal backup/restore works for everything except images and volumes. For images, you have to use a Docker Registry (has pros and cons), for volumes, a custom solution (has pros and cons).
+**TDLR;** Normal backup/restore works for everything except images and volumes. For images, you have to use a Docker Registry (has pros and cons), for volumes, you have to use a custom solution (has pros and cons).
 
 
 ### Backup Process
@@ -23,13 +25,15 @@ On your working CapRover instance, open the web dashboard, navigate to settings 
 
 ### Restoration Process
 
-This process is very similar to fresh installation of CapRover, except a few differences. Follow steps from [Get Started](get-started.md), and make sure you have Docker installed on a server. However, *DO NOT* run the installation command `mkdir /captain && docker run -p 80:80 -p 443:443.....`. Instead do the following steps:
+This process is very similar to fresh installation of CapRover, except a few differences. Follow the steps for Prerequisites from [Get Started](get-started.md), and make sure you have Docker installed on a server.
 
-_replace 123.123.123.123 with your server IP._
+*DO NOT* run the installation command `mkdir /captain && docker run -p 80:80 -p 443:443.....`. Instead do the following steps:
 
-1. Create an empty `/captain` directory on your server by running `ssh root@123.123.123.123 mkdir /captain`
+_(replace 123.123.123.123 with your server IP in instructions below)_
+
+1. Create an empty `/captain` directory on your server by running <br/> `ssh root@123.123.123.123 mkdir /captain`
 2. Rename your desired backup file to `backup.tar` on your desktop.
-3. Copy `backup.tar` to server: `scp ./backup.tar root@123.123.123.123:/captain/`
+3. Copy `backup.tar` to server: <br/> `scp ./backup.tar root@123.123.123.123:/captain/`
 4. Install CapRover:
 ```bash
 docker run -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
@@ -49,6 +53,7 @@ In some cases, you still have the previous server running, and you just want to 
 3. go to `captain.oldroot.domain.com` in your browser and login to the dashboard. NOTE that you might see an SSL error, you can click on advance and ignore. This is fine as your SSL certification might have been expired. It will get renewed once you set everything up and restart CapRover.
 4. After logging in to the dashboard, go ahead and change your root domain to `yournewroot.domain.com` on the dashboard.
 5. Re-enable SSL certifications and Force HTTPS for your dashboard and other apps if you want.
+5. Edit your `etc/hosts` and remove the line you added in step 2.
 
 
 ### What is Restored?
@@ -76,7 +81,7 @@ If you had previously set the self-hosted registry, but you changed your mind an
 
 ### Multi Nodes
 
-What happens when you have a cluster? Backup and restoration process is pretty much the same as single node, except during the restoration, the first try exits after it detects that you're trying to restore a cluster. Your are ask to edit a file and add IP addresses of new nodes.
+What happens when you have a cluster? Backup and restoration process is pretty much the same as single node, except during the restoration, the first run exits after it detects that you're trying to restore a cluster. Your are ask to edit a file and add IP addresses of new nodes.
 
 
 For example, previously you had 2 nodes:
@@ -96,7 +101,7 @@ You run the restoration script on `222.222.222.20` and the script exits asking y
 Next, you need to copy your private key (usually named `id_rsa`) to your server. For example, on linux:
 
 ```bash
-scp /home/myuser/.ssh/id_rsa root@$IP_ADDRESS:/captain/
+scp /home/myuser/.ssh/id_rsa root@123.123.123.123:/captain/
 ```
 
 _Make sure to delete this file from the server once the restoration process is finished_
