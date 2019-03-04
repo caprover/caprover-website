@@ -27,7 +27,7 @@ On your working CapRover instance, open the web dashboard, navigate to settings 
 
 This process is very similar to fresh installation of CapRover, except a few differences. Follow the steps for Prerequisites from [Get Started](get-started.md), and make sure you have Docker installed on a server.
 
-*DO NOT* run the installation command `mkdir /captain && docker run -p 80:80 -p 443:443.....`. Instead do the following steps:
+*DO NOT* run the installation command `docker run -p 80:80 -p 443:443.....`. Instead do the following steps:
 
 _(replace 123.123.123.123 with your server IP in instructions below)_
 
