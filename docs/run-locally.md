@@ -8,7 +8,7 @@ sidebar_label: Run Locally
 Note that this is an **advanced process**. Some of the concepts used in this section are not easy for the beginners. In order to run CapRover on your local machine (just for testing and development) you need Docker installed on your machine.
 
 
-CapRover, by default, uses `http://captain.captain.localhost`. In most systems, `captain.captain.localhost` resolves to local ip address of the machine, i.e. 12.0.0.1 and therefore no additional work is needed.
+CapRover, by default, uses `http://captain.captain.localhost`. In most systems, `captain.captain.localhost` resolves to local ip address of the machine, i.e. 127.0.0.1 and therefore no additional work is needed.
 
 > However, if it doesn't do that automatically, you need to manually point `*.captain.localhost` to `127.0.0.1` or `192.168.1.2` (your local ip). **NOTE** that `etc/hosts` won't be enough as Captain needs a wildcard entry and `etc/hosts` does not allow wildcards, i.e. `*.something`. On ubuntu 16, `dnsmasq` (a local DNS server) is built-in. So, it's as simple of editing this file: `/etc/NetworkManager/dnsmasq.d/dnsmasq-localhost.conf` (create if does not exist) And add this line to it: `address=/captain.localhost/192.168.1.2` where `192.168.1.2` is your local IP address. To make sure you have `dnsmasq`, you can run `which dnsmasq` on your terminal, if it's available, path of it will be printed on the terminal, otherwise, there won't be anything printed on your terminal.
 Note: For Ubuntu 18, read https://askubuntu.com/questions/1029882/how-can-i-set-up-local-wildcard-127-0-0-1-domain-resolution-on-18-04
