@@ -27,7 +27,7 @@ Follow these steps:
 docker run -e MAIN_NODE_IP_ADDRESS='127.0.0.1' -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
 ```
 
-- Wait for 30 seconds or more until the installation finished.
+- Wait for 30 seconds or so until the installation finished.
 - Run the following command to see the progress of the installation process:
 
 ```bash
@@ -35,8 +35,8 @@ docker service logs captain-captain --follow
 ```
 
 - Wait until you see this message *Captain is Ready* in the logs.
-- Once you see that click on "3000" link at the top of the page.
-- Login using the default password of `captain42`
+- Once you see that message, click on "3000" link at the top of the page.
+- Login using the default password: `captain42`
 - You should see the dashboard.
 - Now go back to the other browser tab, where you have Play-With-Docker open
 - Right click on "80" link (any of them) at the top of the page, and Copy Link Address.
