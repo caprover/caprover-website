@@ -16,6 +16,7 @@
       "nginx-customization",
       "app-scaling-and-cluster",
       "pre-deploy-script",
+      "play-with-docker",
       "run-locally"
     ],
     "Recipes and Tips": [

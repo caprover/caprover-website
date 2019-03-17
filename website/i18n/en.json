@@ -65,6 +65,10 @@
         "title": "Persistent Apps",
         "sidebar_label": "Persistent Apps"
       },
+      "play-with-docker": {
+        "title": "Play with CapRover",
+        "sidebar_label": "Play with CapRover"
+      },
       "pre-deploy-script": {
         "title": "Pre-deploy Script",
         "sidebar_label": "Pre-deploy Script"
