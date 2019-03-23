@@ -93,6 +93,11 @@ const siteConfig = {
   ogImage: 'img/logo.png',
   twitterImage: 'img/logo.png',
 
+  algolia: {
+    apiKey: '81e546c2e0c9258e48c359465bde6909',
+    indexName: 'caprover',
+  },
+
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
     repoUrl: 'https://github.com/CapRover/CapRover',
