@@ -51,7 +51,10 @@ Note that although the `templateId` can be one of the 4 most popular web app lan
 ```
 ## Use Dockerfile in captain-definition:
 
-If you already have a Dockerfile for your repo, you can reference it in the captain-definition file:
+Note that the simple version of `captain-definition` with `templateId` is good as a starting point. But as your project gets more complex you may want to perform more complicated tasks with your base image, such as installing PHP extensions, installing `uWSGI`, installing particular version of `curl` and etc. In these cases, you can leverage the Dockerfile. Using custom Dockerfile allows you to build a very customized base image. If you're not familiar with Docker, you can simply use google to find something that's similar to your requirement and tweak it. Finally, if you're stuck, don't be shy to ask a question on our Slack channel, or StackOverflow.
+
+
+To use a Dockerfile that's in your repository, you can simply reference it in the captain-definition file:
 
 ```
  {
