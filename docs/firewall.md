@@ -16,7 +16,7 @@ Captain uses:
 - 2377 TCP/UDP for Docker swarm API
 - 996  TCP for secure HTTPS connections specific to Docker Registry
 
-Or simply disable firewall entirely. In case of an ubuntu server, run 
+In case of an ubuntu server, run 
 
 ```
 ufw allow 80,443,3000,996,7946,4789,2377/tcp; ufw allow 7946,4789,2377/udp;
