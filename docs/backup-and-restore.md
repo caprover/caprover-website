@@ -49,7 +49,11 @@ CapRover will automatically detect your `backup.tar`, extract it and restores al
 
 In some cases, you still have the previous server running, and you just want to create a clone of your server. Since you want your old server to keep running, you shouldn't change your DNS for the old domain. Instead, you want to assign a new one. In this case:
 1. Create a new wildcard entry in your DNS `*.yournewroot.domain.com` and point it to the new server
-2. On your desktop machine, create a temporary entry in your `etc/hosts` file and add this line `OLD-IP-ADDRESS	captain.oldroot.domain.com` NOTE that you cannot use wild card in hosts file, just add the domain for the dashboard so you can access it temporarily.
+2. On your desktop machine, create a temporary entry in your `etc/hosts` file and add this line
+```
+OLD-IP-ADDRESS	captain.oldroot.domain.com
+```
+NOTE that you cannot use wild card in hosts file, just add the domain for the dashboard so you can access it temporarily.
 3. go to `captain.oldroot.domain.com` in your browser and login to the dashboard. NOTE that you might see an SSL error, you can click on advance and ignore. This is fine as your SSL certification might have been expired. It will get renewed once you set everything up and restart CapRover.
 4. After logging in to the dashboard, go ahead and change your root domain to `yournewroot.domain.com` on the dashboard.
 5. Re-enable SSL certifications and Force HTTPS for your dashboard and other apps if you want.
