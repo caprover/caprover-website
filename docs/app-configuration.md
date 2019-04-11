@@ -49,7 +49,7 @@ Only used for [persistent apps](persistent-apps.md).
 
 ### Node ID
 
-Only used for [persistent apps](persistent-apps.md). Persistent apps need to be locke down to a particular node (if you have a cluster of servers). NodeId defines what node this app should be locked down to.
+Only used for [persistent apps](persistent-apps.md). Persistent apps need to be locked down to a particular node (if you have a cluster of servers). NodeId defines what node this app should be locked down to.
 
 ### Instance Count
 
