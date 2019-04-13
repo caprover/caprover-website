@@ -10,6 +10,9 @@ CapRover has built-in support for several popular apps that can be deployed as i
 
 There is a repository of [One Click Apps on GitHub](https://github.com/caprover/one-click-apps) and it's continuously growing.
 
+![OneClickAppsCapRover](/img/docs/one-click.gif)
+
+<br/><br/>
 Some of our One-Click Apps:
 #### Databases and Database GUI
 - MongoDB
@@ -44,7 +47,6 @@ Some of our One-Click Apps:
 - Thumbor
 - Many more...
 
-![OneClickAppsCapRover](https://i.imgur.com/Tlgbkmy.png)
 
 
 <br/>
