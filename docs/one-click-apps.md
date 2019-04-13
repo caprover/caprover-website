@@ -10,6 +10,40 @@ CapRover has built-in support for several popular apps that can be deployed as i
 
 There is a repository of [One Click Apps on GitHub](https://github.com/caprover/one-click-apps) and it's continuously growing.
 
+Some of our One-Click Apps:
+#### Databases and Database GUI
+- MongoDB
+- MongoExpress
+- MsSQL
+- MySQL
+- Redis
+- PhpMyAdmin
+- PostgreSQL
+- Adminer
+- Apache CouchDB
+- Gitea 
+- ElasticSearch 
+- Many more...
+#### Blogging and Content
+- WordPress
+- Ghost
+- Prisma
+- Strapi
+- Minio
+- Many more...
+#### Dev Tools
+- Jenkins
+- Drone.io
+- Hasura
+- Nexus3
+- Many more...
+#### Other Apps
+- Parse
+- NextCloud
+- Rainloop
+- Thumbor
+- Many more...
+
 ![OneClickAppsCapRover](https://i.imgur.com/Tlgbkmy.png)
 
 
