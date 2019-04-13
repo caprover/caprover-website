@@ -12,8 +12,8 @@ There is a repository of [One Click Apps on GitHub](https://github.com/caprover/
 
 ![OneClickAppsCapRover](/img/docs/one-click.gif)
 
-<br/><br/>
-Some of our One-Click Apps:
+<br/><br/><br/>
+
 #### Databases and Database GUI
 - MongoDB
 - MongoExpress
@@ -26,14 +26,14 @@ Some of our One-Click Apps:
 - Apache CouchDB
 - Gitea 
 - ElasticSearch 
-- Many more...
+- And many more...
 #### Blogging and Content
 - WordPress
 - Ghost
 - Prisma
 - Strapi
 - Minio
-- Many more...
+- And many more...
 #### Dev Tools
 - Jenkins
 - Drone.io
@@ -45,7 +45,7 @@ Some of our One-Click Apps:
 - NextCloud
 - Rainloop
 - Thumbor
-- Many more...
+- And many more...
 
 
 
