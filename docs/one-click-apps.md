@@ -12,7 +12,7 @@ There is a repository of [One Click Apps on GitHub](https://github.com/caprover/
 
 ![OneClickAppsCapRover](/img/docs/one-click.gif)
 
-<br/><br/><br/>
+<br/><br/>
 
 #### Databases and Database GUI
 - MongoDB
