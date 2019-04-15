@@ -14,3 +14,9 @@
 
 @media only screen and (min-width: 1500px) {
 }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif
+}
+
