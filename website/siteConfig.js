@@ -24,7 +24,7 @@ const siteConfig = {
   title: 'CapRover' /* title for your website */,
   tagline: 'Build your own PaaS in a few minutes!',
   cname: 'caprover.com',
-  url: 'https://www.CapRover.com' /* your website url */,
+  url: 'https://caprover.com' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
