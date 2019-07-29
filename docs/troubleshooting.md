@@ -69,6 +69,16 @@ Note that Docker service name is prefixed with `srv-captain--`. Also, you can re
 ## How to restart my application?
 If your application is not behaving well, you can try force restarting it by going to the web dashboard and select your app, then click on "Save Configuration & Update" button. It will forcefully restarts your application.
 
+## How to run shell inside my application (inside container)
+
+Simply run the following command:
+```
+docker exec -it $(docker ps --filter name=srv-captain--myappname -q) /bin/sh
+```
+
+Of course, you need to replace `myappname` with your own app name.
+
+
 ## How to restart CapRover
 If your CapRover is not behaving well, you can try force restarting CapRover using:
 ```
