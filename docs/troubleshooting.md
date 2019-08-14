@@ -109,13 +109,13 @@ You can customize any constant defined in [CaptainConstants](https://github.com/
 ## How to stop and remove Captain?
 Captain uses docker swarm to support clustering and restarting containers if they stop. That's why it keeps re-appearing. Try this:
 
-`docker service rm $(docker service ls -q)`
+```
+docker service rm $(docker service ls -q)
+## remove CapRover settings directory
+rm -rf /captain
+## leave swarm if you don't want it
+docker swarm leave --force
+## full cleanup of docker
+docker system prune --all --force
+```
 
-then
-
-`docker swarm leave --force`
-
-If you also want to remove CapRover config directory:
-
-
-`rm -rf /captain`
