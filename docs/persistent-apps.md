@@ -23,10 +23,10 @@ Note that even for Persistent Apps, NOT ALL DIRECTORIES will be treated as persi
 #### Removing Persistent Apps: 
 Persistent directories need to be manually removed after you remove an app from Captain dashboard. This is to avoid accidential delete of important data. To delete persistent directories, depending on the type of persistent directories, steps are different:
 - Volumes (persistent directories mapped to a label):
-![Volumes](http://i67.tinypic.com/2w7o0o0.png)
+![Volumes](/img/docs/label-path.png)
 For this type, you need to run `docker volume ls` to see the names of the volumes, and then run `docker volume rm NAME_OF_VOLUME` to remove the volume
 - Mapped directories on host: these are directories from your server that are mapped to a directory in your container (app). To remove them, simply remove the directory from your server via `rm -rf /path/to/directory`
-![mapped](http://i63.tinypic.com/2h4e07s.png)
+![mapped](/img/docs/path-binding.png)
 
 #### Non-Persistent Apps: 
 Generally speaking, anything that does not directly stores data on disk can be made non-persistent. You should always prefer to have non-persistent apps as they are much more flexible. Let's say you have multiple servers, if a server becomes unhealthly, all "non-persistent" apps on that server will automatically get moved to other servers whereas persistent apps are locked down to that server due to some data that they saved on that server.
