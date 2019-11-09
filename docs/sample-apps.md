@@ -33,3 +33,17 @@ To deploy sample apps, you just need to:
 - Done!!
 
 Now you can unzip the tar content and see what's inside. This will give you an idea how different apps can be deployed using CapRover (Docker).
+
+
+### Community Apps
+
+A collection of sample apps from the community.
+
+#### CapRover Django
+
+This project template aims to provide a more real-world Django template including:
+- PostgreSQL
+- Instructions for CapRover setup
+- Handling of Django settings
+
+View the code and documentation on [GitLab](https://gitlab.com/kamneros/caprover-django)
