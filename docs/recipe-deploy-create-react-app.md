@@ -51,7 +51,7 @@ This `captain-definition` uses `socialengine/nginx-spa` which is a simple static
 Now you need to create a `tar` file, usually you don't have to do this because `caprover deploy` create one from you git repository but here we don't want to put the content of our repository in the `tar` but only the static files and `captain-definition` file.
 
 ```bash
-tar -cvf ./deploy.tar --exclude='*.map' ./captain-definition ./build/*
+tar -cvf ./deploy.tar --exclude='*.map' ./captain-definition ./build/* ./package.json 
 ```
 
 **Note**: If your `build` output in a different folder than `build` you need to replace `./build/*` with `./[my-output-folder]/*`
