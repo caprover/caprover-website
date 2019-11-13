@@ -18,9 +18,9 @@ A RECORD:
 *.server.domain.com   >>>>   123.123.123.123
 ```
 
-Then when settings up CapRover, instead of entering `server.domain.com`, enter `something.server.domain.com`. This way, you can access dashboard via `captain.something.server.domain.com` and not `captian.server.domain.com`. 
+Then when settings up CapRover, instead of entering `server.domain.com`, enter `something.server.domain.com`. This way, you can access dashboard via `captain.something.server.domain.com` and not `captain.server.domain.com`. 
 
-Keep in mind this is not a sheild that protects you from everything. It's just a security measure that makes it harder, and nearly impractical for some brute force attackers to attack your CapRover infrastructure.
+Keep in mind this is not a shield that protects you from everything. It's just a security measure that makes it harder, and nearly impractical for some brute force attackers to attack your CapRover infrastructure.
 
 
 ### Custom Default Password
