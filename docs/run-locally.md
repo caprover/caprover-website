@@ -33,7 +33,7 @@ Once you confirmed that you have the prereqs ready, you can go ahead and install
 #### Main IP
 First of all, the installation command for local installation requires an extra parameter (`MAIN_NODE_IP_ADDRESS`)
 ```bash
-docker run -e MAIN_NODE_IP_ADDRESS='127.0.0.1' -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
+docker run -e MAIN_NODE_IP_ADDRESS=127.0.0.1 -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
 ```
 
 #### Setup
