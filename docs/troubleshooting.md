@@ -78,6 +78,18 @@ docker exec -it $(docker ps --filter name=srv-captain--myappname -q) /bin/sh
 
 Of course, you need to replace `myappname` with your own app name.
 
+## I've made a change to the Nginx config that broke the admin UI!
+
+In this case restart is not going to help. [Do this](https://github.com/caprover/caprover/issues/412#issuecomment-484077130):
+
+* SSH to server
+* Run `docker service scale captain-captain=0`
+* Run `cp /captain/data/config-captain.json /captain/data/backup-config-captain.json`
+* Run `nano /captain/data/config-captain.json`
+* Remove these two parameters from the json: `nginxBaseConfig` and `nginxCaptainConfig`, they should be toward the end of the JSON. Be careful with deleting, make sure the structure of JSON is valid, remove associated commas (`,`) as well.
+* Run `docker service scale captain-captain=1`
+* Hopefully your problem should be resolved and you can be happy.
+
 
 ## How to restart CapRover
 If your CapRover is not behaving well, you can try force restarting CapRover using:
