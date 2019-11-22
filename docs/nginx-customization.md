@@ -5,7 +5,7 @@ sidebar_label: NGINX Config
 ---
 
 ## Config Customization
-Although CapRover automatically manages everything about routing HTTP requests to your apps, there might still be some special config values that you want to manually tweak. It can be special caching logic for special file type or route, timeout customization, max body size and many more parameters that you can manually adjust via nginx.
+Although CapRover automatically manages everything about routing HTTP requests to your apps, there might still be some special config values that you want to manually tweak. It can be special caching logic for a special file type or route, timeout customization, max body size and many more parameters that you can manually adjust via nginx.
 
 CapRover enables you to manually adjust these parameters via fully customized config files. There are three areas that you can adjust parameters:
 - NGINX Base Config File (`/etc/nginx/nginx.conf` inside container). This is the first file that NGINX will look at. It redirects nginx to look up other config files. You can manually tweak this file in web dashboard, settings.
