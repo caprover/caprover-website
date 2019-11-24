@@ -48,6 +48,8 @@ _**Minimum RAM**:_ Note that the build process sometimes consumes too much RAM, 
 
 Your server must have Docker installed on it. If you get your server from DigitalOcean, you can select a server with CapRover one-click app and everything will be installed for you automatically. Otherwise, you can install Docker CE by following [this instruction](https://docs.docker.com/engine/installation). Note that your Docker version needs to be, at least, version 17.06.x.
 
+**AVOID snap installation** [snap installation of Docker is buggy](https://github.com/caprover/caprover/issues/501#issuecomment-554764942). Use the official installation instructions for Docker.
+
 #### B4) Configure Firewall
 
 Some server providers have strict firewall settings. To disable firewall on Ubuntu:
