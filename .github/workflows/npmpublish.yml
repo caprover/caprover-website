@@ -12,6 +12,4 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: cd website
-      - run: yarn
-      - run: npm run publish
+      - run: cd website && ls -la && yarn && npm run publish
