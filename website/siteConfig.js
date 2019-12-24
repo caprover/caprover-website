@@ -46,6 +46,10 @@ const siteConfig = {
       },
   ],
 
+  editUrl: 'https://github.com/caprover/caprover-website/edit/master/docs/',
+
+  gaTrackingId: 'UA-132762521-1',
+
   // If you have users set above, you add it here:
   users,
 
