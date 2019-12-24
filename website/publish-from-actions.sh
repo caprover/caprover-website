@@ -26,6 +26,8 @@
 
 set -e
 
+source ./build_dir
+
 echo "#################################################"
 echo "Changing directory to 'BUILD_DIR' $BUILD_DIR ..."
 cd $BUILD_DIR
