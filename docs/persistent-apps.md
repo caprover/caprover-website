@@ -8,7 +8,7 @@ sidebar_label: Persistent Apps
 
 ### Persistent or Not
 
-When you want to create an app you have the option of creating the app with "Persistent Data" or not. By default, you should always prefer no persistence. However, they are cases where you need to create an app with persistence, see below.
+When you want to create an app you have the option of creating the app with "Persistent Data" or not. By default, you should always prefer no persistence. However, they are cases where you need to create an app with persistence. Also, if you have a massive amount of static data that you don't want to bundle with your repository and have it shipped to the server everytime you build, you can map a directory on the host to a directory inside the container and FTP to your server and move your files there. This is generally not needed unless the amount of static data that you need to send to your server is extremely large.
 
 #### Persistent Apps: 
 These are the apps that have some data that need to survive restart, crash, container update and etc. Because these apps store data on disk, once they get created they get locked down on a specific server (if you have multiple servers). You can still change the constraint so that they will be moved to another machine, but if they will lose anything that might have been stored on the current host. Examples that use persistent apps include:
