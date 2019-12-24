@@ -52,7 +52,7 @@ if [ -z "$(git status --porcelain)" ]; then
 fi && \
 git add . && \
 git commit -m 'Deploy to GitHub Pages' && \
-echo "REMOTE_REPO: $REMOTE_REPO  REMOTE_BRANCH: $REMOTE_BRANCH" && \
+echo "REMOTE_BRANCH: $REMOTE_BRANCH" && \
 git push --force $REMOTE_REPO master:$REMOTE_BRANCH && \
 rm -fr .git && \
 cd $GITHUB_WORKSPACE && \
