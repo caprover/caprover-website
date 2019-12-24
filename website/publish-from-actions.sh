@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # FROM:  https://raw.githubusercontent.com/maxheld83/ghpages/master/LICENSE
 # MIT License
