@@ -5,6 +5,7 @@
     "build": "docusaurus-build",
     "publish-gh-pages": "docusaurus-publish",
     "publish": "rm -rf ./build && docusaurus-build && cp ./CNAME ./build/CapRover/ && node publish_to_github_pages.js",
+    "clean-build": "rm -rf ./build && docusaurus-build && cp ./CNAME ./build/CapRover/ && echo 'Finished building'",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version"
