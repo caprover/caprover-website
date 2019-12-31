@@ -16,6 +16,10 @@ If you only want to see the view-only demo, go to the [home page](/) and click o
 
 If you want to create a working instance of CapRover, you can use Play-with-Docker website. This is a website that allows you to create Virtual Servers in seconds and install Docker images on it. This is the best play ground for playing with CapRover.
 
+
+![](/img/pwd-caprover.gif)
+
+
 Follow these steps:
 - Make sure you have an account on [Docker Hub](https://hub.docker.com/). If you don't, create one, it's 100% free.
 - Go to [play-with-docker.com](http://play-with-docker.com/)
