@@ -24,7 +24,7 @@ Follow these steps:
 - You can click on **+ADD NEW INSTANCE** on the left side menu bar and create a Virtual Server
 - Once your server in created, copy and paste this command:
 ```bash
- curl http://pwd.caprover.com | bash
+ curl -L http://pwd.caprover.com | bash
 ```
 
 - The installation process takes about 2 minutes and it's fully automated.
