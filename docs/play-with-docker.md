@@ -24,13 +24,6 @@ Follow these steps:
 - You can click on **+ADD NEW INSTANCE** on the left side menu bar and create a Virtual Server
 - Once your server in created, copy and paste this command:
 ```bash
-docker run -e MAIN_NODE_IP_ADDRESS='127.0.0.1' -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
-```
-
-- Wait for 30 seconds or so until the installation finished.
-- Run the following command to see the progress of the installation process:
-
-```bash
  curl https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/play_with_caprover.sh | bash
 ```
 
