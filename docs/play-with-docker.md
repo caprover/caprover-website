@@ -22,7 +22,7 @@ Follow these steps:
 - Click on Start and log in using your Docker Hub username/password
 - Once your session started you will see a page with a timer
 - You can click on **+ADD NEW INSTANCE** on the left side menu bar and create a Virtual Server
-- Once your server in created, copy and paste this command. Note that this slightly different from the standard installation command (extra parameter `MAIN_NODE_IP_ADDRESS`):
+- Once your server in created, copy and paste this command:
 ```bash
 docker run -e MAIN_NODE_IP_ADDRESS='127.0.0.1' -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
 ```
@@ -31,18 +31,21 @@ docker run -e MAIN_NODE_IP_ADDRESS='127.0.0.1' -p 80:80 -p 443:443 -p 3000:3000 
 - Run the following command to see the progress of the installation process:
 
 ```bash
-docker service logs captain-captain --follow
+ curl https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/play_with_caprover.sh | bash
 ```
 
-- Wait until you see this message *Captain is Ready* in the logs.
-- Once you see that message, click on "3000" link at the top of the page.
-- Login using the default password: `captain42`
-- You should see the dashboard.
-- Now go back to the other browser tab, where you have Play-With-Docker open
-- Right click on "80" link (any of them) at the top of the page, and Copy Link Address.
-- Go to CapRover dashboard and copy and paste the link in the Root Domain Section
-- **IMPORTANT:** Remove `http://` prefix and the trailing `/` at the end
-- Click on Update the Root Domain.
-- You should be redirected and you can log in again with `captain42` as your password
-- **IMPORTANT:** YOU CANNOT enable https using play-wth-docker, but other features should work normally.
-- Congratulations! You have a fully functional CapRover version!
+- The installation process takes about 2 minutes and it's fully automated.
+- When the installation process finishes, you'll see a message like this:
+```
+===================================
+===================================
+ **** Installation is done! *****  
+CapRover is available at http://captain.ip123456789123456.direct.labs.play-with-docker.com
+Default password is: captain42
+===================================
+===================================
+```
+
+Simply copy the URL and log into CapRover using `captain42` as your password!
+
+**IMPORTANT:** YOU CANNOT enable https using play-wth-docker, but other features should work normally.
