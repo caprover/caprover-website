@@ -37,7 +37,7 @@ One of the most basic configuration that you can set for your app is environment
 
 If you'd like to access these variables in your app, you can dynamically set them at build time by adding the ARG command to your Dockerfile.
 
-For example, if you have set BUCKET_NAME & SERVER_ENDPOINT within the Caprover GUI, then you can access them in your app with the following;
+For example, if you have set `BUCKET_NAME` & `SERVER_ENDPOINT` within the Caprover GUI, then you can access them in your app with the following;
 
 ```
 ARG BUCKET_NAME=${BUCKET_NAME}
