@@ -119,6 +119,10 @@ You can customize any constant defined in [CaptainConstants](https://github.com/
 }
 ```
 
+## AWS setup
+
+AWS has its own customization with regards to port handling and etc. It make require some custom setup, see [this blog post for example](https://fuzzyblog.io/blog/caprover/2019/11/10/using-caprover-on-aws.html).
+
 ## How to stop and remove Captain?
 Captain uses docker swarm to support clustering and restarting containers if they stop. That's why it keeps re-appearing. Try this:
 
