@@ -35,6 +35,15 @@ This is where you can set runtime configuration and settings.
 
 One of the most basic configuration that you can set for your app is environmental variables. These variables are usually used to pass in data that does not live in the code. Examples, include API key for a 3rd party service, database connection URI and etc. 
 
+If you'd like to access these variables in your app, you can dynamically set them at build time by adding the ARG command to your Dockerfile.
+
+For example, if you have set `BUCKET_NAME` & `SERVER_ENDPOINT` within the Caprover GUI, then you can access them in your app with the following;
+
+```
+ARG BUCKET_NAME=${BUCKET_NAME}
+ARG SERVER_ENDPOINT=${SERVER_ENDPOINT}
+```
+
 ### Port Mapping
 
 CapRover allows you to map ports from a container to the host. You should use this feature if you want a specific port of your apps/containers to be publicly accessible. The most common use case is when you want to **connect to a database container from your local machine**.
