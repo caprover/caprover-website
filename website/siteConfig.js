@@ -29,7 +29,13 @@ const siteConfig = {
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
-
+  
+  algolia: {
+    apiKey: '858cd5cd1997c06856239e8767b9461f',
+    indexName: 'captainduckduck',
+    algoliaOptions: {} // Optional, if provided by Algolia
+  },
+  
   // Used for publishing and more
   projectName: 'CapRover',
   organizationName: 'CapRover',
