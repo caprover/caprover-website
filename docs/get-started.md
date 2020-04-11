@@ -102,6 +102,9 @@ Then, run
 
 Follow the steps and login to your CapRover instance. When prompted to enter the root domain, enter `something.mydomain.com` assuming that you set `*.something.mydomain.com` to point to your IP address in step #2. Now you can access your CapRover from `captain.something.mydomain.com`
 
+#### Note: It will not be possible to carry through with the 'caprover serversetup' if you've already forced https on your CapRover instance.
+In such case go straight to logging in with the `caprover login` command. To change the password go to the settings menu in the app.
+
 ## Step 4: Deploy the Test App
 
 Go to the CapRover in your browser, from the left menu select Apps and create a new app. Name it `my-first-app`. Then, download any of the test apps <a href="https://github.com/caprover/caprover/tree/master/captain-sample-apps">here</a>, unzip the content. and while inside the directory of the test app, run:
