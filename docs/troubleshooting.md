@@ -6,7 +6,7 @@ sidebar_label: Troubleshooting
 
 <br/>
 
-This section covers most frequent issues that uses may encounter.
+This section covers most frequent issues that users may encounter.
 
 ## Cannot connect <ip_server>:3000?
 There is a whole set of reasons for this.
