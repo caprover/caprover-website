@@ -32,3 +32,9 @@ Alternatively, you can first list all volumes, and delete only the ones that you
 docker volume ls                          # lists all volumes
 docker volume rm volume-name-goes-here    # removes a specific volume
 ```
+
+## Removing local CapRover configuration file
+
+The local CapRover configuration file can be found at `~/.config/configStore/caprover.json`. Deleting the file
+should restore your disk to pristine state.
+
