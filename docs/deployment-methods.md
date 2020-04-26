@@ -33,9 +33,10 @@ This method is perhaps the most convenient one. This method automatically trigge
 After you enter this information, save your configuration. And go to your apps page again. Now, you'll see a new field call webhook. Simply copy this webhook to your github/bitbucket repo webhooks (see below). Captain listens to POST requests on this link and triggers a build.
 
 #### Github
-Webhooks can be added here:
+Create a webhook here:
 - Project > Settings > Add Webhook > URL: Captain Webhook from your apps page, Content Type: `application/json`, 
 Secret: <Leave empty>, Just the `push` event.
+Furthermore add the contents of your generated public key to your repositories deploy keys. 
 
 #### Bitbucket
 Webhooks can be added here:
