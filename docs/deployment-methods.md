@@ -23,7 +23,7 @@ For captain-definition files that do not require any source code, like [this](/d
 Let's say you deployed a new version of your app. But you realize that it's buggy. You don't have time to go back, revert your changes or fix the bug, what would you do? Simple! Just go to deployment tab and click on the revert icon next to the version that you want to revert to. CapRover automatically starts a new build and deploy that version! Note that this **DOES NOT** revert changes that you made to Environmental Variables, and other app configs such as persistent directories and etc. It just reverts your image (deployed source code).
 
 ## Automatic Deploy using Github, Bitbucket and etc.
-This method is perhaps the most convenient one. This method automatically triggers a build when you push your repo to a specific branch (like `master` or `staging` or `release` or etc). To setup this, go to your apps settings and enter the repo information:
+This method is perhaps the most convenient one. This method automatically triggers a build with a `captain-definiton` file when you push your repo to a specific branch (like `master` or `staging` or `release` or etc). To setup this, go to your apps settings and enter the repo information:
 - repo: This is the main HTTPS address of repo, in case of github, it is in `github.com/someone/something` format. Make sure it does NOT include `https://` prefix and `.git` suffix.
 - branch: The branch you want to be tracked, for example `master` or `staging` or `release`...
 - github/bitbucket username(email address): This is username that will be used when Captain downloads the repo.
