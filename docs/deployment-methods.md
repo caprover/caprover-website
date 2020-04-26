@@ -24,10 +24,11 @@ Let's say you deployed a new version of your app. But you realize that it's bugg
 
 ## Automatic Deploy using Github, Bitbucket and etc.
 This method is perhaps the most convenient one. This method automatically triggers a build when you push your repo to a specific branch (like `master` or `staging` or `release` or etc). To setup this, go to your apps settings and enter the repo information:
-- github/bitbucket username(email address): This is username that will be used when Captain downloads the repo.
-- github/bitbucket password: You can enter any non-empty text, like `123456`, for public projects.
 - repo: This is the main HTTPS address of repo, in case of github, it is in `github.com/someone/something` format. Make sure it does NOT include `https://` prefix and `.git` suffix.
 - branch: The branch you want to be tracked, for example `master` or `staging` or `release`...
+- github/bitbucket username(email address): This is username that will be used when Captain downloads the repo.
+- github/bitbucket password: You can enter any non-empty text, like `123456`, for public projects.
+- Or, instead of username/password, use SSH Key: Be sure that is uses PEM as OPENSSH does not work
 
 After you enter this information, save your configuration. And go to your apps page again. Now, you'll see a new field call webhook. Simply copy this webhook to your github/bitbucket repo webhooks (see below). Captain listens to POST requests on this link and triggers a build.
 
