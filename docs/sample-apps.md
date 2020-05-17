@@ -47,3 +47,7 @@ This project template aims to provide a more real-world Django template includin
 - Handling of Django settings
 
 View the code and documentation on [GitLab](https://gitlab.com/kamneros/caprover-django)
+
+#### CapRover Laravel
+
+- [jackbrycesmith/laravel-caprover-template](https://github.com/jackbrycesmith/laravel-caprover-template)
