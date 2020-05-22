@@ -21,6 +21,7 @@
     ],
     "Recipes and Tips": [
       "sample-apps",
+      "database-connection",
       "best-practices",
       "backup-and-restore",
       "recipe-deploy-create-react-app"

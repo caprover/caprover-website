@@ -37,6 +37,10 @@
         "title": "Complete Webapp Tutorial",
         "sidebar_label": "Complete Webapp Tutorial"
       },
+      "database-connection": {
+        "title": "Database Connection",
+        "sidebar_label": "Database Connection"
+      },
       "deployment-methods": {
         "title": "Deployment Methods",
         "sidebar_label": "Deployment Methods"
