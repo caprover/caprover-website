@@ -12,7 +12,7 @@ Docker uses the disk in different ways:
 Saving your images: images are compressed files with your built source-code that you deployed to the server. Every time you deploy a new version of your code, Docker builds a new image for the new version and keeps the old image by default. If you want to clean up all "unused" images on your server, run 
 ```
 docker container prune --force
-docker image prune --all
+docker image prune --all --force
 ```
 
 Important Note: Use this approach only if you have a Docker registry set up (local or remote). This is due to an existing bug in Docker, see [here](https://github.com/caprover/caprover/issues/180) for more details on the problem and also see the related [Docker Issue](https://github.com/moby/moby/issues/36295)
