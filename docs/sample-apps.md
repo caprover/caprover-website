@@ -21,6 +21,7 @@ There are:
 - nginx advance app
 - Python
 - Ruby
+- Elixir/Phoenix/LiveView
 - NodeJS
 - React App
 - and etc...
@@ -51,3 +52,12 @@ View the code and documentation on [GitLab](https://gitlab.com/kamneros/caprover
 #### CapRover Laravel
 
 - [jackbrycesmith/laravel-caprover-template](https://github.com/jackbrycesmith/laravel-caprover-template)
+
+#### Elixir/Phoenix App Deploy
+Deploy an Elixir/Phoenix LiveView web app complete with diagnostic dashboard.
+
+- [Drag and Drop tarball](https://github.com/TehSnappy/phoenix_sample/releases/download/v1.0/phoenix_sample.tar)
+- [Link to application code](https://github.com/TehSnappy/phoenix_sample)
+
+
+
