@@ -14,15 +14,15 @@ Your Pizza app is doing great and you are getting thousands of hits on your webs
 
 ## Run Multiple Servers:
 
-Wow! Your Pizza app is really popular! You have 3 instances of your app running on the same server, RAM and CPU are almost maxed out. You need to get a second server. How do you connect the servers? Captain does that for you ;-) You simply get a server with Docker installed on it, similar to what you did for the original Captain server.
+Wow! Your Pizza app is really popular! You have 3 instances of your app running on the same server, RAM and CPU are almost maxed out. You need to get a second server. How do you connect the servers? Captain does that for you ;-) You simply get a server with Docker installed on it, similar to what you did for the original Captain server. Make sure your shiny new server can be accessed via SSH from the original Captain server (e.g. by copying the Captain's ssh public key to your secondary server).
 
 At this point, you have to enter the following information:
-- Captain IP Address (as seen by remote): this is the IP address of your first server
-- Remote IP Address (as seen by Captain): this is the IP address of your second server
-- Private SSH key for `root` on remote: this is the SSH key that you use to SSH to your second server. On Linux, it's on `/home/yourusername/.ssh/id_rsa`
+- CapRover IP Address (as seen by remote): this is the IP address of your original server
+- New node IP Address (as seen by Captain): this is the IP address of your second server
+- Private SSH key for `root` user: this is the SSH key from your CapRover server that will be used to SSH to your second server. On Linux, it's on `/home/yourusername/.ssh/id_rsa`
 - Node type: this describes what the role of the new server is. Use `worker` if you're new to Docker, for more details, read https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/
 
- IP address of your new server, IP address of your main Captain node, username of your remote server (root is required for Docker use), private SSH key. Now, go to the "Nodes" section of Captain, enter the values and click on Join Cluster. Done! You now have a real cluster of your own! You can now change the instance count to 6, and Captain will spin up some instances on the other server for you, also automatically load balances the request and creates new instances if one machine dies.
+Now, go to the "Cluster" section of Captain, enter the values into fields of the "Nodes" area and click on Join Cluster. Done! You now have a real cluster of your own! You can now change the instance count to 6, and Captain will spin up some instances on the other server for you, also automatically load balances the request and creates new instances if one machine dies.
 
 The leader node is a manager who's been elected as Leader. This is the node where Captain and main services such as nginx and Certbot (Let's Encrypt) will be running on. All your apps automatically get distributed to nodes by docker swarm.
 
