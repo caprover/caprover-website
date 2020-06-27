@@ -87,7 +87,7 @@ In this case restart is not going to help. [Do this](https://github.com/caprover
 * Run `docker service scale captain-captain=0`
 * Run `cp /captain/data/config-captain.json /captain/data/backup-config-captain.json`
 * Run `nano /captain/data/config-captain.json`
-* Remove these two parameters from the json: `nginxBaseConfig` and `nginxCaptainConfig`, they should be toward the end of the JSON. Be careful with deleting, make sure the structure of JSON is valid, remove associated commas (`,`) as well.
+* Remove these two parameters from the json: `customNginxConfig`, `nginxBaseConfig` and `nginxCaptainConfig`, they should be toward the end of the JSON. Be careful with deleting, make sure the structure of JSON is valid, remove associated commas (`,`) as well.
 * Run `docker service scale captain-captain=1`
 * Hopefully your problem should be resolved and you can be happy.
 
