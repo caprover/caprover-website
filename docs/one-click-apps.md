@@ -30,7 +30,7 @@ There is a repository of [One Click Apps on GitHub](https://github.com/caprover/
 #### Blogging and Content
 - WordPress
 - Ghost
-- Prisma
+- Prisma 1
 - Strapi
 - Minio
 - And many more...
