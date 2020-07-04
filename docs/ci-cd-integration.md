@@ -146,3 +146,26 @@ Dockerfile
 ```
 
 Wait a little bit until your build is finished and deployed automatically! After a few minutes you can see your deployed app on CapRover!!!
+
+
+
+#### Alternative Method
+
+Alternatively, you can use a webhook instead of `docker run caprover/cli-caprover:v2.1.1 caprover deploy....`. This method is a bit more complex. 
+
+The following is NOT A WORKING example. Instead, it's just a hint on what steps are needed for the webhook method to work.
+
+```
+    - echo "Deploying on CapRover..."
+    - export DEPLOY_BRANCH=deploy-caprover
+    - cd ~
+    - git clone your-repo
+    - cd your-repo
+    - git checkout $DEPLOY_BRANCH || git checkout -b $DEPLOY_BRANCH
+    - git rm -rf .
+    - echo "{\"schemaVersion\":2,\"imageName\":\"$CONTAINER_FULL_IMAGE_NAME_WITH_TAG\"" > captain-definition
+    - git add .
+    - git commit -m "Deploy $CONTAINER_FULL_IMAGE_NAME_WITH_TAG"
+    - git push --set-upstream origin $DEPLOY_BRANCH
+    - curl -X POST https://captain.rootdomain.com/your-webhook
+```
