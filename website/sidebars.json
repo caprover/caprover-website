@@ -24,7 +24,8 @@
       "database-connection",
       "best-practices",
       "backup-and-restore",
-      "recipe-deploy-create-react-app"
+      "recipe-deploy-create-react-app",
+      "ci-cd-integration"
     ],
     "Help": [
       "server-purchase",

@@ -44,8 +44,10 @@ One of the most popular features of CapRover is the automatic deployment from so
 
 ### Out of Memory when Building
 
-When you build on a paid service such as Heroku, your build process happens on a machine with high CPU and RAM. When you use CapRover, your build is done on the same machine that serves your app. This is not a problem until your app gets too big and the build process requires too much RAM. In that case, your build process might crash! See [**this**](https://github.com/caprover/caprover/issues/315) for example. 
+When you build on a paid service such as Heroku, your build process happens on a machine with high CPU and RAM. When you use CapRover, your build is done on the same machine that serves your app. This is not a problem until your app gets too big and the build process requires too much RAM. In that case, your build process might crash! See [**this**](https://github.com/caprover/caprover/issues/315) for example. There are multiple solutions:
 
-In that case, you can try building your app as much as possible on your local machine and just offload the process of making the Docker image to your server. For example, this process is explained in details [**here**](recipe-deploy-create-react-app.md) for Create React App.
+1- Add swap space to the web server, explained [**here**](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04).
 
-You can also add swap space to the web server, explained [**here**](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04).
+2- Build on your local machine. For example, this process is explained in details [**here**](recipe-deploy-create-react-app.md) for Create React App.
+
+3- However, **the best solution** is to use a separate build system. You can see the guide [**here**](ci-cd-integration.md)

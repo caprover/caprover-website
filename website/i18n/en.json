@@ -29,6 +29,10 @@
         "title": "CaptainDuckDuck Upgrade",
         "sidebar_label": "CaptainDuckDuck Upgrade"
       },
+      "ci-cd-integration": {
+        "title": "CI/CD Integration",
+        "sidebar_label": "CI/CD Integration"
+      },
       "cli-commands": {
         "title": "CLI Commands",
         "sidebar_label": "CLI Commands"
