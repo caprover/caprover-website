@@ -83,6 +83,15 @@ Of course, you need to replace `myappname` with your own app name.
 
 In this case restart is not going to help. [Do this](https://github.com/caprover/caprover/issues/412#issuecomment-484077130):
 
+Run the nginx fixer:
+```
+docker service scale captain-captain=0 && \
+docker run -it --rm -v /captain:/captain  caprover/caprover /bin/bash -c "wget https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/clear-custom-nginx.js ; node clear-custom-nginx.js ;" && \
+docker service scale captain-captain=1 && \
+echo "OKAY"
+
+```
+
 * SSH to server
 * Run `docker service scale captain-captain=0`
 * Run `cp /captain/data/config-captain.json /captain/data/backup-config-captain.json`
