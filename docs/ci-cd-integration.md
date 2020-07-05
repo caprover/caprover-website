@@ -155,7 +155,7 @@ Alternatively, you can use a webhook instead of `docker run caprover/cli-caprove
 
 The following is NOT A WORKING example. Instead, it's just a hint on what steps are needed for the webhook method to work.
 
-```
+```bash
     - echo "Deploying on CapRover..."
     - export DEPLOY_BRANCH=deploy-caprover
     - cd ~
