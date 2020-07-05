@@ -163,7 +163,8 @@ The following is NOT A WORKING example. Instead, it's just a hint on what steps 
     - cd your-repo
     - git checkout $DEPLOY_BRANCH || git checkout -b $DEPLOY_BRANCH
     - git rm -rf .
-    - echo "{\"schemaVersion\":2,\"imageName\":\"$CONTAINER_FULL_IMAGE_NAME_WITH_TAG\"" > captain-definition
+    - git clean -fdx .
+    - echo "{\"schemaVersion\":2,\"imageName\":\"$CONTAINER_FULL_IMAGE_NAME_WITH_TAG\"}" > captain-definition
     - git add .
     - git commit -m "Deploy $CONTAINER_FULL_IMAGE_NAME_WITH_TAG"
     - git push --set-upstream origin $DEPLOY_BRANCH
