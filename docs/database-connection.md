@@ -9,7 +9,7 @@ sidebar_label: Database Connection
 All the databases that you deploy as a [one-click app](one-click-apps) are deployed as Docker containers. The name of each container is prefixed with `srv-captain--` in order to avoid clashing with other containers that might be running on the same host. All containers can talk to each other via Docker overlay network. The network architecture is something like this:
 
 
-```
+```bash
           Outside World
               +
               |
@@ -78,7 +78,7 @@ databaseEngine.connect(
 ```
 **IMPORTANT:** Note that you are not able to SSH Tunnel to your database from the SSH on host. You **must** create an SSH container. SSH on the host is not able to talk to the container.
 
-```
+```bash
 
      HOST SYSTEM
     +-----------------------------------------------------------------+
