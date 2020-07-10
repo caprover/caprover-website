@@ -66,7 +66,12 @@ CapRover backup process backs up everything in your `/captain/data/` directory. 
 
 1. **Container Images:** After restoring an instance of CapRover, you will notice that your app configurations are set, however, all your apps are reverted to the default state of "Your App Will Be Here!". You do need to redeploy all your apps. The good things about this approach is that your `backup.tar` file is really small and manageable. The cons of this approach, of course, is having to perform a re-deploy for all your apps. If you really want the images to be saved in a backup, you need to use a [Docker Registry](#d-r).
 2. **Persistent Directories:** Some apps, like databases, have a persistent directory. Since each database has its own backup mechanism. It is recommended to use the proper method of backup for your specific database, like `mongodump` for MongoDB or `mysqldump` for MySQL and etc. This is the best approach for databases as it does not cause a down time. The other approach is to create a snapshot of volumes. This approach is generic and works on pretty much everything. For example, you can use this [3rd Party Project](https://github.com/loomchild/volume-backup). However, before running this, to avoid data corruption, you need to make sure that your containers are stopped `docker service ls --format {{.Name}} | while read in; do docker service scale "$in"=0; done` and then take a snapshot then resume all services `docker service ls --format {{.Name}} | while read in; do docker service scale "$in"=1; done`. In near future, CapRover will have a built-in solution like this.
-
+Other useful tools for backing up your persistent directories are:
+- https://github.com/futurice/docker-volume-backup
+- https://github.com/loomchild/volume-backup
+- https://github.com/blacklabelops/volumerize
+- https://github.com/schickling/dockerfiles/tree/master/postgres-backup-s3
+- https://github.com/schickling/dockerfiles/tree/master/mysql-backup-s3
 
 ### Docker Registry
 
