@@ -76,7 +76,7 @@ databaseEngine.connect(
     }
 )
 ```
-**IMPORTANT:** Note that you are not able to SSH Tunnel to your database from the SSH on host. You **must** create an SSH container. SSH on the host is not able to talk to the container.
+**IMPORTANT:** Note that you are not able to SSH Tunnel to your database from the regular SSH on server. You **must** create an SSH container. SSH on the host is not able to talk to the container.
 
 ```bash
 
