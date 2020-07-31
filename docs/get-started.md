@@ -118,6 +118,6 @@ CONGRATS! Your app is live!!
 
 You can connect multiple custom domains (like `www.my-app.com`) to a single app and enable HTTPS and do much more in the app's settings page.
 
-Note that when you run `caprover deploy`, the current git commit will be sent over to your server. **IMPORTANT:** uncommited files and files in `gitignore` WILL NOT be sent to the server.
+Note that when you run `caprover deploy`, the current git commit will be sent over to your server. **IMPORTANT:** uncommitted files and files in `gitignore` WILL NOT be sent to the server.
 
 You can visit CapRover in the browser and set custom parameters for your app such as environment variables, and do much more! For more details regarding deployment, please see [CLI docs](cli-commands.md). For details on `captain-definition` file, see [Captain Definition File](captain-definition-file.md).
