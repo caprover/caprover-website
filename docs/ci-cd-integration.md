@@ -147,6 +147,22 @@ Dockerfile
 
 Wait a little bit until your build is finished and deployed automatically! After a few minutes you can see your deployed app on CapRover!!!
 
+#### Note on using `--imageName` with a private registry
+
+If you encounter the following error when running `caprover deploy --imageName`, you may need to authenticate your Captain instance with your registry, as being logged in locally doesn't mean that CapRover can access the image.
+
+```
+Deploy failed!
+Error: (HTTP code 404) unexpected - pull access denied for user_name/repo_name, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+```
+
+**Log in to your private Docker repository on CapRover**:
+
+- Navigate to CLUSTER
+- Click on ADD REMOVE REGISTRY
+- Enter your data and save your registry
+- Now you can use `caprover deploy --imageName` with your private image registry.
+
 
 
 #### Alternative Method
