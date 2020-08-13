@@ -70,4 +70,21 @@ TaskTemplate:
       NanoCPUs: 2000000000
 ```
 
-This will impose a limit of 2 CPUs and 100MB RAM usage on your service.
+This will impose a limit of 2 CPUs and 100MB RAM usage on your service. You can confirm this by running
+```
+docker service inspect srv-captain--your-app-name --pretty
+```
+
+
+## Revert to Default
+
+One important note is that CapRover does NOT modify any existing flags that it doesn't control. Flags that CapRover controls are: env vars, ports, image, and a few others.
+
+If you override a property that is not controlled by CapRover, like the CPU limit in above, even if you delete the override, the config won't be reverted. This is because it has already been set in Docker engine.
+
+So instead of removing the override, change the override to another value, and then remove it. For example, if you want to remove the limitation on CPU and RAM:
+- First, set it to a high value, for example, RAM to 50GB and CPU to 20 CPUs
+- Then, you can remove the override.
+
+
+Of course, alternatively, you can delete the service and create a new one.
