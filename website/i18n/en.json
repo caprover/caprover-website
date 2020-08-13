@@ -101,6 +101,10 @@
         "title": "Server & Public IP address",
         "sidebar_label": "Server Purchase"
       },
+      "service-update-override": {
+        "title": "Service Update Override",
+        "sidebar_label": "Service Update Override"
+      },
       "support": {
         "title": "Help and Support",
         "sidebar_label": "Help and Support"
