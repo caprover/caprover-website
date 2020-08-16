@@ -14,6 +14,7 @@
     "Do More": [
       "resource-monitoring",
       "nginx-customization",
+      "service-update-override",
       "app-scaling-and-cluster",
       "pre-deploy-script",
       "play-with-docker",
