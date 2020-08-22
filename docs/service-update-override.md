@@ -28,6 +28,7 @@ For the "Service Update Override", you can use both yaml and JSON. The schema ne
 TaskTemplate:
   ContainerSpec:
     Image: busybox
+    Hostname: my.domain.com
     Args:
     - top
   Resources:
