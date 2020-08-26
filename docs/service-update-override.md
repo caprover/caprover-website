@@ -32,8 +32,12 @@ TaskTemplate:
     Args:
     - top
   Resources:
-    Limits: {}
-    Reservations: {}
+    Limits:
+      MemoryBytes:	104857600
+      NanoCPUs: 2000000000
+    Reservations:
+      MemoryBytes:	104857600
+      NanoCPUs: 2000000000
   RestartPolicy:
     Condition: any
     MaxAttempts: 0
