@@ -31,9 +31,9 @@ This is where you can set runtime configuration and settings.
 
 ![appconfig](/img/docs/app-vars.png)
 
-### Environmental Variables
+### Environment Variables
 
-One of the most basic configuration that you can set for your app is environmental variables. These variables are usually used to pass in data that does not live in the code. Examples, include API key for a 3rd party service, database connection URI and etc. 
+One of the most basic configuration that you can set for your app is environment variables. These variables are usually used to pass in data that does not live in the code. Examples, include API key for a 3rd party service, database connection URI and etc. 
 
 If you'd like to access these variables in your app, you can dynamically set them at build time by adding the ARG command to your Dockerfile.
 

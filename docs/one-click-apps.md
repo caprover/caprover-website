@@ -65,7 +65,7 @@ With CapRover v1, it's even easier than the method explained above. Since `capta
   "imageName": "nextcloud:12-rc"
 }
 ```
-All the environmental variables that you can set are listed on their DockerHub page: https://hub.docker.com/_/nextcloud/
+All the environment variables that you can set are listed on their DockerHub page: https://hub.docker.com/_/nextcloud/
 
 <br/>
 
@@ -73,7 +73,7 @@ All the environmental variables that you can set are listed on their DockerHub p
 
 They all come with pre-configured settings, however, you'll be have the option to customize the settings. For example, MySQL database uses port 3306, but you can change this port to another port if it suits your needs.
 
-It is important to mention that some of these configuration parameters, might show up as environmental variables in your app settings after you deploy the app, however, their values only being used in the installing phase. i.e., changing password of MySQL through changing the PASSWORD environmental variable will not work. Instead, you should use MySQL commands to change the password. The PASSWORD environmental variable is being used to set up the original password during the installation phase.
+It is important to mention that some of these configuration parameters, might show up as environment variables in your app settings after you deploy the app, however, their values only being used in the installing phase. i.e., changing password of MySQL through changing the PASSWORD environment variable will not work. Instead, you should use MySQL commands to change the password. The PASSWORD environment variable is being used to set up the original password during the installation phase.
 
 ## Connecting to Databases
 

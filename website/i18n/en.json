@@ -53,6 +53,10 @@
         "title": "Disk Clean-Up",
         "sidebar_label": "Disk Clean-Up"
       },
+      "docker-compose": {
+        "title": "Docker Compose",
+        "sidebar_label": "Docker Compose"
+      },
       "firewall": {
         "title": "Firewall & Port Forwarding",
         "sidebar_label": "Firewall & Port Forwarding"

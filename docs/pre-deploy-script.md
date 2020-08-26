@@ -22,7 +22,7 @@ var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
 
 ```
 
-Note that `captainAppObj`, is the app object as saved in `/captain/config.conf` file, and `dockerUpdateObject` is the service update object that is being passed to Docker to update the service (environmental vars, image version and etc). This object is as per [Docker docs](https://docs.docker.com/engine/api/v1.30/#operation/ServiceUpdate).
+Note that `captainAppObj`, is the app object as saved in `/captain/config.conf` file, and `dockerUpdateObject` is the service update object that is being passed to Docker to update the service (environment vars, image version and etc). This object is as per [Docker docs](https://docs.docker.com/engine/api/v1.30/#operation/ServiceUpdate).
 
 Since this script will be executed in CapRover process, you'll get access to all node dependecies that CapRover has, see [CaptainDuckDuck/app-backend/package.json](https://github.com/caprover/caprover/blob/master/package.json). For example, the following script injects a UUID mapped to the deployed version to service label with every update:
 

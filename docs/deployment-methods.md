@@ -20,7 +20,7 @@ For captain-definition files that do not require any source code, like [this](/d
 
 ## One Click Rollback
 
-Let's say you deployed a new version of your app. But you realize that it's buggy. You don't have time to go back, revert your changes or fix the bug, what would you do? Simple! Just go to deployment tab and click on the revert icon next to the version that you want to revert to. CapRover automatically starts a new build and deploy that version! Note that this **DOES NOT** revert changes that you made to Environmental Variables, and other app configs such as persistent directories and etc. It just reverts your image (deployed source code).
+Let's say you deployed a new version of your app. But you realize that it's buggy. You don't have time to go back, revert your changes or fix the bug, what would you do? Simple! Just go to deployment tab and click on the revert icon next to the version that you want to revert to. CapRover automatically starts a new build and deploy that version! Note that this **DOES NOT** revert changes that you made to Environment Variables, and other app configs such as persistent directories and etc. It just reverts your image (deployed source code).
 
 ## Automatic Deploy using Github, Bitbucket and etc.
 This method is perhaps the most convenient one. This method automatically triggers a build with a `captain-definiton` file when you push your repo to a specific branch (like `master` or `staging` or `release` or etc). To setup this, go to your apps settings and enter the repo information:

@@ -26,6 +26,7 @@
       "best-practices",
       "backup-and-restore",
       "recipe-deploy-create-react-app",
+      "docker-compose",
       "ci-cd-integration"
     ],
     "Help": [
