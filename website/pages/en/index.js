@@ -290,7 +290,7 @@ const FullTutorial = props => (
             {[
                 {
                     content: '<a ' +
-                    'href="https://www.youtube.com/watch?v=XDrTmGSDW3s"' +
+                    'href="https://youtu.be/VPHEXPfsvyQ"' +
                     ' target="_blank" ' +
                     ' rel="noreferrer noopener">' +
                     '<img src="/img/screenshots-video.gif"/></a>',
