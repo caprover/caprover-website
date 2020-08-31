@@ -5,8 +5,8 @@ Website and Docs for CapRover.
 
 ```
 cd website
-yarn
-yarn start
+npm i
+npm start
 ```
 
 ### Adding New Docs
