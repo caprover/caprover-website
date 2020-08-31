@@ -18,7 +18,7 @@ You need to make sure that CapRover is running on your server. To check this, ss
 docker service ps captain-captain --no-trunc
 ```
 
-You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see [error creating vxlan interface](https://github.com/caprover/caprover/issues/14#issuecomment-345447689), or [error while creating mount source path](https://github.com/caprover/caprover/issues/352). Linode, for example, has many problems, such as [subnet sandbox join failed](https://github.com/docker/machine/issues/2753#issuecomment-171822791) and [vxlan interface](https://github.com/docker/machine/issues/2753#issuecomment-188353704). Search [CapRover Github issues](https://github.com/CapRover/CapRover/issues) for your problem and if you can't find a solution, create a new issue on Github.
+You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see [error creating vxlan interface](https://github.com/caprover/caprover/issues/14#issuecomment-345447689), or [error while creating mount source path](https://github.com/caprover/caprover/issues/352). Linode, for example, has many problems, such as [subnet sandbox join failed](https://github.com/docker/machine/issues/2753#issuecomment-171822791) and [vxlan interface](https://github.com/docker/machine/issues/2753#issuecomment-188353704). Search [CapRover Github issues](https://github.com/caprover/caprover/issues) for your problem and if you can't find a solution, create a new issue on Github.
 
 #### Second)
 If you don't see any errors when your ran `docker service ps captain-captain --no-trunc`, then try
@@ -27,7 +27,7 @@ If you don't see any errors when your ran `docker service ps captain-captain --n
 docker service logs captain-captain --since 60m
 ```
 
-You might see that CapRover is getting restarted constantly due to an error. Search [CapRover Github issues](https://github.com/CapRover/CapRover/issues) for your problem and if you can't find a solution, create a new issue on Github.
+You might see that CapRover is getting restarted constantly due to an error. Search [CapRover Github issues](https://github.com/caprover/caprover/issues) for your problem and if you can't find a solution, create a new issue on Github.
 
 
 #### Third)

@@ -85,7 +85,7 @@ class HomeSplash extends React.Component {
                     <ProjectTitle />
                     <PromoSection>
                         <Button href={docUrl('get-started.html', language)}>Get Started Now</Button>
-                        <Button href="https://github.com/CapRover/CapRover"
+                        <Button href="https://github.com/caprover/caprover"
                             target="_blank"
                             rel="noreferrer noopener">
                             View on Github</Button>

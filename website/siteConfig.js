@@ -41,7 +41,7 @@ const siteConfig = {
   headerLinks: [
       {doc: 'get-started', label: 'Docs'},
       {
-          href: 'https://github.com/CapRover/CapRover',
+          href: 'https://github.com/caprover/caprover',
           label: 'GitHub',
       },
   ],
@@ -104,7 +104,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-    repoUrl: 'https://github.com/CapRover/CapRover',
+    repoUrl: 'https://github.com/caprover/caprover',
 };
 
 module.exports = siteConfig;
