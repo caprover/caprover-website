@@ -90,7 +90,7 @@ If you had previously set the self-hosted registry, but you changed your mind an
 
 ### Multi Nodes
 
-What happens when you have a cluster? Backup and restoration process is pretty much the same as single node, except during the restoration, the first run exits after it detects that you're trying to restore a cluster. Your are ask to edit a file and add IP addresses of new nodes.
+What happens when you have a cluster? Backup and restoration process is pretty much the same as single node, except during the restoration, the first run exits after it detects that you're trying to restore a cluster. Your are asked to edit a file and add IP addresses of new nodes.
 
 
 For example, previously you had 2 nodes:
