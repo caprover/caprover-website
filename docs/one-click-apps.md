@@ -75,6 +75,25 @@ They all come with pre-configured settings, however, you'll be have the option t
 
 It is important to mention that some of these configuration parameters, might show up as environment variables in your app settings after you deploy the app, however, their values only being used in the installing phase. i.e., changing password of MySQL through changing the PASSWORD environment variable will not work. Instead, you should use MySQL commands to change the password. The PASSWORD environment variable is being used to set up the original password during the installation phase.
 
+## Upgrading One Click apps
+
+So you deployed your one click app and sometime later a new version comes out and you want to update your app. The process is different for different apps:
+
+#### Simple Image Update
+Most good quality apps allow you to simply update the underlying image and that's it! This usually the case for most application. For example, if you have a MySQL 5.5 and you want to upgrade to 5.7, you can simply go to the "Deployment" tab, navigate to the bottom and under **Method 6: Deploy via ImageName** just type in mysql:5.7 and click deploy!
+
+The image names are usually in `imagename:version` format or `account/image:version` format. You can look at the image that have been deployed by CapRover under the deployment history. Also you can look at the new versions at DockerHub. For example, 
+- `mysql` versions can be found from here: https://hub.docker.com/_/mysql?tab=tags
+- `portrainer/portrainer` versions can be found from here: https://hub.docker.com/r/portainer/portainer/tags
+
+Note that there are other use cases where CapRover modifies the original image to provide more functionality. For example, redis container is modified to provide [authentication option](https://github.com/caprover/one-click-apps/blob/af172b6680583487bdeacf230d7abaf9b57f4811/public/v4/apps/redis.yml#L10-L12). In this case, it's easier to simply delete your app and recreate it. If your app has persistent data, make sure NOT TO REMOVE the volume when deleting the app and make sure to recreate the app with the exact same name so that the exact same volume will be attached to the app.
+
+
+
+#### Other cases
+Some apps have a different way of upgrading, specifically if they have persistent code data. WordPress is a good example. To upgrade WordPress, all you need to do is to perform upgrade from within the wordpress website panel itself. Sometimes on top of that, you need to upgrade the underlying image, in that case, just follow the guide above.
+
+
 ## Connecting to Databases
 
 ### Connecting Within CapRover Cluster
