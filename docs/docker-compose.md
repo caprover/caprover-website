@@ -5,7 +5,7 @@ sidebar_label: Docker Compose
 ---
 
 
-### What is Docker Compose?
+## What is Docker Compose?
 
 For Docker newbies, lots of examples that you find on the internet are Docker Compose. For example, this is a simple Docker Compose for WordPress:
 
@@ -46,14 +46,14 @@ docker-compose -f my-docker-compose.yml up
 ```
 
 
-### Relationship to CapRover - Bad
+## Relationship to CapRover - Bad
 
 CapRover is just a thin layer around Docker. It uses docker to build and run your applications. It does all of these through [Docker API](https://docs.docker.com/engine/api/v1.40). 
 
 Although Docker Compose a feature in Docker CLI, it is NOT available in Docker API. This means CapRover cannot handle docker compose files.
 
 
-### Relationship to CapRover - Good
+## Relationship to CapRover - Good
 
 Having said that, CapRover has a built in system to parse out docker-compose (partially) and converts it to pieces that Docker API understands. In fact, this is exactly how CapRover one click apps work. One click apps, are just templatized variant of Docker Compose files. For example, this is the one click app for wordpress:
 
@@ -124,7 +124,7 @@ caproverOneClickApp:
 As you can see, the top part is very similar a Docker Compose!
 
 
-### How to Run Docker Compose on CapRover
+## How to Run Docker Compose on CapRover
 
 
 Note that, as mentioned above, the built-in parser does not support all fields that are available in docker compose. Specifically, it only supports: `image`, `environment`, `ports`, `volumes`, `depends_on`, and `hostname`, other parameters are currently being ignored by CapRover.
@@ -202,3 +202,17 @@ services:
 volumes:
     db_data: {}
 ```
+
+
+## Alternative Approach
+
+If you can't make it work with a one click app template, there is another option! You can simply run pure docker compose by download the compose file and run `docker compose up`. But before that just add `captain-overlay-network` to your web application section of your docker compose yaml file:
+```
+  web-app:
+    image: .....
+    container_name: ......
+    networks:
+      - captain-overlay-network
+```
+
+Now instead of potential port mapping that you might have, like `8080:80`, you can just create a CapRover "Nginx Proxy" app and use your container name as the upstream proxy, like `http://web-app` and done!
