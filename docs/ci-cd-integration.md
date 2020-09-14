@@ -159,7 +159,7 @@ Error: (HTTP code 404) unexpected - pull access denied for user_name/repo_name, 
 **Log in to your private Docker repository on CapRover**:
 
 - Navigate to CLUSTER
-- Click on ADD REMOVE REGISTRY
+- Click on ADD REMOTE REGISTRY
 - Enter your data and save your registry
 - Now you can use `caprover deploy --imageName` with your private image registry.
 
