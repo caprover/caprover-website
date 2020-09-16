@@ -40,6 +40,7 @@ If you'd like to access these variables in your app, you can dynamically set the
 For example, if you have set `BUCKET_NAME` & `SERVER_ENDPOINT` within the Caprover GUI, then you can access them in your app with the following;
 
 ```
+FROM imagename....
 ARG BUCKET_NAME=${BUCKET_NAME}
 ARG SERVER_ENDPOINT=${SERVER_ENDPOINT}
 ```
