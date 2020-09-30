@@ -1,4 +1,4 @@
-# CapRover Website
+# CapRover Website an amazing project
 Website and Docs for CapRover.
 
 ### Development
