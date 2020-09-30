@@ -10,7 +10,7 @@ CapRover is designed to be easy to use and intuitive. Having said that, there ar
 
 ### Hidden Root Domain
 
-It's always a good practice to hide your tech stack from the potential attacker. To be extra secure, you can hide your root domain two levels deeper than your wildcard DNS settings. For example on your DNS panel you set
+It's always a good practice to hide your tech stack from the potential attacker. To make extra secure, you can hide your root domain two levels deeper than your wildcard DNS settings. For example on your DNS panel you set
 
 ```bash
 A RECORD:
