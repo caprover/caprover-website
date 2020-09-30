@@ -9,7 +9,7 @@ npm i
 npm start
 ```
 
-### Adding New Docs
+### Adding New Docs for your convenience 
 
 Add the new MarkDown file in `/docs` directory. Add the listing to `/website/sidebars.json`. Then run `yarn start` to see the result.
 
