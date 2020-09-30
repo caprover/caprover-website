@@ -1,4 +1,4 @@
-# CapRover Website
+# CapRover Website and Docs
 Website and Docs for CapRover.
 
 ### Development
@@ -11,7 +11,7 @@ npm start
 
 ### Adding New Docs
 
-Add the new MarkDown file in `/docs` directory. Add the listing to `/website/sidebars.json`. Then run `yarn start` to see the result.
+Add the new MarkDown file in `/docs` directory and Add the listing to `/website/sidebars.json`. at the end run `yarn start` to see the result.
 
 
 ### Build
