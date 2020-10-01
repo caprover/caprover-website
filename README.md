@@ -17,3 +17,6 @@ Add the new MarkDown file in `/docs` directory. Add the listing to `/website/sid
 ### Build
 
 Simply run `yarn build` and all data will be converted into static html files inside `website/build` directory.
+
+
+### You can use dark theme by selecting colours for better experience
