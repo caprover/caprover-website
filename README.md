@@ -1,4 +1,4 @@
-# CapRover Website
+# CapRover Website Using Javascript
 Website and Docs for CapRover.
 
 ### Development
