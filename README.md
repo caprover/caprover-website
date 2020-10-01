@@ -1,5 +1,5 @@
 # CapRover Website
-Website and Docs for CapRover.
+Website and Docs for Amazing CapRover.
 
 ### Development
 
