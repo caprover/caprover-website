@@ -1,6 +1,5 @@
 # CapRover Website
-Website and Docs for CapRover.
-the amazing 
+Website and Docs for CapRover. 
 ### Development
 
 ```
@@ -17,3 +16,9 @@ Add the new MarkDown file in `/docs` directory. Add the listing to `/website/sid
 ### Build
 
 Simply run `yarn build` and all data will be converted into static html files inside `website/build` directory.
+
+### details who want to contribute in this website
+
+about yourself-
+
+your git hub username-
