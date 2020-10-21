@@ -45,6 +45,7 @@ There is a repository of [One Click Apps on GitHub](https://github.com/caprover/
 - NextCloud
 - Rainloop
 - Thumbor
+- OhMyForm
 - And many more...
 
 
