@@ -22,7 +22,7 @@ Every time you deploy a new version, or you change a configuration parameter in 
 
 ## Schema
 
-For the "Service Update Override", you can use both yaml and JSON. The schema needs to match [Service Update Object](https://docs.docker.com/engine/api/v1.30/#operation/ServiceUpdate) in Docker API. In YAML format, it'll be something like the following YAML. Note that this is just a partial example, there are many more customization parameter available.
+For the "Service Update Override", you can use both yaml and JSON. The schema needs to match [Service Update Object](https://docs.docker.com/engine/api/v1.40/#operation/ServiceUpdate) in Docker API. In YAML format, it'll be something like the following YAML. Note that this is just a partial example, there are many more customization parameter available.
 
 ```yaml
 TaskTemplate:
@@ -52,12 +52,14 @@ UpdateConfig:
   FailureAction: pause
   Monitor: 15000000000
   MaxFailureRatio: 0.15
+  Order: start-first
 RollbackConfig:
   Parallelism: 1
   Delay: 1000000000
   FailureAction: pause
   Monitor: 15000000000
   MaxFailureRatio: 0.15
+  Order: start-first
 EndpointSpec:
   Mode: vip
 ```

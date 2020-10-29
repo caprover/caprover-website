@@ -59,6 +59,15 @@ This happens when CapRover cannot verify that yourcustomdomain.com points to the
 - To confirm, go to https://mxtoolbox.com/DNSLookup.aspx and enter `yourcustomdomain.com`. Make sure it points to the server IP. If you're using a proxy service like CloudFlare, this may cause a problem. Disable their proxy in your DNS on CloudFlare and have A record directly point to the IP address of your CapRover server.
 - If none of the above works, please open an issue on Github.
 
+## Connection Timeouts
+Sometimes when you have an inactive database connection pool, Docker drops the connection after some time. To fix, you can do either of these:
+- Implement an automatic retry strategy
+- Implement a automatic ping every few minutes to ensure that the connection doesn't become inactive
+- Changing Keepalive config in your app (see [here](https://github.com/caprover/caprover/issues/873#issuecomment-715328966) for an example on knex)
+- Make changes to your Docker configs (more advanced)
+
+You can read more about the root cause [here](https://success.mirantis.com/article/ipvs-connection-timeout-issue). 
+
 ## How to view my application's log?
 Your application is deployed as a Docker service. For example, if your app name in captain is `my-app` you can view your logs by connecting to your server via SSH and run the following command:
 ```
