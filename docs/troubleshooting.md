@@ -135,6 +135,10 @@ You can customize any constant defined in [CaptainConstants](https://github.com/
 
 AWS has its own customization with regards to port handling and etc. It make require some custom setup, see [this blog post for example](https://fuzzyblog.io/blog/caprover/2019/11/10/using-caprover-on-aws.html).
 
+## ARM processor
+
+As of 1.8.1, CapRover works on arm processors like "raspberry pi" and such. Note that some one click apps may not work on rasberry pi. One click apps are external apps that are not maintained by CapRover. 
+
 ## How to stop and remove Captain?
 Captain uses docker swarm to support clustering and restarting containers if they stop. That's why it keeps re-appearing. Try this:
 
