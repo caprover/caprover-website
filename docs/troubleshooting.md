@@ -51,12 +51,16 @@ If all above points are correct, this is how to troubleshoot:
 - If you application logs show that your application is running, the most common case is that your application is binding to a custom port, not port 80. For example, CouchDB runs at port 5984. In this case, go to app's settings on CapRover, go to HTTP Settings, then select 5984 as the "Container Port".
 - If your app defines the binding IP address as 127.0.0.1, change it to `0.0.0.0`, see [this issue](https://github.com/caprover/caprover/issues/76#issuecomment-481053496) for more details.
 
-## Cannot Verify Domain!
-This applies to you if everything is fine with the default domains (app.root.domain.com), however, when you want to connect a new domain to your app, you see "Cannot Verify" error. 
+## Domain Verification Failed - Error 1107!
 
 This happens when CapRover cannot verify that yourcustomdomain.com points to the IP address of CapRover. This can be caused by several factors:
 - DNS changes take up to 24 hrs to propagate, specially if your server had cached them before. So wait for 24hrs and retry again. If it doesn't work, proceed to the next step:
 - To confirm, go to https://mxtoolbox.com/DNSLookup.aspx and enter `yourcustomdomain.com`. Make sure it points to the server IP. If you're using a proxy service like CloudFlare, this may cause a problem. Disable their proxy in your DNS on CloudFlare and have A record directly point to the IP address of your CapRover server.
+- If you tested all above, and when you visit `something.domain.com` you see the CapRover page, then you can say your domain is working fine, but CapRover is unable to verify it because the loopback test doesn't work. In this case, you can choose to skip domain verification dome by CapRover:
+```
+echo  "{\"skipVerifyingDomains\":\"true\"}" >  /captain/data/config-override.json
+docker service update captain-captain --force
+```
 - If none of the above works, please open an issue on Github.
 
 ## Connection Timeouts
