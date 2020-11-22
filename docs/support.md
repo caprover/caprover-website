@@ -19,7 +19,13 @@ Feel free to send an email to `support at/caprover/dot/com`
 
 ### Need Hourly Consultation
 
-TBD
+#### [Chris](https://chrisdietrich.net)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Successful CapRover deployment on several VPS and Cloud providers (DigitalOcean, Hetzner, AWS EC2, etc.); manual or scripted with Ansible or cloud-config. CapRover configuration for web applications and APIs in Python - mainly for Machine Learning and Data Science projects - with Dockerfile and CapRover 1-Click-Template. Backup of CapRover data. Contact: devops@chrisdietrich.net
+
+### You!!
+Please feel free to [edit](https://github.com/caprover/caprover-website/edit/master/docs/support.md) add your name here if you're familiar with CapRover.
+
 
 ### Need Airtight System?
 
