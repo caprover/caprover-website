@@ -13,9 +13,13 @@ https://github.com/caprover/caprover/issues
 
 If you need some help with deployment and something does quite work, message on [**Slack Chat**](https://join.slack.com/t/caprover/shared_invite/zt-iyry5q1s-ORQsf32MKpgR_XgY7~x5gA) or use [**GitHub Issues**](https://github.com/caprover/caprover/issues).
 
-### Need Private Support?
+### Need Commercial Support?
 
 Feel free to send an email to `support at/caprover/dot/com`
+
+### Need Hourly Consultation
+
+TBD
 
 ### Need Airtight System?
 
