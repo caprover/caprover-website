@@ -145,6 +145,7 @@ AWS has its own customization with regards to port handling and etc. It make req
 As of 1.8.1, CapRover works on arm processors like "raspberry pi" and such. Note that some one click apps may not work on rasberry pi. One click apps are external apps that are not maintained by CapRover. 
 
 ## Reset Password
+If you forgot your password but you have access to your server via SSH:
 - SSH to your server
 - Run 
 ```bash
