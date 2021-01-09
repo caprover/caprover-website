@@ -144,6 +144,26 @@ AWS has its own customization with regards to port handling and etc. It make req
 
 As of 1.8.1, CapRover works on arm processors like "raspberry pi" and such. Note that some one click apps may not work on rasberry pi. One click apps are external apps that are not maintained by CapRover. 
 
+## Reset Password
+- SSH to your server
+- Run 
+```bash
+docker service scale captain-captain=0
+
+# backup config
+cp /captain/data/config-captain.json /captain/data/config-captain.json.backup
+
+# delete old password
+jq 'del(.hashedPassword)' /captain/data/config-captain.json > /captain/data/config-captain.json.new
+cat /captain/data/config-captain.json.new > /captain/data/config-captain.json
+rm /captain/data/config-captain.json.new
+
+# set a temporary password
+docker service update --env-add DEFAULT_PASSWORD=mytemppassword captain-captain
+docker service scale captain-captain=1
+```
+- Login to CapRover with your temporary password and change your password from settings.
+
 ## How to stop and remove Captain?
 Captain uses docker swarm to support clustering and restarting containers if they stop. That's why it keeps re-appearing. Try this:
 
