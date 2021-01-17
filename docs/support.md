@@ -23,6 +23,10 @@ Feel free to send an email to `support at/caprover/dot/com`
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Successful CapRover deployment on several VPS and Cloud providers (DigitalOcean, Hetzner, AWS EC2, etc.); manual or scripted with Ansible or cloud-config. CapRover configuration for web applications and APIs in Python - mainly for Machine Learning and Data Science projects - with Dockerfile and CapRover 1-Click-Template. Backup of CapRover data. Contact: devops@chrisdietrich.net
 
+#### [IntegridSolutions](https://integrid.solutions)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We have been using Caprover in many project including government server as well as private servers with single and miltiple instances for large scaled applications (with more than 500k traffic) to small scaled. Mainly we used caprover for hosting dockerized PHP applicationa and other reactjs and vuejs based static web applications. If you need any help, you can contact us: [yourfriends@integrid.solutions](mailto:yourfriends@integrid.solutions)
+
 ### You!!
 Please feel free to [edit](https://github.com/caprover/caprover-website/edit/master/docs/support.md) add your name here if you're familiar with CapRover.
 
