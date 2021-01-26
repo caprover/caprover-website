@@ -15,7 +15,9 @@ If you need some help with deployment and something does quite work, message on 
 
 ### Need Commercial Support?
 
-Feel free to send an email to `support at/caprover/dot/com`
+Feel free to send an email to `support at/caprover/dot/com` to get our rates.
+
+Alternatively, you can use the following third party entities for their paid service:
 
 ### Need Hourly Consultation?
 
