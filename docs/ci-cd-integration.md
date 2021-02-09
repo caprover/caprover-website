@@ -71,6 +71,12 @@ Login to your CapRover web dashboard, under `Cluster` click on `Add Remote Regis
 - Domain: `registry.gitlab.com`
 - Image Prefix: `again, your gitlab username`
 
+NOTE: Image Prefix depends on how you structure your project in Gitlab. If you are using a group for your repository, your image prefix should be your group.
+In general, image prefix is the part between the domain and image name. For example, `my-group-project` is the Image Prefix for this project:
+```
+registry.gitlab.com/my-group-project/test:latest
+```
+
 Save your registry.
 
 
