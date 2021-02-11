@@ -6,7 +6,7 @@ sidebar_label: App Scaling & Cluster
 
 <br/>
 
-Captain offers you multiple ways to scale up your app, running it on multiple processes and benefit from all resources on your server.
+Captain offers you multiple ways to scale up your app, running it on multiple processes to take advantage of all the resources on your server.
 
 ## Run Multiple Instances of App:
 
@@ -26,6 +26,7 @@ Now, go to the "Cluster" section of Captain, enter the values into fields of the
 
 The leader node is a manager who's been elected as Leader. This is the node where Captain and main services such as nginx and Certbot (Let's Encrypt) will be running on. All your apps automatically get distributed to nodes by docker swarm.
 
+Note that only apps without "Persistent Data" can be scaled across nodes. Apps that have "Persistent Data" enabled will only run on 1 node.
 
 
 ### Default Push Registry:
