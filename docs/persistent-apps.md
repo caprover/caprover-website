@@ -11,7 +11,7 @@ sidebar_label: Persistent Apps
 When you want to create an app you have the option of creating the app with "Persistent Data" or not. By default, you should always prefer no persistence. However, they are cases where you need to create an app with persistence. Also, if you have a massive amount of static data that you don't want to bundle with your repository and have it shipped to the server everytime you build, you can map a directory on the host to a directory inside the container and FTP to your server and move your files there. This is generally not needed unless the amount of static data that you need to send to your server is extremely large.
 
 #### Persistent Apps: 
-These are the apps that have some data that need to survive restart, crash, container update and etc. Because these apps store data on disk, once they get created they get locked down on a specific server (if you have multiple servers). You can still change the constraint so that they will be moved to another machine, but if they will lose anything that might have been stored on the current host. Examples that use persistent apps include:
+These are the apps that have some data that need to survive restart, crash, container update and etc. Because these apps store data on disk, once they get created they get locked down on a specific server (if you have multiple servers). You can still change the constraint so that they will be moved to another machine, but if you do, they will lose anything that might have been stored on the current host. Examples that use persistent apps include:
 - Any database that stores data on disk has to have persistent data enabled. Otherwise all data will be lost when the container restarts (due to crash, host restart and etc...)
 - A photo upload app which does not use third party storages like Amazon S3 to store images. Instead, it locally stores uploaded images.
 - A webapp that needs to store some user uploaded files and plugins locally on disk (like WordPress)
@@ -29,7 +29,7 @@ For this type, you need to run `docker volume ls` to see the names of the volume
 ![mapped](/img/docs/path-binding.png)
 
 #### Non-Persistent Apps: 
-Generally speaking, anything that does not directly stores data on disk can be made non-persistent. You should always prefer to have non-persistent apps as they are much more flexible. Let's say you have multiple servers, if a server becomes unhealthly, all "non-persistent" apps on that server will automatically get moved to other servers whereas persistent apps are locked down to that server due to some data that they saved on that server.
+Generally speaking, anything that does not directly store data on disk can be made non-persistent. You should always prefer to have non-persistent apps as they are much more flexible. Let's say you have multiple servers, if a server becomes unhealthly, all "non-persistent" apps on that server will automatically get moved to other servers whereas persistent apps are locked down to that server due to some data that they saved on that server.
 
 Also, multiple instances of non-persistent apps can be running at the same time without causing any issues as they live in isolated environment and each of them has their very own disk space. Note that non persistent apps can still write data on disk, things on temporary cache and etc, but that data will get deleted once the container restarts due to a crash, deploy, configuration update or host restart. Examples include:
 
