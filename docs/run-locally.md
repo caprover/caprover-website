@@ -9,11 +9,11 @@ Note that this is an **advanced process**. Some of the concepts used in this sec
 
 As for the root domain, by default, CapRover uses `http://captain.captain.localhost`. On most systems, `captain.captain.localhost` automatically resolves to local ip address of the machine, i.e. 127.0.0.1 and therefore no additional work is needed.
 
-> However, if it doesn't do that automatically, you need to manually point `*.captain.localhost` to `127.0.0.1` or `192.168.1.2` (your local ip). **NOTE** that `etc/hosts` won't be enough as Captain needs a wildcard entry and `etc/hosts` does not allow wildcards, i.e. `*.something`. On ubuntu 16, `dnsmasq` (a local DNS server) is built-in. So, it's as simple of editing this file: `/etc/NetworkManager/dnsmasq.d/dnsmasq-localhost.conf` (create if does not exist) And add this line to it: `address=/captain.localhost/192.168.1.2` where `192.168.1.2` is your local IP address. To make sure you have `dnsmasq`, you can run `which dnsmasq` on your terminal, if it's available, path of it will be printed on the terminal, otherwise, there won't be anything printed on your terminal.
+> However, if it doesn't do that automatically, you need to manually point `*.captain.localhost` to `127.0.0.1` or `192.168.1.2` (your local ip). **NOTE** that `etc/hosts` won't be enough as Captain needs a wildcard entry and `etc/hosts` does not allow wildcards, i.e. `*.something`. On ubuntu 16, `dnsmasq` (a local DNS server) is built-in. So, it's as simple as editing this file: `/etc/NetworkManager/dnsmasq.d/dnsmasq-localhost.conf` (create it if it does not exist) and adding this line to it: `address=/captain.localhost/192.168.1.2` where `192.168.1.2` is your local IP address. To make sure you have `dnsmasq`, you can run `which dnsmasq` on your terminal. If it's available, its path will be printed on the terminal, otherwise, there won't be anything printed on your terminal.
 Note: For Ubuntu 18, read https://askubuntu.com/questions/1029882/how-can-i-set-up-local-wildcard-127-0-0-1-domain-resolution-on-18-04
 
 
-To verify you have both prerequisites mentioned above:
+To verify that you have both prerequisites mentioned above:
 - Run `docker version` and make sure your version is at least the version mentioned in the [docs](get-started.md#c-install-docker-on-server-at-least-version-1706x) 
 - Run `nslookup randomstring123.captain.localhost` and make sure it resolves to `127.0.0.1` or your local ip (something like `192.168.1.2`):
 ```
@@ -26,7 +26,7 @@ Address: 192.168.1.2
 
 ## Installation
 
-Once you confirmed that you have the prereqs ready, you can go ahead and install Captain on your machine, similar to what you do on server. Make sure you run as a user with sufficient permission, i.e. `sudo` on linux based systems. Just follow the steps outlined here: [Captain Installation](get-started#step-1-captain-installation), except a few differences mentioned below.
+Once you have confirmed that you have the prereqs ready, you can go ahead and install Captain on your machine, similar to what you do on your server. Make sure you run as a user with sufficient permission, i.e. `sudo` on linux based systems. Just follow the steps outlined here: [Captain Installation](get-started#step-1-captain-installation), except for a few differences mentioned below.
 
 ### Differences:
 
@@ -56,7 +56,7 @@ You are set!
 ## Troubleshooting:
 
 
-As mentioned above, running a local machine is an advanced task and might fail due to different reasons, depending on error your solution is different. For example, if you get the following error:
+As mentioned above, running a local machine is an advanced task and might fail due to different reasons, depending on the error, your solution might be different. For example, if you get the following error:
 
 ```
 Captain Starting ...
