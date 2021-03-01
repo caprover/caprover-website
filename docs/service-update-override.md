@@ -29,6 +29,11 @@ TaskTemplate:
   ContainerSpec:
     Image: busybox
     Hostname: my.domain.com
+    Mounts:
+      Type: bind
+      Source: /host/directory
+      Target: /some/path/in/container
+      ReadOnly: true
     Args:
     - top
   Resources:
