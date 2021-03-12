@@ -143,16 +143,9 @@ Assuming that your Docker Compose doesn't have any of these parameters, or they 
 ```yaml
 captainVersion: 4
 caproverOneClickApp:
-    variables:
     instructions:
-        start: >-
-            Just a plain Docker Compose.
-        end: >
-            Docker Compose is deployed.
-    displayName: Docker Compose
-    isOfficial: true
-    description: Docker Compose
-    documentation: Docker Compose
+        start: Just a plain Docker Compose.
+        end: Docker Compose is deployed.
 ########
 ```
 
