@@ -45,6 +45,14 @@ ARG BUCKET_NAME=${BUCKET_NAME}
 ARG SERVER_ENDPOINT=${SERVER_ENDPOINT}
 ```
 
+As well as the variables you set yourself, CapRover will also set a `CAPROVER_GIT_COMMIT_SHA` environment variable to the full git commit SHA that is being deployed. This is only available during the Docker build and is not available inside your app by default. If you want to use it inside your app then you can use something like the following:
+
+```
+FROM imagename....
+ARG CAPROVER_GIT_COMMIT_SHA=${CAPROVER_GIT_COMMIT_SHA}
+ENV CAPROVER_GIT_COMMIT_SHA=${CAPROVER_GIT_COMMIT_SHA}
+```
+
 ### Port Mapping
 
 CapRover allows you to map ports from a container to the host. You should use this feature if you want a specific port of your apps/containers to be publicly accessible. The most common use case is when you want to **connect to a database container from your local machine**.
