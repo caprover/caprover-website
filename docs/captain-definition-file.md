@@ -80,6 +80,36 @@ If you are an advanced Docker user, you may know that there are plenty of pre-bu
 
 Tip: You can simply copy and paste the captain-definition file above on CapRover web dashboard under the deploy tab.
 
+
+## Monorepo:
+You can use one git repo to deploy multiple different apps. For example, you may have a frontend and backend app in one repository. In this case, you can define multiple `captain-definition` files and have them deploying separate apps, for example, a directory structure, like this:
+```
+/project
+   /frontend
+      /src/index.js
+      package.json
+   /backend
+      /src/index.js
+      package.json
+captain-definition-backend
+captain-definition-frontend
+```
+With this content:
+`captain-definition-backend`
+```
+ {
+  "schemaVersion": 2,
+  "dockerfileLines": [
+                        "FROM node:12-alpine",
+                        "RUN mkdir -p /usr/src/app",
+                        "COPY ./backend /usr/src/app",
+                        "RUN npm install && npm cache clean --force",
+                        "CMD [ \"npm\", \"start\" ]"
+                    ]
+ }
+```
+You can alternatively point to a Dockerfile. Note that the build context will be always the root of your project, so in the Dockerfile, you'll have to point to that specific direcotory, for example, `COPY ./backend /usr/src/app`
+
 ## Versions for templateId:
 NOTE: Versions get pulled from official repositories at runtime, therefore you do not need to update your Captain in order to use a new version of NodeJS. For example, see [here](https://hub.docker.com/_/node/).
 
