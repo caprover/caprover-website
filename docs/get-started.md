@@ -42,7 +42,7 @@ _**CPU Architecture**:_ Although CapRover source code is compatible with any CPU
 
 _**Recommended Stack**:_ CapRover is tested on Ubuntu 18.04 and Docker 19.03. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
 
-_**Ubuntu 20.04**:_ There are some issues with Docker on Ubuntu 20, see [this one](https://github.com/moby/moby/issues/41825) for example. Use Ubuntu 18.04 to minimize your production issues. Ubuntu 18.04 will continue to receive updates until 2023 at least.
+_**Ubuntu 20.04**:_ There are some issues with Docker on Ubuntu 20, see [this one](https://github.com/moby/moby/issues/41825) and [another one](https://github.com/moby/moby/issues/41775) for example. Use Ubuntu 18.04 to minimize your production issues. Ubuntu 18.04 will continue to receive updates until 2023 at least.
 
 _**Minimum RAM**:_ Note that the build process sometimes consumes too much RAM, and 512MB RAM might not be enough (see [this issue](https://github.com/caprover/caprover/issues/28)). Most providers offer a minimum of 1GB RAM on \$5 instance including DigitalOcean, Vultr, Scaleway, Linode, SSD Nodes and etc.
 
