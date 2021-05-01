@@ -43,6 +43,7 @@ Do not run `caprover serversetup`. Instead, go to http://captain.captain.localho
 
 Once you set your root domain as `captain.localhost`, use `caprover login` and enter `captain.captain.localhost` as your captain URL and `captain42` as your default password. 
 
+> However, if you want to access your CapRover instance from another device on your LAN, you can set the root domain to `captain.LOCAL_IP.sslip.io` (for example `captain.192.168.1.2.sslip.io`).
 
 **NON-LINUX USERS**
 You need to add `/captain` to shared paths.
