@@ -62,6 +62,7 @@ echo  "{\"skipVerifyingDomains\":\"true\"}" >  /captain/data/config-override.jso
 docker service update captain-captain --force
 ```
 - If none of the above works, please open an issue on Github.
+- **AWS EC2 Users** - Check to make sure the CIDR Block of your VPC is above 172.0.0.0/16 (NOT 0.0.0.0/16, which is common).
 
 ## Connection Timeouts
 Sometimes when you have an inactive database connection pool, Docker drops the connection after some time. To fix, you can do either of these:
