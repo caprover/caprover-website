@@ -91,7 +91,7 @@ To confirm, go to https://mxtoolbox.com/DNSLookup.aspx and enter `randomthing123
 
 ## Step 3: Install CapRover CLI
 
-Assuming you have npm installed on your local machine (e.g., your laptop), simply run (add `sudo` if needed):
+Assuming you have npm installed on your local machine (e.g., your laptop), simply run :
 
 ```bash
  npm install -g caprover
