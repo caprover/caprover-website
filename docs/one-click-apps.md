@@ -85,7 +85,7 @@ Most good quality apps allow you to simply update the underlying image and that'
 
 The image names are usually in `imagename:version` format or `account/image:version` format. You can look at the image that have been deployed by CapRover under the deployment history. Also you can look at the new versions at DockerHub. For example, 
 - `mysql` versions can be found from here: https://hub.docker.com/_/mysql?tab=tags
-- `portrainer/portrainer` versions can be found from here: https://hub.docker.com/r/portainer/portainer/tags
+- `portainer/portainer` versions can be found from here: https://hub.docker.com/r/portainer/portainer/tags
 
 Note that there are other use cases where CapRover modifies the original image to provide more functionality. For example, redis container is modified to provide [authentication option](https://github.com/caprover/one-click-apps/blob/af172b6680583487bdeacf230d7abaf9b57f4811/public/v4/apps/redis.yml#L10-L12). In this case, it's easier to simply delete your app and recreate it. If your app has persistent data, make sure NOT TO REMOVE the volume when deleting the app and make sure to recreate the app with the exact same name so that the exact same volume will be attached to the app.
 
