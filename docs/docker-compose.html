@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Docker Compose · CapRover</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## What is Docker Compose?"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Docker Compose · CapRover"/><meta property="og:type" content="website"/><meta property="og:url" content="https://caprover.com/index.html"/><meta property="og:description" content="## What is Docker Compose?"/><meta property="og:image" content="https://caprover.com/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://caprover.com/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-132762521-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="CapRover"/><h2 class="headerTitleWithLogo">CapRover</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/get-started.html" target="_self">Docs</a></li><li class=""><a href="https://github.com/caprover/caprover" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recipes and Tips</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/get-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/cdd-migration.html">CaptainDuckDuck Upgrade</a></li><li class="navListItem"><a class="navItem" href="/docs/captain-definition-file.html">Captain Definition File</a></li><li class="navListItem"><a class="navItem" href="/docs/deployment-methods.html">Deployment Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/app-configuration.html">App Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/persistent-apps.html">Persistent Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/cli-commands.html">CLI Commands</a></li><li class="navListItem"><a class="navItem" href="/docs/one-click-apps.html">One-Click Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/complete-webapp-tutorial.html">Complete Webapp Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Do More</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/resource-monitoring.html">Resource Monitoring</a></li><li class="navListItem"><a class="navItem" href="/docs/nginx-customization.html">NGINX Config</a></li><li class="navListItem"><a class="navItem" href="/docs/service-update-override.html">Service Update Override</a></li><li class="navListItem"><a class="navItem" href="/docs/app-scaling-and-cluster.html">App Scaling &amp; Cluster</a></li><li class="navListItem"><a class="navItem" href="/docs/pre-deploy-script.html">Pre-deploy Script</a></li><li class="navListItem"><a class="navItem" href="/docs/play-with-docker.html">Play with CapRover</a></li><li class="navListItem"><a class="navItem" href="/docs/run-locally.html">Run Locally</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Recipes and Tips</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sample-apps.html">Sample Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/database-connection.html">Database Connection</a></li><li class="navListItem"><a class="navItem" href="/docs/best-practices.html">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/backup-and-restore.html">Backup &amp; Restore</a></li><li class="navListItem"><a class="navItem" href="/docs/recipe-deploy-create-react-app.html">Static React App</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/docker-compose.html">Docker Compose</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration.html">CI/CD Integration</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/server-purchase.html">Server Purchase</a></li><li class="navListItem"><a class="navItem" href="/docs/disk-cleanup.html">Disk Clean-Up</a></li><li class="navListItem"><a class="navItem" href="/docs/firewall.html">Firewall &amp; Port Forwarding</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting.html">Troubleshooting</a></li><li class="navListItem"><a class="navItem" href="/docs/support.html">Help and Support</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/caprover/caprover-website/edit/master/docs/docker-compose.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Docker Compose</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="what-is-docker-compose"></a><a href="#what-is-docker-compose" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is Docker Compose?</h2>
+<p>For Docker newbies, lots of examples that you find on the internet are Docker Compose. For example, this is a simple Docker Compose for WordPress:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">version:</span> <span class="hljs-string">'3.3'</span>
+
+<span class="hljs-attr">services:</span>
+   <span class="hljs-attr">db:</span>
+     <span class="hljs-attr">image:</span> <span class="hljs-string">mysql:5.7</span>
+     <span class="hljs-attr">volumes:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-string">db_data:/var/lib/mysql</span>
+     <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+     <span class="hljs-attr">environment:</span>
+       <span class="hljs-attr">MYSQL_ROOT_PASSWORD:</span> <span class="hljs-string">somewordpress</span>
+       <span class="hljs-attr">MYSQL_DATABASE:</span> <span class="hljs-string">wordpress</span>
+       <span class="hljs-attr">MYSQL_USER:</span> <span class="hljs-string">wordpress</span>
+       <span class="hljs-attr">MYSQL_PASSWORD:</span> <span class="hljs-string">wordpress</span>
+
+   <span class="hljs-attr">wordpress:</span>
+     <span class="hljs-attr">depends_on:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-string">db</span>
+     <span class="hljs-attr">image:</span> <span class="hljs-string">wordpress:latest</span>
+     <span class="hljs-attr">ports:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-string">"8000:80"</span>
+     <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+     <span class="hljs-attr">environment:</span>
+       <span class="hljs-attr">WORDPRESS_DB_HOST:</span> <span class="hljs-string">db:3306</span>
+       <span class="hljs-attr">WORDPRESS_DB_USER:</span> <span class="hljs-string">wordpress</span>
+       <span class="hljs-attr">WORDPRESS_DB_PASSWORD:</span> <span class="hljs-string">wordpress</span>
+       <span class="hljs-attr">WORDPRESS_DB_NAME:</span> <span class="hljs-string">wordpress</span>
+<span class="hljs-attr">volumes:</span>
+    <span class="hljs-attr">db_data:</span> <span class="hljs-string">{}</span>
+</code></pre>
+<p>It is pretty self-explanatory. It defines one or multiple services (apps) and their configurations such as persistent volumes, mapped ports, environment variable and etc. Docker compose is a really easy and readable way to define a set of apps that need to be working together. Usually to run a docker compose file, you need to run something like:</p>
+<pre><code class="hljs">docker-compose -f <span class="hljs-keyword">my</span>-docker-compose.yml up
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="relationship-to-caprover---bad"></a><a href="#relationship-to-caprover---bad" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relationship to CapRover - Bad</h2>
+<p>CapRover is just a thin layer around Docker. It uses docker to build and run your applications. It does all of these through <a href="https://docs.docker.com/engine/api/v1.40">Docker API</a>.</p>
+<p>Although Docker Compose a feature in Docker CLI, it is NOT available in Docker API. This means CapRover cannot handle docker compose files.</p>
+<h2><a class="anchor" aria-hidden="true" id="relationship-to-caprover---good"></a><a href="#relationship-to-caprover---good" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relationship to CapRover - Good</h2>
+<p>Having said that, CapRover has a built in system to parse out docker-compose (partially) and converts it to pieces that Docker API understands. In fact, this is exactly how CapRover one click apps work. One click apps, are just templatized variant of Docker Compose files. For example, this is the one click app for wordpress:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">captainVersion:</span> <span class="hljs-number">4</span>
+<span class="hljs-attr">services:</span>
+    <span class="hljs-string">$$cap_appname-db:</span>
+        <span class="hljs-attr">image:</span> <span class="hljs-string">$$cap_db_type:$$cap_database_version</span>
+        <span class="hljs-attr">volumes:</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-string">$$cap_appname-db-data:/var/lib/mysql</span>
+        <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+        <span class="hljs-attr">environment:</span>
+            <span class="hljs-attr">MYSQL_ROOT_PASSWORD:</span> <span class="hljs-string">$$cap_db_pass</span>
+            <span class="hljs-attr">MYSQL_DATABASE:</span> <span class="hljs-string">wordpress</span>
+            <span class="hljs-attr">MYSQL_USER:</span> <span class="hljs-string">$$cap_db_user</span>
+            <span class="hljs-attr">MYSQL_PASSWORD:</span> <span class="hljs-string">$$cap_db_pass</span>
+        <span class="hljs-attr">caproverExtra:</span>
+            <span class="hljs-attr">notExposeAsWebApp:</span> <span class="hljs-string">'true'</span>
+    <span class="hljs-string">$$cap_appname-wordpress:</span>
+        <span class="hljs-attr">depends_on:</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-string">$$cap_appname-db</span>
+        <span class="hljs-attr">image:</span> <span class="hljs-string">wordpress:$$cap_wp_version</span>
+        <span class="hljs-attr">volumes:</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-string">$$cap_appname-wp-data:/var/www/html</span>
+        <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+        <span class="hljs-attr">environment:</span>
+            <span class="hljs-attr">WORDPRESS_DB_HOST:</span> <span class="hljs-string">srv-captain--$$cap_appname-db:3306</span>
+            <span class="hljs-attr">WORDPRESS_DB_USER:</span> <span class="hljs-string">$$cap_db_user</span>
+            <span class="hljs-attr">WORDPRESS_DB_PASSWORD:</span> <span class="hljs-string">$$cap_db_pass</span>
+<span class="hljs-attr">caproverOneClickApp:</span>
+    <span class="hljs-attr">variables:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">$$cap_db_user</span>
+          <span class="hljs-attr">label:</span> <span class="hljs-string">Database</span> <span class="hljs-string">user</span>
+          <span class="hljs-attr">defaultValue:</span> <span class="hljs-string">wordpressuser</span>
+          <span class="hljs-attr">validRegex:</span> <span class="hljs-string">/^([a-zA-Z0-9])+$/</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">$$cap_db_pass</span>
+          <span class="hljs-attr">label:</span> <span class="hljs-string">Database</span> <span class="hljs-string">password</span>
+          <span class="hljs-attr">description:</span> <span class="hljs-string">''</span>
+          <span class="hljs-attr">validRegex:</span> <span class="hljs-string">/.{1,}/</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">$$cap_wp_version</span>
+          <span class="hljs-attr">label:</span> <span class="hljs-string">WordPress</span> <span class="hljs-string">Version</span>
+          <span class="hljs-attr">defaultValue:</span> <span class="hljs-string">'4.9'</span>
+          <span class="hljs-attr">description:</span> <span class="hljs-string">Check</span> <span class="hljs-string">out</span> <span class="hljs-string">their</span> <span class="hljs-string">Docker</span> <span class="hljs-string">page</span> <span class="hljs-string">for</span> <span class="hljs-string">the</span> <span class="hljs-string">valid</span> <span class="hljs-string">tags</span> <span class="hljs-string">https://hub.docker.com/r/library/wordpress/tags/</span>
+          <span class="hljs-attr">validRegex:</span> <span class="hljs-string">/^([^\s^\/])+$/</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">$$cap_db_type</span>
+          <span class="hljs-attr">label:</span> <span class="hljs-string">Database</span> <span class="hljs-string">Type</span>
+          <span class="hljs-attr">defaultValue:</span> <span class="hljs-string">mysql</span>
+          <span class="hljs-attr">description:</span> <span class="hljs-string">You</span> <span class="hljs-string">can</span> <span class="hljs-string">either</span> <span class="hljs-string">choose</span> <span class="hljs-string">mariadb</span> <span class="hljs-string">or</span> <span class="hljs-string">mysql,</span> <span class="hljs-string">you</span> <span class="hljs-string">need</span> <span class="hljs-string">to</span> <span class="hljs-string">change</span> <span class="hljs-string">the</span> <span class="hljs-string">version</span> <span class="hljs-string">according</span> <span class="hljs-string">to</span> <span class="hljs-string">which</span> <span class="hljs-string">DB</span> <span class="hljs-string">is</span> <span class="hljs-string">selected.</span> <span class="hljs-string">It</span> <span class="hljs-string">is</span> <span class="hljs-string">case</span> <span class="hljs-string">sensitive.</span>
+          <span class="hljs-attr">validRegex:</span> <span class="hljs-string">/^(mysql|mariadb)$/</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">$$cap_database_version</span>
+          <span class="hljs-attr">label:</span> <span class="hljs-string">Database</span> <span class="hljs-string">Version,</span> <span class="hljs-string">default</span> <span class="hljs-string">is</span> <span class="hljs-string">MySQL</span>
+          <span class="hljs-attr">defaultValue:</span> <span class="hljs-string">'5.7'</span>
+          <span class="hljs-attr">description:</span> <span class="hljs-string">Check</span> <span class="hljs-string">out</span> <span class="hljs-string">the</span> <span class="hljs-string">Docker</span> <span class="hljs-string">pages</span> <span class="hljs-string">for</span> <span class="hljs-string">the</span> <span class="hljs-string">valid</span> <span class="hljs-string">tags</span> <span class="hljs-string">https://hub.docker.com/r/library/mysql/tags/</span> <span class="hljs-string">or</span> <span class="hljs-string">https://hub.docker.com/_/mariadb?tab=tags</span>
+          <span class="hljs-attr">validRegex:</span> <span class="hljs-string">/^([^\s^\/])+$/</span>
+    <span class="hljs-attr">instructions:</span>
+        <span class="hljs-attr">start:</span> <span class="hljs-string">&gt;-
+            WordPress is an online, open source website creation tool written in PHP. But in non-geek speak, it’s probably the easiest and most powerful blogging and website content management system (or CMS) in existence today.
+             Enter your WordPress Configuration parameters and click on next. A MySQL (database) and a WordPress container will be created for you.  The process will take about a minute for the process to finish.
+</span>        <span class="hljs-attr">end:</span> <span class="hljs-string">&gt;
+            Wordpress is deployed and available as $$cap_appname-wordpress . 
+             IMPORTANT: It will take up to 2 minutes for WordPress to be ready. Before that, you might see a 502 error page.
+</span>    <span class="hljs-attr">displayName:</span> <span class="hljs-string">WordPress</span>
+    <span class="hljs-attr">isOfficial:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">description:</span> <span class="hljs-string">WordPress</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">content</span> <span class="hljs-string">management</span> <span class="hljs-string">system</span> <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">PHP</span> <span class="hljs-string">and</span> <span class="hljs-string">MySQL</span> <span class="hljs-string">that</span> <span class="hljs-string">is</span> <span class="hljs-string">usually</span> <span class="hljs-string">used</span> <span class="hljs-string">with</span> <span class="hljs-string">the</span> <span class="hljs-string">MySQL</span> <span class="hljs-string">or</span> <span class="hljs-string">MariaDB</span> <span class="hljs-string">database</span>
+    <span class="hljs-attr">documentation:</span> <span class="hljs-string">Taken</span> <span class="hljs-string">from</span> <span class="hljs-string">https://docs.docker.com/compose/wordpress/.</span> <span class="hljs-string">Port</span> <span class="hljs-string">mapping</span> <span class="hljs-string">removed</span> <span class="hljs-string">from</span> <span class="hljs-string">WP</span> <span class="hljs-string">as</span> <span class="hljs-string">it</span> <span class="hljs-string">is</span> <span class="hljs-literal">no</span> <span class="hljs-string">longer</span> <span class="hljs-string">needed</span>
+</code></pre>
+<p>As you can see, the top part is very similar a Docker Compose!</p>
+<h2><a class="anchor" aria-hidden="true" id="how-to-run-docker-compose-on-caprover"></a><a href="#how-to-run-docker-compose-on-caprover" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to Run Docker Compose on CapRover</h2>
+<p>Note that, as mentioned above, the built-in parser does not support all fields that are available in docker compose. Specifically, it only supports: <code>image</code>, <code>environment</code>, <code>ports</code>, <code>volumes</code>, <code>depends_on</code>, and <code>hostname</code>, other parameters are currently being ignored by CapRover.</p>
+<p>Assuming that your Docker Compose doesn't have any of these parameters, or they are not crucial for your application, you can simply run Docker Compose by</p>
+<ol>
+<li><p>Navigate to Apps</p></li>
+<li><p>Click on &quot;One Click Apps/Databases&quot;</p></li>
+<li><p>Navigate to the very bottom of the list, and click on the last item, called <code>&gt;&gt; TEMPLATE &lt;&lt;</code></p></li>
+<li><p>Copy the following section to the box:</p></li>
+</ol>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">captainVersion:</span> <span class="hljs-number">4</span>
+<span class="hljs-attr">caproverOneClickApp:</span>
+    <span class="hljs-attr">instructions:</span>
+        <span class="hljs-attr">start:</span> <span class="hljs-string">Just</span> <span class="hljs-string">a</span> <span class="hljs-string">plain</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Compose.</span>
+        <span class="hljs-attr">end:</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Compose</span> <span class="hljs-string">is</span> <span class="hljs-string">deployed.</span>
+<span class="hljs-comment">########</span>
+</code></pre>
+<ol start="5">
+<li>After <code>########</code>, copy the entire content of your Docker Compose. Keep in mind that your services will get prefixed with <code>srv-captain--</code> when deployed via CapRover. Hence make changes if needed. For example, the complete wordpress docker compose will look like this in CapRover</li>
+</ol>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">captainVersion:</span> <span class="hljs-number">4</span>
+<span class="hljs-attr">caproverOneClickApp:</span>
+    <span class="hljs-attr">instructions:</span>
+        <span class="hljs-attr">start:</span> <span class="hljs-string">Just</span> <span class="hljs-string">a</span> <span class="hljs-string">plain</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Compose.</span>
+        <span class="hljs-attr">end:</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Compose</span> <span class="hljs-string">is</span> <span class="hljs-string">deployed.</span>
+<span class="hljs-comment">########</span>
+<span class="hljs-attr">version:</span> <span class="hljs-string">'3.3'</span>
+
+<span class="hljs-attr">services:</span>
+   <span class="hljs-attr">db:</span>
+     <span class="hljs-attr">image:</span> <span class="hljs-string">mysql:5.7</span>
+     <span class="hljs-attr">volumes:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-string">db_data:/var/lib/mysql</span>
+     <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+     <span class="hljs-attr">environment:</span>
+       <span class="hljs-attr">MYSQL_ROOT_PASSWORD:</span> <span class="hljs-string">somewordpress</span>
+       <span class="hljs-attr">MYSQL_DATABASE:</span> <span class="hljs-string">wordpress</span>
+       <span class="hljs-attr">MYSQL_USER:</span> <span class="hljs-string">wordpress</span>
+       <span class="hljs-attr">MYSQL_PASSWORD:</span> <span class="hljs-string">wordpress</span>
+
+   <span class="hljs-attr">wordpress:</span>
+     <span class="hljs-attr">depends_on:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-string">db</span>
+     <span class="hljs-attr">image:</span> <span class="hljs-string">wordpress:latest</span>
+     <span class="hljs-attr">ports:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-string">"8000:80"</span>
+     <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+     <span class="hljs-attr">environment:</span>
+       <span class="hljs-attr">WORDPRESS_DB_HOST:</span> <span class="hljs-string">srv-captain--db:3306</span> <span class="hljs-comment">## NOTICE it is changed to "srv-captain--db" from "db"</span>
+       <span class="hljs-attr">WORDPRESS_DB_USER:</span> <span class="hljs-string">wordpress</span>
+       <span class="hljs-attr">WORDPRESS_DB_PASSWORD:</span> <span class="hljs-string">wordpress</span>
+       <span class="hljs-attr">WORDPRESS_DB_NAME:</span> <span class="hljs-string">wordpress</span>
+<span class="hljs-attr">volumes:</span>
+    <span class="hljs-attr">db_data:</span> <span class="hljs-string">{}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="alternative-approach"></a><a href="#alternative-approach" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alternative Approach</h2>
+<p>If you can't make it work with a one click app template, there is another option! You can simply run pure docker compose by download the compose file and run <code>docker compose up</code>. But before that just add <code>captain-overlay-network</code> to your web application section of your docker compose yaml file:</p>
+<pre><code class="hljs">  web-app:
+    image: <span class="hljs-built_in">..</span><span class="hljs-built_in">..</span>.
+    container_name: <span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><span class="hljs-built_in">..</span>
+    networks:
+      - captain-overlay-network
+</code></pre>
+<p>Now instead of potential port mapping that you might have, like <code>8080:80</code>, you can just create a CapRover &quot;Nginx Proxy&quot; app and use your container name as the upstream proxy, like <code>http://web-app</code> and done!</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/recipe-deploy-create-react-app.html"><span class="arrow-prev">← </span><span>Static React App</span></a><a class="docs-next button" href="/docs/ci-cd-integration.html"><span>CI/CD Integration</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-docker-compose">What is Docker Compose?</a></li><li><a href="#relationship-to-caprover---bad">Relationship to CapRover - Bad</a></li><li><a href="#relationship-to-caprover---good">Relationship to CapRover - Good</a></li><li><a href="#how-to-run-docker-compose-on-caprover">How to Run Docker Compose on CapRover</a></li><li><a href="#alternative-approach">Alternative Approach</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.png" alt="CapRover" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/get-started.html">Getting Started</a></div><div><h5>Community</h5><a href="https://twitter.com/cap_rover" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_blank" rel="noreferrer noopener">Slack Group</a></div><div><h5>More</h5><a href="https://github.com/caprover/caprover" target="_blank">GitHub</a><a class="github-button" href="https://github.com/caprover/caprover" data-icon="octicon-star" data-count-href="/caprover/caprover/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2021 githubsaturn</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '81e546c2e0c9258e48c359465bde6909',
+                indexName: 'caprover',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
