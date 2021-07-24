@@ -18,14 +18,14 @@ A RECORD:
 *.server.domain.com   >>>>   123.123.123.123
 ```
 
-Then when settings up CapRover, instead of entering `server.domain.com`, enter `something.server.domain.com`. This way, you can access dashboard via `captain.something.server.domain.com` and not `captain.server.domain.com`. 
+Then when setting up CapRover, instead of entering `server.domain.com`, enter `something.server.domain.com`. This way, you can access the dashboard via `captain.something.server.domain.com` and not `captain.server.domain.com`.
 
 Keep in mind this is not a shield that protects you from everything. It's just a security measure that makes it harder, and nearly impractical for some brute force attackers to attack your CapRover infrastructure.
 
 
 ### Custom Default Password
 
-CapRover uses `captain42` as its default password. This is usually safe as you can change your password by running `caprover serversetup` from your local machine right after the server installation is finished. However, this leaves a small window of 30 seconds or so for the attacker to change your password before you. This is very unlikely, but it's possible for this attack to happen. The attacker needs to know the exact attack window on a particular machine. Anyways, to mitigate this risk, simply choose a custom initial password when installing CapRover by adding `DEFAULT_PASSWORD` env var to installation script. For example, the script below changes the default password from `captain42` to `myinitialpassword`
+CapRover uses `captain42` as its default password. This is usually safe as you can change your password by running `caprover serversetup` from your local machine right after the server installation is finished. However, this leaves a small window of 30 seconds or so for the attacker to change your password before you. This is very unlikely, but it's possible for this attack to happen. The attacker needs to know the exact attack window on a particular machine. Anyways, to mitigate this risk, simply choose a custom initial password when installing CapRover by adding `DEFAULT_PASSWORD` env var to the installation script. For example, the script below changes the default password from `captain42` to `myinitialpassword`
 
 ```
 docker run -e DEFAULT_PASSWORD='myinitialpassword' -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
@@ -34,12 +34,12 @@ docker run -e DEFAULT_PASSWORD='myinitialpassword' -p 80:80 -p 443:443 -p 3000:3
 
 ### Enforce HTTPS
 
-It is highly recommended that one of the first things you do is to enable HTTPS, and enable "Enforce HTTPS" for your CapRover dashboard. After you've done all these, you should change your password. Note that if you are using `caprover serversetup` wizard, you will be doing this process automatically, no need to change your password after the setup.
+It is highly recommended that one of the first things you do is to enable HTTPS and enable "Enforce HTTPS" for your CapRover dashboard. After you've done all these, you should change your password. Note that if you are using `caprover serversetup` wizard, you will be doing this process automatically, no need to change your password after the setup.
 
 
 ### Use Service Accounts for Git
 
-One of the most popular features of CapRover is the automatic deployment from source control (GitHub, BitBucket, GitLab and etc...). For this approach to work with private repository, you have to enter your username/password and they will be kept as an encrypted content on your server. It is always a good practice to create a service account (bot account) on GitHub and etc, and give that account specific permission (read only) to certain repositories only. Such that if that account was compromised, your main owner account remains intact and you can remove the compromised account from the repo.
+One of the most popular features of CapRover is the automatic deployment from source control (GitHub, BitBucket, GitLab and etc...). For this approach to work with a private repository, you have to enter your username/password and they will be kept as encrypted content on your server. It is always a good practice to create a service account (bot account) on GitHub and etc, and give that account specific permission (read only) to certain repositories only. Such that if that account was compromised, your main owner account remains intact and you can remove the compromised account from the repo.
 
 
 ### Out of Memory when Building
@@ -48,6 +48,6 @@ When you build on a paid service such as Heroku, your build process happens on a
 
 1- Add swap space to the web server, explained [**here**](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04).
 
-2- Build on your local machine. For example, this process is explained in details [**here**](recipe-deploy-create-react-app.md) for Create React App.
+2- Build on your local machine. For example, this process is explained in detail [**here**](recipe-deploy-create-react-app.md) for Create React App.
 
 3- However, **the best solution** is to use a separate build system. You can see the guide [**here**](ci-cd-integration.md)
