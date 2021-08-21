@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'CapRover' /* title for your website */,
-  tagline: 'Build your own PaaS in a few minutes!',
+  tagline: 'Free and Open Source PaaS!',
   cname: 'caprover.com',
   url: 'https://caprover.com' /* your website url */,
   baseUrl: '/' /* base url for your project */,
