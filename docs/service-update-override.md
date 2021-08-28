@@ -30,18 +30,18 @@ TaskTemplate:
     Image: busybox
     Hostname: my.domain.com
     Mounts:
-      Type: bind
-      Source: /host/directory
-      Target: /some/path/in/container
-      ReadOnly: true
+      - Type: bind
+        Source: /host/directory
+        Target: /some/path/in/container
+        ReadOnly: true
     Args:
-    - top
+      - top
   Resources:
     Limits:
-      MemoryBytes:	104857600
+      MemoryBytes: 104857600
       NanoCPUs: 2000000000
     Reservations:
-      MemoryBytes:	104857600
+      MemoryBytes: 104857600
       NanoCPUs: 2000000000
   RestartPolicy:
     Condition: any
@@ -67,6 +67,7 @@ RollbackConfig:
   Order: start-first
 EndpointSpec:
   Mode: vip
+
 ```
 
 
