@@ -44,6 +44,10 @@ const siteConfig = {
           href: 'https://github.com/caprover/caprover',
           label: 'GitHub',
       },
+      {
+          href: 'https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ',
+          label: 'Slack Group',
+      },
   ],
 
   editUrl: 'https://github.com/caprover/caprover-website/edit/master/docs/',
