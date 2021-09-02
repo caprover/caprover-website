@@ -54,7 +54,7 @@ Add, commit and push this file.
 
 ### 4- Create an Access Token for CapRover
 
-CapRover needs to pull the built images from GitLab, so we need to create an access token. Navigate to https://gitlab.com/profile/personal_access_tokens and create a token.
+CapRover needs to pull the built images from GitLab, so we need to create an access token. Navigate to https://gitlab.com/-/profile/personal_access_tokens and create a token.
 
 Make sure to assign `read_registry` and `write_registry` permissions for this token.
 
