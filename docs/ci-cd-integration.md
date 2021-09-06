@@ -171,14 +171,16 @@ Error: (HTTP code 404) unexpected - pull access denied for user_name/repo_name, 
 
 
 #### App Tokens
-[coming in future versions!]
+
 When you use CI/CD, it may be more desirable to avoid storing your password. Instead, you can create app specific tokens to deployment of each app. 
 
 ```
 caprover deploy --appToken <YOUR_APP_TOKEN_HERE> --caproverUrl https://captain.domain.com --imageName YOUR_IMAGE_NAME --appName YOUR_APP_NAME
 ```
 
-This functionality will be available in CapRover 1.10 backend and CapRover CLI version of 2.2.0!
+Usually it is more secure to save token in an environment variable, CLI will load it from `CAPROVER_APP_TOKEN` variable.
+
+This functionality is available from CapRover 1.10 backend and CapRover CLI version of 2.2.0!
 
 
 
