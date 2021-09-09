@@ -59,7 +59,7 @@ To use a Dockerfile that's in your repository, you can simply reference it in th
 ```
  {
   "schemaVersion": 2,
-  "dockerfilePath": "./myDockerFile"
+  "dockerfilePath": "./Dockerfile"
  }
 ```
 
