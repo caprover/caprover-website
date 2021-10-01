@@ -27,6 +27,8 @@ For the "Service Update Override", you can use both yaml and JSON. The schema ne
 ```yaml
 TaskTemplate:
   ContainerSpec:
+    Labels:
+      some.label: some.value
     Image: busybox
     Hostname: my.domain.com
     Mounts:
@@ -47,6 +49,12 @@ TaskTemplate:
     Condition: any
     MaxAttempts: 0
   Placement: {}
+  Networks:
+    - Target: captain-overlay-network
+  LogDriver:
+    Name: json-file
+    Options:
+      max-size: 512m
   ForceUpdate: 0
 Mode:
   Replicated:
