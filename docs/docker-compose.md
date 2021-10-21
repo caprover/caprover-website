@@ -199,6 +199,10 @@ If you can't make it work with a one click app template, there is another option
     container_name: ......
     networks:
       - captain-overlay-network
+
+networks:
+  captain-overlay-network:
+    external: true
 ```
 
 Now instead of potential port mapping that you might have, like `8080:80`, you can just create a CapRover "Nginx Proxy" app and use your container name as the upstream proxy, like `http://web-app` and done!
