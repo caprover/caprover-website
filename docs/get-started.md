@@ -108,7 +108,14 @@ Follow the steps and login to your CapRover instance. When prompted to enter the
 #### Note: It will not be possible to carry through with the 'caprover serversetup' if you've already forced https on your CapRover instance.
 In such case go straight to logging in with the `caprover login` command. To change the password go to the settings menu in the app.
 
-## Step 4: Deploy the Test App
+## Step 4: (Optional) Set up Swap file
+
+In some cases you may run into problems due to not having enough physical RAM.
+For example, when building a Docker image, if it starts to take up too much memory, the build will fail.
+To work around these problems (without purchasing more RAM) you can set up a Swap file (which is used as virtual RAM),
+by following these instructions on [How To Create A Linux Swap File](https://linuxize.com/post/create-a-linux-swap-file/).
+
+## Step 5: Deploy the Test App
 
 Go to the CapRover in your browser, from the left menu select Apps and create a new app. Name it `my-first-app`. Then, download any of the test apps <a href="https://github.com/caprover/caprover/tree/master/captain-sample-apps">here</a>, unzip the content. and while inside the directory of the test app, run:
 
