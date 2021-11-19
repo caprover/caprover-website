@@ -28,7 +28,7 @@ This method is perhaps the most convenient one. This method automatically trigge
 - branch: The branch you want to be tracked, for example `master` or `staging` or `release`...
 - github/bitbucket username(email address): This is username that will be used when Captain downloads the repo.
 - github/bitbucket password: You can enter any non-empty text, like `123456`, for public projects.
-- Or, instead of username/password, use SSH Key: Make sure to use PEM format as other formats may not work. Use the following command if unsure: `ssh-keygen -m PEM -t rsa -b 4096 -C "caprover" -f ./deploykey -q -N ""`.
+- Or, instead of username/password, use SSH Key: Make sure to use PEM format as other formats may not work. Use the following command if unsure: `ssh-keygen -t ed25519 -C "yourname@example.com" -f ./deploykey -q -N ""`.
 
 After you enter this information, save your configuration. And go to your apps page again. Now, you'll see a new field call webhook. Simply copy this webhook to your github/bitbucket repo webhooks (see below). Captain listens to POST requests on this link and triggers a build.
 
