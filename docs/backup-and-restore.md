@@ -51,7 +51,7 @@ In some cases, you still have the previous server running, and you just want to 
 1. Create a new wildcard entry in your DNS `*.yournewroot.domain.com` and point it to the new server
 2. On your desktop machine, create a temporary entry in your `etc/hosts` file and add this line
 ```
-OLD-IP-ADDRESS	captain.oldroot.domain.com
+NEW-SERVER-IP-ADDRESS   captain.oldroot.domain.com
 ```
 NOTE that you cannot use wild card in hosts file, just add the domain for the dashboard so you can access it temporarily.
 3. go to `captain.oldroot.domain.com` in your browser and login to the dashboard. NOTE that you might see an SSL error, you can click on advance and ignore. This is fine as your SSL certification might have been expired. It will get renewed once you set everything up and restart CapRover.
