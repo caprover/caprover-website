@@ -167,7 +167,7 @@ docker service scale captain-captain=1
 - Login to CapRover with your temporary password and change your password from settings.
 
 ## How to stop and remove Captain?
-Captain uses docker swarm to support clustering and restarting containers if they stop. That's why it keeps re-appearing. Try this:
+CapRover uses docker swarm to support clustering and restarting containers if they stop. In order to fully uninstall CapRover from your system, run this:
 
 ```
 docker service rm $(docker service ls -q)
