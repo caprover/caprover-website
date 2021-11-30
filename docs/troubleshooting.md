@@ -73,6 +73,12 @@ Sometimes when you have an inactive database connection pool, Docker drops the c
 
 You can read more about the root cause [here](https://success.mirantis.com/article/ipvs-connection-timeout-issue). 
 
+## Something bad happened
+When you see this error in the UI, it means something "unexpected" went wrong such as connection lost, server crashing (due to out of memory), etc. The best way to see what's happening is to get the server logs:
+```
+docker service logs captain-captain --since 5m --follow
+```
+
 ## How to view my application's log?
 Your application is deployed as a Docker service. For example, if your app name in captain is `my-app` you can view your logs by connecting to your server via SSH and run the following command:
 ```
