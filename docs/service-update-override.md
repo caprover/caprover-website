@@ -30,6 +30,7 @@ TaskTemplate:
     Labels:
       some.label: some.value
     Image: busybox
+    Command: mycommand.sh
     Hostname: my.domain.com
     Mounts:
       - Type: bind
@@ -79,7 +80,7 @@ EndpointSpec:
 ```
 
 
-## Sample Use Case
+## Sample Use Cases
 
 One common use case is to limit the resource usage by a particular service. In that case, you can do something like:
 
@@ -95,6 +96,14 @@ This will impose a limit of 2 CPUs and 100MB RAM usage on your service. You can 
 ```
 docker service inspect srv-captain--your-app-name --pretty
 ```
+
+Another use case is when you want to customize the command:
+```yaml
+TaskTemplate:
+  ContainerSpec:
+    Command: "./mycommand.sh"
+```
+
 
 
 ## Revert to Default
