@@ -18,7 +18,8 @@
       "app-scaling-and-cluster",
       "pre-deploy-script",
       "play-with-docker",
-      "run-locally"
+      "run-locally",
+      "certbot-config"
     ],
     "Recipes and Tips": [
       "sample-apps",
