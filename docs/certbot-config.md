@@ -4,6 +4,10 @@ title: Configure Certbot to use a new ACME Server
 sidebar_label: Change ACME Server
 ---
 
+
+### NOTE:
+Most (almost all) users do not need to modify Certbot configs. CapRover automatically manages it for you. You can skip this page.
+
 ## First step
 
 Normally, the directory `/captain/data/letsencrypt/etc` should contain the volume used by Certbot,
