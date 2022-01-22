@@ -41,7 +41,7 @@ docker run -e MAIN_NODE_IP_ADDRESS=127.0.0.1 -p 80:80 -p 443:443 -p 3000:3000 -v
 
 Do not run `caprover serversetup`. Instead, go to http://captain.captain.localhost:3000 and manually set root domain to `captain.localhost`. DO NOT enable/force HTTPS. Obviously, you cannot enable HTTPS on your local domain (captain.localhost).
 
-Once you set your root domain as `captain.localhost`, use `caprover login` and enter `captain.captain.localhost` as your captain URL and `captain42` as your default password. 
+Once you set your root domain as `captain.localhost`, use `caprover login` and enter `http://captain.captain.localhost` as your captain URL and `captain42` as your default password. 
 
 > However, if you want to access your CapRover instance from another device on your LAN, you can set the root domain to `captain.LOCAL_IP.sslip.io` (for example `captain.192.168.1.2.sslip.io`).
 
