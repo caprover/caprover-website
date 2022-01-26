@@ -32,6 +32,10 @@ TaskTemplate:
     Image: busybox
     Command: mycommand.sh
     Hostname: my.domain.com
+    DNSConfig:
+      Nameservers:
+         - 8.8.8.8 
+         - 8.8.4.4 
     Mounts:
       - Type: bind
         Source: /host/directory
