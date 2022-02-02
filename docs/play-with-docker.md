@@ -45,4 +45,4 @@ Default password is: captain42
 
 Simply copy the URL and log into CapRover using `captain42` as your password!
 
-**IMPORTANT:** YOU CANNOT enable https using play-wth-docker, but other features should work normally.
+**IMPORTANT:** YOU CANNOT enable https using play-with-docker, but other features should work normally.
