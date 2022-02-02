@@ -47,4 +47,4 @@ Note that this pre-deploy script, particularly Docker service update object, is 
 dockerUpdateObject.TaskTemplate.ContainerSpec.Labels[uuid()] = captainAppObj.deployedVersion+ '';
 ```
 
-Removing this simple hack, will throw an error when deploying apps. To see logs, you need to run `docker service logs captain-captain --follow`. Even the error from Docker is not very clear. All in all, this is an advanced feature and is not recommended for beginners and intermiate users.
+Removing this simple hack, will throw an error when deploying apps. To see logs, you need to run `docker service logs captain-captain --follow`. Even the error from Docker is not very clear. All in all, this is an advanced feature and is not recommended for beginners and intermediate users.
