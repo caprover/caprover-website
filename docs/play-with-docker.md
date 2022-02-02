@@ -26,7 +26,7 @@ Follow these steps:
 - Click on Start and log in using your Docker Hub username/password
 - Once your session started you will see a page with a timer
 - You can click on **+ADD NEW INSTANCE** on the left side menu bar and create a Virtual Server
-- Once your server in created, copy and paste this command:
+- Once your server is created, copy and paste this command:
 ```bash
  curl -L https://pwd.caprover.com | bash
 ```
