@@ -52,6 +52,8 @@ There is a repository of [One Click Apps on GitHub](https://github.com/caprover/
 
 <br/>
 
+Thanks to [@8byr0](https://github.com/8byr0), we have a **community maintained** [directory of apps](https://wizardly-ptolemy-8fcac8.netlify.app/). You can view the source code [here](https://github.com/8byr0/caprover-sampleapps-browser).
+
 
 ## What about other apps?
 Just because an app or database is not available as a one click app, it doesn't mean that you can't deploy it. All you need to do is to search for the Docker image of the app that you're looking for. For example, before NextCloud was available as a one click app, you could still deploy it manually like this
