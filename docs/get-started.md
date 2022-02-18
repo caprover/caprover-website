@@ -89,6 +89,8 @@ Let's say you own `mydomain.com`. You can set `*.something.mydomain.com` as an `
 
 To confirm, go to https://mxtoolbox.com/DNSLookup.aspx and enter `randomthing123.something.mydomain.com` and check if IP address resolves to the IP you set in your DNS. Note that `randomthing123` is needed because you set a wildcard entry in your DNS by setting `*.something` as your host, not `something`.
 
+**NOTE** CapRover requires A Record to be pointing to CapRover's IP Address. If you use proxy services, such as Cloudflare, you may face difficulties. CapRover does not officially support such use cases.
+
 ## Step 3: Install CapRover CLI
 
 Assuming you have npm installed on your local machine (e.g., your laptop), simply run (add `sudo` if needed):
