@@ -9,7 +9,7 @@ Regardless of your deployment method, make sure that you have a 'captain-definit
 
 ## Deploy via CLI
 Simply run `caprover deploy` in your git repo and follow the steps. This is the best method as it's the only method that reports potential build failures to you. Read more about it here:
- [Get Started - Step 4](get-started.md#step-4-deploy-the-test-app).
+ [Get Started - Step 5](get-started.md#step-5-deploy-the-test-app).
 
 ## Deploy via Web Dashboard
 Convert the content of your project into a tarball (`.tar`), go to your Captain web dashboard and upload the tar file. This deployment method is typically used for testing purposes only.
