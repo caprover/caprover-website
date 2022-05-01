@@ -16,7 +16,7 @@ services:
    db:
      image: mysql:5.7
      volumes:
-       - db_data:/var/lib/mysql
+       - db-data:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: somewordpress
@@ -37,7 +37,7 @@ services:
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
 volumes:
-    db_data: {}
+    db-data: {}
 ```
 
 It is pretty self-explanatory. It defines one or multiple services (apps) and their configurations such as persistent volumes, mapped ports, environment variable and etc. Docker compose is a really easy and readable way to define a set of apps that need to be working together. Usually to run a docker compose file, you need to run something like:
@@ -165,7 +165,7 @@ services:
    db:
      image: mysql:5.7
      volumes:
-       - db_data:/var/lib/mysql
+       - db-data:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: somewordpress
@@ -186,7 +186,7 @@ services:
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
 volumes:
-    db_data: {}
+    db-data: {}
 ```
 
 
