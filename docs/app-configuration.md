@@ -35,14 +35,18 @@ This is where you can set runtime configuration and settings.
 
 One of the most basic configuration that you can set for your app is environment variables. These variables are usually used to pass in data that does not live in the code. Examples, include API key for a 3rd party service, database connection URI and etc. 
 
-If you'd like to access these variables in your app, you can dynamically set them at build time by adding the ARG command to your Dockerfile.
+You can simply set the environmental variables on the dashboard and use them dynamically in your code, e.g., `process.env.VAR_NAME_HERE` for NodeJS, or `$_ENV["VAR_NAME_HERE"]` in PHP. 
 
-For example, if you have set `BUCKET_NAME` & `SERVER_ENDPOINT` within the Caprover GUI, then you can access them in your app with the following;
+If you'd like to access these variables during build time, you can use ARG command to your Dockerfile.
 
 ```
 FROM imagename....
-ARG BUCKET_NAME=${BUCKET_NAME}
-ARG SERVER_ENDPOINT=${SERVER_ENDPOINT}
+ARG VAR_NAME_HERE=${VAR_NAME_HERE}
+ENV VAR_NAME_HERE=${VAR_NAME_HERE}
+
+## At this point, "VAR_NAME_HERE" is available as an env var during your build,
+## you can do something like this:
+## RUN echo $VAR_NAME_HERE
 ```
 
 As well as the variables you set yourself, CapRover will also set a `CAPROVER_GIT_COMMIT_SHA` environment variable to the full git commit SHA that is being deployed. This is only available during the Docker build and is not available inside your app by default. If you want to use it inside your app then you can use something like the following:
