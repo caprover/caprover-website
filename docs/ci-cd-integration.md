@@ -139,7 +139,7 @@ build-docker-master:
     - master
 ```
 
-This is quite self-explanatory. **The best part is that you don't have to any changes to this file!** It is the same file for all of your repositories regardless of their language or where you deploy them! 
+This is quite self-explanatory. **The best part is that you don't have to make any changes to this file!** It is the same file for all of your repositories regardless of their language or where you deploy them! 
 
 The only 3 values that are different for this file, are the 3 `CAPROVER_***` values that you set in the previous step.
 
