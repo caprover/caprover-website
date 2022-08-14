@@ -147,6 +147,19 @@ You can customize any constant defined in [CaptainConstants](https://github.com/
 
 AWS has its own customization with regards to port handling and etc. It make require some custom setup, see [this blog post for example](https://fuzzyblog.io/blog/caprover/2019/11/10/using-caprover-on-aws.html).
 
+## CloudFlare SSL setup
+
+When using CloudFlare free plan, keep in mind its [Universal SSL only supports SSL up to 1st level subdomains](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/limitations/#full-setup). So, if you enable CloudFlare's Universal SSL and set up a 1st level subdomain as a root domain for CapRover, you'll get the following error when trying to access the apps deployed by CapRover:
+
+```
+This site can’t provide a secure connection
+app.root.example.com uses an unsupported protocol.
+ERR_SSL_VERSION_OR_CIPHER_MISMATCH
+```
+
+If you want to use CapRover with the CloudFlare's Universal SSL, avoid using a subdomain as a root domain.
+
+
 ## ARM processor
 
 As of 1.8.1, CapRover works on arm processors like "raspberry pi" and such. Note that some one click apps may not work on rasberry pi. One click apps are external apps that are not maintained by CapRover. 
