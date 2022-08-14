@@ -185,3 +185,8 @@ docker swarm leave --force
 docker system prune --all --force
 ```
 
+## I got an email from Let's Encrypt saying my domain's SSL certificate is expiring, and it shouldn't be.
+This can happen when you've used the same domain name for a previous project, which you then deleted.
+Let's Encrypt keeps track of the old certificate and notifies you when it is due to expire, but this doesn't affect the new certificate.
+To confirm, simply just check your SSL expiry date using an online tool like this:
+https://www.sslshopper.com/ssl-checker.html#hostname=captain.server.demo.caprover.com
