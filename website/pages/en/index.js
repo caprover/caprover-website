@@ -123,7 +123,7 @@ const FeaturesTop = props => (
                 title: 'A developer who...'
             },
             {
-                content: 'uses expensive services like Heroku, Microsoft Azure and etc. And is interested in reducing their cost by 4x (Heroku charges 25$/month for their 1gb instance, the same server is 5$ on DigitalOcean!!)',
+                content: 'uses expensive services like Heroku, Microsoft Azure and etc. And is interested in reducing their cost by 8x (Heroku charges $50$/month for their 1gb instance, the same server is 6$ on DigitalOcean!!)',
                 image: imgUrl('icon/money.png'),
                 imageAlign: 'top',
                 title: 'A developer who... ' // extra spaces necessary as Docusaurus doesn't like repeated keys
