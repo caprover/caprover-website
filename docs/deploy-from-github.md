@@ -4,9 +4,9 @@ title: Build, Test and Deploy from Github
 sidebar_label: Deploy from Github
 ---
 
-## Deploy directly from Github
+## Deploying directly from Github
 
-This example showcases a Vue 3 app with a PHP backend that can be built, tested and deployed directly from Github to CapRover using the CapRover community-maintained [GitHub Action](https://github.com/caprover/deploy-from-github). Feel free to clone the example project from https://github.com/PremoWeb/SDK-Foundation-Vue to try things out or build your next awesome app.
+This example showcases a Vue 3 app with a PHP backend that can be built, tested and deployed directly from Github to CapRover using the CapRover community-maintained [GitHub Action](https://github.com/caprover/deploy-from-github). Feel free to clone an example project from https://github.com/PremoWeb/SDK-Foundation-Vue to try things out or build your next awesome app.
 
 ### Create a new App
 The name you choose here will become the APP_NAME secret.
