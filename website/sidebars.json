@@ -28,7 +28,8 @@
       "backup-and-restore",
       "recipe-deploy-create-react-app",
       "docker-compose",
-      "ci-cd-integration"
+      "ci-cd-integration",
+      "deploy-from-github"
     ],
     "Help": [
       "server-purchase",
