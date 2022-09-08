@@ -1,7 +1,7 @@
 ---
-id: ci-cd-integration
-title: CI/CD Integration
-sidebar_label: CI/CD Integration
+id: deploy-from-gitlab
+title: Deploying from Gitlab
+sidebar_label: Deploy from GitLab
 ---
 
 

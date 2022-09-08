@@ -1,7 +1,7 @@
 ---
 id: deploy-from-github
-title: Build, Test and Deploy from Github
-sidebar_label: Deploy from Github
+title: Build, Test and Deploy from GitHub
+sidebar_label: Deploy from GitHub
 ---
 
 ## Deploying directly from Github

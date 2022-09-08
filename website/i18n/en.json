@@ -33,9 +33,13 @@
         "title": "Configure Certbot to use a new ACME Server",
         "sidebar_label": "Change ACME Server"
       },
-      "ci-cd-integration": {
-        "title": "CI/CD Integration",
-        "sidebar_label": "CI/CD Integration"
+      "ci-cd-integration/deploy-from-github": {
+        "title": "Build, Test and Deploy from GitHub",
+        "sidebar_label": "Deploy from GitHub"
+      },
+      "ci-cd-integration/deploy-from-gitlab": {
+        "title": "Deploying from Gitlab",
+        "sidebar_label": "Deploy from GitLab"
       },
       "cli-commands": {
         "title": "CLI Commands",
@@ -48,10 +52,6 @@
       "database-connection": {
         "title": "Database Connection",
         "sidebar_label": "Database Connection"
-      },
-      "deploy-from-github": {
-        "title": "Build, Test and Deploy from Github",
-        "sidebar_label": "Deploy from Github"
       },
       "deployment-methods": {
         "title": "Deployment Methods",
