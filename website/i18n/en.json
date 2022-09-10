@@ -33,6 +33,10 @@
         "title": "Configure Certbot to use a new ACME Server",
         "sidebar_label": "Change ACME Server"
       },
+      "ci-cd-integration": {
+        "title": "CI/CD Integration",
+        "sidebar_label": "Intro"
+      },
       "ci-cd-integration/deploy-from-github": {
         "title": "Build, Test and Deploy from GitHub",
         "sidebar_label": "Deploy from GitHub"

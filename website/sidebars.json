@@ -32,6 +32,7 @@
         "type": "subcategory",
         "label": "CI/CD Integration",
         "ids": [
+          "ci-cd-integration",
           "ci-cd-integration/deploy-from-github",
           "ci-cd-integration/deploy-from-gitlab"
         ]

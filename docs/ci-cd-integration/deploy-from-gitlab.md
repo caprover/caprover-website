@@ -5,9 +5,6 @@ sidebar_label: Deploy from GitLab
 ---
 
 
-While CapRover is capable of building your source code and converting it to a Docker image very easily, often you realize that the build process is very heavy. In fact, in many cases, it's heavier than the load on your app itself. This may result in a server crash when you're trying to build your source code on your own server. The best way to avoid these heavy loads is to build your Docker image elsewhere and just deploy the built artifact to your CapRover server.
-
-There are many easy CI/CD platforms that offer generous free minutes for your builds, for example GitHub and GitLab both offer free minutes for private repositories and unlimited free minutes for public repositories. 
 
 In this tutorial, we'll go over the deployment via GitLab. Having said that, GitHub is very similar. If you have any issues along the way, let us know!
 
