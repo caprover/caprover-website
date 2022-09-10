@@ -29,9 +29,17 @@
         "title": "CaptainDuckDuck Upgrade",
         "sidebar_label": "CaptainDuckDuck Upgrade"
       },
-      "ci-cd-integration": {
-        "title": "CI/CD Integration",
-        "sidebar_label": "CI/CD Integration"
+      "certbot-config": {
+        "title": "Configure Certbot to use a new ACME Server",
+        "sidebar_label": "Change ACME Server"
+      },
+      "ci-cd-integration/deploy-from-github": {
+        "title": "Build, Test and Deploy from GitHub",
+        "sidebar_label": "Deploy from GitHub"
+      },
+      "ci-cd-integration/deploy-from-gitlab": {
+        "title": "Deploying from Gitlab",
+        "sidebar_label": "Deploy from GitLab"
       },
       "cli-commands": {
         "title": "CLI Commands",

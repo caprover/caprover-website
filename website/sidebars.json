@@ -28,7 +28,14 @@
       "backup-and-restore",
       "recipe-deploy-create-react-app",
       "docker-compose",
-      "ci-cd-integration"
+      {
+        "type": "subcategory",
+        "label": "CI/CD Integration",
+        "ids": [
+          "ci-cd-integration/deploy-from-github",
+          "ci-cd-integration/deploy-from-gitlab"
+        ]
+      }
     ],
     "Help": [
       "server-purchase",
