@@ -205,4 +205,4 @@ networks:
     external: true
 ```
 
-Now instead of potential port mapping that you might have, like `8080:80`, you can just create a CapRover "Nginx Proxy" app and use your container name as the upstream proxy, like `http://web-app` and done!
+Now instead of potential port mapping that you might have, like `8080:80`, you can just create a CapRover "Nginx Reverse Proxy" app and use your container name as the upstream proxy, like `http://web-app` and done!
