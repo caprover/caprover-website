@@ -100,5 +100,9 @@ When you commit files to your project's repo on the "main" branch, Github Action
 
 <hr />
 
+### Alternative method (more efficient)
+
+Alternatively, you can even build the Docker image on Github and just deploy the built artifact to your CapRover instance. This will help as it does not consume RAM and CPU from your CapRover instance to build your image. See this [comment]([url](https://github.com/caprover/caprover/issues/1514#issuecomment-1250369318)) for more details.
+
 ### Need help?
 Commercial and community support is available. Please visit the [Help and Support](/docs/support.html "Help and Support") page for details.
