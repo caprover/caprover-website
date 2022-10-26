@@ -143,6 +143,8 @@ You can customize any constant defined in [CaptainConstants](https://github.com/
 }
 ```
 
+After editing this file, [restart CapRover](https://caprover.com/docs/troubleshooting.html#how-to-restart-caprover) (if the change affects CapRover, nginx or certbot) or turn NetData off and on again from the UI.
+
 ## AWS setup
 
 AWS has its own customization with regards to port handling and etc. It make require some custom setup, see [this blog post for example](https://fuzzyblog.io/blog/caprover/2019/11/10/using-caprover-on-aws.html).
