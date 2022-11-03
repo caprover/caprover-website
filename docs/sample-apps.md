@@ -49,6 +49,8 @@ This project template aims to provide a more real-world Django template includin
 
 View the code and documentation on [GitLab](https://gitlab.com/kamneros/caprover-django)
 
+Additionaly, you can find a step by step tutorial to deploy your Django App to CapRover [here](https://blog.kenshuri.com/posts/006_from_heroku_to_capRover.md).
+
 #### CapRover Laravel
 
 - [jackbrycesmith/laravel-caprover-template](https://github.com/jackbrycesmith/laravel-caprover-template)
