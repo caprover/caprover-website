@@ -44,6 +44,8 @@ databaseEngine.connect(
 
 ### External Connections
 
+**IMPORTANT** if you're having issues with external connection, it's likely that you're an incorrect config. CapRover is battle tested and guaranteed to work. See a number of common mistakes [here](https://github.com/caprover/caprover/issues/364)
+
 Sometimes, you need to connect to a database from the outside world. In this case you have two options:
 
 1) Port Forwarding
