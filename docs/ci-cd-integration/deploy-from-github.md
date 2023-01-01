@@ -78,7 +78,7 @@ jobs:
             frontend/dist/
             captain-definition
           outPath: deploy.tar
-  
+
       - name: Deploy App to CapRover
         uses: caprover/deploy-from-github@v1.0.1
         with:
@@ -102,7 +102,7 @@ When you commit files to your project's repo on the "main" branch, Github Action
 
 ### Alternative method (more efficient)
 
-Alternatively, you can even build the Docker image on Github and just deploy the built artifact to your CapRover instance. This will help as it does not consume RAM and CPU from your CapRover instance to build your image. See this [comment]([url](https://github.com/caprover/caprover/issues/1514#issuecomment-1250369318)) for more details.
+Alternatively, you can even build the Docker image on Github and just deploy the built artifact to your CapRover instance. This will help as it does not consume RAM and CPU from your CapRover instance to build your image. See this [comment](https://github.com/caprover/caprover/issues/1514#issuecomment-1250369318) for more details.
 
 ### Need help?
 Commercial and community support is available. Please visit the [Help and Support](/docs/support.html "Help and Support") page for details.
