@@ -96,6 +96,9 @@ If you had previously set the self-hosted registry, but you changed your mind an
 
 
 
+<details>
+  <summary>Multi-Node setup</summary>
+  
 
 ### Multi Nodes
 
@@ -129,3 +132,5 @@ Now re-run the restoration script (the same one that exited and asked for more i
 
 Volume restoration for the cluster is a bit more complicated. But if you are using a cluster, you probably know what you are doing :-)
 
+
+</details>
