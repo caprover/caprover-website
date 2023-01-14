@@ -73,7 +73,12 @@ Other useful tools for backing up your persistent directories are:
 - https://github.com/schickling/dockerfiles/tree/master/postgres-backup-s3
 - https://github.com/schickling/dockerfiles/tree/master/mysql-backup-s3
 
-### Docker Registry
+
+<details>
+  <summary>Docker Registry</summary>
+  
+
+### Docker Registry Instructions
 
 As noted above, container images are not part of the backup. To ensure that your apps do not require a re-deploy after the restoration process, you need to make sure that you're using a Docker Registry. A Docker Registry is a place where images for your apps will be stored.
 
@@ -86,6 +91,10 @@ If you set the "default push registry" in your CapRover dashboard under Cluster 
 If you set the "default push registry" to CapRover self-hosted registry, your app will work out of the box after the restoration process. However, on the negative side, your `backup.tar` will be very big. This file will include all images that are built on your server. 
 
 If you had previously set the self-hosted registry, but you changed your mind and disabled the self-hosted registry to switched to a 3rd party registry, your backup files will still be big as the files are still sitting on your host system. If you want to purge all images stored in your registry, delete the registry directory `rm -rf /captain/data/registry`
+  
+</details>
+
+
 
 
 ### Multi Nodes
