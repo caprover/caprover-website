@@ -71,7 +71,7 @@ Sometimes when you have an inactive database connection pool, Docker drops the c
 - Changing Keepalive config in your app (see [here](https://github.com/caprover/caprover/issues/873#issuecomment-715328966) for an example on knex)
 - Make changes to your Docker configs (more advanced)
 
-You can read more about the root cause [here](https://success.mirantis.com/article/ipvs-connection-timeout-issue). 
+The [root cause](https://github.com/moby/moby/issues/31208) is not related to CapRover, it's an underlying Docker issue.
 
 ## Something bad happened
 When you see this error in the UI, it means something "unexpected" went wrong such as connection lost, server crashing (due to out of memory), etc. The best way to see what's happening is to get the server logs:
