@@ -51,3 +51,13 @@ When you build on a paid service such as Heroku, your build process happens on a
 2- Build on your local machine. For example, this process is explained in detail [**here**](recipe-deploy-create-react-app.md) for Create React App.
 
 3- However, **the best solution** is to use a separate build system. You can see the guide [**here**](ci-cd-integration.md)
+
+
+### Customize the NGINX Config for new apps
+
+To modify the default NGINX configuration for newly created apps to add in the IP whitelist and other NGIX config.
+
+1- Obtain a copy of the ```server-block-conf.ejs``` template from the CapRover GitHub repository. [**here**](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs)
+
+2- Create the file ```/captain/data/server-block-conf-override.ejs```, copy the contents of the template, and make the desired modifications. 
+Assuming you start CapRover Docker with ```-v /captain:/captain.```
