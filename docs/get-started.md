@@ -91,7 +91,7 @@ Let's say you own `mydomain.com`. You can set `*.something.mydomain.com` as an `
 
 To confirm, go to https://mxtoolbox.com/DNSLookup.aspx and enter `randomthing123.something.mydomain.com` and check if IP address resolves to the IP you set in your DNS. Note that `randomthing123` is needed because you set a wildcard entry in your DNS by setting `*.something` as your host, not `something`.
 
-**NOTE** CapRover requires A Record to be pointing to CapRover's IP Address. If you use proxy services, such as Cloudflare, you may face difficulties. CapRover does not officially support such use cases.
+> **NOTE**: CapRover requires A Record to be pointing to CapRover's IP Address. If you use proxy services, such as Cloudflare, you may face difficulties. CapRover does not officially support such use cases.
 
 ## Step 3: Install CapRover CLI
 
@@ -107,9 +107,9 @@ Then, run
  caprover serversetup
 ```
 
-Follow the steps and login to your CapRover instance. When prompted to enter the root domain, enter `something.mydomain.com` assuming that you set `*.something.mydomain.com` to point to your IP address in step #2. Now you can access your CapRover from `captain.something.mydomain.com`
+Follow the steps and login to your CapRover instance. When prompted to enter the root domain, enter `something.mydomain.com` assuming that you set `*.something.mydomain.com` to point to your IP address in step #2. Now you can access your CapRover from `captain.something.mydomain.com`. You can read more about hiding the root domain [here](./best-practices.md#hidden-root-domain).
 
-#### Note: It will not be possible to carry through with the 'caprover serversetup' if you've already forced https on your CapRover instance.
+> **NOTE**: **It will not be possible to carry through with the `caprover serversetup` if you've already forced https on your CapRover instance.**
 In such case go straight to logging in with the `caprover login` command. To change the password go to the settings menu in the app.
 
 ## Step 4: (Optional) Set up Swap file
@@ -132,6 +132,8 @@ CONGRATS! Your app is live!!
 
 You can connect multiple custom domains (like `www.my-app.com`) to a single app and enable HTTPS and do much more in the app's settings page.
 
-Note that when you run `caprover deploy`, the current git commit will be sent over to your server. **IMPORTANT:** uncommitted files and files in `gitignore` WILL NOT be sent to the server.
+Note that when you run `caprover deploy`, the current git commit will be sent over to your server.
+
+> **IMPORTANT**: Uncommitted files and files in `gitignore` WILL NOT be sent to the server.
 
 You can visit CapRover in the browser and set custom parameters for your app such as environment variables, and do much more! For more details regarding deployment, please see [CLI docs](cli-commands.md). For details on `captain-definition` file, see [Captain Definition File](captain-definition-file.md).

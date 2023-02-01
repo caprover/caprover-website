@@ -18,7 +18,7 @@ A RECORD:
 *.server.domain.com   >>>>   123.123.123.123
 ```
 
-Then when setting up CapRover, instead of entering `server.domain.com`, enter `something.server.domain.com`. This way, you can access the dashboard via `captain.something.server.domain.com` and not `captain.server.domain.com`.
+Then when setting up CapRover, instead of entering `server.domain.com`, enter `something.server.domain.com`. This way, you can access the dashboard via `captain.something.server.domain.com` and not `captain.server.domain.com`. You can then set your app's domain to `myapp.server.domain.com` under the app's HTTP settings to hide your root domain.
 
 Keep in mind this is not a shield that protects you from everything. It's just a security measure that makes it harder, and nearly impractical for some brute force attackers to attack your CapRover infrastructure.
 
