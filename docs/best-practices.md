@@ -55,6 +55,8 @@ When you build on a paid service such as Heroku, your build process happens on a
 
 ### Customize the NGINX Config for new apps
 
+NOTE: this will be available starting version 1.11
+
 To modify the default NGINX configuration for newly created apps to add in the IP whitelist and other NGIX config.
 
 1- Obtain a copy of the ```server-block-conf.ejs``` template from the CapRover GitHub repository. [**here**](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs)
