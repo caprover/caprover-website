@@ -40,11 +40,11 @@ In standard installation, CapRover has to be installed on a machine with a publi
 
 _**CPU Architecture**:_ CapRover source code is compatible with any CPU architecture and the Docker build available on Docker Hub is built for AMD64 (X86), ARM64, and ARMV7 CPUs.
 
-_**Recommended Stack**:_ CapRover is tested on Ubuntu 18.04 and Docker 19.03. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
+_**Recommended Stack**:_ CapRover is tested on Ubuntu 20.04 and Docker 19.03. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
+
+_**Ubuntu 20.04**:_ There used to be some issues with Docker on Ubuntu 20, see [this one](https://github.com/moby/moby/issues/41825) and [another one](https://github.com/moby/moby/issues/41775) for example. Hence, previously we used to recommend Ubuntu 18.04 to minimize your production issues. But since late 2022, most issues in Ubuntu 20.04 are resolved, and [Ubuntu 18 has reached the end of its life](https://ubuntu.com/about/release-cycle).
 
 _**Ubuntu 22.04**:_ The amd64 and aarch64 distributions have been tested by members of the Caprover community to be fully functional since its release. Ubuntu 22.04 will continue to receive security updates until April 2027 at least.
-
-_**Ubuntu 20.04**:_ There are some issues with Docker on Ubuntu 20, see [this one](https://github.com/moby/moby/issues/41825) and [another one](https://github.com/moby/moby/issues/41775) for example. Use Ubuntu 18.04 to minimize your production issues. Ubuntu 18.04 will continue to receive updates until 2023 at least.
 
 _**Minimum RAM**:_ Note that the build process sometimes consumes too much RAM, and 512MB RAM might not be enough (see [this issue](https://github.com/caprover/caprover/issues/28)). Most providers offer a minimum of 1GB RAM on \$5 instance including DigitalOcean, Vultr, Scaleway, Linode, SSD Nodes and etc.
 
