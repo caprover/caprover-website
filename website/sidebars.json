@@ -7,7 +7,6 @@
       "deployment-methods",
       "app-configuration",
       "persistent-apps",
-      "stateless-with-persistent-data",
       "cli-commands",
       "one-click-apps",
       "complete-webapp-tutorial"
@@ -28,6 +27,7 @@
       "best-practices",
       "backup-and-restore",
       "recipe-deploy-create-react-app",
+      "stateless-with-persistent-data",
       "docker-compose",
       {
         "type": "subcategory",
