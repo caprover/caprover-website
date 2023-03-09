@@ -121,6 +121,10 @@
         "title": "Service Update Override",
         "sidebar_label": "Service Update Override"
       },
+      "stateless-with-persistent-data": {
+        "title": "Stateless with Persistent data",
+        "sidebar_label": "Stateless with Persistent data"
+      },
       "support": {
         "title": "Help and Support",
         "sidebar_label": "Help and Support"
