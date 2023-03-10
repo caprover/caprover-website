@@ -8,7 +8,7 @@ sidebar_label: App Configuration
 
 ## HTTP Settings
 
-This is where all HTTP related stuff sits. If your app is not an HTTP app, you can simply check "Do not expose as web app. This is used for anything that is not a webapp, like a database such as MongoDB or MySQL.
+This is where all HTTP related stuff sits. If your app is not an HTTP app, you can simply check "Do not expose as web app". This is used for anything that is not a webapp, like a database such as MongoDB or MySQL.
 
 ![httpsettings](/img/docs/app-http.png)
 
