@@ -8,11 +8,9 @@ sidebar_label: Stateless with Persistent data
 **Before you start here, please read:**
 
 * [Persistent Apps](persistent-apps.md)
-*
 
-This documentation will help you set-up a stateless app, for example a website hosted with "**php:7.4-apache**" to serve the "**uploads**" ( `/var/www/html/uploads` ) folder or any other folder you define from for example AWS or Wasabi S3, or any of the other [storage systems rclone supports](https://rclone.org/overview/).
 
-This will make it possible to have a otherwise pinned to node X app, to fail-over to a other node within the same Docker swarm.
+This documentation will help you set-up a stateless app with persistant data. For example a website hosted with "**php:7.4-apache**" serving the "**uploads**" ( `/var/www/html/uploads` ) folder or any other folder you define from for example AWS or Wasabi S3, or any of the other [storage systems rclone supports](https://rclone.org/overview/). This makes it possible to have an otherwise pinned to node X app, to fail-over to a other node within the same Docker swarm.
 
 There are multiple docker volume plugins to allow this set-up, I [@Daniël](https://caprover.slack.com/archives/DLR2Q4TC1) and my colleague Floris started out with "**rexray/s3fs**" but switched over to "**sapk/plugin-rclone**" as it was more stable, and handled fail-overs from node X to Y better.
 
@@ -79,7 +77,7 @@ If you have a S3 bucket, in which files get uploaded via either AWS / Wasabi web
 docker volume create --driver sapk/plugin-rclone --opt config="$(base64 /root/.config/rclone/rclone.conf)" --opt args="--uid 33 --gid 33 --allow-root --allow-other --dir-cache-time 5s" --opt remote=$rcloneremotename:$remotename/path --name $volumename
 ```
 
-What basically happens is that "**[rclone mount](https://rclone.org/commands/rclone_mount/)**" is used to mount the volume on the Docker swarm node(s), though be aware that other flags/parameters can benefit or negatively impact your app experience so test them throughout.
+What happens is that "**[rclone mount](https://rclone.org/commands/rclone_mount/)**" mounts the volume on the Docker swarm node(s), though be aware that other flags/parameters can benefit or negatively impact your app experience so test them throughout.
 
 **The above UID and GID are matched to Apache2 and can differentiate with other apps.**
 
