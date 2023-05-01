@@ -80,7 +80,12 @@ RollbackConfig:
   Order: start-first
 EndpointSpec:
   Mode: vip
-
+  Ports:
+    - Name: something
+      Protocol: tcp
+      TargetPort: 80
+      PublishedPort: 8080
+      PublishMode: host
 ```
 
 
