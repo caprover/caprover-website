@@ -67,8 +67,9 @@ However, note that if you have a cluster (more than one server), if you remove y
 
 If you need to pull images from a private docker registry such as ghcr.io or dockerhub etc, you will need to provide CapRover with your credentials so that it can pull images. For example for ghcr.io you'll need the following:
 
-- Username: <your github username>
+- Username: `<your github username>`
 - Password: [a personal token that you create](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) - make sure it has access to read packages at least.
-- Domain ghcr.io
-- Image Prefix: <your github username>
+- Domain: `ghcr.io`
+- Image Prefix: `<your github username>`
+  
 If Docker images are stored as `your-username/your-image` then use your github username as the image prefix. Otherwise, if you have an organization in github where your images are stored as `my-org/my-image`, use `my-org` as your image prefix.
