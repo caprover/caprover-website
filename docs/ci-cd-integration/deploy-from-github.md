@@ -102,7 +102,98 @@ When you commit files to your project's repo on the "main" branch, Github Action
 
 ### Alternative method (more efficient)
 
-Alternatively, you can even build the Docker image on Github and just deploy the built artifact to your CapRover instance. This will help as it does not consume RAM and CPU from your CapRover instance to build your image. See this [comment](https://github.com/caprover/caprover/issues/1514#issuecomment-1250369318) for more details.
+Alternatively, you can even build the Docker image on Github and just deploy the built artifact to your CapRover instance. This will help as it does not consume RAM and CPU from your CapRover instance to build your image.
+
+In order to achieve this we will need to take the following steps to build the Docker image using GitHub Actions, store it using GitHub Packages, and then deploy it to CapRover.
+
+#### Create a GitHub Personal Access Token
+You will need to create a GitHub Personal Access Token with write permission for packages.
+
+GitHub has a great guide on creating a personal access token if you have not before. Here is the link: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+#### Create a New App
+If you do not have an app already on CapRover, create one using the instructions [here](### Create a new App)
+
+If you do already have an app on CapRover you can skip this step. 
+
+#### Enable App Token
+If you do not already have an app token for your app, create one using the instructions [here](### Enable App Token)
+
+If you do have an app token, keep it handy as we will need it in the next step. 
+
+#### Add The GitHub Secrets
+You will need to add the following information into GitHub Secrets:
+- App Name: Name of the app in CapRover
+- App Token: App token we got in the previous step
+- CapRover Server URL: URL of your CapRover Server
+- GitHub Token: GitHub Personal Access Token you created in previous step
+
+You can add GitHub Secrets using the instructions [here](### Add the Github Secrets)
+
+#### Add the Captain Definition File
+Add the `captain-definition` file described [here](### Add files to project)
+
+#### Create the GitHub Action
+GitHub Actions is the CI/CD pipeline built into GitHub. If you are unfamiliar with it, it would be beneficial to learn the basics by reviewing GitHub's Understanding GitHub Actions Docs: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
+
+Here is an example GitHub Action that builds a docker container on each push to a pull request and deploys it to the CapRover server (good example for a development environment set up)
+
+```
+name: Build and Deploy Docker Image
+
+on: [pull_request]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+      
+    - name: Login to Container Registry
+      uses: docker/login-action@v2
+      with:
+            registry: ghcr.io
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.GH_TOKEN }}
+
+    - name: Preset Image Name
+      run: echo "IMAGE_URL=$(echo ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:$(echo ${{ github.sha }} | cut -c1-7) | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+    - name: Build and push Docker Image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{ env.IMAGE_URL }}
+
+    - name: Deploy Image to CapRrover
+      uses: caprover/deploy-from-github@v1.1.2
+      with:
+        server: "${{ secrets.CAPROVER_SERVER }}"
+        app: "${{ secrets.APP_NAME }}"
+        token: "${{ secrets.APP_TOKEN }}"
+        image: ${{ env.IMAGE_URL }}
+```        
+
+Here is a quick explanation of what each step in the action does:
+
+1. **Check out repository**: This step uses the action `actions/checkout@v2`, which is a predefined GitHub Action that allows the workflow to access the contents of the repository. The checkout action will clone the repository onto the runner (the virtual environment that GitHub Actions uses to execute workflows), so all the subsequent steps in the workflow can operate on it.
+2. **Set up Docker Buildx**: This step uses the action `docker/setup-buildx-action@v1`, which is a Docker action to set up Docker Buildx, a CLI plugin that extends the docker command with the full support of the features provided by Moby BuildKit builder toolkit. This allows for more advanced container building capabilities.
+3. **Login to Container Registry**: This step uses `docker/login-action@v2` to log into the GitHub Container Registry (ghcr.io) using the repository owner's username and a GitHub Token (GH_TOKEN). This token must have been previously stored in the repository's secrets.
+4. **Preset Image Name**: This is a shell command that constructs the URL for the Docker image. It uses the GitHub repository owner, the repository name, and the SHA of the current commit (truncated to the first 7 characters) to construct a URL, converting all upper-case characters to lower-case, and then writes this URL into the `GITHUB_ENV` file so it can be used by subsequent steps as an environment variable.
+5. **Build and push Docker Image**: This step uses `docker/build-push-action@v4` to build the Docker image using the Dockerfile in the repository and pushes it to the GitHub Container Registry at the URL that was set in the previous step. The `context: .` setting indicates that the build context is the current directory (i.e., the root of the repository).
+6. **Deploy Image to CapRover**: This step uses `caprover/deploy-from-github@v1.1.2` action to deploy the Docker image that was just built and pushed to CapRover, a self-hosted Platform as a Service (PaaS) for NodeJS applications. The details of the CapRover server, the application name, and an access token are provided from the repository's secrets. The Docker image URL is taken from the environment variable set earlier.
+
+#### Deploy!
+After these changes are implemented commit + push them to your repo and watch the magic happen 🪄
+
+
 
 ### Need help?
 Commercial and community support is available. Please visit the [Help and Support](/docs/support.html "Help and Support") page for details.
