@@ -107,7 +107,7 @@ Alternatively, you can even build the Docker image on Github and just deploy the
 In order to achieve this we will need to take the following steps to build the Docker image using GitHub Actions, store it using GitHub Packages, and then deploy it to CapRover.
 
 #### Create a GitHub Personal Access Token
-You will need to create a GitHub Personal Access Token with write permission for packages.
+You will need to create a GitHub Personal Access Token with **write permission for packages**.
 
 GitHub has a great guide on creating a personal access token if you have not before. Here is the link: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
