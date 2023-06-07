@@ -30,7 +30,8 @@ TaskTemplate:
     Labels:
       some.label: some.value
     Image: busybox
-    Command: mycommand.sh
+    Command:
+      - ./mycommand.sh
     Hostname: my.domain.com
     DNSConfig:
       Nameservers:
