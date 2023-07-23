@@ -44,9 +44,6 @@ TaskTemplate:
         ReadOnly: true
     Args:
       - top
-    Secrets:
-      - secretId: sk3fs5s5gv59xh2puumv875fq
-        secretName: DB_USERNAME
   Resources:
     Limits:
       MemoryBytes: 104857600
