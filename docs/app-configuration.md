@@ -8,7 +8,7 @@ sidebar_label: App Configuration
 
 ## HTTP Settings
 
-This is where all HTTP related stuff sits. If your app is not an HTTP app, you can simply check "Do not expose as web app. This is used for anything that is not a webapp, like a database such as MongoDB or MySQL.
+This is where all HTTP related stuff sits. If your app is not an HTTP app, you can simply check "Do not expose as web app". This is used for anything that is not a webapp, like a database such as MongoDB or MySQL.
 
 ![httpsettings](/img/docs/app-http.png)
 
@@ -72,6 +72,12 @@ Only used for [persistent apps](persistent-apps.md).
 ### Node ID
 
 Only used for [persistent apps](persistent-apps.md). Persistent apps need to be locked down to a particular node (if you have a cluster of servers). NodeId defines what node this app should be locked down to.
+
+### Service Tags
+
+_available as of 1.11_
+
+You can mark caprover services with special tags. This allows you to better group and view your apps in the table.
 
 ### Instance Count
 

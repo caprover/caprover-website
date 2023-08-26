@@ -108,7 +108,7 @@ With this content:
                     ]
  }
 ```
-You can alternatively point to a Dockerfile. Note that the build context will be always the root of your project, so in the Dockerfile, you'll have to point to that specific direcotory, for example, `COPY ./backend /usr/src/app`
+You can alternatively point to a Dockerfile. Note that the build context will be always the root of your project, so in the Dockerfile, you'll have to point to that specific directory, for example, `COPY ./backend /usr/src/app`
 
 Next, you need to instruct your CapRover to use the correct `captain-definition` for each app. Navigate to your app, go to DEPLOYMENT tab, and edit your captain-definition path to `./captain-definition-backend`
 

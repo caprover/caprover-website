@@ -22,6 +22,30 @@ Backup/restoration is a complicated process and requires understanding of how di
 
 On your working CapRover instance, open the web dashboard, navigate to settings page, and click on "Create Backup" button. After a few seconds download will start. Keep the tar file and you will use this when restoring the CapRover instance.
 
+#### Automating backup process
+You can create a simple bash script for automated backups:
+
+```bash
+    API_TOKEN=$(curl $CAPROVER_URL/api/v2/login \
+        -H 'x-namespace: captain' \
+        -H 'content-type: application/json;charset=UTF-8' \
+        --data-raw "{\"password\":\"$CAPROVER_PASSWORD\"}" \
+        --compressed --silent | jq -r ".data.token")
+
+    DOWNLOAD_TOKEN=$(curl $CAPROVER_URL/api/v2/user/system/createbackup \
+        -H "x-captain-auth: $API_TOKEN" \
+        -H 'x-namespace: captain' \
+        --data-raw '{"postDownloadFileName":"backup.tar"}' \
+        --compressed --silent | jq -r ".data.downloadToken")
+
+    if [ ${#DOWNLOAD_TOKEN} -le 10 ]; then
+        echo "DOWNLOAD_TOKEN must be at least 10 char long"
+        exit 1
+    fi
+
+    wget "$CAPROVER_URL/api/v2/downloads/?namespace=captain&downloadToken=$DOWNLOAD_TOKEN" -O backup.tar
+```
+
 
 ### Restoration Process
 

@@ -30,7 +30,8 @@ TaskTemplate:
     Labels:
       some.label: some.value
     Image: busybox
-    Command: mycommand.sh
+    Command:
+      - ./mycommand.sh
     Hostname: my.domain.com
     DNSConfig:
       Nameservers:
@@ -80,7 +81,12 @@ RollbackConfig:
   Order: start-first
 EndpointSpec:
   Mode: vip
-
+  Ports:
+    - Name: something
+      Protocol: tcp
+      TargetPort: 80
+      PublishedPort: 8080
+      PublishMode: host
 ```
 
 
