@@ -74,8 +74,9 @@ See [firewall settings](firewall.md) if you need more details.
 Just run the following line, sit back and enjoy!
 
 ```bash
-docker run -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
+docker run -p 80:80 -p 443:443 -p 3000:3000 -e ACCEPTED_TERMS=true -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
 ```
+
 NOTE: do not change the port mappings. CapRover only works on the specified ports.
 
 You will see a bunch of outputs on your screen. Once the CapRover is initialized, you can visit `http://[IP_OF_YOUR_SERVER]:3000` in your browser and login to CapRover using the default password `captain42`. You can change your password later. **However, do not make any changes in the dashboard**. We'll use the command line tool to setup the server.
@@ -110,7 +111,7 @@ Then, run
 Follow the steps and login to your CapRover instance. When prompted to enter the root domain, enter `something.mydomain.com` assuming that you set `*.something.mydomain.com` to point to your IP address in step #2. Now you can access your CapRover from `captain.something.mydomain.com`. You can read more about hiding the root domain [here](./best-practices.md#hidden-root-domain).
 
 > **NOTE**: **It will not be possible to carry through with the `caprover serversetup` if you've already forced https on your CapRover instance.**
-In such case go straight to logging in with the `caprover login` command. To change the password go to the settings menu in the app.
+> In such case go straight to logging in with the `caprover login` command. To change the password go to the settings menu in the app.
 
 ## Step 4: (Optional) Set up Swap file
 
