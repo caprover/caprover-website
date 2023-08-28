@@ -26,3 +26,9 @@ docker service scale captain-captain=1 && \
 echo "OKAY"
 
 ```
+
+
+
+## Email support
+
+Our paid Pro plan includes a 24hr SLA email support. You can email us at `pro.support at/caprover/dot/com` to get support. Please be sure to use the same email that you've used for purchase.
