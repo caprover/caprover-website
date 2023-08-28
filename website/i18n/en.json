@@ -129,6 +129,10 @@
         "title": "Help and Support",
         "sidebar_label": "Help and Support"
       },
+      "troubleshooting-pro": {
+        "title": "Troubleshooting CapRover Pro",
+        "sidebar_label": "Troubleshooting (Pro)"
+      },
       "troubleshooting": {
         "title": "Troubleshooting",
         "sidebar_label": "Troubleshooting"
