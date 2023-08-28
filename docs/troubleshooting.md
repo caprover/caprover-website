@@ -123,7 +123,7 @@ Run the nginx fixer to revert **all nginx changes that you've manually made**:
 
 ```bash
 docker service scale captain-captain=0 && \
-docker run -it --rm -v /captain:/captain  caprover/caprover /bin/bash -c "wget https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/clear-custom-nginx.js ; node clear-custom-nginx.js ;" && \
+docker run -it --rm -v /captain:/captain  caprover/caprover /bin/sh -c "wget https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/clear-custom-nginx.js ; node clear-custom-nginx.js ;" && \
 docker service scale captain-captain=1 && \
 echo "OKAY"
 
@@ -171,6 +171,7 @@ After editing this file, [restart CapRover](https://caprover.com/docs/troublesho
 ## Use existing swarm
 
 When you first install CapRover, it tries to automatically set up a swarm cluster for you. But in rare cases, you may already have a swarm cluster, and you want to use that cluster. In this case, you can simply just override it by setting `useExistingSwarm` to true. Run the following script before attempting to install CapRover.
+
 ```
 mkdir -p  /captain/data
 echo  "{\"useExistingSwarm\":\"true\"}" >  /captain/data/config-override.json

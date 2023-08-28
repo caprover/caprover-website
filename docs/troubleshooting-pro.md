@@ -21,7 +21,7 @@ The following helper script will do exactly that:
 
 ```bash
 docker service scale captain-captain=0 && \
-docker run -it --rm -v /captain:/captain  caprover/caprover /bin/bash -c "wget https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/clear-pro-config.js ; node clear-pro-config.js ;" && \
+docker run -it --rm -v /captain:/captain  caprover/caprover /bin/sh -c "wget https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/clear-pro-config.js ; node clear-pro-config.js ;" && \
 docker service scale captain-captain=1 && \
 echo "OKAY"
 
