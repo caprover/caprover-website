@@ -168,6 +168,14 @@ You can customize any constant defined in [CaptainConstants](https://github.com/
 
 After editing this file, [restart CapRover](https://caprover.com/docs/troubleshooting.html#how-to-restart-caprover) (if the change affects CapRover, nginx or certbot) or turn NetData off and on again from the UI.
 
+## Use existing swarm
+
+When you first install CapRover, it tries to automatically set up a swarm cluster for you. But in rare cases, you may already have a swarm cluster, and you want to use that cluster. In this case, you can simply just override it by setting `useExistingSwarm` to true. Run the following script before attempting to install CapRover.
+```
+mkdir -p  /captain/data
+echo  "{\"useExistingSwarm\":\"true\"}" >  /captain/data/config-override.json
+```
+
 ## AWS setup
 
 AWS has its own customization with regards to port handling and etc. It make require some custom setup, see [this blog post for example](https://fuzzyblog.io/blog/caprover/2019/11/10/using-caprover-on-aws.html).
