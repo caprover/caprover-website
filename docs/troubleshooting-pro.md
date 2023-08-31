@@ -28,6 +28,13 @@ echo "OKAY"
 ```
 
 
+**Update:**
+
+Starting the 1.12.0, you can run the following script:
+```bash
+docker exec -it $(docker ps --filter name=captain-captain -q) npm run disable-otp
+```
+
 
 ## Email support
 
