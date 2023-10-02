@@ -36,6 +36,24 @@ docker exec -it $(docker ps --filter name=captain-captain -q) npm run disable-ot
 ```
 
 
+## Deploy with OTP enabled
+
+When you have OTP enabled, you cannot deploy using regular `caprover deploy` as it requires 2FA token (`enter OTP token as well`). Instead, you should use App Tokens:
+```bash
+caprover deploy --caproverUrl https://captain.domain.com --appToken 123456123456123456 --appName my-app -b main
+```
+
+You can enable App Token from Deployment tab. Alternatively, you can use the following format (not recommended):
+
+```bash
+CAPROVER_OTP_TOKEN=123456; caprover login
+
+## or
+
+CAPROVER_OTP_TOKEN=123456; caprover deploy
+```
+
+
 ## Email support
 
 Our paid Pro plan includes a 24hr SLA email support. You can email us at `pro.support at/caprover/dot/com` to get support. Please be sure to use the same email that you've used for purchase.
