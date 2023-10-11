@@ -75,7 +75,17 @@ In some cases, you still have the previous server running, and you just want to 
 NEW-SERVER-IP-ADDRESS   captain.oldroot.domain.com
 ```
 
-NOTE that you cannot use wild card in hosts file, just add the domain for the dashboard so you can access it temporarily. 3. go to `captain.oldroot.domain.com` in your browser and login to the dashboard. NOTE that you might see an SSL error, you can click on advance and ignore. This is fine as your SSL certification might have been expired. It will get renewed once you set everything up and restart CapRover. 4. After logging in to the dashboard, go ahead and change your root domain to `yournewroot.domain.com` on the dashboard. 5. Re-enable SSL certifications and Force HTTPS for your dashboard and other apps if you want. 5. Edit your `etc/hosts` and remove the line you added in step 2.
+NOTE that you cannot use wild card in hosts file, just add the domain for the dashboard so you can access it temporarily.
+
+3. go to `captain.oldroot.domain.com` in your browser and login to the dashboard.
+
+NOTE that you might see an SSL error, you can click on advance and ignore. This is fine as your SSL certification might have been expired. It will get renewed once you set everything up and restart CapRover.
+
+4. After logging in to the dashboard, go ahead and change your root domain to `yournewroot.domain.com` on the dashboard.
+
+5. Re-enable SSL certifications and Force HTTPS for your dashboard and other apps if you want.
+
+6. Edit your `etc/hosts` and remove the line you added in step 2.
 
 ### What is Restored?
 
