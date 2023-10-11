@@ -27,7 +27,7 @@ In that case, they will be placed in `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_
 For example, you can map `/var/usr` on your server to `/my-host-usr-something` in your container (app). This way you can save a file in your container at `/my-host-usr-something/myfile.txt` and the file will be available on your server (host) at `/var/usr/myfile.txt`. **Note** that, if you choose to use this option (specifying a specific host path), you'll have to make sure that the path already exists in your host before assigning it.
 
 #### Removing Persistent Apps: 
-Persistent directories need to be manually removed after you remove an app from Captain dashboard. This is to avoid accidental delete of important data. To delete persistent directories, depending on the type of persistent directories, steps are different:
+Persistent directories need to be manually removed after you remove an app from Captain dashboard. This is to avoid accidental deletion of important data. To delete persistent directories, depending on the type of persistent directories, steps are different:
 - Volumes (persistent directories mapped to a label):
 ![Volumes](/img/docs/label-path.png)
 For this type, you need to run `docker volume ls` to see the names of the volumes, and then run `docker volume rm NAME_OF_VOLUME` to remove the volume
