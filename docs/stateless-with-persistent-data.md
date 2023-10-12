@@ -55,11 +55,11 @@ upload_concurrency = 3
 ```
 
 Make sure each swarm node has the `/root/.config/rclone/rclone.conf` file, with the exact same content, double check by using `md5sum /root/.config/rclone/rclone.conf` and compare the checksums.
-*Or atleast make sure, if there are multiple configs avaiable, that the one you'll be using is the same*
+*Or at least make sure, if there are multiple configs avaiable, that the one you'll be using is the same*
 
 ### 2) Prepare your storage system
 
-Make sure that you're S3 bucket, or the folder you'll be using on the storage system you've configured via `rclone config` actually exists, the name of the bucket / folder should be the name of `$remotename`
+Make sure that your S3 bucket (or the folder you'll be using on the storage system you've configured via `rclone config`) actually exists and that the name of the bucket / folder matches the name of `$remotename`
 
 ### 3) Preparing the docker rclone plugin
 
@@ -71,7 +71,7 @@ Then execute this command on each node, the below one was specially for "**php:N
 docker volume create --driver sapk/plugin-rclone --opt config="$(base64 /root/.config/rclone/rclone.conf)" --opt args="--uid 33 --gid 33 --allow-root --allow-other" --opt remote=$rcloneremotename:$remotename/path --name $volumename
 ```
 
-If you have a S3 bucket, in which files get uploaded via either AWS / Wasabi web interface, or anything else such as SFTPGo mounted to the S3 bucket, then you'll need to tell rclone to refresh it's dir cache:
+If you have an S3 bucket, in which files get uploaded via either AWS / Wasabi web interface, or anything else such as SFTPGo mounted to the S3 bucket, then you'll need to tell rclone to refresh it's dir cache:
 
 ```
 docker volume create --driver sapk/plugin-rclone --opt config="$(base64 /root/.config/rclone/rclone.conf)" --opt args="--uid 33 --gid 33 --allow-root --allow-other --dir-cache-time 5s" --opt remote=$rcloneremotename:$remotename/path --name $volumename
@@ -104,6 +104,6 @@ TaskTemplate:
     ]
 ```
 
-Via this way, the application running on "*php:7.4-apache*" can move from node1 to node2 or node3 or any other nodes that are properly configured.
+This way the application running on "*php:7.4-apache*" can move from node1 to any other nodes that are properly configured.
 
 If you have a question, or run into issues, please get in contact via Slack in the General channel and if needed mention me [@Daniël](https://caprover.slack.com/archives/DLR2Q4TC1) and I or anyone else will try to help you out.
