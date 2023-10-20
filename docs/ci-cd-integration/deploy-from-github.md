@@ -112,12 +112,12 @@ You will need to create a GitHub Personal Access Token with **write permission f
 GitHub has a great guide on creating a personal access token if you have not before. Here is the link: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
 #### Create a New App
-If you do not have an app already on CapRover, create one using the instructions [here](### Create a new App)
+If you do not have an app already on CapRover, create one using the instructions [here](#create-a-new-app)
 
 If you do already have an app on CapRover you can skip this step. 
 
 #### Enable App Token
-If you do not already have an app token for your app, create one using the instructions [here](### Enable App Token)
+If you do not already have an app token for your app, create one using the instructions [here](#enable-app-token)
 
 If you do have an app token, keep it handy as we will need it in the next step. 
 
@@ -128,10 +128,10 @@ You will need to add the following information into GitHub Secrets:
 - CapRover Server URL: URL of your CapRover Server
 - GitHub Token: GitHub Personal Access Token you created in previous step
 
-You can add GitHub Secrets using the instructions [here](### Add the Github Secrets)
+You can add GitHub Secrets using the instructions [here](#add-the-github-secrets)
 
 #### Add the Captain Definition File
-Add the `captain-definition` file described [here](### Add files to project)
+Add the `captain-definition` file described [here](#add-files-to-project)
 
 #### Create the GitHub Action
 GitHub Actions is the CI/CD pipeline built into GitHub. If you are unfamiliar with it, it would be beneficial to learn the basics by reviewing GitHub's Understanding GitHub Actions Docs: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
