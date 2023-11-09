@@ -54,6 +54,17 @@ CAPROVER_OTP_TOKEN=123456; caprover deploy
 ```
 
 
+
+## Set specific email address for the alerts
+
+Changing notification emails is not currently a built in feature. However, one of the many reasons that Google was chosen to be our auth provider is that on Gmail you can easily set up filters and forward specific emails to a different email address.
+
+Just search for `from: alerts@mail.pro.caprover.com` and create a filter, then forward your results to another email address.
+
+![gmail-instruction-1](/img/docs/gmail-1.png)
+![gmail-instruction-2](/img/docs/gmail-2.png)
+
+
 ## Email support
 
 Our paid Pro plan includes a 24hr SLA email support. You can email us at `pro.support at/caprover/dot/com` to get support. Please be sure to use the same email that you've used for purchase.
