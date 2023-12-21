@@ -24,7 +24,7 @@ If you use this method, you can skip **Prerequisites** section and step 1 of **C
 
 ### A) Domain Name
 
-During installation, you'll be asked to point a wildcard DNS entry to your CapRover IP Address. If you need help with domain name, see <a href="#setup-domain-and-dns">Domain and DNS</a>. This will cost you as low as \$2 a year.
+During installation, you'll be asked to point a wildcard DNS entry to your CapRover IP Address. This will cost you as low as \$2 a year (or [even less](https://www.reddit.com/r/selfhosted/comments/sp8etq/comment/hwdgztx/?utm_source=reddit&utm_medium=web2x&context=3)!)
 
 Note that you can use CapRover without a domain too. But you won't be able to setup HTTPS.
 
