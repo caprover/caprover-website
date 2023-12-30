@@ -131,7 +131,20 @@ You will need to add the following information into GitHub Secrets:
 You can add GitHub Secrets using the instructions [here](#add-the-github-secrets)
 
 #### Add the Captain Definition File
-Add the `captain-definition` file described [here](#add-files-to-project)
+Add the `captain-definition` file described [here](#add-files-to-project). If are going to be using the github action below, the `captain-definition` contents should be:
+
+```
+ {
+  "schemaVersion": 2,
+  "imageName": "ghcr.io/<YOUR_GITHUB_USERNAME>/<REPOSITORY_NAME>:latest"
+ }
+```
+
+This will ensure your Caprover app is using the latest version of the image you just built in the GitHub Action.
+
+#### Add a private Docker Registry to CapRover
+
+In order to pull the image from GitHub Packages, you will need to add a private Docker registry to CapRover. If you haven't done this before, you can do this by following the instructions [here](https://caprover.com/docs/app-scaling-and-cluster.html#add-a-private-docker-registry)
 
 #### Create the GitHub Action
 GitHub Actions is the CI/CD pipeline built into GitHub. If you are unfamiliar with it, it would be beneficial to learn the basics by reviewing GitHub's Understanding GitHub Actions Docs: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
@@ -159,7 +172,7 @@ jobs:
       with:
             registry: ghcr.io
             username: ${{ github.repository_owner }}
-            password: ${{ secrets.GH_TOKEN }}
+            password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Preset Image Name
       run: echo "IMAGE_URL=$(echo ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:$(echo ${{ github.sha }} | cut -c1-7) | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
