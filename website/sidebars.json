@@ -40,7 +40,14 @@
       }
     ],
     "Help": [
-      "server-purchase",
+      {
+        "type": "subcategory",
+        "label": "Server Purchase",
+        "ids": [
+          "server-purchase/digitalocean",
+          "server-purchase/openstack"
+        ]
+      },
       "disk-cleanup",
       "firewall",
       "troubleshooting",
