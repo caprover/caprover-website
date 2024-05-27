@@ -1,7 +1,7 @@
 ---
-id: server-purchase
-title: Server & Public IP address
-sidebar_label: Server Purchase
+id: digitalocean
+title: Setting CapRover Up With DigitalOcean
+sidebar_label: DigitalOcean
 ---
 
 
