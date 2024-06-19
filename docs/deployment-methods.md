@@ -39,7 +39,9 @@ After you enter this information, save your configuration. And go to your apps p
 Create a webhook here:
 - Project > Settings > Add Webhook > URL: Captain Webhook from your apps page, Content Type: `application/json`, 
 Secret: <Leave empty>, Just the `push` event.
-Furthermore add the contents of your generated public key to your repositories deploy keys. 
+Furthermore add the contents of your generated public key to your repositories deploy keys.
+
+WARNING: Github has recently introduced a bug where the webhooks are trimmed at 255 characters, please see this issue: https://github.com/caprover/caprover/issues/2079
 
 #### Bitbucket
 Webhooks can be added here:
