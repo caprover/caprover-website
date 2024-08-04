@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Setting CapRover Up With OpenStack · CapRover</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Why OpenStack?"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Setting CapRover Up With OpenStack · CapRover"/><meta property="og:type" content="website"/><meta property="og:url" content="https://caprover.com/index.html"/><meta property="og:description" content="## Why OpenStack?"/><meta property="og:image" content="https://caprover.com/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://caprover.com/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-132762521-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="CapRover"/><h2 class="headerTitleWithLogo">CapRover</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/get-started.html" target="_self">Docs</a></li><li class=""><a href="https://github.com/caprover/caprover" target="_self">GitHub</a></li><li class=""><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_self">Slack Group</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Server Purchase</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/get-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/cdd-migration.html">CaptainDuckDuck Upgrade</a></li><li class="navListItem"><a class="navItem" href="/docs/captain-definition-file.html">Captain Definition File</a></li><li class="navListItem"><a class="navItem" href="/docs/deployment-methods.html">Deployment Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/app-configuration.html">App Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/persistent-apps.html">Persistent Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/cli-commands.html">CLI Commands</a></li><li class="navListItem"><a class="navItem" href="/docs/one-click-apps.html">One-Click Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/complete-webapp-tutorial.html">Complete Webapp Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Do More</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/resource-monitoring.html">Resource Monitoring</a></li><li class="navListItem"><a class="navItem" href="/docs/nginx-customization.html">NGINX Config</a></li><li class="navListItem"><a class="navItem" href="/docs/service-update-override.html">Service Update Override</a></li><li class="navListItem"><a class="navItem" href="/docs/app-scaling-and-cluster.html">App Scaling &amp; Cluster</a></li><li class="navListItem"><a class="navItem" href="/docs/pre-deploy-script.html">Pre-deploy Script</a></li><li class="navListItem"><a class="navItem" href="/docs/play-with-docker.html">Play with CapRover</a></li><li class="navListItem"><a class="navItem" href="/docs/run-locally.html">Run Locally</a></li><li class="navListItem"><a class="navItem" href="/docs/certbot-config.html">Change ACME Server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Recipes and Tips</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sample-apps.html">Sample Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/database-connection.html">Database Connection</a></li><li class="navListItem"><a class="navItem" href="/docs/best-practices.html">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/backup-and-restore.html">Backup &amp; Restore</a></li><li class="navListItem"><a class="navItem" href="/docs/recipe-deploy-create-react-app.html">Static React App</a></li><li class="navListItem"><a class="navItem" href="/docs/stateless-with-persistent-data.html">Stateless with Persistent data</a></li><li class="navListItem"><a class="navItem" href="/docs/docker-compose.html">Docker Compose</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">CI/CD Integration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration.html">Intro</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-github.html">Deploy from GitHub</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-gitlab.html">Deploy from GitLab</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Server Purchase</h4><ul><li class="navListItem"><a class="navItem" href="/docs/server-purchase/digitalocean.html">DigitalOcean</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/server-purchase/openstack.html">OpenStack</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/disk-cleanup.html">Disk Clean-Up</a></li><li class="navListItem"><a class="navItem" href="/docs/firewall.html">Firewall &amp; Port Forwarding</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting.html">Troubleshooting</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting-pro.html">Troubleshooting (Pro)</a></li><li class="navListItem"><a class="navItem" href="/docs/support.html">Help and Support</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/caprover/caprover-website/edit/master/docs/server-purchase/openstack.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Setting CapRover Up With OpenStack</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="why-openstack"></a><a href="#why-openstack" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why OpenStack?</h2>
+<p>OpenStack is the most popular alternative to proprietary infrastructure-as-a-service (IaaS) cloud standards.
+Both huge cloud providers like AWS and Azure as well as some smaller ones like Hetzner have their own distinct APIs,
+configurations, and naming conventions for deploying resources.
+OpenStack allows you to deploy the same way on any cloud that implements the OpenStack standard (or even roll your own),
+thereby escaping vendor lock-in.</p>
+<h2><a class="anchor" aria-hidden="true" id="set-up-an-openstack-provider"></a><a href="#set-up-an-openstack-provider" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set up an OpenStack provider</h2>
+<p>A number of cloud providers support OpenStack, including Infomaniak, VEXXHOST, OVHcloud, SharkTech, and more.</p>
+<p>Out of the providers I've seen, Infomaniak has the best <a href="https://docs.infomaniak.cloud/">documentation</a>.</p>
+<p>You should follow your provider's instructions for getting the cloud.yaml file for connection the OpenStack CLI
+to the cloud project.</p>
+<p>Here's a brief summary of the steps for Infomaniak.
+See their <a href="https://docs.infomaniak.cloud/documentation/00.getting-started/01.Create_new_project/">documentation</a> for more details, including screenshots.
+Steps for other providers should be similar.</p>
+<ol>
+<li>Create a new project in your public cloud dashboard. Call the project something like <code>caprover-prod</code>.</li>
+<li>When prompted, generate and set a password for the OpenStack user.</li>
+<li>Go to &quot;Manage users&quot; for the project. Click the dropdown next to the only user (starting with PCU-...) and download
+the clouds.yaml file.</li>
+<li>Move <code>clouds.yaml</code> to a location <a href="https://docs.openstack.org/python-openstackclient/latest/configuration/index.html">where the OpenStack client will be able to find it</a>, i.e.
+<code>.config/openstack/clouds.yaml</code> in your home directory.
+If you've already set up the file before, copy and append the configuration to your existing file.</li>
+<li>Open up your <code>clouds.yaml</code> file and change the cloud name from <code>PCP-...</code> to something more human-readable like
+<code>infomaniak-prod</code>. This will let you keep adding to your file as you add more environments or even other OpenStack
+providers.</li>
+<li>Also insert the password you've generated in step 2 into the file.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="install-the-openstack-cli-and-validate-the-connection"></a><a href="#install-the-openstack-cli-and-validate-the-connection" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install the OpenStack CLI and validate the connection</h2>
+<ol>
+<li>Install the OpenStack command line client.
+The <a href="https://docs.openstack.org/newton/user-guide/common/cli-install-openstack-command-line-clients.html">official OpenStack instructions</a>
+would have you install the client via <code>pip</code>, but it's a lot cleaner to use <a href="https://pipx.pypa.io/stable/">pipx</a>
+instead to avoid polluting your global Python package space:
+<pre><code class="hljs">pip install pipx
+pipx install <span class="hljs-keyword">python</span>-openstackclient
+pipx inject <span class="hljs-keyword">python</span>-openstackclient <span class="hljs-keyword">python</span>-heatclient
+</code></pre></li>
+<li>Validate the connection with the command:
+<pre><code class="hljs">openstack --os-cloud mycloud <span class="hljs-keyword">project</span> <span class="hljs-keyword">list</span>
+</code></pre>
+(Note: in this and following commands, replace <code>mycloud</code> with the actual name you've set up in clouds.yaml,
+such as <code>vexxhost-dev</code> or <code>infomaniak-prod</code>).
+This should display your default project name.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="deploy-the-openstack-heat-template-file"></a><a href="#deploy-the-openstack-heat-template-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy the OpenStack Heat template file</h2>
+<ol>
+<li>You'll need to generate a key to be able to SSH into your CapRover server if needed.
+You can create the folder <code>~/.ssh/openstack</code> or store your key wherever you like.
+<pre><code class="hljs">openstack <span class="hljs-params">--os-cloud</span> mycloud keypair create caprover &gt; ~<span class="hljs-string">/.ssh/openstack/mycloud.priv</span>
+chmod 600 ~<span class="hljs-string">/.ssh/openstack/mycloud.priv</span>
+</code></pre></li>
+<li>Many OpenStack providers supply a default set of VM images.
+Check available images with
+<pre><code class="hljs">openstack --os-cloud mycloud <span class="hljs-built_in">image</span> <span class="hljs-built_in">list</span>
+</code></pre>
+It's recommended to grab the latest version of Ubuntu LTS.
+You can also upload your own image by following the instructions
+<a href="https://docs.openstack.org/heat/latest/getting_started/create_a_stack.html#preparing-to-create-a-stack">here</a>.</li>
+<li>Check available flavors with
+<pre><code class="hljs">openstack <span class="hljs-comment">--os-cloud mycloud flavor list</span>
+</code></pre></li>
+<li>Check available networks with
+<pre><code class="hljs">openstack --os-cloud mycloud<span class="hljs-built_in"> network </span>list
+</code></pre></li>
+<li>Finally, put all the pieces together to deploy CapRover. Be sure to replace the placeholder values with your own.
+<pre><code class="hljs">openstack <span class="hljs-params">--os-cloud</span> mycloud stack create -t https:<span class="hljs-string">//raw.githubusercontent.com/caprover/caprover/master/dev-scripts/openstack/single-instance.yml</span> <span class="hljs-params">--parameter</span> image_id=&lt;Ubuntu image ID&gt; <span class="hljs-params">--parameter</span> instance_type=&lt;flavor&gt; <span class="hljs-params">--parameter</span> network=&lt;network&gt; caprover
+</code></pre>
+For example, the following works on Infomaniak:
+<pre><code class="hljs">openstack --os-cloud infomaniak-dev stack create -t https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/caprover/</span>caprover<span class="hljs-regexp">/master/</span>se
+</code></pre></li>
+</ol>
+<p>tup/openstack/single-instance.yml --parameter image_id=&quot;Ubuntu 22.04 LTS Jammy Jellyfish&quot; --parameter instance_type=a1-ram2-disk20-perf1 --parameter network=ext-net1 caprover
+```</p>
+<h2><a class="anchor" aria-hidden="true" id="validate-the-deployment"></a><a href="#validate-the-deployment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Validate the deployment</h2>
+<ol>
+<li>Log in to your OpenStack dashboard web UI.</li>
+<li>Open Instances. You should see the instance <code>caprover-caprover_manager-...</code>. Copy its IP address.</li>
+<li>You should be able to see the CapRover dashboard in your browser at <code>&lt;IP address&gt;:3000</code>.
+From this point you should be able to finish setting up CapRover using the instructions in
+<a href="https://caprover.com/docs/get-started.html">Getting Started</a></li>
+<li>You can also SSH into the instance with the command:
+<pre><code class="hljs">ssh -i ~/.ssh/openstack/mycloud-prod.priv -o StrictHostKeyChecking=<span class="hljs-keyword">accept</span>-<span class="hljs-keyword">new</span> ubuntu@&lt;CapRover manager IP&gt;
+</code></pre>
+After you're in, you can browse the output of the installation process from the Heat template with the command
+<code>sudo less /var/log/cloud-init-output.log</code>.</li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/server-purchase/digitalocean.html"><span class="arrow-prev">← </span><span class="function-name-prevnext">DigitalOcean</span></a><a class="docs-next button" href="/docs/disk-cleanup.html"><span>Disk Clean-Up</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#why-openstack">Why OpenStack?</a></li><li><a href="#set-up-an-openstack-provider">Set up an OpenStack provider</a></li><li><a href="#install-the-openstack-cli-and-validate-the-connection">Install the OpenStack CLI and validate the connection</a></li><li><a href="#deploy-the-openstack-heat-template-file">Deploy the OpenStack Heat template file</a></li><li><a href="#validate-the-deployment">Validate the deployment</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.png" alt="CapRover" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/get-started.html">Getting Started</a></div><div><h5>Community</h5><a href="https://twitter.com/cap_rover" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_blank" rel="noreferrer noopener">Slack Group</a></div><div><h5>More</h5><a href="https://github.com/caprover/caprover" target="_blank">GitHub</a><a class="github-button" href="https://github.com/caprover/caprover" data-icon="octicon-star" data-count-href="/caprover/caprover/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 githubsaturn</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '81e546c2e0c9258e48c359465bde6909',
+                indexName: 'caprover',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

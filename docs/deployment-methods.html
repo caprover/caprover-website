@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Deployment Methods · CapRover</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;br/&gt;"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Deployment Methods · CapRover"/><meta property="og:type" content="website"/><meta property="og:url" content="https://caprover.com/index.html"/><meta property="og:description" content="&lt;br/&gt;"/><meta property="og:image" content="https://caprover.com/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://caprover.com/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-132762521-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="CapRover"/><h2 class="headerTitleWithLogo">CapRover</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/get-started.html" target="_self">Docs</a></li><li class=""><a href="https://github.com/caprover/caprover" target="_self">GitHub</a></li><li class=""><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_self">Slack Group</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Basics</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/get-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/cdd-migration.html">CaptainDuckDuck Upgrade</a></li><li class="navListItem"><a class="navItem" href="/docs/captain-definition-file.html">Captain Definition File</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/deployment-methods.html">Deployment Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/app-configuration.html">App Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/persistent-apps.html">Persistent Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/cli-commands.html">CLI Commands</a></li><li class="navListItem"><a class="navItem" href="/docs/one-click-apps.html">One-Click Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/complete-webapp-tutorial.html">Complete Webapp Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Do More</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/resource-monitoring.html">Resource Monitoring</a></li><li class="navListItem"><a class="navItem" href="/docs/nginx-customization.html">NGINX Config</a></li><li class="navListItem"><a class="navItem" href="/docs/service-update-override.html">Service Update Override</a></li><li class="navListItem"><a class="navItem" href="/docs/app-scaling-and-cluster.html">App Scaling &amp; Cluster</a></li><li class="navListItem"><a class="navItem" href="/docs/pre-deploy-script.html">Pre-deploy Script</a></li><li class="navListItem"><a class="navItem" href="/docs/play-with-docker.html">Play with CapRover</a></li><li class="navListItem"><a class="navItem" href="/docs/run-locally.html">Run Locally</a></li><li class="navListItem"><a class="navItem" href="/docs/certbot-config.html">Change ACME Server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Recipes and Tips</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sample-apps.html">Sample Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/database-connection.html">Database Connection</a></li><li class="navListItem"><a class="navItem" href="/docs/best-practices.html">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/backup-and-restore.html">Backup &amp; Restore</a></li><li class="navListItem"><a class="navItem" href="/docs/recipe-deploy-create-react-app.html">Static React App</a></li><li class="navListItem"><a class="navItem" href="/docs/stateless-with-persistent-data.html">Stateless with Persistent data</a></li><li class="navListItem"><a class="navItem" href="/docs/docker-compose.html">Docker Compose</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">CI/CD Integration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration.html">Intro</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-github.html">Deploy from GitHub</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-gitlab.html">Deploy from GitLab</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Server Purchase</h4><ul><li class="navListItem"><a class="navItem" href="/docs/server-purchase/digitalocean.html">DigitalOcean</a></li><li class="navListItem"><a class="navItem" href="/docs/server-purchase/openstack.html">OpenStack</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/disk-cleanup.html">Disk Clean-Up</a></li><li class="navListItem"><a class="navItem" href="/docs/firewall.html">Firewall &amp; Port Forwarding</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting.html">Troubleshooting</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting-pro.html">Troubleshooting (Pro)</a></li><li class="navListItem"><a class="navItem" href="/docs/support.html">Help and Support</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/caprover/caprover-website/edit/master/docs/deployment-methods.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Deployment Methods</h1></header><article><div><span><p><br/>
+Regardless of your deployment method, make sure that you have a 'captain-definition' file in your project. See docs on <a href="/docs/captain-definition-file.html">Captain Definition</a> for more details.</p>
+<h2><a class="anchor" aria-hidden="true" id="deploy-via-cli"></a><a href="#deploy-via-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy via CLI</h2>
+<p>Simply run <code>caprover deploy</code> in your git repo and follow the steps. This is the best method as it's the only method that reports potential build failures to you. Read more about it here:
+<a href="/docs/get-started.html#step-5-deploy-the-test-app">Get Started - Step 5</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="deploy-via-web-dashboard"></a><a href="#deploy-via-web-dashboard" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy via Web Dashboard</h2>
+<p>Convert the content of your project into a tarball (<code>.tar</code>), go to your Captain web dashboard and upload the tar file. This deployment method is typically used for testing purposes only.</p>
+<p>For captain-definition files that do not require any source code, like <a href="/docs/captain-definition-file.html#use-image-name">this</a>, you can simply copy and paste the captain-definition content on web dashboard.</p>
+<p><img src="/img/docs/app-deploy.png" alt="deployapp"></p>
+<h2><a class="anchor" aria-hidden="true" id="one-click-rollback"></a><a href="#one-click-rollback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>One Click Rollback</h2>
+<p>Let's say you deployed a new version of your app. But you realize that it's buggy. You don't have time to go back, revert your changes or fix the bug, what would you do? Simple! Just go to deployment tab and click on the revert icon next to the version that you want to revert to. CapRover automatically starts a new build and deploy that version! Note that this <strong>DOES NOT</strong> revert changes that you made to Environment Variables, and other app configs such as persistent directories and etc. It just reverts your image (deployed source code).</p>
+<h2><a class="anchor" aria-hidden="true" id="automatic-deploy-using-github-bitbucket-and-etc"></a><a href="#automatic-deploy-using-github-bitbucket-and-etc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Automatic Deploy using Github, Bitbucket and etc.</h2>
+<p>This method is perhaps the most convenient one. This method automatically triggers a build with a <code>captain-definiton</code> file when you push your repo to a specific branch (like <code>master</code> or <code>staging</code> or <code>release</code> or etc). To setup this, go to your apps settings and enter the repo information:</p>
+<ul>
+<li>repo: This is the main HTTPS address of repo, in case of github, it is in <code>github.com/someone/something</code> format. Make sure it does NOT include <code>https://</code> prefix and <code>.git</code> suffix.</li>
+<li>branch: The branch you want to be tracked, for example <code>master</code> or <code>staging</code> or <code>release</code>...</li>
+<li>github/bitbucket username(email address): This is username that will be used when Captain downloads the repo.</li>
+<li>github/bitbucket password: You can enter any non-empty text, like <code>123456</code>, for public projects.</li>
+<li>Or, instead of username/password, use SSH Key: Make sure to use PEM format as other formats may not work. Use the following command if unsure:</li>
+</ul>
+<pre><code class="hljs">ssh-keygen -m PEM -<span class="hljs-built_in">t</span> <span class="hljs-symbol">ed25519</span> -C <span class="hljs-string">"yourname@example.com"</span> -f ./deploykey -q -<span class="hljs-built_in">N</span> <span class="hljs-string">""</span>
+</code></pre>
+<p>After you enter this information, save your configuration. And go to your apps page again. Now, you'll see a new field call webhook. Simply copy this webhook to your github/bitbucket repo webhooks (see below). Captain listens to POST requests on this link and triggers a build.</p>
+<h4><a class="anchor" aria-hidden="true" id="github"></a><a href="#github" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Github</h4>
+<p>Create a webhook here:</p>
+<ul>
+<li>Project &gt; Settings &gt; Add Webhook &gt; URL: Captain Webhook from your apps page, Content Type: <code>application/json</code>,
+Secret: <Leave empty>, Just the <code>push</code> event.
+Furthermore add the contents of your generated public key to your repositories deploy keys.</li>
+</ul>
+<p>WARNING: Github has recently introduced a bug where the webhooks are trimmed at 255 characters, please see this issue: <a href="https://github.com/caprover/caprover/issues/2079">https://github.com/caprover/caprover/issues/2079</a></p>
+<h4><a class="anchor" aria-hidden="true" id="bitbucket"></a><a href="#bitbucket" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bitbucket</h4>
+<p>Webhooks can be added here:</p>
+<ul>
+<li>Project &gt; Settings &gt; Webhooks &gt; Add Webhook &gt; Title: Captain Server, URL: Captain Webhook from your apps page.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="gitlab-and-others"></a><a href="#gitlab-and-others" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GitLab and Others</h4>
+<p>Webhooks can be added in a similar fashion. As long as the webhook fires a POST request, CapRover is able to pick it up and starts a build from the latest commit on the specified branch.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/captain-definition-file.html"><span class="arrow-prev">← </span><span>Captain Definition File</span></a><a class="docs-next button" href="/docs/app-configuration.html"><span>App Configuration</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#deploy-via-cli">Deploy via CLI</a></li><li><a href="#deploy-via-web-dashboard">Deploy via Web Dashboard</a></li><li><a href="#one-click-rollback">One Click Rollback</a></li><li><a href="#automatic-deploy-using-github-bitbucket-and-etc">Automatic Deploy using Github, Bitbucket and etc.</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.png" alt="CapRover" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/get-started.html">Getting Started</a></div><div><h5>Community</h5><a href="https://twitter.com/cap_rover" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_blank" rel="noreferrer noopener">Slack Group</a></div><div><h5>More</h5><a href="https://github.com/caprover/caprover" target="_blank">GitHub</a><a class="github-button" href="https://github.com/caprover/caprover" data-icon="octicon-star" data-count-href="/caprover/caprover/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 githubsaturn</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '81e546c2e0c9258e48c359465bde6909',
+                indexName: 'caprover',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

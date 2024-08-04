@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Captain Definition File · CapRover</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;br/&gt;"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Captain Definition File · CapRover"/><meta property="og:type" content="website"/><meta property="og:url" content="https://caprover.com/index.html"/><meta property="og:description" content="&lt;br/&gt;"/><meta property="og:image" content="https://caprover.com/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://caprover.com/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-132762521-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="CapRover"/><h2 class="headerTitleWithLogo">CapRover</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/get-started.html" target="_self">Docs</a></li><li class=""><a href="https://github.com/caprover/caprover" target="_self">GitHub</a></li><li class=""><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_self">Slack Group</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Basics</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/get-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/cdd-migration.html">CaptainDuckDuck Upgrade</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/captain-definition-file.html">Captain Definition File</a></li><li class="navListItem"><a class="navItem" href="/docs/deployment-methods.html">Deployment Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/app-configuration.html">App Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/persistent-apps.html">Persistent Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/cli-commands.html">CLI Commands</a></li><li class="navListItem"><a class="navItem" href="/docs/one-click-apps.html">One-Click Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/complete-webapp-tutorial.html">Complete Webapp Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Do More</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/resource-monitoring.html">Resource Monitoring</a></li><li class="navListItem"><a class="navItem" href="/docs/nginx-customization.html">NGINX Config</a></li><li class="navListItem"><a class="navItem" href="/docs/service-update-override.html">Service Update Override</a></li><li class="navListItem"><a class="navItem" href="/docs/app-scaling-and-cluster.html">App Scaling &amp; Cluster</a></li><li class="navListItem"><a class="navItem" href="/docs/pre-deploy-script.html">Pre-deploy Script</a></li><li class="navListItem"><a class="navItem" href="/docs/play-with-docker.html">Play with CapRover</a></li><li class="navListItem"><a class="navItem" href="/docs/run-locally.html">Run Locally</a></li><li class="navListItem"><a class="navItem" href="/docs/certbot-config.html">Change ACME Server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Recipes and Tips</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sample-apps.html">Sample Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/database-connection.html">Database Connection</a></li><li class="navListItem"><a class="navItem" href="/docs/best-practices.html">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/backup-and-restore.html">Backup &amp; Restore</a></li><li class="navListItem"><a class="navItem" href="/docs/recipe-deploy-create-react-app.html">Static React App</a></li><li class="navListItem"><a class="navItem" href="/docs/stateless-with-persistent-data.html">Stateless with Persistent data</a></li><li class="navListItem"><a class="navItem" href="/docs/docker-compose.html">Docker Compose</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">CI/CD Integration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration.html">Intro</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-github.html">Deploy from GitHub</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-gitlab.html">Deploy from GitLab</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Server Purchase</h4><ul><li class="navListItem"><a class="navItem" href="/docs/server-purchase/digitalocean.html">DigitalOcean</a></li><li class="navListItem"><a class="navItem" href="/docs/server-purchase/openstack.html">OpenStack</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/disk-cleanup.html">Disk Clean-Up</a></li><li class="navListItem"><a class="navItem" href="/docs/firewall.html">Firewall &amp; Port Forwarding</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting.html">Troubleshooting</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting-pro.html">Troubleshooting (Pro)</a></li><li class="navListItem"><a class="navItem" href="/docs/support.html">Help and Support</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/caprover/caprover-website/edit/master/docs/captain-definition-file.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Captain Definition File</h1></header><article><div><span><p><br/></p>
+<h2><a class="anchor" aria-hidden="true" id="basics"></a><a href="#basics" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Basics</h2>
+<p>One of the key components of CapRover is the <code>captain-definition</code> file that sits at the root of your project. In case of NodeJS app, it sits next to package.json, or next to index.php in case of PHP, or requirements.txt for Python app. It's a simple JSON like this:</p>
+<pre><code class="hljs"> {
+  <span class="hljs-attr">"schemaVersion"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"templateId"</span>: <span class="hljs-string">"node/8.7.0"</span>
+ }
+</code></pre>
+<p><code>schemaVersion</code> is always 2. And <code>templateId</code> is the piece which defines the foundation you need in order to run your app. It is in <code>LANGUAGE/VERSION</code> format. LANGUAGE can be one of these: <code>node</code>, <code>php</code>, <code>python-django</code>, <code>ruby-rack</code>. And VERSION is the version of the language you want to use - see <a href="#versions-for-templateid">below</a>.</p>
+<p>Note that although the <code>templateId</code> can be one of the 4 most popular web app languages: NodeJS, PHP and Python/Django, Ruby/Rack, you are NOT LIMITED to these predefined languages! With CapRover, you have the ability to define your own Dockerfile. With a customized Dockerfile, you can deploy any laguage, Go, Java, .NET, you name it! Dockerfiles are quite easy to write. For example, the two captain-definition files below generate <b>the exact same result</b>.</p>
+<h4><a class="anchor" aria-hidden="true" id="simple-version"></a><a href="#simple-version" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Simple version</h4>
+<pre><code class="hljs"> {
+  <span class="hljs-attr">"schemaVersion"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"templateId"</span>: <span class="hljs-string">"node/8.7.0"</span>
+ }
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="advanced-version"></a><a href="#advanced-version" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Advanced Version</h4>
+<pre><code class="hljs"> {
+  <span class="hljs-attr">"schemaVersion"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"dockerfileLines"</span>: [
+                        <span class="hljs-string">"FROM node:8.7.0-alpine"</span>,
+                        <span class="hljs-string">"RUN mkdir -p /usr/src/app"</span>,
+                        <span class="hljs-string">"WORKDIR /usr/src/app"</span>,
+                        <span class="hljs-string">"COPY ./package.json /usr/src/app/"</span>,
+                        <span class="hljs-string">"RUN npm install &amp;&amp; npm cache clean --force"</span>,
+                        <span class="hljs-string">"COPY ./ /usr/src/app"</span>,
+                        <span class="hljs-string">"ENV NODE_ENV production"</span>,
+                        <span class="hljs-string">"ENV PORT 80"</span>,
+                        <span class="hljs-string">"EXPOSE 80"</span>,
+                        <span class="hljs-string">"CMD [ \"npm\", \"start\" ]"</span>
+                    ]
+ }
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="use-dockerfile-in-captain-definition"></a><a href="#use-dockerfile-in-captain-definition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use Dockerfile in captain-definition:</h2>
+<p>Note that the simple version of <code>captain-definition</code> with <code>templateId</code> is good as a starting point. But as your project gets more complex you may want to perform more complicated tasks with your base image, such as installing PHP extensions, installing <code>uWSGI</code>, installing particular version of <code>curl</code> and etc. In these cases, you can leverage the Dockerfile. Using custom Dockerfile allows you to build a very customized base image. If you're not familiar with Docker, you can simply use google to find something that's similar to your requirement and tweak it. Finally, if you're stuck, don't be shy to ask a question on our Slack channel, or StackOverflow.</p>
+<p>To use a Dockerfile that's in your repository, you can simply reference it in the captain-definition file:</p>
+<pre><code class="hljs"> {
+  <span class="hljs-attr">"schemaVersion"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"dockerfilePath"</span>: <span class="hljs-string">"./Dockerfile"</span>
+ }
+</code></pre>
+<p>Dockerfiles are so simple and easy to read. Even if you don't know anything about Docker, you can get an idea what this does. Some examples of advanced methods: <a href="https://github.com/githubsaturn/captainduckduck/issues/94">PHP Composer</a> and <a href="https://github.com/githubsaturn/meteor-captainduckduck/blob/master/captain-definition">Meteor</a></p>
+<p>Using this approach (pure Dockerfile) you can deploy Ruby, Java, Scala, literally anything! If you need more details on dockerfile, please see <a href="https://docs.docker.com/engine/reference/builder">Dockerfile Help</a> and <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices">Best Practices</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="use-image-name"></a><a href="#use-image-name" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use Image Name</h2>
+<p>If you are an advanced Docker user, you may know that there are plenty of pre-built applications sitting on DockerHub. You can deploy these images using captain-definition. For example to deploy <a href="https://hub.docker.com/r/nginxdemos/hello/">https://hub.docker.com/r/nginxdemos/hello/</a>, you use:</p>
+<pre><code class="hljs"> {
+  <span class="hljs-attr">"schemaVersion"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"imageName"</span>: <span class="hljs-string">"nginxdemos/hello"</span>
+ }
+</code></pre>
+<p>Tip: You can simply copy and paste the captain-definition file above on CapRover web dashboard under the deploy tab.</p>
+<h2><a class="anchor" aria-hidden="true" id="monorepo"></a><a href="#monorepo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Monorepo:</h2>
+<p>You can use one git repo to deploy multiple different apps. For example, you may have a frontend and backend app in one repository. In this case, you can define multiple <code>captain-definition</code> files and have them deploying separate apps, for example, a directory structure, like this:</p>
+<pre><code class="hljs"><span class="hljs-string">/project</span>
+   <span class="hljs-string">/frontend</span>
+      <span class="hljs-string">/src/index.js</span>
+      package.json
+   <span class="hljs-string">/backend</span>
+      <span class="hljs-string">/src/index.js</span>
+      package.json
+captain-definition-backend
+captain-definition-frontend
+</code></pre>
+<p>With this content:
+<code>captain-definition-backend</code></p>
+<pre><code class="hljs"> {
+  <span class="hljs-attr">"schemaVersion"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"dockerfileLines"</span>: [
+                        <span class="hljs-string">"FROM node:12-alpine"</span>,
+                        <span class="hljs-string">"RUN mkdir -p /usr/src/app"</span>,
+                        <span class="hljs-string">"COPY ./backend /usr/src/app"</span>,
+                        <span class="hljs-string">"RUN npm install &amp;&amp; npm cache clean --force"</span>,
+                        <span class="hljs-string">"CMD [ \"npm\", \"start\" ]"</span>
+                    ]
+ }
+</code></pre>
+<p>You can alternatively point to a Dockerfile. Note that the build context will be always the root of your project, so in the Dockerfile, you'll have to point to that specific directory, for example, <code>COPY ./backend /usr/src/app</code></p>
+<p>Next, you need to instruct your CapRover to use the correct <code>captain-definition</code> for each app. Navigate to your app, go to DEPLOYMENT tab, and edit your captain-definition path to <code>./captain-definition-backend</code></p>
+<h2><a class="anchor" aria-hidden="true" id="versions-for-templateid"></a><a href="#versions-for-templateid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Versions for templateId:</h2>
+<p>NOTE: Versions get pulled from official repositories at runtime, therefore you do not need to update your Captain in order to use a new version of NodeJS. For example, see <a href="https://hub.docker.com/_/node/">here</a>.</p>
+<p><strong>IMPORTANT:</strong> Versions mentioned below are for <strong>reference only</strong>. For example, at the time that this document was generated Node 10 was not available, but it is available now. Therefore, you can use <code>node/10</code> or <code>node/10.15</code> or <code>node/10.15.0</code> as your templateId despite the fact that it is not mentioned below.</p>
+<pre><code class="hljs css language-bash">node/
+carbon, 8, 8.9, 8.9.4, boron, 6, 6.12, 6.12.3, 9, 9.3, 9.3.0, 8.9.3, 9.2, 9.2.1, argon, 4, 4.8, 4.8.7, 6.12.2, 8.9.2, 6.12.1, 4.8.6, 6.12.0, 8.9.1, 9.2.0, 9.1, 9.1.0, 8.9.0, 9.0, 9.0.0, 4.8.5, 6.11, 6.11.5, 8.8, 8.8.1, 8.8.0, 8.7, 8.7.0, 6.11.4, 8.6, 8.6.0, 8.5, 8.5.0, 4.8.4, 6.11.3, 6.11.2, 7, 7.10, 7.10.1, 8.4, 8.4.0, 8.3, 8.3.0, 8.2, 8.2.1, 6.11.1, 8.2.0, 8.1, 8.1.4, 4.8.3, 6.11.0, 8.1.3, 8.1.2, 8.1.1, 8.1.0, 8.0, 8.0.0, 6.10, 6.10.3, 7.10.0, 4.8.2, 6.10.2, 7.9, 7.9.0, 7.8, 7.8.0, 4.8.1, 6.10.1, 7.7, 7.7.4, 4.8.0, 6.10.0, 7.7.3, 7.7.2, 7.7.1, 7.7.0, 7.6, 7.6.0, 4.7, 4.7.3, 6.9, 6.9.5, 7.5, 7.5.0, 4.7.2, 6.9.4, 7.4, 7.4.0, 4.7.1, 6.9.3, 7.3, 7.3.0, 6.9.2, 4.7.0, 7.2.1, 7.2, 4.6, 4.6.2, 7.2.0, 6.9.1, 7.1, 7.1.0
+</code></pre>
+<pre><code class="hljs css language-bash">php/
+7, 7.2, 7.2.1, 7.0, 7.0.26, 7.1, 7.1.12, 5, 5.6, 5.6.32, 7.2.0, rc, 7.2-rc, 7.2.0RC6, 7.0.25, 7.1.11, 7.2.0RC5, 7.2.0RC4, 5.6.31, 7.0.24, 7.1.10, 7.2.0RC3, 7.1.9, 7.0.23, 7.2.0RC2, 7.2.0RC1, 7.0.22, 7.1.8, 7.2.0beta3, 7.2.0beta2, 7.1.7, 7.2.0beta1, 7.0.21, 7.2.0alpha3, 5.6.30, 7.0.20, 7.1.6, 7.1.5, 7.0.19, 7.0.18, 7.1.4, 7.0.17, 7.1.3, 7.0.16, 7.1.2, 7.1.1, 7.0.15, 5.6.29, 7.0.14, 7.1.0, 5.6.28, 7.0.13, 7.1-rc, 7.1.0RC6, 7.1.0RC5, 7.0.12, 5.6.27, 7.1.0RC4, 7.1.0RC3, 5.6.26, 7.0.11, 7.1.0RC2, 5.6.25, 7.0.10, 7.1.0RC1, 5.6.24, 7.0.9, 5.5.38, 5.5, 5.5.37, 5.6.23, 7.0.8, 5.5.36, 5.6.22, 7.0.7, 7.0.6, 5.6.21, 5.5.35, 7.0.5, 5.6.20, 5.5.34, 7.0.4, 5.6.19, 5.5.33, 7.0.3, 5.6.18, 5.5.32, 7.0.2, 5.6.17, 5.5.31, 7.0.1, 5.6.16, 5.5.30, 7.0.0, 5.4, 5.4.45, 7.0.0RC8, 5.6.15, 7.0.0RC7, 7.0.0RC6, 7.0.0RC5, 5.6.14, 7.0.0RC4, 7.0.0RC3, 5.6.13, 5.5.29, 7.0.0RC2, 7.0.0RC1, 7.0.0beta3, 5.6.12, 5.5.28, 5.4.44, 7.0.0beta2, 5.6.11, 5.5.27, 5.4.43, 7.0.0beta1, 5.5.21, 5.5.19, 5.5.16, 5.4.40, 5.4.41, 5.4.39, 5.5.17, 5.6.3, 5.6.0, 5.6.8, 5.6.4, 5.4.42, 5.5.20, 5.4.38, 5.5.22, 5.6.5, 5.6.2, 5.4.35, 5.4.36, 5.4.33, 5.3.29, 5.3, 5.5.26, 5.5.18, 5.4.32, 5.4.37, 5.6.1, 5.6.6, 5.6.9, 5.6.10, 5.4.34, 5.6.7, 5.5.24, 5.5.23, 5.5.25
+</code></pre>
+<pre><code class="hljs css language-bash">python-django/
+2, 2.7, 2.7.14, 3, 3.6, 3.6.4, 3.6.3, rc, 3.7-rc, 3.7.0a3, 3.7.0a2, 3.7.0a1, 2.7.13, 3.6.2, 3.6-rc, 3.6.2rc2, 3.6.1, 3.6.2rc1
+</code></pre>
+<pre><code class="hljs css language-bash">ruby-rack/
+2.4, 2.4.3, 2, 2.5, 2.5.0, rc, 2.5-rc, 2.5.0-rc1, 2.4.2, 2.5.0-preview1
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/cdd-migration.html"><span class="arrow-prev">← </span><span class="function-name-prevnext">CaptainDuckDuck Upgrade</span></a><a class="docs-next button" href="/docs/deployment-methods.html"><span>Deployment Methods</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#basics">Basics</a></li><li><a href="#use-dockerfile-in-captain-definition">Use Dockerfile in captain-definition:</a></li><li><a href="#use-image-name">Use Image Name</a></li><li><a href="#monorepo">Monorepo:</a></li><li><a href="#versions-for-templateid">Versions for templateId:</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.png" alt="CapRover" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/get-started.html">Getting Started</a></div><div><h5>Community</h5><a href="https://twitter.com/cap_rover" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_blank" rel="noreferrer noopener">Slack Group</a></div><div><h5>More</h5><a href="https://github.com/caprover/caprover" target="_blank">GitHub</a><a class="github-button" href="https://github.com/caprover/caprover" data-icon="octicon-star" data-count-href="/caprover/caprover/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 githubsaturn</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '81e546c2e0c9258e48c359465bde6909',
+                indexName: 'caprover',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Build, Test and Deploy from GitHub · CapRover</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Deploying directly from Github"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Build, Test and Deploy from GitHub · CapRover"/><meta property="og:type" content="website"/><meta property="og:url" content="https://caprover.com/index.html"/><meta property="og:description" content="## Deploying directly from Github"/><meta property="og:image" content="https://caprover.com/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://caprover.com/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-132762521-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="CapRover"/><h2 class="headerTitleWithLogo">CapRover</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/get-started.html" target="_self">Docs</a></li><li class=""><a href="https://github.com/caprover/caprover" target="_self">GitHub</a></li><li class=""><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_self">Slack Group</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>CI/CD Integration</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/get-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/cdd-migration.html">CaptainDuckDuck Upgrade</a></li><li class="navListItem"><a class="navItem" href="/docs/captain-definition-file.html">Captain Definition File</a></li><li class="navListItem"><a class="navItem" href="/docs/deployment-methods.html">Deployment Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/app-configuration.html">App Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/persistent-apps.html">Persistent Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/cli-commands.html">CLI Commands</a></li><li class="navListItem"><a class="navItem" href="/docs/one-click-apps.html">One-Click Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/complete-webapp-tutorial.html">Complete Webapp Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Do More</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/resource-monitoring.html">Resource Monitoring</a></li><li class="navListItem"><a class="navItem" href="/docs/nginx-customization.html">NGINX Config</a></li><li class="navListItem"><a class="navItem" href="/docs/service-update-override.html">Service Update Override</a></li><li class="navListItem"><a class="navItem" href="/docs/app-scaling-and-cluster.html">App Scaling &amp; Cluster</a></li><li class="navListItem"><a class="navItem" href="/docs/pre-deploy-script.html">Pre-deploy Script</a></li><li class="navListItem"><a class="navItem" href="/docs/play-with-docker.html">Play with CapRover</a></li><li class="navListItem"><a class="navItem" href="/docs/run-locally.html">Run Locally</a></li><li class="navListItem"><a class="navItem" href="/docs/certbot-config.html">Change ACME Server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Recipes and Tips</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sample-apps.html">Sample Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/database-connection.html">Database Connection</a></li><li class="navListItem"><a class="navItem" href="/docs/best-practices.html">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/backup-and-restore.html">Backup &amp; Restore</a></li><li class="navListItem"><a class="navItem" href="/docs/recipe-deploy-create-react-app.html">Static React App</a></li><li class="navListItem"><a class="navItem" href="/docs/stateless-with-persistent-data.html">Stateless with Persistent data</a></li><li class="navListItem"><a class="navItem" href="/docs/docker-compose.html">Docker Compose</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">CI/CD Integration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration.html">Intro</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-github.html">Deploy from GitHub</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-gitlab.html">Deploy from GitLab</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Server Purchase</h4><ul><li class="navListItem"><a class="navItem" href="/docs/server-purchase/digitalocean.html">DigitalOcean</a></li><li class="navListItem"><a class="navItem" href="/docs/server-purchase/openstack.html">OpenStack</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/disk-cleanup.html">Disk Clean-Up</a></li><li class="navListItem"><a class="navItem" href="/docs/firewall.html">Firewall &amp; Port Forwarding</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting.html">Troubleshooting</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting-pro.html">Troubleshooting (Pro)</a></li><li class="navListItem"><a class="navItem" href="/docs/support.html">Help and Support</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/caprover/caprover-website/edit/master/docs/ci-cd-integration/deploy-from-github.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Build, Test and Deploy from GitHub</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="deploying-directly-from-github"></a><a href="#deploying-directly-from-github" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploying directly from Github</h2>
+<p>This example showcases a Vue 3 app with a PHP backend that can be built, tested and deployed directly from Github to CapRover using the CapRover community-maintained <a href="https://github.com/caprover/deploy-from-github">GitHub Action</a>. Feel free to clone an example project from <a href="https://github.com/PremoWeb/SDK-Foundation-Vue">https://github.com/PremoWeb/SDK-Foundation-Vue</a> to try things out or build your next awesome app.</p>
+<h3><a class="anchor" aria-hidden="true" id="create-a-new-app"></a><a href="#create-a-new-app" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a new App</h3>
+<p>The name you choose here will become the APP_NAME secret.</p>
+<p><img src="/img/docs/deploy-from-github/create-a-new-app.png" alt="Create a new app" title="Create a new app"></p>
+<h3><a class="anchor" aria-hidden="true" id="enable-app-token"></a><a href="#enable-app-token" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enable App Token</h3>
+<p>Find the &quot;Deployment&quot; tab for your new app, click Enable App Token and copy this token. This is your APP_TOKEN secret.</p>
+<p><img src="/img/docs/deploy-from-github/enable-app-token.png" alt="Create a new app" title="Enable App Token"></p>
+<h3><a class="anchor" aria-hidden="true" id="add-the-github-secrets"></a><a href="#add-the-github-secrets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add the Github Secrets</h3>
+<p><img src="/img/docs/deploy-from-github/create-github-secrets.png" alt="Add the Github Secrets" title="Add your Github Secrets"></p>
+<hr />
+<p><img src="/img/docs/deploy-from-github/adding-a-secret.png" alt="Creating a secret" title="Creating a secret"></p>
+<p><em>Repeat the process for your APP_TOKEN and CAPROVER_SERVER secrets.</em></p>
+<p>NOTE: CapRover server must be in the format of &quot;<a href="https://captain.apps.your-domain.com">https://captain.apps.your-domain.com</a>&quot;. You can set CAPROVER_SERVER as a Global Secret for all your private and/or public projects.</p>
+<hr />
+<h3><a class="anchor" aria-hidden="true" id="add-files-to-project"></a><a href="#add-files-to-project" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add files to project</h3>
+<p>You will need at minimum, two files to deploy to CapRover using this method.</p>
+<p>The first file will be your <code>captain-definition</code> file used by CapRover when deploying your app. The other file is a workflow yaml file that Github Actions will use to process your project prior to deployment.</p>
+<p>Contents of our new Workflow file to be saved at <code>.github/workflows/deploy.yml</code>:</p>
+<pre><code class="hljs"><span class="hljs-attribute">name</span>: Build &amp; Deploy
+
+<span class="yaml"><span class="hljs-attr">on:</span>
+  <span class="hljs-attr">push:</span>
+    <span class="hljs-attr">branches:</span> <span class="hljs-string">[</span> <span class="hljs-string">"main"</span> <span class="hljs-string">]</span>
+
+  <span class="hljs-attr">pull_request:</span>
+    <span class="hljs-attr">branches:</span> <span class="hljs-string">[</span> <span class="hljs-string">"main"</span> <span class="hljs-string">]</span>
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">build-and-deploy:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+
+    <span class="hljs-attr">strategy:</span>
+      <span class="hljs-attr">matrix:</span>
+        <span class="hljs-attr">node-version:</span> <span class="hljs-string">[18.x]</span>
+
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Check</span> <span class="hljs-string">out</span> <span class="hljs-string">repository</span>
+        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Use</span> <span class="hljs-string">Node.js</span> <span class="hljs-string">${{</span> <span class="hljs-string">matrix.node-version</span> <span class="hljs-string">}}</span>
+        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-node@v3</span>
+        <span class="hljs-attr">with:</span>
+          <span class="hljs-attr">node-version:</span> <span class="hljs-string">${{</span> <span class="hljs-string">matrix.node-version</span> <span class="hljs-string">}}</span>
+          <span class="hljs-attr">cache:</span> <span class="hljs-string">"npm"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">ci</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">run</span> <span class="hljs-string">build</span> <span class="hljs-string">--if-present</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">run</span> <span class="hljs-string">test</span> <span class="hljs-string">--if-present</span>
+
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">a7ul/tar-action@v1.1.0</span>
+        <span class="hljs-attr">with:</span>
+          <span class="hljs-attr">command:</span> <span class="hljs-string">c</span>
+          <span class="hljs-attr">cwd:</span> <span class="hljs-string">"./"</span>
+          <span class="hljs-attr">files:</span> <span class="hljs-string">|
+            backend/
+            frontend/dist/
+            captain-definition
+</span>          <span class="hljs-attr">outPath:</span> <span class="hljs-string">deploy.tar</span>
+
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">App</span> <span class="hljs-string">to</span> <span class="hljs-string">CapRover</span>
+        <span class="hljs-attr">uses:</span> <span class="hljs-string">caprover/deploy-from-github@v1.0.1</span>
+        <span class="hljs-attr">with:</span>
+          <span class="hljs-attr">server:</span> <span class="hljs-string">'$<span class="hljs-template-variable">{{ secrets.CAPROVER_SERVER }}</span>'</span>
+          <span class="hljs-attr">app:</span> <span class="hljs-string">'$<span class="hljs-template-variable">{{ secrets.APP_NAME }}</span>'</span>
+          <span class="hljs-attr">token:</span> <span class="hljs-string">'$<span class="hljs-template-variable">{{ secrets.APP_TOKEN }}</span>'</span>
+</span></code></pre>
+<p>A quick breakdown of what you are seeing above:</p>
+<p>The first step is to check out and build the Vue 3 frontend part of the app using NPM. The output of the build will be located in frontend/dist/. If present, the app would have also been tested prior to the second step.</p>
+<p>The second step copies the <code>backend/</code>, <code>frontend/dist/</code> directories and the <code>captain-definition</code> file into a deploy.tar file.</p>
+<p>The last step will send the tarball file to CapRover so that CapRover can begin to deploy your app.</p>
+<h3><a class="anchor" aria-hidden="true" id="commit-changes-to-your-code-to-deploy"></a><a href="#commit-changes-to-your-code-to-deploy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commit changes to your code to deploy!</h3>
+<p>When you commit files to your project's repo on the &quot;main&quot; branch, Github Actions will kick off the processing of your Workflow file and upon completion, you'll see your app deployed to Caprover within just a few seconds! Any errors seen by Github will automatically fire an email letting you know. No emails means a successful deployment!</p>
+<hr />
+<h3><a class="anchor" aria-hidden="true" id="alternative-method-more-efficient"></a><a href="#alternative-method-more-efficient" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alternative method (more efficient)</h3>
+<p>Alternatively, you can even build the Docker image on Github and just deploy the built artifact to your CapRover instance. This will help as it does not consume RAM and CPU from your CapRover instance to build your image.</p>
+<p>In order to achieve this we will need to take the following steps to build the Docker image using GitHub Actions, store it using GitHub Packages, and then deploy it to CapRover.</p>
+<h4><a class="anchor" aria-hidden="true" id="create-a-github-personal-access-token"></a><a href="#create-a-github-personal-access-token" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a GitHub Personal Access Token</h4>
+<p>You will need to create a GitHub Personal Access Token with <strong>write permission for packages</strong>.</p>
+<p>GitHub has a great guide on creating a personal access token if you have not before. Here is the link: <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token</a></p>
+<h4><a class="anchor" aria-hidden="true" id="create-a-new-app-1"></a><a href="#create-a-new-app-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a New App</h4>
+<p>If you do not have an app already on CapRover, create one using the instructions <a href="#create-a-new-app">here</a></p>
+<p>If you do already have an app on CapRover you can skip this step.</p>
+<h4><a class="anchor" aria-hidden="true" id="enable-app-token-1"></a><a href="#enable-app-token-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enable App Token</h4>
+<p>If you do not already have an app token for your app, create one using the instructions <a href="#enable-app-token">here</a></p>
+<p>If you do have an app token, keep it handy as we will need it in the next step.</p>
+<h4><a class="anchor" aria-hidden="true" id="add-the-github-secrets-1"></a><a href="#add-the-github-secrets-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add The GitHub Secrets</h4>
+<p>You will need to add the following information into GitHub Secrets:</p>
+<ul>
+<li>App Name: Name of the app in CapRover</li>
+<li>App Token: App token we got in the previous step</li>
+<li>CapRover Server URL: URL of your CapRover Server</li>
+<li>GitHub Token: GitHub Personal Access Token you created in previous step</li>
+</ul>
+<p>You can add GitHub Secrets using the instructions <a href="#add-the-github-secrets">here</a></p>
+<h4><a class="anchor" aria-hidden="true" id="add-a-private-docker-registry-to-caprover"></a><a href="#add-a-private-docker-registry-to-caprover" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add a private Docker Registry to CapRover</h4>
+<p>In order to pull the image from GitHub Packages, you will need to add a private Docker registry to CapRover. If you haven't done this before, you can do this by following the instructions <a href="https://caprover.com/docs/app-scaling-and-cluster.html#add-a-private-docker-registry">here</a></p>
+<p>Use these values:</p>
+<ul>
+<li>Username: <code>&lt;your github username&gt;</code></li>
+<li>Password: <code>&lt;your github personal access token&gt;</code></li>
+<li>Domain: <code>ghcr.io</code> (no www, no http)</li>
+<li>Image Prefix: <code>&lt;your github username or your org username&gt;</code> (if you're pulling images from an org different than your username)</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="create-the-github-action"></a><a href="#create-the-github-action" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create the GitHub Action</h4>
+<p>GitHub Actions is the CI/CD pipeline built into GitHub. If you are unfamiliar with it, it would be beneficial to learn the basics by reviewing GitHub's Understanding GitHub Actions Docs: <a href="https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions">https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions</a></p>
+<p>Here is an example GitHub Action that builds a docker container on each push to a pull request and deploys it to the CapRover server (good example for a development environment set up)</p>
+<pre><code class="hljs"><span class="hljs-attribute">name</span>: Build and Deploy Docker Image
+
+<span class="http"><span class="hljs-attribute">on</span>: [pull_request]
+
+<span class="yaml"><span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">build_and_deploy:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+
+    <span class="hljs-attr">steps:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Check</span> <span class="hljs-string">out</span> <span class="hljs-string">repository</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Set</span> <span class="hljs-string">up</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Buildx</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">docker/setup-buildx-action@v3</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Login</span> <span class="hljs-string">to</span> <span class="hljs-string">Container</span> <span class="hljs-string">Registry</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">docker/login-action@v3</span>
+      <span class="hljs-attr">with:</span>
+            <span class="hljs-attr">registry:</span> <span class="hljs-string">ghcr.io</span>
+            <span class="hljs-attr">username:</span> <span class="hljs-string">${{</span> <span class="hljs-string">github.repository_owner</span> <span class="hljs-string">}}</span>
+            <span class="hljs-attr">password:</span> <span class="hljs-string">${{</span> <span class="hljs-string">secrets.GITHUB_TOKEN</span> <span class="hljs-string">}}</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Preset</span> <span class="hljs-string">Image</span> <span class="hljs-string">Name</span>
+      <span class="hljs-attr">run:</span> <span class="hljs-string">echo</span> <span class="hljs-string">"IMAGE_URL=$(echo ghcr.io/$<span class="hljs-template-variable">{{ github.repository_owner }}</span>/$<span class="hljs-template-variable">{{ github.event.repository.name }}</span>:$(echo $<span class="hljs-template-variable">{{ github.sha }}</span> | cut -c1-7) | tr '[:upper:]' '[:lower:]')"</span> <span class="hljs-string">&gt;&gt;</span> <span class="hljs-string">$GITHUB_ENV</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">and</span> <span class="hljs-string">push</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Image</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">docker/build-push-action@v5</span>
+      <span class="hljs-attr">with:</span>
+        <span class="hljs-attr">context:</span> <span class="hljs-string">.</span>
+        <span class="hljs-attr">file:</span> <span class="hljs-string">./Dockerfile</span>
+        <span class="hljs-attr">push:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">tags:</span> <span class="hljs-string">${{</span> <span class="hljs-string">env.IMAGE_URL</span> <span class="hljs-string">}}</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">Image</span> <span class="hljs-string">to</span> <span class="hljs-string">CapRrover</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">caprover/deploy-from-github@v1.1.2</span>
+      <span class="hljs-attr">with:</span>
+        <span class="hljs-attr">server:</span> <span class="hljs-string">"$<span class="hljs-template-variable">{{ secrets.CAPROVER_SERVER }}</span>"</span>
+        <span class="hljs-attr">app:</span> <span class="hljs-string">"$<span class="hljs-template-variable">{{ secrets.APP_NAME }}</span>"</span>
+        <span class="hljs-attr">token:</span> <span class="hljs-string">"$<span class="hljs-template-variable">{{ secrets.APP_TOKEN }}</span>"</span>
+        <span class="hljs-attr">image:</span> <span class="hljs-string">${{</span> <span class="hljs-string">env.IMAGE_URL</span> <span class="hljs-string">}}</span>
+</span></span></code></pre>
+<p>Here is a quick explanation of what each step in the action does:</p>
+<ol>
+<li><strong>Check out repository</strong>: This step uses the action <code>actions/checkout@v2</code>, which is a predefined GitHub Action that allows the workflow to access the contents of the repository. The checkout action will clone the repository onto the runner (the virtual environment that GitHub Actions uses to execute workflows), so all the subsequent steps in the workflow can operate on it.</li>
+<li><strong>Set up Docker Buildx</strong>: This step uses the action <code>docker/setup-buildx-action@v1</code>, which is a Docker action to set up Docker Buildx. This allows for more advanced container building capabilities.</li>
+<li><strong>Login to Container Registry</strong>: This step uses <code>docker/login-action@v2</code> to log into the GitHub Container Registry (ghcr.io) using the repository owner's username and a GitHub Token (GITHUB_TOKEN). This token must have been previously stored in the repository's secrets.</li>
+<li><strong>Preset Image Name</strong>: This is a shell command that constructs the URL for the Docker image. It uses the GitHub repository owner, the repository name, and the SHA of the current commit (truncated to the first 7 characters) to construct a URL, converting all upper-case characters to lower-case, and then writes this URL into the <code>GITHUB_ENV</code> so it can be used by subsequent steps as an environment variable.</li>
+<li><strong>Build and push Docker Image</strong>: This step uses <code>docker/build-push-action@v4</code> to build the Docker image using the Dockerfile in the repository and pushes it to the GitHub Container Registry at the URL that was set in the previous step. The <code>context: .</code> setting indicates that the build context is the current directory (i.e., the root of the repository).</li>
+<li><strong>Deploy Image to CapRover</strong>: This step uses <code>caprover/deploy-from-github@v1.1.2</code> action to deploy the Docker image that was just built and pushed to CapRover. The details of the CapRover server, the application name, and an access token are provided from the repository's secrets. The Docker image URL is taken from the environment variable set earlier.</li>
+</ol>
+<h4><a class="anchor" aria-hidden="true" id="deploy"></a><a href="#deploy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy!</h4>
+<p>After these changes are implemented commit + push them to your repo and watch the magic happen 🪄</p>
+<h3><a class="anchor" aria-hidden="true" id="need-help"></a><a href="#need-help" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Need help?</h3>
+<p>Commercial and community support is available. Please visit the <a href="/docs/support.html" title="Help and Support">Help and Support</a> page for details.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ci-cd-integration.html"><span class="arrow-prev">← </span><span>Intro</span></a><a class="docs-next button" href="/docs/ci-cd-integration/deploy-from-gitlab.html"><span class="function-name-prevnext">Deploy from GitLab</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#deploying-directly-from-github">Deploying directly from Github</a><ul class="toc-headings"><li><a href="#create-a-new-app">Create a new App</a></li><li><a href="#enable-app-token">Enable App Token</a></li><li><a href="#add-the-github-secrets">Add the Github Secrets</a></li><li><a href="#add-files-to-project">Add files to project</a></li><li><a href="#commit-changes-to-your-code-to-deploy">Commit changes to your code to deploy!</a></li><li><a href="#alternative-method-more-efficient">Alternative method (more efficient)</a></li><li><a href="#need-help">Need help?</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.png" alt="CapRover" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/get-started.html">Getting Started</a></div><div><h5>Community</h5><a href="https://twitter.com/cap_rover" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_blank" rel="noreferrer noopener">Slack Group</a></div><div><h5>More</h5><a href="https://github.com/caprover/caprover" target="_blank">GitHub</a><a class="github-button" href="https://github.com/caprover/caprover" data-icon="octicon-star" data-count-href="/caprover/caprover/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 githubsaturn</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '81e546c2e0c9258e48c359465bde6909',
+                indexName: 'caprover',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

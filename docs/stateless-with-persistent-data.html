@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Stateless with Persistent data · CapRover</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="**Before you start here, please read:**"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Stateless with Persistent data · CapRover"/><meta property="og:type" content="website"/><meta property="og:url" content="https://caprover.com/index.html"/><meta property="og:description" content="**Before you start here, please read:**"/><meta property="og:image" content="https://caprover.com/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://caprover.com/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-132762521-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="CapRover"/><h2 class="headerTitleWithLogo">CapRover</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/get-started.html" target="_self">Docs</a></li><li class=""><a href="https://github.com/caprover/caprover" target="_self">GitHub</a></li><li class=""><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_self">Slack Group</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recipes and Tips</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/get-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/cdd-migration.html">CaptainDuckDuck Upgrade</a></li><li class="navListItem"><a class="navItem" href="/docs/captain-definition-file.html">Captain Definition File</a></li><li class="navListItem"><a class="navItem" href="/docs/deployment-methods.html">Deployment Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/app-configuration.html">App Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/persistent-apps.html">Persistent Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/cli-commands.html">CLI Commands</a></li><li class="navListItem"><a class="navItem" href="/docs/one-click-apps.html">One-Click Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/complete-webapp-tutorial.html">Complete Webapp Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Do More</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/resource-monitoring.html">Resource Monitoring</a></li><li class="navListItem"><a class="navItem" href="/docs/nginx-customization.html">NGINX Config</a></li><li class="navListItem"><a class="navItem" href="/docs/service-update-override.html">Service Update Override</a></li><li class="navListItem"><a class="navItem" href="/docs/app-scaling-and-cluster.html">App Scaling &amp; Cluster</a></li><li class="navListItem"><a class="navItem" href="/docs/pre-deploy-script.html">Pre-deploy Script</a></li><li class="navListItem"><a class="navItem" href="/docs/play-with-docker.html">Play with CapRover</a></li><li class="navListItem"><a class="navItem" href="/docs/run-locally.html">Run Locally</a></li><li class="navListItem"><a class="navItem" href="/docs/certbot-config.html">Change ACME Server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Recipes and Tips</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sample-apps.html">Sample Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/database-connection.html">Database Connection</a></li><li class="navListItem"><a class="navItem" href="/docs/best-practices.html">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/backup-and-restore.html">Backup &amp; Restore</a></li><li class="navListItem"><a class="navItem" href="/docs/recipe-deploy-create-react-app.html">Static React App</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/stateless-with-persistent-data.html">Stateless with Persistent data</a></li><li class="navListItem"><a class="navItem" href="/docs/docker-compose.html">Docker Compose</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">CI/CD Integration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration.html">Intro</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-github.html">Deploy from GitHub</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-gitlab.html">Deploy from GitLab</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Server Purchase</h4><ul><li class="navListItem"><a class="navItem" href="/docs/server-purchase/digitalocean.html">DigitalOcean</a></li><li class="navListItem"><a class="navItem" href="/docs/server-purchase/openstack.html">OpenStack</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/disk-cleanup.html">Disk Clean-Up</a></li><li class="navListItem"><a class="navItem" href="/docs/firewall.html">Firewall &amp; Port Forwarding</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting.html">Troubleshooting</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting-pro.html">Troubleshooting (Pro)</a></li><li class="navListItem"><a class="navItem" href="/docs/support.html">Help and Support</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/caprover/caprover-website/edit/master/docs/stateless-with-persistent-data.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Stateless with Persistent data</h1></header><article><div><span><p><strong>Before you start here, please read:</strong></p>
+<ul>
+<li><a href="/docs/persistent-apps.html">Persistent Apps</a></li>
+</ul>
+<p>This documentation will help you set-up a stateless app with persistant data. For example a website hosted with &quot;<strong>php:7.4-apache</strong>&quot; serving the &quot;<strong>uploads</strong>&quot; ( <code>/var/www/html/uploads</code> ) folder or any other folder you define from for example AWS or Wasabi S3, or any of the other <a href="https://rclone.org/overview/">storage systems rclone supports</a>. This makes it possible to have an otherwise pinned to node X app, to fail-over to a other node within the same Docker swarm.</p>
+<p>There are multiple docker volume plugins to allow this set-up, I <a href="https://caprover.slack.com/archives/DLR2Q4TC1">@Daniël</a> and my colleague Floris started out with &quot;<strong>rexray/s3fs</strong>&quot; but switched over to &quot;<strong>sapk/plugin-rclone</strong>&quot; as it was more stable, and handled fail-overs from node X to Y better.</p>
+<hr>
+<p><strong>Important note:</strong> The below steps are for intermediate and advanced (<em>linux</em>) users.</p>
+<hr>
+<h4><a class="anchor" aria-hidden="true" id="placeholder-variables"></a><a href="#placeholder-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Placeholder variables</h4>
+<ul>
+<li><code>$volumename</code> can for example be <code>captain--yourappname-rclone</code></li>
+<li><code>$remotename</code> can for example be <code>captain--yourappname</code></li>
+<li><code>$remotename/path</code> can for example be <code>captain--yourappname/_data</code></li>
+<li><code>$rcloneremotename</code> can for example be <code>wasabi-s3</code></li>
+</ul>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="1-preparing-rclone"></a><a href="#1-preparing-rclone" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1) Preparing rclone</h3>
+<p>You start by creating the <code>rclone.conf</code> file, this can be done on any (<em>local</em>) machine that has rclone installed.
+For the ease of this documentation we'll assume you have <a href="https://rclone.org/install/">rclone installed</a> on the primary node of your Docker swarm.</p>
+<p>From this primary node, run &quot;<strong><a href="https://rclone.org/commands/rclone_config/">rclone config</a></strong>&quot; to create the config file, when done run <code>rclone config file</code> to know where the config file is stored.
+When you're using 'root' as you're user it will be stored in <code>/root/.config/rclone/rclone.conf</code> which we will use as a reference for the further writing of this guide.</p>
+<p>The <code>rclone.conf</code> file will look like something like this:</p>
+<pre><code class="hljs"><span class="hljs-section">[$rcloneremotename]</span>
+<span class="hljs-attr">type</span> = s3
+<span class="hljs-attr">provider</span> = Wasabi
+<span class="hljs-attr">access_key_id</span> = YourAccessKey
+<span class="hljs-attr">secret_access_key</span> = YourSecretAccessKey
+<span class="hljs-attr">region</span> = eu-central-<span class="hljs-number">1</span>
+<span class="hljs-attr">endpoint</span> = s3.eu-central-<span class="hljs-number">1</span>.wasabisys.com
+<span class="hljs-attr">env_auth</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">upload_cutoff</span> = <span class="hljs-number">25</span>M
+<span class="hljs-attr">chunk_size</span> = <span class="hljs-number">5</span>M
+<span class="hljs-attr">disable_checksum</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">upload_concurrency</span> = <span class="hljs-number">3</span>
+</code></pre>
+<p>Make sure each swarm node has the <code>/root/.config/rclone/rclone.conf</code> file, with the exact same content, double check by using <code>md5sum /root/.config/rclone/rclone.conf</code> and compare the checksums.
+<em>Or at least make sure, if there are multiple configs avaiable, that the one you'll be using is the same</em></p>
+<h3><a class="anchor" aria-hidden="true" id="2-prepare-your-storage-system"></a><a href="#2-prepare-your-storage-system" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2) Prepare your storage system</h3>
+<p>Make sure that your S3 bucket (or the folder you'll be using on the storage system you've configured via <code>rclone config</code>) actually exists and that the name of the bucket / folder matches the name of <code>$remotename</code></p>
+<h3><a class="anchor" aria-hidden="true" id="3-preparing-the-docker-rclone-plugin"></a><a href="#3-preparing-the-docker-rclone-plugin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3) Preparing the docker rclone plugin</h3>
+<p>On each swarm node install the docker volume plugin with the help of this command <code>docker plugin install sapk/plugin-rclone</code></p>
+<p>Then execute this command on each node, the below one was specially for &quot;<strong>php:N.N-apache</strong>&quot; containers ( <em>for example php:7.4-apache</em> )</p>
+<pre><code class="hljs"><span class="hljs-comment">docker</span> <span class="hljs-comment">volume</span> <span class="hljs-comment">create</span> --<span class="hljs-comment">driver</span> <span class="hljs-comment">sapk/plugin</span><span class="hljs-literal">-</span><span class="hljs-comment">rclone</span> --<span class="hljs-comment">opt</span> <span class="hljs-comment">config="$(base64</span> <span class="hljs-comment">/root/</span><span class="hljs-string">.</span><span class="hljs-comment">config/rclone/rclone</span><span class="hljs-string">.</span><span class="hljs-comment">conf)"</span> --<span class="hljs-comment">opt</span> <span class="hljs-comment">args="</span>--<span class="hljs-comment">uid</span> <span class="hljs-comment">33</span> --<span class="hljs-comment">gid</span> <span class="hljs-comment">33</span> --<span class="hljs-comment">allow</span><span class="hljs-literal">-</span><span class="hljs-comment">root</span> --<span class="hljs-comment">allow</span><span class="hljs-literal">-</span><span class="hljs-comment">other"</span> --<span class="hljs-comment">opt</span> <span class="hljs-comment">remote=$rcloneremotename:$remotename/path</span> --<span class="hljs-comment">name</span> <span class="hljs-comment">$volumename</span>
+</code></pre>
+<p>If you have an S3 bucket, in which files get uploaded via either AWS / Wasabi web interface, or anything else such as SFTPGo mounted to the S3 bucket, then you'll need to tell rclone to refresh it's dir cache:</p>
+<pre><code class="hljs"><span class="hljs-comment">docker</span> <span class="hljs-comment">volume</span> <span class="hljs-comment">create</span> --<span class="hljs-comment">driver</span> <span class="hljs-comment">sapk/plugin</span><span class="hljs-literal">-</span><span class="hljs-comment">rclone</span> --<span class="hljs-comment">opt</span> <span class="hljs-comment">config="$(base64</span> <span class="hljs-comment">/root/</span><span class="hljs-string">.</span><span class="hljs-comment">config/rclone/rclone</span><span class="hljs-string">.</span><span class="hljs-comment">conf)"</span> --<span class="hljs-comment">opt</span> <span class="hljs-comment">args="</span>--<span class="hljs-comment">uid</span> <span class="hljs-comment">33</span> --<span class="hljs-comment">gid</span> <span class="hljs-comment">33</span> --<span class="hljs-comment">allow</span><span class="hljs-literal">-</span><span class="hljs-comment">root</span> --<span class="hljs-comment">allow</span><span class="hljs-literal">-</span><span class="hljs-comment">other</span> --<span class="hljs-comment">dir</span><span class="hljs-literal">-</span><span class="hljs-comment">cache</span><span class="hljs-literal">-</span><span class="hljs-comment">time</span> <span class="hljs-comment">5s"</span> --<span class="hljs-comment">opt</span> <span class="hljs-comment">remote=$rcloneremotename:$remotename/path</span> --<span class="hljs-comment">name</span> <span class="hljs-comment">$volumename</span>
+</code></pre>
+<p>What happens is that &quot;<strong><a href="https://rclone.org/commands/rclone_mount/">rclone mount</a></strong>&quot; mounts the volume on the Docker swarm node(s), though be aware that other flags/parameters can benefit or negatively impact your app experience so test them throughout.</p>
+<p><strong>The above UID and GID are matched to Apache2 and can differentiate with other apps.</strong></p>
+<h3><a class="anchor" aria-hidden="true" id="4-preparing-the-app"></a><a href="#4-preparing-the-app" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4) Preparing the app</h3>
+<p>Then deploy a blank app with &quot;<strong>Has Persistent Data</strong>&quot; unchecked, and set-up it's parameters of you're liking under the &quot;<strong>HTTP Settings</strong>&quot;, &quot;<strong>App Configs</strong>&quot; &amp; &quot;<strong>Deployment</strong>&quot; tabs.</p>
+<p>In the &quot;<strong>App Configs</strong>&quot; in the &quot;<strong>Service Update Override</strong>&quot; section, place the following.
+Be aware that <code>/var/www/html/uploads</code> is a path / folder you should define yourself, but is used for referene here.</p>
+<p>Set the &quot;<strong>ReadOnly</strong>&quot; value to either <code>true</code> or <code>false</code> based on what is appropirate to you're app.
+If you're php app allows it's users to upload files, set it to <code>false</code>.</p>
+<pre><code class="hljs"><span class="hljs-symbol">TaskTemplate:</span>
+<span class="hljs-symbol">  ContainerSpec:</span>
+<span class="hljs-symbol">    Mounts:</span> [
+      {
+        <span class="hljs-string">"Type"</span>: <span class="hljs-string">"volume"</span>,
+        <span class="hljs-string">"Source"</span>: <span class="hljs-string">"$volumename"</span>,
+        <span class="hljs-string">"Target"</span>: <span class="hljs-string">"/var/www/html/uploads"</span>,
+        <span class="hljs-string">"ReadOnly"</span>: false
+      }
+    ]
+</code></pre>
+<p>This way the application running on &quot;<em>php:7.4-apache</em>&quot; can move from node1 to any other nodes that are properly configured.</p>
+<p>If you have a question, or run into issues, please get in contact via Slack in the General channel and if needed mention me <a href="https://caprover.slack.com/archives/DLR2Q4TC1">@Daniël</a> and I or anyone else will try to help you out.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/recipe-deploy-create-react-app.html"><span class="arrow-prev">← </span><span>Static React App</span></a><a class="docs-next button" href="/docs/docker-compose.html"><span>Docker Compose</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.png" alt="CapRover" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/get-started.html">Getting Started</a></div><div><h5>Community</h5><a href="https://twitter.com/cap_rover" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_blank" rel="noreferrer noopener">Slack Group</a></div><div><h5>More</h5><a href="https://github.com/caprover/caprover" target="_blank">GitHub</a><a class="github-button" href="https://github.com/caprover/caprover" data-icon="octicon-star" data-count-href="/caprover/caprover/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 githubsaturn</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '81e546c2e0c9258e48c359465bde6909',
+                indexName: 'caprover',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Troubleshooting · CapRover</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;br/&gt;"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Troubleshooting · CapRover"/><meta property="og:type" content="website"/><meta property="og:url" content="https://caprover.com/index.html"/><meta property="og:description" content="&lt;br/&gt;"/><meta property="og:image" content="https://caprover.com/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://caprover.com/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-132762521-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.png" alt="CapRover"/><h2 class="headerTitleWithLogo">CapRover</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/get-started.html" target="_self">Docs</a></li><li class=""><a href="https://github.com/caprover/caprover" target="_self">GitHub</a></li><li class=""><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_self">Slack Group</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Help</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/get-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/cdd-migration.html">CaptainDuckDuck Upgrade</a></li><li class="navListItem"><a class="navItem" href="/docs/captain-definition-file.html">Captain Definition File</a></li><li class="navListItem"><a class="navItem" href="/docs/deployment-methods.html">Deployment Methods</a></li><li class="navListItem"><a class="navItem" href="/docs/app-configuration.html">App Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/persistent-apps.html">Persistent Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/cli-commands.html">CLI Commands</a></li><li class="navListItem"><a class="navItem" href="/docs/one-click-apps.html">One-Click Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/complete-webapp-tutorial.html">Complete Webapp Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Do More</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/resource-monitoring.html">Resource Monitoring</a></li><li class="navListItem"><a class="navItem" href="/docs/nginx-customization.html">NGINX Config</a></li><li class="navListItem"><a class="navItem" href="/docs/service-update-override.html">Service Update Override</a></li><li class="navListItem"><a class="navItem" href="/docs/app-scaling-and-cluster.html">App Scaling &amp; Cluster</a></li><li class="navListItem"><a class="navItem" href="/docs/pre-deploy-script.html">Pre-deploy Script</a></li><li class="navListItem"><a class="navItem" href="/docs/play-with-docker.html">Play with CapRover</a></li><li class="navListItem"><a class="navItem" href="/docs/run-locally.html">Run Locally</a></li><li class="navListItem"><a class="navItem" href="/docs/certbot-config.html">Change ACME Server</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Recipes and Tips</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/sample-apps.html">Sample Apps</a></li><li class="navListItem"><a class="navItem" href="/docs/database-connection.html">Database Connection</a></li><li class="navListItem"><a class="navItem" href="/docs/best-practices.html">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/backup-and-restore.html">Backup &amp; Restore</a></li><li class="navListItem"><a class="navItem" href="/docs/recipe-deploy-create-react-app.html">Static React App</a></li><li class="navListItem"><a class="navItem" href="/docs/stateless-with-persistent-data.html">Stateless with Persistent data</a></li><li class="navListItem"><a class="navItem" href="/docs/docker-compose.html">Docker Compose</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">CI/CD Integration</h4><ul><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration.html">Intro</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-github.html">Deploy from GitHub</a></li><li class="navListItem"><a class="navItem" href="/docs/ci-cd-integration/deploy-from-gitlab.html">Deploy from GitLab</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Server Purchase</h4><ul><li class="navListItem"><a class="navItem" href="/docs/server-purchase/digitalocean.html">DigitalOcean</a></li><li class="navListItem"><a class="navItem" href="/docs/server-purchase/openstack.html">OpenStack</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/disk-cleanup.html">Disk Clean-Up</a></li><li class="navListItem"><a class="navItem" href="/docs/firewall.html">Firewall &amp; Port Forwarding</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/troubleshooting.html">Troubleshooting</a></li><li class="navListItem"><a class="navItem" href="/docs/troubleshooting-pro.html">Troubleshooting (Pro)</a></li><li class="navListItem"><a class="navItem" href="/docs/support.html">Help and Support</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/caprover/caprover-website/edit/master/docs/troubleshooting.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Troubleshooting</h1></header><article><div><span><p><br/></p>
+<p>This section covers most frequent issues that users may encounter.</p>
+<h2><a class="anchor" aria-hidden="true" id="cannot-connect-ip_server3000"></a><a href="#cannot-connect-ip_server3000" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cannot connect &lt;ip_server&gt;:3000?</h2>
+<p>There is a whole set of reasons for this.</p>
+<h4><a class="anchor" aria-hidden="true" id="first"></a><a href="#first" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>First)</h4>
+<p>You need to make sure that CapRover is running on your server. To check this, ssh to your server and run</p>
+<pre><code class="hljs css language-bash">docker service ps captain-captain --no-trunc
+</code></pre>
+<p>You might see Captain is getting restarted constantly due to an error. Fix the issue and retry. For example, see <a href="https://github.com/caprover/caprover/issues/14#issuecomment-345447689">error creating vxlan interface</a>, or <a href="https://github.com/caprover/caprover/issues/352">error while creating mount source path</a>. Linode, for example, has many problems, such as <a href="https://github.com/docker/machine/issues/2753#issuecomment-171822791">subnet sandbox join failed</a> and <a href="https://github.com/docker/machine/issues/2753#issuecomment-188353704">vxlan interface</a>. Search <a href="https://github.com/caprover/caprover/issues">CapRover Github issues</a> for your problem and if you can't find a solution, create a new issue on Github.</p>
+<h4><a class="anchor" aria-hidden="true" id="second"></a><a href="#second" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Second)</h4>
+<p>If you don't see any errors when your ran <code>docker service ps captain-captain --no-trunc</code>, then try</p>
+<pre><code class="hljs css language-bash">docker service logs captain-captain --since 60m
+</code></pre>
+<p>You might see that CapRover is getting restarted constantly due to an error. Search <a href="https://github.com/caprover/caprover/issues">CapRover Github issues</a> for your problem and if you can't find a solution, create a new issue on Github.</p>
+<h4><a class="anchor" aria-hidden="true" id="third"></a><a href="#third" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Third)</h4>
+<p>If both &quot;First&quot; and &quot;Second&quot; debugging steps explained above worked fine and there is no error seen in the logs, run this command on your server:</p>
+<pre><code class="hljs css language-bash"> curl localhost:3000 -v
+</code></pre>
+<p>If successful, it's probably your firewall that's blocking the connection. See <a href="/docs/firewall.html">Firewall Docs</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="successful-deploy-but-502-bad-gateway-error"></a><a href="#successful-deploy-but-502-bad-gateway-error" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Successful Deploy but 502 bad gateway error!</h2>
+<p>This applies to you if:</p>
+<ul>
+<li>You have been able to setup your server and access it via <code>captain.rootdomain.example.com</code>.</li>
+<li>You have been able to deploy one of the samples apps (see <a href="https://github.com/caprover/caprover/tree/master/captain-sample-apps">here</a>) successfully and it worked.</li>
+<li>You tried to deploy your own application and it deployed successfully, but when you try to access it via <code>yourappname.root.example.com</code> you get a 502 error.</li>
+</ul>
+<p>If all above points are correct, this is how to troubleshoot:</p>
+<ul>
+<li>SSH to your server and view your application logs. Make sure it hasn't crashed and it's running. To view logs, please see the section at the end of this page &quot;<a href="#how-to-view-my-applications-log">How to view my application's log</a>&quot;</li>
+<li>If you application logs show that your application is running, the most common case is that your application is binding to a custom port, not port 80. For example, CouchDB runs at port 5984. In this case, go to app's settings on CapRover, go to HTTP Settings, then select 5984 as the &quot;Container Port&quot;.</li>
+<li>If your app defines the binding IP address as 127.0.0.1, change it to <code>0.0.0.0</code>, see <a href="https://github.com/caprover/caprover/issues/76#issuecomment-481053496">this issue</a> for more details.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="domain-verification-failed---error-1107"></a><a href="#domain-verification-failed---error-1107" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Domain Verification Failed - Error 1107!</h2>
+<p>This happens when CapRover cannot verify that yourcustomdomain.com points to the IP address of CapRover. This can be caused by several factors:</p>
+<ul>
+<li>DNS changes take up to 24 hrs to propagate, specially if your server had cached them before. So wait for 24hrs and retry again. If it doesn't work, proceed to the next step:</li>
+<li>To confirm, go to <a href="https://mxtoolbox.com/DNSLookup.aspx">https://mxtoolbox.com/DNSLookup.aspx</a> and enter <code>yourcustomdomain.com</code>. Make sure it points to the server IP. If you're using a proxy service like CloudFlare, this may cause a problem. Disable their proxy in your DNS on CloudFlare and have A record directly point to the IP address of your CapRover server.</li>
+<li>If you tested all above, and when you visit <code>something.domain.com</code> you see the CapRover page, then you can say your domain is working fine, but CapRover is unable to verify it because the loopback test doesn't work. In this case, you can choose to skip domain verification done by CapRover:</li>
+</ul>
+<pre><code class="hljs">echo  <span class="hljs-string">"{\"skipVerifyingDomains\":\"true\"}"</span> &gt;  /captain/data/config-override.json
+docker<span class="hljs-built_in"> service </span>update captain-captain --force
+</code></pre>
+<ul>
+<li>If none of the above works, please open an issue on Github.</li>
+<li><strong>AWS EC2 Users</strong> - Check to make sure the CIDR Block of your VPC is above 172.0.0.0/16 (NOT 0.0.0.0/16, which is common).</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="connection-timeouts"></a><a href="#connection-timeouts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Connection Timeouts</h2>
+<p>Sometimes when you have an inactive database connection pool, Docker drops the connection after some time. To fix, you can do either of these:</p>
+<ul>
+<li>Implement an automatic retry strategy</li>
+<li>Implement a automatic ping every few minutes to ensure that the connection doesn't become inactive</li>
+<li>Changing Keepalive config in your app (see <a href="https://github.com/caprover/caprover/issues/873#issuecomment-715328966">here</a> for an example on knex)</li>
+<li>Make changes to your Docker configs (more advanced)</li>
+</ul>
+<p>The <a href="https://github.com/moby/moby/issues/31208">root cause</a> is not related to CapRover, it's an underlying Docker issue.</p>
+<h2><a class="anchor" aria-hidden="true" id="something-bad-happened"></a><a href="#something-bad-happened" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Something bad happened</h2>
+<p>When you see this error in the UI, it means something &quot;unexpected&quot; went wrong such as connection lost, server crashing (due to out of memory), etc. The best way to see what's happening is to get the server logs:</p>
+<pre><code class="hljs">docker<span class="hljs-built_in"> service </span>logs captain-captain --since 5m --follow
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="how-to-view-my-applications-log"></a><a href="#how-to-view-my-applications-log" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to view my application's log?</h2>
+<p>Your application is deployed as a Docker service. For example, if your app name in captain is <code>my-app</code> you can view your logs by connecting to your server via SSH and run the following command:</p>
+<pre><code class="hljs">docker<span class="hljs-built_in"> service </span>logs srv-captain--my-app --since 60m --follow
+</code></pre>
+<p>Note that Docker service name is prefixed with <code>srv-captain--</code>. Also, you can replace 60m with 10m to view last 10 minutes.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-to-restart-my-application"></a><a href="#how-to-restart-my-application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to restart my application?</h2>
+<p>If your application is not behaving well, you can try force restarting it by going to the web dashboard and select your app, then click on &quot;Save Configuration &amp; Update&quot; button. It will forcefully restarts your application.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-to-run-shell-inside-my-application-inside-container"></a><a href="#how-to-run-shell-inside-my-application-inside-container" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to run shell inside my application (inside container)</h2>
+<p>Simply run the following command:</p>
+<pre><code class="hljs">docker exec -it <span class="hljs-constructor">$(<span class="hljs-params">docker</span> <span class="hljs-params">ps</span> --<span class="hljs-params">filter</span> <span class="hljs-params">name</span>=<span class="hljs-params">srv</span>-<span class="hljs-params">captain</span>--<span class="hljs-params">myappname</span> -<span class="hljs-params">q</span>)</span> /bin/sh
+</code></pre>
+<p>Of course, you need to replace <code>myappname</code> with your own app name.</p>
+<h2><a class="anchor" aria-hidden="true" id="ive-made-a-change-to-the-nginx-config-that-broke-the-admin-ui"></a><a href="#ive-made-a-change-to-the-nginx-config-that-broke-the-admin-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>I've made a change to the Nginx config that broke the admin UI!</h2>
+<p>In this case restart is not going to help. <a href="https://github.com/caprover/caprover/issues/412#issuecomment-484077130">Do this</a>:</p>
+<p>Run the nginx fixer to revert <strong>all nginx changes that you've manually made</strong>:</p>
+<pre><code class="hljs css language-bash">docker service scale captain-captain=0 &amp;&amp; \
+docker run -it --rm -v /captain:/captain  caprover/caprover /bin/sh -c <span class="hljs-string">"wget https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/clear-custom-nginx.js ; node clear-custom-nginx.js ;"</span> &amp;&amp; \
+docker service scale captain-captain=1 &amp;&amp; \
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"OKAY"</span>
+
+</code></pre>
+<p>Hopefully your problem should be resolved and you can be happy.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-to-restart-caprover"></a><a href="#how-to-restart-caprover" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to restart CapRover</h2>
+<p>If your CapRover is not behaving well, you can try force restarting CapRover using:</p>
+<pre><code class="hljs">docker<span class="hljs-built_in"> service </span>update captain-captain --force
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="how-to-use-the-edge-version"></a><a href="#how-to-use-the-edge-version" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to use the Edge version</h2>
+<p>Edge version gets automatically built with every push on master. If your version has a particular bug that is just fixed on master branch, you can temporarily update your CapRover to use the Edge version. Note that once you switch to edge, you won't receive updates. With the next release of CapRover, you have to manually switch back to CapRover. Note that this is an advance operations. Also, as a rule of thumb, once you switch to Edge, do not switch back to the regular version until a new version is released.</p>
+<p>To switch to edge</p>
+<pre><code class="hljs">docker pull caprover/caprover-edge:0.0.1
+docker<span class="hljs-built_in"> service </span>update captain-captain --image caprover/caprover-edge:0.0.1
+</code></pre>
+<p>To switch back to the main image</p>
+<pre><code class="hljs">docker<span class="hljs-built_in"> service </span>update captain-captain --image caprover/caprover:latest
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="customize-config-settings"></a><a href="#customize-config-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customize Config Settings</h2>
+<p>You can customize any constant defined in <a href="https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts">CaptainConstants</a> under configs by adding a JSON file at <code>/captain/data/config-override.json</code>. For example, to change <code>defaultMaxLogSize</code>, the content of <code>/captain/data/config-override.json</code> will be:</p>
+<pre><code class="hljs">{
+ <span class="hljs-attr">"defaultMaxLogSize"</span>:<span class="hljs-string">"128m"</span>
+}
+</code></pre>
+<p>After editing this file, <a href="https://caprover.com/docs/troubleshooting.html#how-to-restart-caprover">restart CapRover</a> (if the change affects CapRover, nginx or certbot) or turn NetData off and on again from the UI.</p>
+<h2><a class="anchor" aria-hidden="true" id="use-existing-swarm"></a><a href="#use-existing-swarm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use existing swarm</h2>
+<p>When you first install CapRover, it tries to automatically set up a swarm cluster for you. But in rare cases, you may already have a swarm cluster, and you want to use that cluster. In this case, you can simply just override it by setting <code>useExistingSwarm</code> to true. Run the following script before attempting to install CapRover.</p>
+<pre><code class="hljs">mkdir -p  /captain/<span class="hljs-keyword">data</span>
+echo  <span class="hljs-string">"{\"</span>useExistingSwarm\<span class="hljs-string">":\"</span><span class="hljs-literal">true</span>\<span class="hljs-string">"}"</span> &gt;  /captain/<span class="hljs-keyword">data</span>/config-override.json
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="aws-setup"></a><a href="#aws-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AWS setup</h2>
+<p>AWS has its own customization with regards to port handling and etc. It make require some custom setup, see <a href="https://fuzzyblog.io/blog/caprover/2019/11/10/using-caprover-on-aws.html">this blog post for example</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="cloudflare-ssl-setup"></a><a href="#cloudflare-ssl-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CloudFlare SSL setup</h2>
+<p>When using CloudFlare free plan, keep in mind its <a href="https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/limitations/#full-setup">Universal SSL only supports SSL up to 1st level subdomains</a>. So, if you enable CloudFlare's Universal SSL and set up a 1st level subdomain as a root domain for CapRover, you'll get the following error when trying to access the apps deployed by CapRover:</p>
+<pre><code class="hljs">This site can’t provide a secure<span class="hljs-built_in"> connection
+</span>app.root.example.com uses an unsupported protocol.
+ERR_SSL_VERSION_OR_CIPHER_MISMATCH
+</code></pre>
+<p>If you want to use CapRover with the CloudFlare's Universal SSL, avoid using a subdomain as a root domain.</p>
+<h2><a class="anchor" aria-hidden="true" id="arm-processor"></a><a href="#arm-processor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ARM processor</h2>
+<p>As of 1.8.1, CapRover works on arm processors like &quot;raspberry pi&quot; and such. Note that some one click apps may not work on rasberry pi. One click apps are external apps that are not maintained by CapRover.</p>
+<h2><a class="anchor" aria-hidden="true" id="reset-password"></a><a href="#reset-password" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reset Password</h2>
+<p>If you forgot your password but you have access to your server via SSH:</p>
+<ul>
+<li>SSH to your server</li>
+<li>Run</li>
+</ul>
+<pre><code class="hljs css language-bash">docker service scale captain-captain=0
+
+<span class="hljs-comment"># backup config</span>
+cp /captain/data/config-captain.json /captain/data/config-captain.json.backup
+
+<span class="hljs-comment"># delete old password</span>
+jq <span class="hljs-string">'del(.hashedPassword)'</span> /captain/data/config-captain.json &gt; /captain/data/config-captain.json.new
+cat /captain/data/config-captain.json.new &gt; /captain/data/config-captain.json
+rm /captain/data/config-captain.json.new
+
+<span class="hljs-comment"># set a temporary password</span>
+docker service update --env-add DEFAULT_PASSWORD=mytemppassword captain-captain
+docker service scale captain-captain=1
+</code></pre>
+<ul>
+<li>Login to CapRover with your temporary password and change your password from settings.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="how-to-stop-and-remove-captain"></a><a href="#how-to-stop-and-remove-captain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to stop and remove Captain?</h2>
+<p>CapRover uses docker swarm to support clustering and restarting containers if they stop. In order to fully uninstall CapRover from your system, run this:</p>
+<pre><code class="hljs">docker<span class="hljs-built_in"> service </span>rm $(docker<span class="hljs-built_in"> service </span>ls -q)
+<span class="hljs-comment">## remove CapRover settings directory</span>
+rm -rf /captain
+<span class="hljs-comment">## leave swarm if you don't want it</span>
+docker swarm leave --force
+<span class="hljs-comment">## full cleanup of docker</span>
+docker<span class="hljs-built_in"> system </span>prune --all --force
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="i-got-an-email-from-lets-encrypt-saying-my-domains-ssl-certificate-is-expiring-and-it-shouldnt-be"></a><a href="#i-got-an-email-from-lets-encrypt-saying-my-domains-ssl-certificate-is-expiring-and-it-shouldnt-be" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>I got an email from Let's Encrypt saying my domain's SSL certificate is expiring, and it shouldn't be.</h2>
+<p>This can happen when you've used the same domain name for a previous project, which you then deleted.
+Let's Encrypt keeps track of the old certificate and notifies you when it is due to expire, but this doesn't affect the new certificate.
+To confirm, simply just check your SSL expiry date using an online tool like this:
+<a href="https://www.sslshopper.com/ssl-checker.html#hostname=captain.server.demo.caprover.com">https://www.sslshopper.com/ssl-checker.html#hostname=captain.server.demo.caprover.com</a></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/firewall.html"><span class="arrow-prev">← </span><span>Firewall &amp; Port Forwarding</span></a><a class="docs-next button" href="/docs/troubleshooting-pro.html"><span>Troubleshooting (Pro)</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#cannot-connect-ip_server3000">Cannot connect &lt;ip_server&gt;:3000?</a></li><li><a href="#successful-deploy-but-502-bad-gateway-error">Successful Deploy but 502 bad gateway error!</a></li><li><a href="#domain-verification-failed---error-1107">Domain Verification Failed - Error 1107!</a></li><li><a href="#connection-timeouts">Connection Timeouts</a></li><li><a href="#something-bad-happened">Something bad happened</a></li><li><a href="#how-to-view-my-applications-log">How to view my application's log?</a></li><li><a href="#how-to-restart-my-application">How to restart my application?</a></li><li><a href="#how-to-run-shell-inside-my-application-inside-container">How to run shell inside my application (inside container)</a></li><li><a href="#ive-made-a-change-to-the-nginx-config-that-broke-the-admin-ui">I've made a change to the Nginx config that broke the admin UI!</a></li><li><a href="#how-to-restart-caprover">How to restart CapRover</a></li><li><a href="#how-to-use-the-edge-version">How to use the Edge version</a></li><li><a href="#customize-config-settings">Customize Config Settings</a></li><li><a href="#use-existing-swarm">Use existing swarm</a></li><li><a href="#aws-setup">AWS setup</a></li><li><a href="#cloudflare-ssl-setup">CloudFlare SSL setup</a></li><li><a href="#arm-processor">ARM processor</a></li><li><a href="#reset-password">Reset Password</a></li><li><a href="#how-to-stop-and-remove-captain">How to stop and remove Captain?</a></li><li><a href="#i-got-an-email-from-lets-encrypt-saying-my-domains-ssl-certificate-is-expiring-and-it-shouldnt-be">I got an email from Let's Encrypt saying my domain's SSL certificate is expiring, and it shouldn't be.</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.png" alt="CapRover" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/get-started.html">Getting Started</a></div><div><h5>Community</h5><a href="https://twitter.com/cap_rover" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ" target="_blank" rel="noreferrer noopener">Slack Group</a></div><div><h5>More</h5><a href="https://github.com/caprover/caprover" target="_blank">GitHub</a><a class="github-button" href="https://github.com/caprover/caprover" data-icon="octicon-star" data-count-href="/caprover/caprover/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 githubsaturn</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '81e546c2e0c9258e48c359465bde6909',
+                indexName: 'caprover',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
