@@ -33,6 +33,8 @@ TaskTemplate:
     Command:
       - ./mycommand.sh
     Hostname: my.domain.com
+    CapabilityAdd:
+      - CAP_NET_ADMIN
     DNSConfig:
       Nameservers:
          - 8.8.8.8 
@@ -112,6 +114,16 @@ Another use case is when you want to customize the command:
 TaskTemplate:
   ContainerSpec:
     Command: "./mycommand.sh"
+```
+
+If your container need some CAP_ADD added to the docker service, you can go as follow:
+
+```yaml
+TaskTemplate:
+  ContainerSpec:
+    CapabilityAdd:
+      - CAP_SYS_ADMIN
+      - CAP_NET_ADMIN
 ```
 
 

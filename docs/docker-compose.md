@@ -189,6 +189,39 @@ volumes:
     db-data: {}
 ```
 
+## Service with CAP_ADD Flag
+
+If you are working on a container like OpenVPN, they often require special cap_add docker flag. You can add them like this:
+
+```yaml
+captainVersion: 4
+services:
+    openvpn:
+        caproverExtra:
+            containerHttpPort: 943
+        image: linuxserver/openvpn-as:2.9.0-5c5bd120-Ubuntu18-ls124
+        environment:
+            PUID: 1000
+            PGID: 1000
+            TZ: UTC
+            INTERFACE: ""
+        volumes:
+            - openvpn:/config
+        ports:
+            - 9443:9443
+            - 1194:1194
+        cap_add:
+            - NET_ADMIN
+caproverOneClickApp:
+    displayName: OpenVPN Access Server
+    isOfficial: false
+    description: Full featured secure network tunneling VPN software.
+    documentation: https://openvpn.net/index.php/access-server/overview.html
+    instructions:
+      start: Just a openvpn Docker Compose with cap_add.
+      end: Docker Compose is deployed.
+```
+
 
 ## Alternative Approach
 
@@ -206,3 +239,4 @@ networks:
 ```
 
 Now instead of potential port mapping that you might have, like `8080:80`, you can just create a CapRover "Nginx Reverse Proxy" app and use your container name as the upstream proxy, like `http://web-app` and done!
+
