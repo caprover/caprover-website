@@ -26,7 +26,8 @@ The default Certbot Docker image does not include the [3rd party plugins](https:
 For example, for Cloudflare:
 ```Dockerfile
 # Change this to any other base image listed here: https://hub.docker.com/r/certbot/certbot
-BASE_IMAGE="certbot/dns-cloudflare"  
+## Make sure to use the same version that CapRover uses by default (`certbotImageName` in [CaptainConstant](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts#L58)) 
+BASE_IMAGE="certbot/dns-cloudflare:v2.11.0"  
 
 TEMP_DOCKERFILE=$(mktemp)
 cat > $TEMP_DOCKERFILE <<EOF
