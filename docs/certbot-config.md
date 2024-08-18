@@ -18,13 +18,13 @@ which works via HTTP-01 challenge. In this mode, Certbot will verify the ownersh
 
 This challenge works fine for most users, but you can optionally use a different challenge if you want to. You can do so by overriding the Certbot's certificate generation command. 
 
-### Certbot Docker image
+### 1) Certbot Docker image
 The default Certbot Docker image does not include the [3rd party plugins](https://hub.docker.com/r/certbot/certbot). You need to build a custom image:
 
 For example, for Cloudflare:
 ```
-
-BASE_IMAGE="certbot/dns-cloudflare"  # Change this to any other base image listed here: https://hub.docker.com/r/certbot/certbot
+# Change this to any other base image listed here: https://hub.docker.com/r/certbot/certbot
+BASE_IMAGE="certbot/dns-cloudflare"  
 
 TEMP_DOCKERFILE=$(mktemp)
 cat > $TEMP_DOCKERFILE <<EOF
@@ -36,14 +36,14 @@ docker build -t certbot-customized -f $TEMP_DOCKERFILE .
 rm $TEMP_DOCKERFILE
 ```
 
-### Store your DNS credentials
+### 2) Store your DNS credentials
 
-```
+```bash
 mkdir /captain/data/letencrypt/etc/captain-files
 nano mycreds.ini
 ```
 Then enter your DNS credentials. For example, for Cloudflare DNS, you can use:
-```
+```ini
 # Cloudflare API token used by Certbot
 dns_cloudflare_api_token = 0123456789abcdef0123456789abcdef01234567
 ```
