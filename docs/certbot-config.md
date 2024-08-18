@@ -34,9 +34,6 @@ CMD ["sleep 9999d"]
 EOF
 docker build -t certbot-customized -f $TEMP_DOCKERFILE .
 rm $TEMP_DOCKERFILE
-
-
-
 ```
 
 ### Store your DNS credentials
