@@ -146,8 +146,8 @@ Edge version gets automatically built with every push on master. If your version
 To switch to edge
 
 ```
-docker pull caprover/caprover-edge:0.0.1
-docker service update captain-captain --image caprover/caprover-edge:0.0.1
+docker pull caprover/caprover-edge:latest
+docker service update captain-captain --image caprover/caprover-edge:latest
 ```
 
 To switch back to the main image
