@@ -66,10 +66,10 @@ Then enter the following blob. Make sure to replace `your/repo:certbot-sleeping`
 {
   "skipVerifyingDomains": "true",
   "certbotImageName": "certbot-customized",
-  "certbotCertCommand": [
+  "certbotCertCommandRules": [
     {
       "domain": "*",
-      "command":  "certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/captain-files/mycreds.ini -d ${domain}" 
+      "command":  "certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/captain-files/mycreds.ini -d ${domainName}" 
     }
   ]
 }
