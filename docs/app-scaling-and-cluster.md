@@ -6,7 +6,7 @@ sidebar_label: App Scaling & Cluster
 
 <br/>
 
-Captain offers you multiple ways to scale up your app, running it on multiple processes to take advantage of all the resources on your server.
+CapRover offers you multiple ways to scale up your app, running it on multiple processes to take advantage of all the resources on your server.
 
 ## Run Multiple Instances of App:
 
@@ -15,6 +15,8 @@ Your Pizza app is doing great and you are getting thousands of hits on your webs
 ## Run Multiple Servers:
 
 Wow! Your Pizza app is really popular! You have 3 instances of your app running on the same server, RAM and CPU are almost maxed out. You need to get a second server. How do you connect the servers? Captain does that for you ;-) You simply get a server with Docker installed on it, similar to what you did for the original Captain server. Make sure your shiny new server can be accessed via SSH from the original Captain server (e.g. by copying the Captain's ssh public key to your secondary server).
+
+CapRover uses [Docker Swarm](https://docs.docker.com/engine/swarm/) under the hood. It provides an option to use CapRover UI to set up a cluster of nodes. Alternatively, you can use plain Docker Swarm commands `docker swarm join...` commands to set up your cluster. There is absolutely no difference between the two methods. The first method uses UI and the second method uses command line.
 
 At this point, you have to enter the following information:
 - CapRover IP Address (as seen by remote): this is the IP address of your original server
