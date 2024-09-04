@@ -12,13 +12,10 @@ For example, Docker allows you to define read-only volumes, or UDP only port map
 
 Every time you deploy a new version, or you change a configuration parameter in the app, your service goes through an update process:
 
-```text
-1- CapRover updates the fields that are explicitly set on CapRover UI (env vars, instance count and etc). 
-2- If "Service Update Override" is present, CapRover overrides the result from the previous step with the override content.
-3- If "Pre-deploy script" is present, CapRover runs the pre-deploy script. 
-4- The result from the previous 3 steps is then passed to the Docker API so that Docker can update the service under the hood.
-```
-
+1. CapRover updates the fields that are explicitly set on CapRover UI (env vars, instance count and etc). 
+2. If "Service Update Override" is present, CapRover overrides the result from the previous step with the override content.
+3. If "Pre-deploy script" is present, CapRover runs the pre-deploy script. 
+4. The result from the previous 3 steps is then passed to the Docker API so that Docker can update the service under the hood.
 
 ## Schema
 
