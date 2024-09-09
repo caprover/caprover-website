@@ -79,7 +79,7 @@ docker run -p 80:80 -p 443:443 -p 3000:3000 -e ACCEPTED_TERMS=true -v /var/run/d
 
 NOTE: do not change the port mappings. CapRover only works on the specified ports.
 
-You will see a bunch of outputs on your screen. Once the CapRover is initialized, you can visit `http://[IP_OF_YOUR_SERVER]:3000` in your browser and login to CapRover using the default password `captain42`. You can change your password later. **However, do not make any changes in the dashboard**. We'll use the command line tool to setup the server.
+You will see a bunch of outputs on your screen. Once the CapRover is initialized, you can visit `http://[IP_OF_YOUR_SERVER]:3000` in your browser and login to CapRover using the default password `captain42`. You can change your password later. **However, do not make any changes in the dashboard**. We'll use the command line tool to setup the server (recommended).
 
 ## Step 2: Connect Root Domain
 
@@ -94,7 +94,9 @@ To confirm, go to https://mxtoolbox.com/DNSLookup.aspx and enter `randomthing123
 
 > **NOTE**: CapRover requires A Record to be pointing to CapRover's IP Address. If you use proxy services, such as Cloudflare, you may face difficulties. CapRover does not officially support such use cases.
 
-## Step 3: Install CapRover CLI
+## Step 3: Configure and initialize CapRover
+
+### With CLI (recommended)
 
 Assuming you have npm installed on your local machine (e.g., your laptop), simply run (add `sudo` if needed):
 
@@ -112,6 +114,13 @@ Follow the steps and login to your CapRover instance. When prompted to enter the
 
 > **NOTE**: **It will not be possible to carry through with the `caprover serversetup` if you've already forced https on your CapRover instance.**
 > In such case go straight to logging in with the `caprover login` command. To change the password go to the settings menu in the app.
+
+### With the web interface (doesn't require npm)
+
+1. Login to `http://[IP_OF_YOUR_SERVER]:3000`
+2. Configure the root domain
+3. Enable HTTPS, then force it
+4. Once you are connected through HTTPS, change the default password (`captain42`)
 
 ## Step 4: (Optional) Set up Swap file
 
