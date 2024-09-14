@@ -11,7 +11,7 @@ sidebar_label: Help and Support
 If you're reporting a bug, or you have a feature request, you can use GitHub issues:
 https://github.com/caprover/caprover/issues
 
-If you need some help with deployment and something does not quite work, message on [**Slack Chat**](https://join.slack.com/t/caprover/shared_invite/zt-o8obmx7o-x9icEG5fDAtvE9zhHlltzQ) or use [**GitHub Issues**](https://github.com/caprover/caprover/issues).
+If you need some help with deployment and something does not quite work, message on [**Slack Chat**](https://join.slack.com/t/caprover/shared_invite/zt-2qlb28drp-RpxNfY3nUhroLuRJUUJzDA) or use [**GitHub Issues**](https://github.com/caprover/caprover/issues).
 
 ### Need Commercial Support?
 
@@ -26,11 +26,12 @@ Alternatively, you can use the following third party entities for their paid ser
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We have been using Caprover in many project including government server as well as private servers with single and multiple instances for large scaled applications (with more than 500k traffic) to small scaled. Mainly we used caprover for hosting dockerized PHP applicationa and other reactjs and vuejs based static web applications. If you need any help, you can contact us: [yourfriends@integrid.solutions](mailto:yourfriends@integrid.solutions)
 
 #### [PremoWeb Internet Services](https://premoweb.com)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Got a complicated application stack or many applications you'd like to move to Caprover? PremoWeb is a United States based business now offering application migration services for those who want to make the migration. Schedule a free consulation with owner Nick Maietta at 888-PREMOWEB (888-773-6693) or via email at `nick at/premoweb/dot/com`. You can also find Nick on the Slack Group.
 
 ### You!!
-Please feel free to [edit](https://github.com/caprover/caprover-website/edit/master/docs/support.md) add your name here if you're familiar with CapRover.
 
+Please feel free to [edit](https://github.com/caprover/caprover-website/edit/master/docs/support.md) add your name here if you're familiar with CapRover.
 
 ### Need Airtight System?
 
