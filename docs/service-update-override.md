@@ -53,7 +53,9 @@ TaskTemplate:
   RestartPolicy:
     Condition: any
     MaxAttempts: 0
-  Placement: {}
+  Placement:
+    Constraints:
+      - node.id==2ivku8v2gvtg4
   Networks:
     - Target: captain-overlay-network
   LogDriver:
