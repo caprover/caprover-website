@@ -76,14 +76,14 @@ This can be useful if you want to integrate CI/CD pipeline.
 #### Options:
 Those params are available:
 - `-d, --default`: Uses previously entered values for the current directory. Other options are not considered.
-- `-c, --config <file>`: Specifies a configuration file to use for deployment settings.
-- `-u, --url <url>`: Sets the CapRover machine URL to which the deployment will be made. This URL is typically in the format [http[s]://][captain.].your-captain-root.domain.
-- `-p, --password <password>`: The password for the CapRover machine. This option is prompted when a URL is provided and an app token is not used.
-- `-n, --name <name>`: The name of the CapRover machine you wish to deploy to. This can be selected from a list of logged-in machines.
-- `-a, --app <app>`: Specifies the application name on the CapRover machine to which you are deploying. This is selected from a list of available applications on the machine.
+- `-c, --configFile <file>`: Specifies a configuration file to use for deployment settings.
+- `-u, --caproverUrl <url>`: Sets the CapRover machine URL to which the deployment will be made. This URL is typically in the format [http[s]://][captain.].your-captain-root.domain.
+- `-p, --caproverPassword <password>`: The password for the CapRover machine. This option is prompted when a URL is provided and an app token is not used.
+- `-n, --caproverName <name>`: The name of the CapRover machine you wish to deploy to. This can be selected from a list of logged-in machines.
+- `-a, --caproverApp <app>`: Specifies the application name on the CapRover machine to which you are deploying. This is selected from a list of available applications on the machine.
 - `-b, --branch <branch>`: Specifies the Git branch to be deployed. Note that uncommitted and git-ignored files will not be included.
 - `-t, --tarFile <tarFile>`: Specifies the path to a tar file which must include a captain-definition file for deployment.
-- `-i, --image <image>`: Specifies a Docker image to be deployed. The image must exist on the server or be accessible through public or private repositories that CapRover can access.
+- `-i, --imageName <image>`: Specifies a Docker image to be deployed. The image must exist on the server or be accessible through public or private repositories that CapRover can access.
 - `--appToken <token>`: An optional token for app-level authentication, if required.
 
 
