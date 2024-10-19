@@ -30,8 +30,8 @@
         "sidebar_label": "CaptainDuckDuck Upgrade"
       },
       "certbot-config": {
-        "title": "Configure Certbot to use a new ACME Server",
-        "sidebar_label": "Change ACME Server"
+        "title": "Certbot Overrides",
+        "sidebar_label": "Certbot Overrides"
       },
       "ci-cd-integration": {
         "title": "CI/CD Integration",
@@ -113,9 +113,13 @@
         "title": "Sample Apps",
         "sidebar_label": "Sample Apps"
       },
-      "server-purchase": {
-        "title": "Server & Public IP address",
-        "sidebar_label": "Server Purchase"
+      "server-purchase/digitalocean": {
+        "title": "Setting CapRover Up With DigitalOcean",
+        "sidebar_label": "DigitalOcean"
+      },
+      "server-purchase/openstack": {
+        "title": "Setting CapRover Up With OpenStack",
+        "sidebar_label": "OpenStack"
       },
       "service-update-override": {
         "title": "Service Update Override",
@@ -128,6 +132,10 @@
       "support": {
         "title": "Help and Support",
         "sidebar_label": "Help and Support"
+      },
+      "theme-customization": {
+        "title": "Custom Themes",
+        "sidebar_label": "Custom Themes"
       },
       "troubleshooting-pro": {
         "title": "Troubleshooting CapRover Pro",

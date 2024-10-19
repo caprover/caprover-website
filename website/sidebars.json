@@ -19,7 +19,8 @@
       "pre-deploy-script",
       "play-with-docker",
       "run-locally",
-      "certbot-config"
+      "certbot-config",
+      "theme-customization"
     ],
     "Recipes and Tips": [
       "sample-apps",
@@ -43,10 +44,7 @@
       {
         "type": "subcategory",
         "label": "Server Purchase",
-        "ids": [
-          "server-purchase/digitalocean",
-          "server-purchase/openstack"
-        ]
+        "ids": ["server-purchase/digitalocean", "server-purchase/openstack"]
       },
       "disk-cleanup",
       "firewall",
