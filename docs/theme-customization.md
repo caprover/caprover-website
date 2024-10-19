@@ -8,6 +8,8 @@ _As of version 1.13_
 
 CapRover now offers theme customization to give you more control over the look and feel of your dashboard. Utilizing Ant Design for our front-end framework, you can tailor the UI to match your preferences. To get started, refer to the [Ant Design customization documentation](https://ant.design/docs/react/customize-theme) for detailed guidance. By tweaking variables such as primary color, border radius, and font size, you can create a personalized theme that reflects your brand or taste. Happy theming!
 
+![](/img/themes.gif)
+
 **A few notes:**
 
 - Ant Design theme is a javascript object, not a stringified JSON. The keys do not have double quotes.
