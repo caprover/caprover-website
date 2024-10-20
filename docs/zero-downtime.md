@@ -6,8 +6,7 @@ sidebar_label: Zero Downtime
 
 #### Example:
 
-If you prefer to learn from an example, see this github repository:
-https://github.com/githubsaturn/zero-downtime-example
+If you prefer to learn from an example, see [this github repository](https://github.com/caprover/zero-downtime-example).
 
 This repo contains an example app that takes 15sec to start up. But, when deploying this app on any CapRover instance, you will not see any 502 errors.
 
