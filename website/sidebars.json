@@ -24,6 +24,7 @@
     ],
     "Recipes and Tips": [
       "sample-apps",
+      "zero-downtime",
       "database-connection",
       "best-practices",
       "backup-and-restore",

@@ -144,6 +144,10 @@
       "troubleshooting": {
         "title": "Troubleshooting",
         "sidebar_label": "Troubleshooting"
+      },
+      "zero-downtime": {
+        "title": "Zero Downtime Deployments",
+        "sidebar_label": "Zero Downtime"
       }
     },
     "links": {
