@@ -38,7 +38,7 @@ You can insert custom JS that completely modifies the elements on the dashboard 
 
 There are some customizations that are not modifiable by Ant Design by default. Those customizations can be modified through CapRover extra configuration box.
 
-Currently, the only parameter here is the theme of side bar on the dashboard (light or dark). By default, CapRover uses light side bar
+Currently, the only parameter here is the theme of side bar on the dashboard (light or dark), but there might be more in the future.
 
 ```js
 {
@@ -46,4 +46,8 @@ Currently, the only parameter here is the theme of side bar on the dashboard (li
 }
 ```
 
-But there might be more in the future.
+
+
+### Submit your custom themes!
+
+If you have built a new fun theme, feel free to submit a pull request to include it in [our built-in themes](https://github.com/caprover/caprover/tree/master/template/themes)
