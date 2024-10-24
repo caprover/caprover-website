@@ -100,7 +100,7 @@ class HomeSplash extends React.Component {
           <br />
           <PromoSection>
             <Button
-              href="https://captain.server.demo.caprover.com/"
+              href="https://captain.server.demo.caprover.com/?demo=true"
               target="_blank"
               rel="noreferrer noopener"
             >
