@@ -9,7 +9,7 @@ sidebar_label: Firewall & Port Forwarding
 
 Captain uses:
 - 80   TCP for regular HTTP connections
-- 443  TCP for secure HTTPS connections
+- 443  TCP/UDP for secure HTTPS and HTTP/3 connections
 - 3000 TCP for initial Captain Installation (can be blocked once Captain is attached to a domain)
 - 7946 TCP/UDP for Container Network Discovery
 - 4789 TCP/UDP for Container Overlay Network
@@ -19,7 +19,7 @@ Captain uses:
 In case of an ubuntu server, run 
 
 ```
-ufw allow 80,443,3000,996,7946,4789,2377/tcp; ufw allow 7946,4789,2377/udp;
+ufw allow 80,443,3000,996,7946,4789,2377/tcp; ufw allow 7946,4789,2377,443/udp;
 ```
 
 
