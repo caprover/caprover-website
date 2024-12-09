@@ -60,7 +60,9 @@ Edit `/captain/data/config-override.json` by running:
 nano /captain/data/config-override.json
 ```
 
-Then enter the following blob. Make sure to replace `your/repo:certbot-sleeping` and change `certbotCertCommand` to fit your needs.  
+Then enter the following blob. Make sure to replace `your/repo:certbot-sleeping` and change `certbotCertCommand` to fit your needs.
+
+For example for a wildcard certificate you need one certificate for domain and also one for subdomains. You need to add them like this `-d ${domainName} -d \"*.${domainName}\"`.
 
 ```json
 {
@@ -69,7 +71,7 @@ Then enter the following blob. Make sure to replace `your/repo:certbot-sleeping`
   "certbotCertCommandRules": [
     {
       "domain": "*",
-      "command":  "certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/captain-files/mycreds.ini -d ${domainName}" 
+      "command":  "certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/captain-files/mycreds.ini -d ${domainName} -d \"*.${domainName}\"" 
     }
   ]
 }
