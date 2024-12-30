@@ -21,7 +21,7 @@ The main limitation of apps with Persistent Data is that they cannot be run as m
 Note that even for Persistent Apps, NOT ALL DIRECTORIES will be treated as persistent directories. After you created the app as an app with persistent data, you'll have to define directories that you want to be persistent in the app details page on web dashboard. You can let CapRover manage the stored directories for you (use labels), or use a specific path on the host (server).
 
 ##### Using label
-In that case, they will be placed in `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data` on your server. The path inside the container is completely customizable.
+In that case, they will be placed in `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data` on your server. The path inside the container is completely customizable. By default, the volume name will have `captain--` prepended to the field you enter (e.g. `my-volume` will become `captain--my-volume`)
 
 ##### Using specific path
 For example, you can map `/var/usr` on your server to `/my-host-usr-something` in your container (app). This way you can save a file in your container at `/my-host-usr-something/myfile.txt` and the file will be available on your server (host) at `/var/usr/myfile.txt`. **Note** that, if you choose to use this option (specifying a specific host path), you'll have to make sure that the path already exists in your host before assigning it.
