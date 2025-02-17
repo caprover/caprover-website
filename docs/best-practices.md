@@ -48,5 +48,6 @@ When you build on a paid service such as Heroku, your build process happens on a
 
 ### Customize the NGINX Config for new apps
 
-Moved to https://caprover.com/docs/nginx-customization.html
+Moved to https://caprover.com/docs/nginx-customization.html#customize-and-override-the-nginx-config-for-all-apps
+
 This section is kept here to avoid link breaking.
