@@ -48,11 +48,5 @@ When you build on a paid service such as Heroku, your build process happens on a
 
 ### Customize the NGINX Config for new apps
 
-NOTE: this will be available starting version 1.11
-
-To modify the default NGINX configuration for newly created apps to add in the IP whitelist and other NGIX config.
-
-1- Obtain a copy of the `server-block-conf.ejs` template from the CapRover GitHub repository. [**here**](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs)
-
-2- Create the file `/captain/data/server-block-conf-override.ejs`, copy the contents of the template, and make the desired modifications.
-Assuming you start CapRover Docker with `-v /captain:/captain.`
+Moved to https://caprover.com/docs/nginx-customization.html
+This section is kept here to avoid link breaking.
