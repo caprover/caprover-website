@@ -23,3 +23,15 @@ Once you've changed the template, you can see the compiled version of your nginx
 ## Custom Files and Directories
 
 On top of config customization, you might need to use some files in your nginx container, things such as custom SSL certs, specific static assets and etc. Since in CapRover instance, everything (including nginx) is sitting in a separate container, you'll need to map a directory from your host to the container. Captain already did that for you. The directory `/captain/data/nginx-shared` in your server is available in your nginx container as `/nginx-shared`. Let's say you place a custom SSL cert in that folder and call it `/captain/data/nginx-shared/custom-cert.pem`. In order to reference that file in your nginx config, you'll use `/nginx-shared/custom-cert.pem`
+
+
+## Customize and override the NGINX Config for all apps
+
+NOTE: this will be available starting version 1.11
+
+To modify the default NGINX configuration for newly created apps to add in the IP whitelist and other NGIX config.
+
+1- Obtain a copy of the `server-block-conf.ejs` template from the CapRover GitHub repository. [**here**](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs)
+
+2- Create the file `/captain/data/server-block-conf-override.ejs`, copy the contents of the template, and make the desired modifications.
+Assuming you start CapRover Docker with `-v /captain:/captain.`
