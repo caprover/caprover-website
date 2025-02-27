@@ -150,6 +150,8 @@ Use these values:
 - Domain: `ghcr.io` (no www, no http)
 - Image Prefix: `<your github username or your org username>` (if you're pulling images from an org different than your username)
 
+> If your image prefix is your github username, your prefix MUST BE lowercase
+
 #### Create the GitHub Action
 
 GitHub Actions is the CI/CD pipeline built into GitHub. If you are unfamiliar with it, it would be beneficial to learn the basics by reviewing GitHub's Understanding GitHub Actions Docs: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
