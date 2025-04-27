@@ -28,6 +28,10 @@ If you don't see any errors when your ran `docker service ps captain-captain --n
 
 ```bash
 docker service logs captain-captain --since 60m
+
+## you should also get the logs from nginx
+
+docker service logs captain-nginx --since 60m
 ```
 
 You might see that CapRover is getting restarted constantly due to an error. Search [CapRover Github issues](https://github.com/caprover/caprover/issues) for your problem and if you can't find a solution, create a new issue on Github.
