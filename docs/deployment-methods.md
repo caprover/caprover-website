@@ -41,7 +41,6 @@ Create a webhook here:
 Secret: <Leave empty>, Just the `push` event.
 Furthermore add the contents of your generated public key to your repositories deploy keys.
 
-WARNING: Github has recently introduced a bug where the webhooks are trimmed at 255 characters, please see this issue: https://github.com/caprover/caprover/issues/2079
 
 #### Bitbucket
 Webhooks can be added here:
