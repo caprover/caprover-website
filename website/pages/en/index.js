@@ -62,7 +62,7 @@ const ProjectTitle = (props) => (
     {siteConfig.title}
     <div style={{ fontSize: "30%", opacity: 0.5 }}>
       <i>
-        Previously Known as CaptainDuckDuck <br />
+        It Just Works <br />
       </i>
     </div>
     <small>{siteConfig.tagline}</small>
