@@ -60,7 +60,7 @@ const Logo = (props) => (
 const ProjectTitle = (props) => (
   <h2 className="projectTitle">
     {siteConfig.title}
-    <div style={{ fontSize: "30%", opacity: 0.5 }}>
+    <div style={{ fontSize: "30%", opacity: 0.8 }}>
       <i>
         It Just Works <br />
       </i>
