@@ -40,7 +40,7 @@ In standard installation, CapRover has to be installed on a machine with a publi
 
 _**CPU Architecture**:_ CapRover source code is compatible with any CPU architecture and the Docker build available on Docker Hub is built for AMD64 (X86), ARM64, and ARMV7 CPUs.
 
-_**Recommended Stack**:_ CapRover is tested on Ubuntu 22.04 and Docker 19.03. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
+_**Recommended Stack**:_ CapRover is tested on Ubuntu 22.04 and Docker 25+. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
 
 _**Ubuntu 24.04**:_ This version [has been tested](https://github.com/caprover/caprover/issues/2244) by multiple people and there seems to be no known issues with this version.
 
