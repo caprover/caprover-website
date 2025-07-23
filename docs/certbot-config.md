@@ -42,7 +42,7 @@ rm $TEMP_DOCKERFILE
 ### 2) Store your DNS credentials
 
 ```bash
-mkdir /captain/data/letencrypt/etc/captain-files
+mkdir /captain/data/letsencrypt/etc/captain-files
 nano mycreds.ini
 ```
 Then enter your DNS credentials. For example, for Cloudflare DNS, you can use:
