@@ -19,7 +19,7 @@ Every time you deploy a new version, or you change a configuration parameter in 
 
 ## Schema
 
-For the "Service Update Override", you can use both yaml and JSON. The schema needs to match [Service Update Object](https://docs.docker.com/engine/api/v1.40/#operation/ServiceUpdate) in Docker API. In YAML format, it'll be something like the following YAML. Note that this is just a partial example, there are many more customization parameter available.
+For the "Service Update Override", you can use both yaml and JSON. The schema needs to match [Service Update Object](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Service/operation/ServiceUpdate) in Docker API. In YAML format, it'll be something like the following YAML. Note that this is just a partial example, there are many more customization parameter available.
 
 ```yaml
 TaskTemplate:
