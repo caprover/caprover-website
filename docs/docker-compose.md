@@ -48,7 +48,7 @@ docker-compose -f my-docker-compose.yml up
 
 ## Relationship to CapRover - Bad
 
-CapRover is just a thin layer around Docker. It uses docker to build and run your applications. It does all of these through [Docker API](https://docs.docker.com/engine/api/v1.40). 
+CapRover is just a thin layer around Docker. It uses docker to build and run your applications. It does all of these through [Docker API](https://docs.docker.com/reference/api/engine/version/v1.43/). 
 
 Although Docker Compose a feature in Docker CLI, it is NOT available in Docker API. This means CapRover cannot handle docker compose files.
 
