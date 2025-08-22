@@ -4,6 +4,9 @@ title: Docker Compose
 sidebar_label: Docker Compose
 ---
 
+## IMPORTANT:
+
+If you care about Docker Compose support, please leave a note in [this issue](https://github.com/caprover/caprover/issues/2175)
 
 ## What is Docker Compose?
 
