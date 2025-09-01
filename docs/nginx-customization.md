@@ -34,4 +34,7 @@ To modify the default NGINX configuration for newly created apps to add in the I
 1- Obtain a copy of the `server-block-conf.ejs` template from the CapRover GitHub repository. [**here**](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs)
 
 2- Create the file `/captain/data/server-block-conf-override.ejs`, copy the contents of the template, and make the desired modifications.
-Assuming you start CapRover Docker with `-v /captain:/captain.`
+Assuming you start CapRover Docker with `-v /captain:/captain` (default setup)
+
+3- Restart your CapRover so that the override file content is consumed: `docker service update --force captain-captain`
+
