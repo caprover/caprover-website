@@ -6,39 +6,99 @@ sidebar_label: Persistent Apps
 
 <br/>
 
-### Persistent or Not
+### Persistent vs. Non-Persistent Apps
 
-When you want to create an app you have the option of creating the app with "Persistent Data" or not. By default, you should always prefer no persistence. However, they are cases where you need to create an app with persistence. Also, if you have a massive amount of static data that you don't want to bundle with your repository and have it shipped to the server everytime you build, you can map a directory on the host to a directory inside the container and FTP to your server and move your files there. This is generally not needed unless the amount of static data that you need to send to your server is extremely large.
+When creating an app, you can choose whether it should have **persistent data**.  
+By default, you should prefer **non-persistent apps** for better flexibility and scalability. However, some apps require persistence when they need to retain data across container restarts, crashes, or updates.
 
-#### Persistent Apps: 
-These are the apps that have some data that need to survive restart, crash, container update and etc. Because these apps store data on disk, once they get created they get locked down on a specific server (if you have multiple servers). You can still change the constraint so that they will be moved to another machine, but if you do, they will lose anything that might have been stored on the current host. Examples that use persistent apps include:
-- Any database that stores data on disk has to have persistent data enabled. Otherwise all data will be lost when the container restarts (due to crash, host restart and etc...)
-- A photo upload app which does not use third party storages like Amazon S3 to store images. Instead, it locally stores uploaded images.
-- A webapp that needs to store some user uploaded files and plugins locally on disk (like WordPress)
+You can also map a directory on the host to a directory inside the container if you have a large amount of static data that you don’t want bundled with every build. This is generally not needed unless the data is very large.
 
-The main limitation of apps with Persistent Data is that they cannot be run as multiple instances. That's because they would access the same storage area and the data can be corrupted if multiple apps try to write on the same path.
+---
 
-Note that even for Persistent Apps, NOT ALL DIRECTORIES will be treated as persistent directories. After you created the app as an app with persistent data, you'll have to define directories that you want to be persistent in the app details page on web dashboard. You can let CapRover manage the stored directories for you (use labels), or use a specific path on the host (server).
+#### Persistent Apps
 
-##### Using label
-In that case, they will be placed in `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data` on your server. The path inside the container is completely customizable. By default, the volume name will have `captain--` prepended to the field you enter (e.g. `my-volume` will become `captain--my-volume`)
+Persistent apps are those that need to store data on disk so that it survives restarts, crashes, container updates, and other events. Because they store data locally, they are **locked to a specific server**. You can move them to another server, but any stored data will be lost unless you manually migrate it.
 
-##### Using specific path
-For example, you can map `/var/usr` on your server to `/my-host-usr-something` in your container (app). This way you can save a file in your container at `/my-host-usr-something/myfile.txt` and the file will be available on your server (host) at `/var/usr/myfile.txt`. **Note** that, if you choose to use this option (specifying a specific host path), you'll have to make sure that the path already exists in your host before assigning it.
+**Examples of apps that require persistence:**
+- Databases (e.g., MySQL, PostgreSQL, MongoDB)
+- Photo upload apps that store images locally instead of using third-party storage (e.g., S3)
+- Web apps like WordPress that store uploaded files or plugins on disk
 
-#### Removing Persistent Apps: 
-Persistent directories need to be manually removed after you remove an app from Captain dashboard. This is to avoid accidental deletion of important data. To delete persistent directories, depending on the type of persistent directories, steps are different:
-- Volumes (persistent directories mapped to a label):
-![Volumes](/img/docs/label-path.png)
-For this type, you need to run `docker volume ls` to see the names of the volumes, and then run `docker volume rm NAME_OF_VOLUME` to remove the volume
-- Mapped directories on host: these are directories from your server that are mapped to a directory in your container (app). To remove them, simply remove the directory from your server via `rm -rf /path/to/directory`
+**Limitations:**
+- Persistent apps **cannot** be scaled to multiple instances.  
+  Sharing a single storage path across multiple containers can lead to data corruption.
+
+> **Note:**  
+> Even for persistent apps, **not all directories are persistent by default**. After creating the app, you must explicitly define which directories should be persistent via the **App Details** page on the dashboard.
+
+---
+
+##### Defining Persistent Directories
+
+You can configure persistent directories in two ways:
+
+**1. Using Labels (Recommended)**  
+CapRover manages the storage location for you.  
+- Data is stored under:  
+  `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data`
+- The container path is customizable.
+- By default, CapRover prepends `captain--` to the volume name.  
+  For example, entering `my-volume` results in `captain--my-volume`.
+
+**2. Using Specific Host Paths**  
+You can map a **specific directory on the host** to a path inside the container.  
+For example:  
+- Host path: `/var/usr`
+- Container path: `/my-host-usr-something`
+  
+A file saved in the container at `/my-host-usr-something/myfile.txt` will be accessible on the host at `/var/usr/myfile.txt`.
+
+> **Important:**  
+> If you choose a specific host path, ensure that the directory **already exists** on the host before assigning it.
+
+---
+
+#### Removing Persistent Apps
+
+When you delete a persistent app, its data is **not automatically removed**. This prevents accidental data loss. To delete persistent directories:
+
+- **Volumes (label-based)**  
+  1. List volumes:  
+     ```bash
+     docker volume ls
+     ```
+  2. Remove the desired volume:  
+     ```bash
+     docker volume rm NAME_OF_VOLUME
+     ```
+
+  ![Volumes](/img/docs/label-path.png)
+
+- **Mapped Host Directories**  
+  Remove the directory directly from the host:
+  
+```bash
+  rm -rf /path/to/directory
+```
+
 ![mapped](/img/docs/path-binding.png)
 
-#### Non-Persistent Apps: 
-Generally speaking, anything that does not directly store data on disk can be made non-persistent. You should always prefer to have non-persistent apps as they are much more flexible. Let's say you have multiple servers, if a server becomes unhealthly, all "non-persistent" apps on that server will automatically get moved to other servers whereas persistent apps are locked down to that server due to some data that they saved on that server.
+---
 
-Also, multiple instances of non-persistent apps can be running at the same time without causing any issues as they live in isolated environment and each of them has their very own disk space. Note that non persistent apps can still write data on disk, things on temporary cache and etc, but that data will get deleted once the container restarts due to a crash, deploy, configuration update or host restart. Examples include:
+#### Non-Persistent Apps
 
-- A image processor which takes a photo and runs some logic to figure out what is in the picture. This is a good example of an app that can benefit from getting spawned as multiple instances as it's CPU heavy.
-- A TODO web app. Note that this app will definitely uses some sort of database which is persistent. But the webapp itself does not store anything directly on disk.
-- An image upload app that uses Amazon S3 as the storage engine rather than storing images locally on disk
+Apps that **don’t need to store data on disk** should always be non-persistent.
+They are more flexible and can automatically migrate between servers if one becomes unhealthy.
+
+**Advantages of non-persistent apps:**
+
+* Can run multiple instances without conflicts (isolated storage)
+* Automatically redeployed on other servers in a multi-server setup
+
+> Non-persistent apps **can still write to disk**, but any data stored there will be lost when the container restarts due to a crash, deployment, configuration update, or host restart.
+
+**Examples:**
+
+* An image processor that analyzes uploaded photos (stateless and CPU-intensive)
+* A TODO web app where the database is persistent, but the web app itself does not store data locally
+* An image upload app that uses S3 or other third-party storage instead of saving images locally
