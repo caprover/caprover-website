@@ -86,7 +86,7 @@ What happens is that "**[rclone mount](https://rclone.org/commands/rclone_mount/
 Then deploy a blank app with "**Has Persistent Data**" unchecked, and set-up it's parameters of you're liking under the "**HTTP Settings**", "**App Configs**" & "**Deployment**" tabs.
 
 In the "**App Configs**" in the "**Service Update Override**" section, place the following.
-Be aware that `/var/www/html/uploads` is a path / folder you should define yourself, but is used for referene here.
+Be aware that `/var/www/html/uploads` is a path / folder you should define yourself, but is used for reference here.
 
 Set the "**ReadOnly**" value to either `true` or `false` based on what is appropirate to you're app.
 If you're php app allows it's users to upload files, set it to `false`.
