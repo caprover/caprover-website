@@ -48,7 +48,7 @@ class Footer extends React.Component {
                   Twitter
               </a>
               <a
-                  href="https://join.slack.com/t/caprover/shared_invite/zt-2qlb28drp-RpxNfY3nUhroLuRJUUJzDA"
+                  href="https://join.slack.com/t/caprover/shared_invite/zt-3icy38xau-njrQIRpRCmZ_ax5FODAb0w"
                   target="_blank"
                   rel="noreferrer noopener">
                   Slack Group
