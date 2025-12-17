@@ -206,6 +206,7 @@ As of 1.8.1, CapRover works on arm processors like "raspberry pi" and such. Note
 If you forgot your password but you have access to your server via SSH:
 
 - SSH to your server
+- Run `jq -V` to make you have jq installed
 - Run
 
 ```bash
