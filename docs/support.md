@@ -11,7 +11,7 @@ sidebar_label: Help and Support
 If you're reporting a bug, or you have a feature request, you can use GitHub issues:
 https://github.com/caprover/caprover/issues
 
-If you need some help with deployment and something does not quite work, message on [**Slack Chat**](https://join.slack.com/t/caprover/shared_invite/zt-3icy38xau-njrQIRpRCmZ_ax5FODAb0w) or use [**GitHub Issues**](https://github.com/caprover/caprover/issues).
+If you need some help with deployment and something does not quite work, message on [**Slack Chat**](https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA) or use [**GitHub Issues**](https://github.com/caprover/caprover/issues).
 
 ### Need Commercial Support?
 
