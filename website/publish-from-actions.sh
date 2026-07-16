@@ -26,7 +26,9 @@
 
 set -e
 
-source ./build_dir
+if [ -z "${BUILD_DIR:-}" ]; then
+  source ./build_dir
+fi
 
 echo "#################################################"
 echo "Changing directory to 'BUILD_DIR' $BUILD_DIR ..."

@@ -3,15 +3,61 @@ name: Publish website
 on:
   push:
     branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-website
+  cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js for Docusaurus
+        uses: actions/setup-node@v5
         with:
           node-version: 10
-      - run: cd website && ls -la && npm i && npm run clean-build && ./publish-from-actions.sh
+
+      - name: Build existing website and documentation
+        working-directory: website
+        run: |
+          npm install
+          npm run clean-build
+
+      - name: Set up Node.js for homepage
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: homepage/package-lock.json
+
+      - name: Install homepage dependencies
+        working-directory: homepage
+        run: npm ci
+
+      - name: Lint homepage
+        working-directory: homepage
+        run: npm run lint
+
+      - name: Build and test homepage
+        working-directory: homepage
+        run: npm test
+
+      - name: Compose and verify combined site
+        run: node scripts/compose-site.mjs
+
+      - name: Smoke test combined site
+        run: node scripts/smoke-combined-site.mjs
+
+      - name: Publish combined site
+        working-directory: website
         env:
-          GITHUB_PERSONAL_TOKEN: ${{secrets.GITHUB_PERSONAL_TOKEN}}
+          BUILD_DIR: ${{ github.workspace }}/build/combined-site
+          GITHUB_PERSONAL_TOKEN: ${{ secrets.GITHUB_PERSONAL_TOKEN }}
+        run: ./publish-from-actions.sh
