@@ -8,6 +8,7 @@ import {
   readdir,
   rm,
   stat,
+  writeFile,
 } from "node:fs/promises";
 import path from "node:path";
 
@@ -90,6 +91,8 @@ await cp(
   path.join(combinedSite, "homepage-assets"),
   { recursive: true },
 );
+await writeFile(path.join(combinedSite, ".nojekyll"), "");
+await requirePath(path.join(combinedSite, ".nojekyll"));
 
 const [docsAfter, imagesAfter, combinedCname, homepageHtml] = await Promise.all([
   snapshot(path.join(combinedSite, "docs")),
