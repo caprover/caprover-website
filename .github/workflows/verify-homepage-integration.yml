@@ -1,0 +1,60 @@
+name: Verify homepage integration
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-combined-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js for Docusaurus
+        uses: actions/setup-node@v5
+        with:
+          node-version: 10
+
+      - name: Build existing website and documentation
+        working-directory: website
+        run: |
+          npm install
+          npm run clean-build
+
+      - name: Set up Node.js for homepage
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: homepage/package-lock.json
+
+      - name: Install homepage dependencies
+        working-directory: homepage
+        run: npm ci
+
+      - name: Lint homepage
+        working-directory: homepage
+        run: npm run lint
+
+      - name: Build and test homepage
+        working-directory: homepage
+        run: npm test
+
+      - name: Compose and verify combined site
+        run: node scripts/compose-site.mjs
+
+      - name: Smoke test combined site
+        run: node scripts/smoke-combined-site.mjs
+
+      - name: Upload combined site preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: combined-site-preview
+          path: build/combined-site
+          if-no-files-found: error
+          retention-days: 7
