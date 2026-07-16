@@ -8,18 +8,6 @@
 // See https://docusaurus.io/docs/site-config.html for all the possible
 // site configuration options.
 
-/* List of projects/orgs using your project for the users page */
-const users = [
-  {
-    caption: "User1",
-    // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/logo.png'.
-    image: "/img/logo.png",
-    infoLink: "https://www.facebook.com",
-    pinned: true,
-  },
-];
-
 const siteConfig = {
   title: "CapRover" /* title for your website */,
   tagline: "Scalable, Free and Self-hosted PaaS!",
@@ -53,9 +41,6 @@ const siteConfig = {
   editUrl: "https://github.com/caprover/caprover-website/edit/master/docs/",
 
   gaTrackingId: "UA-132762521-1",
-
-  // If you have users set above, you add it here:
-  users,
 
   /* path to images for header/footer */
   headerIcon: "img/logo.png",
