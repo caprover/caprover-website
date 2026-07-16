@@ -11,6 +11,7 @@ const contentTypes = new Map([
   [".html", "text/html"],
   [".js", "text/javascript"],
   [".png", "image/png"],
+  [".woff2", "font/woff2"],
 ]);
 
 const server = createServer(async (request, response) => {
@@ -64,6 +65,29 @@ try {
   const docs = await checks[1].text();
   assert.match(docs, /Getting Started/i);
   assert(Number(checks[2].headers.get("content-length") ?? 0) > 0 || (await checks[2].arrayBuffer()).byteLength > 0);
+
+  const docsStylesheet = docs.match(
+    /href=["\'](\/css\/main\.css(?:\?[^"\']*)?)["\']/,
+  )?.[1];
+  assert(docsStylesheet, "Documentation stylesheet reference is missing");
+
+  const docsCssResponse = await fetch(`${origin}${docsStylesheet}`);
+  assert.equal(docsCssResponse.status, 200);
+  const docsCss = await docsCssResponse.text();
+  assert.match(docsCss, /--caprover-blue\s*:\s*#155eef/i);
+  assert.match(docsCss, /font-family\s*:\s*["\']?Geist/i);
+
+  const geistAsset = docsCss.match(
+    /url\(["\']?(\/_next\/static\/media\/[^"\')]+\.woff2)/,
+  )?.[1];
+  assert(geistAsset, "Documentation stylesheet does not reference a Geist font asset");
+
+  const geistResponse = await fetch(`${origin}${geistAsset}`);
+  assert.equal(
+    geistResponse.status,
+    200,
+    `${geistResponse.url} did not return HTTP 200`,
+  );
 
   console.log("Combined site HTTP smoke test passed");
 } finally {

@@ -1,22 +1,304 @@
-/* your custom css */
+/*
+ * Documentation theme aligned with the redesigned homepage.
+ * Geist font-face rules are injected from the homepage build by the composer.
+ */
 
-@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+:root {
+  --caprover-blue: #155eef;
+  --caprover-blue-dark: #0b3b91;
+  --caprover-blue-soft: #eaf2ff;
+  --caprover-ink: #101828;
+  --caprover-muted: #667085;
+  --caprover-line: #d0d5dd;
+  --caprover-night: #071426;
+  --caprover-surface: #f6f9fe;
 }
 
-@media only screen and (min-width: 1024px) {
-}
-
-@media only screen and (max-width: 1023px) {
-}
-
-@media only screen and (min-width: 1400px) {
-}
-
-@media only screen and (min-width: 1500px) {
+* {
+  box-sizing: border-box;
 }
 
 body {
+  background: #fff;
+  color: var(--caprover-ink);
+  font-family: "Geist", "Geist Fallback", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif
+  text-rendering: optimizeLegibility;
 }
 
+a {
+  color: var(--caprover-blue);
+}
+
+a:hover {
+  color: var(--caprover-blue-dark);
+}
+
+/* Header */
+.fixedHeaderContainer {
+  min-height: 78px;
+  background: #fff;
+  border-bottom: 1px solid #eef2f6;
+  box-shadow: none;
+  color: var(--caprover-ink);
+}
+
+.fixedHeaderContainer header {
+  min-height: 78px;
+}
+
+.fixedHeaderContainer header img {
+  width: 40px;
+  height: 40px;
+}
+
+.fixedHeaderContainer header .headerTitleWithLogo {
+  color: var(--caprover-ink);
+  font-size: 23px;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.navigationSlider .slidingNav ul {
+  background: #fff;
+}
+
+.navigationSlider .slidingNav ul li a {
+  color: #344054;
+  font-weight: 600;
+}
+
+.navigationSlider .slidingNav ul li a:hover,
+.navigationSlider .slidingNav ul li a:focus,
+.navigationSlider .slidingNav ul li.siteNavItemActive a {
+  background: transparent;
+  color: var(--caprover-blue);
+}
+
+.navSearchWrapper .aa-input {
+  background: var(--caprover-surface);
+  border: 1px solid #dbe4ef;
+  border-radius: 9px;
+  color: var(--caprover-ink);
+}
+
+.navSearchWrapper .aa-input::placeholder {
+  color: var(--caprover-muted);
+}
+
+/* Sidebar and table of contents */
+.docsNavContainer {
+  background: #fbfcfe;
+  border-right: 1px solid #dbe4ef;
+}
+
+.toc .toggleNav .navGroup .navGroupCategoryTitle {
+  color: var(--caprover-ink);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.toc .toggleNav ul li a {
+  border-radius: 6px;
+  color: var(--caprover-muted);
+  margin: 2px 10px;
+  padding: 6px 10px;
+}
+
+.toc .toggleNav ul li a:hover {
+  background: #f1f5fb;
+  color: var(--caprover-blue);
+}
+
+.toc .toggleNav ul li.navListItemActive a {
+  background: var(--caprover-blue-soft);
+  color: var(--caprover-blue);
+  font-weight: 700;
+}
+
+.onPageNav {
+  border-left-color: #dbe4ef;
+}
+
+.onPageNav a {
+  color: var(--caprover-muted);
+}
+
+.onPageNav a:hover {
+  color: var(--caprover-blue);
+}
+
+/* Documentation content */
+.mainContainer {
+  color: var(--caprover-ink);
+}
+
+.post h1,
+.post h2,
+.post h3,
+.post h4 {
+  color: var(--caprover-ink);
+  font-weight: 720;
+  letter-spacing: -0.035em;
+}
+
+.post h1 {
+  font-size: 40px;
+  line-height: 1.15;
+  margin-bottom: 32px;
+}
+
+.post h2 {
+  border-bottom: 1px solid #eef2f6;
+  font-size: 30px;
+  line-height: 1.25;
+  margin-top: 48px;
+  padding-bottom: 10px;
+}
+
+.post h3 {
+  font-size: 22px;
+  line-height: 1.35;
+  margin-top: 36px;
+}
+
+.post p,
+.post li {
+  color: #344054;
+}
+
+.post a {
+  color: var(--caprover-blue);
+  text-decoration-color: #155eef55;
+  text-underline-offset: 3px;
+}
+
+.post a:hover {
+  color: var(--caprover-blue-dark);
+  text-decoration-color: currentColor;
+}
+
+.post blockquote {
+  background: var(--caprover-blue-soft);
+  border-left: 4px solid var(--caprover-blue);
+  border-radius: 0 9px 9px 0;
+  color: #344054;
+  margin: 24px 0;
+  padding: 18px 22px;
+}
+
+.post code,
+code {
+  background: var(--caprover-blue-soft);
+  border: 1px solid #cfe0ff;
+  border-radius: 5px;
+  color: var(--caprover-blue-dark);
+  font-family: "Geist Mono", "Geist Mono Fallback", SFMono-Regular, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 2px 6px;
+}
+
+.post pre {
+  background: var(--caprover-night);
+  border: 1px solid #344054;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px #0714261f;
+  margin: 24px 0;
+  padding: 22px 24px;
+}
+
+.post pre code {
+  background: transparent;
+  border: 0;
+  color: #d0d5dd;
+  padding: 0;
+}
+
+.post table {
+  border: 1px solid #d9e2ef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.post table th {
+  background: var(--caprover-surface);
+  color: var(--caprover-ink);
+}
+
+.post table td,
+.post table th {
+  border-color: #d9e2ef;
+}
+
+.button,
+.post .button {
+  border-color: var(--caprover-blue);
+  border-radius: 8px;
+  color: var(--caprover-blue);
+  font-weight: 700;
+}
+
+.button:hover,
+.post .button:hover {
+  background: var(--caprover-blue);
+  color: #fff;
+}
+
+.paginatorNext,
+.paginatorPrevious {
+  border: 1px solid #d9e2ef;
+  border-radius: 9px;
+  color: var(--caprover-blue);
+  padding: 14px 16px;
+}
+
+.paginatorNext:hover,
+.paginatorPrevious:hover {
+  background: var(--caprover-blue-soft);
+  border-color: #b8c8df;
+}
+
+/* Footer */
+.nav-footer {
+  background: var(--caprover-night);
+  border-top: 1px solid #1f2f46;
+  color: #d0d5dd;
+}
+
+.nav-footer h5 {
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav-footer a {
+  color: #aab7c8;
+}
+
+.nav-footer a:hover {
+  color: #79a7ff;
+}
+
+@media only screen and (max-width: 1023px) {
+  .fixedHeaderContainer,
+  .fixedHeaderContainer header {
+    min-height: 68px;
+  }
+
+  .navigationSlider .slidingNav ul {
+    border-top: 1px solid #eef2f6;
+  }
+
+  .docsNavContainer {
+    border-right: 0;
+  }
+
+  .post h1 {
+    font-size: 34px;
+  }
+
+  .post h2 {
+    font-size: 27px;
+  }
+}

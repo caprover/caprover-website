@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import {
   access,
+  appendFile,
   cp,
   mkdir,
   readFile,
@@ -106,6 +107,28 @@ assert.deepEqual(combinedCname, originalCname, "CNAME changed during composition
 assert.match(homepageHtml, /Deploy apps\./);
 assert.match(homepageHtml, /(?:href|src)=["']\/_next\//);
 assert.match(homepageHtml, /(?:href|src)=["']\/homepage-assets\//);
+
+const homepageStylesheet = homepageHtml.match(
+  /href=["\'](\/_next\/static\/css\/[^"\']+\.css)["\']/,
+)?.[1];
+assert(homepageStylesheet, "Homepage stylesheet reference is missing");
+
+const homepageCss = await readFile(
+  path.join(combinedSite, homepageStylesheet.slice(1)),
+  "utf8",
+);
+const geistFontFaces = homepageCss
+  .match(/@font-face\s*\{[^}]+\}/g)
+  ?.filter((rule) => /font-family\s*:\s*"?Geist/.test(rule));
+assert(
+  geistFontFaces && geistFontFaces.length >= 2,
+  "Homepage stylesheet does not contain the expected Geist font faces",
+);
+
+await appendFile(
+  path.join(combinedSite, "css/main.css"),
+  `\n/* Shared with the redesigned homepage */\n${geistFontFaces.join("\n")}\n`,
+);
 
 const combinedStats = await stat(combinedSite);
 assert(combinedStats.isDirectory());
