@@ -19,9 +19,6 @@ export const metadata: Metadata = {
   title: "CapRover · Scalable, Free and Self-hosted PaaS",
   description:
     "Deploy and manage apps on your own infrastructure with CapRover, the free and open-source PaaS built on Docker.",
-  other: {
-    "codex-preview": "development",
-  },
   icons: {
     icon: iconPath,
     shortcut: iconPath,
