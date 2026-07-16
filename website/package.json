@@ -3,15 +3,12 @@
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
     "build": "docusaurus-build",
-    "publish-gh-pages": "docusaurus-publish",
-    "publish": "rm -rf ./build && docusaurus-build && cp ./CNAME ./build/CapRover/ && node publish_to_github_pages.js",
     "clean-build": "rm -rf ./build && docusaurus-build && cp ./CNAME ./build/CapRover/ && echo 'Finished building'",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "docusaurus": "^1.14.6",
-    "gh-pages": "^3.1.0"
+    "docusaurus": "^1.14.6"
   }
 }
