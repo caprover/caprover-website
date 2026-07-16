@@ -50,6 +50,7 @@ try {
   assert(nextAsset, "Homepage does not reference a Next.js CSS or JavaScript asset");
 
   const checks = await Promise.all([
+    fetch(`${origin}/.nojekyll`),
     fetch(`${origin}/docs/get-started.html`),
     fetch(`${origin}/homepage-assets/caprover-dashboard.png`),
     fetch(`${origin}${nextAsset}`),
@@ -59,9 +60,10 @@ try {
     assert.equal(response.status, 200, `${response.url} did not return HTTP 200`);
   }
 
-  const docs = await checks[0].text();
+  assert.equal(await checks[0].text(), "", ".nojekyll must be empty");
+  const docs = await checks[1].text();
   assert.match(docs, /Getting Started/i);
-  assert(Number(checks[1].headers.get("content-length") ?? 0) > 0 || (await checks[1].arrayBuffer()).byteLength > 0);
+  assert(Number(checks[2].headers.get("content-length") ?? 0) > 0 || (await checks[2].arrayBuffer()).byteLength > 0);
 
   console.log("Combined site HTTP smoke test passed");
 } finally {
