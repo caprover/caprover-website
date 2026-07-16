@@ -109,7 +109,7 @@ assert.match(homepageHtml, /(?:href|src)=["']\/_next\//);
 assert.match(homepageHtml, /(?:href|src)=["']\/homepage-assets\//);
 
 const homepageStylesheet = homepageHtml.match(
-  /href=["\'](\\/_next\\/static\\/css\\/[^"\']+\\.css)["\']/,
+  /href=["\'](\/_next\/static\/css\/[^"\']+\.css)["\']/,
 )?.[1];
 assert(homepageStylesheet, "Homepage stylesheet reference is missing");
 
@@ -118,8 +118,8 @@ const homepageCss = await readFile(
   "utf8",
 );
 const geistFontFaces = homepageCss
-  .match(/@font-face\\s*\\{[^}]+\\}/g)
-  ?.filter((rule) => /font-family\\s*:\\s*"?Geist/.test(rule));
+  .match(/@font-face\s*\{[^}]+\}/g)
+  ?.filter((rule) => /font-family\s*:\s*"?Geist/.test(rule));
 assert(
   geistFontFaces && geistFontFaces.length >= 2,
   "Homepage stylesheet does not contain the expected Geist font faces",
@@ -127,7 +127,7 @@ assert(
 
 await appendFile(
   path.join(combinedSite, "css/main.css"),
-  `\\n/* Shared with the redesigned homepage */\\n${geistFontFaces.join("\\n")}\\n`,
+  `\n/* Shared with the redesigned homepage */\n${geistFontFaces.join("\n")}\n`,
 );
 
 const combinedStats = await stat(combinedSite);
