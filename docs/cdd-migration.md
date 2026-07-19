@@ -13,7 +13,7 @@ Simply run [this script](https://raw.githubusercontent.com/caprover/caprover/mas
 
 To migrate, you can simply run the following lines:
 
-```
+```bash
 wget https://raw.githubusercontent.com/caprover/caprover/master/dev-scripts/migrate-from-cdd.sh
 
 chmod +x migrate-from-cdd.sh
