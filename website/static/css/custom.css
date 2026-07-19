@@ -38,6 +38,7 @@ a:hover {
 
 /* Header */
 .fixedHeaderContainer {
+  height: 78px;
   min-height: 78px;
   background: #fff;
   border-bottom: 1px solid #eef2f6;
@@ -46,7 +47,8 @@ a:hover {
 }
 
 .fixedHeaderContainer header {
-  min-height: 78px;
+  align-items: center;
+  min-height: 61px;
 }
 
 .fixedHeaderContainer header img {
@@ -133,6 +135,22 @@ a:hover {
 /* Documentation content */
 .mainContainer {
   color: var(--caprover-ink);
+}
+
+@media only screen and (min-width: 1024px) {
+  .navPusher {
+    padding-top: 78px;
+  }
+
+  .docsNavContainer {
+    height: calc(100vh - 78px);
+    top: 78px;
+  }
+
+  .onPageNav {
+    max-height: calc(100vh - 118px);
+    top: 118px;
+  }
 }
 
 .post h1,
@@ -281,9 +299,21 @@ code {
 }
 
 @media only screen and (max-width: 1023px) {
-  .fixedHeaderContainer,
-  .fixedHeaderContainer header {
+  .fixedHeaderContainer {
+    height: 68px;
     min-height: 68px;
+  }
+
+  .fixedHeaderContainer header {
+    min-height: 51px;
+  }
+
+  .navPusher {
+    padding-top: 118px;
+  }
+
+  .singleRowMobileNav.navPusher {
+    padding-top: 68px;
   }
 
   .navigationSlider .slidingNav ul {
