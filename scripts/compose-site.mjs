@@ -74,7 +74,6 @@ await Promise.all([
   requireNoCollision("_next"),
   requireNoCollision("homepage-assets"),
   requireNoCollision("compare"),
-  requireNoCollision("sitemap.xml"),
 ]);
 
 const originalCname = await readFile(path.join(legacySite, "CNAME"));
@@ -101,7 +100,19 @@ await cp(
 await cp(path.join(homepage, "compare"), path.join(combinedSite, "compare"), {
   recursive: true,
 });
-await cp(path.join(homepage, "sitemap.xml"), path.join(combinedSite, "sitemap.xml"));
+const [legacySitemap, homepageSitemap] = await Promise.all([
+  readFile(path.join(combinedSite, "sitemap.xml"), "utf8"),
+  readFile(path.join(homepage, "sitemap.xml"), "utf8"),
+]);
+const comparisonUrls = (homepageSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter(
+  (entry) => entry.includes("/compare/"),
+);
+assert(comparisonUrls.length === 4, "Homepage sitemap is missing comparison URLs");
+assert.match(legacySitemap, /<\/urlset>\s*$/);
+await writeFile(
+  path.join(combinedSite, "sitemap.xml"),
+  legacySitemap.replace(/<\/urlset>\s*$/, `${comparisonUrls.join("\\n")}\n</urlset>\n`),
+);
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
 await requirePath(path.join(combinedSite, ".nojekyll"));
 
