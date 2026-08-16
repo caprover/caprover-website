@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 };
 
 const rows = [
-  ["Primary interface", "Web dashboard plus CLI and API", "SSH and CLI"],
+  ["Primary interface", "Web dashboard plus CLI and API", "SSH and CLI in OSS core; Dokku Pro adds a web UI and API"],
   ["Default scheduler", "Docker Swarm", "Local Docker scheduler"],
   ["Optional multi-node scheduler", "Additional Docker Swarm nodes", "K3s scheduler"],
   ["Source deployment", "caprover deploy, archive upload or webhook", "git push, git sync or archive import"],
-  ["Build methods", "Dockerfile, CapRover templates or image", "Dockerfile, Herokuish, Cloud Native Buildpacks or image"],
+  ["Build methods", "Dockerfile, CapRover templates or image", "Dockerfile, Herokuish, Cloud Native Buildpacks, Nixpacks, Railpack or image"],
   ["Reverse proxy", "NGINX with dashboard editor", "NGINX by default, configurable through CLI and templates"],
   ["App catalog", "Open-source One-Click Apps", "Plugins and datastore plugins, no comparable app catalog"],
   ["Scheduled jobs", "Run as an application or external scheduler", "Built-in cron task support"],
@@ -52,12 +52,12 @@ export default function DokkuComparison() {
           <article>
             <h2>Interaction model</h2>
             <p>CapRover is designed to make application and server operations visible. Domains, certificates, environment variables, persistence, replicas, logs, NGINX configuration and Swarm nodes are available through its dashboard. Its CLI focuses on setup, login and application deployment.</p>
-            <p>Dokku treats the command line as the product interface. Applications are created and configured through SSH commands, making the workflow easy to script and compose with existing Unix tooling. There is no official Dokku web dashboard.</p>
+            <p>Open-source Dokku core treats the command line as its product interface. Applications are created and configured through SSH commands, making the workflow easy to script and compose with existing Unix tooling. The separately licensed Dokku Pro product adds an official web UI and REST API.</p>
           </article>
           <article>
             <h2>Deployment and builds</h2>
             <p>CapRover commonly builds a Dockerfile described by captain-definition, deploys a prebuilt image, or receives source through its CLI and webhooks. Its One-Click format can define multiple related services using a Compose-like subset.</p>
-            <p>Dokku’s traditional workflow is a Git push to the server. It can build with Dockerfiles, Herokuish or Cloud Native Buildpacks, and it can initialize applications from remote Git repositories, images or archives.</p>
+            <p>Dokku’s traditional workflow is a Git push to the server. It can build with Dockerfiles, Herokuish, Cloud Native Buildpacks, Nixpacks or Railpack, and it can initialize applications from remote Git repositories, images or archives.</p>
           </article>
           <article>
             <h2>Scaling architecture</h2>
@@ -108,6 +108,7 @@ export default function DokkuComparison() {
           <li><a href="https://dokku.com/docs/deployment/methods/git/">Dokku Git deployment</a></li>
           <li><a href="https://dokku.com/docs/deployment/schedulers/k3s/">Dokku K3s scheduler</a></li>
           <li><a href="https://dokku.com/docs/configuration/environment-variables/">Dokku global and app environment variables</a></li>
+          <li><a href="https://pro.dokku.com/docs/getting-started/">Dokku Pro web UI and API</a></li>
         </SourceLinks>
       </section>
     </ComparePage>

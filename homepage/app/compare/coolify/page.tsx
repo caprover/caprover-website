@@ -17,13 +17,13 @@ export const metadata: Metadata = {
 
 const rows = [
   ["Primary operating model", "One CapRover installation managing a Docker Swarm", "A control plane managing connected Docker servers over SSH"],
-  ["Default proxy", "NGINX", "Traefik, with Caddy also supported"],
+  ["Default proxy", "NGINX", "Traefik; Caddy is also available but experimental"],
   ["Docker Compose", "Partial parser for common fields", "First-class application and service support"],
   ["Git deployment", "Generic Git credentials, SSH keys and webhooks", "Provider integrations, deploy keys and webhooks"],
   ["Multi-node applications", "Docker Swarm replicas", "Standalone servers or Docker Swarm"],
   ["Proxy customization", "Per-app NGINX template editor", "Proxy configuration, labels and raw Compose"],
   ["Local registry", "CapRover can provision and manage one", "Can be deployed as a service or supplied externally"],
-  ["Platform backup", "Downloadable configuration backup", "Scheduled or manual instance backup"],
+  ["Platform backup", "Dashboard download; restore during installation", "Scheduled S3 or manual instance backup"],
 ];
 
 export default function CoolifyComparison() {
@@ -66,7 +66,7 @@ export default function CoolifyComparison() {
           </article>
           <article>
             <h2>Operations</h2>
-            <p>Both products provide HTTPS automation, application logs, health checks, rollbacks, backups of platform state and monitoring. CapRover’s backup intentionally excludes application images and persistent volumes. Coolify likewise distinguishes control-plane backups from workload data, databases and volumes.</p>
+            <p>Both products provide HTTPS automation, application logs, rollback paths, platform-state backups and monitoring options. Coolify exposes health-check settings directly; CapRover users can define Docker health checks in the image or through a ServiceUpdate override. CapRover’s standard backup excludes application images and persistent volumes, although images in its self-hosted registry are included. Coolify likewise distinguishes control-plane backups from workload data, databases and volumes.</p>
           </article>
         </div>
       </section>

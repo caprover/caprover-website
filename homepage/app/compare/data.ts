@@ -20,7 +20,7 @@ export const comparisonRows: ComparisonRow[] = [
     feature: "Web dashboard",
     caprover: "Built in",
     dokploy: "Built in",
-    dokku: "No official dashboard",
+    dokku: "No built-in OSS dashboard; Dokku Pro adds one",
     coolify: "Built in",
   },
   {
@@ -33,7 +33,7 @@ export const comparisonRows: ComparisonRow[] = [
   {
     feature: "Git provider support",
     caprover: "Generic Git plus webhooks",
-    dokploy: "GitHub, GitLab, Gitea and generic Git",
+    dokploy: "GitHub, GitLab, Bitbucket, Gitea and generic Git",
     dokku: "Git push or sync from any Git remote",
     coolify: "GitHub, GitLab, Bitbucket, Gitea and generic Git",
   },
@@ -55,7 +55,7 @@ export const comparisonRows: ComparisonRow[] = [
     feature: "Automatic HTTPS",
     caprover: "Let's Encrypt",
     dokploy: "Let's Encrypt through Traefik",
-    dokku: "Let's Encrypt integration",
+    dokku: "Official Let’s Encrypt plugin",
     coolify: "Let's Encrypt through its proxy",
   },
   {
@@ -70,14 +70,14 @@ export const comparisonRows: ComparisonRow[] = [
     caprover: "NGINX",
     dokploy: "Traefik",
     dokku: "NGINX by default, alternatives available",
-    coolify: "Traefik by default, Caddy available",
+    coolify: "Traefik by default; Caddy is experimental",
   },
   {
     feature: "Per-app proxy editing in the dashboard",
     caprover: "Full NGINX template editor",
-    dokploy: "Traefik configuration and domains",
+    dokploy: "Domain UI; Traefik labels or dynamic config",
     dokku: "CLI and template customization",
-    coolify: "Proxy configuration and labels",
+    coolify: "Domain UI; labels or dynamic proxy config",
   },
   {
     feature: "Platform-managed local registry",
@@ -88,10 +88,10 @@ export const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: "Application rollback",
-    caprover: "One-click source or image rollback",
-    dokploy: "Registry-backed rollback",
+    caprover: "Rebuilds and redeploys a selected prior version",
+    dokploy: "Optional registry-backed version rollback",
     dokku: "Manual redeploy or retained image",
-    coolify: "Deployment rollback",
+    coolify: "Rollback to a locally retained application image",
   },
   {
     feature: "Low-level container override",
@@ -102,7 +102,7 @@ export const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: "Platform configuration backup",
-    caprover: "Download and restore from dashboard",
+    caprover: "Dashboard download; restore during installation",
     dokploy: "Scheduled S3 backup and restore",
     dokku: "Documented manual backup",
     coolify: "Scheduled and manual instance backup",
