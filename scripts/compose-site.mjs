@@ -66,8 +66,14 @@ await Promise.all([
   requirePath(path.join(homepage, "index.html")),
   requirePath(path.join(homepage, "_next")),
   requirePath(path.join(homepage, "homepage-assets")),
+  requirePath(path.join(homepage, "compare/index.html")),
+  requirePath(path.join(homepage, "compare/coolify/index.html")),
+  requirePath(path.join(homepage, "compare/dokploy/index.html")),
+  requirePath(path.join(homepage, "compare/dokku/index.html")),
+  requirePath(path.join(homepage, "sitemap.xml")),
   requireNoCollision("_next"),
   requireNoCollision("homepage-assets"),
+  requireNoCollision("compare"),
 ]);
 
 const originalCname = await readFile(path.join(legacySite, "CNAME"));
@@ -90,6 +96,22 @@ await cp(
   path.join(homepage, "homepage-assets"),
   path.join(combinedSite, "homepage-assets"),
   { recursive: true },
+);
+await cp(path.join(homepage, "compare"), path.join(combinedSite, "compare"), {
+  recursive: true,
+});
+const [legacySitemap, homepageSitemap] = await Promise.all([
+  readFile(path.join(combinedSite, "sitemap.xml"), "utf8"),
+  readFile(path.join(homepage, "sitemap.xml"), "utf8"),
+]);
+const comparisonUrls = (homepageSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter(
+  (entry) => entry.includes("/compare/"),
+);
+assert(comparisonUrls.length === 4, "Homepage sitemap is missing comparison URLs");
+assert.match(legacySitemap, /<\/urlset>\s*$/);
+await writeFile(
+  path.join(combinedSite, "sitemap.xml"),
+  legacySitemap.replace(/<\/urlset>\s*$/, `${comparisonUrls.join("\n")}\n</urlset>\n`),
 );
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
 await requirePath(path.join(combinedSite, ".nojekyll"));
