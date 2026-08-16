@@ -1,0 +1,57 @@
+:root{--compare-blue:#155eef;--compare-blue-dark:#0b3b91;--compare-blue-soft:#eaf2ff;--compare-ink:#101828;--compare-muted:#667085;--compare-line:#d0d5dd;--compare-night:#071426}
+.compare-page{min-height:100vh;background:#fff;color:var(--compare-ink)}
+.compare-shell{width:min(1180px,calc(100% - 96px));margin:0 auto}
+.compare-header{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eef2f6}
+.compare-logo{display:flex;align-items:center;gap:11px;font-size:23px;font-weight:750;letter-spacing:-.04em}
+.compare-logo img{width:40px;height:40px;object-fit:contain}
+.compare-header-links{display:flex;gap:30px;align-items:center}
+.compare-header-links a{font-size:14px;font-weight:650;color:#344054}
+.compare-header-links a:hover,.source-links a:hover{color:var(--compare-blue)}
+.compare-hero{padding:110px 0 70px;max-width:1050px}
+.compare-kicker{font-size:12px;font-weight:850;letter-spacing:.14em;color:var(--compare-blue);margin:0 0 20px}
+.compare-hero h1{font-size:64px;line-height:1.03;letter-spacing:-.055em;margin:0;max-width:980px}
+.compare-lead{font-size:20px;line-height:1.65;color:#475467;max-width:900px;margin:28px 0 0}
+.verdict{margin-top:40px;padding:24px 28px;border:1px solid #bfd2f2;border-radius:14px;background:linear-gradient(145deg,#edf4ff,#fff)}
+.verdict strong{display:block;font-size:13px;color:var(--compare-blue);text-transform:uppercase;letter-spacing:.1em}
+.verdict p{font-size:17px;line-height:1.65;margin:10px 0 0;color:#344054}
+.compare-section{padding:70px 0}
+.compare-soft{background:#f6f9fe}
+.method-note{border-left:4px solid var(--compare-blue);background:var(--compare-blue-soft);padding:22px 26px;margin-bottom:34px;border-radius:0 10px 10px 0}
+.method-note strong{font-size:15px}.method-note p{margin:8px 0 0;color:#475467;line-height:1.6}
+.comparison-table-wrap,.two-column-table-wrap{overflow-x:auto;border:1px solid var(--compare-line);border-radius:14px;box-shadow:0 12px 36px #155eef0b}
+.comparison-table,.two-column-table{border-collapse:collapse;width:100%;min-width:900px;background:#fff}
+.comparison-table th,.comparison-table td,.two-column-table th,.two-column-table td{padding:17px 18px;text-align:left;border-right:1px solid #e4e7ec;border-bottom:1px solid #e4e7ec;font-size:14px;line-height:1.45;vertical-align:top}
+.comparison-table thead th,.two-column-table thead th{background:var(--compare-night);color:#fff;font-size:13px;letter-spacing:.025em}
+.comparison-table tbody th,.two-column-table tbody th{font-weight:750;width:20%;background:#fbfcfe}
+.comparison-table .is-focus{background:#f0f5ff}
+.comparison-table thead .is-focus{background:var(--compare-blue)}
+.comparison-table tr:last-child>* ,.two-column-table tr:last-child>*{border-bottom:0}
+.comparison-table tr>*:last-child,.two-column-table tr>*:last-child{border-right:0}
+.prose-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.prose-grid h2,.compare-heading h2,.compare-section>h2,.source-links h2,.article-layout h2{font-size:42px;letter-spacing:-.04em;line-height:1.12;margin:0}
+.prose-copy p,.compare-heading>p,.article-layout p,.migration-grid p{color:#475467;line-height:1.75;font-size:16px;margin-top:0}
+.compare-heading{max-width:780px;margin-bottom:38px}
+.compare-heading>p{margin-top:18px}
+.matchup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.matchup-card{display:block;border:1px solid #d3deed;border-radius:15px;padding:30px;background:#fff;transition:.2s;min-height:235px}
+.matchup-card:hover{transform:translateY(-3px);border-color:#9bbbf1;box-shadow:0 18px 44px #155eef13}
+.matchup-card span{font-size:10px;letter-spacing:.13em;font-weight:850;color:var(--compare-blue)}
+.matchup-card h3{font-size:22px;margin:20px 0 10px}.matchup-card p{color:var(--compare-muted);line-height:1.6}.matchup-card b{display:block;margin-top:22px;color:var(--compare-blue);font-size:14px}
+.article-layout{display:grid;grid-template-columns:1fr 1fr;gap:44px 70px}
+.article-layout article{background:#fff;border:1px solid #dbe3ef;border-radius:14px;padding:34px}
+.article-layout h2{font-size:28px;margin-bottom:18px}
+.article-layout p:last-child{margin-bottom:0}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.choice-grid article{border:1px solid #d3deed;border-radius:15px;padding:34px;background:#fff}
+.choice-grid ul{padding-left:22px;margin:0}.choice-grid li{padding:7px 0;color:#475467;line-height:1.55}
+.migration-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}
+.migration-grid p{border:1px solid #dbe3ef;border-radius:12px;padding:27px;margin:0}
+.source-links{margin-top:64px;border-top:1px solid #d9e2ef;padding-top:48px}
+.source-links h2{font-size:30px}.source-links>p{color:var(--compare-muted)}
+.source-links ul{columns:2;padding-left:20px}.source-links li{break-inside:avoid;margin:9px 0;color:#475467}.source-links a{text-decoration:underline;text-decoration-color:#b8c8df;text-underline-offset:3px}
+.compare-footer{border-top:1px solid #d9e2ef;padding:42px 0;margin-top:40px}
+.compare-footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr auto;align-items:center;gap:24px}
+.compare-footer p,.compare-footer small{color:var(--compare-muted);font-size:13px}.compare-footer-grid>div{display:flex;gap:22px;font-size:14px;font-weight:650}
+@media(max-width:900px){.compare-shell{width:calc(100% - 48px)}.compare-hero h1{font-size:49px}.prose-grid,.article-layout{grid-template-columns:1fr}.matchup-grid{grid-template-columns:1fr}.compare-footer-grid{grid-template-columns:1fr 1fr}.source-links ul{columns:1}}
+@media(max-width:640px){.compare-shell{width:calc(100% - 32px)}.compare-header{height:68px}.compare-header-links a:first-child{display:none}.compare-header-links{gap:18px}.compare-logo{font-size:20px}.compare-logo img{width:34px;height:34px}.compare-hero{padding:75px 0 42px}.compare-hero h1{font-size:39px}.compare-lead{font-size:17px}.compare-section{padding:48px 0}.choice-grid,.migration-grid{grid-template-columns:1fr}.article-layout{gap:20px}.article-layout article{padding:26px 22px}.prose-grid h2,.compare-heading h2,.compare-section>h2{font-size:34px}.compare-footer-grid{grid-template-columns:1fr}.comparison-table th,.comparison-table td,.two-column-table th,.two-column-table td{padding:14px}}
+@media(prefers-reduced-motion:reduce){.matchup-card{transition:none}}

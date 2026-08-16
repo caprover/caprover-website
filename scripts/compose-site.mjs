@@ -66,8 +66,15 @@ await Promise.all([
   requirePath(path.join(homepage, "index.html")),
   requirePath(path.join(homepage, "_next")),
   requirePath(path.join(homepage, "homepage-assets")),
+  requirePath(path.join(homepage, "compare/index.html")),
+  requirePath(path.join(homepage, "compare/coolify/index.html")),
+  requirePath(path.join(homepage, "compare/dokploy/index.html")),
+  requirePath(path.join(homepage, "compare/dokku/index.html")),
+  requirePath(path.join(homepage, "sitemap.xml")),
   requireNoCollision("_next"),
   requireNoCollision("homepage-assets"),
+  requireNoCollision("compare"),
+  requireNoCollision("sitemap.xml"),
 ]);
 
 const originalCname = await readFile(path.join(legacySite, "CNAME"));
@@ -91,6 +98,10 @@ await cp(
   path.join(combinedSite, "homepage-assets"),
   { recursive: true },
 );
+await cp(path.join(homepage, "compare"), path.join(combinedSite, "compare"), {
+  recursive: true,
+});
+await cp(path.join(homepage, "sitemap.xml"), path.join(combinedSite, "sitemap.xml"));
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
 await requirePath(path.join(combinedSite, ".nojekyll"));
 

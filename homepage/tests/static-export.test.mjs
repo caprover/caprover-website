@@ -34,3 +34,20 @@ test("exports a complete static homepage", async () => {
     assert.match(html, new RegExp(`href=["']${basePath}/_next/`));
   }
 });
+
+
+test("exports the comparison hub and one-on-one pages without changing homepage navigation", async () => {
+  const homepage = await readFile("out/index.html", "utf8");
+  const hub = await readFile("out/compare/index.html", "utf8");
+  const coolify = await readFile("out/compare/coolify/index.html", "utf8");
+  const dokploy = await readFile("out/compare/dokploy/index.html", "utf8");
+  const dokku = await readFile("out/compare/dokku/index.html", "utf8");
+  const sitemap = await readFile("out/sitemap.xml", "utf8");
+
+  assert.doesNotMatch(homepage, /href=["'][^"']*\/compare\/?["']/);
+  assert.match(hub, /Choose the deployment model/);
+  assert.match(coolify, /CAPROVER VS COOLIFY/);
+  assert.match(dokploy, /CAPROVER VS DOKPLOY/);
+  assert.match(dokku, /CAPROVER VS DOKKU/);
+  assert.match(sitemap, /https:\/\/caprover\.com\/compare\/coolify\//);
+});
