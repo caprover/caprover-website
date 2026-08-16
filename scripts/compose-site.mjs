@@ -111,7 +111,7 @@ assert(comparisonUrls.length === 4, "Homepage sitemap is missing comparison URLs
 assert.match(legacySitemap, /<\/urlset>\s*$/);
 await writeFile(
   path.join(combinedSite, "sitemap.xml"),
-  legacySitemap.replace(/<\/urlset>\s*$/, `${comparisonUrls.join("\\n")}\n</urlset>\n`),
+  legacySitemap.replace(/<\/urlset>\s*$/, `${comparisonUrls.join("\n")}\n</urlset>\n`),
 );
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
 await requirePath(path.join(combinedSite, ".nojekyll"));
