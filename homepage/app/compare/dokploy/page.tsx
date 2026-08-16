@@ -61,7 +61,7 @@ export default function DokployComparison() {
           </article>
           <article>
             <h2>Application and Compose models</h2>
-            <p>CapRover's primary abstraction is an application backed by a Docker service. It can import a useful subset of Compose through the One-Click parser, but unsupported Compose fields are ignored. Complex definitions should be reviewed rather than assumed compatible.</p>
+            <p>CapRover’s primary abstraction is an application backed by a Docker service. It can import a useful subset of Compose through the One-Click parser, but unsupported Compose fields are ignored. Complex definitions should be reviewed rather than assumed compatible.</p>
             <p>Dokploy treats Compose as a first-class resource and can deploy it through Docker Compose or Docker Stack. It also offers more source-build options, including Nixpacks and buildpacks, and can separate build servers from deployment servers.</p>
           </article>
           <article>

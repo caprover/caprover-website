@@ -31,7 +31,7 @@ export default function ComparisonHub() {
       <section className="compare-section compare-soft">
         <div className="compare-shell prose-grid">
           <div>
-            <p className="compare-kicker">CAPROVER'S DESIGN CENTER</p>
+            <p className="compare-kicker">CAPROVER’S DESIGN CENTER</p>
             <h2>Simple application management with Docker controls underneath.</h2>
           </div>
           <div className="prose-copy">

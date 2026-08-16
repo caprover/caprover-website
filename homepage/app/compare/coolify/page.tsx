@@ -61,12 +61,12 @@ export default function CoolifyComparison() {
           </article>
           <article>
             <h2>Networking and control</h2>
-            <p>CapRover's main distinction is editable NGINX configuration. Operators can change an individual application's generated NGINX template or override the global template for newly created applications. Advanced container behavior can be expressed through Docker's ServiceUpdate schema.</p>
+            <p>CapRover’s main distinction is editable NGINX configuration. Operators can change an individual application’s generated NGINX template or override the global template for newly created applications. Advanced container behavior can be expressed through Docker’s ServiceUpdate schema.</p>
             <p>Coolify uses Traefik by default and supports Caddy. Routing is managed through domains, proxy configuration and generated labels. Raw Compose provides an escape hatch when an operator wants to own the complete Compose definition and proxy labels.</p>
           </article>
           <article>
             <h2>Operations</h2>
-            <p>Both products provide HTTPS automation, application logs, health checks, rollbacks, backups of platform state and monitoring. CapRover's backup intentionally excludes application images and persistent volumes. Coolify likewise distinguishes control-plane backups from workload data, databases and volumes.</p>
+            <p>Both products provide HTTPS automation, application logs, health checks, rollbacks, backups of platform state and monitoring. CapRover’s backup intentionally excludes application images and persistent volumes. Coolify likewise distinguishes control-plane backups from workload data, databases and volumes.</p>
           </article>
         </div>
       </section>

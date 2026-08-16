@@ -57,12 +57,12 @@ export default function DokkuComparison() {
           <article>
             <h2>Deployment and builds</h2>
             <p>CapRover commonly builds a Dockerfile described by captain-definition, deploys a prebuilt image, or receives source through its CLI and webhooks. Its One-Click format can define multiple related services using a Compose-like subset.</p>
-            <p>Dokku's traditional workflow is a Git push to the server. It can build with Dockerfiles, Herokuish or Cloud Native Buildpacks, and it can initialize applications from remote Git repositories, images or archives.</p>
+            <p>Dokku’s traditional workflow is a Git push to the server. It can build with Dockerfiles, Herokuish or Cloud Native Buildpacks, and it can initialize applications from remote Git repositories, images or archives.</p>
           </article>
           <article>
             <h2>Scaling architecture</h2>
             <p>CapRover enables Docker Swarm during installation, even for a single machine. Adding workers extends the same scheduling model across servers, and the dashboard can change application replica counts.</p>
-            <p>Dokku uses its local Docker scheduler by default. Its official K3s scheduler adds a Kubernetes-based multi-node path. This is a real cluster option, but it is architecturally different from CapRover's Swarm model.</p>
+            <p>Dokku uses its local Docker scheduler by default. Its official K3s scheduler adds a Kubernetes-based multi-node path. This is a real cluster option, but it is architecturally different from CapRover’s Swarm model.</p>
           </article>
           <article>
             <h2>Extensibility</h2>
