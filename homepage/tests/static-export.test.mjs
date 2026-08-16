@@ -45,11 +45,20 @@ test("exports the comparison hub and one-on-one pages without changing homepage 
   const sitemap = await readFile("out/sitemap.xml", "utf8");
 
   assert.doesNotMatch(homepage, /href=["'][^"']*\/compare\/?["']/);
-  assert.match(hub, /Deploy apps on your own servers/);
-  assert.match(hub, /WHY CAPROVER/);
+  assert.match(hub, /Start simple\. Never hit a ceiling\./);
+  assert.match(hub, /SIMPLE BY DEFAULT/);
+  assert.match(hub, /SMALL-SERVER FRIENDLY/);
+  assert.match(hub, /status-yes/);
   assert.match(coolify, /CAPROVER VS COOLIFY/);
   assert.match(dokploy, /CAPROVER VS DOKPLOY/);
   assert.match(dokku, /CAPROVER VS DOKKU/);
+  for (const matchup of [coolify, dokploy, dokku]) {
+    assert.match(matchup, /SIMPLE BY DEFAULT/);
+    assert.match(matchup, /POWERFUL WHEN NEEDED/);
+    assert.match(matchup, /SMALL-SERVER FRIENDLY/);
+    assert.match(matchup, /status-yes/);
+    assert.doesNotMatch(matchup, /Raw Docker ServiceUpdate override/);
+  }
   assert.doesNotMatch(coolify, /Moving to Coolify/);
   assert.doesNotMatch(dokploy, /Moving to Dokploy/);
   assert.doesNotMatch(dokku, /Moving to Dokku/);

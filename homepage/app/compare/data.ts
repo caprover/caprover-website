@@ -1,91 +1,111 @@
 export type Product = "caprover" | "dokploy" | "dokku" | "coolify";
 
+export type ComparisonStatus = "yes" | "partial" | "no";
+
+export type ComparisonValue = {
+  status: ComparisonStatus;
+  note?: string;
+};
+
 export type ComparisonRow = {
   feature: string;
-  caprover: string;
-  dokploy: string;
-  dokku: string;
-  coolify: string;
+  caprover: ComparisonValue;
+  dokploy: ComparisonValue;
+  dokku: ComparisonValue;
+  coolify: ComparisonValue;
+};
+
+export type PairwiseRow = {
+  feature: string;
+  caprover: ComparisonValue;
+  competitor: ComparisonValue;
 };
 
 export const products: Array<{ key: Product; label: string }> = [
   { key: "caprover", label: "CapRover" },
   { key: "dokploy", label: "Dokploy" },
-  { key: "dokku", label: "Dokku" },
+  { key: "dokku", label: "Dokku OSS" },
   { key: "coolify", label: "Coolify" },
 ];
 
 export const comparisonRows: ComparisonRow[] = [
   {
-    feature: "Web interface for daily operations",
-    caprover: "Built-in open-source dashboard",
-    dokploy: "Built-in dashboard",
-    dokku: "CLI-first in OSS; Dokku Pro adds a dashboard",
-    coolify: "Built-in dashboard",
+    feature: "Open-source dashboard for daily operations",
+    caprover: { status: "yes" },
+    dokploy: { status: "yes" },
+    dokku: { status: "no", note: "Dokku Pro adds one" },
+    coolify: { status: "yes" },
   },
   {
-    feature: "Deploy from a developer machine",
-    caprover: "caprover deploy or dashboard archive upload",
-    dokploy: "Git repository, Docker image or Compose workflows",
-    dokku: "git push, Git sync or archive import",
-    coolify: "Git repository, Docker image or Compose workflows",
+    feature: "Officially documented minimum of 1 GB RAM",
+    caprover: { status: "yes", note: "1 GB" },
+    dokploy: { status: "no", note: "2 GB" },
+    dokku: { status: "yes", note: "1 GB with Docker" },
+    coolify: { status: "no", note: "2 GB and 2 cores" },
   },
   {
-    feature: "Application and database catalog",
-    caprover: "Built-in open-source One-Click Apps",
-    dokploy: "Built-in open-source templates",
-    dokku: "Plugin ecosystem, without a comparable app catalog",
-    coolify: "Built-in open-source service templates",
+    feature: "Purpose-built deployment from a local CLI",
+    caprover: { status: "yes", note: "caprover deploy" },
+    dokploy: { status: "yes", note: "dokploy app deploy" },
+    dokku: { status: "yes", note: "git push or archive" },
+    coolify: { status: "partial", note: "API or webhook trigger" },
   },
   {
-    feature: "Automatic domains and HTTPS",
-    caprover: "Built in with Let's Encrypt",
-    dokploy: "Built in through Traefik and Let's Encrypt",
-    dokku: "Available through the official Let's Encrypt plugin",
-    coolify: "Built in through its proxy and Let's Encrypt",
+    feature: "One-click application and database catalog",
+    caprover: { status: "yes", note: "Open-source catalog" },
+    dokploy: { status: "yes", note: "Open-source templates" },
+    dokku: { status: "partial", note: "Plugins, no comparable catalog" },
+    coolify: { status: "yes", note: "Service templates" },
   },
   {
-    feature: "Scaling path from one server to a cluster",
-    caprover: "Docker Swarm is the standard runtime",
-    dokploy: "Docker Swarm plus independent remote servers",
-    dokku: "Local Docker by default; optional K3s scheduler",
-    coolify: "Standalone Docker by default; Docker Swarm is experimental",
+    feature: "Automatic HTTPS with Let’s Encrypt",
+    caprover: { status: "yes" },
+    dokploy: { status: "yes" },
+    dokku: { status: "partial", note: "Official plugin" },
+    coolify: { status: "yes" },
   },
   {
-    feature: "Per-app reverse-proxy customization",
-    caprover: "Full NGINX template editor in the dashboard",
-    dokploy: "Domain UI with Traefik labels or dynamic config",
-    dokku: "NGINX configuration through CLI and templates",
-    coolify: "Domain UI with labels or proxy configuration",
+    feature: "Multi-node orchestration in the standard runtime",
+    caprover: { status: "yes", note: "Docker Swarm from installation" },
+    dokploy: { status: "yes", note: "Docker Swarm" },
+    dokku: { status: "partial", note: "Optional K3s scheduler" },
+    coolify: { status: "partial", note: "Swarm support is experimental" },
   },
   {
-    feature: "Private registry provisioning",
-    caprover: "CapRover can provision and manage a local registry",
-    dokploy: "Connect a registry",
-    dokku: "Manual or plugin-based",
-    coolify: "Use an external registry or deploy one as a service",
+    feature: "One-click rollback without an external registry",
+    caprover: { status: "yes", note: "From deployment history" },
+    dokploy: { status: "partial", note: "Registry must be configured" },
+    dokku: { status: "no", note: "Manual redeploy" },
+    coolify: { status: "partial", note: "Requires a retained local image" },
   },
   {
-    feature: "Application rollback",
-    caprover: "One-click rebuild and redeploy of a prior version",
-    dokploy: "Registry-backed rollback when configured",
-    dokku: "Manual redeploy or retained image",
-    coolify: "Rollback to a locally retained image",
+    feature: "Platform-provisioned private local registry",
+    caprover: { status: "yes" },
+    dokploy: { status: "no", note: "Connect an existing registry" },
+    dokku: { status: "no", note: "Manual or plugin-based" },
+    coolify: { status: "partial", note: "Deploy as a service" },
   },
   {
-    feature: "Advanced container control",
-    caprover: "Raw Docker ServiceUpdate override in YAML or JSON",
-    dokploy: "Structured Swarm settings and Compose",
-    dokku: "Docker options and plugins",
-    coolify: "Docker options and raw Compose",
+    feature: "Simple dashboard with an advanced proxy escape hatch",
+    caprover: { status: "yes", note: "Complete per-app NGINX template" },
+    dokploy: { status: "yes", note: "Traefik configuration" },
+    dokku: { status: "no", note: "CLI and templates in OSS" },
+    coolify: { status: "partial", note: "Labels and proxy configuration" },
   },
   {
-    feature: "Public GitHub project history",
-    caprover: "Since 2017",
-    dokploy: "Since 2024",
-    dokku: "Since 2013",
-    coolify: "Since 2021",
+    feature: "Simple dashboard with a native orchestrator escape hatch",
+    caprover: { status: "yes", note: "Docker service settings" },
+    dokploy: { status: "partial", note: "Structured Swarm settings" },
+    dokku: { status: "no", note: "CLI and plugins in OSS" },
+    coolify: { status: "partial", note: "Docker options and Compose" },
+  },
+  {
+    feature: "Public project since 2017 or earlier",
+    caprover: { status: "yes", note: "Since 2017" },
+    dokploy: { status: "no", note: "Since 2024" },
+    dokku: { status: "yes", note: "Since 2013" },
+    coolify: { status: "no", note: "Since 2021" },
   },
 ];
 
-export const verifiedDate = "August 15, 2026";
+export const verifiedDate = "August 16, 2026";

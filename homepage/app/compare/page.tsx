@@ -7,6 +7,8 @@ import {
   MatchupLinks,
   PageHero,
   ProofStrip,
+  ResourceCallout,
+  SimplicityPower,
   SourceLinks,
 } from "./components";
 
@@ -22,43 +24,35 @@ export default function ComparisonHub() {
     <ComparePage>
       <PageHero
         eyebrow="CAPROVER VS THE ALTERNATIVES"
-        title="Deploy apps on your own servers without building a platform team."
-        intro="CapRover turns Docker, NGINX, HTTPS, application deployments, scaling and one-click services into a focused web workflow. You keep control of your infrastructure without managing every container and proxy configuration by hand."
+        title="Start simple. Never hit a ceiling."
+        intro="CapRover gives you the easy path for everyday deployments and direct access to the underlying NGINX and Docker configuration when an advanced workload needs it. Run your apps, not a platform team."
       >
         <ProofStrip />
       </PageHero>
 
       <section className="compare-section compare-shell">
-        <div className="compare-heading">
-          <p className="compare-kicker">WHY CAPROVER</p>
-          <h2>Simple for everyday deployment. Docker-native when you need more control.</h2>
+        <SimplicityPower />
+        <ResourceCallout>
           <p>
-            This table focuses on the workflows CapRover is designed to make straightforward,
-            while keeping every comparison narrow and verifiable.
+            CapRover documents a 1 GB RAM minimum. Coolify and Dokploy each document 2 GB RAM and
+            30 GB of free storage, leaving CapRover with a lower published starting requirement.
           </p>
-        </div>
-        <ComparisonPrinciples />
-        <ComparisonTable focus="caprover" />
+        </ResourceCallout>
       </section>
 
       <section className="compare-section compare-soft">
-        <div className="compare-shell prose-grid">
-          <div>
-            <p className="compare-kicker">CAPROVER&apos;S DESIGN CENTER</p>
-            <h2>Opinionated where it saves time. Flexible where it matters.</h2>
-          </div>
-          <div className="prose-copy">
+        <div className="compare-shell">
+          <div className="compare-heading">
+            <p className="compare-kicker">THE SHORT VERSION</p>
+            <h2>CapRover keeps the common path easy without removing advanced control.</h2>
             <p>
-              CapRover deliberately keeps its core model small: applications, domains,
-              environment variables, persistent directories and replicas. Deploy source or an
-              image, attach a domain, enable HTTPS and scale from the same dashboard.
-            </p>
-            <p>
-              The simplicity does not hide the underlying infrastructure. Operators can edit an
-              application&apos;s complete NGINX template or pass supported Docker ServiceUpdate fields
-              directly to the Docker API when the standard settings are not enough.
+              The table emphasizes concrete capabilities that support that promise. Short notes
+              identify prerequisites and important limitations without turning every cell into a
+              competitor brochure.
             </p>
           </div>
+          <ComparisonPrinciples />
+          <ComparisonTable focus="caprover" />
         </div>
       </section>
 
@@ -79,10 +73,14 @@ export default function ComparisonHub() {
           <li><a href="https://caprover.com/docs/app-scaling-and-cluster.html">CapRover Docker Swarm clustering</a></li>
           <li><a href="https://caprover.com/docs/nginx-customization.html">CapRover NGINX customization</a></li>
           <li><a href="https://caprover.com/docs/service-update-override.html">CapRover Docker service overrides</a></li>
+          <li><a href="https://caprover.com/docs/get-started.html">CapRover installation requirements</a></li>
           <li><a href="https://docs.dokploy.com/docs/core">Dokploy documentation</a></li>
+          <li><a href="https://docs.dokploy.com/docs/core/installation">Dokploy installation requirements</a></li>
           <li><a href="https://dokku.com/docs/">Dokku documentation</a></li>
+          <li><a href="https://dokku.com/docs/getting-started/installation/">Dokku installation requirements</a></li>
           <li><a href="https://pro.dokku.com/docs/getting-started/">Dokku Pro web UI and API</a></li>
           <li><a href="https://coolify.io/docs">Coolify documentation</a></li>
+          <li><a href="https://coolify.io/docs/get-started/installation">Coolify installation requirements</a></li>
         </SourceLinks>
       </section>
     </ComparePage>
