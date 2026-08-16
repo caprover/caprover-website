@@ -111,7 +111,8 @@ export function ComparisonPrinciples() {
         Capability names are deliberately narrow. “Partial” means a useful subset exists, not that
         the products are equivalent. Plugin-based and manual approaches are identified instead of
         receiving an unexplained checkmark. Claims are based on official product documentation and
-        are dated because these projects change quickly.
+        are dated because these projects change quickly. Unless a row says otherwise, the scope
+        is the current self-hosted open-source edition; paid or enterprise additions are named.
       </p>
     </aside>
   );

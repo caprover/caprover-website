@@ -65,9 +65,11 @@ export default function ComparisonHub() {
           <li><a href="https://caprover.com/docs/deployment-methods.html">CapRover deployment methods and rollback</a></li>
           <li><a href="https://caprover.com/docs/docker-compose.html">CapRover Docker Compose compatibility</a></li>
           <li><a href="https://caprover.com/docs/app-scaling-and-cluster.html">CapRover Docker Swarm clustering</a></li>
+          <li><a href="https://caprover.com/docs/backup-and-restore.html">CapRover backup and restoration scope</a></li>
           <li><a href="https://caprover.com/docs/nginx-customization.html">CapRover NGINX customization</a></li>
           <li><a href="https://docs.dokploy.com/docs/core">Dokploy documentation</a></li>
           <li><a href="https://dokku.com/docs/">Dokku documentation</a></li>
+          <li><a href="https://pro.dokku.com/docs/getting-started/">Dokku Pro web UI and API</a></li>
           <li><a href="https://coolify.io/docs">Coolify documentation</a></li>
         </SourceLinks>
       </section>
