@@ -3,27 +3,29 @@ import {
   ChoiceGrid,
   ComparePage,
   ComparisonPrinciples,
+  MarketingCta,
   MatchupLinks,
   PageHero,
+  ProofStrip,
   SourceLinks,
 } from "../components";
 
 export const metadata: Metadata = {
-  title: "CapRover vs Dokploy: Technical Comparison",
+  title: "CapRover vs Dokploy: Self-Hosted PaaS Comparison",
   description:
-    "Compare CapRover and Dokploy across Docker Swarm, NGINX, Traefik, Compose, Git deployments, registries, backups and team workflows.",
+    "Compare CapRover and Dokploy across Docker Swarm, NGINX, Traefik, deployment workflows, registries, rollback, Compose and team features.",
   alternates: { canonical: "https://caprover.com/compare/dokploy/" },
 };
 
 const rows = [
-  ["Container orchestration", "Docker Swarm", "Docker Swarm"],
-  ["Default proxy", "NGINX", "Traefik"],
-  ["Docker Compose", "Partial parser for common fields", "First-class Compose and Docker Stack"],
-  ["Application builds", "Dockerfile, templates or prebuilt image", "Dockerfile, Nixpacks, buildpacks or prebuilt image"],
-  ["Remote servers", "Additional nodes join the CapRover Swarm", "Swarm nodes plus independent remote deploy servers"],
-  ["Rollback", "Rebuild or redeploy a previous application version", "Registry-backed deployment images"],
-  ["User model", "Single administrator", "Organizations, users and roles"],
-  ["Low-level control", "Raw Docker ServiceUpdate override", "Structured Swarm configuration and Compose"],
+  ["Project history", "Public GitHub project since 2017", "Public GitHub project since 2024"],
+  ["Core operating model", "Focused applications running on Docker Swarm", "Applications, Compose projects and remote servers"],
+  ["Deploy from your computer", "caprover deploy or dashboard archive upload", "Git repository, Docker image or Compose workflows"],
+  ["Reverse-proxy control", "Complete per-app NGINX template editor", "Traefik domains, labels and dynamic configuration"],
+  ["Local registry", "CapRover can provision and manage one", "Connect a Docker registry"],
+  ["Rollback", "One-click rebuild and redeploy of a prior version", "Registry-backed version rollback"],
+  ["Advanced Docker control", "Raw Docker ServiceUpdate override in YAML or JSON", "Structured Swarm configuration and Compose"],
+  ["Docker Compose", "Partial parser for common One-Click App fields", "First-class Compose and Docker Stack support"],
 ];
 
 export default function DokployComparison() {
@@ -31,10 +33,11 @@ export default function DokployComparison() {
     <ComparePage>
       <PageHero
         eyebrow="CAPROVER VS DOKPLOY"
-        title="Two Swarm-oriented platforms with different priorities."
-        intro="CapRover and Dokploy both use Docker Swarm and provide web dashboards, HTTPS automation, application replicas and open-source templates. The largest differences are proxy choice, Compose support, build workflows and how much platform surface area each product exposes."
+        title="Choose the established, focused path to running apps on Docker Swarm."
+        intro="CapRover has provided an app-centric dashboard for Docker and NGINX since 2017. It is designed for operators who want straightforward deployments and scaling, with direct access to the underlying proxy and Docker service when needed."
       >
-        <div className="verdict"><strong>Short answer</strong><p>Choose CapRover for a focused application model, NGINX control, local CLI deployment and direct Docker service overrides. Choose Dokploy for full Compose, more build strategies, remote deployment servers and multi-user workflows.</p></div>
+        <div className="verdict"><strong>Why CapRover</strong><p>Choose CapRover for its focused application model, local CLI deployment, complete NGINX editing, managed registry option and direct Docker service overrides. Consider Dokploy when first-class Compose, independent remote servers or multi-user workflows are required.</p></div>
+        <ProofStrip />
       </PageHero>
 
       <section className="compare-section compare-shell">
@@ -50,24 +53,24 @@ export default function DokployComparison() {
       <section className="compare-section compare-soft">
         <div className="compare-shell article-layout">
           <article>
-            <h2>Shared foundation</h2>
-            <p>Both products run their own services in Docker and can schedule application replicas across a Swarm. Both expect a registry when nodes need to pull a built image. Both can automate domains, certificates, health checks, rolling updates and application rollback.</p>
-            <p>This shared foundation makes the comparison more about product boundaries than basic container capability.</p>
+            <h2>An established app-centric model</h2>
+            <p>CapRover has used the same core model from one server through multi-node deployments: applications run as Docker services inside a Swarm, while the dashboard manages deployments, domains, certificates, persistence, replicas and logs.</p>
+            <p>This focused boundary keeps common operations together and leaves Docker responsible for scheduling and service lifecycle.</p>
           </article>
           <article>
-            <h2>NGINX versus Traefik</h2>
-            <p>CapRover generates NGINX configuration and exposes the per-app template in its dashboard. Operators can also override the global server-block template and mount supporting files into the NGINX container.</p>
-            <p>Dokploy uses Traefik and manages domains through generated dynamic configuration or Compose labels. This is a better fit for operators already standardized on Traefik, while CapRover is a better fit when explicit NGINX directives are required.</p>
+            <h2>Local deployment and rollback</h2>
+            <p>CapRover can receive source directly from its CLI or dashboard, build a Dockerfile, deploy a prebuilt image or respond to a generic Git webhook.</p>
+            <p>Its deployment history supports one-click rebuilding and redeployment of a prior application version without requiring a separately configured external registry on a single-node installation.</p>
           </article>
           <article>
-            <h2>Application and Compose models</h2>
-            <p>CapRover’s primary abstraction is an application backed by a Docker service. It can import a useful subset of Compose through the One-Click parser, but unsupported Compose fields are ignored. Complex definitions should be reviewed rather than assumed compatible.</p>
-            <p>Dokploy treats Compose as a first-class resource and can deploy it through Docker Compose or Docker Stack. It also offers more source-build options, including Nixpacks and buildpacks, and can separate build servers from deployment servers.</p>
+            <h2>NGINX and Docker control</h2>
+            <p>Operators can edit the complete generated NGINX template for an individual application in the CapRover dashboard. Global defaults and files mounted into the NGINX container can also be customized.</p>
+            <p>At the container layer, ServiceUpdate overrides expose Docker&apos;s own service update schema in YAML or JSON.</p>
           </article>
           <article>
-            <h2>Operations and teams</h2>
-            <p>CapRover intentionally uses one administrative security boundary. Dokploy provides organizations, users and roles, with additional governance features in its enterprise offering. Dokploy also provides scheduled S3 platform backups, database backups and named-volume backups.</p>
-            <p>CapRover provides downloadable platform configuration backups, integrated Netdata monitoring and a managed local registry option. Persistent data still needs an application-aware or volume-level backup plan.</p>
+            <h2>Where Dokploy goes broader</h2>
+            <p>Dokploy treats Compose as a first-class resource, supports additional source-build strategies and can manage independent deployment or build servers. It also provides organizations, users and roles.</p>
+            <p>Those features are valuable when they match a concrete requirement. CapRover stays centered on deploying and operating applications within one Docker Swarm.</p>
           </article>
         </div>
       </section>
@@ -75,39 +78,39 @@ export default function DokployComparison() {
       <section className="compare-section compare-shell">
         <ChoiceGrid
           caprover={[
-            "You want NGINX and dashboard-level access to its generated configuration.",
-            "You prefer a smaller app-centric control plane with fewer resource types.",
-            "You deploy from a local CLI and want direct Docker ServiceUpdate overrides.",
-            "A CapRover-managed registry is useful for your Swarm.",
+            "You want an established app-centric platform with a deliberately small resource model.",
+            "You deploy directly from a local CLI or dashboard source upload.",
+            "You prefer NGINX and need complete per-app proxy templates.",
+            "You want CapRover to provision the local registry used by your Swarm.",
+            "Direct Docker ServiceUpdate overrides are useful for advanced workloads.",
           ]}
           competitorName="Dokploy"
           competitor={[
-            "Docker Compose and Docker Stack are central deployment formats.",
+            "Docker Compose and Docker Stack are primary deployment formats.",
             "You need organizations, multiple users or role-based access.",
-            "You want independent remote deployment servers or dedicated build servers.",
-            "Built-in scheduled database and named-volume backups are priorities.",
+            "Independent remote deployment servers or dedicated build servers are required.",
           ]}
         />
       </section>
 
       <section className="compare-section compare-shell">
-        <h2>Migration considerations</h2>
-        <div className="migration-grid">
-          <p><strong>Moving to CapRover:</strong> split complex Compose stacks into CapRover apps or validate them against the supported One-Click fields. Recreate routing in NGINX and transfer persistent data separately.</p>
-          <p><strong>Moving to Dokploy:</strong> express each CapRover app as an application or Compose service, replace NGINX-specific directives with Traefik configuration, and configure a registry for clustered rollbacks.</p>
+        <h2>Moving to CapRover</h2>
+        <div className="migration-grid migration-single">
+          <p>Split complex Compose projects into CapRover applications or validate them against the supported One-Click fields. Recreate routing in NGINX, map environment variables and transfer persistent data separately.</p>
         </div>
+        <MarketingCta />
       </section>
 
       <section className="compare-section compare-shell">
         <MatchupLinks current="dokploy" />
         <SourceLinks>
+          <li><a href="https://caprover.com/docs/deployment-methods.html">CapRover deployment methods and rollback</a></li>
           <li><a href="https://caprover.com/docs/service-update-override.html">CapRover Docker service overrides</a></li>
           <li><a href="https://caprover.com/docs/docker-compose.html">CapRover Compose compatibility</a></li>
           <li><a href="https://caprover.com/docs/app-scaling-and-cluster.html">CapRover Swarm clustering and registry</a></li>
           <li><a href="https://docs.dokploy.com/docs/core/docker-compose">Dokploy Docker Compose</a></li>
           <li><a href="https://docs.dokploy.com/docs/core/cluster">Dokploy clusters</a></li>
-          <li><a href="https://docs.dokploy.com/docs/core/backups">Dokploy platform backups</a></li>
-          <li><a href="https://docs.dokploy.com/docs/core/volume-backups">Dokploy named-volume backups</a></li>
+          <li><a href="https://docs.dokploy.com/docs/core/permissions">Dokploy roles and permissions</a></li>
         </SourceLinks>
       </section>
     </ComparePage>

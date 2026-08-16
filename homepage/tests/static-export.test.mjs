@@ -45,9 +45,13 @@ test("exports the comparison hub and one-on-one pages without changing homepage 
   const sitemap = await readFile("out/sitemap.xml", "utf8");
 
   assert.doesNotMatch(homepage, /href=["'][^"']*\/compare\/?["']/);
-  assert.match(hub, /Choose the deployment model/);
+  assert.match(hub, /Deploy apps on your own servers/);
+  assert.match(hub, /WHY CAPROVER/);
   assert.match(coolify, /CAPROVER VS COOLIFY/);
   assert.match(dokploy, /CAPROVER VS DOKPLOY/);
   assert.match(dokku, /CAPROVER VS DOKKU/);
+  assert.doesNotMatch(coolify, /Moving to Coolify/);
+  assert.doesNotMatch(dokploy, /Moving to Dokploy/);
+  assert.doesNotMatch(dokku, /Moving to Dokku/);
   assert.match(sitemap, /https:\/\/caprover\.com\/compare\/coolify\//);
 });

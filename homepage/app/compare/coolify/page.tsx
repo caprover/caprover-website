@@ -3,27 +3,29 @@ import {
   ChoiceGrid,
   ComparePage,
   ComparisonPrinciples,
+  MarketingCta,
   MatchupLinks,
   PageHero,
+  ProofStrip,
   SourceLinks,
 } from "../components";
 
 export const metadata: Metadata = {
   title: "CapRover vs Coolify: Self-Hosted PaaS Comparison",
   description:
-    "Compare CapRover and Coolify across architecture, Docker Compose, Git deployment, networking, clustering, rollback and operational control.",
+    "Compare CapRover and Coolify, including deployment workflows, NGINX, Docker Swarm, Compose, registries, rollback and operational complexity.",
   alternates: { canonical: "https://caprover.com/compare/coolify/" },
 };
 
 const rows = [
-  ["Primary operating model", "One CapRover installation managing a Docker Swarm", "A control plane managing connected Docker servers over SSH"],
-  ["Default proxy", "NGINX", "Traefik; Caddy is also available but experimental"],
-  ["Docker Compose", "Partial parser for common fields", "First-class application and service support"],
-  ["Git deployment", "Generic Git credentials, SSH keys and webhooks", "Provider integrations, deploy keys and webhooks"],
-  ["Multi-node applications", "Docker Swarm replicas", "Standalone servers or Docker Swarm"],
-  ["Proxy customization", "Per-app NGINX template editor", "Proxy configuration, labels and raw Compose"],
-  ["Local registry", "CapRover can provision and manage one", "Can be deployed as a service or supplied externally"],
-  ["Platform backup", "Dashboard download; restore during installation", "Scheduled S3 or manual instance backup"],
+  ["Core operating model", "A focused application model running directly on Docker Swarm", "A broader control plane managing connected Docker servers over SSH"],
+  ["Deploy from your computer", "caprover deploy or dashboard archive upload", "Git provider, Docker image or Compose workflows"],
+  ["Reverse-proxy control", "Complete per-app NGINX template editor", "Traefik by default; Caddy is available but experimental"],
+  ["Cluster path", "Add nodes to the same Docker Swarm used from initial installation", "Standalone servers; Docker Swarm support is experimental"],
+  ["Local registry", "CapRover can provision and manage one", "Use an external registry or deploy one as a service"],
+  ["Rollback", "One-click rebuild and redeploy of a prior version", "Rollback to a locally retained application image"],
+  ["Advanced Docker control", "Raw Docker ServiceUpdate override in YAML or JSON", "Custom Docker options or raw Compose"],
+  ["Docker Compose", "Partial parser for common One-Click App fields", "First-class application and service support"],
 ];
 
 export default function CoolifyComparison() {
@@ -31,10 +33,11 @@ export default function CoolifyComparison() {
     <ComparePage>
       <PageHero
         eyebrow="CAPROVER VS COOLIFY"
-        title="Docker-native simplicity or a broader application platform?"
-        intro="CapRover and Coolify both run applications on infrastructure you control. CapRover stays close to Docker Swarm and NGINX, while Coolify provides a broader resource model with first-class Compose, projects, environments and Git-provider workflows."
+        title="Choose a focused Docker workflow over a broader platform model."
+        intro="CapRover is built for developers who want to deploy and operate Dockerized applications through a straightforward dashboard, with NGINX control and a natural path from one server to a Docker Swarm cluster."
       >
-        <div className="verdict"><strong>Short answer</strong><p>Choose CapRover when you value a compact application model, NGINX control and a Swarm-first path from one server to several. Choose Coolify when Compose, multiple independent servers, preview deployments and team workflows are central requirements.</p></div>
+        <div className="verdict"><strong>Why CapRover</strong><p>Choose CapRover when you want a compact app-centric platform, local CLI deployment, editable NGINX configuration and direct Docker controls. Consider Coolify when first-class Compose, multiple unrelated servers, preview deployments or team workflows are mandatory.</p></div>
+        <ProofStrip />
       </PageHero>
 
       <section className="compare-section compare-shell">
@@ -50,23 +53,24 @@ export default function CoolifyComparison() {
       <section className="compare-section compare-soft">
         <div className="compare-shell article-layout">
           <article>
-            <h2>Architecture</h2>
-            <p>CapRover installs its control plane, NGINX and certificate services on a Docker Swarm manager. Additional nodes join that Swarm, and stateless replicas can be distributed across it. Persistent applications are pinned to a node unless their storage is externalized.</p>
-            <p>Coolify separates its control plane from connected deployment servers. It uses SSH to build and operate Docker resources on those servers. This makes independent-server management a natural part of its model, while Docker Swarm remains available when workloads need a cluster.</p>
+            <h2>A smaller operational model</h2>
+            <p>CapRover organizes daily work around applications. Domains, certificates, environment variables, persistent directories, replicas, logs and deployment history are available from the same dashboard.</p>
+            <p>It runs directly on a Docker Swarm manager, so the control plane and application scheduler share one understandable model instead of treating each server as a separate deployment target.</p>
           </article>
           <article>
-            <h2>Deployment workflow</h2>
-            <p>CapRover accepts local CLI deployments, dashboard uploads, Git webhooks, Dockerfiles and prebuilt images. Its captain-definition file gives the deployment a small, explicit contract. GitHub, GitLab, Bitbucket and other Git-compatible services can trigger deployments without requiring a provider-specific application.</p>
-            <p>Coolify invests more heavily in source integrations and build choices. It supports Docker Compose directly and offers Nixpacks, Railpack, Dockerfile and static builds. This is more flexible for repositories that already treat Compose as their deployment definition.</p>
+            <h2>Deploy without a provider integration</h2>
+            <p>Run caprover deploy from a local project, upload a source archive in the dashboard, deploy a prebuilt image or trigger a build through a generic Git webhook. A provider-specific application is optional.</p>
+            <p>Previous source deployments remain in the deployment history and can be rebuilt and redeployed from the dashboard.</p>
           </article>
           <article>
-            <h2>Networking and control</h2>
-            <p>CapRover’s main distinction is editable NGINX configuration. Operators can change an individual application’s generated NGINX template or override the global template for newly created applications. Advanced container behavior can be expressed through Docker’s ServiceUpdate schema.</p>
-            <p>Coolify uses Traefik by default and supports Caddy. Routing is managed through domains, proxy configuration and generated labels. Raw Compose provides an escape hatch when an operator wants to own the complete Compose definition and proxy labels.</p>
+            <h2>NGINX and Docker escape hatches</h2>
+            <p>CapRover exposes an application&apos;s complete generated NGINX template in the dashboard. Operators can add redirects, headers, caching, authentication or other NGINX directives without replacing the platform proxy.</p>
+            <p>For container behavior, a ServiceUpdate override accepts YAML or JSON matching Docker&apos;s service update API.</p>
           </article>
           <article>
-            <h2>Operations</h2>
-            <p>Both products provide HTTPS automation, application logs, rollback paths, platform-state backups and monitoring options. Coolify exposes health-check settings directly; CapRover users can define Docker health checks in the image or through a ServiceUpdate override. CapRover’s standard backup excludes application images and persistent volumes, although images in its self-hosted registry are included. Coolify likewise distinguishes control-plane backups from workload data, databases and volumes.</p>
+            <h2>Where Coolify goes broader</h2>
+            <p>Coolify models projects, environments, applications, services and connected servers. It also provides first-class Compose and deeper Git-provider workflows.</p>
+            <p>Those capabilities matter when they are requirements. For a team primarily deploying Dockerized apps to one server or one Swarm, CapRover keeps the operational surface more focused.</p>
           </article>
         </div>
       </section>
@@ -74,38 +78,40 @@ export default function CoolifyComparison() {
       <section className="compare-section compare-shell">
         <ChoiceGrid
           caprover={[
-            "You prefer NGINX and want to edit its per-app configuration in the dashboard.",
-            "Your scaling model is a Docker Swarm cluster rather than several unrelated hosts.",
-            "You want a small application abstraction with direct Docker escape hatches.",
-            "Local CLI deployment and a platform-managed registry are valuable.",
+            "You want a small app-centric control plane with fewer resource types.",
+            "You deploy directly from a local machine and do not want to connect a Git provider.",
+            "You prefer NGINX and want to edit complete per-app templates in the dashboard.",
+            "Your scaling model is one Docker Swarm rather than several unrelated hosts.",
+            "A platform-managed local registry and direct ServiceUpdate overrides are valuable.",
           ]}
           competitorName="Coolify"
           competitor={[
-            "Full Docker Compose compatibility is a primary requirement.",
-            "You want one control plane for multiple independent servers.",
-            "Projects, environments, preview deployments and team roles are important.",
-            "You prefer deeper source-provider and build-pack workflows.",
+            "First-class Docker Compose is a primary requirement.",
+            "One control plane must manage several independent servers.",
+            "Projects, environments, preview deployments or granular team roles are required.",
           ]}
         />
       </section>
 
       <section className="compare-section compare-shell">
-        <h2>Migration considerations</h2>
-        <div className="migration-grid">
-          <p><strong>Moving to CapRover:</strong> convert Compose services into CapRover applications or a compatible One-Click template, map domains and environment variables, and migrate persistent data separately.</p>
-          <p><strong>Moving to Coolify:</strong> recreate resources and source connections, translate CapRover settings into applications or Compose, and move databases and volumes using workload-specific backup tools.</p>
+        <h2>Moving to CapRover</h2>
+        <div className="migration-grid migration-single">
+          <p>Convert Compose services into CapRover applications or a compatible One-Click template, map domains and environment variables, and migrate persistent data with the database or storage system&apos;s own backup tooling.</p>
         </div>
+        <MarketingCta />
       </section>
 
       <section className="compare-section compare-shell">
         <MatchupLinks current="coolify" />
         <SourceLinks>
+          <li><a href="https://caprover.com/docs/deployment-methods.html">CapRover deployment methods and rollback</a></li>
           <li><a href="https://caprover.com/docs/app-scaling-and-cluster.html">CapRover scaling and clusters</a></li>
           <li><a href="https://caprover.com/docs/nginx-customization.html">CapRover NGINX customization</a></li>
-          <li><a href="https://caprover.com/docs/deployment-methods.html">CapRover deployment methods</a></li>
+          <li><a href="https://caprover.com/docs/service-update-override.html">CapRover Docker service overrides</a></li>
           <li><a href="https://coolify.io/docs">Coolify product documentation</a></li>
           <li><a href="https://coolify.io/docs/applications/build-packs/docker-compose">Coolify Docker Compose deployments</a></li>
-          <li><a href="https://coolify.io/docs/knowledge-base/how-to/backup-restore-coolify">Coolify backup and restore</a></li>
+          <li><a href="https://coolify.io/docs/knowledge-base/server/openssh">Coolify server connections</a></li>
+          <li><a href="https://coolify.io/docs/knowledge-base/docker/swarm">Coolify experimental Docker Swarm support</a></li>
         </SourceLinks>
       </section>
     </ComparePage>
