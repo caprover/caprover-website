@@ -17,7 +17,10 @@ const contentTypes = new Map([
 const server = createServer(async (request, response) => {
   try {
     const pathname = new URL(request.url ?? "/", "http://localhost").pathname;
-    const relative = pathname === "/" ? "index.html" : pathname.slice(1);
+    const relative =
+      pathname === "/" || pathname.endsWith("/")
+        ? `${pathname === "/" ? "" : pathname.slice(1)}index.html`
+        : pathname.slice(1);
     const target = path.resolve(siteRoot, relative);
 
     if (target !== siteRoot && !target.startsWith(`${siteRoot}${path.sep}`)) {
@@ -47,12 +50,21 @@ try {
   const homepage = await homepageResponse.text();
   assert.match(homepage, /Deploy apps\./);
 
+  const chineseHomepageResponse = await fetch(`${origin}/zh-CN/`);
+  assert.equal(chineseHomepageResponse.status, 200);
+  const chineseHomepage = await chineseHomepageResponse.text();
+  assert.match(chineseHomepage, /部署应用。/);
+  assert.match(chineseHomepage, /lang="zh-CN"/);
+
   const nextAsset = homepage.match(/(?:href|src)=["'](\/_next\/[^"']+\.(?:css|js))["']/)?.[1];
   assert(nextAsset, "Homepage does not reference a Next.js CSS or JavaScript asset");
 
   const checks = await Promise.all([
     fetch(`${origin}/.nojekyll`),
     fetch(`${origin}/docs/get-started.html`),
+    fetch(`${origin}/docs/en/get-started.html`),
+    fetch(`${origin}/docs/zh-CN/get-started.html`),
+    fetch(`${origin}/zh-CN/compare/`),
     fetch(`${origin}/homepage-assets/caprover-dashboard.png`),
     fetch(`${origin}${nextAsset}`),
   ]);
@@ -62,11 +74,17 @@ try {
   }
 
   assert.equal(await checks[0].text(), "", ".nojekyll must be empty");
-  const docs = await checks[1].text();
-  assert.match(docs, /Getting Started/i);
-  assert(Number(checks[2].headers.get("content-length") ?? 0) > 0 || (await checks[2].arrayBuffer()).byteLength > 0);
+  const docsRedirect = await checks[1].text();
+  const englishDocs = await checks[2].text();
+  const chineseDocs = await checks[3].text();
+  assert.match(docsRedirect, /window\.location\.href = "\/docs\/en\/get-started\.html"/);
+  assert.match(englishDocs, /Getting Started/i);
+  assert.match(chineseDocs, /开始使用/);
+  assert.doesNotMatch(chineseDocs, /window\.location\.href/);
+  assert.equal(checks[4].status, 200, `${checks[4].url} did not return HTTP 200`);
+  assert(Number(checks[5].headers.get("content-length") ?? 0) > 0 || (await checks[5].arrayBuffer()).byteLength > 0);
 
-  const docsStylesheet = docs.match(
+  const docsStylesheet = englishDocs.match(
     /href=["\'](\/css\/main\.css(?:\?[^"\']*)?)["\']/,
   )?.[1];
   assert(docsStylesheet, "Documentation stylesheet reference is missing");

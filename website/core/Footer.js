@@ -7,10 +7,38 @@
 
 const React = require("react");
 
+const labels = {
+  en: {
+    docs: "Docs",
+    gettingStarted: "Getting Started",
+    community: "Community",
+    more: "More",
+  },
+  "zh-CN": {
+    docs: "文档",
+    gettingStarted: "开始使用",
+    community: "社区",
+    more: "更多",
+  },
+};
+
 class Footer extends React.Component {
-  docUrl(doc) {
+  currentLanguage() {
+    return this.props.language || "en";
+  }
+
+  homeUrl() {
+    const language = this.currentLanguage();
     const baseUrl = this.props.config.baseUrl;
-    return baseUrl + "docs/" + doc;
+    return language && language !== "en" ? baseUrl + language + "/" : baseUrl;
+  }
+
+  docUrl(doc) {
+    const language = this.currentLanguage();
+    const baseUrl = this.props.config.baseUrl;
+    return language && language !== "en"
+      ? baseUrl + "docs/" + language + "/" + doc
+      : baseUrl + "docs/" + doc;
   }
 
   pageUrl(doc, language) {
@@ -20,10 +48,11 @@ class Footer extends React.Component {
 
   render() {
     const currentYear = new Date().getFullYear();
+    const t = labels[this.currentLanguage()] || labels.en;
     return (
       <footer className="nav-footer" id="footer">
         <section className="sitemap">
-          <a href={this.props.config.baseUrl} className="nav-home">
+          <a href={this.homeUrl()} className="nav-home">
             {this.props.config.footerIcon && (
               <img
                 src={this.props.config.baseUrl + this.props.config.footerIcon}
@@ -34,11 +63,11 @@ class Footer extends React.Component {
             )}
           </a>
           <div>
-            <h5>Docs</h5>
-            <a href={this.docUrl("get-started.html")}>Getting Started</a>
+            <h5>{t.docs}</h5>
+            <a href={this.docUrl("get-started.html")}>{t.gettingStarted}</a>
           </div>
           <div>
-            <h5>Community</h5>
+            <h5>{t.community}</h5>
             <a
               href="https://twitter.com/cap_rover"
               target="_blank"
@@ -55,7 +84,7 @@ class Footer extends React.Component {
             </a>
           </div>
           <div>
-            <h5>More</h5>
+            <h5>{t.more}</h5>
             <a href="https://github.com/caprover/caprover" target="_blank">
               GitHub
             </a>

@@ -18,6 +18,11 @@ test("exports a complete static homepage", async () => {
 
   assert.match(html, /<title>CapRover · Scalable, Free and Self-hosted PaaS<\/title>/);
   assert.match(html, /Deploy apps\./);
+  assert.match(html, /lang="en"/);
+  assert.match(html, /<details class="language-switch">/);
+  assert.match(html, /href=["']\/zh-CN\/["']/);
+  assert.match(html, />English<\/a>/);
+  assert.match(html, />中文<\/a>/);
 
   await Promise.all(
     expectedAssets.map((asset) => access(`out/${assetPath}/${asset}`)),
@@ -35,6 +40,15 @@ test("exports a complete static homepage", async () => {
   }
 });
 
+test("exports a Simplified Chinese homepage that points at Chinese docs", async () => {
+  const html = await readFile("out/zh-CN/index.html", "utf8");
+
+  assert.match(html, /lang="zh-CN"/);
+  assert.match(html, /部署应用/);
+  assert.match(html, /掌控自己的/);
+  assert.match(html, /href=["']\/docs\/zh-CN\/get-started\.html["']/);
+  assert.doesNotMatch(html, /href=["'][^"']*\/compare\/?["']/);
+});
 
 test("exports the comparison hub and one-on-one pages without changing homepage navigation", async () => {
   const homepage = await readFile("out/index.html", "utf8");
@@ -67,4 +81,25 @@ test("exports the comparison hub and one-on-one pages without changing homepage 
   assert.doesNotMatch(dokploy, /Moving to Dokploy/);
   assert.doesNotMatch(dokku, /Moving to Dokku/);
   assert.match(sitemap, /https:\/\/caprover\.com\/compare\/coolify\//);
+  assert.match(sitemap, /https:\/\/caprover\.com\/zh-CN\/compare\/coolify\//);
+});
+
+test("exports Simplified Chinese comparison pages", async () => {
+  const hub = await readFile("out/zh-CN/compare/index.html", "utf8");
+  const coolify = await readFile("out/zh-CN/compare/coolify/index.html", "utf8");
+  const dokploy = await readFile("out/zh-CN/compare/dokploy/index.html", "utf8");
+  const dokku = await readFile("out/zh-CN/compare/dokku/index.html", "utf8");
+
+  assert.match(hub, /lang="zh-CN"/);
+  assert.match(hub, /从简单开始，不必碰到天花板。/);
+  assert.match(hub, /默认简单/);
+  assert.match(hub, /适合小规格服务器/);
+  assert.match(coolify, /CAPROVER VS COOLIFY/);
+  assert.match(dokploy, /CAPROVER VS DOKPLOY/);
+  assert.match(dokku, /CAPROVER VS DOKKU/);
+  for (const page of [hub, coolify, dokploy, dokku]) {
+    assert.match(page, /此对比表由 AI 代理生成/);
+    assert.match(page, /mailto:marketing@caprover\.com/);
+    assert.match(page, /href=["']\/docs\/zh-CN\/get-started\.html["']/);
+  }
 });

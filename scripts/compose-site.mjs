@@ -70,6 +70,11 @@ await Promise.all([
   requirePath(path.join(homepage, "compare/coolify/index.html")),
   requirePath(path.join(homepage, "compare/dokploy/index.html")),
   requirePath(path.join(homepage, "compare/dokku/index.html")),
+  requirePath(path.join(homepage, "zh-CN/index.html")),
+  requirePath(path.join(homepage, "zh-CN/compare/index.html")),
+  requirePath(path.join(homepage, "zh-CN/compare/coolify/index.html")),
+  requirePath(path.join(homepage, "zh-CN/compare/dokploy/index.html")),
+  requirePath(path.join(homepage, "zh-CN/compare/dokku/index.html")),
   requirePath(path.join(homepage, "sitemap.xml")),
   requireNoCollision("_next"),
   requireNoCollision("homepage-assets"),
@@ -100,27 +105,38 @@ await cp(
 await cp(path.join(homepage, "compare"), path.join(combinedSite, "compare"), {
   recursive: true,
 });
+await mkdir(path.join(combinedSite, "zh-CN"), { recursive: true });
+await cp(
+  path.join(homepage, "zh-CN/index.html"),
+  path.join(combinedSite, "zh-CN/index.html"),
+);
+await cp(
+  path.join(homepage, "zh-CN/compare"),
+  path.join(combinedSite, "zh-CN/compare"),
+  { recursive: true },
+);
 const [legacySitemap, homepageSitemap] = await Promise.all([
   readFile(path.join(combinedSite, "sitemap.xml"), "utf8"),
   readFile(path.join(homepage, "sitemap.xml"), "utf8"),
 ]);
-const comparisonUrls = (homepageSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter(
-  (entry) => entry.includes("/compare/"),
+const homepageUrls = (homepageSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter((entry) =>
+  /<loc>[^<]*(?:\/compare\/|\/zh-CN\/)/.test(entry),
 );
-assert(comparisonUrls.length === 4, "Homepage sitemap is missing comparison URLs");
+assert(homepageUrls.length === 9, "Homepage sitemap is missing localized URLs");
 assert.match(legacySitemap, /<\/urlset>\s*$/);
 await writeFile(
   path.join(combinedSite, "sitemap.xml"),
-  legacySitemap.replace(/<\/urlset>\s*$/, `${comparisonUrls.join("\n")}\n</urlset>\n`),
+  legacySitemap.replace(/<\/urlset>\s*$/, `${homepageUrls.join("\n")}\n</urlset>\n`),
 );
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
 await requirePath(path.join(combinedSite, ".nojekyll"));
 
-const [docsAfter, imagesAfter, combinedCname, homepageHtml] = await Promise.all([
+const [docsAfter, imagesAfter, combinedCname, homepageHtml, chineseHomepageHtml] = await Promise.all([
   snapshot(path.join(combinedSite, "docs")),
   snapshot(path.join(combinedSite, "img")),
   readFile(path.join(combinedSite, "CNAME")),
   readFile(path.join(combinedSite, "index.html"), "utf8"),
+  readFile(path.join(combinedSite, "zh-CN/index.html"), "utf8"),
 ]);
 
 assert.deepEqual(docsAfter, docsBefore, "Documentation output changed during composition");
@@ -129,6 +145,9 @@ assert.deepEqual(combinedCname, originalCname, "CNAME changed during composition
 assert.match(homepageHtml, /Deploy apps\./);
 assert.match(homepageHtml, /(?:href|src)=["']\/_next\//);
 assert.match(homepageHtml, /(?:href|src)=["']\/homepage-assets\//);
+assert.match(chineseHomepageHtml, /部署应用/);
+assert.match(chineseHomepageHtml, /lang="zh-CN"/);
+assert.match(chineseHomepageHtml, /(?:href|src)=["']\/_next\//);
 
 const homepageStylesheet = homepageHtml.match(
   /href=["\'](\/_next\/static\/css\/[^"\']+\.css)["\']/,

@@ -5,6 +5,7 @@ Source for [caprover.com](https://caprover.com), containing two independently bu
 - `homepage/`: Next.js static homepage
 - `website/`: Docusaurus v1 documentation
 - `docs/`: documentation Markdown
+- `translated_docs/`: localized documentation Markdown
 - `scripts/`: composition and production smoke checks
 
 The production build uses Docusaurus as the base, then overlays the homepage's `index.html`, `_next/`, and `homepage-assets/` output. `homepage/` is the source of truth for the root homepage.
@@ -37,6 +38,8 @@ npm start
 ```
 
 Add Markdown files in `docs/` and register them in `website/sidebars.json`.
+
+Simplified Chinese lives under `/zh-CN/` for the homepage and compare pages, and under `/docs/zh-CN/` for documentation. Keep English sources in `docs/` and homepage message files, and put Chinese documentation in `translated_docs/zh-CN/`. Docusaurus still reads translations from `website/translated_docs`, which is a symlink to the root `translated_docs/` directory.
 
 ## Build the combined site
 

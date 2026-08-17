@@ -1,9 +1,9 @@
 
 
 website/.idea
-website/translated_docs
 website/build/
 website/node_modules
 website/i18n/*
 !website/i18n/en.json
+!website/i18n/zh-CN.json
 /build/
