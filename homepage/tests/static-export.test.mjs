@@ -15,9 +15,14 @@ const assetPath = "homepage-assets";
 
 test("exports a complete static homepage", async () => {
   const html = await readFile("out/index.html", "utf8");
+  const englishAlias = await readFile("out/en/index.html", "utf8");
 
   assert.match(html, /<title>CapRover · Scalable, Free and Self-hosted PaaS<\/title>/);
   assert.match(html, /Deploy apps\./);
+  assert.match(html, /https:\/\/caprover\.com\/docs\/en\/get-started\.html/);
+  assert.match(englishAlias, /Deploy apps\./);
+  assert.match(englishAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
+  assert.match(englishAlias, /name=["']robots["'][^>]+content=["']noindex, follow["']/);
 
   await Promise.all(
     expectedAssets.map((asset) => access(`out/${assetPath}/${asset}`)),
@@ -46,6 +51,7 @@ test("exports the comparison hub and one-on-one pages without changing homepage 
 
   assert.doesNotMatch(homepage, /href=["'][^"']*\/compare\/?["']/);
   assert.match(hub, /Start simple\. Never hit a ceiling\./);
+  assert.match(hub, /https:\/\/caprover\.com\/docs\/en\/get-started\.html/);
   assert.match(hub, /SIMPLE BY DEFAULT/);
   assert.match(hub, /SMALL-SERVER FRIENDLY/);
   assert.match(hub, /status-yes/);

@@ -65,6 +65,7 @@ await Promise.all([
   requirePath(path.join(legacySite, "img/logo.png")),
   requirePath(path.join(legacySite, "CNAME")),
   requirePath(path.join(homepage, "index.html")),
+  requirePath(path.join(homepage, "en/index.html")),
   requirePath(path.join(homepage, "_next")),
   requirePath(path.join(homepage, "homepage-assets")),
   requirePath(path.join(homepage, "compare/index.html")),
@@ -75,6 +76,7 @@ await Promise.all([
   requireNoCollision("_next"),
   requireNoCollision("homepage-assets"),
   requireNoCollision("compare"),
+  requireNoCollision("en"),
 ]);
 
 const originalCname = await readFile(path.join(legacySite, "CNAME"));
@@ -99,6 +101,9 @@ await cp(
   { recursive: true },
 );
 await cp(path.join(homepage, "compare"), path.join(combinedSite, "compare"), {
+  recursive: true,
+});
+await cp(path.join(homepage, "en"), path.join(combinedSite, "en"), {
   recursive: true,
 });
 const [legacySitemap, homepageSitemap] = await Promise.all([
