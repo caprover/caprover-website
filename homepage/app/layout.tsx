@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: englishMessages.homepage.metadata.title,
-  description: englishMessages.homepage.metadata.description,
+  title: englishMessages["homepage.metadata.title"],
+  description: englishMessages["homepage.metadata.description"],
   icons: {
     icon: iconPath,
     shortcut: iconPath,

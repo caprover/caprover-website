@@ -3,7 +3,8 @@ import { englishMessages } from "../../i18n/messages";
 import { ComparisonHubPage } from "./page-content";
 
 export const metadata: Metadata = {
-  ...englishMessages.comparisonPages.hub.metadata,
+  title: englishMessages["comparisonPages.hub.metadata.title"],
+  description: englishMessages["comparisonPages.hub.metadata.description"],
   alternates: { canonical: "https://caprover.com/compare/" },
 };
 

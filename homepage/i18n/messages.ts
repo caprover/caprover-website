@@ -1,30 +1,65 @@
 import type { Locale } from "./config";
-import comparisonCommon from "./messages/en/comparison-common.json";
-import comparisonCoolify from "./messages/en/comparison-coolify.json";
-import comparisonData from "./messages/en/comparison-data.json";
-import comparisonDokku from "./messages/en/comparison-dokku.json";
-import comparisonDokploy from "./messages/en/comparison-dokploy.json";
-import comparisonHub from "./messages/en/comparison-hub.json";
-import homepage from "./messages/en/homepage.json";
+import englishCatalog from "./messages/en.json";
 
-export const englishMessages = {
-  homepage,
-  comparisonCommon,
-  comparisonData,
-  comparisonPages: {
-    hub: comparisonHub,
-    coolify: comparisonCoolify,
-    dokploy: comparisonDokploy,
-    dokku: comparisonDokku,
-  },
+export const englishMessages = englishCatalog;
+
+export type MessageKey = keyof typeof englishCatalog;
+export type FlatMessages = Record<MessageKey, string>;
+
+type PathObject<Path extends string> = Path extends `${infer Head}.${infer Tail}`
+  ? { [Key in Head]: PathObject<Tail> }
+  : { [Key in Path]: string };
+
+type UnionToIntersection<Union> = (
+  Union extends unknown ? (value: Union) => void : never
+) extends (value: infer Intersection) => void
+  ? Intersection
+  : never;
+
+export type Messages = UnionToIntersection<
+  { [Key in MessageKey]: PathObject<Key> }[MessageKey]
+>;
+
+const messagesByLocale: Record<Locale, FlatMessages> = {
+  en: englishCatalog,
 };
 
-export type Messages = typeof englishMessages;
+const structuralKeys = (Object.keys(englishCatalog) as MessageKey[]).filter(
+  (key) => key.endsWith(".key") || key.endsWith(".status"),
+);
 
-const messagesByLocale: Record<Locale, Messages> = {
-  en: englishMessages,
-};
+function expandMessages(flatMessages: FlatMessages): Messages {
+  const normalizedMessages = { ...flatMessages };
+
+  for (const key of structuralKeys) {
+    normalizedMessages[key] = englishCatalog[key];
+  }
+
+  const expanded: Record<string, unknown> = {};
+
+  for (const [path, value] of Object.entries(normalizedMessages)) {
+    const segments = path.split(".");
+    let target = expanded;
+
+    for (const segment of segments.slice(0, -1)) {
+      target[segment] ??= {};
+      target = target[segment] as Record<string, unknown>;
+    }
+
+    target[segments.at(-1)!] = value;
+  }
+
+  return expanded as Messages;
+}
+
+const expandedMessagesByLocale = Object.fromEntries(
+  Object.entries(messagesByLocale).map(([locale, messages]) => [locale, expandMessages(messages)]),
+) as Record<Locale, Messages>;
 
 export function getMessages(locale: Locale): Messages {
-  return messagesByLocale[locale];
+  return expandedMessagesByLocale[locale];
+}
+
+export function messageList<Value>(messages: Record<string, Value>): Value[] {
+  return Object.values(messages);
 }

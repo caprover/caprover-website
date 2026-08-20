@@ -1,5 +1,5 @@
 import { DEFAULT_LOCALE, type Locale } from "../../i18n/config";
-import { getMessages } from "../../i18n/messages";
+import { getMessages, messageList } from "../../i18n/messages";
 
 export type Product = "caprover" | "dokploy" | "dokku" | "coolify";
 
@@ -28,8 +28,8 @@ export function getComparisonData(locale: Locale = DEFAULT_LOCALE) {
   const messages = getMessages(locale);
 
   return {
-    products: messages.comparisonData.products as Array<{ key: Product; label: string }>,
-    rows: messages.comparisonData.rows as ComparisonRow[],
+    products: messageList(messages.comparisonData.products) as Array<{ key: Product; label: string }>,
+    rows: messageList(messages.comparisonData.rows) as ComparisonRow[],
     verifiedDate: messages.comparisonCommon.verifiedDate,
   };
 }

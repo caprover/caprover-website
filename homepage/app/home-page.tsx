@@ -1,5 +1,5 @@
 import { DEFAULT_LOCALE, docsUrl, type Locale } from "../i18n/config";
-import { getMessages, type Messages } from "../i18n/messages";
+import { getMessages, messageList, type Messages } from "../i18n/messages";
 
 const GITHUB = "https://github.com/caprover/caprover";
 const SLACK = "https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA";
@@ -99,7 +99,7 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
       </section>
 
       <section className="trust-bar"><div className="shell trust-grid">
-        {messages.trust.map(({ icon, title, description }) => <div className="trust-item" key={title}><b>{icon}</b><div><strong>{title}</strong><span>{description}</span></div></div>)}
+        {messageList(messages.trust).map(({ icon, title, description }) => <div className="trust-item" key={title}><b>{icon}</b><div><strong>{title}</strong><span>{description}</span></div></div>)}
       </div></section>
 
       <section className="intro shell">
@@ -116,14 +116,14 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <div><p className="section-kicker">{messages.workflow.kicker}</p><h2>{messages.workflow.title}</h2><p>{messages.workflow.description}</p><a className="text-link" href={docs}>{messages.workflow.guideLink} <ArrowIcon /></a></div>
           <div className="terminal">
             <div className="term-top"><span><i /><i /><i /></span><b>caprover deploy</b></div>
-            <code><span>$ caprover deploy</span>{messages.workflow.steps.map((step) => <em key={step}>✓ {step}</em>)}<strong>{messages.workflow.buildComplete}</strong><strong>{messages.workflow.deployed}</strong><a href="https://my-app.example.com">https://my-app.example.com</a></code>
+            <code><span>$ caprover deploy</span>{messageList(messages.workflow.steps).map((step) => <em key={step}>✓ {step}</em>)}<strong>{messages.workflow.buildComplete}</strong><strong>{messages.workflow.deployed}</strong><a href="https://my-app.example.com">https://my-app.example.com</a></code>
           </div>
         </div>
       </section>
 
       <section className="features shell" id="features">
         <div className="section-heading"><div><p className="section-kicker">{messages.featuresSection.kicker}</p><h2>{messages.featuresSection.title}</h2></div><p>{messages.featuresSection.description}</p></div>
-        <div className="feature-grid">{messages.featuresSection.items.map(({ icon, title, description }) => <article key={title}><span>{icon}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+        <div className="feature-grid">{messageList(messages.featuresSection.items).map(({ icon, title, description }) => <article key={title}><span>{icon}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
       </section>
 
       <section className="audience"><div className="shell audience-grid">

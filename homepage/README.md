@@ -28,12 +28,13 @@ the default locale and keeps the existing unprefixed public routes. The static
 documentation and has `/` as its canonical URL.
 
 User-facing copy, including metadata and accessibility labels, lives in the
-English JSON catalogs under `i18n/messages/en/`. Components load those catalogs
-through `i18n/messages.ts`, whose `Messages` type defines the required shape for
-every future locale. URLs, code samples, commands, and product names remain in
-the application where they are not translation content.
+single flat English catalog at `i18n/messages/en.json`. Every entry is a string
+key and string value so the complete file can be translated directly. Components
+load the catalog through `i18n/messages.ts`, which expands dotted keys for typed
+application access. Values whose keys end in `.key` or `.status` are structural
+identifiers and are pinned to their English values at runtime.
 
 Only complete translations should be added to `ENABLED_LOCALES`. A localized
 site should use its locale as the first path segment, such as `/es-ES/` and
-`/es-ES/compare/`, add a complete catalog to the locale map in
+`/es-ES/compare/`, add a complete flat catalog to the locale map in
 `i18n/messages.ts`, and link to documentation through `docsUrl`.

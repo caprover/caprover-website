@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { DEFAULT_LOCALE, docsUrl, localizedPath, type Locale } from "../../i18n/config";
-import { getMessages } from "../../i18n/messages";
+import { getMessages, messageList } from "../../i18n/messages";
 import {
   getComparisonData,
   type ComparisonRow,
@@ -64,7 +64,7 @@ export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string;
 
 export function ProofStrip({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
   const copy = getMessages(locale).comparisonCommon;
-  return <div className="proof-strip" aria-label={copy.proofsAriaLabel}>{copy.proofs.map((proof) => <div key={proof.value}><strong>{proof.value}</strong><span>{proof.label}</span></div>)}</div>;
+  return <div className="proof-strip" aria-label={copy.proofsAriaLabel}>{messageList(copy.proofs).map((proof) => <div key={proof.value}><strong>{proof.value}</strong><span>{proof.label}</span></div>)}</div>;
 }
 
 function StatusCell({ value, locale }: { value: ComparisonValue; locale: Locale }) {
@@ -123,7 +123,7 @@ export function ComparisonPrinciples({ locale = DEFAULT_LOCALE }: { locale?: Loc
 
 export function MatchupLinks({ current, locale = DEFAULT_LOCALE }: { current?: Product; locale?: Locale }) {
   const copy = getMessages(locale).comparisonCommon.matchups;
-  return <div className="matchup-grid">{copy.items.filter((link) => link.key !== current).map((link) => <a className="matchup-card" href={internal(`/compare/${link.key}/`, locale)} key={link.key}><span>{copy.kicker}</span><h3>{link.label}</h3><p>{link.description}</p><b>{copy.read}</b></a>)}</div>;
+  return <div className="matchup-grid">{messageList(copy.items).filter((link) => link.key !== current).map((link) => <a className="matchup-card" href={internal(`/compare/${link.key}/`, locale)} key={link.key}><span>{copy.kicker}</span><h3>{link.label}</h3><p>{link.description}</p><b>{copy.read}</b></a>)}</div>;
 }
 
 export function ChoiceGrid({ caprover, competitorName, competitor, locale = DEFAULT_LOCALE }: { caprover: string[]; competitorName: string; competitor: string[]; locale?: Locale }) {
