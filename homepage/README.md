@@ -37,4 +37,5 @@ identifiers and are pinned to their English values at runtime.
 Only complete translations should be added to `ENABLED_LOCALES`. A localized
 site should use its locale as the first path segment, such as `/es-ES/` and
 `/es-ES/compare/`, add a complete flat catalog to the locale map in
-`i18n/messages.ts`, and link to documentation through `docsUrl`.
+`i18n/messages.ts`, and link to documentation through `docsUrl`. Follow the
+repository-wide translation guidelines in the root `README.md`.
