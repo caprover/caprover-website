@@ -53,9 +53,9 @@ Translations are committed directly to the repository:
 - Add a locale to `website/languages.js` only after its documents and UI strings
   are complete.
 
-`website/translated_docs/es-ES/` contains the Spanish documentation. Spanish
-remains disabled in `website/languages.js` until its Docusaurus UI strings are
-complete.
+Spanish is enabled in `website/languages.js`. Its documentation is published at
+`/docs/es-ES/*.html`, and the Docusaurus language menu switches between English
+and Spanish versions of the current document.
 
 ## Translation guidelines
 

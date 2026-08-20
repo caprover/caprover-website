@@ -62,6 +62,7 @@ async function snapshot(directory) {
 await Promise.all([
   requirePath(path.join(legacySite, "docs/get-started.html")),
   requirePath(path.join(legacySite, "docs/en/get-started.html")),
+  requirePath(path.join(legacySite, "docs/es-ES/get-started.html")),
   requirePath(path.join(legacySite, "img/logo.png")),
   requirePath(path.join(legacySite, "CNAME")),
   requirePath(path.join(homepage, "index.html")),
@@ -76,7 +77,6 @@ await Promise.all([
   requireNoCollision("_next"),
   requireNoCollision("homepage-assets"),
   requireNoCollision("compare"),
-  requireNoCollision("en"),
 ]);
 
 const originalCname = await readFile(path.join(legacySite, "CNAME"));
@@ -103,6 +103,7 @@ await cp(
 await cp(path.join(homepage, "compare"), path.join(combinedSite, "compare"), {
   recursive: true,
 });
+await rm(path.join(combinedSite, "en"), { recursive: true, force: true });
 await cp(path.join(homepage, "en"), path.join(combinedSite, "en"), {
   recursive: true,
 });

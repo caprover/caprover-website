@@ -54,6 +54,7 @@ try {
     fetch(`${origin}/.nojekyll`),
     fetch(`${origin}/docs/get-started.html`),
     fetch(`${origin}/docs/en/get-started.html`),
+    fetch(`${origin}/docs/es-ES/get-started.html`),
     fetch(`${origin}/en/index.html`),
     fetch(`${origin}/homepage-assets/caprover-dashboard.png`),
     fetch(`${origin}${nextAsset}`),
@@ -69,10 +70,16 @@ try {
 
   const docs = await checks[2].text();
   assert.match(docs, /Getting Started/i);
-  const englishHomepageAlias = await checks[3].text();
+  assert.match(docs, /href=["']\/docs\/es-ES\/get-started\.html["']/);
+  const spanishDocs = await checks[3].text();
+  assert.match(spanishDocs, /<html lang=["']es-ES["']/);
+  assert.match(spanishDocs, /Primeros pasos/);
+  assert.match(spanishDocs, /Conceptos básicos/);
+  assert.match(spanishDocs, /href=["']\/docs\/en\/get-started\.html["']/);
+  const englishHomepageAlias = await checks[4].text();
   assert.match(englishHomepageAlias, /Deploy apps\./);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
-  assert(Number(checks[4].headers.get("content-length") ?? 0) > 0 || (await checks[4].arrayBuffer()).byteLength > 0);
+  assert(Number(checks[5].headers.get("content-length") ?? 0) > 0 || (await checks[5].arrayBuffer()).byteLength > 0);
 
   const docsStylesheet = docs.match(
     /href=["\'](\/css\/main\.css(?:\?[^"\']*)?)["\']/,
