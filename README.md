@@ -53,9 +53,33 @@ Translations are committed directly to the repository:
 - Add a locale to `website/languages.js` only after its documents and UI strings
   are complete.
 
-`website/translated_docs/es-ES/` is reserved for the first Spanish translation.
-Until that translation is complete, Spanish is intentionally not enabled in
-`website/languages.js`.
+`website/translated_docs/es-ES/` contains the Spanish documentation. Spanish
+remains disabled in `website/languages.js` until its Docusaurus UI strings are
+complete.
+
+## Translation guidelines
+
+Apply these rules to documentation and homepage locale catalogs:
+
+- Write natural technical prose for software engineers. Prefer terminology
+  commonly used by engineers in the target language over literal translation.
+- Keep product, project, company, and technology names unchanged, including
+  CapRover, Docker, Docker Swarm, nginx, GitHub, GitLab, and DigitalOcean.
+- Keep established English engineering terms when that is the target-language
+  convention. Use one term consistently across the locale.
+- Preserve fenced code, inline code, commands, flags, environment variables,
+  identifiers, config keys and values, file paths, URLs, domains, image names,
+  tags, protocols, and acronyms exactly.
+- Preserve filenames, directory structure, frontmatter IDs, anchors, link
+  destinations, and Markdown or HTML structure. Translate reader-facing titles,
+  headings, link text, alt text, and prose.
+- Match UI labels to the language currently shown by the product. Keep the
+  source label when the corresponding UI has not been localized.
+- Preserve the source meaning, examples, warnings, emphasis, and level of
+  technical detail.
+- Before enabling a locale, verify source-file parity, matching IDs and
+  structure, unchanged code and link targets, consistent terminology, and
+  fluent review by a target-language speaker familiar with software engineering.
 
 ## Build the combined site
 
