@@ -28,6 +28,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     { doc: "get-started", label: "Docs" },
+    { languages: true },
     {
       href: "https://github.com/caprover/caprover",
       label: "GitHub",
