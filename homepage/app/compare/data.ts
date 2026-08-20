@@ -1,3 +1,6 @@
+import { DEFAULT_LOCALE, type Locale } from "../../i18n/config";
+import { getMessages } from "../../i18n/messages";
+
 export type Product = "caprover" | "dokploy" | "dokku" | "coolify";
 
 export type ComparisonStatus = "yes" | "partial" | "no";
@@ -21,91 +24,12 @@ export type PairwiseRow = {
   competitor: ComparisonValue;
 };
 
-export const products: Array<{ key: Product; label: string }> = [
-  { key: "caprover", label: "CapRover" },
-  { key: "dokploy", label: "Dokploy" },
-  { key: "dokku", label: "Dokku OSS" },
-  { key: "coolify", label: "Coolify" },
-];
+export function getComparisonData(locale: Locale = DEFAULT_LOCALE) {
+  const messages = getMessages(locale);
 
-export const comparisonRows: ComparisonRow[] = [
-  {
-    feature: "Open-source dashboard for daily operations",
-    caprover: { status: "yes" },
-    dokploy: { status: "yes" },
-    dokku: { status: "no", note: "Dokku Pro adds one" },
-    coolify: { status: "yes" },
-  },
-  {
-    feature: "Officially documented minimum of 1 GB RAM",
-    caprover: { status: "yes", note: "1 GB" },
-    dokploy: { status: "no", note: "2 GB" },
-    dokku: { status: "yes", note: "1 GB with Docker" },
-    coolify: { status: "no", note: "2 GB and 2 cores" },
-  },
-  {
-    feature: "Purpose-built deployment from a local CLI",
-    caprover: { status: "yes", note: "caprover deploy" },
-    dokploy: { status: "yes", note: "dokploy app deploy" },
-    dokku: { status: "yes", note: "git push or archive" },
-    coolify: { status: "partial", note: "API or webhook trigger" },
-  },
-  {
-    feature: "One-click application and database catalog",
-    caprover: { status: "yes", note: "Open-source catalog" },
-    dokploy: { status: "yes", note: "Open-source templates" },
-    dokku: { status: "partial", note: "Plugins, no comparable catalog" },
-    coolify: { status: "yes", note: "Service templates" },
-  },
-  {
-    feature: "Automatic HTTPS with Let’s Encrypt",
-    caprover: { status: "yes" },
-    dokploy: { status: "yes" },
-    dokku: { status: "partial", note: "Official plugin" },
-    coolify: { status: "yes" },
-  },
-  {
-    feature: "Multi-node orchestration in the standard runtime",
-    caprover: { status: "yes", note: "Docker Swarm from installation" },
-    dokploy: { status: "yes", note: "Docker Swarm" },
-    dokku: { status: "partial", note: "Optional K3s scheduler" },
-    coolify: { status: "partial", note: "Swarm support is experimental" },
-  },
-  {
-    feature: "One-click rollback without an external registry",
-    caprover: { status: "yes", note: "From deployment history" },
-    dokploy: { status: "partial", note: "Registry must be configured" },
-    dokku: { status: "no", note: "Manual redeploy" },
-    coolify: { status: "partial", note: "Requires a retained local image" },
-  },
-  {
-    feature: "Platform-provisioned private local registry",
-    caprover: { status: "yes" },
-    dokploy: { status: "no", note: "Connect an existing registry" },
-    dokku: { status: "no", note: "Manual or plugin-based" },
-    coolify: { status: "partial", note: "Deploy as a service" },
-  },
-  {
-    feature: "Simple dashboard with an advanced proxy escape hatch",
-    caprover: { status: "yes", note: "Complete per-app NGINX template" },
-    dokploy: { status: "yes", note: "Traefik configuration" },
-    dokku: { status: "no", note: "CLI and templates in OSS" },
-    coolify: { status: "partial", note: "Labels and proxy configuration" },
-  },
-  {
-    feature: "Simple dashboard with a native orchestrator escape hatch",
-    caprover: { status: "yes", note: "Docker service settings" },
-    dokploy: { status: "partial", note: "Structured Swarm settings" },
-    dokku: { status: "no", note: "CLI and plugins in OSS" },
-    coolify: { status: "partial", note: "Docker options and Compose" },
-  },
-  {
-    feature: "Public project since 2017 or earlier",
-    caprover: { status: "yes", note: "Since 2017" },
-    dokploy: { status: "no", note: "Since 2024" },
-    dokku: { status: "yes", note: "Since 2013" },
-    coolify: { status: "no", note: "Since 2021" },
-  },
-];
-
-export const verifiedDate = "August 16, 2026";
+  return {
+    products: messages.comparisonData.products as Array<{ key: Product; label: string }>,
+    rows: messages.comparisonData.rows as ComparisonRow[],
+    verifiedDate: messages.comparisonCommon.verifiedDate,
+  };
+}

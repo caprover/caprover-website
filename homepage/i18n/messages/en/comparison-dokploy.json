@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "title": "CapRover vs Dokploy: Proven Simplicity and Deep Control",
+    "description": "Compare CapRover and Dokploy across simplicity, server requirements, Docker Swarm, deployment, NGINX, Traefik, registries, rollback and Compose."
+  },
+  "competitorName": "Dokploy",
+  "hero": {
+    "eyebrow": "CAPROVER VS DOKPLOY",
+    "title": "Choose the proven, focused path to Docker Swarm.",
+    "intro": "CapRover has made Docker Swarm and NGINX approachable through an app-centric dashboard since 2017. Common deployments stay simple, while native infrastructure controls remain available for advanced workloads.",
+    "verdictTitle": "Why CapRover",
+    "verdict": "Choose CapRover for a lower documented starting requirement, established project history, self-contained rollback, a provisioned local registry and the combination of simple defaults with deep NGINX and Docker control. Consider Dokploy when first-class Compose, independent remote servers or multi-user workflows are required."
+  },
+  "resourceDescription": "CapRover documents a 1 GB RAM minimum. Dokploy documents at least 2 GB RAM and 30 GB of free storage for a smooth installation experience.",
+  "capabilityKicker": "CAPABILITY CHECK",
+  "capabilityTitle": "Two Swarm platforms, with different design priorities.",
+  "rows": [
+    { "feature": "Open-source dashboard for daily operations", "caprover": { "status": "yes" }, "competitor": { "status": "yes" } },
+    { "feature": "Officially documented minimum of 1 GB RAM", "caprover": { "status": "yes", "note": "1 GB" }, "competitor": { "status": "no", "note": "2 GB RAM" } },
+    { "feature": "Purpose-built deployment from a local CLI", "caprover": { "status": "yes", "note": "caprover deploy" }, "competitor": { "status": "yes", "note": "dokploy app deploy" } },
+    { "feature": "One-click application and database catalog", "caprover": { "status": "yes", "note": "Open-source catalog" }, "competitor": { "status": "yes", "note": "Open-source templates" } },
+    { "feature": "Docker Swarm as the standard runtime", "caprover": { "status": "yes" }, "competitor": { "status": "yes" } },
+    { "feature": "One-click rollback without an external registry", "caprover": { "status": "yes", "note": "From deployment history" }, "competitor": { "status": "partial", "note": "Registry must be configured" } },
+    { "feature": "Platform-provisioned private local registry", "caprover": { "status": "yes" }, "competitor": { "status": "no", "note": "Connect an existing registry" } },
+    { "feature": "Simple dashboard with an advanced proxy escape hatch", "caprover": { "status": "yes" }, "competitor": { "status": "no", "note": "Uses Traefik configuration" } },
+    { "feature": "Simple dashboard with a native orchestrator escape hatch", "caprover": { "status": "yes", "note": "Docker service settings" }, "competitor": { "status": "partial", "note": "Structured Swarm settings" } },
+    { "feature": "Public project since 2017 or earlier", "caprover": { "status": "yes", "note": "Since 2017" }, "competitor": { "status": "no", "note": "Since 2024" } }
+  ],
+  "articles": [
+    { "title": "A small application model", "paragraphs": ["CapRover keeps the core vocabulary compact: applications, domains, environment variables, persistent directories and replicas.", "That focused model has remained consistent from single-server installations to multi-node Swarms, reducing the number of platform concepts required for daily operations."] },
+    { "title": "Self-contained deployment workflow", "paragraphs": ["Deploy source from the CLI or dashboard, use a prebuilt image, or trigger a deployment with a generic Git webhook. CapRover stores source deployment history for one-click rebuild and redeployment.", "When a multi-node cluster needs a registry, CapRover can provision and manage the local registry used by the Swarm."] },
+    { "title": "Power without upfront complexity", "paragraphs": ["CapRover creates working NGINX and Docker service configuration automatically, so normal deployments never need to touch either.", "Advanced workloads can still edit the complete per-app NGINX template and override native Docker service settings from the dashboard."] },
+    { "title": "The practical difference", "paragraphs": ["Dokploy makes Compose, remote servers and multi-user organizations more central to its product model.", "CapRover stays focused on operating applications inside one Docker Swarm. That narrower common path is an advantage when those broader abstractions are not actual requirements."] }
+  ],
+  "choice": {
+    "caprover": ["You want an established application platform with a lower documented server minimum.", "You value simple defaults and direct access to NGINX and native Docker settings.", "Rollback should work without configuring an external registry.", "The platform should be able to provision the local registry used by its Swarm.", "Your deployment model is one understandable Docker Swarm."],
+    "competitor": ["Docker Compose and Docker Stack are primary deployment formats.", "You need organizations, multiple users or role-based access.", "Independent remote deployment servers or dedicated build servers are required."]
+  },
+  "migrationTitle": "Moving to CapRover",
+  "migrationDescription": "Split complex Compose projects into CapRover applications or validate them against the supported One-Click fields. Map domains and environment variables, then transfer persistent data with the database or storage system's own migration tooling.",
+  "sourceLabels": {
+    "installation": "CapRover installation requirements",
+    "deploymentMethods": "CapRover deployment methods and rollback",
+    "serviceOverrides": "CapRover Docker service overrides",
+    "nginx": "CapRover NGINX customization",
+    "clustering": "CapRover Swarm clustering and registry",
+    "competitorInstallation": "Dokploy installation requirements",
+    "cli": "Dokploy CLI",
+    "compose": "Dokploy Docker Compose",
+    "clusters": "Dokploy clusters",
+    "permissions": "Dokploy roles and permissions"
+  }
+}

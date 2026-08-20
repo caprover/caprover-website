@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { englishMessages } from "../i18n/messages";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const iconPath = `${basePath}/homepage-assets/caprover-logo.png`;
@@ -16,9 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CapRover · Scalable, Free and Self-hosted PaaS",
-  description:
-    "Deploy and manage apps on your own infrastructure with CapRover, the free and open-source PaaS built on Docker.",
+  title: englishMessages.homepage.metadata.title,
+  description: englishMessages.homepage.metadata.description,
   icons: {
     icon: iconPath,
     shortcut: iconPath,

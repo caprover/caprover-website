@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "title": "CapRover · Scalable, Free and Self-hosted PaaS",
+    "description": "Deploy and manage apps on your own infrastructure with CapRover, the free and open-source PaaS built on Docker."
+  },
+  "brandAriaLabel": "CapRover home",
+  "navigationAriaLabel": "Main navigation",
+  "navigation": {
+    "features": "Features",
+    "docs": "Docs",
+    "github": "GitHub",
+    "slack": "Slack",
+    "getStarted": "Get started"
+  },
+  "dashboardAlt": "CapRover dashboard showing apps organized by project",
+  "hero": {
+    "eyebrow": "Scalable, free, and self-hosted PaaS.",
+    "titleLine1": "Deploy apps.",
+    "titleLine2": "Own your",
+    "titleLine3": "infrastructure.",
+    "description": "A scalable, free platform that makes deploying and managing your apps simple, while keeping your infrastructure fully under your control.",
+    "getStarted": "Get started",
+    "liveDemo": "Live demo",
+    "demoPasswordLabel": "Live demo password:",
+    "proofs": ["Free forever", "No vendor lock-in", "Production ready"]
+  },
+  "trust": [
+    { "icon": "⬡", "title": "Docker native", "description": "Run anything, anywhere" },
+    { "icon": "▱", "title": "One-click apps", "description": "Deploy services in seconds" },
+    { "icon": "▣", "title": "Automatic HTTPS", "description": "Free TLS for every domain" },
+    { "icon": "▤", "title": "Self-hosted", "description": "Your data, your infrastructure" }
+  ],
+  "intro": {
+    "kicker": "IT JUST WORKS",
+    "titleLine1": "The power of Docker and nginx.",
+    "titleLine2": "Without the busywork.",
+    "description": "CapRover gives you a clean interface for the infrastructure tasks that usually steal hours from building your product."
+  },
+  "community": {
+    "kicker": "POWERED BY THE COMMUNITY",
+    "title": "Support the project. Stay in the loop.",
+    "supportTitle": "Keep CapRover independent",
+    "supportDescription": "Help fund ongoing development and maintenance through OpenCollective.",
+    "donateAlt": "Donate to CapRover on OpenCollective",
+    "subscribeTitle": "Don't miss important updates",
+    "subscribeDescription": "Get notified about new CapRover releases. No noise, just product updates.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "subscribeButton": "Subscribe"
+  },
+  "workflow": {
+    "kicker": "APP DEPLOYMENT MADE EASY",
+    "title": "From localhost to live in seconds.",
+    "description": "Bring your code. CapRover handles the build, deployment, routing, HTTPS, and ongoing management.",
+    "guideLink": "See the deployment guide",
+    "steps": ["Detecting source", "Building image", "Pushing image", "Deploying to CapRover", "Starting containers"],
+    "buildComplete": "Build complete",
+    "deployed": "Deployed successfully"
+  },
+  "featuresSection": {
+    "kicker": "EVERYTHING YOU NEED",
+    "title": "A simple control plane for your apps.",
+    "description": "Easy enough for your first deployment. Flexible enough when you need complete control.",
+    "items": [
+      { "icon": "◫", "title": "Any language", "description": "Deploy Node.js, Python, PHP, Java, Ruby, .NET, or any app that runs in a container." },
+      { "icon": "▣", "title": "One-click apps", "description": "Launch databases, WordPress, monitoring tools, and dozens of popular services in seconds." },
+      { "icon": "⌁", "title": "Flexible deploys", "description": "Deploy from the dashboard, CLI, webhook, or your existing Git workflow." },
+      { "icon": "◇", "title": "Automatic HTTPS", "description": "Issue and renew Let's Encrypt certificates, with one-click HTTP to HTTPS redirects." },
+      { "icon": "⌘", "title": "Simple control", "description": "Manage ports, persistent directories, environment variables, and instance counts from one place." },
+      { "icon": "↗", "title": "Ready to scale", "description": "Add nodes to your Docker Swarm cluster and let CapRover handle load balancing." }
+    ]
+  },
+  "audience": {
+    "kicker": "BUILT FOR DEVELOPERS",
+    "title": "Spend more time writing code. Less time managing servers.",
+    "codeComment": "// less of this",
+    "simpleTitle": "Simple by default",
+    "simpleDescription": "Skip the repetitive server setup, certificates, nginx edits, and deployment scripts.",
+    "powerfulTitle": "Powerful when needed",
+    "powerfulDescription": "Customize nginx, attach nodes, use custom certificates, and reach the underlying Docker platform."
+  },
+  "tutorial": {
+    "kicker": "SEE CAPROVER IN ACTION",
+    "title": "A full deployment, from server to shipped app.",
+    "description": "Watch the original step-by-step tutorial to see how CapRover is installed, configured, and used to deploy an application.",
+    "link": "Watch the full video tutorial",
+    "linkAriaLabel": "Watch the CapRover video tutorial on YouTube",
+    "imageAlt": "Animated preview of the CapRover video tutorial"
+  },
+  "blueprints": {
+    "kicker": "HOW IT WORKS",
+    "title": "The complete deployment flow, under the hood.",
+    "description": "Explore the original CapRover workflow and architecture diagrams for a closer look at what happens from deploy command to live application.",
+    "openDiagram": "Open full diagram ↗",
+    "workflowAlt": "CapRover deployment workflow from source code to a running application",
+    "workflowTitle": "Deployment workflow",
+    "workflowDescription": "From source code to live app",
+    "architectureAlt": "CapRover architecture showing Docker Swarm, nginx, services, and applications",
+    "architectureTitle": "System architecture",
+    "architectureDescription": "Routing, services, and Docker Swarm"
+  },
+  "finalCta": {
+    "kicker": "READY TO GIVE IT A SHOT?",
+    "title": "Your first deployment is about 10 minutes away.",
+    "description": "Install CapRover on your own server and ship your first app today.",
+    "getStarted": "Get started now",
+    "liveDemo": "Explore live demo"
+  },
+  "footer": {
+    "tagline": "Scalable, free, and self-hosted PaaS.",
+    "docs": "Docs",
+    "github": "GitHub",
+    "slack": "Slack",
+    "copyright": "© 2026 githubsaturn · Apache 2.0"
+  }
+}

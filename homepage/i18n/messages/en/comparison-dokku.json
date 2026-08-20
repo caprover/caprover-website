@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "title": "CapRover vs Dokku: Open-Source Dashboard and CLI",
+    "description": "Compare CapRover and Dokku across simplicity, server requirements, open-source dashboards, deployment, Docker orchestration, NGINX, one-click apps and rollback."
+  },
+  "competitorName": "Dokku",
+  "tableCompetitorName": "Dokku OSS",
+  "hero": {
+    "eyebrow": "CAPROVER VS DOKKU",
+    "title": "Get a complete open-source dashboard without giving up the command line.",
+    "intro": "CapRover makes the normal path visual and straightforward, while keeping CLI, API, NGINX and Docker controls available when needed. You do not have to choose between ease of use and infrastructure access.",
+    "verdictTitle": "Why CapRover",
+    "verdict": "Choose CapRover when dashboard operations, One-Click Apps, rollback and multi-node orchestration should be included in the open-source product. Consider Dokku when a CLI-first workflow, broad builder selection, cron and a composable plugin system are central requirements."
+  },
+  "resourceDescription": "Both CapRover and Dokku document a 1 GB minimum with their default Docker-based runtimes. CapRover includes its web dashboard and Docker Swarm model at that published starting requirement.",
+  "capabilityKicker": "CAPABILITY CHECK",
+  "capabilityTitle": "Visual operations and CLI deployment in the same open-source product.",
+  "rows": [
+    { "feature": "Open-source dashboard for daily operations", "caprover": { "status": "yes" }, "competitor": { "status": "no", "note": "Dokku Pro adds one separately" } },
+    { "feature": "Officially documented minimum of 1 GB RAM", "caprover": { "status": "yes", "note": "1 GB" }, "competitor": { "status": "yes", "note": "1 GB with Docker" } },
+    { "feature": "Purpose-built deployment from a local CLI", "caprover": { "status": "yes", "note": "caprover deploy" }, "competitor": { "status": "yes", "note": "git push or archive" } },
+    { "feature": "One-click application and database catalog", "caprover": { "status": "yes", "note": "Open-source catalog" }, "competitor": { "status": "partial", "note": "Plugins, no comparable catalog" } },
+    { "feature": "Multi-node orchestration in the standard runtime", "caprover": { "status": "yes", "note": "Docker Swarm from installation" }, "competitor": { "status": "partial", "note": "Optional K3s scheduler" } },
+    { "feature": "One-click application rollback", "caprover": { "status": "yes", "note": "From deployment history" }, "competitor": { "status": "no", "note": "Manual redeploy" } },
+    { "feature": "Simple dashboard with an advanced proxy escape hatch", "caprover": { "status": "yes", "note": "Editable NGINX template" }, "competitor": { "status": "no", "note": "CLI and templates in OSS" } },
+    { "feature": "Simple dashboard with a native orchestrator escape hatch", "caprover": { "status": "yes", "note": "Docker service settings" }, "competitor": { "status": "no", "note": "CLI and plugins in OSS" } },
+    { "feature": "Public project since 2017 or earlier", "caprover": { "status": "yes", "note": "Since 2017" }, "competitor": { "status": "yes", "note": "Since 2013" } }
+  ],
+  "articles": [
+    { "title": "The dashboard is the simple path", "paragraphs": ["Domains, certificates, environment variables, persistent directories, replicas, logs and deployment history are visible and editable without assembling commands.", "That makes routine operations approachable for every developer who can access the CapRover dashboard."] },
+    { "title": "The command line is still there", "paragraphs": ["Run caprover deploy from a local project, upload an archive, deploy an image or trigger a generic Git webhook. The dashboard itself uses CapRover's HTTP API.", "CapRover adds a visual workflow without taking away automation or terminal-based deployment."] },
+    { "title": "Simple does not mean limited", "paragraphs": ["Most apps use the generated NGINX and Docker configuration unchanged. Advanced workloads can edit the complete per-app NGINX template and override native Docker service settings.", "These controls stay out of the common path until an operator deliberately needs them."] },
+    { "title": "The practical difference", "paragraphs": ["Dokku's open-source core is intentionally CLI-first and highly composable through builders, commands and plugins. Dokku Pro adds its official web interface and API separately.", "CapRover includes its visual operations workflow, One-Click catalog and Swarm management directly in the open-source platform."] }
+  ],
+  "choice": {
+    "caprover": ["A full web dashboard should be included in the open-source platform.", "You want a simple visual workflow and direct local deployment together.", "You want deep NGINX and Docker controls available without making them the default workflow.", "Docker Swarm clustering and rollback should be managed through the same product.", "You rely on a one-click catalog of deployable applications and databases."],
+    "competitor": ["SSH commands and Git push should be the primary interface.", "Buildpacks and a composable plugin system are essential.", "You need built-in cron task definitions or global environment variables."]
+  },
+  "migrationTitle": "Moving to CapRover",
+  "migrationDescription": "Convert Dokku configuration into CapRover environment variables and application settings, add captain-definition files, map domains, and migrate datastore contents with the database's own backup and restore tools.",
+  "sourceLabels": {
+    "installation": "CapRover installation requirements",
+    "cli": "CapRover CLI deployment",
+    "oneClickApps": "CapRover One-Click Apps",
+    "nginx": "CapRover NGINX customization",
+    "serviceOverrides": "CapRover Docker service overrides",
+    "clustering": "CapRover scaling and clusters",
+    "competitorInstallation": "Dokku architecture and installation requirements",
+    "competitorGit": "Dokku Git deployment",
+    "competitorK3s": "Dokku K3s scheduler",
+    "competitorPro": "Dokku Pro web UI and API"
+  }
+}
