@@ -1,4 +1,6 @@
-const DOCS = "https://caprover.com/docs/get-started.html";
+import { docsUrl } from "../i18n/config";
+
+const DOCS = docsUrl("get-started");
 const GITHUB = "https://github.com/caprover/caprover";
 const SLACK = "https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA";
 const LIVE_DEMO = "https://captain.server.demo.caprover.com/?demo=true";

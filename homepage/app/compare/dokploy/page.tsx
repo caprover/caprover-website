@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { docsUrl } from "../../../i18n/config";
 import {
   ChoiceGrid,
   ComparePage,
@@ -169,11 +170,11 @@ export default function DokployComparison() {
       <section className="compare-section compare-shell">
         <MatchupLinks current="dokploy" />
         <SourceLinks>
-          <li><a href="https://caprover.com/docs/get-started.html">CapRover installation requirements</a></li>
-          <li><a href="https://caprover.com/docs/deployment-methods.html">CapRover deployment methods and rollback</a></li>
-          <li><a href="https://caprover.com/docs/service-update-override.html">CapRover Docker service overrides</a></li>
-          <li><a href="https://caprover.com/docs/nginx-customization.html">CapRover NGINX customization</a></li>
-          <li><a href="https://caprover.com/docs/app-scaling-and-cluster.html">CapRover Swarm clustering and registry</a></li>
+          <li><a href={docsUrl("get-started")}>CapRover installation requirements</a></li>
+          <li><a href={docsUrl("deployment-methods")}>CapRover deployment methods and rollback</a></li>
+          <li><a href={docsUrl("service-update-override")}>CapRover Docker service overrides</a></li>
+          <li><a href={docsUrl("nginx-customization")}>CapRover NGINX customization</a></li>
+          <li><a href={docsUrl("app-scaling-and-cluster")}>CapRover Swarm clustering and registry</a></li>
           <li><a href="https://docs.dokploy.com/docs/core/installation">Dokploy installation requirements</a></li>
           <li><a href="https://docs.dokploy.com/docs/cli">Dokploy CLI</a></li>
           <li><a href="https://docs.dokploy.com/docs/core/docker-compose">Dokploy Docker Compose</a></li>

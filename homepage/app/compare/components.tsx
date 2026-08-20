@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { docsUrl } from "../../i18n/config";
 import {
   comparisonRows,
   products,
@@ -9,9 +10,9 @@ import {
   verifiedDate,
 } from "./data";
 
-const DOCS = "https://caprover.com/docs/get-started.html";
+const DOCS = docsUrl("get-started");
 const GITHUB = "https://github.com/caprover/caprover";
-const ONE_CLICK_APPS = "https://caprover.com/docs/one-click-apps.html";
+const ONE_CLICK_APPS = docsUrl("one-click-apps");
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ASSET_PATH = "/homepage-assets";
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { docsUrl } from "../../i18n/config";
 import {
   ComparePage,
   ComparisonPrinciples,
@@ -68,12 +69,12 @@ export default function ComparisonHub() {
 
       <section className="compare-section compare-shell">
         <SourceLinks>
-          <li><a href="https://caprover.com/docs/deployment-methods.html">CapRover deployment methods and rollback</a></li>
-          <li><a href="https://caprover.com/docs/one-click-apps.html">CapRover One-Click Apps</a></li>
-          <li><a href="https://caprover.com/docs/app-scaling-and-cluster.html">CapRover Docker Swarm clustering</a></li>
-          <li><a href="https://caprover.com/docs/nginx-customization.html">CapRover NGINX customization</a></li>
-          <li><a href="https://caprover.com/docs/service-update-override.html">CapRover Docker service overrides</a></li>
-          <li><a href="https://caprover.com/docs/get-started.html">CapRover installation requirements</a></li>
+          <li><a href={docsUrl("deployment-methods")}>CapRover deployment methods and rollback</a></li>
+          <li><a href={docsUrl("one-click-apps")}>CapRover One-Click Apps</a></li>
+          <li><a href={docsUrl("app-scaling-and-cluster")}>CapRover Docker Swarm clustering</a></li>
+          <li><a href={docsUrl("nginx-customization")}>CapRover NGINX customization</a></li>
+          <li><a href={docsUrl("service-update-override")}>CapRover Docker service overrides</a></li>
+          <li><a href={docsUrl("get-started")}>CapRover installation requirements</a></li>
           <li><a href="https://docs.dokploy.com/docs/core">Dokploy documentation</a></li>
           <li><a href="https://docs.dokploy.com/docs/core/installation">Dokploy installation requirements</a></li>
           <li><a href="https://dokku.com/docs/">Dokku documentation</a></li>

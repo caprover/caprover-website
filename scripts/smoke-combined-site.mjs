@@ -54,6 +54,7 @@ try {
     fetch(`${origin}/.nojekyll`),
     fetch(`${origin}/docs/get-started.html`),
     fetch(`${origin}/docs/en/get-started.html`),
+    fetch(`${origin}/en/index.html`),
     fetch(`${origin}/homepage-assets/caprover-dashboard.png`),
     fetch(`${origin}${nextAsset}`),
   ]);
@@ -68,7 +69,10 @@ try {
 
   const docs = await checks[2].text();
   assert.match(docs, /Getting Started/i);
-  assert(Number(checks[3].headers.get("content-length") ?? 0) > 0 || (await checks[3].arrayBuffer()).byteLength > 0);
+  const englishHomepageAlias = await checks[3].text();
+  assert.match(englishHomepageAlias, /Deploy apps\./);
+  assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
+  assert(Number(checks[4].headers.get("content-length") ?? 0) > 0 || (await checks[4].arrayBuffer()).byteLength > 0);
 
   const docsStylesheet = docs.match(
     /href=["\'](\/css\/main\.css(?:\?[^"\']*)?)["\']/,

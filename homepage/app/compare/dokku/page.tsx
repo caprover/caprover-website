@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { docsUrl } from "../../../i18n/config";
 import {
   ChoiceGrid,
   ComparePage,
@@ -165,12 +166,12 @@ export default function DokkuComparison() {
       <section className="compare-section compare-shell">
         <MatchupLinks current="dokku" />
         <SourceLinks>
-          <li><a href="https://caprover.com/docs/get-started.html">CapRover installation requirements</a></li>
-          <li><a href="https://caprover.com/docs/cli-commands.html">CapRover CLI deployment</a></li>
-          <li><a href="https://caprover.com/docs/one-click-apps.html">CapRover One-Click Apps</a></li>
-          <li><a href="https://caprover.com/docs/nginx-customization.html">CapRover NGINX customization</a></li>
-          <li><a href="https://caprover.com/docs/service-update-override.html">CapRover Docker service overrides</a></li>
-          <li><a href="https://caprover.com/docs/app-scaling-and-cluster.html">CapRover scaling and clusters</a></li>
+          <li><a href={docsUrl("get-started")}>CapRover installation requirements</a></li>
+          <li><a href={docsUrl("cli-commands")}>CapRover CLI deployment</a></li>
+          <li><a href={docsUrl("one-click-apps")}>CapRover One-Click Apps</a></li>
+          <li><a href={docsUrl("nginx-customization")}>CapRover NGINX customization</a></li>
+          <li><a href={docsUrl("service-update-override")}>CapRover Docker service overrides</a></li>
+          <li><a href={docsUrl("app-scaling-and-cluster")}>CapRover scaling and clusters</a></li>
           <li><a href="https://dokku.com/docs/getting-started/installation/">Dokku architecture and installation requirements</a></li>
           <li><a href="https://dokku.com/docs/deployment/methods/git/">Dokku Git deployment</a></li>
           <li><a href="https://dokku.com/docs/deployment/schedulers/k3s/">Dokku K3s scheduler</a></li>
