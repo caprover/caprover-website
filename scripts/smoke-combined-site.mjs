@@ -53,6 +53,7 @@ try {
   const checks = await Promise.all([
     fetch(`${origin}/.nojekyll`),
     fetch(`${origin}/docs/get-started.html`),
+    fetch(`${origin}/docs/en/get-started.html`),
     fetch(`${origin}/homepage-assets/caprover-dashboard.png`),
     fetch(`${origin}${nextAsset}`),
   ]);
@@ -62,9 +63,12 @@ try {
   }
 
   assert.equal(await checks[0].text(), "", ".nojekyll must be empty");
-  const docs = await checks[1].text();
+  const legacyDocsRedirect = await checks[1].text();
+  assert.match(legacyDocsRedirect, /window\.location\.href\s*=\s*["']\/docs\/en\/get-started\.html["']/);
+
+  const docs = await checks[2].text();
   assert.match(docs, /Getting Started/i);
-  assert(Number(checks[2].headers.get("content-length") ?? 0) > 0 || (await checks[2].arrayBuffer()).byteLength > 0);
+  assert(Number(checks[3].headers.get("content-length") ?? 0) > 0 || (await checks[3].arrayBuffer()).byteLength > 0);
 
   const docsStylesheet = docs.match(
     /href=["\'](\/css\/main\.css(?:\?[^"\']*)?)["\']/,

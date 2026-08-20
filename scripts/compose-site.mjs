@@ -61,6 +61,7 @@ async function snapshot(directory) {
 
 await Promise.all([
   requirePath(path.join(legacySite, "docs/get-started.html")),
+  requirePath(path.join(legacySite, "docs/en/get-started.html")),
   requirePath(path.join(legacySite, "img/logo.png")),
   requirePath(path.join(legacySite, "CNAME")),
   requirePath(path.join(homepage, "index.html")),
