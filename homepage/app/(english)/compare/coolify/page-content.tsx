@@ -1,5 +1,5 @@
-import { DEFAULT_LOCALE, docsUrl, type Locale } from "../../../i18n/config";
-import { getMessages, messageList } from "../../../i18n/messages";
+import { DEFAULT_LOCALE, docsUrl, type Locale } from "@/i18n/config";
+import { getMessages, messageList } from "@/i18n/messages";
 import { ChoiceGrid, ComparePage, ComparisonPrinciples, MarketingCta, MatchupLinks, PageHero, PairwiseTable, ProofStrip, ResourceCallout, SimplicityPower, SourceLinks } from "../components";
 import type { PairwiseRow } from "../data";
 
@@ -7,7 +7,7 @@ export function CoolifyComparisonPage({ locale = DEFAULT_LOCALE }: { locale?: Lo
   const copy = getMessages(locale).comparisonPages.coolify;
   const sources = copy.sourceLabels;
   return (
-    <ComparePage locale={locale}>
+    <ComparePage locale={locale} path="/compare/coolify/">
       <PageHero {...copy.hero}><div className="verdict"><strong>{copy.hero.verdictTitle}</strong><p>{copy.hero.verdict}</p></div><ProofStrip locale={locale} /></PageHero>
       <section className="compare-section compare-shell"><SimplicityPower locale={locale} /><ResourceCallout locale={locale}><p>{copy.resourceDescription}</p></ResourceCallout></section>
       <section className="compare-section compare-soft"><div className="compare-shell"><div className="compare-heading"><p className="compare-kicker">{copy.capabilityKicker}</p><h2>{copy.capabilityTitle}</h2></div><ComparisonPrinciples locale={locale} /><PairwiseTable competitorName={copy.competitorName} rows={messageList(copy.rows) as PairwiseRow[]} locale={locale} /></div></section>

@@ -1,5 +1,5 @@
-import { DEFAULT_LOCALE, docsUrl, type Locale } from "../../i18n/config";
-import { getMessages } from "../../i18n/messages";
+import { DEFAULT_LOCALE, docsUrl, type Locale } from "@/i18n/config";
+import { getMessages } from "@/i18n/messages";
 import {
   ComparePage,
   ComparisonPrinciples,
@@ -17,7 +17,7 @@ export function ComparisonHubPage({ locale = DEFAULT_LOCALE }: { locale?: Locale
   const copy = getMessages(locale).comparisonPages.hub;
   const sources = copy.sourceLabels;
   return (
-    <ComparePage locale={locale}>
+    <ComparePage locale={locale} path="/compare/">
       <PageHero {...copy.hero}><ProofStrip locale={locale} /></PageHero>
 
       <section className="compare-section compare-shell">

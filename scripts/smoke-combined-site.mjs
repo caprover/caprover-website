@@ -56,6 +56,11 @@ try {
     fetch(`${origin}/docs/en/get-started.html`),
     fetch(`${origin}/docs/es-ES/get-started.html`),
     fetch(`${origin}/en/index.html`),
+    fetch(`${origin}/es-ES/index.html`),
+    fetch(`${origin}/es-ES/compare/index.html`),
+    fetch(`${origin}/es-ES/compare/coolify/index.html`),
+    fetch(`${origin}/es-ES/compare/dokploy/index.html`),
+    fetch(`${origin}/es-ES/compare/dokku/index.html`),
     fetch(`${origin}/homepage-assets/caprover-dashboard.png`),
     fetch(`${origin}${nextAsset}`),
   ]);
@@ -79,7 +84,19 @@ try {
   const englishHomepageAlias = await checks[4].text();
   assert.match(englishHomepageAlias, /Deploy apps\./);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
-  assert(Number(checks[5].headers.get("content-length") ?? 0) > 0 || (await checks[5].arrayBuffer()).byteLength > 0);
+  const spanishHomepage = await checks[5].text();
+  assert.match(spanishHomepage, /Despliega aplicaciones\./);
+  assert.match(spanishHomepage, /href=["']https:\/\/caprover\.com\/docs\/es-ES\/get-started\.html["']/);
+  assert.match(spanishHomepage, /<html lang=["']es-ES["']/);
+  assert.match(spanishHomepage, /<main lang=["']es-ES["']/);
+  assert.match(spanishHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
+  const spanishComparisonPages = await Promise.all(checks.slice(6, 10).map((response) => response.text()));
+  assert.match(spanishComparisonPages[0], /Empieza de forma sencilla\./);
+  for (const page of spanishComparisonPages) {
+    assert.match(page, /\/es-ES\/compare\//);
+    assert.match(page, /\/docs\/es-ES\/get-started\.html/);
+  }
+  assert(Number(checks[10].headers.get("content-length") ?? 0) > 0 || (await checks[10].arrayBuffer()).byteLength > 0);
 
   const docsStylesheet = docs.match(
     /href=["\'](\/css\/main\.css(?:\?[^"\']*)?)["\']/,

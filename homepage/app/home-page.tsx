@@ -1,5 +1,6 @@
 import { DEFAULT_LOCALE, docsUrl, type Locale } from "../i18n/config";
 import { getMessages, messageList, type Messages } from "../i18n/messages";
+import { LocaleSwitcher } from "./locale-switcher";
 
 const GITHUB = "https://github.com/caprover/caprover";
 const SLACK = "https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA";
@@ -75,15 +76,16 @@ function CommunitySupport({ messages }: { messages: HomeMessages["community"] })
 }
 
 export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
-  const messages = getMessages(locale).homepage;
+  const allMessages = getMessages(locale);
+  const messages = allMessages.homepage;
   const docs = docsUrl("get-started", locale);
 
   return (
-    <main>
+    <main lang={locale}>
       <header className="nav shell">
         <a className="logo" href="#top" aria-label={messages.brandAriaLabel}><Mark /><span>CapRover</span></a>
         <nav aria-label={messages.navigationAriaLabel}><a href="#features">{messages.navigation.features}</a><a href={docs}>{messages.navigation.docs}</a><a href={GITHUB}><GitHubIcon />{messages.navigation.github}</a><a href={SLACK}><SlackIcon />{messages.navigation.slack}</a></nav>
-        <a className="nav-cta" href={docs}>{messages.navigation.getStarted} <ArrowIcon /></a>
+        <div className="nav-actions"><LocaleSwitcher locale={locale} path="/" ariaLabel={allMessages.common.languageSelectorAriaLabel} /><a className="nav-cta" href={docs}>{messages.navigation.getStarted} <ArrowIcon /></a></div>
       </header>
 
       <section className="hero shell" id="top">

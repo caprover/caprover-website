@@ -1,5 +1,6 @@
 import type { Locale } from "./config";
 import englishCatalog from "./messages/en.json";
+import spanishCatalog from "./messages/es-ES.json";
 
 export const englishMessages = englishCatalog;
 
@@ -22,6 +23,7 @@ export type Messages = UnionToIntersection<
 
 const messagesByLocale: Record<Locale, FlatMessages> = {
   en: englishCatalog,
+  "es-ES": spanishCatalog,
 };
 
 const structuralKeys = (Object.keys(englishCatalog) as MessageKey[]).filter(
@@ -58,6 +60,10 @@ const expandedMessagesByLocale = Object.fromEntries(
 
 export function getMessages(locale: Locale): Messages {
   return expandedMessagesByLocale[locale];
+}
+
+export function getFlatMessages(locale: Locale): FlatMessages {
+  return messagesByLocale[locale];
 }
 
 export function messageList<Value>(messages: Record<string, Value>): Value[] {
