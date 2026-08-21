@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { getFlatMessages, type MessageKey } from "./messages";
-import type { Locale } from "./config";
+import {
+  DEFAULT_LOCALE,
+  ENABLED_LOCALES,
+  localizedPath,
+  type Locale,
+} from "./config";
 
 const SITE = "https://caprover.com";
 
@@ -48,9 +53,14 @@ function localizedMetadata(
   descriptionKey: MessageKey,
 ): Metadata {
   const messages = getFlatMessages(locale);
-  const englishUrl = `${SITE}${path}`;
-  const spanishUrl = `${SITE}/es-ES${path}`;
-  const canonical = locale === "en" ? englishUrl : spanishUrl;
+  const defaultUrl = `${SITE}${localizedPath(path, DEFAULT_LOCALE)}`;
+  const canonical = `${SITE}${localizedPath(path, locale)}`;
+  const languages = Object.fromEntries(
+    ENABLED_LOCALES.map((entry) => [
+      entry.code,
+      `${SITE}${localizedPath(path, entry.code)}`,
+    ]),
+  );
 
   return {
     title: messages[titleKey],
@@ -58,18 +68,14 @@ function localizedMetadata(
     alternates: {
       canonical,
       languages: {
-        en: englishUrl,
-        "es-ES": spanishUrl,
-        "x-default": englishUrl,
+        ...languages,
+        "x-default": defaultUrl,
       },
     },
   };
 }
 
-export function pageMetadata(
-  locale: Locale,
-  page: LocalizedPage,
-): Metadata {
+export function pageMetadata(locale: Locale, page: LocalizedPage): Metadata {
   const { path, titleKey, descriptionKey } = PAGE_METADATA[page];
   return localizedMetadata(locale, path, titleKey, descriptionKey);
 }

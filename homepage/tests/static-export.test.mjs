@@ -10,24 +10,71 @@ const expectedAssets = [
   "caprover-workflow.png",
   "slack-icon.png",
 ];
+const routes = [
+  { path: "/", titleKey: "homepage.hero.titleLine1" },
+  { path: "/compare/", titleKey: "comparisonPages.hub.hero.title" },
+  { path: "/compare/coolify/", titleKey: "comparisonPages.coolify.hero.title" },
+  { path: "/compare/dokploy/", titleKey: "comparisonPages.dokploy.hero.title" },
+  { path: "/compare/dokku/", titleKey: "comparisonPages.dokku.hero.title" },
+];
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = "homepage-assets";
+const locales = JSON.parse(await readFile("../content/locales.json", "utf8"));
+const enabledLocales = locales.filter((locale) => locale.enabled);
+const defaultLocale = enabledLocales.find((locale) => locale.default);
 
-test("exports a complete static homepage", async () => {
-  const html = await readFile("out/index.html", "utf8");
-  const englishAlias = await readFile("out/en/index.html", "utf8");
-  const spanish = await readFile("out/es-ES/index.html", "utf8");
+assert(defaultLocale);
 
-  assert.match(html, /<title>CapRover · Scalable, Free and Self-hosted PaaS<\/title>/);
-  assert.match(html, /Deploy apps\./);
-  assert.match(html, /https:\/\/caprover\.com\/docs\/en\/get-started\.html/);
-  assert.match(englishAlias, /Deploy apps\./);
-  assert.match(englishAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
-  assert.match(englishAlias, /name=["']robots["'][^>]+content=["']noindex, follow["']/);
-  assert.match(spanish, /Despliega aplicaciones\./);
-  assert.match(spanish, /https:\/\/caprover\.com\/docs\/es-ES\/get-started\.html/);
-  assert.match(spanish, /href=["']\/es-ES\/["'][^>]*hrefLang=["']es-ES["']|hrefLang=["']es-ES["'][^>]*href=["']\/es-ES\/["']/);
-  assert.match(spanish, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
+function localizedPath(locale, route) {
+  return `${locale.pathPrefix}${route}`;
+}
+
+function outputFile(locale, route) {
+  return `out${localizedPath(locale, route)}index.html`;
+}
+
+async function readCatalog(locale) {
+  return JSON.parse(
+    await readFile(`../content/${locale.code}/website.json`, "utf8"),
+  );
+}
+
+test("exports complete localized website routes", async () => {
+  const defaultHtml = await readFile("out/index.html", "utf8");
+  const defaultAlias = await readFile(
+    `out/${defaultLocale.code}/index.html`,
+    "utf8",
+  );
+
+  for (const locale of enabledLocales) {
+    const catalog = await readCatalog(locale);
+    for (const route of routes) {
+      const html = await readFile(outputFile(locale, route.path), "utf8");
+      assert(
+        html.includes(catalog[route.titleKey]),
+        `${locale.code}${route.path} is missing localized content`,
+      );
+      assert(
+        html.includes(
+          `https://caprover.com${localizedPath(locale, route.path)}`,
+        ),
+        `${locale.code}${route.path} is missing its canonical URL`,
+      );
+    }
+
+    const homepage = await readFile(outputFile(locale, "/"), "utf8");
+    assert(
+      homepage.includes(
+        `https://caprover.com/docs/${locale.code}/get-started.html`,
+      ),
+    );
+    for (const targetLocale of enabledLocales) {
+      assert(homepage.includes(`hrefLang="${targetLocale.code}"`));
+    }
+  }
+
+  assert(defaultAlias.includes(defaultLocale.code));
+  assert(defaultAlias.includes("noindex, follow"));
 
   await Promise.all(
     expectedAssets.map((asset) => access(`out/${assetPath}/${asset}`)),
@@ -35,38 +82,33 @@ test("exports a complete static homepage", async () => {
 
   for (const asset of expectedAssets) {
     assert.match(
-      html,
+      defaultHtml,
       new RegExp(`(?:href|src)=["']${basePath}/${assetPath}/${asset}["']`),
     );
   }
 
   if (basePath) {
-    assert.match(html, new RegExp(`href=["']${basePath}/_next/`));
+    assert.match(defaultHtml, new RegExp(`href=["']${basePath}/_next/`));
   }
 });
 
-
-test("exports the comparison hub and one-on-one pages without changing homepage navigation", async () => {
+test("keeps comparison regressions covered across locales", async () => {
   const homepage = await readFile("out/index.html", "utf8");
   const hub = await readFile("out/compare/index.html", "utf8");
   const coolify = await readFile("out/compare/coolify/index.html", "utf8");
   const dokploy = await readFile("out/compare/dokploy/index.html", "utf8");
   const dokku = await readFile("out/compare/dokku/index.html", "utf8");
   const sitemap = await readFile("out/sitemap.xml", "utf8");
-  const spanishHub = await readFile("out/es-ES/compare/index.html", "utf8");
-  const spanishCoolify = await readFile("out/es-ES/compare/coolify/index.html", "utf8");
-  const spanishDokploy = await readFile("out/es-ES/compare/dokploy/index.html", "utf8");
-  const spanishDokku = await readFile("out/es-ES/compare/dokku/index.html", "utf8");
 
   assert.doesNotMatch(homepage, /href=["'][^"']*\/compare\/?["']/);
   assert.match(hub, /Start simple\. Never hit a ceiling\./);
-  assert.match(hub, /https:\/\/caprover\.com\/docs\/en\/get-started\.html/);
   assert.match(hub, /SIMPLE BY DEFAULT/);
   assert.match(hub, /SMALL-SERVER FRIENDLY/);
   assert.match(hub, /status-yes/);
   assert.match(coolify, /CAPROVER VS COOLIFY/);
   assert.match(dokploy, /CAPROVER VS DOKPLOY/);
   assert.match(dokku, /CAPROVER VS DOKKU/);
+
   for (const matchup of [coolify, dokploy, dokku]) {
     assert.match(matchup, /SIMPLE BY DEFAULT/);
     assert.match(matchup, /POWERFUL WHEN NEEDED/);
@@ -75,28 +117,37 @@ test("exports the comparison hub and one-on-one pages without changing homepage 
     assert.doesNotMatch(matchup, /Raw Docker ServiceUpdate override/);
   }
   for (const comparisonPage of [hub, coolify, dokploy, dokku]) {
-    assert.match(comparisonPage, /This comparison table was generated by an AI agent/);
+    assert.match(
+      comparisonPage,
+      /This comparison table was generated by an AI agent/,
+    );
     assert.match(comparisonPage, /mailto:marketing@caprover\.com/);
   }
   assert.doesNotMatch(coolify, /Moving to Coolify/);
   assert.doesNotMatch(dokploy, /Moving to Dokploy/);
   assert.doesNotMatch(dokku, /Moving to Dokku/);
-  assert.match(sitemap, /https:\/\/caprover\.com\/compare\/coolify\//);
-  assert.match(sitemap, /https:\/\/caprover\.com\/es-ES\/compare\/coolify\//);
-  assert.match(spanishHub, /Empieza de forma sencilla\./);
-  assert.match(spanishCoolify, /CAPROVER VS COOLIFY/);
-  assert.match(spanishDokploy, /CAPROVER VS DOKPLOY/);
-  assert.match(spanishDokku, /CAPROVER VS DOKKU/);
+
+  for (const locale of enabledLocales) {
+    for (const route of routes) {
+      assert(
+        sitemap.includes(
+          `https://caprover.com${localizedPath(locale, route.path)}`,
+        ),
+      );
+    }
+  }
 });
 
-test("Spanish catalog has the same flat keys and preserves structural values", async () => {
-  const english = JSON.parse(await readFile("../content/en/homepage.json", "utf8"));
-  const spanish = JSON.parse(await readFile("../content/es-ES/homepage.json", "utf8"));
+test("enabled website catalogs preserve source keys and structural values", async () => {
+  const source = await readCatalog(defaultLocale);
 
-  assert.deepEqual(Object.keys(spanish), Object.keys(english));
-  for (const [key, value] of Object.entries(english)) {
-    if (key.endsWith(".key") || key.endsWith(".status")) {
-      assert.equal(spanish[key], value, key);
+  for (const locale of enabledLocales) {
+    const catalog = await readCatalog(locale);
+    assert.deepEqual(Object.keys(catalog).sort(), Object.keys(source).sort());
+    for (const [key, value] of Object.entries(source)) {
+      if (key.endsWith(".key") || key.endsWith(".status")) {
+        assert.equal(catalog[key], value, `${locale.code}: ${key}`);
+      }
     }
   }
 });

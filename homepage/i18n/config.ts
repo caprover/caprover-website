@@ -1,12 +1,10 @@
 import localeManifest from "../../content/locales.json";
+import { messagesByLocale, type Locale } from "./messages";
 
-export const DEFAULT_LOCALE = "en" as const;
-
-const supportedLocaleCodes = ["en", "es-ES"] as const;
-export type Locale = (typeof supportedLocaleCodes)[number];
+export type { Locale } from "./messages";
 
 function isLocale(code: string): code is Locale {
-  return supportedLocaleCodes.includes(code as Locale);
+  return code in messagesByLocale;
 }
 
 export const ENABLED_LOCALES = localeManifest
@@ -15,17 +13,30 @@ export const ENABLED_LOCALES = localeManifest
     if (!isLocale(entry.code)) {
       throw new Error(`Unsupported enabled locale: ${entry.code}`);
     }
-    return { code: entry.code, label: entry.label, pathPrefix: entry.pathPrefix };
+    return {
+      code: entry.code,
+      label: entry.label,
+      pathPrefix: entry.pathPrefix,
+    };
   });
 
-const configuredDefault = localeManifest.find((entry) => entry.enabled && entry.default)?.code;
-if (configuredDefault !== DEFAULT_LOCALE) {
-  throw new Error(`Expected ${DEFAULT_LOCALE} to be the enabled default locale`);
+const configuredDefault = localeManifest.find(
+  (entry) => entry.enabled && entry.default,
+);
+
+if (!configuredDefault || !isLocale(configuredDefault.code)) {
+  throw new Error(
+    "An enabled default locale with a registered website catalog is required",
+  );
 }
+
+export const DEFAULT_LOCALE: Locale = configuredDefault.code;
 
 export function localizedPath(path: string, locale: Locale = DEFAULT_LOCALE) {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  const prefix = ENABLED_LOCALES.find((entry) => entry.code === locale)?.pathPrefix;
+  const prefix = ENABLED_LOCALES.find(
+    (entry) => entry.code === locale,
+  )?.pathPrefix;
 
   if (prefix === undefined) {
     throw new Error(`Unsupported locale: ${locale}`);

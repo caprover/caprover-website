@@ -17,6 +17,27 @@ const root = process.cwd();
 const legacySite = path.join(root, "website/build/CapRover");
 const homepage = path.join(root, "homepage/out");
 const combinedSite = path.join(root, "build/combined-site");
+const locales = JSON.parse(
+  await readFile(path.join(root, "content/locales.json"), "utf8"),
+).filter((locale) => locale.enabled);
+const defaultLocale = locales.find((locale) => locale.default);
+const homepageRoutes = [
+  "",
+  "compare",
+  "compare/coolify",
+  "compare/dokploy",
+  "compare/dokku",
+];
+
+assert(defaultLocale, "An enabled default locale is required");
+
+function localeOutputRoot(locale) {
+  return locale.pathPrefix.replace(/^\//, "");
+}
+
+function homepageRouteFile(locale, route) {
+  return path.join(homepage, localeOutputRoot(locale), route, "index.html");
+}
 
 async function requirePath(target) {
   try {
@@ -61,23 +82,17 @@ async function snapshot(directory) {
 
 await Promise.all([
   requirePath(path.join(legacySite, "docs/get-started.html")),
-  requirePath(path.join(legacySite, "docs/en/get-started.html")),
-  requirePath(path.join(legacySite, "docs/es-ES/get-started.html")),
+  ...locales.map((locale) =>
+    requirePath(path.join(legacySite, "docs", locale.code, "get-started.html")),
+  ),
   requirePath(path.join(legacySite, "img/logo.png")),
   requirePath(path.join(legacySite, "CNAME")),
-  requirePath(path.join(homepage, "index.html")),
-  requirePath(path.join(homepage, "en/index.html")),
-  requirePath(path.join(homepage, "es-ES/index.html")),
-  requirePath(path.join(homepage, "es-ES/compare/index.html")),
-  requirePath(path.join(homepage, "es-ES/compare/coolify/index.html")),
-  requirePath(path.join(homepage, "es-ES/compare/dokploy/index.html")),
-  requirePath(path.join(homepage, "es-ES/compare/dokku/index.html")),
+  ...locales.flatMap((locale) =>
+    homepageRoutes.map((route) => requirePath(homepageRouteFile(locale, route))),
+  ),
+  requirePath(path.join(homepage, defaultLocale.code, "index.html")),
   requirePath(path.join(homepage, "_next")),
   requirePath(path.join(homepage, "homepage-assets")),
-  requirePath(path.join(homepage, "compare/index.html")),
-  requirePath(path.join(homepage, "compare/coolify/index.html")),
-  requirePath(path.join(homepage, "compare/dokploy/index.html")),
-  requirePath(path.join(homepage, "compare/dokku/index.html")),
   requirePath(path.join(homepage, "sitemap.xml")),
   requireNoCollision("_next"),
   requireNoCollision("homepage-assets"),
@@ -108,14 +123,24 @@ await cp(
 await cp(path.join(homepage, "compare"), path.join(combinedSite, "compare"), {
   recursive: true,
 });
-await rm(path.join(combinedSite, "en"), { recursive: true, force: true });
-await cp(path.join(homepage, "en"), path.join(combinedSite, "en"), {
+await rm(path.join(combinedSite, defaultLocale.code), {
   recursive: true,
+  force: true,
 });
-await rm(path.join(combinedSite, "es-ES"), { recursive: true, force: true });
-await cp(path.join(homepage, "es-ES"), path.join(combinedSite, "es-ES"), {
-  recursive: true,
-});
+await cp(
+  path.join(homepage, defaultLocale.code),
+  path.join(combinedSite, defaultLocale.code),
+  {
+    recursive: true,
+  },
+);
+for (const locale of locales.filter((entry) => !entry.default)) {
+  const outputRoot = localeOutputRoot(locale);
+  await rm(path.join(combinedSite, outputRoot), { recursive: true, force: true });
+  await cp(path.join(homepage, outputRoot), path.join(combinedSite, outputRoot), {
+    recursive: true,
+  });
+}
 const [legacySitemap, homepageSitemap] = await Promise.all([
   readFile(path.join(combinedSite, "sitemap.xml"), "utf8"),
   readFile(path.join(homepage, "sitemap.xml"), "utf8"),
@@ -123,7 +148,11 @@ const [legacySitemap, homepageSitemap] = await Promise.all([
 const homepageUrls = (homepageSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter(
   (entry) => !entry.includes("<loc>https://caprover.com/</loc>"),
 );
-assert(homepageUrls.length === 9, "Homepage sitemap is missing localized URLs");
+assert.equal(
+  homepageUrls.length,
+  locales.length * homepageRoutes.length - 1,
+  "Homepage sitemap is missing localized URLs",
+);
 assert.match(legacySitemap, /<\/urlset>\s*$/);
 await writeFile(
   path.join(combinedSite, "sitemap.xml"),
@@ -142,7 +171,16 @@ const [docsAfter, imagesAfter, combinedCname, homepageHtml] = await Promise.all(
 assert.deepEqual(docsAfter, docsBefore, "Documentation output changed during composition");
 assert.deepEqual(imagesAfter, imagesBefore, "Legacy image output changed during composition");
 assert.deepEqual(combinedCname, originalCname, "CNAME changed during composition");
-assert.match(homepageHtml, /Deploy apps\./);
+const defaultWebsite = JSON.parse(
+  await readFile(
+    path.join(root, "content", defaultLocale.code, "website.json"),
+    "utf8",
+  ),
+);
+assert(
+  homepageHtml.includes(defaultWebsite["homepage.hero.titleLine1"]),
+  "Default homepage content is missing",
+);
 assert.match(homepageHtml, /(?:href|src)=["']\/_next\//);
 assert.match(homepageHtml, /(?:href|src)=["']\/homepage-assets\//);
 

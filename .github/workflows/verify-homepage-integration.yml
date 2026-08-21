@@ -41,6 +41,10 @@ jobs:
         working-directory: homepage
         run: npm run lint
 
+      - name: Check homepage formatting
+        working-directory: homepage
+        run: npm run format:check
+
       - name: Build and test homepage
         working-directory: homepage
         run: npm test

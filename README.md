@@ -23,6 +23,7 @@ Run checks:
 
 ```sh
 npm run lint
+npm run format:check
 npm test
 ```
 
@@ -49,7 +50,7 @@ existing `/docs/*.html` URLs as redirects.
 Each locale is complete and self-contained under `content/<locale>/`:
 
 - `docs/` contains documentation Markdown.
-- `homepage.json` contains the flat Next.js message catalog.
+- `website.json` contains the flat Next.js website message catalog.
 - `docs-ui.json` contains Docusaurus navigation, sidebar, document-title, and
   interface strings.
 - Add a locale to `content/locales.json` after all three surfaces are complete.
@@ -69,7 +70,7 @@ From the repository root:
 
 ```sh
 (cd website && npm install && npm run clean-build)
-(cd homepage && npm ci && npm run lint && npm test)
+(cd homepage && npm ci && npm run lint && npm run format:check && npm test)
 node scripts/compose-site.mjs
 node scripts/smoke-combined-site.mjs
 ```

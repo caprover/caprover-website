@@ -1,15 +1,15 @@
-import type { Locale } from "./config";
-import englishCatalog from "../../content/en/homepage.json";
-import spanishCatalog from "../../content/es-ES/homepage.json";
+import englishCatalog from "../../content/en/website.json";
+import spanishCatalog from "../../content/es-ES/website.json";
 
 export const englishMessages = englishCatalog;
 
 export type MessageKey = keyof typeof englishCatalog;
 export type FlatMessages = Record<MessageKey, string>;
 
-type PathObject<Path extends string> = Path extends `${infer Head}.${infer Tail}`
-  ? { [Key in Head]: PathObject<Tail> }
-  : { [Key in Path]: string };
+type PathObject<Path extends string> =
+  Path extends `${infer Head}.${infer Tail}`
+    ? { [Key in Head]: PathObject<Tail> }
+    : { [Key in Path]: string };
 
 type UnionToIntersection<Union> = (
   Union extends unknown ? (value: Union) => void : never
@@ -21,10 +21,12 @@ export type Messages = UnionToIntersection<
   { [Key in MessageKey]: PathObject<Key> }[MessageKey]
 >;
 
-const messagesByLocale: Record<Locale, FlatMessages> = {
+export const messagesByLocale = {
   en: englishCatalog,
   "es-ES": spanishCatalog,
-};
+} satisfies Record<string, FlatMessages>;
+
+export type Locale = keyof typeof messagesByLocale;
 
 const structuralKeys = (Object.keys(englishCatalog) as MessageKey[]).filter(
   (key) => key.endsWith(".key") || key.endsWith(".status"),
@@ -55,7 +57,10 @@ function expandMessages(flatMessages: FlatMessages): Messages {
 }
 
 const expandedMessagesByLocale = Object.fromEntries(
-  Object.entries(messagesByLocale).map(([locale, messages]) => [locale, expandMessages(messages)]),
+  Object.entries(messagesByLocale).map(([locale, messages]) => [
+    locale,
+    expandMessages(messages),
+  ]),
 ) as Record<Locale, Messages>;
 
 export function getMessages(locale: Locale): Messages {
@@ -67,5 +72,9 @@ export function getFlatMessages(locale: Locale): FlatMessages {
 }
 
 export function messageList<Value>(messages: Record<string, Value>): Value[] {
-  return Object.values(messages);
+  return Object.entries(messages)
+    .sort(([left], [right]) =>
+      left.localeCompare(right, undefined, { numeric: true }),
+    )
+    .map(([, value]) => value);
 }
