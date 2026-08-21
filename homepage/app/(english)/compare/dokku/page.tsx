@@ -1,7 +1,7 @@
-import { localizedMetadata } from "@/i18n/metadata";
-import { DokkuComparisonPage } from "./page-content";
+import { DokkuComparisonPage } from "@/features/comparison/dokku/page-content";
+import { pageMetadata } from "@/i18n/metadata";
 
-export const metadata = localizedMetadata("en", "/compare/dokku/", "comparisonPages.dokku.metadata.title", "comparisonPages.dokku.metadata.description");
+export const metadata = pageMetadata("en", "dokku");
 
 export default function DokkuComparison() {
   return <DokkuComparisonPage />;

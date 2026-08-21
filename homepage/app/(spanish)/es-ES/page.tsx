@@ -1,7 +1,7 @@
 import { HomePage } from "@/app/home-page";
-import { localizedMetadata } from "@/i18n/metadata";
+import { pageMetadata } from "@/i18n/metadata";
 
-export const metadata = localizedMetadata("es-ES", "/", "homepage.metadata.title", "homepage.metadata.description");
+export const metadata = pageMetadata("es-ES", "home");
 
 export default function SpanishHomepage() {
   return <HomePage locale="es-ES" />;

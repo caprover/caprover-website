@@ -1,7 +1,7 @@
-import { localizedMetadata } from "@/i18n/metadata";
-import { CoolifyComparisonPage } from "./page-content";
+import { CoolifyComparisonPage } from "@/features/comparison/coolify/page-content";
+import { pageMetadata } from "@/i18n/metadata";
 
-export const metadata = localizedMetadata("en", "/compare/coolify/", "comparisonPages.coolify.metadata.title", "comparisonPages.coolify.metadata.description");
+export const metadata = pageMetadata("en", "coolify");
 
 export default function CoolifyComparison() {
   return <CoolifyComparisonPage />;

@@ -1,7 +1,7 @@
-import { ComparisonHubPage } from "@/app/(english)/compare/page-content";
-import { localizedMetadata } from "@/i18n/metadata";
+import { ComparisonHubPage } from "@/features/comparison/page-content";
+import { pageMetadata } from "@/i18n/metadata";
 
-export const metadata = localizedMetadata("es-ES", "/compare/", "comparisonPages.hub.metadata.title", "comparisonPages.hub.metadata.description");
+export const metadata = pageMetadata("es-ES", "comparisonHub");
 
 export default function SpanishComparisonHub() {
   return <ComparisonHubPage locale="es-ES" />;

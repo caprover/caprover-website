@@ -1,7 +1,7 @@
-import { CoolifyComparisonPage } from "@/app/(english)/compare/coolify/page-content";
-import { localizedMetadata } from "@/i18n/metadata";
+import { CoolifyComparisonPage } from "@/features/comparison/coolify/page-content";
+import { pageMetadata } from "@/i18n/metadata";
 
-export const metadata = localizedMetadata("es-ES", "/compare/coolify/", "comparisonPages.coolify.metadata.title", "comparisonPages.coolify.metadata.description");
+export const metadata = pageMetadata("es-ES", "coolify");
 
 export default function SpanishCoolifyComparison() {
   return <CoolifyComparisonPage locale="es-ES" />;
