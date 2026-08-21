@@ -20,19 +20,21 @@ before building.
 
 1. Copy `content/en/` to `content/<locale>/` and translate all three surfaces:
    `docs/`, `website.json`, and `docs-ui.json`.
-2. Preserve documentation paths and frontmatter IDs. Preserve all homepage and
-   documentation UI keys. Values ending in `.key` or `.status` must remain equal
-   to their English values.
+2. Preserve documentation paths and frontmatter IDs. Preserve all website and
+   documentation UI catalog keys. Values ending in `.key` or `.status` must
+   remain equal to their English values. Record locale-specific terminology in
+   `content/glossaries/<locale>.md` when a shared decision is useful.
 3. Import its website catalog and register it in `messagesByLocale` in
    `homepage/i18n/messages.ts`.
-4. Add thin localized route files and a locale layout under
-   `homepage/app/(<language>)/<locale>/`, following the existing Spanish route
-   group.
+4. Mirror `homepage/app/(spanish)/` as a new locale route group. Copy its
+   `layout.tsx` at the group root, then mirror the `es-ES/` route tree under
+   `<locale>/`, including the homepage, comparison hub, and Coolify, Dokploy,
+   and Dokku comparison pages. Replace every hardcoded `es-ES` value in the
+   copied files with the new locale.
 5. Add the completed locale to `content/locales.json` with its public path
    prefix. Metadata, sitemap entries, composition, and route smoke coverage are
    derived from this manifest.
-6. Run the full validation sequence below before publishing the
-   locale.
+6. Run the full validation sequence below before publishing the locale.
 
 The locale switcher reads enabled locales from `content/locales.json`. Verify
 font coverage, translated metadata, documentation links, `hreflang` values, and
@@ -43,21 +45,24 @@ every homepage and comparison route for the new language.
 1. Add the English Markdown file under `content/en/docs/`.
 2. Add the same relative file under every enabled locale's `docs/` directory.
    Keep the filename, directory structure, and frontmatter ID identical.
-3. Register the document ID in `website/sidebars.json`.
+3. Add the document's relative path without `.md` to `website/sidebars.json`.
+   For example, use `ci-cd-integration/deploy-from-github` for
+   `content/en/docs/ci-cd-integration/deploy-from-github.md`.
 4. From `website/`, run `npm run write-translations`. This refreshes
    `content/en/docs-ui.json` with the document title and sidebar label.
 5. Add translations for the new keys to every enabled locale's `docs-ui.json`.
 6. Run the full validation sequence below.
 
-### Add a homepage string
+### Add a Next.js website string
 
 1. Add a flat dotted key and English value to `content/en/website.json`.
 2. Add the same key to every enabled locale's `website.json` and translate its
    value. Structural values ending in `.key` or `.status` stay in English.
+   Numbered groups use contiguous indexes starting at `0`.
 3. Read the value through the typed messages object in the relevant Next.js
    component. The English catalog automatically defines the TypeScript message
    shape.
-4. Run the homepage checks and the full validation sequence below.
+4. Run the Next.js checks and the full validation sequence below.
 
 ### Refresh documentation UI strings
 
@@ -75,6 +80,9 @@ to every enabled locale's `docs-ui.json`. The `docs/`,
 inputs and should not be edited directly.
 
 ### Validate localized content
+
+Use Node.js 10 for the Docusaurus command and Node.js 22.13 or newer for the
+Next.js commands.
 
 From the repository root:
 
