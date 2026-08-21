@@ -3,7 +3,7 @@
 All reader-facing content is organized by locale:
 
 - `<locale>/docs/`: documentation Markdown
-- `<locale>/homepage.json`: flat Next.js message catalog
+- `<locale>/website.json`: flat Next.js website message catalog
 - `<locale>/docs-ui.json`: Docusaurus navigation, sidebar, document-title, and interface strings
 - `locales.json`: shared locale configuration
 
@@ -19,23 +19,19 @@ before building.
 ### Add a language
 
 1. Copy `content/en/` to `content/<locale>/` and translate all three surfaces:
-   `docs/`, `homepage.json`, and `docs-ui.json`.
+   `docs/`, `website.json`, and `docs-ui.json`.
 2. Preserve documentation paths and frontmatter IDs. Preserve all homepage and
    documentation UI keys. Values ending in `.key` or `.status` must remain equal
    to their English values.
-3. Add the completed locale to `content/locales.json` with its public path
-   prefix.
-4. Add its code to `supportedLocaleCodes` in `homepage/i18n/config.ts`.
-5. Import its homepage catalog and register it in `messagesByLocale` in
+3. Import its website catalog and register it in `messagesByLocale` in
    `homepage/i18n/messages.ts`.
-6. Add thin localized route files and a locale layout under
+4. Add thin localized route files and a locale layout under
    `homepage/app/(<language>)/<locale>/`, following the existing Spanish route
    group.
-7. Add the locale's canonical and alternate URLs in
-   `homepage/i18n/metadata.ts` and `homepage/app/sitemap.ts`.
-8. Extend `scripts/compose-site.mjs`, `scripts/smoke-combined-site.mjs`, and the
-   homepage static-export tests to cover the new routes.
-9. Run the full validation sequence below before enabling or publishing the
+5. Add the completed locale to `content/locales.json` with its public path
+   prefix. Metadata, sitemap entries, composition, and route smoke coverage are
+   derived from this manifest.
+6. Run the full validation sequence below before publishing the
    locale.
 
 The locale switcher reads enabled locales from `content/locales.json`. Verify
@@ -55,8 +51,8 @@ every homepage and comparison route for the new language.
 
 ### Add a homepage string
 
-1. Add a flat dotted key and English value to `content/en/homepage.json`.
-2. Add the same key to every enabled locale's `homepage.json` and translate its
+1. Add a flat dotted key and English value to `content/en/website.json`.
+2. Add the same key to every enabled locale's `website.json` and translate its
    value. Structural values ending in `.key` or `.status` stay in English.
 3. Read the value through the typed messages object in the relevant Next.js
    component. The English catalog automatically defines the TypeScript message
@@ -85,7 +81,7 @@ From the repository root:
 ```sh
 node scripts/prepare-localized-content.js
 (cd website && npm run clean-build)
-(cd homepage && npm run lint && npm test)
+(cd homepage && npm run lint && npm run format:check && npm test)
 node scripts/compose-site.mjs
 node scripts/smoke-combined-site.mjs
 git diff --check
@@ -93,6 +89,13 @@ git diff --check
 
 `npm start`, `npm run build`, and `npm run clean-build` in `website/` invoke the
 content preparation script automatically.
+
+The preparation script validates locale codes and URL prefixes, catalog key and
+value shapes, contiguous list indexes, sidebar coverage, documentation file and
+frontmatter parity, and protected structural values. Review preservation of
+code, links, anchors, Markdown structure, and translation fluency manually.
+
+Locale-specific terminology guidance may be recorded under `glossaries/`.
 
 ## Translation guidelines
 

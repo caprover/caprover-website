@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { DEFAULT_LOCALE, ENABLED_LOCALES, localizedPath } from "@/i18n/config";
 
 export const dynamic = "force-static";
 
@@ -14,12 +15,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return paths.flatMap(({ path, priority }) => {
-    const english = `${base}${path}`;
-    const spanish = `${base}/es-ES${path}`;
-    const alternates = { languages: { en: english, "es-ES": spanish, "x-default": english } };
-    return [
-      { url: english, lastModified, changeFrequency: "monthly" as const, priority, alternates },
-      { url: spanish, lastModified, changeFrequency: "monthly" as const, priority, alternates },
-    ];
+    const defaultUrl = `${base}${localizedPath(path, DEFAULT_LOCALE)}`;
+    const languages = Object.fromEntries(
+      ENABLED_LOCALES.map((locale) => [
+        locale.code,
+        `${base}${localizedPath(path, locale.code)}`,
+      ]),
+    );
+    const alternates = { languages: { ...languages, "x-default": defaultUrl } };
+
+    return ENABLED_LOCALES.map((locale) => ({
+      url: `${base}${localizedPath(path, locale.code)}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority,
+      alternates,
+    }));
   });
 }

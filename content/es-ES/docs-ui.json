@@ -1,5 +1,5 @@
 {
-  "_comment": "Traducciones al español para Docusaurus.",
+  "_comment": "Traducciones canónicas al español; actualice las claves tras ejecutar npm run write-translations.",
   "localized-strings": {
     "next": "Siguiente",
     "previous": "Anterior",

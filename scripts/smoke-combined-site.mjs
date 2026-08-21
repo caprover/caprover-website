@@ -4,6 +4,16 @@ import { createServer } from "node:http";
 import path from "node:path";
 
 const siteRoot = path.resolve("build/combined-site");
+const locales = JSON.parse(
+  await readFile(path.resolve("content/locales.json"), "utf8"),
+).filter((locale) => locale.enabled);
+const localizedRoutes = [
+  "",
+  "compare/",
+  "compare/coolify/",
+  "compare/dokploy/",
+  "compare/dokku/",
+];
 
 const contentTypes = new Map([
   [".css", "text/css"],
@@ -41,6 +51,45 @@ try {
   const address = server.address();
   assert(address && typeof address === "object");
   const origin = `http://127.0.0.1:${address.port}`;
+
+  for (const locale of locales) {
+    const websiteCatalog = JSON.parse(
+      await readFile(
+        path.resolve(`content/${locale.code}/website.json`),
+        "utf8",
+      ),
+    );
+    const docsUiCatalog = JSON.parse(
+      await readFile(
+        path.resolve(`content/${locale.code}/docs-ui.json`),
+        "utf8",
+      ),
+    );
+    const outputPrefix = locale.pathPrefix ? `${locale.pathPrefix.slice(1)}/` : "";
+    const routeResponses = await Promise.all(
+      localizedRoutes.map((route) => fetch(`${origin}/${outputPrefix}${route}index.html`)),
+    );
+    const docsResponse = await fetch(
+      `${origin}/docs/${locale.code}/get-started.html`,
+    );
+
+    for (const response of [...routeResponses, docsResponse]) {
+      assert.equal(response.status, 200, `${response.url} did not return HTTP 200`);
+    }
+
+    const localizedHomepage = await routeResponses[0].text();
+    assert(
+      localizedHomepage.includes(websiteCatalog["homepage.hero.titleLine1"]),
+      `${locale.code} homepage content is missing`,
+    );
+    const localizedDocs = await docsResponse.text();
+    assert(
+      localizedDocs.includes(
+        docsUiCatalog["localized-strings"].docs["get-started"].title,
+      ),
+      `${locale.code} documentation content is missing`,
+    );
+  }
 
   const homepageResponse = await fetch(`${origin}/`);
   assert.equal(homepageResponse.status, 200);

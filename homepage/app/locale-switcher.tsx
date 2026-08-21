@@ -2,7 +2,15 @@ import { ENABLED_LOCALES, localizedPath, type Locale } from "@/i18n/config";
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-export function LocaleSwitcher({ locale, path, ariaLabel }: { locale: Locale; path: string; ariaLabel: string }) {
+export function LocaleSwitcher({
+  locale,
+  path,
+  ariaLabel,
+}: {
+  locale: Locale;
+  path: string;
+  ariaLabel: string;
+}) {
   const current = ENABLED_LOCALES.find((entry) => entry.code === locale)!;
 
   return (
