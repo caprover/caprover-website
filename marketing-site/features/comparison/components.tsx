@@ -7,6 +7,7 @@ import {
 } from "@/i18n/config";
 import { getMessages, messageList } from "@/i18n/messages";
 import { LocaleSwitcher } from "@/app/locale-switcher";
+import routes from "@/routes.json";
 import {
   getComparisonData,
   type ComparisonRow,
@@ -28,7 +29,7 @@ function Logo({ locale }: { locale: Locale }) {
   return (
     <a
       className="compare-logo"
-      href={internal("/", locale)}
+      href={internal(routes.home.path, locale)}
       aria-label={copy.brandAriaLabel}
     >
       <img
@@ -57,7 +58,9 @@ export function CompareHeader({
         role="navigation"
         aria-label={copy.navigationAriaLabel}
       >
-        <a href={internal("/compare/", locale)}>{copy.navigation.hub}</a>
+        <a href={internal(routes.comparisonHub.path, locale)}>
+          {copy.navigation.hub}
+        </a>
         <a href={docsUrl("get-started", locale)}>{copy.navigation.docs}</a>
         <a href={GITHUB}>{copy.navigation.github}</a>
         <LocaleSwitcher
@@ -321,7 +324,10 @@ export function MatchupLinks({
         .map((link) => (
           <a
             className="matchup-card"
-            href={internal(`/compare/${link.key}/`, locale)}
+            href={internal(
+              routes[link.key as Exclude<Product, "caprover">].path,
+              locale,
+            )}
             key={link.key}
           >
             <span>{copy.kicker}</span>

@@ -1,5 +1,6 @@
 import { DEFAULT_LOCALE, docsUrl, type Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
+import routes from "@/routes.json";
 import {
   ComparePage,
   ComparisonPrinciples,
@@ -21,7 +22,7 @@ export function ComparisonHubPage({
   const copy = getMessages(locale).comparisonPages.hub;
   const sources = copy.sourceLabels;
   return (
-    <ComparePage locale={locale} path="/compare/">
+    <ComparePage locale={locale} path={routes.comparisonHub.path}>
       <PageHero {...copy.hero}>
         <ProofStrip locale={locale} />
       </PageHero>

@@ -1,5 +1,6 @@
 import { DEFAULT_LOCALE, docsUrl, type Locale } from "@/i18n/config";
 import { getMessages, messageList } from "@/i18n/messages";
+import routes from "@/routes.json";
 import {
   ChoiceGrid,
   ComparePage,
@@ -23,7 +24,7 @@ export function DokployComparisonPage({
   const copy = getMessages(locale).comparisonPages.dokploy;
   const sources = copy.sourceLabels;
   return (
-    <ComparePage locale={locale} path="/compare/dokploy/">
+    <ComparePage locale={locale} path={routes.dokploy.path}>
       <PageHero {...copy.hero}>
         <div className="verdict">
           <strong>{copy.hero.verdictTitle}</strong>

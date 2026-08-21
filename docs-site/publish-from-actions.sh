@@ -26,9 +26,7 @@
 
 set -e
 
-if [ -z "${BUILD_DIR:-}" ]; then
-  source ./build_dir
-fi
+: "${BUILD_DIR:?BUILD_DIR is required}"
 
 echo "#################################################"
 echo "Changing directory to 'BUILD_DIR' $BUILD_DIR ..."

@@ -1,20 +1,13 @@
 import type { MetadataRoute } from "next";
 import { DEFAULT_LOCALE, ENABLED_LOCALES, localizedPath } from "@/i18n/config";
+import routes from "@/routes.json";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://caprover.com";
   const lastModified = new Date("2026-08-20");
-  const paths = [
-    { path: "/", priority: 1 },
-    { path: "/compare/", priority: 0.7 },
-    { path: "/compare/coolify/", priority: 0.7 },
-    { path: "/compare/dokploy/", priority: 0.7 },
-    { path: "/compare/dokku/", priority: 0.6 },
-  ];
-
-  return paths.flatMap(({ path, priority }) => {
+  return Object.values(routes).flatMap(({ path, sitemapPriority }) => {
     const defaultUrl = `${base}${localizedPath(path, DEFAULT_LOCALE)}`;
     const languages = Object.fromEntries(
       ENABLED_LOCALES.map((locale) => [
@@ -28,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${base}${localizedPath(path, locale.code)}`,
       lastModified,
       changeFrequency: "monthly" as const,
-      priority,
+      priority: sitemapPriority,
       alternates,
     }));
   });

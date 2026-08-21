@@ -7,13 +7,9 @@ const siteRoot = path.resolve("build/combined-site");
 const locales = JSON.parse(
   await readFile(path.resolve("content/locales.json"), "utf8"),
 ).filter((locale) => locale.enabled);
-const localizedRoutes = [
-  "",
-  "compare/",
-  "compare/coolify/",
-  "compare/dokploy/",
-  "compare/dokku/",
-];
+const marketingRoutes = JSON.parse(
+  await readFile(path.resolve("marketing-site/routes.json"), "utf8"),
+);
 
 const contentTypes = new Map([
   [".css", "text/css"],
@@ -78,7 +74,9 @@ try {
     assert(docsTitle, `${locale.code} documentation title is missing`);
     const outputPrefix = locale.pathPrefix ? `${locale.pathPrefix.slice(1)}/` : "";
     const routeResponses = await Promise.all(
-      localizedRoutes.map((route) => fetch(`${origin}/${outputPrefix}${route}index.html`)),
+      Object.values(marketingRoutes).map((route) =>
+        fetch(`${origin}/${outputPrefix}${route.path.slice(1)}index.html`),
+      ),
     );
     const docsResponse = await fetch(
       `${origin}${locale.pathPrefix}/docs/get-started`,
@@ -105,60 +103,75 @@ try {
   const nextAsset = homepage.match(/(?:href|src)=["'](\/_next\/[^"']+\.(?:css|js))["']/)?.[1];
   assert(nextAsset, "Homepage does not reference a Next.js CSS or JavaScript asset");
 
-  const checks = await Promise.all([
-    fetch(`${origin}/.nojekyll`),
-    fetch(`${origin}/docs/get-started.html`),
-    fetch(`${origin}/docs/en/get-started.html`),
-    fetch(`${origin}/docs/es-ES/get-started.html`),
-    fetch(`${origin}/docs/get-started`),
-    fetch(`${origin}/es-ES/docs/get-started`),
-    fetch(`${origin}/en/index.html`),
-    fetch(`${origin}/es-ES/index.html`),
-    fetch(`${origin}/es-ES/compare/index.html`),
-    fetch(`${origin}/es-ES/compare/coolify/index.html`),
-    fetch(`${origin}/es-ES/compare/dokploy/index.html`),
-    fetch(`${origin}/es-ES/compare/dokku/index.html`),
-    fetch(`${origin}/homepage-assets/caprover-dashboard.png`),
-    fetch(`${origin}${nextAsset}`),
-    fetch(`${origin}/robots.txt`),
-  ]);
+  const responseUrls = {
+    noJekyll: `${origin}/.nojekyll`,
+    docsHtml: `${origin}/docs/get-started.html`,
+    legacyEnglishDocs: `${origin}/docs/en/get-started.html`,
+    legacySpanishDocs: `${origin}/docs/es-ES/get-started.html`,
+    docs: `${origin}/docs/get-started`,
+    spanishDocs: `${origin}/es-ES/docs/get-started`,
+    englishHomepageAlias: `${origin}/en/index.html`,
+    spanishHomepage: `${origin}/es-ES/index.html`,
+    spanishComparisonHub: `${origin}/es-ES${marketingRoutes.comparisonHub.path}index.html`,
+    spanishCoolifyComparison: `${origin}/es-ES${marketingRoutes.coolify.path}index.html`,
+    spanishDokployComparison: `${origin}/es-ES${marketingRoutes.dokploy.path}index.html`,
+    spanishDokkuComparison: `${origin}/es-ES${marketingRoutes.dokku.path}index.html`,
+    dashboardImage: `${origin}/homepage-assets/caprover-dashboard.png`,
+    nextAsset: `${origin}${nextAsset}`,
+    robots: `${origin}/robots.txt`,
+  };
+  const responses = Object.fromEntries(
+    await Promise.all(
+      Object.entries(responseUrls).map(async ([name, url]) => [name, await fetch(url)]),
+    ),
+  );
 
-  for (const response of checks) {
+  for (const response of Object.values(responses)) {
     assert.equal(response.status, 200, `${response.url} did not return HTTP 200`);
   }
 
-  assert.equal(await checks[0].text(), "", ".nojekyll must be empty");
-  const legacyEnglishDocsRedirect = await checks[2].text();
+  assert.equal(await responses.noJekyll.text(), "", ".nojekyll must be empty");
+  const legacyEnglishDocsRedirect = await responses.legacyEnglishDocs.text();
   assert.match(legacyEnglishDocsRedirect, /window\.location\.replace\(["']\/docs\/get-started["']/);
-  const legacySpanishDocsRedirect = await checks[3].text();
+  const legacySpanishDocsRedirect = await responses.legacySpanishDocs.text();
   assert.match(legacySpanishDocsRedirect, /window\.location\.replace\(["']\/es-ES\/docs\/get-started["']/);
 
-  const docs = await checks[4].text();
+  const docs = await responses.docs.text();
   assert.match(docs, /Getting Started/i);
   assert.match(docs, /href=["']?\/es-ES\/docs\/get-started(?:["'\s>])/);
-  const spanishDocs = await checks[5].text();
+  const spanishDocs = await responses.spanishDocs.text();
   assert.match(spanishDocs, /<html lang=["']?es-ES(?:["'\s>])/);
   assert.match(spanishDocs, /Primeros pasos/);
   assert.match(spanishDocs, /Conceptos básicos/);
   assert.match(spanishDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
-  const englishHomepageAlias = await checks[6].text();
+  const englishHomepageAlias = await responses.englishHomepageAlias.text();
   assert.match(englishHomepageAlias, /Deploy apps\./);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
-  const spanishHomepage = await checks[7].text();
+  const spanishHomepage = await responses.spanishHomepage.text();
   assert.match(spanishHomepage, /Despliega aplicaciones\./);
   assert.match(spanishHomepage, /href=["']https:\/\/caprover\.com\/es-ES\/docs\/get-started["']/);
   assert.match(spanishHomepage, /<html lang=["']es-ES["']/);
   assert.match(spanishHomepage, /<main lang=["']es-ES["']/);
   assert.match(spanishHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
-  const spanishComparisonPages = await Promise.all(checks.slice(8, 12).map((response) => response.text()));
+  const spanishComparisonPages = await Promise.all(
+    [
+      responses.spanishComparisonHub,
+      responses.spanishCoolifyComparison,
+      responses.spanishDokployComparison,
+      responses.spanishDokkuComparison,
+    ].map((response) => response.text()),
+  );
   assert.match(spanishComparisonPages[0], /Empieza de forma sencilla\./);
   for (const page of spanishComparisonPages) {
     assert.match(page, /\/es-ES\/compare\//);
     assert.match(page, /\/es-ES\/docs\/get-started/);
   }
-  assert(Number(checks[12].headers.get("content-length") ?? 0) > 0 || (await checks[12].arrayBuffer()).byteLength > 0);
+  assert(
+    Number(responses.dashboardImage.headers.get("content-length") ?? 0) > 0 ||
+      (await responses.dashboardImage.arrayBuffer()).byteLength > 0,
+  );
   assert.equal(
-    await checks[14].text(),
+    await responses.robots.text(),
     "User-agent: *\nAllow: /\nSitemap: https://caprover.com/sitemap.xml\n",
   );
 
