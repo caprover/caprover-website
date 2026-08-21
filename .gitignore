@@ -1,9 +1,9 @@
 
 
-website/.idea
-website/build/
-website/node_modules
+docs-site/.idea
+docs-site/build/
+docs-site/node_modules
 /build/
 /docs/
-/website/translated_docs/
-/website/i18n/
+/docs-site/translated_docs/
+/docs-site/i18n/

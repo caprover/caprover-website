@@ -3,14 +3,14 @@
 All reader-facing content is organized by locale:
 
 - `<locale>/docs/`: documentation Markdown
-- `<locale>/website.json`: flat Next.js website message catalog
+- `<locale>/marketing.json`: flat Next.js marketing-site message catalog
 - `<locale>/docs-ui.json`: Docusaurus navigation, sidebar, document-title, and interface strings
 - `locales.json`: shared locale configuration
 
 English (`en`) is the source locale. Add a locale to `locales.json` only after all three content surfaces are complete. Docusaurus build inputs are generated from this directory by `scripts/prepare-localized-content.js`.
 
 After changing documentation titles or navigation strings, run
-`npm run write-translations` from `website/`. The command refreshes the canonical
+`npm run write-translations` from `docs-site/`. The command refreshes the canonical
 English `docs-ui.json`; update the corresponding keys in every enabled locale
 before building.
 
@@ -19,14 +19,14 @@ before building.
 ### Add a language
 
 1. Copy `content/en/` to `content/<locale>/` and translate all three surfaces:
-   `docs/`, `website.json`, and `docs-ui.json`.
-2. Preserve documentation paths and frontmatter IDs. Preserve all website and
+   `docs/`, `marketing.json`, and `docs-ui.json`.
+2. Preserve documentation paths and frontmatter IDs. Preserve all marketing and
    documentation UI catalog keys. Values ending in `.key` or `.status` must
    remain equal to their English values. Record locale-specific terminology in
    `content/glossaries/<locale>.md` when a shared decision is useful.
-3. Import its website catalog and register it in `messagesByLocale` in
-   `homepage/i18n/messages.ts`.
-4. Mirror `homepage/app/(spanish)/` as a new locale route group. Copy its
+3. Import its marketing catalog and register it in `messagesByLocale` in
+   `marketing-site/i18n/messages.ts`.
+4. Mirror `marketing-site/app/(spanish)/` as a new locale route group. Copy its
    `layout.tsx` at the group root, then mirror the `es-ES/` route tree under
    `<locale>/`, including the homepage, comparison hub, and Coolify, Dokploy,
    and Dokku comparison pages. Replace every hardcoded `es-ES` value in the
@@ -45,18 +45,18 @@ every homepage and comparison route for the new language.
 1. Add the English Markdown file under `content/en/docs/`.
 2. Add the same relative file under every enabled locale's `docs/` directory.
    Keep the filename, directory structure, and frontmatter ID identical.
-3. Add the document's relative path without `.md` to `website/sidebars.json`.
+3. Add the document's relative path without `.md` to `docs-site/sidebars.json`.
    For example, use `ci-cd-integration/deploy-from-github` for
    `content/en/docs/ci-cd-integration/deploy-from-github.md`.
-4. From `website/`, run `npm run write-translations`. This refreshes
+4. From `docs-site/`, run `npm run write-translations`. This refreshes
    `content/en/docs-ui.json` with the document title and sidebar label.
 5. Add translations for the new keys to every enabled locale's `docs-ui.json`.
 6. Run the full validation sequence below.
 
-### Add a Next.js website string
+### Add a marketing-site string
 
-1. Add a flat dotted key and English value to `content/en/website.json`.
-2. Add the same key to every enabled locale's `website.json` and translate its
+1. Add a flat dotted key and English value to `content/en/marketing.json`.
+2. Add the same key to every enabled locale's `marketing.json` and translate its
    value. Structural values ending in `.key` or `.status` stay in English.
    Numbered groups use contiguous indexes starting at `0`.
 3. Read the value through the typed messages object in the relevant Next.js
@@ -70,13 +70,13 @@ Run the following after changing document titles, sidebar labels, navigation,
 or other Docusaurus reader-facing strings:
 
 ```sh
-cd website
+cd docs-site
 npm run write-translations
 ```
 
 The command updates `content/en/docs-ui.json`. Apply the corresponding changes
 to every enabled locale's `docs-ui.json`. The `docs/`,
-`website/translated_docs/`, and `website/i18n/` directories are generated build
+`docs-site/translated_docs/`, and `docs-site/i18n/` directories are generated build
 inputs and should not be edited directly.
 
 ### Validate localized content
@@ -88,14 +88,14 @@ From the repository root:
 
 ```sh
 node scripts/prepare-localized-content.js
-(cd website && npm run clean-build)
-(cd homepage && npm run lint && npm run format:check && npm test)
+(cd docs-site && npm run clean-build)
+(cd marketing-site && npm run lint && npm run format:check && npm test)
 node scripts/compose-site.mjs
 node scripts/smoke-combined-site.mjs
 git diff --check
 ```
 
-`npm start`, `npm run build`, and `npm run clean-build` in `website/` invoke the
+`npm start`, `npm run build`, and `npm run clean-build` in `docs-site/` invoke the
 content preparation script automatically.
 
 The preparation script validates locale codes and URL prefixes, catalog key and
