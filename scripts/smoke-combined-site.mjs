@@ -53,9 +53,9 @@ try {
   const origin = `http://127.0.0.1:${address.port}`;
 
   for (const locale of locales) {
-    const websiteCatalog = JSON.parse(
+    const marketingCatalog = JSON.parse(
       await readFile(
-        path.resolve(`content/${locale.code}/website.json`),
+        path.resolve(`content/${locale.code}/marketing.json`),
         "utf8",
       ),
     );
@@ -79,7 +79,7 @@ try {
 
     const localizedHomepage = await routeResponses[0].text();
     assert(
-      localizedHomepage.includes(websiteCatalog["homepage.hero.titleLine1"]),
+      localizedHomepage.includes(marketingCatalog["homepage.hero.titleLine1"]),
       `${locale.code} homepage content is missing`,
     );
     const localizedDocs = await docsResponse.text();

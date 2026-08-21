@@ -26,7 +26,7 @@ const configuredDefault = localeManifest.find(
 
 if (!configuredDefault || !isLocale(configuredDefault.code)) {
   throw new Error(
-    "An enabled default locale with a registered website catalog is required",
+    "An enabled default locale with a registered marketing catalog is required",
   );
 }
 

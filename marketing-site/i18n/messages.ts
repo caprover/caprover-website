@@ -1,5 +1,5 @@
-import englishCatalog from "../../content/en/website.json";
-import spanishCatalog from "../../content/es-ES/website.json";
+import englishCatalog from "../../content/en/marketing.json";
+import spanishCatalog from "../../content/es-ES/marketing.json";
 
 export const englishMessages = englishCatalog;
 

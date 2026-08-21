@@ -180,12 +180,12 @@ function copyDirectory(source, destination) {
 const defaultRoot = path.join(contentRoot, defaultLocale.code);
 const defaultDocs = path.join(defaultRoot, "docs");
 const defaultDocFiles = relativeFiles(defaultDocs);
-const defaultWebsite = require(path.join(defaultRoot, "website.json"));
-const defaultWebsiteKeys = Object.keys(defaultWebsite).sort();
+const defaultMarketing = require(path.join(defaultRoot, "marketing.json"));
+const defaultMarketingKeys = Object.keys(defaultMarketing).sort();
 const defaultDocsUi = require(path.join(defaultRoot, "docs-ui.json"));
 const defaultDocsUiKeys = objectKeys(defaultDocsUi, "");
 const sidebarIds = sidebarDocumentIds(
-  require(path.join(root, "website", "sidebars.json")),
+  require(path.join(root, "docs-site", "sidebars.json")),
 );
 const defaultMarkdownFiles = defaultDocFiles.filter((file) => file.endsWith(".md"));
 const documentIds = new Set(
@@ -198,20 +198,20 @@ for (const relative of defaultMarkdownFiles) {
   }
 }
 
-assertFlatStringCatalog(defaultWebsite, `${defaultLocale.code} website catalog`);
+assertFlatStringCatalog(defaultMarketing, `${defaultLocale.code} marketing catalog`);
 assertSameList([...sidebarIds].sort(), [...documentIds].sort(), "Sidebar document IDs");
 
 for (const locale of enabledLocales) {
   const localeRoot = path.join(contentRoot, locale.code);
   const docs = path.join(localeRoot, "docs");
-  const website = require(path.join(localeRoot, "website.json"));
+  const marketing = require(path.join(localeRoot, "marketing.json"));
   const docsUi = require(path.join(localeRoot, "docs-ui.json"));
   const docFiles = relativeFiles(docs);
 
   assertSameList(docFiles, defaultDocFiles, `${locale.code} documentation files`);
-  assertSameList(Object.keys(website).sort(), defaultWebsiteKeys, `${locale.code} website keys`);
+  assertSameList(Object.keys(marketing).sort(), defaultMarketingKeys, `${locale.code} marketing keys`);
   assertSameList(objectKeys(docsUi, ""), defaultDocsUiKeys, `${locale.code} documentation UI keys`);
-  assertFlatStringCatalog(website, `${locale.code} website catalog`);
+  assertFlatStringCatalog(marketing, `${locale.code} marketing catalog`);
 
   for (const relative of docFiles.filter((file) => file.endsWith(".md"))) {
     const sourceId = frontmatterId(path.join(defaultDocs, relative));
@@ -221,18 +221,18 @@ for (const locale of enabledLocales) {
     }
   }
 
-  for (const key of defaultWebsiteKeys.filter(
+  for (const key of defaultMarketingKeys.filter(
     (key) => key.endsWith(".key") || key.endsWith(".status"),
   )) {
-    if (website[key] !== defaultWebsite[key]) {
-      throw new Error(`${locale.code} changes structural website value ${key}`);
+    if (marketing[key] !== defaultMarketing[key]) {
+      throw new Error(`${locale.code} changes structural marketing value ${key}`);
     }
   }
 }
 
 const generatedDocs = path.join(root, "docs");
-const generatedTranslations = path.join(root, "website", "translated_docs");
-const generatedDocsUi = path.join(root, "website", "i18n");
+const generatedTranslations = path.join(root, "docs-site", "translated_docs");
+const generatedDocsUi = path.join(root, "docs-site", "i18n");
 
 removeDirectory(generatedDocs);
 removeDirectory(generatedTranslations);

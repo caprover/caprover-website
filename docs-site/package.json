@@ -1,4 +1,6 @@
 {
+  "name": "caprover-docs-site",
+  "private": true,
   "scripts": {
     "prepare-content": "node ../scripts/prepare-localized-content.js",
     "prestart": "npm run prepare-content",
