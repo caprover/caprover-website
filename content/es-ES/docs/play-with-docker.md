@@ -8,7 +8,7 @@ sidebar_label: Juega con CapRover
 
 ## Demostración de solo visualización
 
-Si solo desea ver la demostración de solo lectura, vaya a la [página de inicio](/) y haga clic en **Demostración en vivo**
+Si solo desea ver la demostración de solo lectura, vaya a la [página de inicio](https://caprover.com/) y haga clic en **Demostración en vivo**
 
 <br/>
 

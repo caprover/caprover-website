@@ -19,7 +19,7 @@ CapRover ahora ofrece personalización de temas para brindarle más control sobr
 
 Además de las personalizaciones del tema Ant Design, hay otras dos formas de personalizar tu panel:
 
-#### Incrustar elementos en <head>
+#### Incrustar elementos en `<head>`
 
 Normalmente se utiliza para inyectar fuentes. Por ejemplo, el tema heredado utiliza:
 

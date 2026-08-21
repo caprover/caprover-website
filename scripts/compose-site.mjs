@@ -14,7 +14,7 @@ import {
 import path from "node:path";
 
 const root = process.cwd();
-const docsSite = path.join(root, "docs-site/build/CapRover");
+const docsSite = path.join(root, "docs-site/build");
 const marketingSite = path.join(root, "marketing-site/out");
 const combinedSite = path.join(root, "build/combined-site");
 const locales = JSON.parse(
@@ -37,6 +37,12 @@ function localeOutputRoot(locale) {
 
 function marketingRouteFile(locale, route) {
   return path.join(marketingSite, localeOutputRoot(locale), route, "index.html");
+}
+
+function docsOutputRoot(locale) {
+  return locale.default
+    ? path.join(docsSite, "docs")
+    : path.join(docsSite, localeOutputRoot(locale), "docs");
 }
 
 async function requirePath(target) {
@@ -80,10 +86,44 @@ async function snapshot(directory) {
   return result;
 }
 
+async function assertSnapshotPreserved(expected, destination, description) {
+  for (const [relative, hash] of expected) {
+    const contents = await readFile(path.join(destination, relative));
+    assert.equal(
+      createHash("sha256").update(contents).digest("hex"),
+      hash,
+      `${description} changed: ${relative}`,
+    );
+  }
+}
+
+async function writeRedirect(file, destination, language) {
+  await mkdir(path.dirname(file), { recursive: true });
+  const encodedDestination = JSON.stringify(destination);
+  await writeFile(
+    file,
+    `<!doctype html>
+<html lang="${language}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url=${destination}">
+    <link rel="canonical" href="https://caprover.com${destination}">
+    <meta name="robots" content="noindex, follow">
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p><a href="${destination}">Continue to the documentation</a></p>
+    <script>window.location.replace(${encodedDestination} + window.location.search + window.location.hash);</script>
+  </body>
+</html>
+`,
+  );
+}
+
 await Promise.all([
   requirePath(path.join(docsSite, "docs/get-started.html")),
   ...locales.map((locale) =>
-    requirePath(path.join(docsSite, "docs", locale.code, "get-started.html")),
+    requirePath(path.join(docsOutputRoot(locale), "get-started.html")),
   ),
   requirePath(path.join(docsSite, "img/logo.png")),
   requirePath(path.join(docsSite, "CNAME")),
@@ -103,7 +143,12 @@ const originalCname = await readFile(path.join(docsSite, "CNAME"));
 assert.equal(originalCname.toString().trim(), "caprover.com");
 
 const [docsBefore, imagesBefore] = await Promise.all([
-  snapshot(path.join(docsSite, "docs")),
+  Promise.all(
+    locales.map(async (locale) => ({
+      locale,
+      files: await snapshot(docsOutputRoot(locale)),
+    })),
+  ),
   snapshot(path.join(docsSite, "img")),
 ]);
 
@@ -136,13 +181,37 @@ await cp(
 );
 for (const locale of locales.filter((entry) => !entry.default)) {
   const outputRoot = localeOutputRoot(locale);
-  await rm(path.join(combinedSite, outputRoot), { recursive: true, force: true });
   await cp(path.join(marketingSite, outputRoot), path.join(combinedSite, outputRoot), {
     recursive: true,
   });
 }
-const [legacySitemap, marketingSitemap] = await Promise.all([
-  readFile(path.join(combinedSite, "sitemap.xml"), "utf8"),
+
+for (const { locale, files } of docsBefore) {
+  for (const relative of files.keys()) {
+    if (!relative.endsWith(".html")) continue;
+    const documentPath = relative.slice(0, -".html".length);
+    const canonical = `${locale.pathPrefix}/docs/${documentPath}`;
+    await writeRedirect(
+      path.join(combinedSite, "docs", locale.code, relative),
+      canonical,
+      locale.code,
+    );
+  }
+}
+
+const [docsSitemaps, marketingSitemap] = await Promise.all([
+  Promise.all(
+    locales.map((locale) =>
+      readFile(
+        path.join(
+          combinedSite,
+          locale.default ? "" : localeOutputRoot(locale),
+          "sitemap.xml",
+        ),
+        "utf8",
+      ),
+    ),
+  ),
   readFile(path.join(marketingSite, "sitemap.xml"), "utf8"),
 ]);
 const marketingUrls = (marketingSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter(
@@ -153,22 +222,46 @@ assert.equal(
   locales.length * marketingRoutes.length - 1,
   "Marketing sitemap is missing localized URLs",
 );
-assert.match(legacySitemap, /<\/urlset>\s*$/);
+const docsUrls = docsSitemaps.flatMap(
+  (sitemap) => sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [],
+);
+const allUrls = [...new Set([...docsUrls, ...marketingUrls])];
 await writeFile(
   path.join(combinedSite, "sitemap.xml"),
-  legacySitemap.replace(/<\/urlset>\s*$/, `${marketingUrls.join("\n")}\n</urlset>\n`),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allUrls.join("\n")}\n</urlset>\n`,
 );
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
 await requirePath(path.join(combinedSite, ".nojekyll"));
 
-const [docsAfter, imagesAfter, combinedCname, marketingHtml] = await Promise.all([
-  snapshot(path.join(combinedSite, "docs")),
+const [imagesAfter, combinedCname, marketingHtml, docsHtmlByLocale] = await Promise.all([
   snapshot(path.join(combinedSite, "img")),
   readFile(path.join(combinedSite, "CNAME")),
   readFile(path.join(combinedSite, "index.html"), "utf8"),
+  Promise.all(
+    locales.map((locale) =>
+      readFile(
+        path.join(
+          combinedSite,
+          locale.default ? "" : localeOutputRoot(locale),
+          "docs/get-started.html",
+        ),
+        "utf8",
+      ),
+    ),
+  ),
 ]);
 
-assert.deepEqual(docsAfter, docsBefore, "Documentation output changed during composition");
+await Promise.all(
+  docsBefore.map(({ locale, files }) =>
+    assertSnapshotPreserved(
+      files,
+      locale.default
+        ? path.join(combinedSite, "docs")
+        : path.join(combinedSite, localeOutputRoot(locale), "docs"),
+      `${locale.code} documentation output`,
+    ),
+  ),
+);
 assert.deepEqual(imagesAfter, imagesBefore, "Legacy image output changed during composition");
 assert.deepEqual(combinedCname, originalCname, "CNAME changed during composition");
 const defaultMarketing = JSON.parse(
@@ -201,13 +294,30 @@ assert(
   "Marketing-site stylesheet does not contain the expected Geist font faces",
 );
 
-await appendFile(
-  path.join(combinedSite, "css/main.css"),
-  `\n/* Shared with the marketing site */\n${geistFontFaces.join("\n")}\n`,
+const docsStylesheets = new Set(
+  docsHtmlByLocale.map((docsHtml) => {
+    const match = docsHtml.match(
+      /href=(?:["'](\/[^"']*assets\/css\/styles\.[^"']+\.css)["']|(\/[^\s>]*assets\/css\/styles\.[^\s>]+\.css))/,
+    );
+    const stylesheet = match?.[1] ?? match?.[2];
+    assert(stylesheet, "Documentation stylesheet reference is missing");
+    return stylesheet;
+  }),
+);
+
+await Promise.all(
+  [...docsStylesheets].map((stylesheet) =>
+    appendFile(
+      path.join(combinedSite, stylesheet.slice(1)),
+      `\n/* Shared with the marketing site */\n${geistFontFaces.join("\n")}\n`,
+    ),
+  ),
 );
 
 const combinedStats = await stat(combinedSite);
 assert(combinedStats.isDirectory());
 
 console.log("Combined site created at build/combined-site");
-console.log(`Preserved ${docsAfter.size} documentation files and ${imagesAfter.size} legacy image files`);
+console.log(
+  `Preserved ${docsBefore.reduce((total, entry) => total + entry.files.size, 0)} documentation files and ${imagesAfter.size} image files`,
+);

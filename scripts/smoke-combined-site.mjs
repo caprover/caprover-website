@@ -35,9 +35,20 @@ const server = createServer(async (request, response) => {
       return;
     }
 
-    const contents = await readFile(target);
+    let contents;
+    let resolved = target;
+    for (const candidate of [target, `${target}.html`, path.join(target, "index.html")]) {
+      try {
+        contents = await readFile(candidate);
+        resolved = candidate;
+        break;
+      } catch {
+        // Try the next static-hosting path convention.
+      }
+    }
+    if (!contents) throw new Error(`Static file is missing: ${pathname}`);
     response.writeHead(200, {
-      "content-type": contentTypes.get(path.extname(target)) ?? "application/octet-stream",
+      "content-type": contentTypes.get(path.extname(resolved)) ?? "application/octet-stream",
     });
     response.end(contents);
   } catch {
@@ -59,18 +70,18 @@ try {
         "utf8",
       ),
     );
-    const docsUiCatalog = JSON.parse(
-      await readFile(
-        path.resolve(`content/${locale.code}/docs-ui.json`),
-        "utf8",
-      ),
+    const docsSource = await readFile(
+      path.resolve(`content/${locale.code}/docs/get-started.md`),
+      "utf8",
     );
+    const docsTitle = docsSource.match(/^title:\s*(.+)$/m)?.[1];
+    assert(docsTitle, `${locale.code} documentation title is missing`);
     const outputPrefix = locale.pathPrefix ? `${locale.pathPrefix.slice(1)}/` : "";
     const routeResponses = await Promise.all(
       localizedRoutes.map((route) => fetch(`${origin}/${outputPrefix}${route}index.html`)),
     );
     const docsResponse = await fetch(
-      `${origin}/docs/${locale.code}/get-started.html`,
+      `${origin}${locale.pathPrefix}/docs/get-started`,
     );
 
     for (const response of [...routeResponses, docsResponse]) {
@@ -83,12 +94,7 @@ try {
       `${locale.code} homepage content is missing`,
     );
     const localizedDocs = await docsResponse.text();
-    assert(
-      localizedDocs.includes(
-        docsUiCatalog["localized-strings"].docs["get-started"].title,
-      ),
-      `${locale.code} documentation content is missing`,
-    );
+    assert(localizedDocs.includes(docsTitle), `${locale.code} documentation content is missing`);
   }
 
   const homepageResponse = await fetch(`${origin}/`);
@@ -104,6 +110,8 @@ try {
     fetch(`${origin}/docs/get-started.html`),
     fetch(`${origin}/docs/en/get-started.html`),
     fetch(`${origin}/docs/es-ES/get-started.html`),
+    fetch(`${origin}/docs/get-started`),
+    fetch(`${origin}/es-ES/docs/get-started`),
     fetch(`${origin}/en/index.html`),
     fetch(`${origin}/es-ES/index.html`),
     fetch(`${origin}/es-ES/compare/index.html`),
@@ -119,44 +127,57 @@ try {
   }
 
   assert.equal(await checks[0].text(), "", ".nojekyll must be empty");
-  const legacyDocsRedirect = await checks[1].text();
-  assert.match(legacyDocsRedirect, /window\.location\.href\s*=\s*["']\/docs\/en\/get-started\.html["']/);
+  const legacyEnglishDocsRedirect = await checks[2].text();
+  assert.match(legacyEnglishDocsRedirect, /window\.location\.replace\(["']\/docs\/get-started["']/);
+  const legacySpanishDocsRedirect = await checks[3].text();
+  assert.match(legacySpanishDocsRedirect, /window\.location\.replace\(["']\/es-ES\/docs\/get-started["']/);
 
-  const docs = await checks[2].text();
+  const docs = await checks[4].text();
   assert.match(docs, /Getting Started/i);
-  assert.match(docs, /href=["']\/docs\/es-ES\/get-started\.html["']/);
-  const spanishDocs = await checks[3].text();
-  assert.match(spanishDocs, /<html lang=["']es-ES["']/);
+  assert.match(docs, /href=["']?\/es-ES\/docs\/get-started(?:["'\s>])/);
+  const spanishDocs = await checks[5].text();
+  assert.match(spanishDocs, /<html lang=["']?es-ES(?:["'\s>])/);
   assert.match(spanishDocs, /Primeros pasos/);
   assert.match(spanishDocs, /Conceptos básicos/);
-  assert.match(spanishDocs, /href=["']\/docs\/en\/get-started\.html["']/);
-  const englishHomepageAlias = await checks[4].text();
+  assert.match(spanishDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
+  const englishHomepageAlias = await checks[6].text();
   assert.match(englishHomepageAlias, /Deploy apps\./);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
-  const spanishHomepage = await checks[5].text();
+  const spanishHomepage = await checks[7].text();
   assert.match(spanishHomepage, /Despliega aplicaciones\./);
-  assert.match(spanishHomepage, /href=["']https:\/\/caprover\.com\/docs\/es-ES\/get-started\.html["']/);
+  assert.match(spanishHomepage, /href=["']https:\/\/caprover\.com\/es-ES\/docs\/get-started["']/);
   assert.match(spanishHomepage, /<html lang=["']es-ES["']/);
   assert.match(spanishHomepage, /<main lang=["']es-ES["']/);
   assert.match(spanishHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
-  const spanishComparisonPages = await Promise.all(checks.slice(6, 10).map((response) => response.text()));
+  const spanishComparisonPages = await Promise.all(checks.slice(8, 12).map((response) => response.text()));
   assert.match(spanishComparisonPages[0], /Empieza de forma sencilla\./);
   for (const page of spanishComparisonPages) {
     assert.match(page, /\/es-ES\/compare\//);
-    assert.match(page, /\/docs\/es-ES\/get-started\.html/);
+    assert.match(page, /\/es-ES\/docs\/get-started/);
   }
-  assert(Number(checks[10].headers.get("content-length") ?? 0) > 0 || (await checks[10].arrayBuffer()).byteLength > 0);
+  assert(Number(checks[12].headers.get("content-length") ?? 0) > 0 || (await checks[12].arrayBuffer()).byteLength > 0);
 
-  const docsStylesheet = docs.match(
-    /href=["\'](\/css\/main\.css(?:\?[^"\']*)?)["\']/,
-  )?.[1];
-  assert(docsStylesheet, "Documentation stylesheet reference is missing");
+  function docsStylesheet(html) {
+    const match = html.match(
+      /href=(?:["'](\/[^"']*assets\/css\/styles\.[^"']+\.css)["']|(\/[^\s>]*assets\/css\/styles\.[^\s>]+\.css))/,
+    );
+    const stylesheet = match?.[1] ?? match?.[2];
+    assert(stylesheet, "Documentation stylesheet reference is missing");
+    return stylesheet;
+  }
 
-  const docsCssResponse = await fetch(`${origin}${docsStylesheet}`);
-  assert.equal(docsCssResponse.status, 200);
-  const docsCss = await docsCssResponse.text();
-  assert.match(docsCss, /--caprover-blue\s*:\s*#155eef/i);
-  assert.match(docsCss, /font-family\s*:\s*["\']?Geist/i);
+  const docsCssContents = [];
+  for (const html of [docs, spanishDocs]) {
+    const stylesheet = docsStylesheet(html);
+    const response = await fetch(`${origin}${stylesheet}`);
+    assert.equal(response.status, 200);
+    const css = await response.text();
+    assert.match(css, /--caprover-blue\s*:\s*#155eef/i);
+    assert.match(css, /font-family\s*:\s*["\']?Geist/i);
+    docsCssContents.push(css);
+  }
+
+  const docsCss = docsCssContents[0];
 
   const geistAsset = docsCss.match(
     /url\(["\']?(\/_next\/static\/media\/[^"\')]+\.woff2)/,

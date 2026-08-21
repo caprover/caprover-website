@@ -16,9 +16,9 @@ Let's say we want to make a webapp version of [HOTDOG or NOT HOTDOG](https://www
 ## App Description
 Assume we want to create a webapp that shows a list of photos with a line describing whether the image is a hotdog or not hotdog, something like this:
 
-- <IMAGE> Tags: Hotdog, Upload date: 2017-11-12
-- <ANOTHER IMAGE> Tags: NOT Hotdog, Upload date: 2017-07-08
-- <ANOTHER IMAGE> Tags: Hotdog, Upload date: 2017-07-07
+- `<IMAGE>` Tags: Hotdog, Upload date: 2017-11-12
+- `<ANOTHER IMAGE>` Tags: NOT Hotdog, Upload date: 2017-07-08
+- `<ANOTHER IMAGE>` Tags: Hotdog, Upload date: 2017-07-07
 - ....
 
 Anyone can upload images and our very smart Artificial Intelligence tags that image with HOTDOG or NOT-HOTDOG, then we save that image on the server and we also save upload date and tags in the database.

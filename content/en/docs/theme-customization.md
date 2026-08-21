@@ -19,7 +19,7 @@ CapRover now offers theme customization to give you more control over the look a
 
 Other than Ant Design theme customizations, there are two other ways you can customize your dashboard:
 
-#### Embed elements into <head>
+#### Embed elements into `<head>`
 
 This is typically used to inject fonts. For example, the legacy theme, uses:
 

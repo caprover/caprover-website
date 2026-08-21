@@ -216,4 +216,4 @@ After these changes are implemented commit + push them to your repo and watch th
 
 ### Need help?
 
-Commercial and community support is available. Please visit the [Help and Support](/docs/support.html "Help and Support") page for details.
+Commercial and community support is available. Please visit the [Help and Support](/docs/support "Help and Support") page for details.

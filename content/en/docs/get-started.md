@@ -15,7 +15,7 @@ If you use this method, you can skip **Prerequisites** section and step 1 of **C
 <br/>
 
 <a href="https://marketplace.digitalocean.com/apps/caprover?action=deploy&refcode=6410aa23d3f3" target="_blank" rel="noreferrer noopener">
-<img src="/img/do-btn-blue.svg" alt="CreateDroplet" style="width:300px;"/>
+<img src="/img/do-btn-blue.svg" alt="CreateDroplet" width="300" />
 </a>
 
 <br/>

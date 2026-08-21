@@ -18,7 +18,7 @@ As for the root domain, by default, CapRover uses `http://captain.captain.localh
 
 To verify that you have both prerequisites mentioned above:
 
-- Run `docker version` and make sure your version is at least the version mentioned in the [docs](get-started.md#c-install-docker-on-server-at-least-version-1706x)
+- Run `docker version` and make sure your version is at least the version mentioned in the [docs](get-started#b3-docker)
 - Run `nslookup randomstring123.captain.localhost` and make sure it resolves to `127.0.0.1` or your local ip (something like `192.168.1.2`):
 
 ```
@@ -31,7 +31,7 @@ Address: 192.168.1.2
 
 ## Installation
 
-Once you have confirmed that you have the prereqs ready, you can go ahead and install Captain on your machine, similar to what you do on your server. Make sure you run as a user with sufficient permission, i.e. `sudo` on linux based systems. Just follow the steps outlined here: [Captain Installation](get-started#step-1-captain-installation), except for a few differences mentioned below.
+Once you have confirmed that you have the prereqs ready, you can go ahead and install Captain on your machine, similar to what you do on your server. Make sure you run as a user with sufficient permission, i.e. `sudo` on linux based systems. Just follow the steps outlined here: [Captain Installation](get-started#step-1-caprover-installation), except for a few differences mentioned below.
 
 ### Differences:
 

@@ -18,7 +18,7 @@ En cuanto al dominio raíz, de forma predeterminada, CapRover usa `http://captai
 
 Para verificar que tiene ambos requisitos previos mencionados anteriormente:
 
-- Ejecute `docker version` y asegúrese de que su versión sea al menos la versión mencionada en [docs](get-started.md#c-install-docker-on-server-at-least-version-1706x)
+- Ejecute `docker version` y asegúrese de que su versión sea al menos la versión mencionada en [docs](get-started#b3-docker)
 - Ejecute `nslookup randomstring123.captain.localhost` y asegúrese de que se resuelva en `127.0.0.1` o su IP local (algo como `192.168.1.2`):
 
 ```
@@ -31,7 +31,7 @@ Address: 192.168.1.2
 
 ## Instalación
 
-Una vez que haya confirmado que tiene los requisitos previos listos, puede continuar e instalar Captain en su máquina, de manera similar a lo que hace en su servidor. Asegúrese de ejecutar como usuario con permiso suficiente, es decir, `sudo` en sistemas basados ​​en Linux. Simplemente siga los pasos que se describen aquí: [Captain Instalación](get-started#step-1-captain-installation), excepto por algunas diferencias que se mencionan a continuación.
+Una vez que haya confirmado que tiene los requisitos previos listos, puede continuar e instalar Captain en su máquina, de manera similar a lo que hace en su servidor. Asegúrese de ejecutar como usuario con permiso suficiente, es decir, `sudo` en sistemas basados ​​en Linux. Simplemente siga los pasos que se describen aquí: [Captain Instalación](get-started#paso-1-instalación-de-caprover), excepto por algunas diferencias que se mencionan a continuación.
 
 ### Diferencias:
 

@@ -65,7 +65,7 @@ test("exports complete localized website routes", async () => {
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
     assert(
       homepage.includes(
-        `https://caprover.com/docs/${locale.code}/get-started.html`,
+        `https://caprover.com${locale.pathPrefix}/docs/get-started`,
       ),
     );
     for (const targetLocale of enabledLocales) {

@@ -15,23 +15,22 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v5
 
-      - name: Set up Node.js for Docusaurus
-        uses: actions/setup-node@v5
-        with:
-          node-version: 10
-
-      - name: Build documentation site
-        working-directory: docs-site
-        run: |
-          npm install
-          npm run clean-build
-
-      - name: Set up Node.js for marketing site
+      - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: marketing-site/package-lock.json
+          cache-dependency-path: |
+            docs-site/package-lock.json
+            marketing-site/package-lock.json
+
+      - name: Install documentation dependencies
+        working-directory: docs-site
+        run: npm ci
+
+      - name: Build documentation site
+        working-directory: docs-site
+        run: npm run clean-build
 
       - name: Install marketing-site dependencies
         working-directory: marketing-site

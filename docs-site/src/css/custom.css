@@ -1,0 +1,209 @@
+/* Documentation theme aligned with the marketing site. */
+
+:root {
+  --caprover-blue: #155eef;
+  --caprover-blue-dark: #0b3b91;
+  --caprover-blue-soft: #eaf2ff;
+  --caprover-ink: #101828;
+  --caprover-muted: #667085;
+  --caprover-night: #071426;
+  --caprover-surface: #f6f9fe;
+  --ifm-color-primary: var(--caprover-blue);
+  --ifm-color-primary-dark: #1355d7;
+  --ifm-color-primary-darker: #1250cb;
+  --ifm-color-primary-darkest: var(--caprover-blue-dark);
+  --ifm-color-primary-light: #2d70f1;
+  --ifm-color-primary-lighter: #3978f2;
+  --ifm-color-primary-lightest: #6898f5;
+  --ifm-background-color: #fff;
+  --ifm-code-font-size: 88%;
+  --ifm-font-family-base: "Geist", "Geist Fallback", Arial, Helvetica, sans-serif;
+  --ifm-font-family-monospace: "Geist Mono", "Geist Mono Fallback", SFMono-Regular,
+    Consolas, monospace;
+  --ifm-font-color-base: var(--caprover-ink);
+  --ifm-heading-color: var(--caprover-ink);
+  --ifm-heading-font-weight: 720;
+  --ifm-navbar-height: 78px;
+  --ifm-navbar-shadow: none;
+}
+
+[data-theme="dark"] {
+  --ifm-background-color: var(--caprover-night);
+  --ifm-background-surface-color: #101f33;
+  --ifm-font-color-base: #d0d5dd;
+  --ifm-heading-color: #fff;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.navbar {
+  border-bottom: 1px solid #eef2f6;
+}
+
+.navbar__brand {
+  color: var(--caprover-ink);
+  font-size: 23px;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.navbar__logo {
+  height: 40px;
+}
+
+.navbar__link {
+  color: #344054;
+  font-weight: 600;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--caprover-blue);
+}
+
+.theme-doc-sidebar-container {
+  background: #fbfcfe;
+  border-right-color: #dbe4ef !important;
+}
+
+.menu__list-item-collapsible > .menu__link {
+  color: var(--caprover-ink);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.menu__link {
+  border-radius: 6px;
+  color: var(--caprover-muted);
+}
+
+.menu__link:hover {
+  background: #f1f5fb;
+  color: var(--caprover-blue);
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: var(--caprover-blue-soft);
+  color: var(--caprover-blue);
+  font-weight: 700;
+}
+
+.table-of-contents {
+  border-left-color: #dbe4ef;
+}
+
+.table-of-contents__link {
+  color: var(--caprover-muted);
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: var(--caprover-blue);
+}
+
+.theme-doc-markdown h1,
+.theme-doc-markdown h2,
+.theme-doc-markdown h3,
+.theme-doc-markdown h4 {
+  letter-spacing: -0.035em;
+}
+
+.theme-doc-markdown h1 {
+  font-size: 40px;
+  line-height: 1.15;
+  margin-bottom: 32px;
+}
+
+.theme-doc-markdown h2 {
+  border-bottom: 1px solid #eef2f6;
+  font-size: 30px;
+  line-height: 1.25;
+  margin-top: 48px;
+  padding-bottom: 10px;
+}
+
+.theme-doc-markdown h3 {
+  font-size: 22px;
+  line-height: 1.35;
+  margin-top: 36px;
+}
+
+.theme-doc-markdown p,
+.theme-doc-markdown li {
+  color: #344054;
+}
+
+.theme-doc-markdown a {
+  text-decoration-color: #155eef55;
+  text-underline-offset: 3px;
+}
+
+.theme-doc-markdown blockquote {
+  background: var(--caprover-blue-soft);
+  border-left: 4px solid var(--caprover-blue);
+  border-radius: 0 9px 9px 0;
+  color: #344054;
+  padding: 18px 22px;
+}
+
+code {
+  background: var(--caprover-blue-soft);
+  border: 1px solid #cfe0ff;
+  border-radius: 5px;
+  color: var(--caprover-blue-dark);
+}
+
+.theme-code-block {
+  border: 1px solid #344054;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px #0714261f;
+}
+
+.pagination-nav__link {
+  border-color: #d9e2ef;
+  border-radius: 9px;
+}
+
+.pagination-nav__link:hover {
+  background: var(--caprover-blue-soft);
+  border-color: #b8c8df;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: var(--caprover-night);
+  border-top: 1px solid #1f2f46;
+}
+
+@media (max-width: 996px) {
+  :root {
+    --ifm-navbar-height: 68px;
+  }
+
+  .theme-doc-markdown h1 {
+    font-size: 34px;
+  }
+
+  .theme-doc-markdown h2 {
+    font-size: 27px;
+  }
+}
+
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .theme-doc-sidebar-container {
+  background: var(--caprover-night);
+  border-color: #1f2f46 !important;
+}
+
+[data-theme="dark"] .navbar__brand,
+[data-theme="dark"] .navbar__link,
+[data-theme="dark"] .menu__list-item-collapsible > .menu__link {
+  color: #fff;
+}
+
+[data-theme="dark"] .theme-doc-markdown p,
+[data-theme="dark"] .theme-doc-markdown li {
+  color: #d0d5dd;
+}

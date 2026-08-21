@@ -35,3 +35,4 @@ En un clúster de varios nodos, permita los siguientes puertos solamente entre n
 Restrinja `4789/udp` a nodos de confianza. Exponer públicamente el puerto VXLAN puede dejar vulnerable la red superpuesta.
 
 Si añade un mapeo de puertos a una aplicación, permita ese puerto en el firewall del proveedor cuando sea necesario. Los puertos publicados por Docker pueden eludir las reglas de UFW, así que use reglas compatibles con Docker cuando deba restringir el acceso. Consulte la documentación de Docker sobre [filtrado de paquetes y firewalls](https://docs.docker.com/engine/network/packet-filtering-firewalls/).
+

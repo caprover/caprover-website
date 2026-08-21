@@ -35,3 +35,4 @@ In a multi-node cluster, allow the following ports only between trusted Swarm no
 Restrict `4789/udp` to trusted nodes. Exposing the VXLAN port publicly can make the overlay network vulnerable.
 
 If you add a port mapping to an app, allow that application port through your provider firewall as needed. Docker-published ports can bypass UFW rules, so configure Docker-aware firewall rules when access must be restricted. See Docker's documentation on [packet filtering and firewalls](https://docs.docker.com/engine/network/packet-filtering-firewalls/).
+

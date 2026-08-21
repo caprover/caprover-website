@@ -97,7 +97,7 @@ tup/openstack/single-instance.yml --parameter image_id="Ubuntu 22.04 LTS Jammy J
     [Comenzando](https://caprover.com/docs/get-started.html)
 4. También puedes ingresar SSH a la instancia con el comando:
     ```
-    ssh -i ~/.ssh/openstack/mycloud-prod.priv -o StrictHostKeyChecking=accept-new ubuntu@<CapRover manager IP>
+    ssh -i ~/.ssh/openstack/mycloud-prod.priv -o StrictHostKeyChecking=accept-new ubuntu@CAPROVER_MANAGER_IP
     ```
 Una vez dentro, puede explorar el resultado del proceso de instalación desde la plantilla de Heat con el comando
     `sudo less /var/log/cloud-init-output.log`.

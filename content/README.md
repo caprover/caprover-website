@@ -4,15 +4,16 @@ All reader-facing content is organized by locale:
 
 - `<locale>/docs/`: documentation Markdown
 - `<locale>/marketing.json`: flat Next.js marketing-site message catalog
-- `<locale>/docs-ui.json`: Docusaurus navigation, sidebar, document-title, and interface strings
+- `<locale>/docs-ui.json`: flat Docusaurus navigation, sidebar, and footer strings
 - `locales.json`: shared locale configuration
 
 English (`en`) is the source locale. Add a locale to `locales.json` only after all three content surfaces are complete. Docusaurus build inputs are generated from this directory by `scripts/prepare-localized-content.js`.
 
-After changing documentation titles or navigation strings, run
+After changing navigation, sidebar categories, or footer strings, run
 `npm run write-translations` from `docs-site/`. The command refreshes the canonical
 English `docs-ui.json`; update the corresponding keys in every enabled locale
-before building.
+before building. Document titles and sidebar labels live in each Markdown file's
+frontmatter.
 
 ## Common workflows
 
@@ -45,13 +46,10 @@ every homepage and comparison route for the new language.
 1. Add the English Markdown file under `content/en/docs/`.
 2. Add the same relative file under every enabled locale's `docs/` directory.
    Keep the filename, directory structure, and frontmatter ID identical.
-3. Add the document's relative path without `.md` to `docs-site/sidebars.json`.
+3. Add the document's relative path without `.md` to `docs-site/sidebars.js`.
    For example, use `ci-cd-integration/deploy-from-github` for
    `content/en/docs/ci-cd-integration/deploy-from-github.md`.
-4. From `docs-site/`, run `npm run write-translations`. This refreshes
-   `content/en/docs-ui.json` with the document title and sidebar label.
-5. Add translations for the new keys to every enabled locale's `docs-ui.json`.
-6. Run the full validation sequence below.
+4. Run the full validation sequence below.
 
 ### Add a marketing-site string
 
@@ -66,8 +64,8 @@ every homepage and comparison route for the new language.
 
 ### Refresh documentation UI strings
 
-Run the following after changing document titles, sidebar labels, navigation,
-or other Docusaurus reader-facing strings:
+Run the following after changing sidebar category labels, navigation, footer,
+or other custom Docusaurus reader-facing strings:
 
 ```sh
 cd docs-site
@@ -75,14 +73,12 @@ npm run write-translations
 ```
 
 The command updates `content/en/docs-ui.json`. Apply the corresponding changes
-to every enabled locale's `docs-ui.json`. The `docs/`,
-`docs-site/translated_docs/`, and `docs-site/i18n/` directories are generated build
-inputs and should not be edited directly.
+to every enabled locale's `docs-ui.json`. The `docs-site/i18n/` directory contains
+generated build inputs and should not be edited directly.
 
 ### Validate localized content
 
-Use Node.js 10 for the Docusaurus command and Node.js 22.13 or newer for the
-Next.js commands.
+Use Node.js 22.13 or newer for both applications.
 
 From the repository root:
 

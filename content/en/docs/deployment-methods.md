@@ -14,7 +14,7 @@ Run `caprover deploy` in your Git repository and follow the prompts. The CLI str
 ## Deploy via Web Dashboard
 Convert the content of your project into a tarball (`.tar`), go to your Captain web dashboard and upload the tar file. This deployment method is typically used for testing purposes only.
 
-For captain-definition files that do not require any source code, like [this](/docs/captain-definition-file.html#use-image-name), you can simply copy and paste the captain-definition content on web dashboard.
+For captain-definition files that do not require any source code, like [this](captain-definition-file.md#use-an-image-name), you can simply copy and paste the captain-definition content on web dashboard.
 
 ![deployapp](/img/docs/app-deploy.png)
 
@@ -38,7 +38,7 @@ After you enter this information, save your configuration. And go to your apps p
 #### Github
 Create a webhook here:
 - Project > Settings > Add Webhook > URL: Captain Webhook from your apps page, Content Type: `application/json`, 
-Secret: <Leave empty>, Just the `push` event.
+Secret: `<Leave empty>`, Just the `push` event.
 Furthermore add the contents of your generated public key to your repositories deploy keys.
 
 

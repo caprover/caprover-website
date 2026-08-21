@@ -16,7 +16,7 @@ A partir de CapRover 1.12.0, puedes personalizar el comando que Certbot utiliza 
 ```bash
 certbot certonly --webroot -w ${webroot} -d ${domainName}
 ```
-que funciona a través del desafío HTTP-01. En este modo, Certbot verificará la propiedad de su dominio enviando una solicitud a `http://<YOUR_DOMAIN>/.well-known/acme-challenge/<TOKEN>` donde el contenido de <TOKEN> es generado por Certbot.
+que funciona a través del desafío HTTP-01. En este modo, Certbot verificará la propiedad de su dominio enviando una solicitud a `http://<YOUR_DOMAIN>/.well-known/acme-challenge/<TOKEN>` donde el contenido de `<TOKEN>` es generado por Certbot.
 
 Este desafío funciona bien para la mayoría de los usuarios, pero opcionalmente puedes utilizar un desafío diferente si así lo deseas. Puede hacerlo anulando el comando de generación de certificados de Certbot.
 
