@@ -63,7 +63,7 @@ CapRover le permite asignar puertos desde un contenedor al host. Debe utilizar e
 
 Tenga en cuenta que incluso si no configura ninguna asignación de puertos, se puede acceder a todos los puertos desde otros contenedores en el mismo clúster Captain. Por lo tanto, sólo debes utilizar esta opción si deseas que el puerto sea de acceso público. Asegúrese de tener el puerto abierto, consulte [configuración del firewall](firewall.md).
 
-Por ejemplo, si desea que su aplicación NodeJS acceda a su base de datos MongoDB y no necesita acceder a su MongoDB desde su computadora portátil, no necesita asignación de puertos. En su lugar, puede usar el nombre completo para la instancia MongoDB que es `srv-captain--mongodb-app-name` (reemplace `mongodb-app-name` con el nombre de la aplicación que usó).
+Por ejemplo, una aplicación Node.js puede conectarse a una aplicación llamada `mongodb-app-name` mediante el host `mongodb-app-name`, sin mapeo de puertos. Las aplicaciones actualizadas desde versiones de CapRover anteriores a 1.15 pueden conservar un nombre de servicio Docker con el prefijo `srv-captain--`, y el alias de red con prefijo sigue disponible por compatibilidad.
 
 ### Directorios persistentes
 

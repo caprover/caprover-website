@@ -101,7 +101,7 @@ Some apps have a different way of upgrading, specifically if they have persisten
 
 ### Connecting Within CapRover Cluster
 
-Note that since all these applications are Docker containers, you can have multiple MySQL databases on running on port 3306 without having any conflict. If you want to connect to two different MySQL databases, from a PHP app, where both PHP and MySQLs are under the same instance of CapRover, you can use `srv-captain--mysqlappname1:3306` and `srv-captain--mysqlappname2:3306`.
+Because each application runs as a Docker service, multiple MySQL apps can listen on container port 3306 without conflict. A PHP app in the same CapRover cluster can reach two database apps at `mysqlappname1:3306` and `mysqlappname2:3306`. Upgraded apps may also retain the legacy `srv-captain--APP_NAME` network alias.
 
 
 ### Connecting Remotely

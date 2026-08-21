@@ -19,7 +19,7 @@ Every time you deploy a new version, or you change a configuration parameter in 
 
 ## Schema
 
-For the "Service Update Override", you can use both yaml and JSON. The schema needs to match [Service Update Object](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Service/operation/ServiceUpdate) in Docker API. In YAML format, it'll be something like the following YAML. Note that this is just a partial example, there are many more customization parameter available.
+For the "Service Update Override", you can use YAML or JSON. The schema must match the [Service Update object](https://docs.docker.com/reference/api/engine/version/v1.44/#tag/Service/operation/ServiceUpdate) in Docker Engine API v1.44. The following YAML is a partial example; the API supports additional parameters.
 
 ```yaml
 TaskTemplate:
@@ -105,8 +105,10 @@ TaskTemplate:
 
 This will impose a limit of 2 CPUs and 100MB RAM usage on your service. You can confirm this by running
 ```
-docker service inspect srv-captain--your-app-name --pretty
+docker service inspect your-app-name --pretty
 ```
+
+Use `docker service ls` to confirm the physical service name. Apps upgraded from CapRover releases before 1.15 may retain the `srv-captain--your-app-name` form.
 
 Another use case is when you want to customize the command:
 ```yaml

@@ -46,7 +46,7 @@ A simple captain-definition file for a nodejs application is:
 ```
  {
   "schemaVersion": 2,
-  "templateId": "node/8.7.0"
+  "templateId": "node/24"
  }
 ```
 
@@ -68,7 +68,7 @@ caprover deploy -d
 
 Alternatively, you can use the stateless mode and supply the CapRover server information inline:
 ```bash
-caprover deploy -h https://captain.root.domain.com -p password -b branchName -a app-name 
+caprover deploy -u https://captain.root.domain.com -p password -b branchName -a app-name
 ```
 
 This can be useful if you want to integrate CI/CD pipeline.

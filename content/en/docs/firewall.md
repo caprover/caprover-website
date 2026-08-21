@@ -4,37 +4,34 @@ title: Firewall & Port Forwarding
 sidebar_label: Firewall & Port Forwarding
 ---
 
-<br/>
+## Public ports
 
+Expose these ports to users:
 
-Captain uses:
-- 80   TCP for regular HTTP connections
-- 443  TCP/UDP for secure HTTPS and HTTP/3 connections
-- 3000 TCP for initial Captain Installation (can be blocked once Captain is attached to a domain)
-- 7946 TCP/UDP for Container Network Discovery
-- 4789 TCP/UDP for Container Overlay Network
-- 2377 TCP/UDP for Docker swarm API
-- 996  TCP for secure HTTPS connections specific to Docker Registry
+- `80/tcp` for HTTP
+- `443/tcp` for HTTPS
+- `443/udp` for HTTP/3
+- `3000/tcp` for initial setup. You can close it after CapRover is attached to a domain.
 
-In case of an ubuntu server, run 
+For a single-node Ubuntu server using UFW:
 
-```
-ufw allow 80,443,3000,996,7946,4789,2377/tcp; ufw allow 7946,4789,2377,443/udp;
-```
-
-
-Note that for a more secure installation you can only expose 80/443/3000 to the world, the rest of the ports are only used in a cluster, and it would suffice to make them open to the other nodes in the cluster. 
-If you have a single instance, just run:
-
-```
-ufw allow 80,443,3000
+```bash
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow 443/udp
+ufw allow 3000/tcp
 ```
 
+Port `996/tcp` is used by CapRover's Docker registry. Expose it only when an external client must connect to the self-hosted registry.
 
-Also, if you are using Port Mapping to allow external connections, for example from your laptop to a MySQL instance on Captain, you will have to add the corresponding port to the exclusion as well.
+## Cluster ports
 
+In a multi-node cluster, allow the following ports only between trusted Swarm nodes:
 
-NOTE:
-Docker bypasses ufw for mapped ports. If you have manually added a mapped port for any of your apps deployed under CapRover, ufw does not necessarily block the ports. See the [relevant information here](
-https://askubuntu.com/questions/652556/uncomplicated-firewall-ufw-is-not-blocking-anything-when-using-docker)
+- `2377/tcp` for Swarm management traffic
+- `7946/tcp` and `7946/udp` for node communication
+- `4789/udp` for overlay network traffic
 
+Restrict `4789/udp` to trusted nodes. Exposing the VXLAN port publicly can make the overlay network vulnerable.
+
+If you add a port mapping to an app, allow that application port through your provider firewall as needed. Docker-published ports can bypass UFW rules, so configure Docker-aware firewall rules when access must be restricted. See Docker's documentation on [packet filtering and firewalls](https://docs.docker.com/engine/network/packet-filtering-firewalls/).

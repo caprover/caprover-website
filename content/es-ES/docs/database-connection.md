@@ -6,7 +6,7 @@ sidebar_label: Conexión de base de datos
 
 <br/>
 
-Todas las bases de datos que implementa como [aplicación de un clic](one-click-apps) se implementan como Docker contenedores. El nombre de cada contenedor tiene el prefijo `srv-captain--` para evitar conflictos con otros contenedores que puedan estar ejecutándose en el mismo host. Todos los contenedores pueden comunicarse entre sí a través de la red superpuesta Docker. La arquitectura de la red es algo como esto:
+Las bases de datos desplegadas como [aplicaciones de un clic](one-click-apps) se ejecutan como servicios Docker. Las aplicaciones del mismo clúster de CapRover pueden comunicarse mediante la red superpuesta de Docker. Las instalaciones actuales usan el nombre de la aplicación como nombre de host del servicio. Las aplicaciones actualizadas desde versiones anteriores a 1.15 pueden conservar un nombre físico con el prefijo `srv-captain--`; CapRover mantiene ese alias de red por compatibilidad. La arquitectura de la red es la siguiente:
 
 
 ```bash
@@ -30,12 +30,12 @@ Todas las bases de datos que implementa como [aplicación de un clic](one-click-
 
 ### Conexiones internas
 
-El tipo de conexión más simple es cuando desea conectarse a `Database1` desde `App2` en el diagrama anterior. En este caso, puede simplemente conectarse a `srv-captain--database1` y especificar el puerto. NO HAY NECESIDAD de mapeo de puertos o configuración adicional. Su código se parece a esto:
+La conexión más sencilla es desde `App2` a `Database1` en el diagrama anterior. Use el nombre de la aplicación `database1` y su puerto de contenedor. Esta conexión interna no requiere un mapeo público de puertos:
 
 ```
 databaseEngine.connect(
     {
-        host: srv-captain--database1,
+        host: database1,
         port: 5000
     }
 )
@@ -66,7 +66,7 @@ Asegúrese de permitir el puerto de host en su firewall. De lo contrario, no pod
 2) SSH Túnel
 Este método es más avanzado. Para hacer esto, primero debe implementar una aplicación de un solo clic SSH. Puede seleccionar esto de la lista oficial de aplicaciones de un clic en su instancia CapRover. Asegúrese de elegir una contraseña larga y segura. Durante la configuración, también se le pedirá que proporcione un puerto para asignar esta imagen SSH. Por defecto utiliza el puerto `4646`. Asegúrese de que este puerto pueda pasar a través de su firewall. Una vez implementada esta nueva imagen, ahora puede desde su máquina local ejecutar el siguiente comando:
 ```
-ssh -L 8181:srv-captain--mysql:3306 root@<ip of your CapRover Server> -p 4646
+ssh -L 8181:mysql:3306 root@<ip of your CapRover Server> -p 4646
 ```
 
 Esto asignará su puerto local de `8181` al puerto de contenedor MySQL `3306`. Ahora, desde tu máquina local, puedes ejecutar algo como esto:

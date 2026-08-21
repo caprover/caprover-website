@@ -6,7 +6,7 @@ sidebar_label: Database Connection
 
 <br/>
 
-All the databases that you deploy as a [one-click app](one-click-apps) are deployed as Docker containers. The name of each container is prefixed with `srv-captain--` in order to avoid clashing with other containers that might be running on the same host. All containers can talk to each other via Docker overlay network. The network architecture is something like this:
+Databases deployed as [one-click apps](one-click-apps) run as Docker services. Apps on the same CapRover cluster can communicate through the Docker overlay network. Current installations use the app name as the service hostname. Apps upgraded from releases before 1.15 may retain a physical service name prefixed with `srv-captain--`; CapRover preserves that prefixed network alias for compatibility. The network architecture looks like this:
 
 
 ```bash
@@ -30,12 +30,12 @@ All the databases that you deploy as a [one-click app](one-click-apps) are deplo
 
 ### Internal Connections
 
-The simplest type of connection is when you want to connect to `Database1` from `App2` in the diagram above. In this case, you can just connect to `srv-captain--database1` and specify the port. There is NO NEED for port mapping or extra config. Your code look like something like this:
+The simplest connection is from `App2` to `Database1` in the diagram above. Use the app name `database1` and its container port. This internal connection requires no public port mapping:
 
 ```
 databaseEngine.connect(
     {
-        host: srv-captain--database1,
+        host: database1,
         port: 5000
     }
 )
@@ -66,7 +66,7 @@ Make sure you allow the host port on your firewall. Otherwise you won't be able 
 2) SSH Tunneling
 This method is more advanced. In order to do this, you first need to deploy an SSH one click app. You can select this from the official one click apps list on your CapRover instance. Make sure to choose a long and secure password. During setup, you will also be asked to provide a port to map this SSH image. By default it uses port `4646`. Make sure this port is allowed to pass through your firewall. Once this new image is deployed, you can now from your local machine run the following command:
 ```
-ssh -L 8181:srv-captain--mysql:3306 root@<ip of your CapRover Server> -p 4646
+ssh -L 8181:mysql:3306 root@<ip of your CapRover Server> -p 4646
 ```
 
 This will map your local port of `8181` to MySQL Container's port `3306`. Now, from your local machine, you can run something like this:

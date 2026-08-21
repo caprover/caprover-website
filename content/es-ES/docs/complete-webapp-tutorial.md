@@ -64,10 +64,10 @@ CapRover te permite indicar si tu aplicación/database/service tiene datos de pe
 
 
 ## Acceso interno
-Para que su aplicación web funcione. Debe poder comunicarse con la instancia MongoDB, el cargador de imágenes y el procesador de imágenes. Simplemente puede agregar un prefijo `srv-captain--` al nombre del contenedor si desea acceder a él desde otro contenedor. Por ejemplo, para conectarse a su instancia MongoDB que llamamos `my-mongodb`, puede agregar la siguiente línea a su aplicación NodeJS (usando la biblioteca mongoose)
+Su aplicación web necesita comunicarse con las aplicaciones de MongoDB, carga y procesamiento de imágenes. Las aplicaciones del mismo clúster de CapRover pueden usar el nombre de la aplicación de destino como nombre de host. Por ejemplo, conéctese desde Node.js a la aplicación `my-mongodb` mediante:
 ```
-mongoose.connect("mongodb://srv-captain--my-mongodb/mydatabase", { useMongoClient: true });
+mongoose.connect("mongodb://my-mongodb/mydatabase");
 ```
 Por supuesto, puede agregar nombre de usuario y contraseña al URI, consulte [aquí por ejemplo](https://stackoverflow.com/questions/7486623/mongodb-password-with-in-it).
 
-Esto es lo mismo para otros servicios; Si desea cargar una imagen a su servicio de carga de imágenes, puede acceder a ella a través de `http://srv-captain--imageuploader`
+La misma regla se aplica a otros servicios. Por ejemplo, puede acceder a la aplicación de carga de imágenes mediante `http://imageuploader`. Las aplicaciones actualizadas desde versiones de CapRover anteriores a 1.15 también pueden usar el alias de red heredado `srv-captain--APP_NAME`.

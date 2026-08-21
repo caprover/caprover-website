@@ -19,7 +19,7 @@ Cada vez que implementas una nueva versión o cambias un parámetro de configura
 
 ## Esquema
 
-Para la "Anulación de actualización de servicio", puede usar yaml y JSON. El esquema debe coincidir con [Objeto de actualización de servicio](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Service/operation/ServiceUpdate) en Docker API. En formato YAML, será algo como lo siguiente YAML. Tenga en cuenta que este es sólo un ejemplo parcial; hay muchos más parámetros de personalización disponibles.
+Para la "Anulación de actualización de servicio", puede usar YAML o JSON. El esquema debe coincidir con el [objeto Service Update](https://docs.docker.com/reference/api/engine/version/v1.44/#tag/Service/operation/ServiceUpdate) de Docker Engine API v1.44. El siguiente YAML es un ejemplo parcial; la API admite parámetros adicionales.
 
 ```yaml
 TaskTemplate:
@@ -105,8 +105,10 @@ TaskTemplate:
 
 Esto impondrá un límite de 2 CPU y 100 MB RAM de uso en su servicio. Puedes confirmar esto ejecutando
 ```
-docker service inspect srv-captain--your-app-name --pretty
+docker service inspect your-app-name --pretty
 ```
+
+Use `docker service ls` para confirmar el nombre físico del servicio. Las aplicaciones actualizadas desde versiones de CapRover anteriores a 1.15 pueden conservar la forma `srv-captain--your-app-name`.
 
 Otro caso de uso es cuando desea personalizar el comando:
 ```yaml

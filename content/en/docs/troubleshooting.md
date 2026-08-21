@@ -100,10 +100,10 @@ docker service logs captain-captain --since 5m --follow
 Your application is deployed as a Docker service. For example, if your app name in captain is `my-app` you can view your logs by connecting to your server via SSH and run the following command:
 
 ```
-docker service logs srv-captain--my-app --since 60m --follow
+docker service logs my-app --since 60m --follow
 ```
 
-Note that Docker service name is prefixed with `srv-captain--`. Also, you can replace 60m with 10m to view last 10 minutes.
+Use `docker service ls` to confirm the physical service name. New apps use their app name; apps upgraded from CapRover releases before 1.15 may retain the `srv-captain--my-app` form. Replace `60m` with `10m` to view the last 10 minutes.
 
 ## How to restart my application?
 
@@ -114,8 +114,10 @@ If your application is not behaving well, you can try force restarting it by goi
 Simply run the following command:
 
 ```
-docker exec -it $(docker ps --filter name=srv-captain--myappname -q) /bin/sh
+docker exec -it "$(docker ps --filter label=com.docker.swarm.service.name=myappname -q | head -n1)" /bin/sh
 ```
+
+Run this command on the node hosting the task, and use the physical service name reported by `docker service ls`.
 
 Of course, you need to replace `myappname` with your own app name.
 

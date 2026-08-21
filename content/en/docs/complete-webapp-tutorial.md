@@ -64,10 +64,10 @@ CapRover allows you to indicate whether your app/database/service has persistenc
 
 
 ## Internal Access
-In order for your web-app to work. It needs to be able to talk to MongoDB instance, image uploader, and image processor. You can simply add a `srv-captain--` prefix to the name of the container if you want to access it from another container. For example in order to connect to your MongoDB instance which we name `my-mongodb`, you can add the following line to your NodeJS application (using mongoose library)
+Your web app needs to communicate with the MongoDB, image uploader, and image processor apps. Apps in the same CapRover cluster can use the target app name as the hostname. For example, connect to the app named `my-mongodb` from Node.js with:
 ```
-mongoose.connect("mongodb://srv-captain--my-mongodb/mydatabase", { useMongoClient: true });
+mongoose.connect("mongodb://my-mongodb/mydatabase");
 ```
 Of course, you can add username and password to the URI, see [here for example](https://stackoverflow.com/questions/7486623/mongodb-password-with-in-it).
 
-This is the same for other services; if you want to upload an image to your image uploader service you can just access it via `http://srv-captain--imageuploader`
+The same rule applies to other services. For example, reach the image uploader app at `http://imageuploader`. Apps upgraded from CapRover releases before 1.15 can also use the legacy `srv-captain--APP_NAME` network alias.
