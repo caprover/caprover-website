@@ -35,7 +35,7 @@ function outputFile(locale, route) {
 
 async function readCatalog(locale) {
   return JSON.parse(
-    await readFile(`../content/${locale.code}/website.json`, "utf8"),
+    await readFile(`../content/${locale.code}/marketing.json`, "utf8"),
   );
 }
 
@@ -138,7 +138,7 @@ test("keeps comparison regressions covered across locales", async () => {
   }
 });
 
-test("enabled website catalogs preserve source keys and structural values", async () => {
+test("enabled marketing catalogs preserve source keys and structural values", async () => {
   const source = await readCatalog(defaultLocale);
 
   for (const locale of enabledLocales) {

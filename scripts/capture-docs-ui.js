@@ -9,7 +9,7 @@ if (!defaultLocale) {
   throw new Error("An enabled default locale is required");
 }
 
-const generated = path.join(root, "website", "i18n", `${defaultLocale.code}.json`);
+const generated = path.join(root, "docs-site", "i18n", `${defaultLocale.code}.json`);
 const canonical = path.join(root, "content", defaultLocale.code, "docs-ui.json");
 
 if (!fs.existsSync(generated)) {

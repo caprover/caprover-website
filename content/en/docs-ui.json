@@ -1,5 +1,5 @@
 {
-  "_comment": "Refresh this canonical catalog with npm run write-translations from website/.",
+  "_comment": "Refresh this canonical catalog with npm run write-translations from docs-site/.",
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",

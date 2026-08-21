@@ -2,19 +2,20 @@
 
 Source for [caprover.com](https://caprover.com), containing two independently built applications:
 
-- `homepage/`: Next.js static homepage
-- `website/`: Docusaurus v1 documentation
+- `marketing-site/`: Next.js marketing site
+- `docs-site/`: Docusaurus v1 documentation site
 - `content/`: English source content and translations, grouped by locale
 - `scripts/`: composition and production smoke checks
 
-The production build uses Docusaurus as the base, then overlays the homepage's `index.html`, `_next/`, and `homepage-assets/` output. `homepage/` is the source of truth for the root homepage.
+The production build uses Docusaurus as the base, then overlays the marketing
+site's `index.html`, `_next/`, and `homepage-assets/` output.
 
-## Homepage development
+## Marketing site development
 
 Requires Node.js 22.13 or newer.
 
 ```sh
-cd homepage
+cd marketing-site
 npm ci
 npm run dev
 ```
@@ -32,13 +33,13 @@ npm test
 The legacy Docusaurus build currently requires Node.js 10.
 
 ```sh
-cd website
+cd docs-site
 npm install
 npm start
 ```
 
 Add English Markdown files in `content/en/docs/` and register them in
-`website/sidebars.json`. The documentation commands generate the framework's
+`docs-site/sidebars.json`. The documentation commands generate the framework's
 legacy input directories from `content/` before starting or building.
 
 ### Documentation translations
@@ -50,7 +51,7 @@ existing `/docs/*.html` URLs as redirects.
 Each locale is complete and self-contained under `content/<locale>/`:
 
 - `docs/` contains documentation Markdown.
-- `website.json` contains the flat Next.js website message catalog.
+- `marketing.json` contains the flat Next.js marketing-site message catalog.
 - `docs-ui.json` contains Docusaurus navigation, sidebar, document-title, and
   interface strings.
 - Add a locale to `content/locales.json` after all three surfaces are complete.
@@ -69,8 +70,8 @@ Follow the repository-wide authoring and translation rules in
 From the repository root:
 
 ```sh
-(cd website && npm install && npm run clean-build)
-(cd homepage && npm ci && npm run lint && npm run format:check && npm test)
+(cd docs-site && npm install && npm run clean-build)
+(cd marketing-site && npm ci && npm run lint && npm run format:check && npm test)
 node scripts/compose-site.mjs
 node scripts/smoke-combined-site.mjs
 ```

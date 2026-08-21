@@ -24,33 +24,33 @@ jobs:
         with:
           node-version: 10
 
-      - name: Build existing website and documentation
-        working-directory: website
+      - name: Build documentation site
+        working-directory: docs-site
         run: |
           npm install
           npm run clean-build
 
-      - name: Set up Node.js for homepage
+      - name: Set up Node.js for marketing site
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: homepage/package-lock.json
+          cache-dependency-path: marketing-site/package-lock.json
 
-      - name: Install homepage dependencies
-        working-directory: homepage
+      - name: Install marketing-site dependencies
+        working-directory: marketing-site
         run: npm ci
 
-      - name: Lint homepage
-        working-directory: homepage
+      - name: Lint marketing site
+        working-directory: marketing-site
         run: npm run lint
 
-      - name: Check homepage formatting
-        working-directory: homepage
+      - name: Check marketing-site formatting
+        working-directory: marketing-site
         run: npm run format:check
 
-      - name: Build and test homepage
-        working-directory: homepage
+      - name: Build and test marketing site
+        working-directory: marketing-site
         run: npm test
 
       - name: Compose and verify combined site
@@ -60,7 +60,7 @@ jobs:
         run: node scripts/smoke-combined-site.mjs
 
       - name: Publish combined site
-        working-directory: website
+        working-directory: docs-site
         env:
           BUILD_DIR: ${{ github.workspace }}/build/combined-site
           GITHUB_PERSONAL_TOKEN: ${{ secrets.GITHUB_PERSONAL_TOKEN }}
