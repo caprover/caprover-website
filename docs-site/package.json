@@ -8,7 +8,7 @@
     "preclean-build": "npm run prepare-content",
     "start": "docusaurus start",
     "build": "docusaurus build",
-    "clean-build": "docusaurus clear && docusaurus build && cp ./CNAME ./build/CNAME",
+    "clean-build": "docusaurus clear && docusaurus build",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations --locale en && node ../scripts/capture-docs-ui.js"
   },

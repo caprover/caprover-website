@@ -10,13 +10,18 @@ const expectedAssets = [
   "caprover-workflow.png",
   "slack-icon.png",
 ];
-const routes = [
-  { path: "/", titleKey: "homepage.hero.titleLine1" },
-  { path: "/compare/", titleKey: "comparisonPages.hub.hero.title" },
-  { path: "/compare/coolify/", titleKey: "comparisonPages.coolify.hero.title" },
-  { path: "/compare/dokploy/", titleKey: "comparisonPages.dokploy.hero.title" },
-  { path: "/compare/dokku/", titleKey: "comparisonPages.dokku.hero.title" },
-];
+const routeManifest = JSON.parse(await readFile("routes.json", "utf8"));
+const routeTitleKeys = {
+  home: "homepage.hero.titleLine1",
+  comparisonHub: "comparisonPages.hub.hero.title",
+  coolify: "comparisonPages.coolify.hero.title",
+  dokploy: "comparisonPages.dokploy.hero.title",
+  dokku: "comparisonPages.dokku.hero.title",
+};
+const routes = Object.entries(routeManifest).map(([name, route]) => ({
+  path: route.path,
+  titleKey: routeTitleKeys[name],
+}));
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = "homepage-assets";
 const locales = JSON.parse(await readFile("../content/locales.json", "utf8"));
@@ -93,11 +98,26 @@ test("exports complete localized website routes", async () => {
 });
 
 test("keeps comparison regressions covered across locales", async () => {
-  const homepage = await readFile("out/index.html", "utf8");
-  const hub = await readFile("out/compare/index.html", "utf8");
-  const coolify = await readFile("out/compare/coolify/index.html", "utf8");
-  const dokploy = await readFile("out/compare/dokploy/index.html", "utf8");
-  const dokku = await readFile("out/compare/dokku/index.html", "utf8");
+  const homepage = await readFile(
+    `out${routeManifest.home.path}index.html`,
+    "utf8",
+  );
+  const hub = await readFile(
+    `out${routeManifest.comparisonHub.path}index.html`,
+    "utf8",
+  );
+  const coolify = await readFile(
+    `out${routeManifest.coolify.path}index.html`,
+    "utf8",
+  );
+  const dokploy = await readFile(
+    `out${routeManifest.dokploy.path}index.html`,
+    "utf8",
+  );
+  const dokku = await readFile(
+    `out${routeManifest.dokku.path}index.html`,
+    "utf8",
+  );
   const sitemap = await readFile("out/sitemap.xml", "utf8");
 
   assert.doesNotMatch(homepage, /href=["'][^"']*\/compare\/?["']/);

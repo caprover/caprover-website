@@ -1,0 +1,22 @@
+{
+  "home": {
+    "path": "/",
+    "sitemapPriority": 1
+  },
+  "comparisonHub": {
+    "path": "/compare/",
+    "sitemapPriority": 0.7
+  },
+  "coolify": {
+    "path": "/compare/coolify/",
+    "sitemapPriority": 0.7
+  },
+  "dokploy": {
+    "path": "/compare/dokploy/",
+    "sitemapPriority": 0.7
+  },
+  "dokku": {
+    "path": "/compare/dokku/",
+    "sitemapPriority": 0.6
+  }
+}

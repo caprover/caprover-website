@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { toDocusaurusCatalogs } = require("./docs-ui-catalogs");
 
 const root = path.resolve(__dirname, "..");
 const contentRoot = path.join(root, "content");
@@ -263,43 +264,22 @@ for (const locale of enabledLocales) {
     );
 
     const docsUi = require(path.join(localeRoot, "docs-ui.json"));
+    const catalogs = toDocusaurusCatalogs(docsUi);
     writeCatalog(
       path.join(
         localeI18n,
         "docusaurus-plugin-content-docs",
         "current.json",
       ),
-      {
-        "version.label": docsUi["version.label"],
-        ...Object.fromEntries(
-          Object.entries(docsUi)
-            .filter(([key]) => key.startsWith("sidebar."))
-            .map(([key, value]) => [
-              `sidebar.docs.category.${key.slice("sidebar.".length)}`,
-              value,
-            ]),
-        ),
-      },
+      catalogs.docs,
     );
     writeCatalog(
       path.join(localeI18n, "docusaurus-theme-classic", "navbar.json"),
-      {
-        "item.label.Docs": docsUi["navbar.Docs"],
-        "item.label.GitHub": docsUi["navbar.GitHub"],
-        "item.label.Slack Group": docsUi["navbar.Slack Group"],
-      },
+      catalogs.navbar,
     );
     writeCatalog(
       path.join(localeI18n, "docusaurus-theme-classic", "footer.json"),
-      {
-        "link.title.Docs": docsUi["footer.column.Docs"],
-        "link.title.Community": docsUi["footer.column.Community"],
-        "link.title.More": docsUi["footer.column.More"],
-        "link.item.label.Getting Started": docsUi["footer.Getting Started"],
-        "link.item.label.X": docsUi["footer.X"],
-        "link.item.label.Slack Group": docsUi["footer.Slack Group"],
-        "link.item.label.GitHub": docsUi["footer.GitHub"],
-      },
+      catalogs.footer,
     );
   }
 }

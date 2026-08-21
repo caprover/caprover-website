@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import routes from "../routes.json";
 import { getFlatMessages, type MessageKey } from "./messages";
 import {
   DEFAULT_LOCALE,
@@ -11,27 +12,27 @@ const SITE = "https://caprover.com";
 
 const PAGE_METADATA = {
   home: {
-    path: "/",
+    path: routes.home.path,
     titleKey: "homepage.metadata.title",
     descriptionKey: "homepage.metadata.description",
   },
   comparisonHub: {
-    path: "/compare/",
+    path: routes.comparisonHub.path,
     titleKey: "comparisonPages.hub.metadata.title",
     descriptionKey: "comparisonPages.hub.metadata.description",
   },
   coolify: {
-    path: "/compare/coolify/",
+    path: routes.coolify.path,
     titleKey: "comparisonPages.coolify.metadata.title",
     descriptionKey: "comparisonPages.coolify.metadata.description",
   },
   dokploy: {
-    path: "/compare/dokploy/",
+    path: routes.dokploy.path,
     titleKey: "comparisonPages.dokploy.metadata.title",
     descriptionKey: "comparisonPages.dokploy.metadata.description",
   },
   dokku: {
-    path: "/compare/dokku/",
+    path: routes.dokku.path,
     titleKey: "comparisonPages.dokku.metadata.title",
     descriptionKey: "comparisonPages.dokku.metadata.description",
   },

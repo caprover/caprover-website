@@ -17,17 +17,14 @@ const root = process.cwd();
 const docsSite = path.join(root, "docs-site/build");
 const marketingSite = path.join(root, "marketing-site/out");
 const combinedSite = path.join(root, "build/combined-site");
+const cnameSource = path.join(root, "docs-site/static/CNAME");
 const locales = JSON.parse(
   await readFile(path.join(root, "content/locales.json"), "utf8"),
 ).filter((locale) => locale.enabled);
 const defaultLocale = locales.find((locale) => locale.default);
-const marketingRoutes = [
-  "",
-  "compare",
-  "compare/coolify",
-  "compare/dokploy",
-  "compare/dokku",
-];
+const marketingRoutes = Object.values(
+  JSON.parse(await readFile(path.join(root, "marketing-site/routes.json"), "utf8")),
+).map((route) => route.path.replace(/^\//, "").replace(/\/$/, ""));
 
 assert(defaultLocale, "An enabled default locale is required");
 
@@ -127,6 +124,7 @@ await Promise.all([
   ),
   requirePath(path.join(docsSite, "img/logo.png")),
   requirePath(path.join(docsSite, "CNAME")),
+  requirePath(cnameSource),
   ...locales.flatMap((locale) =>
     marketingRoutes.map((route) => requirePath(marketingRouteFile(locale, route))),
   ),
@@ -139,7 +137,7 @@ await Promise.all([
   requireNoCollision("compare"),
 ]);
 
-const originalCname = await readFile(path.join(docsSite, "CNAME"));
+const originalCname = await readFile(cnameSource);
 assert.equal(originalCname.toString().trim(), "caprover.com");
 
 const [docsBefore, imagesBefore] = await Promise.all([
