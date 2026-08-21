@@ -120,6 +120,7 @@ try {
     fetch(`${origin}/es-ES/compare/dokku/index.html`),
     fetch(`${origin}/homepage-assets/caprover-dashboard.png`),
     fetch(`${origin}${nextAsset}`),
+    fetch(`${origin}/robots.txt`),
   ]);
 
   for (const response of checks) {
@@ -156,6 +157,10 @@ try {
     assert.match(page, /\/es-ES\/docs\/get-started/);
   }
   assert(Number(checks[12].headers.get("content-length") ?? 0) > 0 || (await checks[12].arrayBuffer()).byteLength > 0);
+  assert.equal(
+    await checks[14].text(),
+    "User-agent: *\nAllow: /\nSitemap: https://caprover.com/sitemap.xml\n",
+  );
 
   function docsStylesheet(html) {
     const match = html.match(
