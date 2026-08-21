@@ -1,8 +1,8 @@
-import { localizedMetadata } from "@/i18n/metadata";
+import { pageMetadata } from "@/i18n/metadata";
 import { HomePage } from "@/app/home-page";
 
 export const metadata = {
-  ...localizedMetadata("en", "/", "homepage.metadata.title", "homepage.metadata.description"),
+  ...pageMetadata("en", "home"),
   robots: { index: false, follow: true },
 };
 

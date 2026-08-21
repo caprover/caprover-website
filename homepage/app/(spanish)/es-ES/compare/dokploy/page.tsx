@@ -1,7 +1,7 @@
-import { DokployComparisonPage } from "@/app/(english)/compare/dokploy/page-content";
-import { localizedMetadata } from "@/i18n/metadata";
+import { DokployComparisonPage } from "@/features/comparison/dokploy/page-content";
+import { pageMetadata } from "@/i18n/metadata";
 
-export const metadata = localizedMetadata("es-ES", "/compare/dokploy/", "comparisonPages.dokploy.metadata.title", "comparisonPages.dokploy.metadata.description");
+export const metadata = pageMetadata("es-ES", "dokploy");
 
 export default function SpanishDokployComparison() {
   return <DokployComparisonPage locale="es-ES" />;

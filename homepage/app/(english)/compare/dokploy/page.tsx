@@ -1,7 +1,7 @@
-import { localizedMetadata } from "@/i18n/metadata";
-import { DokployComparisonPage } from "./page-content";
+import { DokployComparisonPage } from "@/features/comparison/dokploy/page-content";
+import { pageMetadata } from "@/i18n/metadata";
 
-export const metadata = localizedMetadata("en", "/compare/dokploy/", "comparisonPages.dokploy.metadata.title", "comparisonPages.dokploy.metadata.description");
+export const metadata = pageMetadata("en", "dokploy");
 
 export default function DokployComparison() {
   return <DokployComparisonPage />;

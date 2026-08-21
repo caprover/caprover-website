@@ -1,7 +1,7 @@
-import { localizedMetadata } from "@/i18n/metadata";
-import { ComparisonHubPage } from "./page-content";
+import { ComparisonHubPage } from "@/features/comparison/page-content";
+import { pageMetadata } from "@/i18n/metadata";
 
-export const metadata = localizedMetadata("en", "/compare/", "comparisonPages.hub.metadata.title", "comparisonPages.hub.metadata.description");
+export const metadata = pageMetadata("en", "comparisonHub");
 
 export default function ComparisonHub() {
   return <ComparisonHubPage />;
