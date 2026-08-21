@@ -16,9 +16,9 @@ Este es un tutorial general rápido para ayudarlo a comprender cómo debe diseñ
 ## Descripción de la aplicación
 Supongamos que queremos crear una aplicación web que muestre una lista de fotos con una línea que describa si la imagen es un hot dog o no, algo como esto:
 
-- <IMAGE> Etiquetas: Hotdog, Fecha de subida: 2017-11-12
-- <ANOTHER IMAGE> Etiquetas: NO Hotdog, Fecha de carga: 2017-07-08
-- <ANOTHER IMAGE> Etiquetas: Hotdog, Fecha de subida: 2017-07-07
+- `<IMAGE>` Etiquetas: Hotdog, Fecha de subida: 2017-11-12
+- `<ANOTHER IMAGE>` Etiquetas: NO Hotdog, Fecha de carga: 2017-07-08
+- `<ANOTHER IMAGE>` Etiquetas: Hotdog, Fecha de subida: 2017-07-07
 - ....
 
 Cualquiera puede cargar imágenes y nuestra muy inteligente Inteligencia Artificial etiqueta esa imagen con HOTDOG o NOT-HOTDOG, luego guardamos esa imagen en el servidor y también guardamos la fecha de carga y las etiquetas en la base de datos.

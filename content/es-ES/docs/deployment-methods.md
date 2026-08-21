@@ -14,7 +14,7 @@ Ejecute `caprover deploy` en su repositorio Git y siga las indicaciones. La CLI 
 ## Implementar a través del panel web
 Convierta el contenido de su proyecto en un tarball (`.tar`), vaya a su panel web Captain y cargue el archivo tar. Este método de implementación normalmente se utiliza únicamente con fines de prueba.
 
-Para archivos captain-definition que no requieren ningún código fuente, como [este](/docs/captain-definition-file.html#use-image-name), simplemente puede copiar y pegar el contenido captain-definition en el panel web.
+Para archivos captain-definition que no requieren ningún código fuente, como [este](captain-definition-file.md#usar-el-nombre-de-una-imagen), simplemente puede copiar y pegar el contenido captain-definition en el panel web.
 
 ![implementar aplicación](/img/docs/app-deploy.png)
 
@@ -38,7 +38,7 @@ Después de ingresar esta información, guarde su configuración. Y ve a la pág
 #### Github
 Cree un webhook aquí:
 - Proyecto > Configuración > Agregar Webhook > URL: Captain Webhook desde la página de aplicaciones, Tipo de contenido: `application/json`, 
-Secreto: <Leave empty>, solo el evento `push`.
+Secreto: `<Leave empty>`, solo el evento `push`.
 Además, agregue el contenido de su clave pública generada a las claves de implementación de sus repositorios.
 
 

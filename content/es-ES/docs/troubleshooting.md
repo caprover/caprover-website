@@ -8,7 +8,7 @@ sidebar_label: Solución de problemas
 
 Esta sección cubre los problemas más frecuentes que pueden encontrar los usuarios.
 
-## ¿No se puede conectar <ip_server>:3000?
+## ¿No se puede conectar `ip_server`:3000?
 
 Hay toda una serie de razones para esto.
 
@@ -95,7 +95,7 @@ Cuando ve este error en la interfaz de usuario, significa que algo "inesperado" 
 docker service logs captain-captain --since 5m --follow
 ```
 
-## ¿Cómo ver el registro de mi aplicación?
+## ¿Cómo ver el registro de mi aplicación? {/* #how-to-view-my-applications-log */}
 
 Su aplicación se implementa como un servicio Docker. Por ejemplo, si el nombre de su aplicación en Captain es `my-app`, puede ver sus registros conectándose a su servidor a través de SSH y ejecutando el siguiente comando:
 

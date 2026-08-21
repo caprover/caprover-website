@@ -57,7 +57,7 @@ ARG CAPROVER_GIT_COMMIT_SHA=${CAPROVER_GIT_COMMIT_SHA}
 ENV CAPROVER_GIT_COMMIT_SHA=${CAPROVER_GIT_COMMIT_SHA}
 ```
 
-### Mapeo de puertos
+### Mapeo de puertos {/* #port-mapping */}
 
 CapRover le permite asignar puertos desde un contenedor al host. Debe utilizar esta función si desea que un puerto específico de sus aplicaciones/contenedores sea accesible públicamente. El caso de uso más común es cuando desea **conectarse a un contenedor de base de datos desde su máquina local**.
 

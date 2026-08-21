@@ -4,6 +4,5 @@ docs-site/.idea
 docs-site/build/
 docs-site/node_modules
 /build/
-/docs/
-/docs-site/translated_docs/
 /docs-site/i18n/
+/docs-site/.docusaurus/

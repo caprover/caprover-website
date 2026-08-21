@@ -3,7 +3,7 @@
 Source for [caprover.com](https://caprover.com), containing two independently built applications:
 
 - `marketing-site/`: Next.js marketing site
-- `docs-site/`: Docusaurus v1 documentation site
+- `docs-site/`: Docusaurus 3 documentation site
 - `content/`: English source content and translations, grouped by locale
 - `scripts/`: composition and production smoke checks
 
@@ -30,23 +30,26 @@ npm test
 
 ## Documentation development
 
-The legacy Docusaurus build currently requires Node.js 10.
+The documentation site requires Node.js 20 or newer. Use Node.js 22 to match
+the production workflow.
 
 ```sh
 cd docs-site
-npm install
+npm ci
 npm start
 ```
 
 Add English Markdown files in `content/en/docs/` and register them in
-`docs-site/sidebars.json`. The documentation commands generate the framework's
-legacy input directories from `content/` before starting or building.
+`docs-site/sidebars.js`. Docusaurus reads English directly from `content/`.
+The documentation commands validate every locale and generate translated
+Docusaurus build inputs before starting or building.
 
 ### Documentation translations
 
 Docusaurus internationalization is configured by `content/locales.json`. English
-is the source language. Docusaurus serves it from `/docs/en/*.html` and keeps the
-existing `/docs/*.html` URLs as redirects.
+is the source language. English documentation is served from `/docs/*`, and
+translated documentation uses the locale prefix, such as `/es-ES/docs/*`.
+Compatibility pages preserve the former `/docs/<locale>/*.html` URLs.
 
 Each locale is complete and self-contained under `content/<locale>/`:
 
@@ -57,8 +60,8 @@ Each locale is complete and self-contained under `content/<locale>/`:
 - Add a locale to `content/locales.json` after all three surfaces are complete.
 
 Spanish is enabled in `content/locales.json`. Its documentation is published at
-`/docs/es-ES/*.html`, and the Docusaurus language menu switches between English
-and Spanish versions of the current document.
+`/es-ES/docs/*`, and the Docusaurus language menu switches between English and
+Spanish versions of the current document.
 
 ## Translation guidelines
 
@@ -70,7 +73,7 @@ Follow the repository-wide authoring and translation rules in
 From the repository root:
 
 ```sh
-(cd docs-site && npm install && npm run clean-build)
+(cd docs-site && npm ci && npm run clean-build)
 (cd marketing-site && npm ci && npm run lint && npm run format:check && npm test)
 node scripts/compose-site.mjs
 node scripts/smoke-combined-site.mjs

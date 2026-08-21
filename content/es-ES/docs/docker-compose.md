@@ -74,3 +74,4 @@ networks:
 ```
 
 A continuación puede crear una aplicación **Nginx Reverse Proxy** en CapRover con un destino como `http://web-app`. Los servicios iniciados directamente con Docker Compose quedan fuera de la gestión de despliegues, escalado, copias de seguridad y ciclo de vida de CapRover.
+

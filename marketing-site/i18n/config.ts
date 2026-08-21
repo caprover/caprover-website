@@ -46,5 +46,13 @@ export function localizedPath(path: string, locale: Locale = DEFAULT_LOCALE) {
 }
 
 export function docsUrl(documentId: string, locale: Locale = DEFAULT_LOCALE) {
-  return `https://caprover.com/docs/${locale}/${documentId}.html`;
+  const configuredLocale = ENABLED_LOCALES.find(
+    (entry) => entry.code === locale,
+  );
+
+  if (!configuredLocale) {
+    throw new Error(`Unsupported locale: ${locale}`);
+  }
+
+  return `https://caprover.com${configuredLocale.pathPrefix}/docs/${documentId}`;
 }

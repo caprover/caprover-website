@@ -15,7 +15,7 @@ Si utiliza este método, puede omitir la sección **Requisitos previos** y el pa
 <br/>
 
 <a href="https://marketplace.digitalocean.com/apps/caprover?action=deploy&refcode=6410aa23d3f3" target="_blank" rel="noreferrer noopener">
-<img src="/img/do-btn-blue.svg" alt="CreateDroplet" style="width:300px;"/>
+<img src="/img/do-btn-blue.svg" alt="CreateDroplet" width="300" />
 </a>
 
 <br/>
@@ -128,7 +128,7 @@ Por ejemplo, al crear una imagen Docker, si comienza a ocupar demasiada memoria,
 Para solucionar estos problemas (sin comprar más RAM), puede configurar un archivo de intercambio (que se usa como virtual RAM),
 siguiendo estas instrucciones en [Cómo crear un Linux archivo de intercambio](https://linuxize.com/post/create-a-linux-swap-file/).
 
-## Paso 5: Implementar la aplicación de prueba
+## Paso 5: Implementar la aplicación de prueba {/* #step-5-deploy-the-test-app */}
 
 Vaya a CapRover en su navegador, en el menú de la izquierda seleccione Aplicaciones y cree una nueva aplicación. Nómbrelo `my-first-app`. Luego, descarga cualquiera de las aplicaciones de prueba <a href="https://github.com/caprover/caprover/tree/master/captain-sample-apps">aquí</a>, descomprime el contenido. y mientras estás dentro del directorio de la aplicación de prueba, ejecuta:
 

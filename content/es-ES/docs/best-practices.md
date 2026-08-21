@@ -6,7 +6,7 @@ sidebar_label: Mejores prácticas
 
 CapRover está diseñado para ser fácil de usar e intuitivo. Dicho esto, existen algunos consejos y trucos que pueden ayudarte a aprovechar al máximo CapRover.
 
-### Dominio raíz oculto
+### Dominio raíz oculto {/* #hidden-root-domain */}
 
 Siempre es una buena práctica ocultar su pila de tecnología al atacante potencial. Para estar más seguro, puede ocultar su dominio raíz dos niveles más profundos que su configuración comodín DNS. Por ejemplo, en su panel DNS configuró
 

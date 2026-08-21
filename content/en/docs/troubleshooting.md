@@ -8,7 +8,7 @@ sidebar_label: Troubleshooting
 
 This section covers most frequent issues that users may encounter.
 
-## Cannot connect <ip_server>:3000?
+## Cannot connect `ip_server`:3000?
 
 There is a whole set of reasons for this.
 

@@ -6,16 +6,22 @@
     "prestart": "npm run prepare-content",
     "prebuild": "npm run prepare-content",
     "preclean-build": "npm run prepare-content",
-    "prewrite-translations": "npm run prepare-content",
-    "examples": "docusaurus-examples",
-    "start": "docusaurus-start",
-    "build": "docusaurus-build",
-    "clean-build": "rm -rf ./build && docusaurus-build && cp ./CNAME ./build/CapRover/ && echo 'Finished building'",
-    "write-translations": "docusaurus-write-translations && node ../scripts/capture-docs-ui.js",
-    "version": "docusaurus-version",
-    "rename-version": "docusaurus-rename-version"
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "clean-build": "docusaurus clear && docusaurus build && cp ./CNAME ./build/CNAME",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations --locale en && node ../scripts/capture-docs-ui.js"
   },
-  "devDependencies": {
-    "docusaurus": "^1.14.6"
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/faster": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@mdx-js/react": "^3.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "engines": {
+    "node": ">=20.0"
   }
 }

@@ -8,19 +8,19 @@ sidebar_label: Implementar desde GitHub
 
 Este ejemplo muestra una aplicación Vue 3 con un backend PHP que se puede crear, probar e implementar directamente desde Github a CapRover utilizando el CapRover [GitHub Action](https://github.com/caprover/deploy-from-github) mantenido por la comunidad. Siéntete libre de clonar un proyecto de ejemplo de https://github.com/PremoWeb/SDK-Foundation-Vue para probar cosas o crear tu próxima aplicación increíble.
 
-### Crear una nueva aplicación
+### Crear una nueva aplicación {/* #create-a-new-app */}
 
 El nombre que elijas aquí se convertirá en el secreto APP_NAME.
 
 ![Crear una nueva aplicación](/img/docs/deploy-from-github/create-a-new-app.png "Create a new app")
 
-### Habilitar token de aplicación
+### Habilitar token de aplicación {/* #enable-app-token */}
 
 Busque la pestaña "Implementación" de su nueva aplicación, haga clic en Habilitar token de aplicación y copie este token. Este es tu secreto APP_TOKEN.
 
 ![Crear una nueva aplicación](/img/docs/deploy-from-github/enable-app-token.png "Enable App Token")
 
-### Agregue los secretos Github
+### Agregue los secretos Github {/* #add-the-github-secrets */}
 
 ![Agregue los Github Secretos](/img/docs/deploy-from-github/create-github-secrets.png "Add your Github Secrets")
 
@@ -216,4 +216,4 @@ Después de implementar estos cambios, confirme + envíelos a su repositorio y o
 
 ### ¿Necesitas ayuda?
 
-Se encuentra disponible soporte comercial y comunitario. Visite la página [Ayuda y soporte](/docs/support.html "Help and Support") para obtener más detalles.
+Se encuentra disponible soporte comercial y comunitario. Visite la página [Ayuda y soporte](/docs/support "Help and Support") para obtener más detalles.

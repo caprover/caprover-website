@@ -8,7 +8,7 @@ sidebar_label: Play with CapRover
 
 ## View-only Demo
 
-If you only want to see the view-only demo, go to the [home page](/) and click on **Live Demo**
+If you only want to see the view-only demo, go to the [home page](https://caprover.com/) and click on **Live Demo**
 
 <br/>
 

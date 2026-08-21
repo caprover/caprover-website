@@ -74,3 +74,4 @@ networks:
 ```
 
 You can then create a CapRover **Nginx Reverse Proxy** app with an upstream such as `http://web-app`. Services started directly with Docker Compose remain outside CapRover's deployment, scaling, backup, and lifecycle management.
+

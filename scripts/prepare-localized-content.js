@@ -185,7 +185,7 @@ const defaultMarketingKeys = Object.keys(defaultMarketing).sort();
 const defaultDocsUi = require(path.join(defaultRoot, "docs-ui.json"));
 const defaultDocsUiKeys = objectKeys(defaultDocsUi, "");
 const sidebarIds = sidebarDocumentIds(
-  require(path.join(root, "docs-site", "sidebars.json")),
+  require(path.join(root, "docs-site", "sidebars.js")),
 );
 const defaultMarkdownFiles = defaultDocFiles.filter((file) => file.endsWith(".md"));
 const documentIds = new Set(
@@ -230,29 +230,78 @@ for (const locale of enabledLocales) {
   }
 }
 
-const generatedDocs = path.join(root, "docs");
-const generatedTranslations = path.join(root, "docs-site", "translated_docs");
-const generatedDocsUi = path.join(root, "docs-site", "i18n");
+const generatedI18n = path.join(root, "docs-site", "i18n");
 
-removeDirectory(generatedDocs);
-removeDirectory(generatedTranslations);
-removeDirectory(generatedDocsUi);
-copyDirectory(defaultDocs, generatedDocs);
-fs.mkdirSync(generatedTranslations, { recursive: true });
-fs.mkdirSync(generatedDocsUi, { recursive: true });
+removeDirectory(generatedI18n);
+fs.mkdirSync(generatedI18n, { recursive: true });
+
+function writeCatalog(file, messages) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(
+    file,
+    `${JSON.stringify(
+      Object.fromEntries(
+        Object.entries(messages).map(([id, message]) => [id, { message }]),
+      ),
+      null,
+      2,
+    )}\n`,
+  );
+}
 
 for (const locale of enabledLocales) {
   const localeRoot = path.join(contentRoot, locale.code);
   if (!locale.default) {
+    const localeI18n = path.join(generatedI18n, locale.code);
     copyDirectory(
       path.join(localeRoot, "docs"),
-      path.join(generatedTranslations, locale.code),
+      path.join(
+        localeI18n,
+        "docusaurus-plugin-content-docs",
+        "current",
+      ),
+    );
+
+    const docsUi = require(path.join(localeRoot, "docs-ui.json"));
+    writeCatalog(
+      path.join(
+        localeI18n,
+        "docusaurus-plugin-content-docs",
+        "current.json",
+      ),
+      {
+        "version.label": docsUi["version.label"],
+        ...Object.fromEntries(
+          Object.entries(docsUi)
+            .filter(([key]) => key.startsWith("sidebar."))
+            .map(([key, value]) => [
+              `sidebar.docs.category.${key.slice("sidebar.".length)}`,
+              value,
+            ]),
+        ),
+      },
+    );
+    writeCatalog(
+      path.join(localeI18n, "docusaurus-theme-classic", "navbar.json"),
+      {
+        "item.label.Docs": docsUi["navbar.Docs"],
+        "item.label.GitHub": docsUi["navbar.GitHub"],
+        "item.label.Slack Group": docsUi["navbar.Slack Group"],
+      },
+    );
+    writeCatalog(
+      path.join(localeI18n, "docusaurus-theme-classic", "footer.json"),
+      {
+        "link.title.Docs": docsUi["footer.column.Docs"],
+        "link.title.Community": docsUi["footer.column.Community"],
+        "link.title.More": docsUi["footer.column.More"],
+        "link.item.label.Getting Started": docsUi["footer.Getting Started"],
+        "link.item.label.X": docsUi["footer.X"],
+        "link.item.label.Slack Group": docsUi["footer.Slack Group"],
+        "link.item.label.GitHub": docsUi["footer.GitHub"],
+      },
     );
   }
-  fs.copyFileSync(
-    path.join(localeRoot, "docs-ui.json"),
-    path.join(generatedDocsUi, `${locale.code}.json`),
-  );
 }
 
 console.log(`Prepared localized content for: ${enabledLocales.map((locale) => locale.code).join(", ")}`);
