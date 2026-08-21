@@ -25,8 +25,7 @@ Persistent apps are those that need to store data on disk so that it survives re
 - Web apps like WordPress that store uploaded files or plugins on disk
 
 **Limitations:**
-- Persistent apps **cannot** be scaled to multiple instances.  
-  Sharing a single storage path across multiple containers can lead to data corruption.
+- CapRover keeps persistent apps at one instance by default. The dashboard allows an advanced override after a warning, but multiple instances that share a local storage path can corrupt data. Scale only when the storage driver and application are designed for concurrent access.
 
 > **Note:**  
 > Even for persistent apps, **not all directories are persistent by default**. After creating the app, you must explicitly define which directories should be persistent via the **App Details** page on the dashboard.
@@ -42,8 +41,7 @@ CapRover manages the storage location for you.
 - Data is stored under:  
   `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data`
 - The container path is customizable.
-- By default, CapRover prepends `captain--` to the volume name.  
-  For example, entering `my-volume` results in `captain--my-volume`.
+- Current CapRover versions use the volume name you enter. Installations upgraded from versions before 1.15 may retain physical volume names prefixed with `captain--`. Use `docker volume ls` to confirm the name on your server.
 
 **2. Using Specific Host Paths**  
 You can map a **specific directory on the host** to a path inside the container.  
@@ -60,22 +58,22 @@ A file saved in the container at `/my-host-usr-something/myfile.txt` will be acc
 
 #### Removing Persistent Apps
 
-When you delete a persistent app, its data is **not automatically removed**. This prevents accidental data loss. To delete persistent directories:
+When deleting an app, the dashboard lists associated named volumes and lets you select which ones to remove. CapRover checks that a selected volume is not used by another service before deletion. Host-path directories remain on the host and require manual removal.
 
-- **Volumes (label-based)**  
-  1. List volumes:  
+- **Named volumes**
+  1. Select the volumes in the app deletion dialog, or list them manually:
      ```bash
      docker volume ls
      ```
-  2. Remove the desired volume:  
+  2. To remove one manually after checking that no service uses it:
      ```bash
      docker volume rm NAME_OF_VOLUME
      ```
 
   ![Volumes](/img/docs/label-path.png)
 
-- **Mapped Host Directories**  
-  Remove the directory directly from the host:
+- **Mapped host directories**
+  Back up the required data, verify the exact path, and remove the directory directly from the host.
   
 ```bash
   rm -rf /path/to/directory

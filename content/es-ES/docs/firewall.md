@@ -1,40 +1,37 @@
 ---
 id: firewall
-title: Cortafuegos y reenvío de puertos
-sidebar_label: Cortafuegos y reenvío de puertos
+title: Firewall y reenvío de puertos
+sidebar_label: Firewall y reenvío de puertos
 ---
 
-<br/>
+## Puertos públicos
 
+Exponga estos puertos a los usuarios:
 
-Captain usos:
-- 80 TCP para conexiones regulares HTTP
-- 443 TCP/UDP para conexiones seguras HTTPS y HTTP/3
-- 3000 TCP para la instalación inicial Captain (se puede bloquear una vez que Captain se adjunta a un dominio)
-- 7946 TCP/UDP para descubrimiento de redes de contenedores
-- 4789 TCP/UDP para red de superposición de contenedores
-- 2377 TCP/UDP para Docker enjambre API
-- 996 TCP para conexiones seguras HTTPS específicas de Docker Registry
+- `80/tcp` para HTTP
+- `443/tcp` para HTTPS
+- `443/udp` para HTTP/3
+- `3000/tcp` para la configuración inicial. Puede cerrarlo después de asociar CapRover a un dominio.
 
-En el caso de un servidor ubuntu, ejecute
+Para un servidor Ubuntu de un solo nodo que usa UFW:
 
-```
-ufw allow 80,443,3000,996,7946,4789,2377/tcp; ufw allow 7946,4789,2377,443/udp;
-```
-
-
-Tenga en cuenta que para una instalación más segura solo puede exponer 80/443/3000 al mundo, el resto de los puertos solo se usan en un clúster y bastaría con abrirlos a los demás nodos del clúster. 
-Si tiene una sola instancia, simplemente ejecute:
-
-```
-ufw allow 80,443,3000
+```bash
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow 443/udp
+ufw allow 3000/tcp
 ```
 
+El registro Docker de CapRover usa el puerto `996/tcp`. Expóngalo únicamente cuando un cliente externo necesite conectarse al registro autohospedado.
 
-Además, si está utilizando la asignación de puertos para permitir conexiones externas, por ejemplo desde su computadora portátil a una instancia MySQL en Captain, también deberá agregar el puerto correspondiente a la exclusión.
+## Puertos del clúster
 
+En un clúster de varios nodos, permita los siguientes puertos solamente entre nodos de Swarm de confianza:
 
-NOTA:
-Docker omite ufw para los puertos asignados. Si agregó manualmente un puerto asignado para cualquiera de sus aplicaciones implementadas en CapRover, ufw no necesariamente bloquea los puertos. Consulte la [información relevante aquí](
-https://askubuntu.com/questions/652556/uncomplicated-firewall-ufw-is-not-blocking-anything-when-using-docker)
+- `2377/tcp` para el tráfico de administración de Swarm
+- `7946/tcp` y `7946/udp` para la comunicación entre nodos
+- `4789/udp` para el tráfico de la red superpuesta
 
+Restrinja `4789/udp` a nodos de confianza. Exponer públicamente el puerto VXLAN puede dejar vulnerable la red superpuesta.
+
+Si añade un mapeo de puertos a una aplicación, permita ese puerto en el firewall del proveedor cuando sea necesario. Los puertos publicados por Docker pueden eludir las reglas de UFW, así que use reglas compatibles con Docker cuando deba restringir el acceso. Consulte la documentación de Docker sobre [filtrado de paquetes y firewalls](https://docs.docker.com/engine/network/packet-filtering-firewalls/).

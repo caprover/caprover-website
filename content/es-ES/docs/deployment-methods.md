@@ -5,10 +5,10 @@ sidebar_label: Métodos de implementación
 ---
 
 <br/>
-Independientemente de su método de implementación, asegúrese de tener un archivo 'captain-definition' en su proyecto. Consulte los documentos en [Captain Definición](captain-definition-file.md) para obtener más detalles.
+Un archivo `captain-definition` indica a CapRover cómo compilar el código fuente o qué imagen debe desplegar. Los archivos de código fuente y los despliegues desde repositorios requieren este archivo. La CLI también puede desplegar directamente una imagen ya compilada mediante `caprover deploy --imageName IMAGE`. Consulte [Captain Definition](captain-definition-file.md) para conocer los formatos de código e imagen disponibles.
 
 ## Implementar a través de CLI
-Simplemente ejecuta `caprover deploy` en tu repositorio git y sigue los pasos. Este es el mejor método, ya que es el único que le informa posibles errores de compilación. Lea más sobre esto aquí:
+Ejecute `caprover deploy` en su repositorio Git y siga las indicaciones. La CLI muestra el progreso de la carga, compilación y despliegue. La salida de compilación también está disponible en el panel y en los registros de despliegues automatizados. Lea más aquí:
  [Comenzar - Paso 5](get-started.md#step-5-deploy-the-test-app).
 
 ## Implementar a través del panel web
@@ -23,7 +23,7 @@ Para archivos captain-definition que no requieren ningún código fuente, como [
 Supongamos que implementó una nueva versión de su aplicación. Pero te das cuenta de que tiene errores. No tienes tiempo para regresar, revertir los cambios o corregir el error, ¿qué harías? ¡Simple! Simplemente vaya a la pestaña de implementación y haga clic en el ícono de revertir al lado de la versión a la que desea volver. CapRover ¡Inicia automáticamente una nueva compilación e implementa esa versión! Tenga en cuenta que esto **NO** revierte los cambios que realizó en las variables de entorno y otras configuraciones de aplicaciones, como directorios persistentes, etc. Simplemente revierte su imagen (código fuente implementado).
 
 ## Implementación automática usando Github, Bitbucket, etc.
-Este método es quizás el más conveniente. Este método activa automáticamente una compilación con un archivo `captain-definiton` cuando envía su repositorio a una rama específica (como `master` o `staging` o `release` o etc.). Para configurar esto, vaya a la configuración de sus aplicaciones e ingrese la información del repositorio:
+Este método activa automáticamente una compilación con un archivo `captain-definition` cuando envía cambios a una rama configurada. Para configurarlo, abra los ajustes de la aplicación e introduzca la información del repositorio:
 - repositorio: esta es la dirección principal HTTPS del repositorio, en el caso de github, está en formato `github.com/someone/something`. Asegúrese de que NO incluya el prefijo `https://` ni el sufijo `.git`.
 - sucursal: La sucursal de la que desea que se realice el seguimiento, por ejemplo `master` o `staging` o `release`...
 - nombre de usuario de github/bitbucket (dirección de correo electrónico): este es el nombre de usuario que se utilizará cuando Captain descargue el repositorio.

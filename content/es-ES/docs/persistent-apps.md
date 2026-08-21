@@ -25,8 +25,7 @@ Las aplicaciones persistentes son aquellas que necesitan almacenar datos en el d
 - Aplicaciones web como WordPress que almacenan archivos o complementos cargados en el disco
 
 **Limitaciones:**
-- Las aplicaciones persistentes **no** se pueden escalar a varias instancias.  
-  Compartir una única ruta de almacenamiento entre varios contenedores puede provocar daños en los datos.
+- CapRover mantiene las aplicaciones persistentes en una instancia de forma predeterminada. El panel permite una anulación avanzada después de mostrar una advertencia, pero varias instancias que comparten una ruta de almacenamiento local pueden dañar los datos. Escale únicamente cuando el controlador de almacenamiento y la aplicación estén diseñados para el acceso simultáneo.
 
 > **Nota:**  
 > Incluso para aplicaciones persistentes, **no todos los directorios son persistentes de forma predeterminada**. Después de crear la aplicación, debe definir explícitamente qué directorios deben ser persistentes a través de la página **Detalles de la aplicación** en el panel.
@@ -42,8 +41,7 @@ CapRover administra la ubicación de almacenamiento por usted.
 - Los datos se almacenan en:  
   `/var/lib/docker/volumes/YOUR_VOLUME_NAME/_data`
 - La ruta del contenedor es personalizable.
-- De forma predeterminada, CapRover antepone `captain--` al nombre del volumen.  
-  Por ejemplo, ingresar `my-volume` da como resultado `captain--my-volume`.
+- Las versiones actuales de CapRover usan el nombre de volumen introducido. Las instalaciones actualizadas desde versiones anteriores a 1.15 pueden conservar nombres físicos con el prefijo `captain--`. Use `docker volume ls` para confirmar el nombre en el servidor.
 
 **2. Uso de rutas de host específicas**  
 Puede asignar un **directorio específico en el host** a una ruta dentro del contenedor.  
@@ -60,22 +58,22 @@ Se podrá acceder a un archivo guardado en el contenedor en `/my-host-usr-someth
 
 #### Eliminación de aplicaciones persistentes
 
-Cuando eliminas una aplicación persistente, sus datos **no se eliminan automáticamente**. Esto evita la pérdida accidental de datos. Para eliminar directorios persistentes:
+Al eliminar una aplicación, el panel muestra los volúmenes con nombre asociados y permite seleccionar cuáles se eliminarán. CapRover comprueba que otro servicio no use el volumen seleccionado. Los directorios vinculados mediante una ruta del host permanecen en el host y requieren eliminación manual.
 
-- **Volúmenes (basados en etiquetas)**  
-  1. Listar volúmenes:
+- **Volúmenes con nombre**
+  1. Seleccione los volúmenes en el diálogo de eliminación de la aplicación o enumérelos manualmente:
      ```bash
      docker volume ls
      ```
-2. Retire el volumen deseado:
+  2. Para eliminar uno manualmente después de comprobar que ningún servicio lo usa:
      ```bash
      docker volume rm NAME_OF_VOLUME
      ```
 
 ![Volúmenes](/img/docs/label-path.png)
 
-- **Directorios de host asignados**  
-  Elimine el directorio directamente del host:
+- **Directorios de host asignados**
+  Cree una copia de seguridad de los datos necesarios, verifique la ruta exacta y elimine el directorio directamente del host.
   
 ```bash
   rm -rf /path/to/directory

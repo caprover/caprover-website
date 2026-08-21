@@ -38,7 +38,7 @@ En la instalación estándar, CapRover debe instalarse en una máquina con una d
 
 #### B2) Especificaciones del servidor
 
-_**Arquitectura de CPU**:_ El código fuente de CapRover es compatible con cualquier arquitectura de CPU y la imagen Docker disponible en Docker Hub está compilada para CPU AMD64 (X86), ARM64 y ARMV7.
+_**Arquitectura de CPU**:_ Las imágenes publicadas de CapRover son compatibles con AMD64 (x86-64) y ARM64. La imagen de 32 bits para ARMv7 ya no se publica.
 
 _**Pila recomendada**:_ CapRover se prueba en Ubuntu 24.04 y Docker 25+. Si está utilizando CapRover en un sistema operativo diferente, es posible que desee consultar [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
 
@@ -52,13 +52,16 @@ Su servidor debe tener Docker instalado. Si obtiene su servidor de DigitalOcean,
 
 #### B4) Configurar el cortafuegos
 
-Algunos proveedores de servidores tienen configuraciones de firewall estrictas. Para desactivar el firewall en Ubuntu:
+Algunos proveedores de servidores tienen configuraciones de firewall estrictas. Para un servidor Ubuntu de un solo nodo, permita los puertos públicos de CapRover:
 
 ```bash
-ufw allow 80,443,3000,996,7946,4789,2377/tcp; ufw allow 7946,4789,2377/udp;
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow 443/udp
+ufw allow 3000/tcp
 ```
 
-Consulte [configuración del firewall](firewall.md) si necesita más detalles.
+Consulte [configuración del firewall](firewall.md) para los puertos de un clúster Swarm y el acceso al registro.
 
 <br/>
 <br/>
@@ -73,7 +76,7 @@ Consulte [configuración del firewall](firewall.md) si necesita más detalles.
 docker run -p 80:80 -p 443:443 -p 3000:3000 -e ACCEPTED_TERMS=true -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
 ```
 
-NOTA: no cambie las asignaciones de puertos. CapRover solo funciona en los puertos especificados.
+El comando anterior usa los puertos predeterminados recomendados. Las instalaciones avanzadas pueden cambiar los puertos publicados configurando `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT` y `CAPTAIN_HOST_ADMIN_PORT` para que coincidan con el lado del host de cada mapeo `-p`. Mantenga los puertos del contenedor en `80`, `443` y `3000`.
 
 Verá un montón de resultados en su pantalla. Una vez que se inicializa CapRover, puede visitar `http://[IP_OF_YOUR_SERVER]:3000` en su navegador e iniciar sesión en CapRover usando la contraseña predeterminada `captain42`. Puede cambiar su contraseña más tarde. **Sin embargo, no realice ningún cambio en el panel**. Usaremos la herramienta de línea de comandos para configurar el servidor (recomendado).
 

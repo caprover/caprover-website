@@ -63,7 +63,7 @@ CapRover allows you to map ports from a container to the host. You should use th
 
 Note that even if you don't set any port mapping, all ports are accessible from other containers on the same Captain cluster. Therefore, you should only use this option if you want the port to be publicly accessible. Make sure to have the port open, see [firewall settings](firewall.md).
 
-For example, if you want your NodeJS app to access your MongoDB database, and you do not need to access your MongoDB from your laptop, you don't need Port Mapping. Instead, you can use the fully qualified name for the MongoDB instance which is `srv-captain--mongodb-app-name` (replace `mongodb-app-name` with the app name you used).
+For example, a Node.js app can reach an app named `mongodb-app-name` at `mongodb-app-name` without a port mapping. Apps upgraded from CapRover releases before 1.15 may keep a Docker service name with the `srv-captain--` prefix, and the prefixed network alias remains available for compatibility.
 
 ### Persistent Directories
 

@@ -38,7 +38,7 @@ In standard installation, CapRover has to be installed on a machine with a publi
 
 #### B2) Server Specs
 
-_**CPU Architecture**:_ CapRover source code is compatible with any CPU architecture and the Docker build available on Docker Hub is built for AMD64 (X86), ARM64, and ARMV7 CPUs.
+_**CPU Architecture**:_ Published CapRover images target AMD64 (x86-64) and ARM64. The 32-bit ARMv7 image is no longer published.
 
 _**Recommended Stack**:_ CapRover is tested on Ubuntu 24.04 and Docker 25+. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
 
@@ -52,13 +52,16 @@ Your server must have Docker installed on it. If you get your server from Digita
 
 #### B4) Configure Firewall
 
-Some server providers have strict firewall settings. To disable firewall on Ubuntu:
+Some server providers have strict firewall settings. For a single-node Ubuntu server, allow the public CapRover ports:
 
 ```bash
-ufw allow 80,443,3000,996,7946,4789,2377/tcp; ufw allow 7946,4789,2377/udp;
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow 443/udp
+ufw allow 3000/tcp
 ```
 
-See [firewall settings](firewall.md) if you need more details.
+See [firewall settings](firewall.md) for multi-node Swarm ports and registry access.
 
 <br/>
 <br/>
@@ -73,7 +76,7 @@ Just run the following line, sit back and enjoy!
 docker run -p 80:80 -p 443:443 -p 3000:3000 -e ACCEPTED_TERMS=true -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
 ```
 
-NOTE: do not change the port mappings. CapRover only works on the specified ports.
+The command above uses the recommended default ports. Advanced installations can change the published ports by setting `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, and `CAPTAIN_HOST_ADMIN_PORT` to match the host side of each `-p` mapping. Keep the container ports at `80`, `443`, and `3000`.
 
 You will see a bunch of outputs on your screen. Once the CapRover is initialized, you can visit `http://[IP_OF_YOUR_SERVER]:3000` in your browser and login to CapRover using the default password `captain42`. You can change your password later. **However, do not make any changes in the dashboard**. We'll use the command line tool to setup the server (recommended).
 
