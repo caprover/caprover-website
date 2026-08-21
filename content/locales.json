@@ -1,0 +1,16 @@
+[
+  {
+    "code": "en",
+    "label": "English",
+    "pathPrefix": "",
+    "default": true,
+    "enabled": true
+  },
+  {
+    "code": "es-ES",
+    "label": "Español",
+    "pathPrefix": "/es-ES",
+    "default": false,
+    "enabled": true
+  }
+]

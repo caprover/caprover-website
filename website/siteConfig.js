@@ -39,7 +39,7 @@ const siteConfig = {
     },
   ],
 
-  editUrl: "https://github.com/caprover/caprover-website/edit/master/docs/",
+  editUrl: "https://github.com/caprover/caprover-website/edit/master/content/en/docs/",
 
   gaTrackingId: "UA-132762521-1",
 
