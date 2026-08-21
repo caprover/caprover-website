@@ -4,7 +4,7 @@ Source for [caprover.com](https://caprover.com), containing two independently bu
 
 - `homepage/`: Next.js static homepage
 - `website/`: Docusaurus v1 documentation
-- `docs/`: documentation Markdown
+- `content/`: English source content and translations, grouped by locale
 - `scripts/`: composition and production smoke checks
 
 The production build uses Docusaurus as the base, then overlays the homepage's `index.html`, `_next/`, and `homepage-assets/` output. `homepage/` is the source of truth for the root homepage.
@@ -36,50 +36,32 @@ npm install
 npm start
 ```
 
-Add Markdown files in `docs/` and register them in `website/sidebars.json`.
+Add English Markdown files in `content/en/docs/` and register them in
+`website/sidebars.json`. The documentation commands generate the framework's
+legacy input directories from `content/` before starting or building.
 
 ### Documentation translations
 
-Docusaurus internationalization is configured in `website/languages.js`. English
+Docusaurus internationalization is configured by `content/locales.json`. English
 is the source language. Docusaurus serves it from `/docs/en/*.html` and keeps the
 existing `/docs/*.html` URLs as redirects.
 
-Translations are committed directly to the repository:
+Each locale is complete and self-contained under `content/<locale>/`:
 
-- Add translated Markdown under `website/translated_docs/<locale>/`, preserving
-  the source layout from `docs/`.
-- Add translated navigation, sidebar, and document-title strings in
-  `website/i18n/<locale>.json`, using `website/i18n/en.json` as the source.
-- Add a locale to `website/languages.js` only after its documents and UI strings
-  are complete.
+- `docs/` contains documentation Markdown.
+- `homepage.json` contains the flat Next.js message catalog.
+- `docs-ui.json` contains Docusaurus navigation, sidebar, document-title, and
+  interface strings.
+- Add a locale to `content/locales.json` after all three surfaces are complete.
 
-Spanish is enabled in `website/languages.js`. Its documentation is published at
+Spanish is enabled in `content/locales.json`. Its documentation is published at
 `/docs/es-ES/*.html`, and the Docusaurus language menu switches between English
 and Spanish versions of the current document.
 
 ## Translation guidelines
 
-Apply these rules to documentation and homepage locale catalogs:
-
-- Write natural technical prose for software engineers. Prefer terminology
-  commonly used by engineers in the target language over literal translation.
-- Keep product, project, company, and technology names unchanged, including
-  CapRover, Docker, Docker Swarm, nginx, GitHub, GitLab, and DigitalOcean.
-- Keep established English engineering terms when that is the target-language
-  convention. Use one term consistently across the locale.
-- Preserve fenced code, inline code, commands, flags, environment variables,
-  identifiers, config keys and values, file paths, URLs, domains, image names,
-  tags, protocols, and acronyms exactly.
-- Preserve filenames, directory structure, frontmatter IDs, anchors, link
-  destinations, and Markdown or HTML structure. Translate reader-facing titles,
-  headings, link text, alt text, and prose.
-- Match UI labels to the language currently shown by the product. Keep the
-  source label when the corresponding UI has not been localized.
-- Preserve the source meaning, examples, warnings, emphasis, and level of
-  technical detail.
-- Before enabling a locale, verify source-file parity, matching IDs and
-  structure, unchanged code and link targets, consistent terminology, and
-  fluent review by a target-language speaker familiar with software engineering.
+Follow the repository-wide authoring and translation rules in
+[`content/README.md`](content/README.md).
 
 ## Build the combined site
 

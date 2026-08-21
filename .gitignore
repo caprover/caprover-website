@@ -4,3 +4,6 @@ website/.idea
 website/build/
 website/node_modules
 /build/
+/docs/
+/website/translated_docs/
+/website/i18n/

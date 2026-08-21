@@ -1,10 +1,15 @@
 {
   "scripts": {
+    "prepare-content": "node ../scripts/prepare-localized-content.js",
+    "prestart": "npm run prepare-content",
+    "prebuild": "npm run prepare-content",
+    "preclean-build": "npm run prepare-content",
+    "prewrite-translations": "npm run prepare-content",
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
     "build": "docusaurus-build",
     "clean-build": "rm -rf ./build && docusaurus-build && cp ./CNAME ./build/CapRover/ && echo 'Finished building'",
-    "write-translations": "docusaurus-write-translations",
+    "write-translations": "docusaurus-write-translations && node ../scripts/capture-docs-ui.js",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version"
   },

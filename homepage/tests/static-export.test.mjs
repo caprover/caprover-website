@@ -90,8 +90,8 @@ test("exports the comparison hub and one-on-one pages without changing homepage 
 });
 
 test("Spanish catalog has the same flat keys and preserves structural values", async () => {
-  const english = JSON.parse(await readFile("i18n/messages/en.json", "utf8"));
-  const spanish = JSON.parse(await readFile("i18n/messages/es-ES.json", "utf8"));
+  const english = JSON.parse(await readFile("../content/en/homepage.json", "utf8"));
+  const spanish = JSON.parse(await readFile("../content/es-ES/homepage.json", "utf8"));
 
   assert.deepEqual(Object.keys(spanish), Object.keys(english));
   for (const [key, value] of Object.entries(english)) {

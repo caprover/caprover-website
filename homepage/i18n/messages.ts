@@ -1,6 +1,6 @@
 import type { Locale } from "./config";
-import englishCatalog from "./messages/en.json";
-import spanishCatalog from "./messages/es-ES.json";
+import englishCatalog from "../../content/en/homepage.json";
+import spanishCatalog from "../../content/es-ES/homepage.json";
 
 export const englishMessages = englishCatalog;
 
