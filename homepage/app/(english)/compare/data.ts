@@ -1,5 +1,5 @@
-import { DEFAULT_LOCALE, type Locale } from "../../i18n/config";
-import { getMessages, messageList } from "../../i18n/messages";
+import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
+import { getMessages, messageList } from "@/i18n/messages";
 
 export type Product = "caprover" | "dokploy" | "dokku" | "coolify";
 

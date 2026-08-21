@@ -16,6 +16,7 @@ const assetPath = "homepage-assets";
 test("exports a complete static homepage", async () => {
   const html = await readFile("out/index.html", "utf8");
   const englishAlias = await readFile("out/en/index.html", "utf8");
+  const spanish = await readFile("out/es-ES/index.html", "utf8");
 
   assert.match(html, /<title>CapRover · Scalable, Free and Self-hosted PaaS<\/title>/);
   assert.match(html, /Deploy apps\./);
@@ -23,6 +24,10 @@ test("exports a complete static homepage", async () => {
   assert.match(englishAlias, /Deploy apps\./);
   assert.match(englishAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
   assert.match(englishAlias, /name=["']robots["'][^>]+content=["']noindex, follow["']/);
+  assert.match(spanish, /Despliega aplicaciones\./);
+  assert.match(spanish, /https:\/\/caprover\.com\/docs\/es-ES\/get-started\.html/);
+  assert.match(spanish, /href=["']\/es-ES\/["'][^>]*hrefLang=["']es-ES["']|hrefLang=["']es-ES["'][^>]*href=["']\/es-ES\/["']/);
+  assert.match(spanish, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
 
   await Promise.all(
     expectedAssets.map((asset) => access(`out/${assetPath}/${asset}`)),
@@ -48,6 +53,10 @@ test("exports the comparison hub and one-on-one pages without changing homepage 
   const dokploy = await readFile("out/compare/dokploy/index.html", "utf8");
   const dokku = await readFile("out/compare/dokku/index.html", "utf8");
   const sitemap = await readFile("out/sitemap.xml", "utf8");
+  const spanishHub = await readFile("out/es-ES/compare/index.html", "utf8");
+  const spanishCoolify = await readFile("out/es-ES/compare/coolify/index.html", "utf8");
+  const spanishDokploy = await readFile("out/es-ES/compare/dokploy/index.html", "utf8");
+  const spanishDokku = await readFile("out/es-ES/compare/dokku/index.html", "utf8");
 
   assert.doesNotMatch(homepage, /href=["'][^"']*\/compare\/?["']/);
   assert.match(hub, /Start simple\. Never hit a ceiling\./);
@@ -73,4 +82,21 @@ test("exports the comparison hub and one-on-one pages without changing homepage 
   assert.doesNotMatch(dokploy, /Moving to Dokploy/);
   assert.doesNotMatch(dokku, /Moving to Dokku/);
   assert.match(sitemap, /https:\/\/caprover\.com\/compare\/coolify\//);
+  assert.match(sitemap, /https:\/\/caprover\.com\/es-ES\/compare\/coolify\//);
+  assert.match(spanishHub, /Empieza de forma sencilla\./);
+  assert.match(spanishCoolify, /CAPROVER VS COOLIFY/);
+  assert.match(spanishDokploy, /CAPROVER VS DOKPLOY/);
+  assert.match(spanishDokku, /CAPROVER VS DOKKU/);
+});
+
+test("Spanish catalog has the same flat keys and preserves structural values", async () => {
+  const english = JSON.parse(await readFile("i18n/messages/en.json", "utf8"));
+  const spanish = JSON.parse(await readFile("i18n/messages/es-ES.json", "utf8"));
+
+  assert.deepEqual(Object.keys(spanish), Object.keys(english));
+  for (const [key, value] of Object.entries(english)) {
+    if (key.endsWith(".key") || key.endsWith(".status")) {
+      assert.equal(spanish[key], value, key);
+    }
+  }
 });

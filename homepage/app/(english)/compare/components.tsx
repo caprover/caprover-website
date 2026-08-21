@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { DEFAULT_LOCALE, docsUrl, localizedPath, type Locale } from "../../i18n/config";
-import { getMessages, messageList } from "../../i18n/messages";
+import { DEFAULT_LOCALE, docsUrl, localizedPath, type Locale } from "@/i18n/config";
+import { getMessages, messageList } from "@/i18n/messages";
+import { LocaleSwitcher } from "@/app/locale-switcher";
 import {
   getComparisonData,
   type ComparisonRow,
@@ -27,7 +28,7 @@ function Logo({ locale }: { locale: Locale }) {
   );
 }
 
-export function CompareHeader({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+export function CompareHeader({ locale = DEFAULT_LOCALE, path }: { locale?: Locale; path: string }) {
   const copy = getMessages(locale).comparisonCommon;
   return (
     <header className="compare-header compare-shell">
@@ -36,6 +37,7 @@ export function CompareHeader({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
         <a href={internal("/compare/", locale)}>{copy.navigation.hub}</a>
         <a href={docsUrl("get-started", locale)}>{copy.navigation.docs}</a>
         <a href={GITHUB}>{copy.navigation.github}</a>
+        <LocaleSwitcher locale={locale} path={path} ariaLabel={getMessages(locale).common.languageSelectorAriaLabel} />
       </div>
     </header>
   );
@@ -141,6 +143,6 @@ export function SourceLinks({ children, locale = DEFAULT_LOCALE }: { children: R
   return <div className="source-links"><h2>{copy.sources.title}</h2><p>{copy.sources.lastVerified} {copy.verifiedDate}. {copy.sources.description}</p><ul>{children}</ul></div>;
 }
 
-export function ComparePage({ children, locale = DEFAULT_LOCALE }: { children: ReactNode; locale?: Locale }) {
-  return <main className="compare-page"><CompareHeader locale={locale} />{children}<CompareFooter locale={locale} /></main>;
+export function ComparePage({ children, locale = DEFAULT_LOCALE, path }: { children: ReactNode; locale?: Locale; path: string }) {
+  return <main className="compare-page" lang={locale}><CompareHeader locale={locale} path={path} />{children}<CompareFooter locale={locale} /></main>;
 }

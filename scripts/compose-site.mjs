@@ -67,6 +67,11 @@ await Promise.all([
   requirePath(path.join(legacySite, "CNAME")),
   requirePath(path.join(homepage, "index.html")),
   requirePath(path.join(homepage, "en/index.html")),
+  requirePath(path.join(homepage, "es-ES/index.html")),
+  requirePath(path.join(homepage, "es-ES/compare/index.html")),
+  requirePath(path.join(homepage, "es-ES/compare/coolify/index.html")),
+  requirePath(path.join(homepage, "es-ES/compare/dokploy/index.html")),
+  requirePath(path.join(homepage, "es-ES/compare/dokku/index.html")),
   requirePath(path.join(homepage, "_next")),
   requirePath(path.join(homepage, "homepage-assets")),
   requirePath(path.join(homepage, "compare/index.html")),
@@ -107,18 +112,22 @@ await rm(path.join(combinedSite, "en"), { recursive: true, force: true });
 await cp(path.join(homepage, "en"), path.join(combinedSite, "en"), {
   recursive: true,
 });
+await rm(path.join(combinedSite, "es-ES"), { recursive: true, force: true });
+await cp(path.join(homepage, "es-ES"), path.join(combinedSite, "es-ES"), {
+  recursive: true,
+});
 const [legacySitemap, homepageSitemap] = await Promise.all([
   readFile(path.join(combinedSite, "sitemap.xml"), "utf8"),
   readFile(path.join(homepage, "sitemap.xml"), "utf8"),
 ]);
-const comparisonUrls = (homepageSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter(
-  (entry) => entry.includes("/compare/"),
+const homepageUrls = (homepageSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter(
+  (entry) => !entry.includes("<loc>https://caprover.com/</loc>"),
 );
-assert(comparisonUrls.length === 4, "Homepage sitemap is missing comparison URLs");
+assert(homepageUrls.length === 9, "Homepage sitemap is missing localized URLs");
 assert.match(legacySitemap, /<\/urlset>\s*$/);
 await writeFile(
   path.join(combinedSite, "sitemap.xml"),
-  legacySitemap.replace(/<\/urlset>\s*$/, `${comparisonUrls.join("\n")}\n</urlset>\n`),
+  legacySitemap.replace(/<\/urlset>\s*$/, `${homepageUrls.join("\n")}\n</urlset>\n`),
 );
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
 await requirePath(path.join(combinedSite, ".nojekyll"));

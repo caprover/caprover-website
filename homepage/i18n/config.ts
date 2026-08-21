@@ -2,6 +2,7 @@ export const DEFAULT_LOCALE = "en";
 
 export const ENABLED_LOCALES = [
   { code: "en", label: "English", pathPrefix: "" },
+  { code: "es-ES", label: "Español", pathPrefix: "/es-ES" },
 ] as const;
 
 export type Locale = (typeof ENABLED_LOCALES)[number]["code"];
