@@ -63,6 +63,10 @@ Spanish is enabled in `content/locales.json`. Its documentation is published at
 `/es-ES/docs/*`, and the Docusaurus language menu switches between English and
 Spanish versions of the current document.
 
+On an unprefixed page view, the combined static site uses a saved language-menu
+choice or selects a supported locale from the browser's preferences. The URL
+always identifies the language of the page being viewed.
+
 ## Translation guidelines
 
 Follow the repository-wide authoring and translation rules in

@@ -12,6 +12,7 @@ import {
   writeFile,
 } from "node:fs/promises";
 import path from "node:path";
+import { renderLocalePreferenceScript } from "./locale-preference.mjs";
 
 const root = process.cwd();
 const docsSite = path.join(root, "docs-site/build");
@@ -40,6 +41,22 @@ function docsOutputRoot(locale) {
   return locale.default
     ? path.join(docsSite, "docs")
     : path.join(docsSite, localeOutputRoot(locale), "docs");
+}
+
+function combinedMarketingRouteFile(locale, route) {
+  return path.join(combinedSite, localeOutputRoot(locale), route, "index.html");
+}
+
+async function injectLocalePreferenceScript(file) {
+  const contents = await readFile(file, "utf8");
+  assert.match(contents, /<\/head>/i, `HTML head is missing: ${path.relative(root, file)}`);
+  await writeFile(
+    file,
+    contents.replace(
+      /<\/head>/i,
+      '    <script src="/locale-preference.js"></script>\n  </head>',
+    ),
+  );
 }
 
 async function requirePath(target) {
@@ -311,6 +328,31 @@ await Promise.all(
     ),
   ),
 );
+
+const localizedHtmlFiles = new Set([
+  ...docsBefore.flatMap(({ locale, files }) =>
+    [...files.keys()]
+      .filter((relative) => relative.endsWith(".html"))
+      .map((relative) =>
+        path.join(
+          combinedSite,
+          locale.default ? "docs" : localeOutputRoot(locale),
+          locale.default ? relative : path.join("docs", relative),
+        ),
+      ),
+  ),
+  ...locales.flatMap((locale) =>
+    marketingRoutes.map((route) => combinedMarketingRouteFile(locale, route)),
+  ),
+]);
+
+await Promise.all([
+  writeFile(
+    path.join(combinedSite, "locale-preference.js"),
+    renderLocalePreferenceScript(locales, defaultLocale),
+  ),
+  ...[...localizedHtmlFiles].map(injectLocalePreferenceScript),
+]);
 
 const combinedStats = await stat(combinedSite);
 assert(combinedStats.isDirectory());

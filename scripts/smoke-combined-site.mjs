@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import path from "node:path";
+import vm from "node:vm";
 
 const siteRoot = path.resolve("build/combined-site");
 const locales = JSON.parse(
@@ -118,6 +119,7 @@ try {
     spanishDokkuComparison: `${origin}/es-ES${marketingRoutes.dokku.path}index.html`,
     dashboardImage: `${origin}/homepage-assets/caprover-dashboard.png`,
     nextAsset: `${origin}${nextAsset}`,
+    localePreference: `${origin}/locale-preference.js`,
     robots: `${origin}/robots.txt`,
   };
   const responses = Object.fromEntries(
@@ -139,11 +141,13 @@ try {
   const docs = await responses.docs.text();
   assert.match(docs, /Getting Started/i);
   assert.match(docs, /href=["']?\/es-ES\/docs\/get-started(?:["'\s>])/);
+  assert.match(docs, /src=["']\/locale-preference\.js["']/);
   const spanishDocs = await responses.spanishDocs.text();
   assert.match(spanishDocs, /<html lang=["']?es-ES(?:["'\s>])/);
   assert.match(spanishDocs, /Primeros pasos/);
   assert.match(spanishDocs, /Conceptos básicos/);
   assert.match(spanishDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
+  assert.match(spanishDocs, /src=["']\/locale-preference\.js["']/);
   const englishHomepageAlias = await responses.englishHomepageAlias.text();
   assert.match(englishHomepageAlias, /Deploy apps\./);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
@@ -153,6 +157,7 @@ try {
   assert.match(spanishHomepage, /<html lang=["']es-ES["']/);
   assert.match(spanishHomepage, /<main lang=["']es-ES["']/);
   assert.match(spanishHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
+  assert.match(spanishHomepage, /src=["']\/locale-preference\.js["']/);
   const spanishComparisonPages = await Promise.all(
     [
       responses.spanishComparisonHub,
@@ -174,6 +179,103 @@ try {
     await responses.robots.text(),
     "User-agent: *\nAllow: /\nSitemap: https://caprover.com/sitemap.xml\n",
   );
+
+  const localePreferenceScript = await responses.localePreference.text();
+
+  function runLocalePreference({
+    pathname = "/",
+    search = "",
+    hash = "",
+    languages = [],
+    savedLocale,
+  } = {}) {
+    const storage = new Map();
+    if (savedLocale) storage.set("caprover.locale", savedLocale);
+    let redirect;
+    let clickListener;
+    const location = {
+      origin,
+      href: `${origin}${pathname}${search}${hash}`,
+      pathname,
+      search,
+      hash,
+      replace(destination) {
+        redirect = destination;
+      },
+    };
+    vm.runInNewContext(localePreferenceScript, {
+      URL,
+      document: {
+        addEventListener(type, listener) {
+          if (type === "click") clickListener = listener;
+        },
+      },
+      localStorage: {
+        getItem(key) {
+          return storage.get(key) ?? null;
+        },
+        setItem(key, value) {
+          storage.set(key, value);
+        },
+      },
+      location,
+      navigator: {
+        language: languages[0],
+        languages,
+      },
+    });
+    return { clickListener, redirect, storage };
+  }
+
+  const spanishBrowser = runLocalePreference({
+    pathname: "/docs/get-started",
+    search: "?source=test",
+    hash: "#install",
+    languages: ["es-MX", "en-US"],
+  });
+  assert.equal(
+    spanishBrowser.redirect,
+    "/es-ES/docs/get-started?source=test#install",
+  );
+  assert.equal(spanishBrowser.storage.get("caprover.locale"), "es-ES");
+
+  assert.equal(runLocalePreference({ languages: ["fr-FR"] }).redirect, undefined);
+  assert.equal(
+    runLocalePreference({ languages: ["es-ES"], savedLocale: "en" }).redirect,
+    undefined,
+  );
+  assert.equal(
+    runLocalePreference({
+      pathname: "/compare",
+      languages: ["en-US"],
+      savedLocale: "es-ES",
+    }).redirect,
+    "/es-ES/compare",
+  );
+  assert.equal(
+    runLocalePreference({ pathname: "/es-ES/", savedLocale: "en" }).redirect,
+    undefined,
+  );
+
+  const manualSelection = runLocalePreference({
+    pathname: "/es-ES/docs/get-started",
+    languages: ["es-ES"],
+    savedLocale: "es-ES",
+  });
+  assert(manualSelection.clickListener, "Locale selection listener is missing");
+  manualSelection.clickListener({
+    target: {
+      closest() {
+        return {
+          href: `${origin}/docs/get-started`,
+          getAttribute(name) {
+            return name === "lang" ? "en" : null;
+          },
+        };
+      },
+    },
+  });
+  assert.equal(manualSelection.storage.get("caprover.locale"), "en");
 
   function docsStylesheet(html) {
     const match = html.match(
