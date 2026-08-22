@@ -1,0 +1,5 @@
+:HL["/_next/static/media/22a5144ee8d83bca-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/7d4881bb7e1bf84d-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/e17fa0d370d5dc65.css","style"]
+:HL["/homepage-assets/caprover-logo.png","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":0,"slots":{"children":{"name":"(spanish)","param":null,"prefetchHints":16,"slots":{"children":{"name":"es-ES","param":null,"prefetchHints":0,"slots":{"children":{"name":"compare","param":null,"prefetchHints":0,"slots":{"children":{"name":"coolify","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}}}}}},"staleTime":300,"buildId":"aAYJqYX-5cGrCYiRKJvTU"}
