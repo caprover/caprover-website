@@ -229,21 +229,37 @@ const [docsSitemaps, marketingSitemap] = await Promise.all([
   ),
   readFile(path.join(marketingSite, "sitemap.xml"), "utf8"),
 ]);
-const marketingUrls = (marketingSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? []).filter(
-  (entry) => !entry.includes("<loc>https://caprover.com/</loc>"),
-);
+const marketingUrls =
+  marketingSitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [];
 assert.equal(
   marketingUrls.length,
-  locales.length * marketingRoutes.length - 1,
+  locales.length * marketingRoutes.length,
   "Marketing sitemap is missing localized URLs",
 );
 const docsUrls = docsSitemaps.flatMap(
   (sitemap) => sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [],
 );
 const allUrls = [...new Set([...docsUrls, ...marketingUrls])];
+const sitemapLocations = allUrls.flatMap((entry) =>
+  [...entry.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, location]) => location),
+);
+assert.equal(
+  sitemapLocations.length,
+  new Set(sitemapLocations).size,
+  "Combined sitemap contains duplicate URLs",
+);
+for (const locale of locales) {
+  for (const route of marketingRoutes) {
+    const expectedUrl = `https://caprover.com${locale.pathPrefix}/${route ? `${route}/` : ""}`;
+    assert(
+      sitemapLocations.includes(expectedUrl),
+      `Combined sitemap is missing: ${expectedUrl}`,
+    );
+  }
+}
 await writeFile(
   path.join(combinedSite, "sitemap.xml"),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allUrls.join("\n")}\n</urlset>\n`,
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${allUrls.join("\n")}\n</urlset>\n`,
 );
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
 await requirePath(path.join(combinedSite, ".nojekyll"));
