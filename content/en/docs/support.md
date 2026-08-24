@@ -27,7 +27,7 @@ Alternatively, you can use the following third party entities for their paid ser
 
 ### You!!
 
-Please feel free to [edit](https://github.com/caprover/caprover-website/edit/master/docs/support.md) add your name here if you're familiar with CapRover.
+Please feel free to click on **Edit this page** below and add your name here if you're familiar with CapRover.
 
 ### Need Airtight System?
 
