@@ -239,7 +239,7 @@ assert.equal(
 const docsUrls = docsSitemaps.flatMap(
   (sitemap) => sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [],
 );
-const allUrls = [...new Set([...docsUrls, ...marketingUrls])];
+const allUrls = [...docsUrls, ...marketingUrls];
 const sitemapLocations = allUrls.flatMap((entry) =>
   [...entry.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, location]) => location),
 );
