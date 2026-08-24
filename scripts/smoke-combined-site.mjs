@@ -95,6 +95,12 @@ try {
     );
     const localizedDocs = await docsResponse.text();
     assert(localizedDocs.includes(docsTitle), `${locale.code} documentation content is missing`);
+    const editUrl =
+      `https://github.com/caprover/caprover-website/edit/master/content/${locale.code}/docs/get-started.md`;
+    assert(
+      localizedDocs.includes(editUrl),
+      `${locale.code} documentation edit URL is incorrect`,
+    );
   }
 
   const homepageResponse = await fetch(`${origin}/`);
