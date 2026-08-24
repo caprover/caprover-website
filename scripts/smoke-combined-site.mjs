@@ -19,6 +19,7 @@ const contentTypes = new Map([
   [".js", "text/javascript"],
   [".png", "image/png"],
   [".woff2", "font/woff2"],
+  [".xml", "application/xml"],
 ]);
 
 const server = createServer(async (request, response) => {
@@ -121,6 +122,7 @@ try {
     nextAsset: `${origin}${nextAsset}`,
     localePreference: `${origin}/locale-preference.js`,
     robots: `${origin}/robots.txt`,
+    sitemap: `${origin}/sitemap.xml`,
   };
   const responses = Object.fromEntries(
     await Promise.all(
@@ -179,6 +181,42 @@ try {
     await responses.robots.text(),
     "User-agent: *\nAllow: /\nSitemap: https://caprover.com/sitemap.xml\n",
   );
+
+  const sitemap = await responses.sitemap.text();
+  assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
+  assert.match(
+    sitemap,
+    /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9" xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml">/,
+  );
+  assert.match(sitemap, /<\/urlset>\s*$/);
+  assert.equal(
+    (sitemap.match(/<url>/g) ?? []).length,
+    (sitemap.match(/<\/url>/g) ?? []).length,
+    "Sitemap URL elements are unbalanced",
+  );
+  const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+    ([, location]) => location,
+  );
+  assert.equal(
+    sitemapLocations.length,
+    new Set(sitemapLocations).size,
+    "Sitemap contains duplicate canonical URLs",
+  );
+  for (const locale of locales) {
+    const expectedUrls = [
+      ...Object.values(marketingRoutes).map(
+        (route) => `https://caprover.com${locale.pathPrefix}${route.path}`,
+      ),
+      `https://caprover.com${locale.pathPrefix}/docs/get-started`,
+    ];
+    for (const expectedUrl of expectedUrls) {
+      assert.equal(
+        sitemapLocations.filter((location) => location === expectedUrl).length,
+        1,
+        `Sitemap must contain exactly one entry for ${expectedUrl}`,
+      );
+    }
+  }
 
   const localePreferenceScript = await responses.localePreference.text();
 
