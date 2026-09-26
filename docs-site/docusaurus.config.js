@@ -41,6 +41,9 @@ const config = {
     [
       "classic",
       {
+        gtag: {
+          trackingID: "G-Z7DNNXJXSB",
+        },
         docs: {
           path: "../content/en/docs",
           routeBasePath: "docs",
