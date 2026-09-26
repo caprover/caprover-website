@@ -44,6 +44,13 @@ Add English Markdown files in `content/en/docs/` and register them in
 The documentation commands validate every locale and generate translated
 Docusaurus build inputs before starting or building.
 
+The next-generation English documentation is developed separately in
+`content/en/docs-next/`, with its own `docs-site/sidebars-next.js` and routes
+under `/docs-next/`. It is an unlinked preview. The preview pages are marked
+`noindex` and omitted from the sitemap; existing `/docs/` pages remain the
+published documentation. Translated builds currently fall back to English for
+the preview, while their existing `/docs/` content stays translated.
+
 ### Documentation translations
 
 Docusaurus internationalization is configured by `content/locales.json`. English

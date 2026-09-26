@@ -83,8 +83,11 @@ try {
     const docsResponse = await fetch(
       `${origin}${locale.pathPrefix}/docs/get-started`,
     );
+    const previewResponse = await fetch(
+      `${origin}${locale.pathPrefix}/docs-next`,
+    );
 
-    for (const response of [...routeResponses, docsResponse]) {
+    for (const response of [...routeResponses, docsResponse, previewResponse]) {
       assert.equal(response.status, 200, `${response.url} did not return HTTP 200`);
     }
 
@@ -101,6 +104,9 @@ try {
       localizedDocs.includes(editUrl),
       `${locale.code} documentation edit URL is incorrect`,
     );
+    const preview = await previewResponse.text();
+    assert.match(preview, /CapRover documentation preview/);
+    assert.match(preview, /name=robots content="noindex, nofollow"/);
   }
 
   const homepageResponse = await fetch(`${origin}/`);
@@ -213,6 +219,7 @@ try {
   );
 
   const sitemap = await responses.sitemap.text();
+  assert.doesNotMatch(sitemap, /\/docs-next(?:\/|<)/);
   assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
   assert.match(
     sitemap,

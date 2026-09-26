@@ -65,6 +65,22 @@ const config = {
       },
     ],
   ],
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "next",
+        path: "../content/en/docs-next",
+        routeBasePath: "docs-next",
+        sidebarPath: require.resolve("./sidebars-next.js"),
+        editUrl: ({ docPath }) =>
+          `https://github.com/caprover/caprover-website/edit/master/content/en/docs-next/${docPath}`,
+        showLastUpdateAuthor: false,
+        showLastUpdateTime: false,
+        versions: { current: { noIndex: true } },
+      },
+    ],
+  ],
   themeConfig: {
     image: "img/logo.png",
     colorMode: {
