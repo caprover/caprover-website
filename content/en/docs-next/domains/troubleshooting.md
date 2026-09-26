@@ -13,3 +13,5 @@ Check the request path in order:
 5. **Redirects:** After HTTPS works, test Force HTTPS and any redirect-domain or reverse-proxy rule for loops.
 
 Record the failing hostname, DNS answer, HTTP response, and relevant service logs. Remove tokens and passwords before sharing diagnostics. See [Firewall](./firewall.md) and [HTTPS](./https.md) for the setup prerequisites.
+
+If CapRover reports **domain verification error 1107**, first confirm that the exact domain resolves directly to this server and is reachable on port 80 from outside your network. A DNS proxy or incorrect AAAA record can make CapRover's view differ from yours. For a private network where a public DNS verification cannot work, see [Local / Private Network](../installation/local-private-network.md); its `skipVerifyingDomains` override disables CapRover's check but does not make DNS or public certificate issuance work. Do not enable that override to conceal a broken public DNS configuration.

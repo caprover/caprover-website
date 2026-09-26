@@ -12,4 +12,4 @@ Use an OpenStack compute instance with a public or floating IPv4 address. The pr
 4. Set your domain's wildcard A record to the public/floating IP.
 5. Follow [Getting Started](../get-started.md) on the instance to install Docker and CapRover, initialize the dashboard, and deploy the sample HTTPS app.
 
-The older documentation describes a Heat template as another provisioning option. Its provider-specific image and network inputs, and the template's current behavior, need verification before that automated route is documented here.
+The repository also contains an [older Heat template](https://github.com/caprover/caprover/blob/master/dev-scripts/openstack/single-instance.yml), but it hardcodes the SSH key name, opens the setup and SSH ports to the internet, and contains an incorrect relative apt-source path. Do not deploy that template unchanged. Use the manual instance steps above unless you have reviewed and corrected it for your OpenStack environment.
