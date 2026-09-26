@@ -50,6 +50,9 @@ under `/docs-next/`. It is an unlinked preview. The preview pages are marked
 `noindex` and omitted from the sitemap; existing `/docs/` pages remain the
 published documentation. Translated builds currently fall back to English for
 the preview, while their existing `/docs/` content stays translated.
+The [draft URL map](DOCS_NEXT_URL_MAP.md) tracks legacy routes and their planned
+destinations. Topic pages marked as drafts remain incomplete until their content
+phase is finished.
 
 ### Documentation translations
 

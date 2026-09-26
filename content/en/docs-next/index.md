@@ -1,7 +1,9 @@
 ---
 id: index
-title: CapRover documentation preview
+title: Start
 slug: /
 ---
 
-The new documentation is being built here. The [current documentation](/docs/get-started) remains available while this preview is in progress.
+This is an early preview of the next CapRover documentation. The navigation shows the planned structure; individual guides will be completed in phases.
+
+For complete instructions during the preview, use the [current documentation](/docs/get-started).
