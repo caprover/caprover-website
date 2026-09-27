@@ -519,8 +519,11 @@ Peers={{json .Peers}}' \
     printf '\n%s\n' "The report may contain hostnames, addresses, container names, application names, domain names, process arguments, service logs, and package history. Review it before sharing publicly."
 }
 
-main 2>&1 | tee "$REPORT"
-chmod 600 "$REPORT"
+if ! main 2>&1 | tee "$REPORT"; then
+    printf 'Failed to write the full diagnostic report: %s (it may be incomplete).\n' "$REPORT" >&2
+    exit 1
+fi
+chmod 600 "$REPORT" || exit 1
 
 printf '\nReport saved at: %s\n' "$REPORT"
 printf 'View it with: sudo cat %s\n' "$REPORT"
