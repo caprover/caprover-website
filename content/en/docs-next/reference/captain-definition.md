@@ -21,3 +21,22 @@ Provide **exactly one** of the four selectors. The [parser](https://github.com/c
 ```
 
 `imageName` deployments cannot be rebuilt from source without a new definition. For an example with a Dockerfile, see [Static / React](../guides/static-react.md).
+
+## Built-in templates and versions
+
+`templateId` has the form `NAME/VERSION`, for example:
+
+```json
+{"schemaVersion":2,"templateId":"node/24"}
+```
+
+CapRover's [template definitions](https://github.com/caprover/caprover/blob/master/src/user/TemplateHelper.ts) generate Dockerfiles using these official image tags:
+
+| `NAME` | Base image for `NAME/VERSION` |
+| --- | --- |
+| `node` | `node:VERSION-alpine` |
+| `php` | `php:VERSION-apache` |
+| `python-django` | `python:VERSION-alpine` |
+| `ruby-rack` | `ruby:VERSION-alpine` |
+
+For `node/24`, the resulting base is `node:24-alpine`. The tag must exist in the relevant upstream image registry, and a major-only tag can move as that image is updated. Template-specific Dockerfile instructions are in CapRover's [`dockerfiles` directory](https://github.com/caprover/caprover/tree/master/dockerfiles). Inspect them before relying on a template's framework assumptions or changing versions. A repository-owned Dockerfile lets you pin an exact image tag or digest and control the build for other frameworks.

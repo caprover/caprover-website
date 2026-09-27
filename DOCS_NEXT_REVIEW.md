@@ -18,7 +18,17 @@ The English preview lives at `/docs-next` beside the unchanged `/docs` tree. It 
 - Docusaurus production builds succeed for `en`, `es-ES`, and `zh-CN`. The combined-site HTTP smoke test passes; the old `/docs` output remains present.
 - Generated `/docs-next` HTML has `noindex` in all three locales; none of the three sitemap files contains a `/docs-next` URL. Spanish and Chinese preview paths currently render English fallback content.
 - The build rejects broken internal Markdown links. An independent editorial pass and live testing of provider-specific procedures are appropriate before a public navigation change; external destinations can change independently of this repository.
-- The follow-up validation checked 18 shell, 9 JSON, 2 YAML, and 3 JavaScript fenced examples for syntax. The tutorial's counter was exercised with GET/POST/GET and retained the increment in the same process. All 423 generated preview routes (141 pages in each of three locales) exist and are marked `noindex`; each locale's sitemap omits them. The combined-site HTTP smoke test passed. These checks do not substitute for a deployment on a live CapRover server or editorial feedback from reviewers.
+- The latest validation checked 21 shell, 13 JSON, 2 YAML, and 4 JavaScript fenced examples for syntax (the theme configuration as an object expression). The multi-service tutorial's GET/POST jobs, worker update, and PUT/GET upload were exercised locally against a shared in-memory PostgreSQL substitute. All 423 generated preview routes (141 pages in each of three locales) exist and are marked `noindex`; each locale's sitemap omits them. The combined-site HTTP smoke test passed. These checks do not substitute for a deployment on a live CapRover server, including PostgreSQL and Docker volumes, or editorial feedback from reviewers.
+
+## External review follow-up
+
+The two outside reviews were based partly on the draft before PR #220. That PR had already filled in the CLI flags, GitLab CI, dashboard password and NGINX recovery, app shell and restart, Certbot override example, theme object, and first runnable tutorial. The further review added:
+
+- A DNS record table and external wildcard lookup, an optional CLI setup path, provider-image shortcut, domain-free local-install link, and low-memory swap guidance to Getting Started. The source-based CLI test deployment remains a separate linked task path.
+- The actual built-in Captain Definition template names, image suffixes, and runtime version semantics; OTP authentication in the CLI; a scoped named-volume cleanup procedure; and the distinction between active and orphaned certificates.
+- A multi-service tutorial with a public web app, private worker, PostgreSQL, persistent uploads, internal service networking, deployment archives, HTTPS, and separate data backups. The theme page now contains its own complete example rather than depending on the old docs.
+
+The review did not restore the old signup-credit amount or referral claims because promotions change, nor recommend hiding the root domain as a security control. The old blanket Docker prune commands and automatic reuse of a historical CaptainDuckDuck script remain excluded. The rclone recipe and uncorrected OpenStack Heat template remain explicitly deferred pending a working provider-specific validation. One-Click instructions are distributed among install, configuration, connection, upgrade, and troubleshooting pages; the live catalog remains the source for its current app list. Short task pages are intentional and are not necessarily placeholders.
 
 ## Cutover work requiring a separate decision
 
