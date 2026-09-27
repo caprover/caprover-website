@@ -4,83 +4,180 @@ title: Complete Web Application Tutorial
 slug: /guides/complete-webapp
 ---
 
-This tutorial deploys a small HTTP application, saves a counter in a Docker volume, serves it over HTTPS, and verifies that the data survives a redeploy. It uses only Node's built-in modules, so the archive contains all source needed for the build. **The public counter has no authentication and is for learning, not production.**
+This example combines a public Node web app, a private worker, PostgreSQL, and a persistent upload directory. The web app accepts a small job; the worker marks it processed in PostgreSQL. **The endpoints have no authentication and are for a disposable learning environment.** Use a single-node server with enough memory for PostgreSQL and two Node services; a 1 GB host may be too small for concurrent image builds.
 
-## 1. Prepare CapRover
+## 1. Create the private database
 
-Complete [Getting Started](../get-started.md) through dashboard HTTPS. You need a working wildcard DNS record, ports 80 and 443, and access to the dashboard. On a single-node server, create a web app named `demo-counter` with **Has Persistent Data** enabled. In its configuration, add a named Docker volume `demo-counter-data` at the container path `/data`. Set the **Container HTTP Port** to `3000` and save.
+Complete [Getting Started](../get-started.md), including wildcard DNS and dashboard HTTPS. Create a CapRover app named `demo-db` with **Has Persistent Data** enabled and **Do not expose as web app** selected. Add a named volume `demo-db-data` at `/var/lib/postgresql/data`, the data path for the PostgreSQL 17 image. Set these app environment variables before the first deployment:
 
-## 2. Create the source
+| Variable | Value |
+| --- | --- |
+| `POSTGRES_USER` | `demo` |
+| `POSTGRES_DB` | `demo` |
+| `POSTGRES_PASSWORD` | A unique strong password you save securely |
 
-Make a local directory named `demo-counter`. Add `server.mjs`:
+In the **Deployment** tab, deploy this image-only Captain Definition:
+
+```json
+{"schemaVersion":2,"imageName":"postgres:17-alpine"}
+```
+
+Wait until its service is running and its logs say it is ready for connections. Keep the database port `5432` private; there is no need to publish a host port. Changing `POSTGRES_PASSWORD` after the volume has been initialized does not change the existing database user's password.
+
+## 2. Build the web and worker images
+
+In a new local directory, create `package.json`:
+
+```json
+{"name":"caprover-multi-service-demo","version":"1.0.0","private":true,"type":"module","dependencies":{"pg":"8.11.5"}}
+```
+
+Create `web.mjs`. It uses the standard PostgreSQL environment variables, writes a job to the database, and stores one small upload at the mounted path:
 
 ```javascript
 import http from 'node:http';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import pg from 'pg';
 
-const file = '/data/count.txt';
-await mkdir('/data', { recursive: true });
+const pool = new pg.Pool();
+pool.on('error', (error) => console.error('Database connection error:', error));
+const upload = '/data/uploads/note.txt';
+await mkdir('/data/uploads', { recursive: true });
+await pool.query(`CREATE TABLE IF NOT EXISTS jobs (
+  id BIGSERIAL PRIMARY KEY, label TEXT NOT NULL,
+  processed BOOLEAN NOT NULL DEFAULT FALSE
+)`);
 
-const server = http.createServer(async (req, res) => {
+async function readSmallBody(req) {
+  const chunks = [];
+  let size = 0;
+  for await (const chunk of req) {
+    size += chunk.length;
+    if (size > 4096) throw new Error('Body exceeds 4 KB');
+    chunks.push(chunk);
+  }
+  return Buffer.concat(chunks).toString('utf8');
+}
+
+http.createServer(async (req, res) => {
   try {
-    if (req.url !== '/' && req.url !== '/increment') {
+    if (req.method === 'POST' && req.url === '/jobs') {
+      const label = (await readSmallBody(req)).trim();
+      if (!label) { res.writeHead(400).end('Empty job'); return; }
+      const result = await pool.query(
+        'INSERT INTO jobs (label) VALUES ($1) RETURNING id', [label]);
+      res.writeHead(201, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(result.rows[0]));
+    } else if (req.method === 'GET' && req.url === '/jobs') {
+      const result = await pool.query('SELECT * FROM jobs ORDER BY id DESC LIMIT 10');
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(result.rows));
+    } else if (req.method === 'PUT' && req.url === '/upload') {
+      await writeFile(upload, await readSmallBody(req));
+      res.writeHead(204).end();
+    } else if (req.method === 'GET' && req.url === '/upload') {
+      const value = await readFile(upload, 'utf8').catch((error) => {
+        if (error.code === 'ENOENT') return '';
+        throw error;
+      });
+      res.writeHead(200, { 'content-type': 'text/plain' }).end(value);
+    } else {
       res.writeHead(404).end();
-      return;
     }
-    let count = Number(await readFile(file, 'utf8').catch((error) => {
-      if (error.code === 'ENOENT') return '0';
-      throw error;
-    }));
-    if (req.method === 'POST' && req.url === '/increment') {
-      count += 1;
-      await writeFile(file, String(count));
-    } else if (req.method !== 'GET' || req.url !== '/') {
-      res.writeHead(405).end();
-      return;
-    }
-    res.writeHead(200, { 'content-type': 'application/json' });
-    res.end(JSON.stringify({ count }));
   } catch (error) {
     console.error(error);
     res.writeHead(500).end();
   }
-});
-
-server.listen(3000, '0.0.0.0');
+}).listen(3000, '0.0.0.0');
 ```
 
-Add a `Dockerfile` and a file named `captain-definition`:
+Create `worker.mjs` to process the jobs from the same database:
 
-```dockerfile
+```javascript
+import pg from 'pg';
+
+const pool = new pg.Pool();
+pool.on('error', (error) => console.error('Database connection error:', error));
+async function processJobs() {
+  try {
+    const result = await pool.query(
+      'UPDATE jobs SET processed = TRUE WHERE processed = FALSE RETURNING id');
+    if (result.rowCount) console.log(`Processed ${result.rowCount} jobs`);
+  } catch (error) {
+    console.error('Worker will retry:', error);
+  }
+}
+
+async function poll() {
+  await processJobs();
+  setTimeout(poll, 2000);
+}
+await poll();
+```
+
+Create these two Dockerfiles:
+
+```dockerfile title="Dockerfile.web"
 FROM node:24-alpine
 WORKDIR /app
-COPY server.mjs .
-CMD ["node", "server.mjs"]
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY web.mjs ./
+CMD ["node", "web.mjs"]
 ```
 
-```json
-{"schemaVersion":2,"dockerfilePath":"./Dockerfile"}
+```dockerfile title="Dockerfile.worker"
+FROM node:24-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY worker.mjs ./
+CMD ["node", "worker.mjs"]
 ```
 
-## 3. Deploy and verify
+Create two Captain Definition files in the same directory:
 
-From the directory containing these three files, make an archive:
+```json title="captain-definition-web"
+{"schemaVersion":2,"dockerfilePath":"./Dockerfile.web"}
+```
+
+```json title="captain-definition-worker"
+{"schemaVersion":2,"dockerfilePath":"./Dockerfile.worker"}
+```
+
+Run `npm install --package-lock-only` locally to create `package-lock.json`, then package the files. The build uses `npm ci`, so include the lock file in the archive:
 
 ```bash
-tar -cf deploy.tar captain-definition Dockerfile server.mjs
+npm install --package-lock-only
+tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
+  Dockerfile.web Dockerfile.worker captain-definition-web captain-definition-worker
 ```
 
-In the app's **Deployment** tab, upload `deploy.tar` and wait for a successful build. Open `http://demo-counter.<root-domain>/` and expect `{"count":0}`. Enable HTTPS for the app after the HTTP route works, then run:
+## 3. Create, configure, and deploy the other apps
+
+Create `demo-web` with **Has Persistent Data** enabled. Add a named volume `demo-uploads` at `/data/uploads`, set the container HTTP port to `3000`, and give it the database variables below. Create `demo-worker` as a non-web app with no volume and the same database variables:
+
+| Variable | Value on both apps |
+| --- | --- |
+| `PGHOST` | `demo-db` |
+| `PGPORT` | `5432` |
+| `PGUSER` | `demo` |
+| `PGDATABASE` | `demo` |
+| `PGPASSWORD` | The same password set on `demo-db` |
+
+New CapRover apps use their app name as the internal Docker service name; confirm the actual name with `docker service ls` if you are using a legacy app. In `demo-web`'s **Deployment** tab, set the Captain Definition Path to `./captain-definition-web` and upload `deploy.tar`. After the web app starts and creates the `jobs` table, set `demo-worker`'s Captain Definition Path to `./captain-definition-worker` and upload the same archive there. Inspect the build and service logs for both apps. The worker needs no public domain or port mapping.
+
+Visit `http://demo-web.<root-domain>/jobs` and expect `[]`. Then enable HTTPS for `demo-web`, verify its certificate, and make these requests, replacing the example hostname:
 
 ```bash
-curl -X POST https://demo-counter.<root-domain>/increment
-curl https://demo-counter.<root-domain>/
+curl -X POST --data 'first job' https://demo-web.apps.example.com/jobs
+curl https://demo-web.apps.example.com/jobs
+curl -X PUT --data 'saved upload' https://demo-web.apps.example.com/upload
+curl https://demo-web.apps.example.com/upload
 ```
 
-The second response should show `{"count":1}`. Redeploy the same archive, wait for the service to restart, and repeat the GET request. The count should still be 1 because `/data` is mounted. If it resets, inspect the app's volume and node placement before writing important data.
+Refresh `/jobs` after a few seconds and check that the job has `processed: true`. The upload should say `saved upload`. Redeploy `demo-web` and verify the upload remains; restart `demo-db` and confirm the job is still listed. If either disappears, inspect the configured mount path and the node hosting that service.
 
-For a real web app, add authentication, input handling, tests, and a database or external object store as needed. A single-file counter is not safe for concurrent replicas. Back up the volume **separately** from [CapRover's configuration backup](../server/backup/contents.md); see [Back Up Persistent Data](../data-persistence/backup-data.md). To add a private worker or database, use [internal service networking](../domains/internal-networking.md) and keep its data on the intended node.
+## 4. Back up each data source
 
-## Extend the example
-
-Create a separate non-web app for a worker if you need background processing. Give it an image with a long-running worker process, environment variables for its dependencies, and no public HTTP route. For a database, choose a [One-Click App](../one-click-apps/index.md) or an external provider and use its internal service name from the web and worker containers. Store its credentials as app environment variables, keep its database port private, and arrange a database-specific backup. Add a public domain and HTTPS only to the web app. Test worker jobs and database writes after a service restart before adding replicas; node-local files and in-process sessions need a deliberate [scaling plan](../scaling/index.md).
+CapRover's [configuration backup](../server/backup/contents.md) does not contain `demo-db-data` or `demo-uploads`. Set up a PostgreSQL logical backup and a separate copy of the upload volume, store both off the host, and test restoration. See [Back Up Persistent Data](../data-persistence/backup-data.md). This tutorial keeps both stateful apps on a single node; [local volumes do not move with a Swarm task](../data-persistence/volumes.md). A production app also needs authentication, an upload policy, job claiming for multiple workers, and a deployment and database migration strategy.

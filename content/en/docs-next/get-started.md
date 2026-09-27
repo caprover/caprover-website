@@ -14,6 +14,8 @@ This guide takes a fresh Ubuntu server from installation to a public CapRover ap
 
 This guide assumes a single public server and the default HTTP, HTTPS, and admin ports. For a private network or different host ports, use the corresponding [installation guides](./installation/index.md) after the basic concepts here are familiar.
 
+If you use [DigitalOcean's CapRover Marketplace image](./installation/digitalocean.md), Docker and CapRover are already installed. Check the provider firewall in step 1, skip the Docker and CapRover installation commands in steps 2–3, and continue at DNS after verifying the image's setup instructions. This guide uses a fresh Ubuntu host so the installation steps also work with other providers. For local experiments without a public domain, see [Local / Private Network](./installation/local-private-network.md); the normal public HTTPS flow here requires a reachable hostname.
+
 ## 1. Open the required ports
 
 Allow inbound `80/tcp` for HTTP, `443/tcp` for HTTPS, and `3000/tcp` for initial dashboard access. Allow `443/udp` if you want HTTP/3. Keep SSH open so you can administer the server.
@@ -77,11 +79,19 @@ In your browser, open `http://YOUR_SERVER_IP:3000`. Sign in with the initial pas
 
 ## 4. Set up wildcard DNS
 
-At your domain's DNS provider, create an **A** record for `*.apps.example.com` pointing directly to your server's public IPv4 address. For a DNS zone of `example.com`, the record name is usually `*.apps`. This one record covers both `captain.apps.example.com` and the default app addresses such as `my-first-app.apps.example.com`.
+At your domain's DNS provider, create this record, replacing the example IP with your server's public IPv4 address:
 
-Check that both names resolve to the server IP before continuing. If your DNS provider has a proxy mode, use DNS-only mode during initial setup so CapRover can issue certificates against the server directly. DNS updates can take time to propagate.
+| Type | Name in the `example.com` DNS zone | Value |
+| --- | --- | --- |
+| A | `*.apps` | `203.0.113.10` (your server IP) |
+
+This one wildcard record covers both `captain.apps.example.com` and default app addresses such as `my-first-app.apps.example.com`. The bare `apps.example.com` needs its own DNS record if you intend to use it directly.
+
+Check `captain.apps.example.com` and an unused name such as `random123.apps.example.com` with `dig +short` or an external [DNS lookup](https://mxtoolbox.com/DNSLookup.aspx). Both should resolve to your server IP. If your DNS provider has a proxy mode, use DNS-only mode during initial setup so CapRover can issue certificates against the server directly. DNS updates can take time to propagate; [Cloudflare and other reverse proxies](./domains/cloudflare-reverse-proxies.md) need their own validation after setup.
 
 ## 5. Initialize the dashboard and secure it
+
+Choose the dashboard steps below or the CLI setup alternative following them. Both configure the same fresh installation.
 
 While signed in at `http://YOUR_SERVER_IP:3000`:
 
@@ -92,6 +102,17 @@ While signed in at `http://YOUR_SERVER_IP:3000`:
 5. Open `https://captain.apps.example.com` and confirm the browser shows a valid certificate. You can then enable **Force HTTPS** for the dashboard.
 
 If certificate issuance fails, confirm that `captain.apps.example.com` resolves to this server and that inbound `80/tcp` and `443/tcp` reach it. See [HTTPS](./domains/https.md) for the full explanation.
+
+### CLI setup alternative
+
+On a **fresh** installation, you may initialize the root domain, new password, and dashboard certificate from your workstation with the CapRover CLI instead of the dashboard sequence above:
+
+```bash
+npm install -g caprover
+caprover serversetup
+```
+
+Supply the server IP, the root domain `apps.example.com` (without `*.`), a new password, and a certificate email address when prompted. Start with working DNS and port 80 access. The setup command connects to the initial HTTP admin port and cannot complete after Force HTTPS redirects it; use `caprover login` against the HTTPS dashboard URL for an already configured server. See [CLI Commands](./reference/cli.md).
 
 ## 6. Create and deploy an application
 
@@ -111,3 +132,19 @@ If certificate issuance fails, confirm that `captain.apps.example.com` resolves 
 5. Enable HTTPS for this app in its HTTP settings. Visit `https://my-first-app.apps.example.com` and confirm its certificate is valid. You can then enable **Force HTTPS** for the app.
 
 You now have a dashboard and an application served over HTTPS. For your own source code, continue with [Deployments](./deployments/index.md). For environment variables and other app settings, use [Applications](./applications/index.md). To plan durable storage, read [Data & Persistence](./data-persistence/index.md) before deploying a database or other stateful service.
+
+For a source-based test app instead of the image example, follow [Deploy with the CLI](./deployments/cli.md). Ordinary Git deployments archive the committed branch, so uncommitted files and files excluded by `.gitignore` are not uploaded.
+
+## If a build runs out of memory
+
+On a small server, check `free -h`, `swapon --show`, disk space, and the failed build logs. If RAM is insufficient and the host has spare disk, a swap file can help a short build finish. Check that `/swapfile` does not already exist or contain data before running these commands:
+
+```bash
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+free -h
+```
+
+To persist this new swap file across a reboot, add `/swapfile none swap sw 0 0` once to `/etc/fstab` and verify `sudo swapon --show` after reboot. Swap uses disk and is slower than RAM; a larger host or building an image in CI is preferable for repeated heavy builds.

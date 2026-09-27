@@ -4,12 +4,20 @@ title: Dashboard Themes
 slug: /server/themes
 ---
 
-The dashboard's **Themes** settings let you choose a built-in theme or create a custom one. Custom theme content is a JavaScript object passed to Ant Design, rather than JSON text. For example, a conditional background color can use `isDarkMode`:
+The dashboard's **Themes** settings let you choose a built-in theme or create a custom one. Custom theme content is a JavaScript object passed to Ant Design, rather than JSON text. The editor provides `isDarkMode`, `darkAlgorithm`, and `defaultAlgorithm`:
 
 ```javascript
-{ token: { colorBgBase: isDarkMode ? '#101010' : '#ffffff' } }
+{
+  algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+  token: {
+    colorPrimary: '#2769c5',
+    colorBgBase: isDarkMode ? '#101010' : '#ffffff',
+    borderRadius: 6,
+    fontSize: 14
+  }
+}
 ```
 
-The theme editor also provides a **head embed** field for fonts or other head markup and an **extra configuration** field for CapRover-specific settings, such as `{ siderTheme: 'dark' }`. Review code before adding scripts to the dashboard head. Save your work, select the theme, and check readability in both light and dark modes. You can edit or delete custom themes; built-in themes are protected.
+The **head embed** field can load a font or other head markup, for example `<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet" />`. The **extra configuration** field accepts a JavaScript object such as `{ siderTheme: 'dark' }` for a dark sidebar. Review code before adding scripts to the dashboard head. Save your work, select the theme, and check readability in both light and dark modes. You can edit or delete custom themes; built-in themes are protected.
 
-Themes only affect the dashboard appearance; application styling belongs in the application itself. See the [existing theme customization guide](/docs/theme-customization) and [Ant Design theme tokens](https://ant.design/docs/react/customize-theme) for more examples.
+Themes only affect the dashboard appearance; application styling belongs in the application itself. The [built-in theme definitions](https://github.com/caprover/caprover/tree/master/template/themes) and [Ant Design theme tokens](https://ant.design/docs/react/customize-theme) provide more examples.
