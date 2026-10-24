@@ -68,6 +68,8 @@ test("exports complete localized website routes", async () => {
     }
 
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
+    assert.match(homepage, /class="kit-subscribe"/);
+    assert.doesNotMatch(homepage, /list-manage\.com\/subscribe\/post/);
     assert(
       homepage.includes(
         `https://caprover.com${locale.pathPrefix}/docs/get-started`,
