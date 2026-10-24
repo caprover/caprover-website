@@ -1,5 +1,6 @@
 import { DEFAULT_LOCALE, docsUrl, type Locale } from "../i18n/config";
 import { getMessages, messageList, type Messages } from "../i18n/messages";
+import { KitSubscribeForm } from "./kit-subscribe-form";
 import { LocaleSwitcher } from "./locale-switcher";
 
 const GITHUB = "https://github.com/caprover/caprover";
@@ -116,38 +117,11 @@ function CommunitySupport({
           </span>
           <h3>{messages.subscribeTitle}</h3>
           <p>{messages.subscribeDescription}</p>
-          <form
-            action="https://caprover.us19.list-manage.com/subscribe/post?u=c4a2955917a02c0480c9c5677&amp;id=d4a57b767d&amp;f_id=007e42e4f0"
-            method="post"
-            target="_blank"
-            noValidate
-          >
-            <label className="sr-only" htmlFor="release-email">
-              {messages.emailLabel}
-            </label>
-            <div className="subscribe-row">
-              <input
-                id="release-email"
-                type="email"
-                name="EMAIL"
-                placeholder={messages.emailPlaceholder}
-                autoComplete="email"
-                required
-              />
-              <button type="submit" name="subscribe">
-                {messages.subscribeButton}
-              </button>
-            </div>
-            <input type="hidden" name="tags" value="9831781" />
-            <div className="form-honeypot" aria-hidden="true">
-              <input
-                type="text"
-                name="b_c4a2955917a02c0480c9c5677_d4a57b767d"
-                tabIndex={-1}
-                defaultValue=""
-              />
-            </div>
-          </form>
+          <KitSubscribeForm
+            emailLabel={messages.emailLabel}
+            emailPlaceholder={messages.emailPlaceholder}
+            subscribeButton={messages.subscribeButton}
+          />
         </article>
       </div>
     </section>
