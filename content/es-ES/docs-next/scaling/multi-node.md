@@ -1,16 +1,16 @@
 ---
 id: multi-node
-title: Configurar un Cluster Multi-Nodo
+title: Configurar un clúster multinodo
 slug: /scaling/multi-node
 ---
 
-CapRover utiliza Docker Swarm. El nodo manager administra los servicios de control de CapRover; los workers realizan tareas de aplicación.
+CapRover utiliza Docker Swarm. El nodo manager ejecuta los servicios de control de CapRover; los nodos worker ejecutan las tareas de las aplicaciones.
 
-**Antes de añadir un nodo:** Prepare Docker, redes privadas, SSH y un registro compartido.
+**Antes de añadir un nodo:** prepara Docker, una red privada entre nodos, acceso SSH y un registry compartido.
 
-## 1. Prepare servidor
+## 1. Preparar el servidor
 
-En el nuevo servidor Ubuntu, instale Docker Engine:
+Instala Docker Engine en el nuevo servidor Ubuntu:
 
 ```bash
 sudo apt update
@@ -32,85 +32,80 @@ sudo docker version
 sudo docker info --format '{{.Swarm.LocalNodeState}}'
 ```
 
-- Utilice una IP estable accesible desde el administrador.
-- El estado de Swarm de Docker debería ser `inactive`.
-- Elija **worker** para hospedadores de aplicaciones comunes. Los roles de administrador requieren la planificación del quórum.
+- Utiliza una IP estable a la que pueda conectarse el nodo manager.
+- El estado de Docker Swarm en el nodo nuevo debe ser `inactive`.
+- Para un servidor que solo ejecutará aplicaciones, elige el rol **worker**. Añadir managers requiere planificar el quorum del clúster.
 
-## 2. Redes y SSH
+## 2. Red y SSH
 
-**Entre los nodos de confianza sólo:**
+**Abre estos puertos solo entre nodos de confianza:**
 
-- `2377/tcp`: Gestión del cisma
-- `7946/tcp` y `7946/udp`: Comunicación de nodos
-- `4789/udp`: Redes de superposición
+- `2377/tcp`: gestión de Swarm
+- `7946/tcp` y `7946/udp`: comunicación entre nodos
+- `4789/udp`: red overlay
 
 **SSH:**
 
-1. Utilice una clave privada dedicada y un usuario con acceso Docker (generalmente root).
-2. Añadir la clave pública al nuevo servidor `authorized_keys`.
-3. Prueba SSH **del nodo manager** al nuevo servidor.
-4. Dale a CapRover la llave privada durante la configuración del nodo.
+1. Utiliza una clave privada dedicada y un usuario con acceso a Docker, normalmente root.
+2. Añade la clave pública a `authorized_keys` en el servidor nuevo.
+3. Comprueba la conexión SSH **desde la red del manager** al servidor nuevo.
+4. Proporciona la clave privada a CapRover al añadir el nodo.
 
-La membresía del clúster Docker da acceso equivalente a la raíz. Mantenga los puertos SSH y Swarm restringidos a los hosts de confianza. Revisar reglas UFW CapRover añade durante la unión.
+Pertenecer al grupo Docker da permisos prácticamente equivalentes a root. Restringe SSH y los puertos de Swarm a hosts de confianza. Comprueba las reglas de UFW que CapRover añade al unir nodos.
 
-## 3. Registry
+## 3. Configurar el registry
 
-1. Configure a [registry predeterminado](../deployments/registries/index.md) alcanzable por **todos los nodos**. CapRover lo requiere antes de añadir nodos.
-2. Implementar aplicaciones construidas antes de que el registro fuera habilitado para empujar sus imágenes.
-3. Verificar el nuevo nodo puede tirar de una imagen de nueva build. Las imágenes privadas preconstruidas también necesitan acceso para tirar.
+1. Configura un [registry de push predeterminado](../deployments/registries/index.md) al que puedan acceder **todos los nodos**. CapRover lo necesita para añadir nodos.
+2. Vuelve a desplegar las aplicaciones que se construyeron antes de habilitar el registry para publicar sus imágenes.
+3. Comprueba que el nuevo nodo puede descargar una imagen recién construida. Las imágenes privadas preconstruidas también necesitan credenciales de pull.
 
-## 4. Agregar y verificar el nodo
+## 4. Añadir y comprobar un nodo
 
-1. En **Cluster → Nodos**, ingrese el administrador y los IPs de workers, SSH host/port/user, clave privada y papel de nodo.
-2. Únete al nodo. Verificar que parece saludable y comprobar `docker node ls` en el nodo manager.
-3. Escalar un **apátridas** la aplicación de prueba y la colocación de cheques `docker service ps SERVICE_NAME`.
-4. Prueba el dominio de la aplicación. Si la colocación falla, inspeccionar tiras del registro, salud de nodos y errores de tarea.
+1. En **Cluster → Nodes**, introduce las IP del manager y del worker, host/puerto/usuario SSH, clave privada y rol del nodo.
+2. Añade el nodo y comprueba que aparece como saludable. Ejecuta `docker node ls` en el manager.
+3. Escala una aplicación de prueba **stateless** y comprueba la distribución con `docker service ps SERVICE_NAME`.
+4. Prueba el dominio de la aplicación. Si el scheduling falla, revisa los pulls del registry, el estado del nodo y los errores de las tareas.
 
 ## 5. Aplicaciones persistentes
 
-- Los volúmenes locales y las monturas de sujeción permanecen en su nodo.
-- CapRover pins aplicaciones persistentes; unir un nodo no copia datos.
-- Atrás y migrar datos antes de cambiar la colocación.
+- Los volúmenes locales y bind mounts permanecen en el nodo que almacena los datos.
+- CapRover fija las aplicaciones persistentes a un nodo. Añadir otro nodo no replica sus datos.
+- Haz una copia de seguridad y migra los datos antes de cambiar la ubicación.
 - Consulta [Aplicaciones persistentes en clústeres](multi-node.md).
 
 <span id="source-scaling-manage-nodes"></span>
 
-## Nodos de gestión
+## Administrar nodos
 
-Usar el **Cluster → Nodos** vista y `docker node ls` en un gerente para comprobar la disponibilidad y el papel del nodo. `docker service ps SERVICE_NAME` muestra dónde funcionan las tareas de una aplicación y por qué una tarea no comenzó.
+Usa **Cluster → Nodes** y `docker node ls` en un manager para comprobar el estado y los roles. `docker service ps SERVICE_NAME` indica dónde se ejecutan las tareas de una aplicación y por qué alguna no arrancó.
 
-- Antes de eliminar o drenar un nodo, identifique sus aplicaciones de funcionamiento y cualquier volumen local o monturas de unión.
-- Las tareas apátridas generalmente se pueden reprogramar si las imágenes están disponibles en el registro; los datos persistentes no los siguen automáticamente.
-- Retroceder y mover datos deliberadamente antes de cambiar la colocación.
-
-- Mantenga la gestión de Swarm y los puertos superpuestos restringidos a direcciones de nodos de confianza.
-- Si un nodo no puede unirse, verifique que Docker está instalado, su Swarm es inactivo, las credenciales de SSH funcionan desde el administrador, y el registro y las rutas internodo son accesibles.
+- Antes de eliminar o drenar un nodo, identifica las aplicaciones que ejecuta y sus volúmenes y bind mounts locales.
+- Las tareas stateless normalmente pueden reprogramarse si las imágenes están disponibles en el registry. Los datos persistentes no se trasladan automáticamente.
+- Antes de cambiar la ubicación de una aplicación, haz backup y migra los datos de forma controlada.
+- Mantén los puertos de gestión y overlay de Swarm restringidos a las IP de confianza.
+- Si un nodo no puede unirse, comprueba Docker, que su Swarm está `inactive`, el acceso SSH desde el manager y la conectividad con el registry y los demás nodos.
 
 <span id="source-scaling-persistent-apps"></span>
 
-## Aplicaciones persistentes en clústeres
+## Aplicaciones persistentes en un clúster
 
-- CapRover normalmente limita una aplicación persistente a una instancia en un nodo seleccionado.
-- Un Docker llamado volumen usando el controlador local predeterminado y una montura bind almacenan datos en ese nodo; un segundo nodo no verá automáticamente esos archivos.
-
-- Para mover una aplicación persistente, el respaldo y el quiesce escribe, restaurar datos en el destino, comprobar permisos, actualizar la colocación, luego verificar la aplicación con una instancia.
-- Mantenga la copia vieja hasta que se pruebe la nueva instancia.
-- Un fallo de nodo puede hacer que una aplicación no esté disponible hasta que sus datos sean restaurados en otros lugares.
-
-- Almacenamiento compartido o externo es un diseño avanzado que debe apoyar los requisitos de consistencia y escritura simultánea de la aplicación.
-- El aumento del número de instancias por sí solo no proporciona ese almacenamiento.
-- Consulta [Almacenamiento compartido / externo](../data-persistence/shared-storage.md).
+- CapRover suele limitar las aplicaciones con datos persistentes a una instancia en un nodo concreto.
+- Un volumen Docker con el driver local predeterminado o un bind mount almacena datos en ese nodo. Otro nodo no verá automáticamente esos archivos.
+- Para mover una aplicación persistente, haz backup, detén temporalmente las escrituras, restaura los datos en el destino, comprueba permisos, actualiza la ubicación y verifica la aplicación con una sola instancia.
+- Conserva la copia anterior hasta comprobar el funcionamiento de la nueva.
+- Si falla el nodo donde está fijada una aplicación, esta puede permanecer inaccesible hasta restaurar los datos en otro nodo.
+- El almacenamiento compartido o externo necesita cumplir los requisitos de consistencia y escrituras concurrentes de la aplicación.
+- Aumentar el número de instancias no proporciona almacenamiento compartido. Consulta [Almacenamiento compartido o externo](../data-persistence/shared-storage.md).
 
 <span id="source-scaling-networking"></span>
 
-## Redes multinodo
+## Red multinodo
 
-- La red de superposición de Docker Swarm permite que los servicios se comuniquen a través de los nodos.
-- Entre los nodos de confianza, permiso `2377/tcp` para la gestión, `7946/tcp` y `7946/udp` por comunicación de nodos, y `4789/udp` por tráfico superpuesto.
-- Restringir estos puertos a direcciones de nodos; el tráfico web público todavía alcanza el punto de entrada HTTP/HTTPS de CapRover.
+- La red overlay de Docker Swarm permite que los servicios se comuniquen entre nodos.
+- Entre nodos de confianza, permite `2377/tcp` (gestión), `7946/tcp` y `7946/udp` (comunicación), y `4789/udp` (overlay).
+- Restringe esos puertos a las IP de los nodos. El tráfico web público sigue entrando por HTTP/HTTPS de CapRover.
+- Los puertos públicos en modo `ingress` pueden utilizar el routing mesh de Swarm.
+- En modo `host`, el puerto se publica en el nodo que ejecuta la tarea. La ubicación determina qué IP recibe las conexiones.
+- Para conexiones internas a bases de datos, utiliza el nombre del servicio y el puerto del contenedor sin publicar un puerto en el host.
 
-- Un puerto de aplicación pública `ingress` El modo puede usar la malla de goma.
-- En `host` modo que se publica donde se ejecuta la tarea, así que la colocación afecta las respuestas de la dirección del nodo.
-- Para el tráfico interno de bases de datos, utilice el nombre de servicio de la aplicación de destino y el puerto de contenedores sin una asignación pública.
-
-Si un nuevo nodo se une pero las tareas no pueden comunicarse, compruebe los cortafuegos entre nodos, el estado de servicio Docker y la membresía de la red antes de cambiar la configuración de la aplicación. Ver todo [puerto de referencia](../reference/ports.md).
+Si el nodo se une al clúster pero las tareas no se comunican, revisa los firewalls entre nodos, el estado de los servicios Docker y la pertenencia a la red antes de cambiar la configuración de las aplicaciones. Consulta la [referencia de puertos](../reference/ports.md).
