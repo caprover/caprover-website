@@ -22,6 +22,8 @@ docker service logs captain-captain --tail 100
 - **Red:** comprueba DNS y prueba HTTP y HTTPS por separado.
 - **Almacenamiento:** revisa los montajes, espacio en disco y nodo asignado.
 
+<span id="collect-a-full-server-report"></span>
+
 ## Recopilar un informe completo del servidor
 
 Utiliza el [script de diagnóstico](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) si el dashboard no funciona, fallan varios servicios o las comprobaciones rápidas no muestran la causa. Ejecútalo en un **manager de Swarm** con Debian o Ubuntu y systemd:

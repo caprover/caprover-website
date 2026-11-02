@@ -2,69 +2,69 @@
 
 ## Status and release rule
 
-**The PR must remain in draft.** All 48 English pages have Spanish and Chinese drafts. The static checks verify that code blocks, command identifiers, link destinations, frontmatter and numeric values are preserved. Full CI builds verify that the localized pages render.
+**Editorial review complete.** All 48 canonical English pages have reviewed Spanish and Simplified Chinese translations. The static checks verify that code blocks, command identifiers, link destinations, frontmatter and numeric values are preserved. Full CI builds verify that the localized pages render.
 
-Automated machine translation originally produced serious technical inaccuracies, such as Docker Swarm becoming “沼泽,” Docker images becoming “集装箱,” and an incorrectly shortened TCP port. A repository-wide terminology cleanup was applied using the engineering glossaries in `content/glossaries/`.
+The initial machine-generated drafts contained serious technical errors, including literal mistranslations of Docker terminology and port references. All 96 pages have now received engineer-focused prose review and corrections against the canonical English content, using the terminology guidelines in `content/glossaries/`.
 
-**Machine-normalized pages are not yet accepted as editorially accurate.** A static build cannot prove that the translated instructions are semantically correct. Full prose reviews compare each page against the original English, retain exact UI labels, correct syntax/grammar and check operational and security details. No page should be treated as complete solely because CI is green.
+The editorial pass retained CapRover's actual English UI labels, commands and configuration identifiers, while adopting natural wording for Spanish- and Chinese-speaking engineers. The integration build and structural checks are release requirements. This pass is an engineering-oriented editorial review and has not received independent native-speaker sign-off.
 
-- Spanish full editorial rewrites: **7/48**
-- Chinese full editorial rewrites: **9/48**
+- Spanish full editorial rewrites: **48/48**
+- Chinese full editorial rewrites: **48/48**
 - Both languages covered by automated terminology and structural checks: **48/48 each**.
-- Unfinished full prose reviews: **41 Spanish** and **39 Chinese**.
+- Unfinished full prose reviews: **0 Spanish** and **0 Chinese**.
 
 ## Coverage
 
 | Canonical English page | Spanish | Chinese |
 | --- | --- | --- |
 | `get-started` | Reviewed | Reviewed |
-| `installation/manual` | Terminology QA only | Reviewed |
-| `installation/index` | Terminology QA only | Terminology QA only |
-| `installation/advanced/index` | Terminology QA only | Terminology QA only |
-| `fundamentals/how-caprover-works` | Terminology QA only | Reviewed |
-| `production-checklist` | Terminology QA only | Terminology QA only |
-| `guides/complete-webapp` | Terminology QA only | Terminology QA only |
-| `guides/static-react` | Terminology QA only | Terminology QA only |
-| `guides/cdd-migration` | Terminology QA only | Terminology QA only |
-| `applications/index` | Terminology QA only | Terminology QA only |
-| `applications/advanced/index` | Terminology QA only | Terminology QA only |
-| `deployments/index` | Terminology QA only | Terminology QA only |
-| `deployments/cli` | Terminology QA only | Terminology QA only |
-| `deployments/git` | Terminology QA only | Terminology QA only |
-| `deployments/captain-definition` | Terminology QA only | Terminology QA only |
-| `deployments/builds-logs` | Terminology QA only | Terminology QA only |
-| `deployments/registries/index` | Terminology QA only | Terminology QA only |
+| `installation/manual` | Reviewed | Reviewed |
+| `installation/index` | Reviewed | Reviewed |
+| `installation/advanced/index` | Reviewed | Reviewed |
+| `fundamentals/how-caprover-works` | Reviewed | Reviewed |
+| `production-checklist` | Reviewed | Reviewed |
+| `guides/complete-webapp` | Reviewed | Reviewed |
+| `guides/static-react` | Reviewed | Reviewed |
+| `guides/cdd-migration` | Reviewed | Reviewed |
+| `applications/index` | Reviewed | Reviewed |
+| `applications/advanced/index` | Reviewed | Reviewed |
+| `deployments/index` | Reviewed | Reviewed |
+| `deployments/cli` | Reviewed | Reviewed |
+| `deployments/git` | Reviewed | Reviewed |
+| `deployments/captain-definition` | Reviewed | Reviewed |
+| `deployments/builds-logs` | Reviewed | Reviewed |
+| `deployments/registries/index` | Reviewed | Reviewed |
 | `deployments/ci-cd/index` | Reviewed | Reviewed |
-| `deployments/other/docker-compose` | Terminology QA only | Terminology QA only |
+| `deployments/other/docker-compose` | Reviewed | Reviewed |
 | `one-click-apps/index` | Reviewed | Reviewed |
-| `one-click-apps/authoring` | Terminology QA only | Terminology QA only |
-| `domains/index` | Terminology QA only | Terminology QA only |
-| `domains/firewall` | Terminology QA only | Terminology QA only |
-| `domains/advanced-nginx` | Terminology QA only | Terminology QA only |
-| `domains/advanced-certbot` | Terminology QA only | Terminology QA only |
-| `domains/cloudflare-reverse-proxies` | Terminology QA only | Terminology QA only |
-| `data-persistence/index` | Terminology QA only | Terminology QA only |
-| `data-persistence/deploy-databases` | Terminology QA only | Terminology QA only |
-| `data-persistence/backup-data` | Terminology QA only | Terminology QA only |
-| `data-persistence/shared-storage` | Terminology QA only | Terminology QA only |
-| `server/index` | Terminology QA only | Terminology QA only |
-| `server/upgrade` | Terminology QA only | Terminology QA only |
-| `server/backup/index` | Terminology QA only | Terminology QA only |
+| `one-click-apps/authoring` | Reviewed | Reviewed |
+| `domains/index` | Reviewed | Reviewed |
+| `domains/firewall` | Reviewed | Reviewed |
+| `domains/advanced-nginx` | Reviewed | Reviewed |
+| `domains/advanced-certbot` | Reviewed | Reviewed |
+| `domains/cloudflare-reverse-proxies` | Reviewed | Reviewed |
+| `data-persistence/index` | Reviewed | Reviewed |
+| `data-persistence/deploy-databases` | Reviewed | Reviewed |
+| `data-persistence/backup-data` | Reviewed | Reviewed |
+| `data-persistence/shared-storage` | Reviewed | Reviewed |
+| `server/index` | Reviewed | Reviewed |
+| `server/upgrade` | Reviewed | Reviewed |
+| `server/backup/index` | Reviewed | Reviewed |
 | `server/backup/restore` | Reviewed | Reviewed |
-| `server/netdata` | Terminology QA only | Terminology QA only |
-| `server/disk-cleanup` | Terminology QA only | Terminology QA only |
-| `server/uninstall` | Terminology QA only | Terminology QA only |
-| `scaling/index` | Terminology QA only | Terminology QA only |
+| `server/netdata` | Reviewed | Reviewed |
+| `server/disk-cleanup` | Reviewed | Reviewed |
+| `server/uninstall` | Reviewed | Reviewed |
+| `scaling/index` | Reviewed | Reviewed |
 | `scaling/multi-node` | Reviewed | Reviewed |
 | `troubleshooting/index` | Reviewed | Reviewed |
-| `troubleshooting/diagnostics` | Terminology QA only | Terminology QA only |
-| `reference/captain-definition` | Terminology QA only | Terminology QA only |
-| `reference/app-configuration` | Terminology QA only | Terminology QA only |
-| `reference/cli` | Terminology QA only | Terminology QA only |
-| `reference/api` | Terminology QA only | Terminology QA only |
-| `reference/server-environment` | Terminology QA only | Terminology QA only |
+| `troubleshooting/diagnostics` | Reviewed | Reviewed |
+| `reference/captain-definition` | Reviewed | Reviewed |
+| `reference/app-configuration` | Reviewed | Reviewed |
+| `reference/cli` | Reviewed | Reviewed |
+| `reference/api` | Reviewed | Reviewed |
+| `reference/server-environment` | Reviewed | Reviewed |
 | `reference/ports` | Reviewed | Reviewed |
-| `reference/one-click-schema` | Terminology QA only | Terminology QA only |
+| `reference/one-click-schema` | Reviewed | Reviewed |
 
 ## Terminology decisions
 
@@ -74,6 +74,6 @@ Automated machine translation originally produced serious technical inaccuracies
 - For Spanish, use natural imperative instructions and engineering words such as *despliegue*, *build*, *registro de imágenes*, *nodo manager*, *nodo worker*.
 - For Chinese, use natural technical terms 构建、部署、容器、镜像、镜像仓库、持久化数据、节点, retaining Docker Swarm and technical product names.
 
-## Pending
+## Follow-up maintenance
 
-Review the remaining pages' full prose and check it against English source, then update this matrix. Preserve the PR's draft state until every entry has been reviewed and verified. The 16 reviewed pages above have undergone a targeted complete rewrite, not a native-speaker external sign-off.
+Keep the locale pages in sync with future changes to canonical English documentation. All pages have received a prose review for technical accuracy and developer terminology; an independent native-speaker editorial sign-off remains optional and is not claimed here. Before release, require the site-integration workflow and translation integrity checks to pass.
