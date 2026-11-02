@@ -4,7 +4,7 @@ title: Installation Options
 slug: /installation
 ---
 
-For a standard Ubuntu server, follow [Getting Started](../get-started.md).
+For a standard Ubuntu server, use the [automated installer](../get-started.md). For step-by-step Docker and CapRover commands, see [Manual Setup](manual.md).
 
 <span id="source-installation-standard-vps"></span>
 
@@ -20,7 +20,7 @@ For a standard Ubuntu server, follow [Getting Started](../get-started.md).
 ## DigitalOcean
 
 - **Fresh Ubuntu Droplet:** Follow [Getting Started](../get-started.md).
-- **[CapRover Marketplace image](https://marketplace.digitalocean.com/apps/caprover):** Docker and CapRover are preinstalled. Continue at DNS and dashboard setup.
+- **[CapRover Marketplace image](https://marketplace.digitalocean.com/apps/caprover):** Docker and CapRover are preinstalled. Continue with [DNS and dashboard setup](../get-started.md#dns).
 - **New DigitalOcean customers:** [Referral signup](https://m.do.co/c/6410aa23d3f3) for any currently available promotional credit. Offers vary.
 
 The same firewall, RAM and wildcard DNS requirements apply to both options.

@@ -7,6 +7,7 @@ module.exports = {
       collapsed: true,
       items: [
         "get-started",
+        "installation/manual",
         "installation/index",
         "installation/advanced/index",
         "fundamentals/how-caprover-works",

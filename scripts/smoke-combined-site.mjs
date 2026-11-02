@@ -112,6 +112,20 @@ try {
     assert(preview.includes(locale.pathPrefix + "/docs-next/get-started"),
       "Preview root must redirect to Getting Started");
     assert.match(preview, /name="robots" content="noindex, follow"/);
+    const manual = await fetch(origin + locale.pathPrefix +
+      "/docs-next/installation/manual");
+    assert.equal(manual.status, 200, "Manual Setup page is missing");
+    const manualHtml = await manual.text();
+    assert(manualHtml.includes("Install Docker") &&
+      manualHtml.includes("Install CapRover"),
+      "Manual Setup is missing Docker/bootstrap commands");
+    const gettingStarted = await fetch(origin + locale.pathPrefix +
+      "/docs-next/get-started");
+    assert.equal(gettingStarted.status, 200);
+    const startHtml = await gettingStarted.text();
+    assert(startHtml.includes("caprover-install.sh") &&
+      startHtml.includes("/docs-next/installation/manual"),
+      "Getting Started must use the installer and link Manual Setup");
     const oldPage = await fetch(origin + locale.pathPrefix +
       "/docs-next/installation/digitalocean");
     assert.equal(oldPage.status, 200);

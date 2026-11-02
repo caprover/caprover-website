@@ -4,75 +4,36 @@ title: Getting Started
 slug: /get-started
 ---
 
-Install CapRover on Ubuntu 24.04 and deploy your first app with HTTPS.
+Install CapRover on a fresh Ubuntu 24.04 server.
 
 ## Requirements
 
-- A fresh Ubuntu 24.04 server with a public IPv4 address and at least 1 GB RAM.
-- A domain with full DNS access (including wildcard records like `*.example.com`).
-- Root access to the server.
+- AMD64 or ARM64 server, public IPv4, sudo/root access.
+- At least 1 GiB RAM and 5 GiB free disk space.
+- A domain with wildcard DNS access.
+- Public inbound TCP ports **80**, **443**, and **3000** allowed by your hosting provider.
 
-Using the [DigitalOcean Marketplace image](installation/index.md)? Skip steps 2 and 3. For installations without a public domain, see [Local / Private Network](installation/advanced/index.md).
+## Install CapRover
 
-## 1. Ports and firewall
-
-Allow the following ports in your hosting provider's firewall and, if you use UFW, on the server:
-
-```bash
-sudo ufw allow OpenSSH
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw allow 3000/tcp   # Dashboard setup
-sudo ufw status
-```
-
-If UFW is inactive, enable it with `sudo ufw enable` **after** allowing SSH. You can restrict port 3000 once the dashboard works over HTTPS. See [Firewall](domains/firewall.md) for multi-node ports.
-
-## 2. Install Docker
-
-Run on the server:
+On the server:
 
 ```bash
-sudo apt update
-sudo apt install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
-
-sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo docker version
-sudo docker run --rm hello-world
+sudo apt update && sudo apt install -y curl
+curl -fsSLo caprover-install.sh \
+  https://raw.githubusercontent.com/caprover/caprover/master/scripts/user/installer/caprover-install.sh
+sudo bash caprover-install.sh --check
+sudo bash caprover-install.sh
 ```
 
-If installation fails because of existing packages, follow [Docker's Ubuntu guide](https://docs.docker.com/engine/install/ubuntu/). Use Docker Engine rather than the snap package.
+- [Installer source and options](https://github.com/caprover/caprover/tree/master/scripts/user/installer). Review the downloaded script before running it as root.
+- `--check`: read-only checks for OS, RAM, disk, Docker, Swarm, ports, and firewall conflicts. Resolve blocking issues before installing.
+- The installer installs Docker Engine when absent and preserves existing Docker workloads.
+- On an active UFW firewall, it allows TCP 80/443/3000. It leaves inactive UFW and hosting-provider firewalls unchanged.
+- After installation, it checks external port reachability and reports warnings. DNS, dashboard configuration, and HTTPS remain manual.
 
-## 3. Install CapRover
+**Other methods:** [Manual Setup](installation/manual.md) (Docker and CapRover commands), [DigitalOcean Marketplace](installation/index.md), or [Advanced Installation](installation/advanced/index.md) for private networks, existing Swarms, and custom ports.
 
-```bash
-sudo docker run -p 80:80 -p 443:443 -p 3000:3000 \
-  -e ACCEPTED_TERMS=true \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v /captain:/captain \
-  caprover/caprover
-```
-
-When setup finishes, open `http://YOUR_SERVER_IP:3000`.
-
-**Initial password:** `captain42`
-
-If the dashboard is unreachable, check `sudo docker service ls` and the firewall rules from step 1.
-
-## 4. DNS
+## DNS
 
 Create an A record in your DNS provider:
 
@@ -91,21 +52,19 @@ dig +short test.apps.example.com
 
 Both should return your server's IP. If using a DNS proxy such as Cloudflare, switch to **DNS only** during setup. The root hostname `apps.example.com` needs a separate record only if you plan to use it directly.
 
-## 5. Configure CapRover
+## Configure CapRover
 
-At `http://YOUR_SERVER_IP:3000`:
+Open `http://YOUR_SERVER_IP:3000`. **Initial password:** `captain42`.
 
-1. Change the default password.
-2. Set the root domain to `apps.example.com` (without `*.` or `captain.`).
-3. Open `http://captain.apps.example.com` and sign in.
-4. Enable **HTTPS** for the dashboard.
-5. Visit `https://captain.apps.example.com`, verify the certificate, then enable **Force HTTPS**.
+- Change the password and set the root domain to `apps.example.com` (without `*.` or `captain.`).
+- Dashboard hostname: `captain.apps.example.com`. Enable HTTPS and Force HTTPS once DNS and certificate issuance work.
+- Restrict public access to `3000/tcp` after dashboard HTTPS is working.
 
-If HTTPS fails, check DNS and ports 80/443. See [HTTPS troubleshooting](domains/index.md).
+For certificate failures, check DNS and inbound TCP 80/443. See [Domains & HTTPS](domains/index.md).
 
-**CLI alternative:** On a fresh installation, run `npm install -g caprover` and then `caprover serversetup` from your computer before enabling Force HTTPS. See [CLI Commands](reference/cli.md).
+**CLI alternative:** Install the CLI with `npm install -g caprover` and run `caprover serversetup` from your computer. See [CLI Commands](reference/cli.md).
 
-## 6. Deploy your first app
+## Deploy your first app
 
 1. Open **Apps** and create `my-first-app` as a web app.
 2. Under **Deployment**, paste this Captain Definition and deploy:
@@ -117,9 +76,9 @@ If HTTPS fails, check DNS and ports 80/443. See [HTTPS troubleshooting](domains/
    }
    ```
 
-3. Under the app's HTTP settings, set **Container HTTP Port** to `80`.
+3. Set **Container HTTP Port** to `80`.
 4. Open `http://my-first-app.apps.example.com`. You should see the NGINX welcome page.
-5. Enable **HTTPS** for the app, verify `https://my-first-app.apps.example.com`, then enable **Force HTTPS**.
+5. Set up HTTPS for the app in its HTTP settings when DNS and port 80 are reachable.
 
 **Next:** [Deploy your own code](deployments/index.md) · [Configure apps](applications/index.md) · [Persistent data](data-persistence/index.md)
 
