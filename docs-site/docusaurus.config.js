@@ -48,8 +48,8 @@ const config = {
           path: "../content/en/docs-next",
           routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: ({ docPath }) =>
-            `https://github.com/caprover/caprover-website/edit/master/content/en/docs-next/${docPath}`,
+          editUrl: ({ locale, docPath }) =>
+            `https://github.com/caprover/caprover-website/edit/master/content/${locale}/docs-next/${docPath}`,
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
         },

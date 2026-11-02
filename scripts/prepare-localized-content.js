@@ -178,6 +178,25 @@ function copyDirectory(source, destination) {
   }
 }
 
+const canonicalDocs = path.join(contentRoot, "en", "docs-next");
+const canonicalDocFiles = relativeFiles(canonicalDocs);
+const canonicalCategories = require(path.join(root, "docs-site", "sidebars.js"))
+  .docs.filter((entry) => entry.type === "category").map((entry) => entry.label);
+const translatedCategories = {
+  "es-ES": [
+    "Inicio y guías", "Aplicaciones y despliegues", "Aplicaciones de un clic",
+    "Dominios y redes", "Datos y persistencia", "Servidor y clústeres",
+    "Solución de problemas", "Referencia",
+  ],
+  "zh-CN": [
+    "入门与指南", "应用与部署", "一键应用", "域名与网络",
+    "数据与持久化", "服务器与集群", "故障排查", "参考资料",
+  ],
+};
+if (canonicalCategories.length !== 8) {
+  throw new Error("Unexpected canonical documentation category inventory");
+}
+
 const defaultRoot = path.join(contentRoot, defaultLocale.code);
 // These sources remain available as a translated, noindex archive.
 const defaultDocs = path.join(defaultRoot, "docs");
@@ -262,6 +281,35 @@ for (const locale of enabledLocales) {
         "docusaurus-plugin-content-docs-archive",
         "current",
       ),
+    );
+
+    const translatedDocs = path.join(localeRoot, "docs-next");
+    if (!fs.existsSync(translatedDocs)) {
+      throw new Error(`Missing translated documentation for ${locale.code}`);
+    }
+    assertSameList(relativeFiles(translatedDocs), canonicalDocFiles,
+      `${locale.code} current documentation files`);
+    for (const relative of canonicalDocFiles.filter((file) => file.endsWith(".md"))) {
+      const sourceId = frontmatterId(path.join(canonicalDocs, relative));
+      const translatedId = frontmatterId(path.join(translatedDocs, relative));
+      if (sourceId !== translatedId) {
+        throw new Error(`${locale.code}/docs-next/${relative} changes the document ID`);
+      }
+    }
+    copyDirectory(translatedDocs,
+      path.join(localeI18n, "docusaurus-plugin-content-docs", "current"));
+    const translatedLabels = translatedCategories[locale.code];
+    if (!translatedLabels || translatedLabels.length !== canonicalCategories.length) {
+      throw new Error(`Missing canonical sidebar translations for ${locale.code}`);
+    }
+    writeCatalog(
+      path.join(localeI18n, "docusaurus-plugin-content-docs", "current.json"),
+      Object.fromEntries([
+        ["version.label", "current"],
+        ...canonicalCategories.map((name, i) => [
+          `sidebar.docs.category.${name}`, translatedLabels[i],
+        ]),
+      ]),
     );
 
     const docsUi = require(path.join(localeRoot, "docs-ui.json"));

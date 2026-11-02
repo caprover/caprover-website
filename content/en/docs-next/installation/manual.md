@@ -18,7 +18,7 @@ sudo ufw allow 3000/tcp   # Dashboard setup
 sudo ufw status
 ```
 
-If UFW is inactive, enable it with `sudo ufw enable` **after** allowing SSH. You can restrict port 3000 once the dashboard works over HTTPS. See [Firewall](domains/firewall.md) for multi-node ports.
+If UFW is inactive, enable it with `sudo ufw enable` **after** allowing SSH. You can restrict port 3000 once the dashboard works over HTTPS. See [Firewall](../domains/firewall.md) for multi-node ports.
 
 ## 2. Install Docker
 
