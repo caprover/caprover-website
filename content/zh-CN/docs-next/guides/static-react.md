@@ -28,7 +28,7 @@ slug: /guides/static-react
 5. 访问应用的 HTTP 地址，然后启用 HTTPS 并验证公网域名。每次部署新版本时，都要重新构建并打包。
 
 - CLI 默认的 Git 部署使用 `git archive`，不会包含未提交或被 Git 忽略的文件。
-- 构建产物通常位于 `.gitignore` 中，因此请使用上面的 tar 方式，而不要直接运行不带 `--tarFile` 的 `caprover deploy`。
+- 构建产物通常位于 `.gitignore` 中，因此请使用上面的 tar 部署方式。直接运行 `caprover deploy` 可能遗漏这些构建产物，建议显式传入 `--tarFile`。
 
 如果前端使用客户端路由，例如 `/settings`，请在项目根目录创建如下 `nginx.conf`，确保刷新页面时能正确加载应用：
 
@@ -41,4 +41,4 @@ server {
 }
 ```
 
-在 Dockerfile 中加入 `COPY nginx.conf /etc/nginx/conf.d/default.conf`，并在上面的 `tar -cf` 命令中包含 `nginx.conf`，然后重新构建并部署。不要将私密凭据放进构建时的变量，因为编译后的 JavaScript 对外公开。如果应用需要后端 API，请单独部署后端，并让前端访问它的 HTTPS URL。
+在 Dockerfile 中加入 `COPY nginx.conf /etc/nginx/conf.d/default.conf`，并将 `nginx.conf` 添加到上面的 `tar -cf` 命令中，然后重新构建并部署。不要将私密凭据放进构建时的变量，因为编译后的 JavaScript 对外公开。如果应用需要后端 API，请单独部署后端，并让前端访问它的 HTTPS URL。
