@@ -4,14 +4,14 @@ title: 卸载 CapRover
 slug: /server/uninstall
 ---
 
-删除 CapRover 之前,导出 a [CapRover 备份](backup/index.md) 并为每个应用程序的数据分别备份。 记录 DNS 和镜像registry 依赖关系 。 删除 CapRover 或其 Docker 资源可以使应用程序无法使用 。
+卸载前，请先导出一份 [CapRover 备份](backup/index.md)，并单独备份每个应用的数据。记录 DNS 和镜像 registry 的依赖关系。删除 CapRover 或相关 Docker 资源可能导致应用停止服务。
 
-CapRover 没有一个可以安全决定您想要保存的应用程序数据或其他 Swarm 服务的 单指令 。 要退役的 **专用** CapRover 主机 :
+CapRover 没有能够自动判断哪些应用数据和其他 Swarm 服务应当保留的一键卸载命令。如果要退役一台**专用于 CapRover** 的服务器，请按以下步骤操作：
 
-1. 通过dashboard删除或移动每个应用程序,记录其实际的Docker服务名称并保存您需要的任何卷或绑定挂载. 确认没有客户端仍然依赖于其域或已公布的端口.
-2. 运行 `docker service ls` 并确定CapRover核心服务`captain-captain`, `captain-nginx`, `captain-certbot`,以及任何可选registry)。 删除 **只有你打算退休的服务** 与 `docker service rm SERVICE_NAME`不使用 `docker service rm $(docker service ls -q)` 在共享的 Swarm 上;它也会删除无关的应用程序。
-3. 在确认您有经过测试的外部备份后, 请审查 `/captain` 和产出 `docker volume ls`。只删除您明确选择销毁数据的目录和卷。 即使没有容器运行,某一卷仍然可以包含有价值的数据。
-4. 删除 DNS 记录,转发端口,防火墙规则不再需要. 离开Swarm `docker swarm leave --force` **只有在** 这个主机正在从SWARM退役 并且没有其它服务依赖于它。 在集群中先从另一个节点校验 。
+1. 在 dashboard 中逐个删除或迁移应用，记录实际 Docker service 名称，并保留需要的数据卷和 bind mount。确认没有客户端继续依赖对应域名或公开端口。
+2. 运行 `docker service ls`，识别 CapRover 核心服务（`captain-captain`、`captain-nginx`、`captain-certbot`，以及可能存在的 registry）。使用 `docker service rm SERVICE_NAME` **仅删除确定要移除的服务**。不要在共享 Swarm 集群上运行 `docker service rm $(docker service ls -q)`，否则其他应用也会被删除。
+3. 确认已有经过恢复测试的异机备份后，再检查 `/captain` 和 `docker volume ls` 的输出。只删除明确不再需要的数据目录和数据卷。即使没有容器运行，数据卷中也可能仍有重要数据。
+4. 清理不再使用的 DNS 记录、端口转发和防火墙规则。**仅在**这台服务器确实要退出 Swarm 且没有其他服务依赖它时，才执行 `docker swarm leave --force`。如果是多节点集群，先从其他节点确认状态。
 
-- 保存备份和registry 镜像,直到更换系统通过回收检查。
-- 避开毯子 `docker system prune --all`:它可以删除其他应用程序或回滚所需的镜像.
+- 在替代系统完成恢复验证前，请保留备份和 registry 中的镜像。
+- 谨慎使用 `docker system prune --all`：它可能删除其他应用或回滚流程仍需要的镜像。

@@ -1,39 +1,39 @@
 ---
 id: production-checklist
-title: Lista de verificación de la producción
+title: Checklist para producción
 slug: /production-checklist
 ---
 
-Antes de alojar aplicaciones importantes, compruebe:
+Antes de alojar aplicaciones importantes en CapRover, revisa estos puntos:
 
 - **Acceso**
-  - Cambiar la contraseña inicial.
-  - HTTPS enable y **Force HTTPS**.
-  - Restringir el acceso directo al puerto `3000`.
-  - Utilice credenciales limitadas para la automatización.
+  - Cambia la contraseña inicial.
+  - Activa HTTPS en el dashboard y **Force HTTPS**.
+  - Restringe el acceso directo al puerto `3000`.
+  - Utiliza credenciales con permisos mínimos para la automatización.
 - **DNS y HTTPS**
-  - Verifique DNS de comodín.
-  - Chequee los certificados de panel y aplicación.
-  - Plan de cambios DNS para futuros movimientos del servidor.
+  - Verifica el DNS wildcard.
+  - Comprueba los certificados del dashboard y de las aplicaciones.
+  - Planifica los cambios de DNS que necesitarías al migrar el servidor.
 - **Datos**
-  - Utilice volúmenes o monturas de unión para datos persistentes.
-  - Retrocede bases de datos, cargas y otros datos de aplicaciones por separado.
-  - Tenga en cuenta la colocación de nodos para almacenamiento local.
+  - Utiliza volúmenes o bind mounts para los datos persistentes.
+  - Haz backups independientes de bases de datos, archivos subidos y otros datos de las aplicaciones.
+  - Ten en cuenta la asignación de nodos cuando utilices almacenamiento local.
 - **Recuperación**
-  - Almacene la configuración de CapRover copia de seguridad fuera del servidor.
-  - Prueba una recuperación de datos de aplicaciones.
-  - Grabar lugares de imagen, colocación de nodos y acceso al registro.
+  - Guarda los backups de configuración de CapRover fuera del servidor.
+  - Prueba la restauración de los datos de las aplicaciones.
+  - Documenta la ubicación de las imágenes, los nodos asignados y el acceso al registry.
 - **Capacidad**
-  - Deja la CPU, RAM y el audífono del disco para las builds.
-  - Supervisar el uso del disco.
-  - Elija una política de limpieza de imágenes que preserve los rollos útiles.
-- **Redes**
-  - Abrir sólo los puertos públicos necesarios.
-  - Restringir los puertos internodos de Swarm a los nodos de confianza.
-  - Revise cada puerto de aplicación TCP/UDP publicado. Los puertos docker-publicados pueden pasar por alto reglas UFW simples.
+  - Reserva margen de CPU, RAM y disco para los builds.
+  - Monitoriza el uso de disco.
+  - Configura la limpieza de imágenes sin perder las versiones que necesites para hacer rollback.
+- **Red**
+  - Abre únicamente los puertos públicos necesarios.
+  - Limita los puertos entre nodos de Swarm a nodos de confianza.
+  - Revisa todos los puertos TCP/UDP publicados. Docker puede eludir reglas sencillas de UFW.
 - **Actualizaciones**
-  - Prueba implementaciones y actualizaciones contra tus aplicaciones.
-  - Mantenga una copia de seguridad recuperable.
-  - Configure los controles de salud para sus necesidades de disponibilidad.
+  - Prueba los despliegues y las actualizaciones con tus aplicaciones.
+  - Conserva un backup recuperable.
+  - Configura health checks según tus necesidades de disponibilidad.
 
-Empieza con [Comienzo](get-started.md). Para el mantenimiento continuo, véase [Administración del servidor](server/index.md).
+Empieza por [Primeros pasos](get-started.md). Para el mantenimiento habitual, consulta [Administración del servidor](server/index.md).

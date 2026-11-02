@@ -4,43 +4,43 @@ title: Captain Definition Schema
 slug: /reference/captain-definition
 ---
 
-名为文件 `captain-definition` 在部署根 告诉CapRover 部署什么。 内容 [源接口](https://github.com/caprover/caprover/blob/master/src/models/ICaptainDefinition.ts) 包含 `schemaVersion` 和四个可能的部署选择者。
+部署包根目录中的 `captain-definition` 文件用于告诉 CapRover 如何部署应用。[源码接口](https://github.com/caprover/caprover/blob/master/src/models/ICaptainDefinition.ts)包含 `schemaVersion` 和四种部署方式。
 
-| 字段 | 类型 | 含义 |
+| 字段 | 类型 | 说明 |
 | --- | --- | --- |
-| `schemaVersion` | 编号 | 需要; 当前解析器接受 `2`. |
-| `imageName` | 字符串 | 拉取并部署已有的 Docker 镜像 。 |
-| `dockerfilePath` | 字符串 | 部署归档中的 Docker 文件路径 。 父目录路径被拒绝. |
-| `dockerfileLines` | 字符串 [] | 内线Dockerfile的行数 。 |
-| `templateId` | 字符串 | 使用内置的Dockerfile模板. |
+| `schemaVersion` | number | 必填；当前解析器支持 `2`。 |
+| `imageName` | string | 拉取并部署已有的 Docker 镜像。 |
+| `dockerfilePath` | string | 部署归档中的 Dockerfile 路径；不允许使用指向父目录的路径。 |
+| `dockerfileLines` | string[] | 在定义中直接给出 Dockerfile 的各行内容。 |
+| `templateId` | string | 使用内置 Dockerfile 模板。 |
 
-提供 **一个** 四个选择者中。 这个 [解析器](https://github.com/caprover/caprover/blob/master/src/user/ImageMaker.ts) 不允许缺少选择器或指定多个选择器。
+四种部署方式中必须**恰好指定一种**。[解析器](https://github.com/caprover/caprover/blob/master/src/user/ImageMaker.ts)会拒绝未指定或同时指定多种方式的配置。
 
 ```json
 {"schemaVersion": 2, "imageName": "nginx:stable-alpine"}
 ```
 
-`imageName` 没有新的定义,无法从源头重建部署。 关于一个Dockerfile的例子,见: [静态/ 反应](../guides/static-react.md).
+使用 `imageName` 时，如果要从源码重新构建镜像，需要提交新的定义。Dockerfile 部署示例参见[静态网站与 React](../guides/static-react.md)。
 
-## 内置模板和版本
+## 内置模板及版本
 
-`templateId` 有窗体 `NAME/VERSION`例如:
+`templateId` 使用 `NAME/VERSION` 格式，例如：
 
 ```json
 {"schemaVersion":2,"templateId":"node/24"}
 ```
 
-卡普罗弗 [模板定义](https://github.com/caprover/caprover/blob/master/src/user/TemplateHelper.ts) 使用这些官方镜像标签生成 Dockerfile :
+CapRover 的[模板定义](https://github.com/caprover/caprover/blob/master/src/user/TemplateHelper.ts)使用以下官方镜像标签生成 Dockerfile：
 
-| `NAME` | 基本镜像用于 `NAME/VERSION` |
+| `NAME` | `NAME/VERSION` 对应的基础镜像 |
 | --- | --- |
 | `node` | `node:VERSION-alpine` |
 | `php` | `php:VERSION-apache` |
 | `python-django` | `python:VERSION-alpine` |
 | `ruby-rack` | `ruby:VERSION-alpine` |
 
-- 对于 `node/24`,其基础是 `node:24-alpine`.
-- 标签必须存在于相关的上游镜像registry中,一个主要唯一的标签可以在镜像更新时移动。
-- 模板专用的 Dockerfile 指令在 CapRover 中 [`dockerfiles` 目录](https://github.com/caprover/caprover/tree/master/dockerfiles).
-- 在依赖模板的框架假设或更改版本之前先检查它们.
-- 一个寄存器拥有的 Dockerfile 允许您将精确的镜像标签或消化并控制其他框架的构建.
+- `node/24` 对应的基础镜像为 `node:24-alpine`。
+- 标签必须在上游 registry 中存在。只指定主版本的标签以后可能指向更新的镜像。
+- 各模板的 Dockerfile 生成逻辑见 CapRover 的 [`dockerfiles` 目录](https://github.com/caprover/caprover/tree/master/dockerfiles)。
+- 使用模板前应检查对应的框架假设及版本要求。
+- 对其他框架，建议在项目仓库中维护自己的 Dockerfile，以便固定镜像 tag 或 digest 并控制构建流程。
