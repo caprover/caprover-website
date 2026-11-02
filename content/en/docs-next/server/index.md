@@ -90,6 +90,8 @@ docker exec -it "$(docker ps --filter name=captain-captain -q | head -n 1)" npm 
 
 Verify the target container first, use this only for your own instance, then sign in and configure two-factor authentication again. See [Pro troubleshooting](../troubleshooting/diagnostics.md).
 
+**Pro email alerts:** If you need alerts in a different inbox, inspect a current alert sender (historically `alerts@mail.pro.caprover.com`) and use an email filter/forwarding rule. Test the forwarding before relying on it.
+
 <span id="source-server-themes"></span>
 
 ## Dashboard Themes

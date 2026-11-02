@@ -13,3 +13,13 @@ slug: /domains/cloudflare-reverse-proxies
 - A redirect or challenge rule that prevents public requests to `/.well-known/acme-challenge/` from reaching CapRover can break issuance or renewal.
 
 For an upstream reverse proxy that owns host ports 80 and 443, see [Reverse Proxy Scenarios](../installation/advanced/index.md). Configure and test the proxy's exact behavior before enabling forced HTTPS in both layers.
+
+## Cloudflare Universal SSL and nested app domains
+
+On a Cloudflare **full DNS setup**, Universal SSL covers `example.com` and first-level subdomains such as `apps.example.com`. It does **not** cover deeper hostnames such as `my-app.apps.example.com`.
+
+- If your CapRover root domain is `apps.example.com`, proxied app subdomains are two levels deep.
+- Use **DNS only** and let CapRover handle HTTPS at the origin, or configure Cloudflare [Total TLS / advanced certificates](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/limitations/) for the deeper names.
+- On a Cloudflare partial CNAME setup, certificate behavior differs; follow Cloudflare's hostname coverage rules.
+
+Check Cloudflare edge certificates separately from the certificates CapRover issues for the origin.

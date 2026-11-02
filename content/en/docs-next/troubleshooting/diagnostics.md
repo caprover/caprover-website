@@ -60,6 +60,16 @@ See [Server Diagnostics](diagnostics.md) for targeted recovery steps.
 
 <span id="source-server-diagnostics"></span>
 
+## Restart or inspect services
+
+```bash
+docker service update captain-captain --force   # Restart CapRover
+docker service update SERVICE_NAME --force      # Restart an app
+docker service logs SERVICE_NAME --since 10m
+```
+
+Run Docker commands on a Swarm manager. Get the exact physical service name from `docker service ls`. For a shell inside an app, use `docker exec` on the node hosting its task (see below).
+
 ## Diagnostics
 
 Start with the failing request or app, its timestamp, and the exact error. In the dashboard, inspect the application's deployment history and logs. On the manager host:
