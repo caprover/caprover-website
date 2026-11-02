@@ -87,7 +87,7 @@ CapRover passes these host-port values into its services at installation. Changi
 - CapRover's own Let's Encrypt HTTP challenge needs its validation requests to reach CapRover on port 80.
 - Terminating HTTPS at a proxy does not automatically provide HTTPS between the proxy and CapRover.
 
-- For a fresh install behind a proxy that owns the standard host ports, see [Custom Host Ports](index.md#source-installation-advanced-custom-host-ports) to publish CapRover on different host ports.
+- For a fresh install behind a proxy that owns the standard host ports, see [Custom Host Ports](index.md) to publish CapRover on different host ports.
 - Verify dashboard routing, a sample app, and certificate behavior before moving existing traffic.
 - See [Cloudflare and Reverse Proxies](../../domains/cloudflare-reverse-proxies.md) for domain-level considerations.
 
@@ -120,10 +120,10 @@ For app scheduling beyond one node, a default push registry is required before a
 
 ## Home / Local Server Setup
 
-For a local test, use [Local / Private Network installation](index.md#source-installation-local-private-network). A public home deployment also needs a stable way for incoming traffic to reach the host.
+For a local test, use [Local / Private Network installation](index.md). A public home deployment also needs a stable way for incoming traffic to reach the host.
 
 1. Give the host a stable LAN address and install Docker as described in [Getting Started](../../get-started.md).
-2. Before installing CapRover with the standard public-IP installer, temporarily forward TCP 80, 443, and 3000 from the router to that host. The installer checks all three ports against the detected public IP. Check provider and host firewalls too. A router without NAT loopback may still fail this self-check; use the [local/private installation path](index.md#source-installation-local-private-network) with an explicit LAN IP if needed.
+2. Before installing CapRover with the standard public-IP installer, temporarily forward TCP 80, 443, and 3000 from the router to that host. The installer checks all three ports against the detected public IP. Check provider and host firewalls too. A router without NAT loopback may still fail this self-check; use the [local/private installation path](index.md) with an explicit LAN IP if needed.
 3. Install CapRover, then point wildcard DNS and the dashboard hostname to the router's public address. If your ISP changes that address, use a reliable DNS update process.
 4. Complete the root-domain and HTTPS steps in [Getting Started](../../get-started.md), and verify the dashboard and a test app from a device **outside** the LAN.
 5. After the dashboard works over HTTPS from outside the LAN, remove the public port 3000 forwarding rule and keep admin access through the dashboard hostname. Back up both CapRover state and application data off-site.

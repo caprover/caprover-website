@@ -56,7 +56,7 @@ The collector briefly tests local `hello-world` and `nginx:1.27.2` images **if a
 - The collector omits Docker environment variables and CapRover configuration contents, but logs, arguments, and package history can still contain sensitive data.
 - Share only relevant, sanitized sections.
 
-See [Server Diagnostics](diagnostics.md#source-server-diagnostics) for targeted recovery steps.
+See [Server Diagnostics](diagnostics.md) for targeted recovery steps.
 
 <span id="source-server-diagnostics"></span>
 

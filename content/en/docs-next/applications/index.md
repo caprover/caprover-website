@@ -81,7 +81,7 @@ ENV PUBLIC_BUILD_VALUE=${PUBLIC_BUILD_VALUE}
 - Custom domains: Point DNS to the server, then add the domain.
 - HTTPS: Verify DNS and ports 80/443, enable HTTPS, then enable **Force HTTPS**.
 
-See [App Domains](../domains/index.md#source-domains-app-domains) and [HTTPS](../domains/index.md#source-domains-https).
+See [App Domains](../domains/index.md) and [HTTPS](../domains/index.md).
 
 ### Other options
 
@@ -101,4 +101,4 @@ See [App Domains](../domains/index.md#source-domains-app-domains) and [HTTPS](..
 - Projects give apps a nested organizational location.
 - Tags can cut across that hierarchy, such as `customer-facing`, `staging`, or a team name.
 - Keep names consistent so other operators can find an app quickly.
-- See [Organize Apps with Projects](index.md#source-applications-projects).
+- See [Organize Apps with Projects](index.md).

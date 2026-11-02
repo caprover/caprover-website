@@ -196,10 +196,10 @@ curl https://demo-web.apps.example.com/upload
 
 ## 4. Back up each data source
 
-- CapRover's [configuration backup](../server/backup/index.md#source-server-backup-contents) does not contain `demo-db-data` or `demo-uploads`.
+- CapRover's [configuration backup](../server/backup/index.md) does not contain `demo-db-data` or `demo-uploads`.
 - Set up a PostgreSQL logical backup and a separate copy of the upload volume, store both off the host, and test restoration.
 - See [Back Up Persistent Data](../data-persistence/backup-data.md).
-- This tutorial keeps both stateful apps on a single node; [local volumes do not move with a Swarm task](../data-persistence/index.md#source-data-persistence-volumes).
+- This tutorial keeps both stateful apps on a single node; [local volumes do not move with a Swarm task](../data-persistence/index.md).
 - A production app also needs authentication, an upload policy, job claiming for multiple workers, and a deployment and database migration strategy.
 
 <span id="source-guides-sample-apps"></span>
@@ -221,11 +221,11 @@ Treat sample credentials and sample data as examples only. Before production use
 
 Use these focused recipes for common follow-up tasks:
 
-- [Deploy an existing Docker image](../deployments/index.md#source-deployments-docker-image), then set the container HTTP port and verify the public URL.
-- [Connect two apps privately](../domains/firewall.md#source-domains-internal-networking) without publishing a database port.
-- [Attach a custom domain](../domains/index.md#source-domains-custom-domains) and enable [HTTPS](../domains/index.md#source-domains-https).
-- [Add a persistent directory](../data-persistence/index.md#source-applications-persistent-directories) before writing files.
-- [Scale an app](../scaling/index.md#source-scaling-scale-app) after checking session and storage behavior.
+- [Deploy an existing Docker image](../deployments/index.md), then set the container HTTP port and verify the public URL.
+- [Connect two apps privately](../domains/firewall.md) without publishing a database port.
+- [Attach a custom domain](../domains/index.md) and enable [HTTPS](../domains/index.md).
+- [Add a persistent directory](../data-persistence/index.md) before writing files.
+- [Scale an app](../scaling/index.md) after checking session and storage behavior.
 - [Export and restore server configuration](../server/backup/index.md) alongside a separate [data backup](../data-persistence/backup-data.md).
 
 For full examples, see [Complete Web Application](complete-webapp.md) and [Static / React App](static-react.md).

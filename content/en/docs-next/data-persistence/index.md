@@ -18,7 +18,7 @@ slug: /data-persistence
 
 - A web app that stores its uploads in an external object store and its records in a separate database can remain stateless.
 - Back up the database and object store separately.
-- See [Docker Volumes](index.md#source-data-persistence-volumes), [Bind Mounts](index.md#source-data-persistence-bind-mounts), and [Node Placement](index.md#source-data-persistence-node-placement).
+- See [Docker Volumes](index.md), [Bind Mounts](index.md), and [Node Placement](index.md).
 
 <span id="source-data-persistence-volumes"></span>
 
@@ -82,7 +82,7 @@ The path is node-local. If a task is scheduled on another server, an identical p
 - Before moving a persistent app, stop writes, back up its data, copy or restore it to the destination node, check permissions and volume names, then change placement and verify the app reads the expected records.
 - Keep a rollback copy until the new placement is proven.
 
-If you want multiple replicas on different nodes, design the storage and application for concurrent access. CapRover does not make node-local storage shared. See [Persistent Applications in Clusters](../scaling/multi-node.md#source-scaling-persistent-apps).
+If you want multiple replicas on different nodes, design the storage and application for concurrent access. CapRover does not make node-local storage shared. See [Persistent Applications in Clusters](../scaling/multi-node.md).
 
 <span id="source-applications-persistent-directories"></span>
 
@@ -96,7 +96,7 @@ If you want multiple replicas on different nodes, design the storage and applica
 - On a multi-node cluster, a local volume or bind mount stays on its host; keep the app on the node that holds its data.
 - Back up the mounted data separately from a CapRover configuration backup.
 
-See [Docker Volumes](index.md#source-data-persistence-volumes), [Bind Mounts](index.md#source-data-persistence-bind-mounts), and [Back Up Persistent Data](backup-data.md) for storage and recovery workflows.
+See [Docker Volumes](index.md), [Bind Mounts](index.md), and [Back Up Persistent Data](backup-data.md) for storage and recovery workflows.
 
 <span id="source-guides-persistent-storage"></span>
 
@@ -110,5 +110,5 @@ For an application that writes files, find the exact container directory it uses
 
 - For databases, use the image's documented data directory and a database-aware backup/export method.
 - Host bind mounts and Docker volumes usually live on one node; pin the service there or use [shared storage](shared-storage.md).
-- Back up each volume or database separately from the [CapRover backup](../server/backup/index.md#source-server-backup-contents).
-- See [Volumes](index.md#source-data-persistence-volumes) for the exact storage choices.
+- Back up each volume or database separately from the [CapRover backup](../server/backup/index.md).
+- See [Volumes](index.md) for the exact storage choices.

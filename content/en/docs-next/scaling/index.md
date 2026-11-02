@@ -37,7 +37,7 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
 - Deploy to a test app, confirm the new task becomes healthy, and exercise requests throughout a rollout.
 - No configuration guarantees zero interruption if the app, capacity, routing, or database cannot handle both versions concurrently.
 
-For an app with mounted volumes, CapRover selects **stop-first** ordering by default to avoid overlapping writers on local data. Forcing start-first through a service override can corrupt data unless the app and storage support it. See [Service Update Override](../applications/advanced/index.md#source-applications-advanced-service-update-override).
+For an app with mounted volumes, CapRover selects **stop-first** ordering by default to avoid overlapping writers on local data. Forcing start-first through a service override can corrupt data unless the app and storage support it. See [Service Update Override](../applications/advanced/index.md).
 
 <span id="source-scaling-placement"></span>
 
@@ -49,7 +49,7 @@ Docker Swarm schedules stateless app tasks on available nodes according to servi
 - Check node availability, image pull access, resource pressure, and placement constraints.
 - For a stateful app, verify the selected node is the one containing its data before editing the node ID.
 
-See [Node Placement](../data-persistence/index.md#source-data-persistence-node-placement) for safe data movement and [Set Up a Multi-Node Cluster](multi-node.md) for first-time setup.
+See [Node Placement](../data-persistence/index.md) for safe data movement and [Set Up a Multi-Node Cluster](multi-node.md) for first-time setup.
 
 <span id="source-applications-scaling-placement"></span>
 
@@ -61,7 +61,7 @@ See [Node Placement](../data-persistence/index.md#source-data-persistence-node-p
 
 - If an app keeps data in a node-local volume or bind mount, placement matters: replicas on another node will not automatically see that data.
 - CapRover associates persistent apps with a node ID.
-- Review [Node Placement](../data-persistence/index.md#source-data-persistence-node-placement) before changing their node or replica count.
+- Review [Node Placement](../data-persistence/index.md) before changing their node or replica count.
 
 - For a complete scale-out workflow, health checks, and multi-node requirements, use [Scaling & Clusters](index.md).
 - Capacity, database connections, and application concurrency limits can become bottlenecks before the requested instance count is useful.

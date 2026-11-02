@@ -41,7 +41,7 @@ The [Network and Firewall Ports reference](../reference/ports.md) records the po
 
 - Verify the application listens on the mapped container port.
 - Restrict the host port to the intended clients and use application-level authentication and encryption as needed.
-- For a database example, follow [Connect to Databases Externally](../data-persistence/deploy-databases.md#source-data-persistence-external-databases).
+- For a database example, follow [Connect to Databases Externally](../data-persistence/deploy-databases.md).
 
 <span id="source-domains-internal-networking"></span>
 
@@ -54,7 +54,7 @@ The [Network and Firewall Ports reference](../reference/ports.md) records the po
 - Apps upgraded from older CapRover versions may retain physical service names with a `srv-captain--` prefix; the prefixed network alias remains available for compatibility.
 - Check the actual service and network if name resolution fails.
 
-This internal path is preferable for routine app-to-database traffic. Publishing a port is only necessary for an external client. See [Connect to Databases Internally](../data-persistence/deploy-databases.md#source-data-persistence-internal-databases).
+This internal path is preferable for routine app-to-database traffic. Publishing a port is only necessary for an external client. See [Connect to Databases Internally](../data-persistence/deploy-databases.md).
 
 <span id="source-applications-public-ports"></span>
 
@@ -69,4 +69,4 @@ Use an app port mapping when clients outside CapRover's Docker network need dire
 - Allow the host port through the provider firewall only for the clients that need it.
 - Docker-published ports can bypass ordinary UFW restrictions, so use Docker-aware rules or a provider firewall to limit access.
 - A publicly exposed database must have its own authentication and transport protection.
-- See [Connect to Databases Externally](../data-persistence/deploy-databases.md#source-data-persistence-external-databases) and [Firewall](firewall.md).
+- See [Connect to Databases Externally](../data-persistence/deploy-databases.md) and [Firewall](firewall.md).

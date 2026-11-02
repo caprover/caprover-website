@@ -55,7 +55,7 @@ Docker group membership gives root-equivalent access. Keep both SSH and Swarm po
 
 ## 3. Registry
 
-1. Configure a [default push registry](../deployments/registries/index.md#source-deployments-registries-default-push) reachable by **every node**. CapRover requires it before adding nodes.
+1. Configure a [default push registry](../deployments/registries/index.md) reachable by **every node**. CapRover requires it before adding nodes.
 2. Redeploy apps built before the registry was enabled to push their images.
 3. Verify the new node can pull a newly built image. Prebuilt private images also need pull access.
 
@@ -71,7 +71,7 @@ Docker group membership gives root-equivalent access. Keep both SSH and Swarm po
 - Local volumes and bind mounts stay on their node.
 - CapRover pins persistent apps; joining a node does not copy data.
 - Back up and migrate data before changing placement.
-- See [Persistent Applications in Clusters](multi-node.md#source-scaling-persistent-apps).
+- See [Persistent Applications in Clusters](multi-node.md).
 
 <span id="source-scaling-manage-nodes"></span>
 

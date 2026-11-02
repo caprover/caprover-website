@@ -26,4 +26,4 @@ curl --fail --silent --show-error "$CAPROVER_URL/api/v2/user/system/info/" \
 - The [caprover-api client](https://github.com/caprover/caprover-api) wraps common operations.
 - Prefer app deployment tokens for CI jobs that only deploy one app.
 - Avoid depending on an undocumented response field without checking your target CapRover version.
-- See the [backup automation example](../server/backup/index.md#source-server-backup-automate) for a request sequence with a temporary download token.
+- See the [backup automation example](../server/backup/index.md) for a request sequence with a temporary download token.

@@ -23,5 +23,5 @@ In the root of a Git project, add a `captain-definition` file. For a repository 
 - After the first successful run, `caprover deploy -d` reuses the saved choices for that directory.
 
 - For a prebuilt image, use `caprover deploy --imageName IMAGE` and provide the app/server information when prompted.
-- Keep credentials out of shell history and CI logs; [deployment tokens](ci-cd/index.md#source-deployments-ci-cd-deployment-tokens) are better for app-scoped automation.
+- Keep credentials out of shell history and CI logs; [deployment tokens](ci-cd/index.md) are better for app-scoped automation.
 - See the complete [CLI command reference](../reference/cli.md).

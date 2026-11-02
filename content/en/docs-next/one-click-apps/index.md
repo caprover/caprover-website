@@ -46,7 +46,7 @@ Before changing a stateful service, back up its application data. A CapRover con
 - For legacy apps, a `srv-captain--` network alias may remain available.
 - Verify a query or health check from the consumer, then back up the database's volume.
 
-For a client outside CapRover, follow [Connect to Databases Externally](../data-persistence/deploy-databases.md#source-data-persistence-external-databases). That workflow includes the port mapping, firewall restrictions, and transport security a public connection requires.
+For a client outside CapRover, follow [Connect to Databases Externally](../data-persistence/deploy-databases.md). That workflow includes the port mapping, firewall restrictions, and transport security a public connection requires.
 
 <span id="source-one-click-apps-upgrade"></span>
 

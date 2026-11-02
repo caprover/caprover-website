@@ -4,7 +4,7 @@ title: Uninstall CapRover
 slug: /server/uninstall
 ---
 
-Before removing CapRover, export a [CapRover backup](backup/index.md#source-server-backup-create) and separate backups for every application's data. Record DNS and image registry dependencies. Removing CapRover or its Docker resources can make applications unavailable.
+Before removing CapRover, export a [CapRover backup](backup/index.md) and separate backups for every application's data. Record DNS and image registry dependencies. Removing CapRover or its Docker resources can make applications unavailable.
 
 CapRover does not have a one-command uninstall that safely decides which application data or other Swarm services you want to keep. To retire a **dedicated** CapRover host:
 

@@ -14,7 +14,7 @@ A One-Click template is a Compose-like `services` mapping plus `captainVersion` 
 | Variable `id`, `label` | required strings |
 | Variable `defaultValue`, `validRegex`, `description` | optional strings |
 
-- Each service supports the [Compose subset](../deployments/other/docker-compose.md#source-reference-docker-compose).
+- Each service supports the [Compose subset](../deployments/other/docker-compose.md).
 - One-Click variables are substituted in the template during deployment; treat submitted values as sensitive and test substitutions.
 - If `$$cap_appname` is declared, a nonempty value is required.
 - See [One-Click authoring](../one-click-apps/authoring.md) for a task guide and real examples.

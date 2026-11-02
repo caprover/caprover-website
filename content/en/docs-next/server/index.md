@@ -16,7 +16,7 @@ Point the wildcard DNS record and dashboard hostname at the server before settin
 
 ### Account and recovery
 
-Change the initial password after installation, secure the dashboard with HTTPS, and store recovery credentials safely. Review [Security & Access](index.md#source-server-security) and [Backup & Restore](backup/index.md) before production use.
+Change the initial password after installation, secure the dashboard with HTTPS, and store recovery credentials safely. Review [Security & Access](index.md) and [Backup & Restore](backup/index.md) before production use.
 
 <span id="source-server-security"></span>
 
@@ -27,10 +27,10 @@ Change the initial password after installation, secure the dashboard with HTTPS,
 - Keep Docker and CapRover updated.
 
 - Treat deployment tokens, registry credentials, environment variables, backup archives, and SSH keys as secrets.
-- Use separate credentials for automation, rotate them when exposed, and review the [CapRover Pro](index.md#source-server-pro) two-factor options if your instance uses Pro.
+- Use separate credentials for automation, rotate them when exposed, and review the [CapRover Pro](index.md) two-factor options if your instance uses Pro.
 - A person with Docker socket access on the manager effectively has broad host control; grant shell and dashboard access deliberately.
 
-Back up CapRover configuration and application data separately and practice restoration. For access problems, see [Diagnostics](../troubleshooting/diagnostics.md#source-server-diagnostics).
+Back up CapRover configuration and application data separately and practice restoration. For access problems, see [Diagnostics](../troubleshooting/diagnostics.md).
 
 ### Recover a forgotten dashboard password
 
@@ -61,7 +61,7 @@ Back up CapRover configuration and application data separately and practice rest
 
 4. Sign in over HTTPS, change the temporary password in Settings, and verify the new login. Remove the temporary environment variable from the Docker service with `sudo docker service update --env-rm DEFAULT_PASSWORD captain-captain`, then verify login once more. The temporary value may be visible in Docker service inspection until removed. Keep the original backed-up configuration until recovery succeeds.
 
-If two-factor authentication also blocks access, see [Pro OTP recovery](index.md#source-server-pro). These are separate recovery steps.
+If two-factor authentication also blocks access, see [Pro OTP recovery](index.md). These are separate recovery steps.
 
 <span id="source-server-pro"></span>
 
@@ -81,7 +81,7 @@ CAPROVER_OTP_TOKEN=123456 caprover login
 
 - Replace `123456` with a current code.
 - The CLI sends `CAPROVER_OTP_TOKEN` during password-based authentication, including a login triggered by `caprover deploy` when it needs a new session.
-- For app-scoped CI, use an [app deployment token](../deployments/ci-cd/index.md#source-deployments-ci-cd-deployment-tokens) instead of a dashboard password and a time-sensitive OTP.
+- For app-scoped CI, use an [app deployment token](../deployments/ci-cd/index.md) instead of a dashboard password and a time-sensitive OTP.
 - If you lose access to your one-time password, an administrator with shell access to the manager can run the recovery script inside the CapRover container:
 
 ```bash

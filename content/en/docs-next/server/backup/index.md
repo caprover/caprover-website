@@ -18,7 +18,7 @@ A CapRover backup copies **`/captain/data`** and adds metadata about cluster nod
 - With an external registry, keep its credentials and image retention policy available for restoration.
 - Without accessible images, redeploy apps after restoring their definitions.
 
-See [Create a Backup](index.md#source-server-backup-create), [Restore a Server](restore.md), and [Persistent Directories](../../data-persistence/index.md).
+See [Create a Backup](index.md), [Restore a Server](restore.md), and [Persistent Directories](../../data-persistence/index.md).
 
 <span id="source-server-backup-create"></span>
 
@@ -26,7 +26,7 @@ See [Create a Backup](index.md#source-server-backup-create), [Restore a Server](
 
 1. In the CapRover dashboard, go to **Settings** and select **Create Backup**.
 2. Download the resulting `.tar` file, verify it is nonempty, and store it outside the server with access controls.
-3. Back up application databases and persistent directories separately; [the CapRover archive has limited scope](index.md#source-server-backup-contents).
+3. Back up application databases and persistent directories separately; [the CapRover archive has limited scope](index.md).
 4. Periodically restore both kinds of backup to a test server and verify the applications.
 
 - The archive is generated on the server, then offered as a temporary download.
@@ -72,4 +72,4 @@ The [backup implementation](https://github.com/caprover/caprover/blob/master/src
 
 - The registry exception can make archives large.
 - The restore code looks for `/captain/backup.tar` at initial installation and expands it into `/captain/restoring`.
-- See [What Is Backed Up](index.md#source-server-backup-contents) and [Restore a Server](restore.md) for the full recovery sequence.
+- See [What Is Backed Up](index.md) and [Restore a Server](restore.md) for the full recovery sequence.

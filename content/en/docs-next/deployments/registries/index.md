@@ -33,7 +33,7 @@ slug: /deployments/registries
 - Verify a fresh deployment pushes successfully before adding a worker.
 - Keep the registry available during rollouts and recovery; disabling or deleting credentials in a cluster can prevent nodes from pulling app images.
 
-Use a [self-hosted registry](index.md#source-deployments-registries-self-hosted) or an appropriate remote registry. Pull-only credentials for prebuilt images are a separate need and do not require default push.
+Use a [self-hosted registry](index.md) or an appropriate remote registry. Pull-only credentials for prebuilt images are a separate need and do not require default push.
 
 <span id="source-deployments-registries-self-hosted"></span>
 

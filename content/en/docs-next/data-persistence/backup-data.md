@@ -26,4 +26,4 @@ Back up CapRover's configuration as a separate step through [Backup & Restore Ca
 - Start one instance, verify expected records or files, and keep the source backup until recovery has been tested.
 
 - For a database, prefer its supported migration or dump/restore process rather than copying live data files.
-- When moving the whole server, use [Move CapRover to Another Server](../server/backup/restore.md#source-server-move-server) for the control-plane steps as well.
+- When moving the whole server, use [Move CapRover to Another Server](../server/backup/restore.md) for the control-plane steps as well.

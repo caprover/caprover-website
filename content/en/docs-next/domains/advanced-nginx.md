@@ -47,7 +47,7 @@ sudo docker service scale captain-captain=1
 - Confirm the app listens on `0.0.0.0`, the container HTTP port is correct, and the Docker service task is running.
 - A DNS failure occurs before this routing path, while a certificate failure can occur before HTTPS traffic reaches the app.
 
-App-specific NGINX changes belong in that app's [Custom NGINX](advanced-nginx.md#source-applications-advanced-custom-nginx) settings. Global templates affect more routes; use [Advanced NGINX Configuration](advanced-nginx.md) carefully.
+App-specific NGINX changes belong in that app's [Custom NGINX](advanced-nginx.md) settings. Global templates affect more routes; use [Advanced NGINX Configuration](advanced-nginx.md) carefully.
 
 <span id="source-applications-advanced-custom-nginx"></span>
 

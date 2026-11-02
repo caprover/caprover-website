@@ -50,6 +50,6 @@ These are source defaults, not guarantees for every installation; values can be 
 - The Captain Definition parser accepts **`schemaVersion: 2`**.
 - Older definitions need migration; see [CaptainDuckDuck migration](../guides/cdd-migration.md).
 - The app model retains `isLegacyAppName` for apps created before CapRover 1.15.0, which affects service-name compatibility.
-- Check [internal networking](../domains/firewall.md#source-domains-internal-networking) before changing hard-coded internal hostnames.
+- Check [internal networking](../domains/firewall.md) before changing hard-coded internal hostnames.
 
 Do not remove existing URLs or legacy service aliases as part of preview publishing. Test each historic link and deployed application at the eventual cutover.

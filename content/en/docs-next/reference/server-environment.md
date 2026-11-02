@@ -18,7 +18,7 @@ The [environment-variable parser](https://github.com/caprover/caprover/blob/mast
 | `CAPTAIN_IS_DEBUG`, `IS_CAPTAIN_INSTANCE`, `DEMO_MODE_ADMIN_IP`, `FORCE_ENABLE_PRO`, `BY_PASS_PROXY_CHECK` | Internal, development, or special-purpose controls; use only after reading their source usage. |
 
 - The parser treats several boolean flags as true when the variable is a **nonempty string**; passing the literal string `false` does not necessarily turn them off.
-- Supply installation variables to the initial container command, and use [config overrides](server-environment.md#source-reference-config-override) for configurable server constants.
+- Supply installation variables to the initial container command, and use [config overrides](server-environment.md) for configurable server constants.
 
 <span id="source-reference-config-override"></span>
 
@@ -34,4 +34,4 @@ CapRover reads user overrides from `/captain/data/config-override.json`. Only ke
 - Incorrect overrides can prevent startup or weaken domain verification.
 - Review the actual source defaults and your installation's version before changing values; `skipVerifyingDomains` is for controlled exceptional setups rather than routine public installation.
 
-This file is under `/captain/data`, so it is included in a [CapRover backup](../server/backup/index.md#source-server-backup-contents).
+This file is under `/captain/data`, so it is included in a [CapRover backup](../server/backup/index.md).

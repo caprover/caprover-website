@@ -9,15 +9,15 @@ Choose the area that matches the failure:
 | Symptom | Start here |
 | --- | --- |
 | Installation or dashboard setup | [Installation](../installation/index.md) and [Getting Started](../get-started.md) |
-| Build, image, or deployment | [Deployments troubleshooting](index.md#source-deployments-troubleshooting) |
-| App settings or availability | [Applications troubleshooting](index.md#source-applications-troubleshooting) |
-| DNS, HTTPS, 502, or domain | [Domains troubleshooting](index.md#source-domains-troubleshooting) |
-| Volumes or lost data | [Data troubleshooting](index.md#source-data-persistence-troubleshooting) |
-| Cluster or node placement | [Scaling troubleshooting](index.md#source-scaling-troubleshooting) |
-| One-Click installation | [One-Click troubleshooting](../one-click-apps/index.md#source-one-click-apps-troubleshooting) |
-| Upgrade, backup, cleanup, or host | [Server diagnostics](diagnostics.md#source-server-diagnostics) |
+| Build, image, or deployment | [Deployments troubleshooting](index.md) |
+| App settings or availability | [Applications troubleshooting](index.md) |
+| DNS, HTTPS, 502, or domain | [Domains troubleshooting](index.md) |
+| Volumes or lost data | [Data troubleshooting](index.md) |
+| Cluster or node placement | [Scaling troubleshooting](index.md) |
+| One-Click installation | [One-Click troubleshooting](../one-click-apps/index.md) |
+| Upgrade, backup, cleanup, or host | [Server diagnostics](diagnostics.md) |
 
-To ask for help, [collect diagnostics](diagnostics.md), [find support](index.md#source-troubleshooting-support), or [report a bug](index.md#source-troubleshooting-report-bug).
+To ask for help, [collect diagnostics](diagnostics.md), [find support](index.md), or [report a bug](index.md).
 
 <span id="source-troubleshooting-support"></span>
 
@@ -26,7 +26,7 @@ To ask for help, [collect diagnostics](diagnostics.md), [find support](index.md#
 First choose the [troubleshooting route](index.md) that matches your symptom, then collect [diagnostics](diagnostics.md). Search existing [CapRover discussions](https://github.com/caprover/caprover/discussions) and [issues](https://github.com/caprover/caprover/issues) for the exact error.
 
 - For configuration advice, ask in GitHub Discussions with the CapRover and Docker versions, relevant sanitized logs, deployment method, and steps tried.
-- For a reproducible product defect, [report a bug](index.md#source-troubleshooting-report-bug).
+- For a reproducible product defect, [report a bug](index.md).
 - Do not publish secrets, private SSH keys, or an unredacted backup.
 
 <span id="source-troubleshooting-report-bug"></span>
@@ -47,14 +47,14 @@ Use [CapRover issues](https://github.com/caprover/caprover/issues) for product d
 ## Troubleshooting Applications
 
 - Start with the app's deployment and service logs.
-- If the build failed, use [Troubleshooting Deployments](index.md#source-deployments-troubleshooting).
+- If the build failed, use [Troubleshooting Deployments](index.md).
 - If the build succeeded but the browser shows a 502 error, confirm the container runs, listens on `0.0.0.0`, and matches the configured container HTTP port.
 
-- For DNS, HTTPS, redirect, or NGINX issues, use [Domains & Networking troubleshooting](index.md#source-domains-troubleshooting).
-- For a missing file or an app that moved nodes, check [Data & Persistence troubleshooting](index.md#source-data-persistence-troubleshooting).
+- For DNS, HTTPS, redirect, or NGINX issues, use [Domains & Networking troubleshooting](index.md).
+- For a missing file or an app that moved nodes, check [Data & Persistence troubleshooting](index.md).
 - For insufficient replicas, check the app's instance count, node placement, and Docker service state.
 
-Record the app name, the action that failed, relevant logs, and the first observed error before seeking [support](index.md#source-troubleshooting-support). Redact credentials and tokens.
+Record the app name, the action that failed, relevant logs, and the first observed error before seeking [support](index.md). Redact credentials and tokens.
 
 <span id="source-deployments-troubleshooting"></span>
 
@@ -66,7 +66,7 @@ Record the app name, the action that failed, relevant logs, and the first observ
 - **Git fetch fails:** Check the repository address, branch, deploy key or limited credentials, and network access from the server.
 - **Build fails:** Inspect the first error, Dockerfile and Captain Definition path, and available memory and disk.
 - **Image pull fails:** Check image name, tag, registry reachability, and stored credentials. In a cluster, verify each node can pull it.
-- **Service is running but HTTP fails:** Confirm DNS, configured container port, app listen address, and NGINX routing. See [Applications troubleshooting](index.md#source-applications-troubleshooting).
+- **Service is running but HTTP fails:** Confirm DNS, configured container port, app listen address, and NGINX routing. See [Applications troubleshooting](index.md).
 
 Capture relevant logs and the requested image or commit ID. Redact passwords, repository tokens, and deploy webhook URLs before sharing them.
 
@@ -82,11 +82,11 @@ Check the request path in order:
 4. **Certificate:** Did HTTPS get enabled for this exact hostname? Check the Certbot logs and HTTP challenge reachability before retrying.
 5. **Redirects:** After HTTPS works, test Force HTTPS and any redirect-domain or reverse-proxy rule for loops.
 
-Record the failing hostname, DNS answer, HTTP response, and relevant service logs. Remove tokens and passwords before sharing diagnostics. See [Firewall](../domains/firewall.md) and [HTTPS](../domains/index.md#source-domains-https) for the setup prerequisites.
+Record the failing hostname, DNS answer, HTTP response, and relevant service logs. Remove tokens and passwords before sharing diagnostics. See [Firewall](../domains/firewall.md) and [HTTPS](../domains/index.md) for the setup prerequisites.
 
 - If CapRover reports **domain verification error 1107**, first confirm that the exact domain resolves directly to this server and is reachable on port 80 from outside your network.
 - A DNS proxy or incorrect AAAA record can make CapRover's view differ from yours.
-- For a private network where a public DNS verification cannot work, see [Local / Private Network](../installation/advanced/index.md#source-installation-local-private-network); its `skipVerifyingDomains` override disables CapRover's check but does not make DNS or public certificate issuance work.
+- For a private network where a public DNS verification cannot work, see [Local / Private Network](../installation/advanced/index.md); its `skipVerifyingDomains` override disables CapRover's check but does not make DNS or public certificate issuance work.
 - Do not enable that override to conceal a broken public DNS configuration.
 
 <span id="source-data-persistence-troubleshooting"></span>

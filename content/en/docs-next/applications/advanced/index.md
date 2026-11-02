@@ -52,5 +52,5 @@ var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
 
 - This code has the privileges of the CapRover process.
 - It can break service updates or access sensitive data, so restrict who can edit it.
-- For static service fields, prefer a [Service Update Override](index.md#source-applications-advanced-service-update-override).
+- For static service fields, prefer a [Service Update Override](index.md).
 - Check `docker service logs captain-captain` if a service update fails before reaching Docker.

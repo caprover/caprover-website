@@ -20,7 +20,7 @@ For example, paste this definition to deploy an existing public image:
 
 - Start the deployment, watch the build or pull status, then verify the app's container HTTP port and its default domain.
 - For a private image, configure registry credentials first.
-- See [Deploy a Docker Image](index.md#source-deployments-docker-image).
+- See [Deploy a Docker Image](index.md).
 
 <span id="source-deployments-docker-image"></span>
 

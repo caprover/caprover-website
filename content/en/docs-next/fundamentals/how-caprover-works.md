@@ -32,7 +32,7 @@ Start with [Getting Started](../get-started.md), then explore [Applications](../
 
 - Creating an app and deploying an image are separate steps.
 - A newly created app can exist before the intended image is deployed.
-- See [Create and Manage Apps](../applications/index.md#source-applications-create-manage) and [Scale an Application](../scaling/index.md#source-scaling-scale-app).
+- See [Create and Manage Apps](../applications/index.md) and [Scale an Application](../scaling/index.md).
 
 <span id="source-fundamentals-builds-images-deployments"></span>
 
@@ -75,7 +75,7 @@ Containers are replaceable. Files written only inside a container can disappear 
 
 Persistence affects placement. A node-local volume or bind mount is not automatically shared with other Swarm nodes. If an app moves to another node, it may see an empty path there. Plan backups of persistent data separately from CapRover's own configuration backup.
 
-Start with [Stateless vs Persistent Apps](../data-persistence/index.md#source-data-persistence-stateless-persistent) before deploying a database or any app that stores uploads. Use [Node Placement](../data-persistence/index.md#source-data-persistence-node-placement) for the cluster implications.
+Start with [Stateless vs Persistent Apps](../data-persistence/index.md) before deploying a database or any app that stores uploads. Use [Node Placement](../data-persistence/index.md) for the cluster implications.
 
 <span id="source-fundamentals-docker-swarm"></span>
 
@@ -107,4 +107,4 @@ Swarm networking is separate from storage: local volumes remain local to their n
 | One-Click App | Template that deploys and configures one or more CapRover apps. |
 | Service | Docker Swarm unit whose tasks run application containers. |
 
-See [Fundamentals](how-caprover-works.md#source-fundamentals-index) for the relationships between these terms.
+See [Fundamentals](how-caprover-works.md) for the relationships between these terms.

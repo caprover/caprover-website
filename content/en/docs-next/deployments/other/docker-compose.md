@@ -12,7 +12,7 @@ slug: /deployments/other/docker-compose
 - Other Compose fields are ignored.
 - In particular, do not assume `build`, custom `networks`, `secrets`, `configs`, `deploy`, `restart`, or `container_name` behaves like `docker compose`.
 
-Named volumes are managed through the generated CapRover apps. A port mapping needs a `HOST:CONTAINER` form. For stacks that require unsupported Compose behavior, run Compose separately and explicitly connect the service to CapRover's external `captain-overlay-network` only when needed. Services managed outside CapRover remain outside its app lifecycle and backup behavior. See the [support matrix](docker-compose.md#source-reference-docker-compose).
+Named volumes are managed through the generated CapRover apps. A port mapping needs a `HOST:CONTAINER` form. For stacks that require unsupported Compose behavior, run Compose separately and explicitly connect the service to CapRover's external `captain-overlay-network` only when needed. Services managed outside CapRover remain outside its app lifecycle and backup behavior. See the [support matrix](docker-compose.md).
 
 <span id="source-reference-docker-compose"></span>
 

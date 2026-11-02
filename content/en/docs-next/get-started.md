@@ -12,7 +12,7 @@ Install CapRover on Ubuntu 24.04 and deploy your first app with HTTPS.
 - A domain with full DNS access (including wildcard records like `*.example.com`).
 - Root access to the server.
 
-Using the [DigitalOcean Marketplace image](installation/index.md#source-installation-digitalocean)? Skip steps 2 and 3. For installations without a public domain, see [Local / Private Network](installation/advanced/index.md#source-installation-local-private-network).
+Using the [DigitalOcean Marketplace image](installation/index.md)? Skip steps 2 and 3. For installations without a public domain, see [Local / Private Network](installation/advanced/index.md).
 
 ## 1. Ports and firewall
 
@@ -103,7 +103,7 @@ At `http://YOUR_SERVER_IP:3000`:
 4. Enable **HTTPS** for the dashboard.
 5. Visit `https://captain.apps.example.com`, verify the certificate, then enable **Force HTTPS**.
 
-If HTTPS fails, check DNS and ports 80/443. See [HTTPS troubleshooting](domains/index.md#source-domains-https).
+If HTTPS fails, check DNS and ports 80/443. See [HTTPS troubleshooting](domains/index.md).
 
 **CLI alternative:** On a fresh installation, run `npm install -g caprover` and then `caprover serversetup` from your computer before enabling Force HTTPS. See [CLI Commands](reference/cli.md).
 
