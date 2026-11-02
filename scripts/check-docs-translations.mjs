@@ -65,7 +65,11 @@ for (const locale of locales) {
     if (JSON.stringify(fences(source)) !== JSON.stringify(fences(translated))) {
       errors.push(prefix + ": fenced code differs");
     }
-    if (JSON.stringify(linkTargets(source)) !== JSON.stringify(linkTargets(translated))) {
+    // A translated heading has a localized fragment ID. Preserve the link's
+    // actual file/URL destination; Docusaurus validates each localized anchor.
+    const sourcePaths = linkTargets(source).map((link) => link.split("#")[0]);
+    const translatedPaths = linkTargets(translated).map((link) => link.split("#")[0]);
+    if (JSON.stringify(sourcePaths) !== JSON.stringify(translatedPaths)) {
       errors.push(prefix + ": Markdown link destinations differ");
     }
     if (JSON.stringify(inlineCode(source)) !== JSON.stringify(inlineCode(translated))) {
