@@ -1,21 +1,21 @@
 ---
 id: ports
-title: Puertos de red y cortafuegos
+title: Puertos de red y firewall
 slug: /reference/ports
 ---
 
-| Puerto | Protocolo | Propósito |
+| Puerto | Protocolo | Uso |
 | --- | --- | --- |
 | 80 | TCP | HTTP y validación de certificados |
 | 443 | TCP | HTTPS |
-| 3000 | TCP | Configuración inicial del dashboard de mando |
-| 996 | TCP | Registro auto hospedado, si está habilitado |
-| 22 | TCP | SSH, o su puerto SSH configurado |
-| 2377 | TCP | Gestión del cirmo |
-| 7946 | TCP/UDP | Comunicación de los nodos de Swarm |
-| 4789 | UDP | Tráfico de transmisiones |
+| 3000 | TCP | Configuración inicial del dashboard |
+| 996 | TCP | Registry autohospedado, si está habilitado |
+| 22 | TCP | SSH o el puerto SSH personalizado |
+| 2377 | TCP | Gestión de Docker Swarm |
+| 7946 | TCP/UDP | Comunicación entre nodos Swarm |
+| 4789 | UDP | Tráfico de la red overlay de Swarm |
 
-- Sólo SSH, 80, 443, y 3000 son relevantes para la configuración inicial de un solo nodo.
-- Restringir los puertos de Swarm a los nodos de racimo de confianza y 3000 después de la configuración de HTTPS de panel.
-- Los puertos TCP/UDP publicados específicamente para aplicaciones requieren sus propias reglas de acceso.
-- Puertos de acogida personalizados: `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, y `CAPTAIN_HOST_ADMIN_PORT`Véase [Server Environment](server-environment.md).
+- Para instalar un servidor de un solo nodo, únicamente necesitas SSH y los puertos 80, 443 y 3000.
+- Restringe los puertos de Swarm a los nodos de confianza. Limita el acceso público al puerto 3000 cuando el dashboard ya funcione por HTTPS.
+- Si una aplicación publica puertos TCP/UDP adicionales, debes configurar las reglas de acceso correspondientes.
+- Para personalizar los puertos del host, utiliza `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT` y `CAPTAIN_HOST_ADMIN_PORT`. Consulta [Variables de entorno del servidor](server-environment.md).
