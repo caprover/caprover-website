@@ -12,16 +12,24 @@ const ids = new Set([
 const pages = catalog.sections.flatMap((section) => section.pages);
 const sources = pages.flatMap((page) => page.sources);
 const targets = pages.map((page) => page.target);
+assert.deepEqual(pages.filter((page) => page.createdAfterConsolidation).map((page) => page.target),
+  catalog.addedAfterOriginalConsolidation, 'new canonical pages must be explicitly registered');
 
 assert.equal(catalog.sections.length, 8, 'expected eight sections');
-assert.equal(pages.length, 47, 'unexpected change to canonical page inventory');
+assert.equal(pages.length, catalog.targetPageCount, 'unexpected change to canonical page inventory');
 assert.equal(sources.length, catalog.originalPageCount);
 assert.equal(new Set(sources).size, sources.length, 'duplicate source mapping');
 assert.equal(new Set(targets).size, targets.length, 'duplicate canonical destination');
 assert.equal(catalog.previewRoutes.length, sources.length, 'missing preview routes');
 
 for (const page of pages) {
-  assert(page.sources.includes(page.target), 'canonical page missing own source: ' + page.target);
+  if (page.createdAfterConsolidation) {
+    assert.equal(page.sources.length, 0, 'new canonical page must have no historical source: ' + page.target);
+    assert(catalog.addedAfterOriginalConsolidation.includes(page.target),
+      'unregistered page added after consolidation: ' + page.target);
+  } else {
+    assert(page.sources.includes(page.target), 'canonical page missing own source: ' + page.target);
+  }
   const file = new URL('content/en/docs-next/' + page.target + '.md', root);
   assert(existsSync(file), 'canonical Markdown file missing: ' + page.target);
 }
