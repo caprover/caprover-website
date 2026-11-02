@@ -1,6 +1,6 @@
 ---
 id: index
-title: Aplicaciones de un solo clic
+title: One-Click Apps
 slug: /one-click-apps
 ---
 
@@ -8,56 +8,56 @@ slug: /one-click-apps
 
 ## Instalación
 
-Las plantillas de One-Click crean aplicaciones comunes de CapRover. Cada plantilla puede proporcionar múltiples servicios.
+Las plantillas One-Click crean aplicaciones normales de CapRover. Una plantilla puede instalar varios servicios.
 
-- Compruebe las variables requeridas de la plantilla, imágenes, puertos expuestos, volúmenes e instrucciones de post-instalación.
-- Utilice una base de datos única y credenciales de administrador.
-- Servicios persistentes **copias de seguridad separadas de aplicaciones-datos**Las copias de seguridad de configuración de CapRover no contienen volúmenes de bases de datos.
-- El catálogo de panel en vivo es la fuente de plantillas y versiones actuales.
+- Revisa las variables obligatorias, imágenes, puertos publicados, volúmenes e instrucciones posteriores a la instalación.
+- Utiliza credenciales únicas para las bases de datos y las cuentas de administrador.
+- Los servicios persistentes necesitan **copias de seguridad independientes de los datos de aplicación**. El backup de configuración de CapRover no incluye los volúmenes de bases de datos.
+- Consulta el catálogo del dashboard para ver las plantillas y versiones disponibles actualmente.
 
 <span id="source-one-click-apps-configure"></span>
 
 ## Configuración
 
-- Las aplicaciones generadas pueden configurarse usando su configuración habitual de aplicaciones CapRover.
-- Algunas variables, como contraseñas iniciales de bases de datos, aplican **sólo en el primer arranque**. Los cambios variables ambientales posteriores no necesariamente actualizan a los usuarios de bases de datos existentes.
+- Puedes configurar las aplicaciones generadas desde sus ajustes normales de CapRover.
+- Algunas variables, como la contraseña inicial de una base de datos, solo se aplican **durante el primer arranque**. Cambiar la variable de entorno después no modifica necesariamente la contraseña de un usuario ya creado.
 
 <span id="source-one-click-apps-connect"></span>
 
-## Servicios de conexión
+## Conectar servicios
 
-- Ejemplo de conexión interna: `postgres:5432` (utiliza el nombre de servicio generado y el puerto de escucha).
-- Para aplicaciones heredadas, las `srv-captain--` service alias may still work.
-- Almacene las credenciales en la configuración del entorno de la aplicación que consume.
-- Para clientes fuera de CapRover, ver [Conexión externa de bases de datos](../data-persistence/deploy-databases.md).
+- Ejemplo de conexión interna: `postgres:5432`. Utiliza el nombre real del servicio generado y su puerto interno.
+- Las aplicaciones antiguas pueden conservar el alias de servicio `srv-captain--`.
+- Guarda las credenciales en las variables de entorno de la aplicación que las utiliza.
+- Para clientes externos a CapRover, consulta [Conexiones externas a bases de datos](../data-persistence/deploy-databases.md).
 
 <span id="source-one-click-apps-upgrade"></span>
 
 ## Actualizaciones
 
-- Lea las instrucciones de migración de la aplicación upstream y vuelva a actualizar sus datos.
-- Una plantilla puede utilizar una imagen personalizada o scripts de inicialización. Reemplazarlo con una imagen de corriente vertical puede perder la configuración esencial.
-- Los cambios de imagen no realizan cada base de datos o migración de esquemas de aplicaciones.
-- Preserve y verifique los volúmenes existentes al recrear o migrar aplicaciones estatales.
+- Antes de actualizar, lee las instrucciones de migración del proyecto original y haz backup de sus datos.
+- Una plantilla puede usar una imagen personalizada o scripts de inicialización. Sustituirla por la imagen upstream sin más puede eliminar configuraciones necesarias.
+- Cambiar la imagen no ejecuta automáticamente todas las migraciones de bases de datos ni del esquema de la aplicación.
+- Conserva y verifica los volúmenes existentes al recrear o migrar aplicaciones con estado.
 
 <span id="source-one-click-apps-custom-repositories"></span>
 
 ## Repositorios personalizados
 
-CapRover puede cargar plantillas de repositorios One-Click de terceros.
+CapRover permite cargar plantillas desde repositorios One-Click de terceros.
 
-- Revise plantillas antes del despliegue: pueden ejecutar imágenes, abrir puertos, montar almacenamiento y configurar credenciales.
-- Grabar qué repositorio proporcionó su aplicación instalada para futuras actualizaciones.
-- Consulta [Crear plantillas One-Click](authoring.md) para crear una plantilla.
+- Revisa el código de las plantillas antes de desplegarlas: pueden ejecutar imágenes, publicar puertos, montar almacenamiento y configurar credenciales.
+- Registra de qué repositorio procede cada aplicación para poder actualizarla después.
+- Consulta [Crear plantillas One-Click](authoring.md) para publicar tu propia plantilla.
 
 <span id="source-one-click-apps-troubleshooting"></span>
 
 ## Solución de problemas
 
-Identificar el servicio generado fallido. Inspeccione sus registros y compruebe:
+Identifica qué servicio generado está fallando. Revisa sus logs y comprueba:
 
-- Variables de plantilla, errores de imagen de arranque/build y credenciales.
-- Exposición portuaria, nombres de servicio interno, montajes de volumen y colocación.
-- Ya sea que una base de datos comenzó inesperadamente con un volumen nodo-local vacío.
+- Variables de la plantilla, errores de pull/build de la imagen y credenciales.
+- Puertos publicados, nombres de servicio internos, volúmenes y restricciones de ubicación.
+- Si una base de datos se inició accidentalmente con un volumen local vacío en otro nodo.
 
-Preserve volúmenes declarantes durante la investigación. Compartir registros de servicio redactados, nombre de plantilla y versiones de imagen al pedir ayuda.
+Conserva los volúmenes con estado mientras investigas. Si solicitas ayuda, comparte logs sin secretos, nombre de la plantilla y versiones de las imágenes.
