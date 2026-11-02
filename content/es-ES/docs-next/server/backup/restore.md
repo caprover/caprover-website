@@ -1,28 +1,28 @@
 ---
 id: restore
-title: Restaurar un servidor
+title: Restaurar un servidor CapRover
 slug: /server/backup/restore
 ---
 
 ## Antes de restaurar
 
-- **Servidor:** host fresco con Docker, SSH, y suficiente disco para el archivo y datos extraídos
-- **Firewall:** SSH, `80/tcp`, `443/tcp`, y `3000/tcp` abierto durante la configuración
-- **Clústeres:** Preparen confianza [Puertos de Swarm y registro](../../reference/ports.md)
-- **Datos:** Leer [Lo que está respaldado](index.md) y obtener bases de datos y copias de seguridad de volumen separadas
+- **Servidor:** Prepara un host nuevo con Docker, SSH y suficiente disco para el backup y sus datos extraídos.
+- **Firewall:** Durante la instalación deben estar disponibles SSH, `80/tcp`, `443/tcp` y `3000/tcp`.
+- **Clúster:** Configura los [puertos de Swarm y del registry](../../reference/ports.md) entre los nodos de confianza.
+- **Datos:** Consulta [Qué incluye el backup](index.md) y prepara copias de seguridad independientes de bases de datos y volúmenes.
 
-**Importante:** Coloque el archivo en `/captain/backup.tar` **antes** ejecutando el instalador CapRover. El instalador lo detecta al inicio.
+**Importante:** Coloca el archivo en `/captain/backup.tar` **antes** de ejecutar el instalador de CapRover. El instalador busca ese archivo al arrancar.
 
 ## Restauración
 
-1. Copiar el archivo al nuevo servidor:
+1. Copia el backup al servidor nuevo:
 
    ```bash
    ssh root@NEW_IP 'mkdir -p /captain'
    scp backup.tar root@NEW_IP:/captain/backup.tar
    ```
 
-2. Ejecute CapRover en el nuevo servidor:
+2. Inicia CapRover en el servidor nuevo:
 
    ```bash
    sudo docker run -p 80:80 -p 443:443 -p 3000:3000 \
@@ -32,41 +32,40 @@ slug: /server/backup/restore
      caprover/caprover
    ```
 
-   ¿Necesita Docker? Seguir [Comienzo](../../get-started.md) primero.
+   Si necesitas instalar Docker, sigue primero la guía de [Primeros pasos](../../get-started.md).
 
-3. Mira los registros del instalador. Para los grupos, siga [Restauración multinodo](restore.md) cuando se solicita para el mapeo de nodos.
-4. Indique el DNS original comodín al nuevo servidor cuando esté listo. Para un clon que corre junto al original, elija un dominio raíz diferente.
-5. Restaurar archivos de bases de datos, volúmenes y enlazar montajes por separado. Implementar aplicaciones si sus imágenes están desaparecidas.
-6. Verifique el acceso de panel, HTTPS, servicios y datos de aplicaciones antes de cambiar completamente el tráfico.
+3. Comprueba los logs del instalador. Para clústeres, sigue la [restauración multinodo](restore.md) cuando aparezca la solicitud de mapeo de nodos.
+4. Cuando esté preparado el cambio, apunta el wildcard DNS original al nuevo servidor. Si vas a ejecutar una copia en paralelo con el original, utiliza otro dominio raíz.
+5. Restaura por separado las bases de datos, volúmenes Docker y bind mounts. Si faltan imágenes, vuelve a desplegar las aplicaciones correspondientes.
+6. Antes de desviar todo el tráfico, verifica el acceso al dashboard, HTTPS, los servicios y los datos de las aplicaciones.
 
-Mantenga el servidor original y copias de seguridad hasta que la verificación tenga éxito.
+Conserva el servidor original y los backups hasta que se haya comprobado la recuperación.
 
 <span id="source-server-backup-multi-node-restore"></span>
 
 ## Restauración multinodo
 
-Prepare el nuevo gerente y cada worker de reemplazo con Docker, acceso a la red y un plan para los datos persistentes de los viejos nodos. Seguir [Restaurar un servidor](restore.md) en el nuevo gerente.
+Prepara un nodo manager nuevo y los nodos worker de reemplazo con Docker y acceso de red. Planifica también la recuperación de los datos persistentes de cada nodo antiguo. Sigue [Restaurar un servidor](restore.md) en el manager nuevo.
 
-- Para una copia de seguridad multinodo, la primera ejecución del instalador puede salir intencionadamente y crear `/captain/restoring/restore-instructions.json`.
-- Inspeccione su `oldNodesForReference` y `nodesMapping`.
-- Para cada viejo worker, sustituya el titular del lugar `newIp` con su nodo de reemplazo IP.
-- Deja el nodo manager `CURRENT_NODE_DONT_CHANGE` mapeando solo.
-- El archivo también suministra el SSH `user` y `privateKeyPath` para cada worker; configurar el acceso y copiar la clave privada requerida de forma segura al camino indicado (por defecto `/captain/id_rsa`).
+- En un backup multinodo, el instalador puede terminar intencionadamente en el primer intento y crear `/captain/restoring/restore-instructions.json`.
+- Revisa `oldNodesForReference` y `nodesMapping` dentro de ese archivo.
+- Sustituye `newIp` de cada worker antiguo por la IP del nodo que lo reemplazará.
+- No modifiques la entrada `CURRENT_NODE_DONT_CHANGE` correspondiente al manager.
+- El archivo también indica `user` y `privateKeyPath` para el acceso SSH de cada worker. Configura el acceso y copia de forma segura la clave privada a la ruta indicada (por defecto, `/captain/id_rsa`).
 
-- Reacciona el **igual** comando de instalación en el nuevo gerente.
-- El instalador comprueba SSH a los workers y mapas guardan la colocación del nodo a los reemplazos.
-- Retire la clave privada copiada después de la restauración.
-- Restaurar los volúmenes de cada nodo y unir montajes por separado, verificar el acceso al registro y redistribuir imágenes no disponibles, luego inspeccionar la colocación y los servicios.
-- Nunca señale la producción DNS en el nuevo grupo hasta que la validación esté completa.
+- Ejecuta **exactamente el mismo comando de instalación** otra vez en el manager nuevo.
+- El instalador comprueba SSH con los workers y reasigna a los nodos de reemplazo las ubicaciones anteriores.
+- Elimina la clave privada copiada cuando termine la restauración.
+- Restaura los volúmenes y bind mounts de cada nodo por separado. Comprueba el registry, vuelve a desplegar imágenes no disponibles y revisa los servicios y su ubicación.
+- **No apuntes el DNS de producción al clúster nuevo hasta completar las verificaciones.**
 
 <span id="source-server-move-server"></span>
 
-## Mover CapRover a otro servidor
+## Migrar CapRover a otro servidor
 
-- Uso [Crear un respaldo](index.md) en la fuente y copia de seguridad de los volúmenes de cada aplicación, bases de datos y archivos cargados por separado.
-- Registre el dominio raíz, registros DNS, ubicación del registro, puertos personalizados y colocación de nodos de cada aplicación.
-
-- Proporcione el destino con Docker y los puertos necesarios. [Restaurar el archivo CapRover](restore.md), o uso [Restauración multinodo](restore.md) para un clúster.
-- Restaurar datos de aplicaciones, confirmar imágenes son accesibles o redespliegue, y probar el dashboard y las aplicaciones.
-- Cambie los registros de DNS de comodín y dashboard a la nueva dirección cuando esté listo; compruebe HTTPS después de que DNS se propaga.
-- Mantenga el antiguo host disponible hasta que el nuevo haya pasado un cheque de restauración.
+- En el servidor original, [crea un backup](index.md) y guarda por separado los volúmenes, bases de datos y archivos subidos de cada aplicación.
+- Anota el dominio raíz, registros DNS, ubicación del registry, puertos personalizados y nodos asignados a las aplicaciones.
+- Prepara Docker y los puertos necesarios en el destino. [Restaura el backup de CapRover](restore.md) o sigue la [restauración multinodo](restore.md) si se trata de un clúster.
+- Restaura los datos de las aplicaciones, verifica que las imágenes se puedan descargar (o redespliega) y prueba el dashboard y las aplicaciones.
+- Cuando todo funcione, cambia el wildcard DNS y el registro del dashboard a la IP nueva. Comprueba HTTPS cuando se propague el DNS.
+- Mantén disponible el servidor anterior hasta validar la restauración.
