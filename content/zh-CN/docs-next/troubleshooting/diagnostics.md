@@ -22,7 +22,7 @@ docker service logs captain-captain --tail 100
 - **联网 :** 检查DNS并分别测试HTTP和HTTPS.
 - **存储 :** 检查挂载、磁盘空间和节点位置 。
 
-## 收集完整的服务器报告 {#collect-a-full-server-report}
+## 收集完整的服务器报告
 
 使用 [诊断收集器](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) 如果没有仪表板,若干服务失败,或快速检查没有结果。 运行在 Debian/ Ubuntu 上 **沼泽管理器** 已系统化 :
 
@@ -88,7 +88,7 @@ docker system df
 - 在共享密码,令牌和私人数据之前从日志中删除.
 - 见 [解决问题](index.md) 寻找导师的症状。
 
-对于涉及几个系统服务的停机或主机故障, [收集完整的服务器报告](diagnostics.md#collect-a-full-server-report) 在经理。
+对于涉及几个系统服务的停机或主机故障, [收集完整的服务器报告](diagnostics.md) 在经理。
 
 ### 端口3000号没有挂板
 
