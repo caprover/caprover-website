@@ -65,13 +65,28 @@
 | `troubleshooting-pro` | `/docs/server` | Adapted | OTP recovery, token deploy and alert email-forwarding retained. Historical 24-hour support SLA not reasserted without current confirmation. |
 | `support` | `/docs/troubleshooting` | Adapted | GitHub, Slack and commercial support contacts restored. Historical third-party paid consultant listings remain unverified. |
 
+## Critical cutover blocker: translated documentation
+
+The legacy `/docs` has Spanish and Chinese translated Markdown (for example `content/es-ES/docs/get-started.md` and `content/zh-CN/docs/get-started.md`). The `docs-next` plugin currently reads the **same English** `content/en/docs-next` source for every locale. The preview under `/es-ES/docs-next` and `/zh-CN/docs-next` consequently shows English text.
+
+Publishing `docs-next` as the new `/docs` without a locale plan would **remove the translated documentation experience**, even if all English content is accurate. This violates strict content parity.
+
+Choose and explicitly approve one before cutover:
+
+1. Translate the 47 retained docs pages to Spanish and Chinese, with translation coverage checked automatically; **or**
+2. Preserve the currently translated legacy content at stable locale-specific routes and clearly link it as archival, while marking new English content as untranslated; then plan a translation migration.
+
+Existing translated legacy pages also contain **stale fixed-credit claims**, so copying their text into the new documentation without review would propagate inaccuracies.
+
+**Do not proceed with PR 3 until this is resolved.**
+
 ## What still requires live verification
 
 1. **Production installation:** Fresh Ubuntu 24.04 on AMD64 and ARM64, public DNS, NGINX, Docker and Certbot. No production server was provisioned in this audit.
 2. **Restoration:** Actual config+volume recovery and multi-node IP/SSH mapping, including self-hosted registry images.
 3. **CI/CD:** Run GitHub and GitLab examples against a real CapRover instance. Syntax and source/API contract checks alone do not guarantee integration success.
 4. **Advanced integration:** Custom Certbot DNS plugins, older OpenStack templates, rclone plugin, third-party sample repositories. These depend on external versions and credentials.
-5. **Cutover URL verification:** Current preview redirects and builds are separate from full historical `/docs/*.html`, fragment and localized route preservation. Complete this in the future cutover PR.
+5. **Localization parity:** Retain or explicitly archive the existing Spanish and Chinese translations; do not silently substitute English.\n6. **Cutover URL verification:** Current preview redirects and builds are separate from full historical `/docs/*.html`, fragment and localized route preservation. Complete this in the future cutover PR.
 
 ## Recommendation
 
