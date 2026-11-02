@@ -4,15 +4,20 @@ title: Deploy from Git
 slug: /deployments/git
 ---
 
-- CapRover can pull a configured repository branch and deploy it when its webhook is triggered.
-- Put a `captain-definition` file in the repository, create an app, then enter the repository address, branch, and credentials in the app's deployment settings.
-- Use a read-only deploy key or a limited service account for a private repository.
+## Setup
 
-- Save the repository configuration and copy the generated app webhook URL into your Git provider's push webhook settings.
-- A push event calls CapRover, which fetches the configured branch and builds the app.
-- Protect the webhook URL as a credential.
-- Verify a push triggers a build and check its logs before relying on automation.
+1. Add a `captain-definition` file to your repository.
+2. Create the CapRover app.
+3. In its deployment settings, enter the repository URL, branch, and credentials.
+4. Save and copy the generated webhook URL.
+5. Add that URL as a **push webhook** in your Git provider.
+6. Push a commit. Check the CapRover deployment logs.
 
-- The repository URL format, SSH-key requirements, and provider webhook screens can vary.
-- The current implementation accepts the repository configuration stored with the app.
-- For repeatable release artifacts and to keep heavy builds off the CapRover server, use [CI/CD](./ci-cd/index.md) to build an image first.
+**Private repositories:** Use a read-only deploy key or limited service account.
+
+**Important:**
+
+- A webhook push makes CapRover fetch the configured branch and build the app.
+- Treat the webhook URL as a secret.
+- Repository URL formats, SSH keys, and webhook screens depend on your provider.
+- For reproducible builds away from the server, use [CI/CD](./ci-cd/index.md) to deploy an image.
