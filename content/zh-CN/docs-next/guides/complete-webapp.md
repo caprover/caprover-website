@@ -1,45 +1,45 @@
 ---
 id: complete-webapp
-title: 完成Web 应用教程
+title: 完整 Web 应用部署教程
 slug: /guides/complete-webapp
 ---
 
-- 这个例子结合了一个公共节点Web 应用,一个私人workerPostgreSQL,和一个持久的上传目录.
-- Web 应用接受一个简单任务;worker在PostgreSQL中对其进行了标签.
-- **端点没有认证,为一次性学习环境.** 使用一个具有足够的内存的单节点服务器PostgreSQL和两个节点服务;一个1GB主机可能太小,无法同时构建镜像.
+- 本示例包含一个对外提供服务的 Node.js Web 应用、一个内部 worker、PostgreSQL，以及用于上传文件的持久化目录。
+- Web 应用创建一个简单任务，worker 从数据库中处理任务并更新其状态。
+- **示例 endpoint 没有身份验证，只适合可随时删除的学习环境。** 建议使用单节点服务器，并为 PostgreSQL 和两个 Node.js 服务预留足够内存。1 GB 内存可能不足以同时构建多个镜像。
 
-## 1. 建立私人数据库
+## 1. 创建内部数据库
 
-- 完成 [开始](../get-started.md),包括通配符DNS和dashboardHTTPS.
-- 创建名为 CapRover 的应用程序 `demo-db` 与 **Has Persistent Data** 启用和 **Do not expose as web app** 选中 。
-- 添加一个命名卷 `demo-db-data` 时间 `/var/lib/postgresql/data`,用于 PostgreSQL 17 镜像的数据路径。
-- 在第一次部署前设定这些应用环境变量 :
+- 先完成[快速入门](../get-started.md)，包括通配符 DNS 和 dashboard HTTPS。
+- 创建名为 `demo-db` 的 CapRover 应用，启用 **Has Persistent Data**，并选中 **Do not expose as web app**。
+- 添加名为 `demo-db-data` 的数据卷，挂载到 `/var/lib/postgresql/data`，这是 PostgreSQL 17 镜像的数据目录。
+- 首次部署前设置以下环境变量：
 
-| 变量 | 数值 |
+| 变量 | 值 |
 | --- | --- |
 | `POSTGRES_USER` | `demo` |
 | `POSTGRES_DB` | `demo` |
-| `POSTGRES_PASSWORD` | 您安全保存的唯一的强密码 |
+| `POSTGRES_PASSWORD` | 一个单独生成并安全保存的强密码 |
 
-在那个 **部署** 选项卡,部署此镜像唯一的队长定义 :
+在 **Deployment** 标签页中，使用仅指定镜像的 Captain Definition 部署：
 
 ```json
 {"schemaVersion":2,"imageName":"postgres:17-alpine"}
 ```
 
-- 等待它的服务运行,它的日志说它已经准备好连接了.
-- 保留数据库端口 `5432` 私人;不需要发布host 端口.
-- 变化 `POSTGRES_PASSWORD` 在音量初始化后,不会更改现有的数据库用户密码.
+- 等待 service 正常运行，并通过日志确认数据库已经准备好接受连接。
+- 数据库的 `5432` 端口保持私有，无需发布宿主机端口。
+- 初始化数据卷后修改 `POSTGRES_PASSWORD`，不会自动修改已存在的数据库用户密码。
 
-## 2. 建立网络和worker 镜像
+## 2. 构建 Web 与 worker 镜像
 
-在新的本地目录中创建 `package.json`:
+在新的本地目录中创建 `package.json`：
 
 ```json
 {"name":"caprover-multi-service-demo","version":"1.0.0","private":true,"type":"module","dependencies":{"pg":"8.11.5"}}
 ```
 
-创建 `web.mjs`。它使用标准 PostgreSQL 环境变量,向数据库写一个任务,并在挂载路径上存储一个小上传:
+创建 `web.mjs`：它使用 PostgreSQL 标准环境变量连接数据库，创建任务，并将一个小文件写入挂载目录：
 
 ```javascript
 import http from 'node:http';
@@ -98,7 +98,7 @@ http.createServer(async (req, res) => {
 }).listen(3000, '0.0.0.0');
 ```
 
-创建 `worker.mjs` 从同一数据库处理工作:
+创建 `worker.mjs`，用于从同一数据库处理任务：
 
 ```javascript
 import pg from 'pg';
@@ -122,7 +122,7 @@ async function poll() {
 await poll();
 ```
 
-创建这两个 Docker 文件 :
+为两个服务分别创建 Dockerfile：
 
 ```dockerfile title="Dockerfile.web"
 FROM node:24-alpine
@@ -142,7 +142,7 @@ COPY worker.mjs ./
 CMD ["node", "worker.mjs"]
 ```
 
-在同一目录中创建两个“队长定义”文件 :
+在同一目录中创建两个 Captain Definition 文件：
 
 ```json title="captain-definition-web"
 {"schemaVersion":2,"dockerfilePath":"./Dockerfile.web"}
@@ -152,7 +152,7 @@ CMD ["node", "worker.mjs"]
 {"schemaVersion":2,"dockerfilePath":"./Dockerfile.worker"}
 ```
 
-运行 `npm install --package-lock-only` 本地创建 `package-lock.json`,然后包装文件。 构建用途 `npm ci`,所以在归档中包含锁文件 :
+先在本地运行 `npm install --package-lock-only` 生成 `package-lock.json`，再打包部署文件。由于镜像构建使用 `npm ci`，归档中必须包含 lockfile：
 
 ```bash
 npm install --package-lock-only
@@ -160,27 +160,27 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
   Dockerfile.web Dockerfile.worker captain-definition-web captain-definition-worker
 ```
 
-## 3. 创建、配置和部署其他应用程序
+## 3. 创建并部署其他应用
 
-- 创建 `demo-web` 与 **Has Persistent Data** 已启用。
-- 添加一个命名卷 `demo-uploads` 时间 `/data/uploads`,将容器 HTTP 端口设置为 `3000`,并给出下面的数据库变量。
-- 创建 `demo-worker` 作为无音量和相同数据库变量的非Web 应用:
+- 创建 `demo-web`，启用 **Has Persistent Data**。
+- 添加名为 `demo-uploads` 的数据卷，挂载到 `/data/uploads`；将容器 HTTP 端口设置为 `3000`，并添加下表中的数据库连接变量。
+- 创建 `demo-worker`，配置为非 Web 应用，无需数据卷，但使用同一组数据库连接变量：
 
-| 变量 | 两个应用程序的值 |
+| 变量 | 两个应用的配置值 |
 | --- | --- |
 | `PGHOST` | `demo-db` |
 | `PGPORT` | `5432` |
 | `PGUSER` | `demo` |
 | `PGDATABASE` | `demo` |
-| `PGPASSWORD` | 相同的密码集 `demo-db` |
+| `PGPASSWORD` | 与 `demo-db` 配置相同的密码 |
 
-- 新的 CapRover apps 将自己的应用名称作为内部 Docker 服务名称; 用 `docker service ls` 如果你正在使用一个遗留的应用程序。
-- 内 `demo-web`'s **部署** 选项卡,设置队长定义路径到 `./captain-definition-web` 上传 `deploy.tar`.
-- Web 应用启动并创建后 `jobs` 表格,设置 `demo-worker`Captain Definition路径 `./captain-definition-worker` 并上传同一档案。
-- 检查两个应用程序的构建和服务日志.
-- worker不需要公网域名或端口映射。
+- 新版 CapRover 的内部 Docker service 名称就是应用名称；如果使用旧版应用，可通过 `docker service ls` 确认实际名称。
+- 在 `demo-web` 的 **Deployment** 标签页，将 Captain Definition Path 设置为 `./captain-definition-web`，上传 `deploy.tar`。
+- Web 应用启动并创建 `jobs` 表后，为 `demo-worker` 设置 Captain Definition Path 为 `./captain-definition-worker`，上传相同的归档文件。
+- 查看两个应用的构建日志和 service 日志。
+- worker 不需要公开域名或端口映射。
 
-访问 `http://demo-web.<root-domain>/jobs` 和预期 `[]`。然后启用 HTTPS 用于 `demo-web`,验证其证书,并提出这些请求,替换示例主机名:
+打开 `http://demo-web.<root-domain>/jobs`，预期返回 `[]`。然后为 `demo-web` 启用 HTTPS，验证证书，并在替换示例 hostname 后发送以下请求：
 
 ```bash
 curl -X POST --data 'first job' https://demo-web.apps.example.com/jobs
@@ -189,51 +189,51 @@ curl -X PUT --data 'saved upload' https://demo-web.apps.example.com/upload
 curl https://demo-web.apps.example.com/upload
 ```
 
-- 刷新 `/jobs` 几秒钟后,检查工作是否 `processed: true`.
-- 上传应该说 `saved upload`.
-- 调动 `demo-web` 并验证上传遗迹; 重新启动 `demo-db` 并证实这份工作仍在名单上。
-- 如果其中之一消失, 请检查所配置的挂载路径和托管该服务的节点 。
+- 几秒钟后刷新 `/jobs`，确认任务的 `processed: true` 状态。
+- 上传文件接口应返回 `saved upload`。
+- 重新部署 `demo-web` 并确认上传文件仍在；重启 `demo-db`，确认任务记录未丢失。
+- 如果数据丢失，请检查挂载路径和对应 service 所在节点。
 
 ## 4. 备份每个数据源
 
-- 卡普罗弗 [配置备份](../server/backup/index.md) 不包含 `demo-db-data` 或 `demo-uploads`.
-- 设置 PostgreSQL 逻辑备份和上传音量的单独副本,将两者都存储在主机外,并测试恢复.
-- 见 [备份持久化数据](../data-persistence/backup-data.md).
-- 这个教程在单个节点上保持两个状态的应用程序; [本地卷不随 Swararm 任务移动](../data-persistence/index.md).
-- 生产应用程序还需要认证、上传政策、为多个worker申请工作以及部署和数据库迁移战略。
+- CapRover 的[配置备份](../server/backup/index.md)不包含 `demo-db-data` 或 `demo-uploads`。
+- 需要分别执行 PostgreSQL 逻辑备份和上传数据卷备份，将它们存储在服务器之外，并验证恢复过程。
+- 参阅[备份持久化数据](../data-persistence/backup-data.md)。
+- 本教程让两个有状态应用运行在单节点上；[本地数据卷不会随着 Swarm 任务自动迁移](../data-persistence/index.md)。
+- 生产应用还需要身份验证、上传策略、多 worker 的任务领取机制，以及部署和数据库 Schema 迁移方案。
 
 <span id="source-guides-sample-apps"></span>
 
 ## 示例应用
 
-这个 [CapRover 样本应用](https://github.com/caprover/caprover/tree/master/captain-sample-apps) 为多个框架演示 Dockerfiles 和 Captain 定义 。
+[CapRover 官方示例应用](https://github.com/caprover/caprover/tree/master/captain-sample-apps)提供了多种框架的 Dockerfile 和 Captain Definition 示例。
 
-1. 选个样本检查一下 `captain-definition`, Dockerfile, 曝光的容器端口, 以及所需的环境变量 。
-2. 在dashboard中创建一次性应用.
-3. 选择一种部署方法: 将样本的部署文件包成一个 tar 归档, 从应用程序上传 **部署** 选项卡, **或** 将样本输入一个 Git 分支, 并将其与 [国 际](../deployments/cli.md)。 CLI 的普通 Git 模式排除未承诺和忽略的文件。
-4. 观察积木. 如果容器在CapRover默认值以外的一个端口上收听,则将应用的容器HTTP端口相应设置. 在 HTTP 上检查应用程序 URL, 然后是 HTTPS 。
+1. 选择一个示例，检查其 `captain-definition`、Dockerfile、容器 HTTP 端口和所需环境变量。
+2. 在 dashboard 中创建测试应用。
+3. 选择部署方式：将示例文件打包为 tar，从 **Deployment** 标签页上传，**或者**将示例提交到 Git 分支并通过 [CLI](../deployments/cli.md) 部署。CLI 默认的 Git 模式不会包含未提交或被忽略的文件。
+4. 查看 build log。如果容器监听的不是 CapRover 默认端口，应更新应用的容器 HTTP 端口。先通过 HTTP 再通过 HTTPS 验证访问。
 
-仅将抽样证书和抽样数据作为例子。 在生产使用之前,确定真正的秘密,必要时增加持久化,并计划 [备份](../server/backup/index.md).
+示例中的凭据和数据仅用于演示。生产部署前应配置真实 secrets、持久化存储和[备份](../server/backup/index.md)。
 
-遗留文献中的其他社区框架实例:
+旧版文档还收录了社区提供的其他框架示例：
 
-- [CapRover Django 实例](https://gitlab.com/kamneros/caprover-django)
+- [CapRover Django 示例](https://gitlab.com/kamneros/caprover-django)
 - [Laravel CapRover 模板](https://github.com/jackbrycesmith/laravel-caprover-template)
-- [Elixir/Phoenix样本](https://github.com/TehSnappy/phoenix_sample)
+- [Elixir/Phoenix 示例](https://github.com/TehSnappy/phoenix_sample)
 
-这些第三方实例可能无法保存。 在部署前审查其镜像版本和依赖性 。
+这些第三方示例可能已经停止维护，部署前应检查镜像版本和依赖。
 
 <span id="source-guides-recipes"></span>
 
-## 其他示例方案
+## 更多实用指南
 
-利用这些有重点的办法执行共同的后续行动任务:
+常见后续任务可参考：
 
-- [部署已有的 Docker 镜像](../deployments/index.md),然后设置容器 HTTP 端口并验证公共 URL。
-- [私下连接两个应用程序](../domains/firewall.md) 不发布数据库端口。
-- [附加自定义域](../domains/index.md) 并启用 [HTTPS](../domains/index.md).
-- [添加持久化目录](../data-persistence/index.md) 在撰写文件之前。
-- [缩放应用程序](../scaling/index.md) 在检查会话和存储行为后。
-- [导出并恢复服务器配置](../server/backup/index.md) 与单独的 [数据备份](../data-persistence/backup-data.md).
+- [部署已有的 Docker 镜像](../deployments/index.md)，然后设置容器 HTTP 端口并验证公网 URL。
+- [让两个应用通过内部网络通信](../domains/firewall.md)，无需公开数据库端口。
+- [绑定自定义域名](../domains/index.md)并启用 [HTTPS](../domains/index.md)。
+- 写入文件前先[配置持久化目录](../data-persistence/index.md)。
+- 检查 session 和存储行为后，再[增加应用副本](../scaling/index.md)。
+- [导出并恢复服务器配置](../server/backup/index.md)，同时单独[备份应用数据](../data-persistence/backup-data.md)。
 
-完整的示例见 [完成 Web 应用程序](complete-webapp.md) 和 [静态 / 反应 App](static-react.md).
+完整案例参阅[Web 应用教程](complete-webapp.md)和[静态网站 / React 应用](static-react.md)。

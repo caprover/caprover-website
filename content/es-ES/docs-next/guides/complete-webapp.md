@@ -4,42 +4,42 @@ title: Tutorial de aplicación web completa
 slug: /guides/complete-webapp
 ---
 
-- Este ejemplo combina una aplicación web pública Node, un worker privado, PostgreSQL y un directorio de carga persistente.
-- La aplicación web recibe un trabajo pequeño; el worker lo marca procesado en PostgreSQL.
-- **Los puntos finales no tienen autenticación y son para un entorno de aprendizaje desechable.** Utilice un servidor de un solo nodo con memoria suficiente para PostgreSQL y dos servicios Node.js; un host de 1 GB puede ser demasiado pequeño para construir imágenes simultáneas.
+- Este ejemplo combina una aplicación web Node.js pública, un worker privado, PostgreSQL y un directorio persistente para archivos subidos.
+- La aplicación web recibe un trabajo y el worker lo marca como procesado en PostgreSQL.
+- **Los endpoints no tienen autenticación y este ejemplo es solo para un entorno de pruebas descartable.** Utiliza un servidor de un único nodo con suficiente memoria para PostgreSQL y dos servicios Node.js; 1 GB de RAM puede ser insuficiente para compilar varias imágenes a la vez.
 
 ## 1. Crear la base de datos privada
 
-- Completa [Comienzo](../get-started.md), incluyendo DNS de comodín y HTTPS de dashboard.
-- Crear una aplicación CapRover `demo-db` con **Has Persistent Data** habilitados y habilitados **Do not expose as web app** seleccionada.
-- Añadir un volumen llamado `demo-db-data` a `/var/lib/postgresql/data`, la ruta de datos para la imagen PostgreSQL 17.
-- Establecer estas variables de entorno de aplicación antes del primer despliegue:
+- Completa [Primeros pasos](../get-started.md), incluidos el DNS wildcard y el HTTPS del dashboard.
+- Crea una aplicación CapRover llamada `demo-db`, con **Has Persistent Data** activado y **Do not expose as web app** seleccionado.
+- Añade un volumen con nombre `demo-db-data` montado en `/var/lib/postgresql/data`, que es la ruta de datos de la imagen PostgreSQL 17.
+- Configura estas variables de entorno antes del primer despliegue:
 
 | Variable | Valor |
 | --- | --- |
 | `POSTGRES_USER` | `demo` |
 | `POSTGRES_DB` | `demo` |
-| `POSTGRES_PASSWORD` | Una contraseña segura única |
+| `POSTGRES_PASSWORD` | Una contraseña única y segura guardada en un lugar protegido |
 
-En el **Despliegue** tab, desplegar esta imagen solamente Captain Definition:
+En la pestaña **Deployment**, despliega esta Captain Definition que utiliza una imagen ya construida:
 
 ```json
 {"schemaVersion":2,"imageName":"postgres:17-alpine"}
 ```
 
-- Espere hasta que su servicio esté funcionando y sus registros dicen que está listo para las conexiones.
-- Mantenga el puerto de base `5432` privado; no hay necesidad de publicar un puerto host.
-- Cambio `POSTGRES_PASSWORD` después de la inicialización del volumen no cambia la contraseña del usuario de la base de datos existente.
+- Espera a que el servicio esté ejecutándose y sus logs indiquen que acepta conexiones.
+- Mantén privado el puerto `5432` de la base de datos. No necesitas publicarlo en el host.
+- Cambiar `POSTGRES_PASSWORD` después de inicializar el volumen no cambia la contraseña del usuario existente en PostgreSQL.
 
-## 2. Construir la web y las imágenes de workers
+## 2. Compilar las imágenes web y worker
 
-En un nuevo directorio local, crear `package.json`:
+En un directorio local nuevo, crea `package.json`:
 
 ```json
 {"name":"caprover-multi-service-demo","version":"1.0.0","private":true,"type":"module","dependencies":{"pg":"8.11.5"}}
 ```
 
-Crear `web.mjs`. Utiliza las variables estándar del entorno PostgreSQL, escribe un trabajo a la base de datos y almacena una pequeña carga en la ruta montada:
+Crea `web.mjs`. Utiliza las variables de entorno estándar de PostgreSQL, inserta trabajos en la base de datos y guarda un archivo de ejemplo en el directorio montado:
 
 ```javascript
 import http from 'node:http';
@@ -98,7 +98,7 @@ http.createServer(async (req, res) => {
 }).listen(3000, '0.0.0.0');
 ```
 
-Crear `worker.mjs` para procesar los trabajos de la misma base de datos:
+Crea `worker.mjs` para procesar los trabajos de la misma base de datos:
 
 ```javascript
 import pg from 'pg';
@@ -122,7 +122,7 @@ async function poll() {
 await poll();
 ```
 
-Cree estos dos Dockerfiles:
+Crea estos dos Dockerfiles:
 
 ```dockerfile title="Dockerfile.web"
 FROM node:24-alpine
@@ -142,7 +142,7 @@ COPY worker.mjs ./
 CMD ["node", "worker.mjs"]
 ```
 
-Crear dos archivos de Captain Definition en el mismo directorio:
+Crea dos archivos Captain Definition en el mismo directorio:
 
 ```json title="captain-definition-web"
 {"schemaVersion":2,"dockerfilePath":"./Dockerfile.web"}
@@ -152,7 +152,7 @@ Crear dos archivos de Captain Definition en el mismo directorio:
 {"schemaVersion":2,"dockerfilePath":"./Dockerfile.worker"}
 ```
 
-Corre `npm install --package-lock-only` localmente para crear `package-lock.json`, luego empaquetar los archivos. Usos de la build `npm ci`, por lo que incluye el archivo de bloqueo en el archivo:
+Ejecuta `npm install --package-lock-only` localmente para generar `package-lock.json` y empaqueta los archivos. El build utiliza `npm ci`, así que incluye el lockfile en el tar:
 
 ```bash
 npm install --package-lock-only
@@ -162,9 +162,9 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 
 ## 3. Crear, configurar y desplegar las demás aplicaciones
 
-- Crear `demo-web` con **Has Persistent Data** habilitado.
-- Añadir un volumen llamado `demo-uploads` a `/data/uploads`, establecer el puerto HTTP contenedor `3000`, y darle las variables de base de datos a continuación.
-- Crear `demo-worker` como aplicación no USB sin volumen y las mismas variables de base:
+- Crea `demo-web` y activa **Has Persistent Data**.
+- Añade un volumen `demo-uploads` montado en `/data/uploads`, configura el puerto HTTP del contenedor en `3000` y añade las variables de conexión a la base de datos que aparecen a continuación.
+- Crea `demo-worker` como aplicación no web, sin volumen, con las mismas variables:
 
 | Variable | Valor en ambas aplicaciones |
 | --- | --- |
@@ -172,15 +172,15 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 | `PGPORT` | `5432` |
 | `PGUSER` | `demo` |
 | `PGDATABASE` | `demo` |
-| `PGPASSWORD` | La misma contraseña `demo-db` |
+| `PGPASSWORD` | La misma contraseña configurada para `demo-db` |
 
-- Las nuevas aplicaciones CapRover usan su nombre de aplicación como el nombre de servicio Docker interno; confirma el nombre real con `docker service ls` si estás usando una aplicación heredada.
-- En `demo-web`'s **Despliegue** pestaña, establecer el camino de Captain Definition `./captain-definition-web` y subir `deploy.tar`.
-- Después de la aplicación web comienza y crea `jobs` cuadro, conjunto `demo-worker`Es el camino de Captain Definition `./captain-definition-worker` y subir el mismo archivo allí.
-- Inspeccione los registros de build y servicio para ambas aplicaciones.
+- Las aplicaciones nuevas usan su nombre como nombre interno del servicio Docker; en aplicaciones antiguas, comprueba el nombre real con `docker service ls`.
+- En la pestaña **Deployment** de `demo-web`, establece Captain Definition Path en `./captain-definition-web` y sube `deploy.tar`.
+- Cuando la aplicación web arranque y cree la tabla `jobs`, establece Captain Definition Path de `demo-worker` en `./captain-definition-worker` y sube el mismo archivo.
+- Revisa los logs del build y de los servicios de ambas aplicaciones.
 - El worker no necesita dominio público ni mapeo de puertos.
 
-Visita `http://demo-web.<root-domain>/jobs` y esperar `[]`. A continuación, active HTTPS para `demo-web`, verificar su certificado, y hacer estas solicitudes, reemplazando el nombre de host ejemplo:
+Visita `http://demo-web.<root-domain>/jobs`. Deberías recibir `[]`. Después activa HTTPS para `demo-web`, verifica el certificado y ejecuta las siguientes peticiones sustituyendo el hostname de ejemplo:
 
 ```bash
 curl -X POST --data 'first job' https://demo-web.apps.example.com/jobs
@@ -189,51 +189,51 @@ curl -X PUT --data 'saved upload' https://demo-web.apps.example.com/upload
 curl https://demo-web.apps.example.com/upload
 ```
 
-- Refresh `/jobs` después de unos segundos y comprobar que el trabajo tiene `processed: true`.
-- La carga debe decir `saved upload`.
-- Redistribución `demo-web` y verificar los restos de carga; reiniciar `demo-db` y confirmar el trabajo sigue en la lista.
-- Si uno desaparece, inspeccione la ruta de montaje configurada y el nodo que alberga ese servicio.
+- Actualiza `/jobs` después de unos segundos y comprueba que el trabajo muestra `processed: true`.
+- El archivo subido debe devolver `saved upload`.
+- Redespliega `demo-web` y comprueba que el archivo sigue existiendo. Reinicia `demo-db` y verifica que el trabajo continúa en la base de datos.
+- Si desaparece alguno, revisa la ruta montada y el nodo donde se ejecuta el servicio.
 
-## 4. Hacer copia de seguridad de cada origen de datos
+## 4. Hacer backup de cada fuente de datos
 
-- CapRover [configuración copia de seguridad](../server/backup/index.md) no contiene `demo-db-data` o `demo-uploads`.
-- Configurar una copia de seguridad lógica PostgreSQL y una copia separada del volumen de carga, almacenar ambos fuera del host y la restauración de pruebas.
-- Consulta [Hacer copias de seguridad de datos persistentes](../data-persistence/backup-data.md).
-- Este tutorial mantiene ambas aplicaciones de estado en un solo nodo; [los volúmenes locales no se mueven con una tarea de Swarm](../data-persistence/index.md).
-- Una aplicación de producción también necesita autenticación, una política de carga, empleo que reclama para múltiples workers, y una estrategia de despliegue y migración de bases de datos.
+- El [backup de configuración](../server/backup/index.md) de CapRover no incluye `demo-db-data` ni `demo-uploads`.
+- Configura un backup lógico de PostgreSQL y una copia independiente del volumen de archivos subidos. Guarda ambos fuera del servidor y prueba restaurarlos.
+- Consulta [Backup de datos persistentes](../data-persistence/backup-data.md).
+- Este tutorial mantiene las dos aplicaciones stateful en el mismo nodo. Los [volúmenes locales no se mueven con las tareas de Swarm](../data-persistence/index.md).
+- Una aplicación de producción también necesita autenticación, políticas de upload, reparto seguro de trabajos entre varios workers y una estrategia de despliegue y migración del esquema de base de datos.
 
 <span id="source-guides-sample-apps"></span>
 
-## Aplicaciones de muestra
+## Aplicaciones de ejemplo
 
-El [Aplicaciones de ejemplo de CapRover](https://github.com/caprover/caprover/tree/master/captain-sample-apps) Demostrar Dockerfiles y definiciones de Capitán para varios marcos.
+Las [aplicaciones de ejemplo de CapRover](https://github.com/caprover/caprover/tree/master/captain-sample-apps) muestran Dockerfiles y Captain Definitions para distintos frameworks.
 
-1. Escoge una muestra e inspecciona su `captain-definition`, Dockerfile, puerto de contenedores expuestos y variables de entorno requeridas.
-2. Cree una aplicación desechable en el panel.
-3. Elija un método de despliegue: empaque los archivos de despliegue de la muestra en un archivo de tar y suba desde la aplicación **Despliegue** tab, **o** comprometer la muestra a una rama de Git y desplegarla con la [CLI](../deployments/cli.md)El modo Git normal del CLI excluye archivos no comprometidos e ignorados.
-4. Mira registros de build. Si el contenedor escucha en un puerto distinto al predeterminado de CapRover, establece el puerto HTTP contenedor de la aplicación en consecuencia. Compruebe la URL de la aplicación sobre HTTP y luego HTTPS.
+1. Elige un ejemplo y revisa su `captain-definition`, Dockerfile, puerto HTTP del contenedor y variables de entorno necesarias.
+2. Crea una aplicación descartable desde el dashboard.
+3. Elige cómo desplegar: empaqueta los archivos en un tar y súbelo desde **Deployment**, **o** haz commit del ejemplo en una rama Git y despliega mediante la [CLI](../deployments/cli.md). El modo Git de la CLI excluye archivos sin commit o ignorados.
+4. Revisa los logs del build. Si el contenedor escucha en otro puerto, actualiza el puerto HTTP de la aplicación. Comprueba la URL mediante HTTP y después HTTPS.
 
-Protege las credenciales de muestra y datos de muestra como ejemplos solamente. Antes de utilizar la producción, establecer secretos reales, añadir persistencia cuando sea necesario, y planificar [backups](../server/backup/index.md).
+Las credenciales y datos del ejemplo son solo ilustrativos. Antes de usarlo en producción, configura secretos reales, persistencia y [backups](../server/backup/index.md).
 
-Ejemplos adicionales del marco comunitario de la documentación heredada:
+Otros ejemplos de frameworks aportados por la comunidad en la documentación anterior:
 
-- [CapRover Django ejemplo](https://gitlab.com/kamneros/caprover-django)
-- [Laravel CapRover plantilla](https://github.com/jackbrycesmith/laravel-caprover-template)
-- [Muestra de Elixir/Phoenix](https://github.com/TehSnappy/phoenix_sample)
+- [Ejemplo CapRover para Django](https://gitlab.com/kamneros/caprover-django)
+- [Plantilla Laravel para CapRover](https://github.com/jackbrycesmith/laravel-caprover-template)
+- [Ejemplo Elixir/Phoenix](https://github.com/TehSnappy/phoenix_sample)
 
-Estos ejemplos de terceros pueden no mantenerse. Revise sus versiones de imagen y dependencias antes de desplegarse.
+Estos ejemplos de terceros pueden no estar mantenidos. Revisa versiones de imágenes y dependencias antes de desplegarlos.
 
 <span id="source-guides-recipes"></span>
 
 ## Recetas adicionales
 
-Utilice estas recetas enfocadas para tareas comunes de seguimiento:
+Guías concretas para tareas habituales:
 
-- [Implementar una imagen Docker existente](../deployments/index.md), luego establecer el puerto HTTP contenedor y verificar la URL pública.
-- [Conectar dos aplicaciones en privado](../domains/firewall.md) sin publicar un puerto de base de datos.
-- [Adjuntar un dominio personalizado](../domains/index.md) y habilitación [HTTPS](../domains/index.md).
-- [Agregar un directorio persistente](../data-persistence/index.md) antes de escribir archivos.
-- [Escalar una aplicación](../scaling/index.md) después de comprobar la sesión y el comportamiento de almacenamiento.
-- [Exportar y restaurar la configuración del servidor](../server/backup/index.md) junto con un separado [respaldo de datos](../data-persistence/backup-data.md).
+- [Desplegar una imagen Docker existente](../deployments/index.md) y configurar su puerto HTTP y URL pública.
+- [Conectar dos aplicaciones mediante la red privada](../domains/firewall.md) sin publicar puertos de base de datos.
+- [Asignar un dominio personalizado](../domains/index.md) y activar [HTTPS](../domains/index.md).
+- [Añadir un directorio persistente](../data-persistence/index.md) antes de escribir archivos.
+- [Escalar una aplicación](../scaling/index.md) después de revisar sesiones y almacenamiento.
+- [Exportar y restaurar la configuración del servidor](../server/backup/index.md) junto con un [backup de los datos](../data-persistence/backup-data.md).
 
-Para ejemplos completos, véase [Aplicación web completa](complete-webapp.md) y [Aplicación Static / React](static-react.md).
+Para ejemplos completos, consulta [Aplicación web completa](complete-webapp.md) y [Aplicación estática / React](static-react.md).
