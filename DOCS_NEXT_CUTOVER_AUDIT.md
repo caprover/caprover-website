@@ -7,8 +7,8 @@
 - **36/36** legacy English documentation routes mapped to a retained consolidated destination.
 - **47/47** consolidated pages inventoried; the prior 141→47 consolidation build/link checks passed.
 - **One confirmed factual error:** The documentation implied opening `443/udp` enabled HTTP/3. CapRover publishes this UDP port, while its stock [NGINX server template](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs) uses `listen 443 ssl` and `http2 on` without a QUIC listener. [NGINX's documentation](https://nginx.org/en/docs/quic.html) requires an explicitly configured QUIC listener. Corrected in this PR.
-- **Material old-content gaps corrected:** Cloudflare deep-subdomain TLS coverage; complete prebuilt-image GitHub workflow; local `.localhost` use; read-only demo; community framework examples; Slack/support contacts; idle connection keepalive advice; restart commands; Pro alert forwarding.
-- **Historical rclone volume integration:** Preserved an archived source link and its important setup structure. **Current plugin compatibility remains unverified.** Treat as an intentional limitation, not a supported current deployment recipe.
+- **Material old-content gaps corrected:** Cloudflare deep-subdomain TLS coverage; local `.localhost` use; community framework links; Slack/support contacts; idle connection keepalive advice; restart commands; Pro alert forwarding. GitHub Actions examples now link to their maintained upstream repository.
+- **Historical rclone volume integration:** Removed from the current preview after review. The legacy `/docs` source remains in Git history; plugin compatibility is unverified.
 - **Outdated / potentially unsafe legacy practices remain excluded:** Hidden root-domain security claim, uncorrected OpenStack Heat template, missing CaptainDuckDuck migration script, broad Docker cleanup commands, hard-coded DigitalOcean signup-credit value, and unverified historical paid support SLA.
 
 ## Evidence and source checks
@@ -42,7 +42,7 @@
 | `service-update-override` | `/docs/applications/advanced` | Retained | Schema examples, update order, persistence of overridden fields and limitations retained. |
 | `app-scaling-and-cluster` | `/docs/scaling` | Retained | Replicas, registry prerequisites, image distribution, node placement and cluster setup retained. |
 | `pre-deploy-script` | `/docs/applications/advanced` | Retained | Hook semantics and security restrictions retained. |
-| `play-with-docker` | `/docs/installation` | Retained | Working playground command and read-only homepage demo link retained. |
+| `play-with-docker` | `/docs/installation` | Excluded | Play With Docker is discontinued; removed the obsolete setup instructions. |
 | `run-locally` | `/docs/installation/advanced` | Retained | Private LAN and router access retained. Restored localhost-specific DNS and Docker Desktop notes. |
 | `certbot-config` | `/docs/domains/advanced-certbot` | Retained | DNS-01, custom Certbot command, alternate ACME and CAA guidance retained. Provider-specific recipes require testing. |
 | `theme-customization` | `/docs/server` | Retained | Dashboard theme object, head embed and extra configuration retained. |
@@ -52,15 +52,15 @@
 | `best-practices` | `/docs/production-checklist` | Adapted | Credentials, backups, CI builds, TLS and NGINX retained. 'Hidden root domain' security-through-obscurity claim deliberately excluded. |
 | `backup-and-restore` | `/docs/server/backup` | Retained | Configuration backup scope, self-hosted registry exception, API automation, restore and cluster mapping retained. |
 | `recipe-deploy-create-react-app` | `/docs/guides/static-react` | Retained | Modern static-build and archive deployment workflow retained. |
-| `stateless-with-persistent-data` | `/docs/data-persistence/shared-storage` | Archived/unvalidated | Partial: full historical rclone plugin recipe remains archived via permanent source link; modern compatibility unverified. See release blocker. |
+| `stateless-with-persistent-data` | `/docs/data-persistence/shared-storage` | Excluded | Old rclone plugin instructions removed; the page retains storage constraints. Compatibility is unverified. |
 | `docker-compose` | `/docs/deployments/other/docker-compose` | Retained | Experimental parser fields and unsupported Compose behaviors retained. |
 | `ci-cd-integration` | `/docs/deployments/ci-cd` | Retained | App deployment tokens and generic CI flow retained. |
-| `ci-cd-integration/deploy-from-github` | `/docs/deployments/ci-cd` | Retained | Restored full GitHub image-build/push/deploy workflow alongside the server-build option. |
+| `ci-cd-integration/deploy-from-github` | `/docs/deployments/ci-cd` | External reference | Links to the maintained `caprover/deploy-from-github` repository instead of copying GitHub Actions examples. |
 | `ci-cd-integration/deploy-from-gitlab` | `/docs/deployments/ci-cd` | Retained | GitLab registry / Docker-in-Docker workflow and alternative webhook retained. |
 | `server-purchase/digitalocean` | `/docs/installation` | Retained | Referral URL and Marketplace image retained; fixed-dollar promotion omitted because availability varies. |
 | `server-purchase/openstack` | `/docs/installation` | Adapted | Current manual OpenStack steps retained. Old uncorrected Heat template flagged unsafe and not recommended. |
 | `disk-cleanup` | `/docs/server/disk-cleanup` | Retained | Image retention, scoped disk cleanup and safe volume handling retained. |
-| `firewall` | `/docs/domains/firewall` | Retained | Public/Swarm/registry ports retained. Clarified 443/UDP is published without default QUIC listener. |
+| `firewall` | `/docs/domains/firewall` | Retained | Required public, Swarm and registry ports retained; optional implementation details removed. |
 | `troubleshooting` | `/docs/troubleshooting` | Retained | App, 502, domain 1107, database timeouts, DNS, restart and diagnostics retained. |
 | `troubleshooting-pro` | `/docs/server` | Adapted | OTP recovery, token deploy and alert email-forwarding retained. Historical 24-hour support SLA not reasserted without current confirmation. |
 | `support` | `/docs/troubleshooting` | Adapted | GitHub, Slack and commercial support contacts restored. Historical third-party paid consultant listings remain unverified. |
