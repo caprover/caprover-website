@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 
 const root = new URL('../', import.meta.url);
-const sidebar = readFileSync(new URL('docs-site/sidebars-next.js', root), 'utf8');
+const sidebar = readFileSync(new URL('docs-site/sidebars.js', root), 'utf8');
 const catalog = JSON.parse(readFileSync(new URL('DOCS_CONSOLIDATION_MAP.json', root), 'utf8'));
 const ids = new Set([
   ...[...sidebar.matchAll(/"id": "([^"]+)"/g)].map((x) => x[1]),
