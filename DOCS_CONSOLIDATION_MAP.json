@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "stage": "architecture-proposal",
+  "stage": "consolidated-with-manual-setup-addendum",
   "baseCommit": "b15f34e24ae9a367d98cf902e1fd65d034b61200",
   "originalPageCount": 141,
-  "targetPageCount": 47,
+  "targetPageCount": 48,
   "sections": [
     {
       "name": "Start & Guides",
@@ -15,6 +15,12 @@
             "index"
           ],
           "retain": "Fresh installation of a server and first HTTPS app; omit standard UI clicks."
+        },
+        {
+          "target": "installation/manual",
+          "sources": [],
+          "retain": "Optional manual firewall, Docker Engine, and CapRover bootstrap commands. Continue to shared DNS and dashboard steps.",
+          "createdAfterConsolidation": true
         },
         {
           "target": "installation/index",
@@ -1430,5 +1436,8 @@
       "type": "moved"
     }
   ],
-  "note": "PR1 is a proposal only; PR2 rewrites, consolidates and adds preview redirects; PR3 publishes canonical /docs, fixes legacy and translated redirects."
+  "note": "PR1 is a proposal only; PR2 rewrites, consolidates and adds preview redirects; PR3 publishes canonical /docs, fixes legacy and translated redirects.",
+  "addedAfterOriginalConsolidation": [
+    "installation/manual"
+  ]
 }
