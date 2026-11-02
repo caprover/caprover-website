@@ -294,8 +294,8 @@ assert.equal(
   "Marketing sitemap is missing localized URLs",
 );
 const docsUrls = docsSitemaps.flatMap(
-  (sitemap) => (sitemap.match(/<url>[\\s\\S]*?<\\/url>/g) ?? [])
-    .filter((url) => !/\\/docs-legacy(?:\\/|<)|\\/docs-next(?:\\/|<)/.test(url)),
+  (sitemap) => (sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [])
+    .filter((url) => !/\/docs-legacy(?:\/|<)|\/docs-next(?:\/|<)/.test(url)),
 );
 const allUrls = [...docsUrls, ...marketingUrls];
 const sitemapLocations = allUrls.flatMap((entry) =>
