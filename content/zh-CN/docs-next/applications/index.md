@@ -1,57 +1,57 @@
 ---
 id: index
-title: 应用程序
+title: 应用管理
 slug: /applications
 ---
 
 <span id="source-applications-create-manage"></span>
 
-## 应用程序设置
+## 应用设置
 
-- **Web 应用 :** CapRover通过NGINX请求到配置的容器HTTP端口.
-- **私人服务:** 选择 **Do not expose as web app** 用于没有HTTP终点的worker或数据库。
-- **监听地址:** 您的Web 服务进程应该绑定到 `0.0.0.0` 在容器内。
-- **删除应用程序 :** 备份任何 Docker 卷、 绑定挂载或外部数据 。 删除该应用程序不构成备份 。
+- **Web 应用：**CapRover 通过 NGINX 将请求转发到指定的容器 HTTP 端口。
+- **内部服务：**如果 worker 或数据库无需对外提供 HTTP 服务，请选择 **Do not expose as web app**。
+- **监听地址：**容器内的 Web 进程应监听 `0.0.0.0`。
+- **删除应用：**先备份相关 Docker 数据卷、bind mount 和外部数据。删除应用并不会自动创建备份。
 
-关于源/镜像部署选项,见 [部署](../deployments/index.md).
+关于从代码或镜像部署应用的方式，请参阅[部署](../deployments/index.md)。
 
 <span id="source-applications-projects"></span>
 
 ## 项目
 
-- 组织应用到项目和嵌套项目.
-- 项目只是组织性的。 它们不提供网络隔离或接入边界。
+- 可以使用项目和子项目组织应用。
+- 项目仅用于分类管理，不提供网络隔离或访问控制边界。
 
 <span id="source-applications-tags-descriptions"></span>
 
-## 标签和说明
+## 标签与描述
 
-- 描述和标签使得应用程序更容易找到.
-- 标签可以横跨项目;既不能设定变化的网络,部署,也不能设置孤立.
+- 描述和标签方便搜索应用。
+- 标签可以跨项目使用，不会改变应用的网络、部署方式或隔离级别。
 
 <span id="source-applications-environment-variables"></span>
 
 ## 环境变量
 
-- 运行时变量与应用程序的服务配置一同存储.
-- 镜像回滚 **没有** 恢复旧的变量值。
-- App配置和CapRover备份可能包含一些秘密. 将证书保存在存储处之外, `captain-definition` 文档。
+- 运行时环境变量保存在应用的 Docker service 配置中。
+- 回滚镜像版本**不会**恢复旧的环境变量值。
+- 应用配置和 CapRover 备份可能包含敏感信息。不要将凭据写入代码仓库或 `captain-definition` 文件。
 
-对于非机密 Dockerfile 构建参数 :
+对于不包含敏感信息的 Dockerfile 构建参数：
 
 ```dockerfile
 ARG PUBLIC_BUILD_VALUE
 ENV PUBLIC_BUILD_VALUE=${PUBLIC_BUILD_VALUE}
 ```
 
-CapRover 还提供 `CAPROVER_GIT_COMMIT_SHA` 在源建时。 构建值可能嵌入到生成的镜像中.
+从源码构建时，CapRover 还会提供 `CAPROVER_GIT_COMMIT_SHA`。构建参数的值可能被写入最终镜像。
 
 <span id="source-applications-http-settings"></span>
 
 ## HTTP 设置
 
-- **默认域 :** `<app-name>.<root-domain>`。见 [域和 HTTPS](../domains/index.md).
-- **容器 HTTP 端口 :** 输入进程必须匹配端口 。
-- **HTTP 基本认证 :** 限制HTTP访问;应用程序特定的用户授权仍然分开.
-- **重定向域 :** 在启用重定向前确认目的地主机名可达 。
-- **公共TCP/UDP端口:** 使用明确发布的端口映射. 见 [防火墙和网络建设](../domains/firewall.md).
+- **默认域名：**`<app-name>.<root-domain>`。参阅[域名与 HTTPS](../domains/index.md)。
+- **Container HTTP Port：**必须与应用进程实际监听的端口一致。
+- **HTTP Basic Authentication：**可以限制 HTTP 访问；应用内部的用户授权仍需单独实现。
+- **域名重定向：**启用前先确认目标域名可以访问。
+- **公开的 TCP/UDP 端口：**请明确配置端口映射。参阅[防火墙与网络](../domains/firewall.md)。
