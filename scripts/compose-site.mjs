@@ -294,13 +294,8 @@ assert.equal(
   "Marketing sitemap is missing localized URLs",
 );
 const docsUrls = docsSitemaps.flatMap(
-  (sitemap, localeIndex) => (sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [])
-    .filter((url) => {
-      if (/\/docs-legacy(?:\/|<)|\/docs-next(?:\/|<)/.test(url)) return false;
-      // The current Spanish/Chinese pages still contain English and are noindex.
-      const locale = locales[localeIndex];
-      return locale.default || !url.includes(`https://caprover.com${locale.pathPrefix}/docs/`);
-    }),
+  (sitemap) => (sitemap.match(/<url>[\\s\\S]*?<\\/url>/g) ?? [])
+    .filter((url) => !/\\/docs-legacy(?:\\/|<)|\\/docs-next(?:\\/|<)/.test(url)),
 );
 const allUrls = [...docsUrls, ...marketingUrls];
 const sitemapLocations = allUrls.flatMap((entry) =>
