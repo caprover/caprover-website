@@ -39,3 +39,13 @@
 界面标签沿用产品当前实际显示的语言。CapRover 控制面板尚未本地化时，保留 "Deployment"、"Enable App Token"、"Container Port" 等英文标签。
 
 在目标语言里工程师习惯使用英文的术语（例如 registry、Dockerfile），保留英文比强行翻译更自然。同一个术语在同一页面内必须保持一致。
+
+## 技术术语补充
+
+- 保留 **Docker Swarm**、**Swarm manager**（manager 节点）、**worker node**（worker 节点）。Swarm 绝不能译为「沼泽」。
+- **Captain Definition** 是 CapRover 部署描述文件的名称，保留英文，不译为「船长定义」。
+- **Docker image** = Docker 镜像；**registry** = registry / 镜像仓库；**push/pull** = 推送/拉取镜像。
+- **build** = 构建；**deployment** = 部署；**rollback** = 回滚；**volume** = 数据卷；**bind mount** = 绑定挂载。
+- **container** = 容器，**port** = 端口，**host** = 主机。避免「集装箱」「港口」「多克」「建筑」「书记官处」等字面误译。
+- 用户界面中 **Container HTTP Port**、**Deployment**、**Service Update Override** 等尚未本地化的标签使用英文原名。
+- 保留所有命令、镜像名、端口、路径、环境变量、密钥占位符和警告的技术含义。
