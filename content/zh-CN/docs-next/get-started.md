@@ -1,21 +1,21 @@
 ---
 id: get-started
-title: 开始
+title: 快速入门
 slug: /get-started
 ---
 
-在新的Ubuntu 24.04服务器上安装 CapRover.
+在全新的 Ubuntu 24.04 服务器上安装 CapRover。
 
-## 所需经费
+## 系统要求
 
-- AMD64或ARM64服务器,公共IPv4,sudo/root访问.
-- 至少1个GiB RAM和5个GiB自由磁盘空间.
-- 一个带有通配符DNS访问权限的域.
-- 公共入境TCP端口 **80**, **443**,以及 **3000** 由您的托管提供者允许 。
+- AMD64 或 ARM64 服务器，具有公网 IPv4 地址以及 sudo/root 权限。
+- 至少 1 GiB 内存和 5 GiB 可用磁盘空间。
+- 一个可以配置通配符 DNS 记录的域名。
+- 云服务商防火墙允许公网访问 TCP **80**、**443** 和 **3000** 端口。
 
 ## 安装 CapRover
 
-在服务器上:
+在服务器上执行：
 
 ```bash
 sudo apt update && sudo apt install -y curl
@@ -25,49 +25,49 @@ sudo bash caprover-install.sh --check
 sudo bash caprover-install.sh
 ```
 
-- [安装器源和选项](https://github.com/caprover/caprover/tree/master/scripts/user/installer)。在将下载的脚本作为 root 运行之前,先审查该脚本。
-- `--check`:只读检查OS,RAM,磁盘,Docker,Swarm,端口和防火墙冲突. 在安装前先解决阻碍问题。
-- 安装者在没有时安装多克引擎,并保留现有的多克工作量.
-- 在活跃的UFW防火墙上,它允许TCP 80/443/300. 它使闲置的UFW和主机提供者防火墙保持不变.
-- 安装后,它检查外部的港口可到达性并报告警告。 DNS,仪表板配置,以及HTTPS仍然保持手动状态.
+- [安装脚本源码及参数](https://github.com/caprover/caprover/tree/master/scripts/user/installer)。以 root 权限运行之前，请先检查下载的脚本内容。
+- `--check`：只读检查操作系统、内存、磁盘、Docker、Swarm、端口以及防火墙冲突。安装前先解决检测到的阻塞问题。
+- 如果没有安装 Docker Engine，安装脚本会自动安装，并保留现有的 Docker 工作负载。
+- 如果 UFW 防火墙已启用，安装脚本会放行 TCP 80、443 和 3000 端口。脚本不会启用原本未启用的 UFW，也不会修改云服务商的防火墙。
+- 安装完成后，脚本会检查端口的外部可达性并显示警告。DNS、管理面板和 HTTPS 仍需要另行配置。
 
-**其他方法:** [手动设置](installation/manual.md) (Docker和CapRover命令), [数字海洋市场](installation/index.md),或 [高级安装](installation/advanced/index.md) 用于私人网络、现有的Swarars和定制端口。
+**其他安装方式：** [手动安装](installation/manual.md)（手动执行 Docker 和 CapRover 命令）、[DigitalOcean Marketplace](installation/index.md)，以及适用于私有网络、现有 Swarm 集群或自定义端口的[高级安装](installation/advanced/index.md)。
 
-## DNS 数据
+## DNS
 
-在您的 DNS 提供者中创建记录 :
+在 DNS 服务商处创建一条 A 记录：
 
-| 类型 | 名称( 在 `example.com`) | 数值 |
+| 类型 | 名称（在 `example.com` 域中） | 值 |
 | --- | --- | --- |
-| A | `*.apps` | 您服务器的 IPv4 公开地址 |
+| A | `*.apps` | 服务器的公网 IPv4 地址 |
 
-本指南使用 `apps.example.com` 作为 CapRover 根域。 通配符盖 `captain.apps.example.com` 应用域,例如 `my-first-app.apps.example.com`.
+本指南使用 `apps.example.com` 作为 CapRover 的根域名。通配符记录将覆盖 `captain.apps.example.com` 和应用域名，例如 `my-first-app.apps.example.com`。
 
-校验 DNS :
+验证 DNS 解析：
 
 ```bash
 dig +short captain.apps.example.com
 dig +short test.apps.example.com
 ```
 
-两者都应该归还您的服务器的IP. 如果使用 Cloudflare 等 DNS 代理服务器, 请切换到 **仅限 DNS** 设置时。 根主机名称 `apps.example.com` 只有在您计划直接使用时需要单独的记录。
+两个命令都应返回服务器的 IP 地址。如果使用 Cloudflare 等 DNS 代理，安装时请选择 **DNS only**（仅 DNS）。只有需要直接使用 `apps.example.com` 时，才需要为这个根主机名单独创建 DNS 记录。
 
 ## 配置 CapRover
 
-打开 `http://YOUR_SERVER_IP:3000`. **初始密码 :** `captain42`.
+打开 `http://YOUR_SERVER_IP:3000`。**初始密码：**`captain42`。
 
-- 更改密码并将根域设置为 `apps.example.com` (无) `*.` 或 `captain.`).
-- 挂载板主机名 : `captain.apps.example.com`启用 HTTPS 和 强制 HTTPS 一旦 DNS 和 证书 签发工作。
-- 限制公众接触 `3000/tcp` 在仪表板HTTPS工作之后
+- 更改密码，并将根域名设置为 `apps.example.com`（不包含 `*.` 或 `captain.`）。
+- 管理面板域名为 `captain.apps.example.com`。确认 DNS 正常且可以签发证书后，启用 HTTPS 和 **Force HTTPS**（强制 HTTPS）。
+- 管理面板通过 HTTPS 正常访问后，限制公网对 `3000/tcp` 端口的访问。
 
-对证书失败,请检查DNS和入境的TCP 80/443。 见 [域和 HTTPS](domains/index.md).
+如果证书签发失败，请检查 DNS 和 TCP 80/443 端口的入站访问。参阅[域名和 HTTPS](domains/index.md)。
 
-**CLI 选项 :** 用 CLI 安装 CLI `npm install -g caprover` 运行 `caprover serversetup` 从你的电脑。 见 [CLI 命令](reference/cli.md).
+**CLI 替代方案：** 在自己的电脑上运行 `npm install -g caprover` 安装 CLI，然后执行 `caprover serversetup`。参阅 [CLI 命令](reference/cli.md)。
 
-## 部署第一个应用程序
+## 部署第一个应用
 
-1. 打开 **应用程序** 创建 `my-first-app` 作为网络应用程序。
-2. 下级 **部署**并部署:
+1. 打开 **Apps**，创建名为 `my-first-app` 的 Web 应用。
+2. 在 **Deployment** 中粘贴以下 Captain Definition 并部署：
 
    ```json
    {
@@ -76,15 +76,15 @@ dig +short test.apps.example.com
    }
    ```
 
-3. 设定 **集装箱 HTTP 端口** 改为 `80`.
-4. 打开 `http://my-first-app.apps.example.com`。请查看NGINX欢迎页。
-5. 当DNS和端口80可以到达时,在其HTTP设置中为该应用程序设置HTTPS.
+3. 将 **Container HTTP Port** 设置为 `80`。
+4. 打开 `http://my-first-app.apps.example.com`。此时应该看到 NGINX 欢迎页面。
+5. DNS 和 80 端口可以正常访问后，在应用的 HTTP 设置中配置 HTTPS。
 
-**下一个:** [部署自己的密码](deployments/index.md) · [配置应用程序](applications/index.md) · [持久性数据](data-persistence/index.md)
+**下一步：** [部署自己的代码](deployments/index.md) · [配置应用](applications/index.md) · [持久化数据](data-persistence/index.md)
 
-## 低建模( 可选)
+## 内存不足时的构建方案（可选）
 
-如果建筑物内存耗尽, 请检查 `free -h` 和 `swapon --show`如果您有空闲的磁盘空间和 `/swapfile` 不存在 :
+如果构建因内存不足而失败，请运行 `free -h` 和 `swapon --show` 检查内存和交换空间。如果磁盘有足够空间且 `/swapfile` 尚不存在，可以执行：
 
 ```bash
 sudo fallocate -l 2G /swapfile
@@ -93,16 +93,16 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
 
-要在重启后保持互换, 请添加 `/swapfile none swap sw 0 0` **一次** 改为 `/etc/fstab`。对于频繁的建筑,使用更多的记录和档案管理或CI。
+若要重启后继续启用交换空间，请在 `/etc/fstab` 中**仅添加一次** `/swapfile none swap sw 0 0`。如果经常构建应用，建议增加内存或使用 CI 进行构建。
 
 <span id="source-index"></span>
 
-## 开始
+## 文档导航
 
-找到你需要的东西:
+按主题查看文档：
 
-- **新安装 :** [开始](get-started.md)
-- **应用程序和设置 :** [应用程序](applications/index.md)
-- **部署情况:** [部署](deployments/index.md)
-- **服务器维护:** [服务器管理](server/index.md)
-- **问题:** [解决问题](troubleshooting/index.md)
+- **新安装：** [快速入门](get-started.md)
+- **应用及其设置：** [应用](applications/index.md)
+- **部署：** [部署](deployments/index.md)
+- **服务器维护：** [服务器管理](server/index.md)
+- **遇到问题：** [故障排查](troubleshooting/index.md)
