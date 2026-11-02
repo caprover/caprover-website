@@ -13,6 +13,8 @@ Instala CapRover en un servidor nuevo con Ubuntu 24.04.
 - Un dominio en el que puedas configurar registros DNS comodín.
 - Los puertos TCP **80**, **443** y **3000** deben permitir conexiones entrantes desde Internet en el firewall de tu proveedor.
 
+<span id="paso-1-instalación-de-caprover"></span>
+
 ## Instalar CapRover
 
 Ejecuta estos comandos en el servidor:
@@ -33,6 +35,8 @@ sudo bash caprover-install.sh
 
 **Otras opciones:** [Instalación manual](installation/manual.md) (comandos de Docker y CapRover), [DigitalOcean Marketplace](installation/index.md) o [Instalación avanzada](installation/advanced/index.md) para redes privadas, clústeres Swarm existentes o puertos personalizados.
 
+<span id="paso-2-conectar-el-dominio-raíz"></span>
+
 ## DNS
 
 Crea este registro A con tu proveedor DNS:
@@ -52,6 +56,8 @@ dig +short test.apps.example.com
 
 Ambos comandos deben devolver la IP del servidor. Si utilizas un proxy DNS como Cloudflare, selecciona **DNS only** durante la instalación. Solo necesitas un registro independiente para `apps.example.com` si piensas utilizar directamente ese nombre.
 
+<span id="paso-3-configurar-e-inicializar-caprover"></span>
+
 ## Configurar CapRover
 
 Abre `http://YOUR_SERVER_IP:3000`. **Contraseña inicial:** `captain42`.
@@ -63,6 +69,8 @@ Abre `http://YOUR_SERVER_IP:3000`. **Contraseña inicial:** `captain42`.
 Si falla la emisión del certificado, comprueba DNS y el acceso entrante por TCP 80/443. Consulta [Dominios y HTTPS](domains/index.md).
 
 **Alternativa con CLI:** Instala la herramienta con `npm install -g caprover` y ejecuta `caprover serversetup` desde tu equipo. Consulta [Comandos CLI](reference/cli.md).
+
+<span id="step-5-deploy-the-test-app"></span>
 
 ## Desplegar la primera aplicación
 

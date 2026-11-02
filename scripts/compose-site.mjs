@@ -13,6 +13,7 @@ import {
 } from "node:fs/promises";
 import path from "node:path";
 import { renderLocalePreferenceScript } from "./locale-preference.mjs";
+import { buildManifest, writeCompatibility, renderRedirect } from "./docs-redirects.mjs";
 
 const root = process.cwd();
 const docsSite = path.join(root, "docs-site/build");
@@ -47,13 +48,6 @@ function archiveOutputRoot(locale) {
   return path.join(docsSite, localeOutputRoot(locale), "docs-legacy");
 }
 
-const consolidation = JSON.parse(
-  await readFile(path.join(root, "DOCS_CONSOLIDATION_MAP.json"), "utf8"),
-);
-const canonicalDocs = new Set(consolidation.sections.flatMap((section) =>
-  section.pages.map((page) => "/docs/" + page.target.replace(/\/index$/, "")),
-));
-const originalDocs = consolidation.legacyEnglishRoutes;
 function combinedMarketingRouteFile(locale, route) {
   return path.join(combinedSite, localeOutputRoot(locale), route, "index.html");
 }
@@ -65,7 +59,7 @@ async function injectLocalePreferenceScript(file) {
     file,
     contents.replace(
       /<\/head>/i,
-      '    <script src="/locale-preference.js"></script>\n  </head>',
+      '    <script src="/docs-compat.js"></script><script src="/locale-preference.js"></script>\n  </head>',
     ),
   );
 }
@@ -124,25 +118,7 @@ async function assertSnapshotPreserved(expected, destination, description) {
 
 async function writeRedirect(file, destination, language) {
   await mkdir(path.dirname(file), { recursive: true });
-  const encodedDestination = JSON.stringify(destination);
-  await writeFile(
-    file,
-    `<!doctype html>
-<html lang="${language}">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="refresh" content="0; url=${destination}">
-    <link rel="canonical" href="https://caprover.com${destination}">
-    <meta name="robots" content="noindex, follow">
-    <title>Redirecting…</title>
-  </head>
-  <body>
-    <p><a href="${destination}">Continue to the documentation</a></p>
-    <script>const target = new URL(${encodedDestination}, window.location.origin); window.location.replace(target.pathname + window.location.search + (window.location.hash || target.hash));</script>
-  </body>
-</html>
-`,
-  );
+  await writeFile(file, renderRedirect({source: "/docs-legacy", target: destination, locale: language, fragments: {}}));
 }
 
 await Promise.all([
@@ -219,54 +195,12 @@ for (const locale of locales.filter((entry) => !entry.default)) {
   });
 }
 
-// Every public preview URL, including the 48 canonical topics, now points to /docs.
-const previewRoutes = [
-  ...consolidation.previewRoutes,
-  ...consolidation.addedAfterOriginalConsolidation.map((id) => ({
-    from: "/docs-next/" + id,
-    to: "/docs-next/" + id,
-    decision: "keep",
-  })),
-];
+const compatibility = await buildManifest(root, docsSite);
+await writeCompatibility(combinedSite, compatibility);
 for (const locale of locales) {
-  const prefix = locale.pathPrefix;
-  const outputRoot = path.join(combinedSite, localeOutputRoot(locale));
-  const previewDir = path.join(outputRoot, "docs-next");
-
-  for (const route of previewRoutes) {
-    const relative = route.from.slice("/docs-next/".length).replace(/\/$/, "");
-    if (!relative) continue;
-    const destination = prefix + route.to.replace(/^\/docs-next/, "/docs");
-    const anchor = route.decision === "merge" && relative !== "installation/play-with-docker"
-      ? "#source-" + relative.replace(/[^a-z0-9]+/gi, "-")
-      : "";
-    const stem = path.join(previewDir, relative);
-    await writeRedirect(stem + ".html", destination + anchor, locale.code);
-    await writeRedirect(path.join(stem, "index.html"), destination + anchor, locale.code);
-  }
-  await writeRedirect(path.join(previewDir, "index.html"), prefix + "/docs/get-started", locale.code);
-
-  // Old English page names lead to the consolidated task; translated old
-  // pages lead to the preserved, noindex translation archive.
-  for (const route of originalDocs) {
-    const oldPath = route.legacy;
-    const newPath = locale.default
-      ? route.newCanonical
-      : prefix + "/docs-legacy/" + oldPath.slice("/docs/".length);
-    if (!canonicalDocs.has(oldPath)) {
-      const stem = path.join(outputRoot, oldPath.slice(1));
-      await writeRedirect(stem + ".html", newPath, locale.code);
-      await writeRedirect(path.join(stem, "index.html"), newPath, locale.code);
-    }
-
-    // Preserve the old /docs/<locale>/name.html shape too.
-    const alias = path.join(combinedSite, "docs", locale.code, oldPath.slice("/docs/".length));
-    await writeRedirect(alias + ".html", newPath, locale.code);
-    await writeRedirect(path.join(alias, "index.html"), newPath, locale.code);
-  }
   await writeRedirect(
-    path.join(outputRoot, "docs-legacy", "index.html"),
-    prefix + "/docs-legacy/get-started",
+    path.join(combinedSite, localeOutputRoot(locale), "docs-legacy", "index.html"),
+    locale.pathPrefix + "/docs-legacy/get-started",
     locale.code,
   );
 }

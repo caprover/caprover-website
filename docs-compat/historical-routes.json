@@ -1,0 +1,4506 @@
+{
+  "version": 1,
+  "previewRevision": "b15f34e24ae9a367d98cf902e1fd65d034b61200",
+  "variants": [
+    "extensionless",
+    "trailing-slash",
+    ".html",
+    "/index.html"
+  ],
+  "routes": [
+    {
+      "source": "/docs-next",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/advanced",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/advanced",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/advanced/custom-nginx",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/advanced/custom-nginx",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/advanced/pre-deploy-function",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/advanced/pre-deploy-function",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/advanced/service-update-override",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/advanced/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/create-manage",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/create-manage",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/environment-variables",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/environment-variables",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/http-settings",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/http-settings",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/persistent-directories",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/persistent-directories",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/projects",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/projects",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/public-ports",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/public-ports",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/scaling-placement",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/scaling-placement",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/tags-descriptions",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/tags-descriptions",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/applications/troubleshooting",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/applications/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/backup-data",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/backup-data",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/bind-mounts",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/bind-mounts",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/deploy-databases",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/deploy-databases",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/external-databases",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/external-databases",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/internal-databases",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/internal-databases",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/move-data",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/move-data",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/node-placement",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/node-placement",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/shared-storage",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/shared-storage",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/stateless-persistent",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/stateless-persistent",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/troubleshooting",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/data-persistence/volumes",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/data-persistence/volumes",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/builds-logs",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/builds-logs",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/captain-definition",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/captain-definition",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/ci-cd",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/ci-cd",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/ci-cd/deployment-tokens",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/ci-cd/deployment-tokens",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/ci-cd/generic",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/ci-cd/generic",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/ci-cd/github-actions",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/ci-cd/github-actions",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/ci-cd/gitlab-ci",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/ci-cd/gitlab-ci",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/cli",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/cli",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/dashboard",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/dashboard",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/docker-image",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/docker-image",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/git",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/git",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/other",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/other",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/other/docker-compose",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/other/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/registries",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/registries",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/registries/default-push",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/registries/default-push",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/registries/private",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/registries/private",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/registries/self-hosted",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/registries/self-hosted",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/troubleshooting",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/deployments/versions-rollback",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/deployments/versions-rollback",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/advanced-certbot",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/advanced-certbot",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/advanced-nginx",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/advanced-nginx",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/app-domains",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/app-domains",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/certificate-renewal",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/certificate-renewal",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/cloudflare-reverse-proxies",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/cloudflare-reverse-proxies",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/custom-domains",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/custom-domains",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/firewall",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/https",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/https",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/internal-networking",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/internal-networking",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/nginx-routing",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/nginx-routing",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/public-services",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/public-services",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/root-domain",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/root-domain",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/domains/troubleshooting",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/domains/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/fundamentals",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/fundamentals",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/fundamentals/applications-and-services",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/fundamentals/applications-and-services",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/fundamentals/builds-images-deployments",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/fundamentals/builds-images-deployments",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/fundamentals/docker-swarm",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/fundamentals/docker-swarm",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/fundamentals/how-caprover-works",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/fundamentals/how-caprover-works",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/fundamentals/networking",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/fundamentals/networking",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/fundamentals/persistence",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/fundamentals/persistence",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/get-started",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/guides",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/guides",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/guides/cdd-migration",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/guides/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/guides/complete-webapp",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/guides/complete-webapp",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/guides/home-server",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/guides/home-server",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/guides/persistent-storage",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/guides/persistent-storage",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/guides/recipes",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/guides/recipes",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/guides/sample-apps",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/guides/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/guides/static-react",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/guides/static-react",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/advanced",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/advanced",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/advanced/custom-host-ports",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/advanced/custom-host-ports",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/advanced/existing-swarm",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/advanced/existing-swarm",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/advanced/reverse-proxy",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/advanced/reverse-proxy",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/digitalocean",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/local-private-network",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/local-private-network",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/manual",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/manual",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/openstack",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/play-with-docker",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/installation/standard-vps",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/installation/standard-vps",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/one-click-apps",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/one-click-apps/authoring",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/one-click-apps/authoring",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/one-click-apps/configure",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/one-click-apps/configure",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/one-click-apps/connect",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/one-click-apps/connect",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/one-click-apps/custom-repositories",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/one-click-apps/custom-repositories",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/one-click-apps/install",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/one-click-apps/install",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/one-click-apps/troubleshooting",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/one-click-apps/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/one-click-apps/upgrade",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/one-click-apps/upgrade",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/production-checklist",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/production-checklist",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/api",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/api",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/app-configuration",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/backup-contents",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/backup-contents",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/captain-definition",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/captain-definition",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/cli",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/cli",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/config-override",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/config-override",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/defaults-limits",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/defaults-limits",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/docker-compose",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/glossary",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/glossary",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/legacy-compatibility",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/legacy-compatibility",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/one-click-schema",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/one-click-schema",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/ports",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/ports",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/reference/server-environment",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/reference/server-environment",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling/manage-nodes",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling/manage-nodes",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling/multi-node",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling/multi-node",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling/networking",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling/networking",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling/persistent-apps",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling/placement",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling/placement",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling/scale-app",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling/scale-app",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling/troubleshooting",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/scaling/zero-downtime",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/scaling/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/backup",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/backup",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/backup/automate",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/backup/automate",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/backup/contents",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/backup/contents",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/backup/create",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/backup/create",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/backup/multi-node-restore",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/backup/multi-node-restore",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/backup/restore",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/backup/restore",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/diagnostics",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/diagnostics",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/disk-cleanup",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/goaccess",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/goaccess",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/move-server",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/move-server",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/netdata",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/netdata",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/pro",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/pro",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/security",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/security",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/settings",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/settings",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/themes",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/themes",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/uninstall",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/uninstall",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/server/upgrade",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/server/upgrade",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/troubleshooting",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/troubleshooting/diagnostics",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/troubleshooting/diagnostics",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/troubleshooting/report-bug",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/troubleshooting/report-bug",
+      "canonical": false
+    },
+    {
+      "source": "/docs-next/troubleshooting/support",
+      "kind": "preview",
+      "locale": "en",
+      "evidence": "/docs-next/troubleshooting/support",
+      "canonical": false
+    },
+    {
+      "source": "/docs/app-configuration",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/app-scaling-and-cluster",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/docs/backup-and-restore",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/docs/best-practices",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/docs/captain-definition-file",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/docs/cdd-migration",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/certbot-config",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/docs/ci-cd-integration",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/ci-cd-integration/deploy-from-github",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/docs/ci-cd-integration/deploy-from-gitlab",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/docs/cli-commands",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/docs/complete-webapp-tutorial",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/docs/database-connection",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/docs/deployment-methods",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/docs/disk-cleanup",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/docs/docker-compose",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/app-configuration",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/app-scaling-and-cluster",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/backup-and-restore",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/best-practices",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/captain-definition-file",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/cdd-migration",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/certbot-config",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/ci-cd-integration",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/ci-cd-integration/deploy-from-github",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/ci-cd-integration/deploy-from-gitlab",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/cli-commands",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/complete-webapp-tutorial",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/database-connection",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/deployment-methods",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/disk-cleanup",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/docker-compose",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/firewall",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/get-started",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/nginx-customization",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/one-click-apps",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/persistent-apps",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/play-with-docker",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/pre-deploy-script",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/recipe-deploy-create-react-app",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/resource-monitoring",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/run-locally",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/sample-apps",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/server-purchase/digitalocean",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/server-purchase/openstack",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/service-update-override",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/stateless-with-persistent-data",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/support",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/theme-customization",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/troubleshooting",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/troubleshooting-pro",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/docs/en/zero-downtime",
+      "kind": "alias",
+      "locale": "en",
+      "evidence": "/docs/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/app-configuration",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/app-scaling-and-cluster",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/backup-and-restore",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/best-practices",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/captain-definition-file",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/cdd-migration",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/certbot-config",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/ci-cd-integration",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/ci-cd-integration/deploy-from-github",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/ci-cd-integration/deploy-from-gitlab",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/cli-commands",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/complete-webapp-tutorial",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/database-connection",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/deployment-methods",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/disk-cleanup",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/docker-compose",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/firewall",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/get-started",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/nginx-customization",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/one-click-apps",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/persistent-apps",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/play-with-docker",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/pre-deploy-script",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/recipe-deploy-create-react-app",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/resource-monitoring",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/run-locally",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/sample-apps",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/server-purchase/digitalocean",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/server-purchase/openstack",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/service-update-override",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/stateless-with-persistent-data",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/support",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/theme-customization",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/troubleshooting",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/troubleshooting-pro",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES/zero-downtime",
+      "kind": "alias",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/docs/firewall",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/docs/get-started",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/get-started",
+      "canonical": true
+    },
+    {
+      "source": "/docs/nginx-customization",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs/one-click-apps",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/one-click-apps",
+      "canonical": true
+    },
+    {
+      "source": "/docs/persistent-apps",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/play-with-docker",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/docs/pre-deploy-script",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/docs/recipe-deploy-create-react-app",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/docs/resource-monitoring",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/docs/run-locally",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/docs/sample-apps",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/server-purchase/digitalocean",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/docs/server-purchase/openstack",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/docs/service-update-override",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/docs/stateless-with-persistent-data",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/docs/support",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/docs/theme-customization",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs/troubleshooting",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/troubleshooting",
+      "canonical": true
+    },
+    {
+      "source": "/docs/troubleshooting-pro",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zero-downtime",
+      "kind": "legacy",
+      "locale": "en",
+      "evidence": "/docs/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/app-configuration",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/app-scaling-and-cluster",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/backup-and-restore",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/best-practices",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/captain-definition-file",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/cdd-migration",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/certbot-config",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/ci-cd-integration",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/ci-cd-integration/deploy-from-github",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/ci-cd-integration/deploy-from-gitlab",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/cli-commands",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/complete-webapp-tutorial",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/database-connection",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/deployment-methods",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/disk-cleanup",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/docker-compose",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/firewall",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/get-started",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/nginx-customization",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/one-click-apps",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/persistent-apps",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/play-with-docker",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/pre-deploy-script",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/recipe-deploy-create-react-app",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/resource-monitoring",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/run-locally",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/sample-apps",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/server-purchase/digitalocean",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/server-purchase/openstack",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/service-update-override",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/stateless-with-persistent-data",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/support",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/theme-customization",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/troubleshooting",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/troubleshooting-pro",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/docs/zh-CN/zero-downtime",
+      "kind": "alias",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/advanced",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/advanced",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/advanced/custom-nginx",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/advanced/custom-nginx",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/advanced/pre-deploy-function",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/advanced/pre-deploy-function",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/advanced/service-update-override",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/advanced/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/create-manage",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/create-manage",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/environment-variables",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/environment-variables",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/http-settings",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/http-settings",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/persistent-directories",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/persistent-directories",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/projects",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/projects",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/public-ports",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/public-ports",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/scaling-placement",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/scaling-placement",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/tags-descriptions",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/tags-descriptions",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/applications/troubleshooting",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/applications/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/backup-data",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/backup-data",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/bind-mounts",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/bind-mounts",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/deploy-databases",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/deploy-databases",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/external-databases",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/external-databases",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/internal-databases",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/internal-databases",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/move-data",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/move-data",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/node-placement",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/node-placement",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/shared-storage",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/shared-storage",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/stateless-persistent",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/stateless-persistent",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/troubleshooting",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/data-persistence/volumes",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/data-persistence/volumes",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/builds-logs",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/builds-logs",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/captain-definition",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/captain-definition",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/ci-cd",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/ci-cd",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/ci-cd/deployment-tokens",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/ci-cd/deployment-tokens",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/ci-cd/generic",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/ci-cd/generic",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/ci-cd/github-actions",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/ci-cd/github-actions",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/ci-cd/gitlab-ci",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/ci-cd/gitlab-ci",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/cli",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/cli",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/dashboard",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/dashboard",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/docker-image",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/docker-image",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/git",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/git",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/other",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/other",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/other/docker-compose",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/other/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/registries",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/registries",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/registries/default-push",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/registries/default-push",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/registries/private",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/registries/private",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/registries/self-hosted",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/registries/self-hosted",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/troubleshooting",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/deployments/versions-rollback",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/deployments/versions-rollback",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/advanced-certbot",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/advanced-certbot",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/advanced-nginx",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/advanced-nginx",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/app-domains",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/app-domains",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/certificate-renewal",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/certificate-renewal",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/cloudflare-reverse-proxies",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/cloudflare-reverse-proxies",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/custom-domains",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/custom-domains",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/firewall",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/https",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/https",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/internal-networking",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/internal-networking",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/nginx-routing",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/nginx-routing",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/public-services",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/public-services",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/root-domain",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/root-domain",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/domains/troubleshooting",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/domains/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/fundamentals",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/fundamentals",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/fundamentals/applications-and-services",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/fundamentals/applications-and-services",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/fundamentals/builds-images-deployments",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/fundamentals/builds-images-deployments",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/fundamentals/docker-swarm",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/fundamentals/docker-swarm",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/fundamentals/how-caprover-works",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/fundamentals/how-caprover-works",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/fundamentals/networking",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/fundamentals/networking",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/fundamentals/persistence",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/fundamentals/persistence",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/get-started",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/guides",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/guides",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/guides/cdd-migration",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/guides/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/guides/complete-webapp",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/guides/complete-webapp",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/guides/home-server",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/guides/home-server",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/guides/persistent-storage",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/guides/persistent-storage",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/guides/recipes",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/guides/recipes",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/guides/sample-apps",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/guides/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/guides/static-react",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/guides/static-react",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/advanced",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/advanced",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/advanced/custom-host-ports",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/advanced/custom-host-ports",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/advanced/existing-swarm",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/advanced/existing-swarm",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/advanced/reverse-proxy",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/advanced/reverse-proxy",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/digitalocean",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/local-private-network",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/local-private-network",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/manual",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/manual",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/openstack",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/play-with-docker",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/installation/standard-vps",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/installation/standard-vps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/one-click-apps",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/one-click-apps/authoring",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/one-click-apps/authoring",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/one-click-apps/configure",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/one-click-apps/configure",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/one-click-apps/connect",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/one-click-apps/connect",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/one-click-apps/custom-repositories",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/one-click-apps/custom-repositories",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/one-click-apps/install",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/one-click-apps/install",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/one-click-apps/troubleshooting",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/one-click-apps/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/one-click-apps/upgrade",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/one-click-apps/upgrade",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/production-checklist",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/production-checklist",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/api",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/api",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/app-configuration",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/backup-contents",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/backup-contents",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/captain-definition",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/captain-definition",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/cli",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/cli",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/config-override",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/config-override",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/defaults-limits",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/defaults-limits",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/docker-compose",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/glossary",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/glossary",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/legacy-compatibility",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/legacy-compatibility",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/one-click-schema",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/one-click-schema",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/ports",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/ports",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/reference/server-environment",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/reference/server-environment",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling/manage-nodes",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling/manage-nodes",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling/multi-node",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling/multi-node",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling/networking",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling/networking",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling/persistent-apps",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling/placement",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling/placement",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling/scale-app",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling/scale-app",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling/troubleshooting",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/scaling/zero-downtime",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/scaling/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/backup",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/backup",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/backup/automate",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/backup/automate",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/backup/contents",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/backup/contents",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/backup/create",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/backup/create",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/backup/multi-node-restore",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/backup/multi-node-restore",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/backup/restore",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/backup/restore",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/diagnostics",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/diagnostics",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/disk-cleanup",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/goaccess",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/goaccess",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/move-server",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/move-server",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/netdata",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/netdata",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/pro",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/pro",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/security",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/security",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/settings",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/settings",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/themes",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/themes",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/uninstall",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/uninstall",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/server/upgrade",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/server/upgrade",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/troubleshooting",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/troubleshooting/diagnostics",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/troubleshooting/diagnostics",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/troubleshooting/report-bug",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/troubleshooting/report-bug",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-next/troubleshooting/support",
+      "kind": "preview",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs-next/troubleshooting/support",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/app-configuration",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/app-scaling-and-cluster",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/backup-and-restore",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/best-practices",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/captain-definition-file",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/cdd-migration",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/certbot-config",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/ci-cd-integration",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/ci-cd-integration/deploy-from-github",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/ci-cd-integration/deploy-from-gitlab",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/cli-commands",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/complete-webapp-tutorial",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/database-connection",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/deployment-methods",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/disk-cleanup",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/docker-compose",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/firewall",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/get-started",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/get-started",
+      "canonical": true
+    },
+    {
+      "source": "/es-ES/docs/nginx-customization",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/one-click-apps",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/one-click-apps",
+      "canonical": true
+    },
+    {
+      "source": "/es-ES/docs/persistent-apps",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/play-with-docker",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/pre-deploy-script",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/recipe-deploy-create-react-app",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/resource-monitoring",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/run-locally",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/sample-apps",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/server-purchase/digitalocean",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/server-purchase/openstack",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/service-update-override",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/stateless-with-persistent-data",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/support",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/theme-customization",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/troubleshooting",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/troubleshooting",
+      "canonical": true
+    },
+    {
+      "source": "/es-ES/docs/troubleshooting-pro",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs/zero-downtime",
+      "kind": "legacy",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/advanced",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/advanced",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/advanced/custom-nginx",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/advanced/custom-nginx",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/advanced/pre-deploy-function",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/advanced/pre-deploy-function",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/advanced/service-update-override",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/advanced/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/create-manage",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/create-manage",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/environment-variables",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/environment-variables",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/http-settings",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/http-settings",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/persistent-directories",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/persistent-directories",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/projects",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/projects",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/public-ports",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/public-ports",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/scaling-placement",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/scaling-placement",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/tags-descriptions",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/tags-descriptions",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/applications/troubleshooting",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/applications/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/backup-data",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/backup-data",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/bind-mounts",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/bind-mounts",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/deploy-databases",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/deploy-databases",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/external-databases",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/external-databases",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/internal-databases",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/internal-databases",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/move-data",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/move-data",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/node-placement",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/node-placement",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/shared-storage",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/shared-storage",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/stateless-persistent",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/stateless-persistent",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/troubleshooting",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/data-persistence/volumes",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/data-persistence/volumes",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/builds-logs",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/builds-logs",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/captain-definition",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/captain-definition",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/ci-cd",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/ci-cd",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/ci-cd/deployment-tokens",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/ci-cd/deployment-tokens",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/ci-cd/generic",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/ci-cd/generic",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/ci-cd/github-actions",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/ci-cd/github-actions",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/ci-cd/gitlab-ci",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/ci-cd/gitlab-ci",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/cli",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/cli",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/dashboard",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/dashboard",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/docker-image",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/docker-image",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/git",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/git",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/other",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/other",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/other/docker-compose",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/other/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/registries",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/registries",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/registries/default-push",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/registries/default-push",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/registries/private",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/registries/private",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/registries/self-hosted",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/registries/self-hosted",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/troubleshooting",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/deployments/versions-rollback",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/deployments/versions-rollback",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/advanced-certbot",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/advanced-certbot",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/advanced-nginx",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/advanced-nginx",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/app-domains",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/app-domains",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/certificate-renewal",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/certificate-renewal",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/cloudflare-reverse-proxies",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/cloudflare-reverse-proxies",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/custom-domains",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/custom-domains",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/firewall",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/https",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/https",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/internal-networking",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/internal-networking",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/nginx-routing",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/nginx-routing",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/public-services",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/public-services",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/root-domain",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/root-domain",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/domains/troubleshooting",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/domains/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/fundamentals",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/fundamentals",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/fundamentals/applications-and-services",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/fundamentals/applications-and-services",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/fundamentals/builds-images-deployments",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/fundamentals/builds-images-deployments",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/fundamentals/docker-swarm",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/fundamentals/docker-swarm",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/fundamentals/how-caprover-works",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/fundamentals/how-caprover-works",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/fundamentals/networking",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/fundamentals/networking",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/fundamentals/persistence",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/fundamentals/persistence",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/get-started",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/guides",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/guides",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/guides/cdd-migration",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/guides/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/guides/complete-webapp",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/guides/complete-webapp",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/guides/home-server",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/guides/home-server",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/guides/persistent-storage",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/guides/persistent-storage",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/guides/recipes",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/guides/recipes",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/guides/sample-apps",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/guides/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/guides/static-react",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/guides/static-react",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/advanced",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/advanced",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/advanced/custom-host-ports",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/advanced/custom-host-ports",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/advanced/existing-swarm",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/advanced/existing-swarm",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/advanced/reverse-proxy",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/advanced/reverse-proxy",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/digitalocean",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/local-private-network",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/local-private-network",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/manual",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/manual",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/openstack",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/play-with-docker",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/installation/standard-vps",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/installation/standard-vps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/one-click-apps",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/one-click-apps/authoring",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/one-click-apps/authoring",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/one-click-apps/configure",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/one-click-apps/configure",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/one-click-apps/connect",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/one-click-apps/connect",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/one-click-apps/custom-repositories",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/one-click-apps/custom-repositories",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/one-click-apps/install",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/one-click-apps/install",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/one-click-apps/troubleshooting",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/one-click-apps/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/one-click-apps/upgrade",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/one-click-apps/upgrade",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/production-checklist",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/production-checklist",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/api",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/api",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/app-configuration",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/backup-contents",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/backup-contents",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/captain-definition",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/captain-definition",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/cli",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/cli",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/config-override",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/config-override",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/defaults-limits",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/defaults-limits",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/docker-compose",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/glossary",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/glossary",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/legacy-compatibility",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/legacy-compatibility",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/one-click-schema",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/one-click-schema",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/ports",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/ports",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/reference/server-environment",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/reference/server-environment",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling/manage-nodes",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling/manage-nodes",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling/multi-node",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling/multi-node",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling/networking",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling/networking",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling/persistent-apps",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling/placement",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling/placement",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling/scale-app",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling/scale-app",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling/troubleshooting",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/scaling/zero-downtime",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/scaling/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/backup",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/backup",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/backup/automate",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/backup/automate",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/backup/contents",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/backup/contents",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/backup/create",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/backup/create",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/backup/multi-node-restore",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/backup/multi-node-restore",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/backup/restore",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/backup/restore",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/diagnostics",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/diagnostics",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/disk-cleanup",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/goaccess",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/goaccess",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/move-server",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/move-server",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/netdata",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/netdata",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/pro",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/pro",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/security",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/security",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/settings",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/settings",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/themes",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/themes",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/uninstall",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/uninstall",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/server/upgrade",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/server/upgrade",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/troubleshooting",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/troubleshooting/diagnostics",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/troubleshooting/diagnostics",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/troubleshooting/report-bug",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/troubleshooting/report-bug",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-next/troubleshooting/support",
+      "kind": "preview",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs-next/troubleshooting/support",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/app-configuration",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/app-scaling-and-cluster",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/backup-and-restore",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/best-practices",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/captain-definition-file",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/cdd-migration",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/certbot-config",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/ci-cd-integration",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/ci-cd-integration/deploy-from-github",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/ci-cd-integration/deploy-from-gitlab",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/cli-commands",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/complete-webapp-tutorial",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/database-connection",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/deployment-methods",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/disk-cleanup",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/docker-compose",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/firewall",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/get-started",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/get-started",
+      "canonical": true
+    },
+    {
+      "source": "/zh-CN/docs/nginx-customization",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/one-click-apps",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/one-click-apps",
+      "canonical": true
+    },
+    {
+      "source": "/zh-CN/docs/persistent-apps",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/play-with-docker",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/pre-deploy-script",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/recipe-deploy-create-react-app",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/resource-monitoring",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/run-locally",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/sample-apps",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/server-purchase/digitalocean",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/server-purchase/openstack",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/service-update-override",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/stateless-with-persistent-data",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/support",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/theme-customization",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/troubleshooting",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/troubleshooting",
+      "canonical": true
+    },
+    {
+      "source": "/zh-CN/docs/troubleshooting-pro",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs/zero-downtime",
+      "kind": "legacy",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/zero-downtime",
+      "canonical": false
+    }
+  ]
+}

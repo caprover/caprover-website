@@ -1,0 +1,30 @@
+{
+  "historicalPolicies": {
+    "source-section": 49,
+    "current": 41,
+    "equivalent": 151,
+    "archive": 561
+  },
+  "historicalDocuments": 534,
+  "historicalAnchors": 802,
+  "legacyRoutes": 36,
+  "previewRoutes": 142,
+  "locales": 3,
+  "normalizedSources": 642,
+  "routeVariants": 2568,
+  "fragmentVariants": 5872,
+  "policyCounts": {
+    "source-section": 49,
+    "current": 47,
+    "equivalent": 246,
+    "archive": 1122,
+    "pre-existing-stale": 4
+  },
+  "archiveFallbacks": 4488,
+  "currentAnchors": 1384,
+  "officialReferences": 30,
+  "canonicalPages": 144,
+  "cycles": 0,
+  "collisions": 0,
+  "unresolvedKnownLinks": 0
+}

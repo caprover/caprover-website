@@ -17,6 +17,8 @@ One-Click 模板会创建普通的 CapRover 应用。一个模板可以同时部
 
 <span id="source-one-click-apps-configure"></span>
 
+<span id="配置设置"></span>
+
 ## 配置
 
 - 通过 CapRover 的常规应用设置即可管理模板生成的应用。
@@ -32,6 +34,8 @@ One-Click 模板会创建普通的 CapRover 应用。一个模板可以同时部
 - 如果需要从 CapRover 外部访问数据库，参阅[从外部连接数据库](../data-persistence/deploy-databases.md)。
 
 <span id="source-one-click-apps-upgrade"></span>
+
+<span id="升级一键应用"></span>
 
 ## 更新
 

@@ -1,0 +1,3103 @@
+{
+  "version": 1,
+  "previewRevision": "b15f34e24ae9a367d98cf902e1fd65d034b61200",
+  "manualRevision": "f0b30791448e8c42aefe1a64fdabd84490ecfe28",
+  "legacyRevision": "a50858c01d443580558afd6f17ce684609df8e3c",
+  "provenance": "Rendered Docusaurus article IDs. Preview: baseCommit worktree build (all locales; localized preview originally used English fallback). Legacy: preserved archive build. Manual Setup addendum: current rendered English IDs, verified byte-identical source at manualRevision; localized previews used English fallback.",
+  "pages": {
+    "/docs-next": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/advanced": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/advanced/custom-nginx": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/advanced/pre-deploy-function": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/advanced/service-update-override": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/create-manage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/environment-variables": {
+      "kind": "preview",
+      "ids": [
+        "build-time-variables",
+        "set-runtime-variables"
+      ]
+    },
+    "/docs-next/applications/http-settings": {
+      "kind": "preview",
+      "ids": [
+        "domains-and-https",
+        "other-options",
+        "web-apps"
+      ]
+    },
+    "/docs-next/applications/persistent-directories": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/projects": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/public-ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/scaling-placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/tags-descriptions": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/applications/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/backup-data": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/bind-mounts": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/deploy-databases": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/external-databases": {
+      "kind": "preview",
+      "ids": [
+        "prefer-a-private-path-when-possible",
+        "prepare-the-database",
+        "publish-a-restricted-port"
+      ]
+    },
+    "/docs-next/data-persistence/internal-databases": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/move-data": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/node-placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/shared-storage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/stateless-persistent": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/data-persistence/volumes": {
+      "kind": "preview",
+      "ids": [
+        "after-deleting-an-app",
+        "configure-a-volume"
+      ]
+    },
+    "/docs-next/deployments": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/builds-logs": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/captain-definition": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/ci-cd": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/ci-cd/deployment-tokens": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/ci-cd/generic": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/ci-cd/github-actions": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/ci-cd/gitlab-ci": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/cli": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/dashboard": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/docker-image": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/git": {
+      "kind": "preview",
+      "ids": [
+        "setup"
+      ]
+    },
+    "/docs-next/deployments/other": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/other/docker-compose": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/registries": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/registries/default-push": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/registries/private": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/registries/self-hosted": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/deployments/versions-rollback": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/advanced-certbot": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/advanced-nginx": {
+      "kind": "preview",
+      "ids": [
+        "recover-from-a-configuration-that-broke-the-dashboard"
+      ]
+    },
+    "/docs-next/domains/app-domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/certificate-renewal": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/cloudflare-reverse-proxies": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/custom-domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/firewall": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/https": {
+      "kind": "preview",
+      "ids": [
+        "applications",
+        "dashboard"
+      ]
+    },
+    "/docs-next/domains/internal-networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/nginx-routing": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/public-services": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/root-domain": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/domains/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/fundamentals": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/fundamentals/applications-and-services": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/fundamentals/builds-images-deployments": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/fundamentals/docker-swarm": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/fundamentals/how-caprover-works": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/fundamentals/networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/fundamentals/persistence": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/get-started": {
+      "kind": "preview",
+      "ids": [
+        "1-ports-and-firewall",
+        "2-install-docker",
+        "3-install-caprover",
+        "4-dns",
+        "5-configure-caprover",
+        "6-deploy-your-first-app",
+        "low-memory-builds-optional",
+        "requirements"
+      ]
+    },
+    "/docs-next/guides": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/guides/cdd-migration": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/guides/complete-webapp": {
+      "kind": "preview",
+      "ids": [
+        "1-create-the-private-database",
+        "2-build-the-web-and-worker-images",
+        "3-create-configure-and-deploy-the-other-apps",
+        "4-back-up-each-data-source"
+      ]
+    },
+    "/docs-next/guides/home-server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/guides/persistent-storage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/guides/recipes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/guides/sample-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/guides/static-react": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation/advanced": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation/advanced/custom-host-ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation/advanced/existing-swarm": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation/advanced/reverse-proxy": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation/digitalocean": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation/local-private-network": {
+      "kind": "preview",
+      "ids": [
+        "prepare-the-machine",
+        "private-only-domain",
+        "public-access-through-the-router"
+      ]
+    },
+    "/docs-next/installation/manual": {
+      "kind": "preview",
+      "ids": [
+        "1-ports-and-firewall",
+        "2-install-docker",
+        "3-install-caprover"
+      ]
+    },
+    "/docs-next/installation/openstack": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation/play-with-docker": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/installation/standard-vps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/one-click-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/one-click-apps/authoring": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/one-click-apps/configure": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/one-click-apps/connect": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/one-click-apps/custom-repositories": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/one-click-apps/install": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/one-click-apps/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/one-click-apps/upgrade": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/production-checklist": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/api": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/app-configuration": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/backup-contents": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/captain-definition": {
+      "kind": "preview",
+      "ids": [
+        "built-in-templates-and-versions"
+      ]
+    },
+    "/docs-next/reference/cli": {
+      "kind": "preview",
+      "ids": [
+        "deploy-options"
+      ]
+    },
+    "/docs-next/reference/config-override": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/defaults-limits": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/docker-compose": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/glossary": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/legacy-compatibility": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/one-click-schema": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/reference/server-environment": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/scaling": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/scaling/manage-nodes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/scaling/multi-node": {
+      "kind": "preview",
+      "ids": [
+        "1-prepare-server",
+        "2-networking-and-ssh",
+        "3-registry",
+        "4-add-and-verify-node",
+        "5-persistent-apps"
+      ]
+    },
+    "/docs-next/scaling/networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/scaling/persistent-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/scaling/placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/scaling/scale-app": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/scaling/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/scaling/zero-downtime": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/backup": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/backup/automate": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/backup/contents": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/backup/create": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/backup/multi-node-restore": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/backup/restore": {
+      "kind": "preview",
+      "ids": [
+        "before-restoring",
+        "restore"
+      ]
+    },
+    "/docs-next/server/diagnostics": {
+      "kind": "preview",
+      "ids": [
+        "dashboard-unavailable-on-port-3000",
+        "restart-or-inspect-an-app"
+      ]
+    },
+    "/docs-next/server/disk-cleanup": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/goaccess": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/move-server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/netdata": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/pro": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/security": {
+      "kind": "preview",
+      "ids": [
+        "recover-a-forgotten-dashboard-password"
+      ]
+    },
+    "/docs-next/server/settings": {
+      "kind": "preview",
+      "ids": [
+        "account-and-recovery",
+        "root-domain"
+      ]
+    },
+    "/docs-next/server/themes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/uninstall": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/server/upgrade": {
+      "kind": "preview",
+      "ids": [
+        "testing-an-edge-image"
+      ]
+    },
+    "/docs-next/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/troubleshooting/diagnostics": {
+      "kind": "preview",
+      "ids": [
+        "before-sharing",
+        "collect-a-full-server-report",
+        "quick-checks"
+      ]
+    },
+    "/docs-next/troubleshooting/report-bug": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs-next/troubleshooting/support": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/docs/app-configuration": {
+      "kind": "legacy",
+      "ids": [
+        "app-config",
+        "enabling-https",
+        "environment-variables",
+        "http-settings",
+        "instance-count",
+        "node-id",
+        "persistent-directories",
+        "port-mapping",
+        "predeploy-function",
+        "service-tags"
+      ]
+    },
+    "/docs/app-scaling-and-cluster": {
+      "kind": "legacy",
+      "ids": [
+        "add-a-private-docker-registry",
+        "default-push-registry",
+        "disabling-registry",
+        "more-than-one-registry",
+        "run-multiple-instances-of-app",
+        "run-multiple-servers",
+        "setup-docker-registry"
+      ]
+    },
+    "/docs/backup-and-restore": {
+      "kind": "legacy",
+      "ids": [
+        "3rd-party-registry",
+        "automating-backup-process",
+        "backup--restore",
+        "backup-process",
+        "docker-registry-instructions",
+        "keeping-old-server",
+        "multi-nodes",
+        "restoration-process",
+        "self-hosted-registry",
+        "what-is-restored"
+      ]
+    },
+    "/docs/best-practices": {
+      "kind": "legacy",
+      "ids": [
+        "custom-default-password",
+        "customize-the-nginx-config-for-new-apps",
+        "enforce-https",
+        "hidden-root-domain",
+        "out-of-memory-when-building",
+        "use-service-accounts-for-git"
+      ]
+    },
+    "/docs/captain-definition-file": {
+      "kind": "legacy",
+      "ids": [
+        "basics",
+        "choosing-runtime-versions",
+        "monorepos",
+        "use-a-dockerfile",
+        "use-an-image-name"
+      ]
+    },
+    "/docs/cdd-migration": {
+      "kind": "legacy",
+      "ids": [
+        "breaking-changes-from-captainduckduck-to-caprover",
+        "migration-script",
+        "tips-for-migration",
+        "with-self-hosted-registry",
+        "without-self-hosted-registry"
+      ]
+    },
+    "/docs/certbot-config": {
+      "kind": "legacy",
+      "ids": [
+        "1-certbot-docker-image",
+        "1-create-config-file",
+        "2-configure-the-values",
+        "2-store-your-dns-credentials",
+        "3-override-the-certbot-command",
+        "3-restart-certbot",
+        "4-caa-record",
+        "4-restart-caprover",
+        "configure-certbot-to-use-a-new-acme-server",
+        "customize-certbot-command-to-use-dns-01-challenge",
+        "note"
+      ]
+    },
+    "/docs/ci-cd-integration": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/docs/ci-cd-integration/deploy-from-github": {
+      "kind": "legacy",
+      "ids": [
+        "add-a-private-docker-registry-to-caprover",
+        "add-files-to-project",
+        "add-the-github-secrets",
+        "add-the-github-secrets-1",
+        "alternative-method-more-efficient",
+        "commit-changes-to-your-code-to-deploy",
+        "create-a-github-personal-access-token",
+        "create-a-new-app",
+        "create-a-new-app-1",
+        "create-the-github-action",
+        "deploy",
+        "deploying-directly-from-github",
+        "enable-app-token",
+        "enable-app-token-1",
+        "need-help"
+      ]
+    },
+    "/docs/ci-cd-integration/deploy-from-gitlab": {
+      "kind": "legacy",
+      "ids": [
+        "1--create-gitlab-repository",
+        "2--add-sample-source-code",
+        "3--dockerfile",
+        "4--create-an-access-token-for-caprover",
+        "5--add-token-to-caprover",
+        "6--disable-default-push",
+        "7--create-a-caprover-app",
+        "8--create-cicd-variables",
+        "9--gitlab-ci-file",
+        "alternative-method",
+        "app-tokens",
+        "note-on-using---imagename-with-a-private-registry"
+      ]
+    },
+    "/docs/cli-commands": {
+      "kind": "legacy",
+      "ids": [
+        "deploy",
+        "list-logged-in-servers",
+        "login",
+        "logout",
+        "options",
+        "server-setup"
+      ]
+    },
+    "/docs/complete-webapp-tutorial": {
+      "kind": "legacy",
+      "ids": [
+        "app-architecture",
+        "app-description",
+        "creating-services",
+        "internal-access",
+        "persistence-or-not"
+      ]
+    },
+    "/docs/database-connection": {
+      "kind": "legacy",
+      "ids": [
+        "external-connections",
+        "internal-connections"
+      ]
+    },
+    "/docs/deployment-methods": {
+      "kind": "legacy",
+      "ids": [
+        "automatic-deploy-using-github-bitbucket-and-etc",
+        "bitbucket",
+        "deploy-via-cli",
+        "deploy-via-web-dashboard",
+        "github",
+        "gitlab-and-others",
+        "one-click-rollback"
+      ]
+    },
+    "/docs/disk-cleanup": {
+      "kind": "legacy",
+      "ids": [
+        "docker-images",
+        "docker-volumes"
+      ]
+    },
+    "/docs/docker-compose": {
+      "kind": "legacy",
+      "ids": [
+        "deploy-a-compose-file",
+        "running-compose-outside-caprover",
+        "supported-fields"
+      ]
+    },
+    "/docs/firewall": {
+      "kind": "legacy",
+      "ids": [
+        "cluster-ports",
+        "public-ports"
+      ]
+    },
+    "/docs/get-started": {
+      "kind": "legacy",
+      "ids": [
+        "a-domain-name",
+        "b-server",
+        "b1-public-ip",
+        "b2-server-specs",
+        "b3-docker",
+        "b4-configure-firewall",
+        "prerequisites",
+        "simple-setup",
+        "step-1-caprover-installation",
+        "step-2-connect-root-domain",
+        "step-3-configure-and-initialize-caprover",
+        "step-4-optional-set-up-swap-file",
+        "step-5-deploy-the-test-app",
+        "with-cli-recommended",
+        "with-the-web-interface-doesnt-require-npm"
+      ]
+    },
+    "/docs/nginx-customization": {
+      "kind": "legacy",
+      "ids": [
+        "config-customization",
+        "custom-files-and-directories",
+        "customize-and-override-the-nginx-config-for-all-apps"
+      ]
+    },
+    "/docs/one-click-apps": {
+      "kind": "legacy",
+      "ids": [
+        "blogging-and-content",
+        "configuration-settings",
+        "connecting-remotely",
+        "connecting-to-databases",
+        "connecting-within-caprover-cluster",
+        "databases-and-database-gui",
+        "dev-tools",
+        "other-apps",
+        "other-cases",
+        "simple-image-update",
+        "upgrading-one-click-apps",
+        "what-about-other-apps"
+      ]
+    },
+    "/docs/persistent-apps": {
+      "kind": "legacy",
+      "ids": [
+        "defining-persistent-directories",
+        "non-persistent-apps",
+        "persistent-apps",
+        "persistent-vs-non-persistent-apps",
+        "removing-persistent-apps"
+      ]
+    },
+    "/docs/play-with-docker": {
+      "kind": "legacy",
+      "ids": [
+        "view-only-demo",
+        "working-demo"
+      ]
+    },
+    "/docs/pre-deploy-script": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/docs/recipe-deploy-create-react-app": {
+      "kind": "legacy",
+      "ids": [
+        "build-on-local-machine",
+        "build-your-app",
+        "create-captain-definition",
+        "create-the-tar-file",
+        "deploy-with-caprover",
+        "sample-app"
+      ]
+    },
+    "/docs/resource-monitoring": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/docs/run-locally": {
+      "kind": "legacy",
+      "ids": [
+        "differences",
+        "install-caprover-on-a-private-local-network",
+        "installation",
+        "main-ip",
+        "option-1---only-internal-usecase",
+        "option-2---make-the-instance-accessible-from-the-outside",
+        "setup",
+        "troubleshooting"
+      ]
+    },
+    "/docs/sample-apps": {
+      "kind": "legacy",
+      "ids": [
+        "caprover-django",
+        "caprover-laravel",
+        "community-apps",
+        "elixirphoenix-app-deploy",
+        "ready-to-be-deployed"
+      ]
+    },
+    "/docs/server-purchase/digitalocean": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/docs/server-purchase/openstack": {
+      "kind": "legacy",
+      "ids": [
+        "deploy-the-openstack-heat-template-file",
+        "install-the-openstack-cli-and-validate-the-connection",
+        "set-up-an-openstack-provider",
+        "why-openstack"
+      ]
+    },
+    "/docs/service-update-override": {
+      "kind": "legacy",
+      "ids": [
+        "revert-to-default",
+        "sample-use-cases",
+        "schema"
+      ]
+    },
+    "/docs/stateless-with-persistent-data": {
+      "kind": "legacy",
+      "ids": [
+        "1-preparing-rclone",
+        "2-prepare-your-storage-system",
+        "3-preparing-the-docker-rclone-plugin",
+        "4-preparing-the-app",
+        "placeholder-variables"
+      ]
+    },
+    "/docs/support": {
+      "kind": "legacy",
+      "ids": [
+        "need-airtight-system",
+        "need-commercial-support",
+        "need-hourly-consultation",
+        "premoweb-internet-services",
+        "where-to-get-support",
+        "you"
+      ]
+    },
+    "/docs/theme-customization": {
+      "kind": "legacy",
+      "ids": [
+        "caprover-extra-configurations",
+        "embed-elements-into-head",
+        "other-customizations",
+        "submit-your-custom-themes"
+      ]
+    },
+    "/docs/troubleshooting": {
+      "kind": "legacy",
+      "ids": [
+        "arm-processor",
+        "aws-setup",
+        "cannot-connect-ip_server3000",
+        "cloudflare-ssl-setup",
+        "connection-timeouts",
+        "customize-config-settings",
+        "domain-verification-failed---error-1107",
+        "first",
+        "how-to-restart-caprover",
+        "how-to-restart-my-application",
+        "how-to-run-shell-inside-my-application-inside-container",
+        "how-to-stop-and-remove-captain",
+        "how-to-use-the-edge-version",
+        "how-to-view-my-applications-log",
+        "i-got-an-email-from-lets-encrypt-saying-my-domains-ssl-certificate-is-expiring-and-it-shouldnt-be",
+        "ive-made-a-change-to-the-nginx-config-that-broke-the-admin-ui",
+        "reset-password",
+        "second",
+        "something-bad-happened",
+        "successful-deploy-but-502-bad-gateway-error",
+        "third",
+        "use-existing-swarm"
+      ]
+    },
+    "/docs/troubleshooting-pro": {
+      "kind": "legacy",
+      "ids": [
+        "deploy-with-otp-enabled",
+        "email-support",
+        "reset-otp-two-factor-auth",
+        "set-specific-email-address-for-the-alerts"
+      ]
+    },
+    "/docs/zero-downtime": {
+      "kind": "legacy",
+      "ids": [
+        "example",
+        "implementing-health-checks-in-caprover",
+        "the-role-of-docker-health-checks",
+        "understanding-the-challenge",
+        "when-does-it-not-work"
+      ]
+    },
+    "/es-ES/docs-next": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/advanced": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/advanced/custom-nginx": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/advanced/pre-deploy-function": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/advanced/service-update-override": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/create-manage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/environment-variables": {
+      "kind": "preview",
+      "ids": [
+        "build-time-variables",
+        "set-runtime-variables"
+      ]
+    },
+    "/es-ES/docs-next/applications/http-settings": {
+      "kind": "preview",
+      "ids": [
+        "domains-and-https",
+        "other-options",
+        "web-apps"
+      ]
+    },
+    "/es-ES/docs-next/applications/persistent-directories": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/projects": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/public-ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/scaling-placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/tags-descriptions": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/applications/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/backup-data": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/bind-mounts": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/deploy-databases": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/external-databases": {
+      "kind": "preview",
+      "ids": [
+        "prefer-a-private-path-when-possible",
+        "prepare-the-database",
+        "publish-a-restricted-port"
+      ]
+    },
+    "/es-ES/docs-next/data-persistence/internal-databases": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/move-data": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/node-placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/shared-storage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/stateless-persistent": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/data-persistence/volumes": {
+      "kind": "preview",
+      "ids": [
+        "after-deleting-an-app",
+        "configure-a-volume"
+      ]
+    },
+    "/es-ES/docs-next/deployments": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/builds-logs": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/captain-definition": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/ci-cd": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/ci-cd/deployment-tokens": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/ci-cd/generic": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/ci-cd/github-actions": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/ci-cd/gitlab-ci": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/cli": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/dashboard": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/docker-image": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/git": {
+      "kind": "preview",
+      "ids": [
+        "setup"
+      ]
+    },
+    "/es-ES/docs-next/deployments/other": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/other/docker-compose": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/registries": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/registries/default-push": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/registries/private": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/registries/self-hosted": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/deployments/versions-rollback": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/advanced-certbot": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/advanced-nginx": {
+      "kind": "preview",
+      "ids": [
+        "recover-from-a-configuration-that-broke-the-dashboard"
+      ]
+    },
+    "/es-ES/docs-next/domains/app-domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/certificate-renewal": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/cloudflare-reverse-proxies": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/custom-domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/firewall": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/https": {
+      "kind": "preview",
+      "ids": [
+        "applications",
+        "dashboard"
+      ]
+    },
+    "/es-ES/docs-next/domains/internal-networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/nginx-routing": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/public-services": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/root-domain": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/domains/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/fundamentals": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/fundamentals/applications-and-services": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/fundamentals/builds-images-deployments": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/fundamentals/docker-swarm": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/fundamentals/how-caprover-works": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/fundamentals/networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/fundamentals/persistence": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/get-started": {
+      "kind": "preview",
+      "ids": [
+        "1-ports-and-firewall",
+        "2-install-docker",
+        "3-install-caprover",
+        "4-dns",
+        "5-configure-caprover",
+        "6-deploy-your-first-app",
+        "low-memory-builds-optional",
+        "requirements"
+      ]
+    },
+    "/es-ES/docs-next/guides": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/guides/cdd-migration": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/guides/complete-webapp": {
+      "kind": "preview",
+      "ids": [
+        "1-create-the-private-database",
+        "2-build-the-web-and-worker-images",
+        "3-create-configure-and-deploy-the-other-apps",
+        "4-back-up-each-data-source"
+      ]
+    },
+    "/es-ES/docs-next/guides/home-server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/guides/persistent-storage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/guides/recipes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/guides/sample-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/guides/static-react": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation/advanced": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation/advanced/custom-host-ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation/advanced/existing-swarm": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation/advanced/reverse-proxy": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation/digitalocean": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation/local-private-network": {
+      "kind": "preview",
+      "ids": [
+        "prepare-the-machine",
+        "private-only-domain",
+        "public-access-through-the-router"
+      ]
+    },
+    "/es-ES/docs-next/installation/manual": {
+      "kind": "preview",
+      "ids": [
+        "1-ports-and-firewall",
+        "2-install-docker",
+        "3-install-caprover"
+      ]
+    },
+    "/es-ES/docs-next/installation/openstack": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation/play-with-docker": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/installation/standard-vps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/one-click-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/one-click-apps/authoring": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/one-click-apps/configure": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/one-click-apps/connect": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/one-click-apps/custom-repositories": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/one-click-apps/install": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/one-click-apps/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/one-click-apps/upgrade": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/production-checklist": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/api": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/app-configuration": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/backup-contents": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/captain-definition": {
+      "kind": "preview",
+      "ids": [
+        "built-in-templates-and-versions"
+      ]
+    },
+    "/es-ES/docs-next/reference/cli": {
+      "kind": "preview",
+      "ids": [
+        "deploy-options"
+      ]
+    },
+    "/es-ES/docs-next/reference/config-override": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/defaults-limits": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/docker-compose": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/glossary": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/legacy-compatibility": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/one-click-schema": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/reference/server-environment": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/scaling": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/scaling/manage-nodes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/scaling/multi-node": {
+      "kind": "preview",
+      "ids": [
+        "1-prepare-server",
+        "2-networking-and-ssh",
+        "3-registry",
+        "4-add-and-verify-node",
+        "5-persistent-apps"
+      ]
+    },
+    "/es-ES/docs-next/scaling/networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/scaling/persistent-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/scaling/placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/scaling/scale-app": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/scaling/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/scaling/zero-downtime": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/backup": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/backup/automate": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/backup/contents": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/backup/create": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/backup/multi-node-restore": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/backup/restore": {
+      "kind": "preview",
+      "ids": [
+        "before-restoring",
+        "restore"
+      ]
+    },
+    "/es-ES/docs-next/server/diagnostics": {
+      "kind": "preview",
+      "ids": [
+        "dashboard-unavailable-on-port-3000",
+        "restart-or-inspect-an-app"
+      ]
+    },
+    "/es-ES/docs-next/server/disk-cleanup": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/goaccess": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/move-server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/netdata": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/pro": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/security": {
+      "kind": "preview",
+      "ids": [
+        "recover-a-forgotten-dashboard-password"
+      ]
+    },
+    "/es-ES/docs-next/server/settings": {
+      "kind": "preview",
+      "ids": [
+        "account-and-recovery",
+        "root-domain"
+      ]
+    },
+    "/es-ES/docs-next/server/themes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/uninstall": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/server/upgrade": {
+      "kind": "preview",
+      "ids": [
+        "testing-an-edge-image"
+      ]
+    },
+    "/es-ES/docs-next/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/troubleshooting/diagnostics": {
+      "kind": "preview",
+      "ids": [
+        "before-sharing",
+        "collect-a-full-server-report",
+        "quick-checks"
+      ]
+    },
+    "/es-ES/docs-next/troubleshooting/report-bug": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs-next/troubleshooting/support": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/es-ES/docs/app-configuration": {
+      "kind": "legacy",
+      "ids": [
+        "configuración-de-la-aplicación",
+        "configuración-http",
+        "directorios-persistentes",
+        "etiquetas-de-servicio",
+        "función-previa-a-la-implementación",
+        "habilitando-https",
+        "id-de-nodo",
+        "port-mapping",
+        "recuento-de-instancias",
+        "variables-de-entorno"
+      ]
+    },
+    "/es-ES/docs/app-scaling-and-cluster": {
+      "kind": "legacy",
+      "ids": [
+        "agregar-un-privado-docker-registry",
+        "configuración-docker-registry",
+        "deshabilitar-el-registro",
+        "ejecute-varias-instancias-de-la-aplicación",
+        "ejecute-varios-servidores",
+        "más-de-un-registro",
+        "registro-de-inserción-predeterminado"
+      ]
+    },
+    "/es-ES/docs/backup-and-restore": {
+      "kind": "legacy",
+      "ids": [
+        "automatización-del-proceso-de-copia-de-seguridad",
+        "copia-de-seguridad-y-restauración",
+        "docker-registry-instrucciones",
+        "mantener-el-servidor-antiguo",
+        "nodos-múltiples",
+        "proceso-de-copia-de-seguridad",
+        "proceso-de-restauración",
+        "qué-se-restaura",
+        "registro-autohospedado",
+        "registro-de-terceros"
+      ]
+    },
+    "/es-ES/docs/best-practices": {
+      "kind": "legacy",
+      "ids": [
+        "contraseña-predeterminada-personalizada",
+        "hacer-cumplir-https",
+        "hidden-root-domain",
+        "personaliza-la-configuración-nginx-para-nuevas-aplicaciones",
+        "sin-memoria-al-construir",
+        "usar-cuentas-de-servicio-para-git"
+      ]
+    },
+    "/es-ES/docs/captain-definition-file": {
+      "kind": "legacy",
+      "ids": [
+        "conceptos-básicos",
+        "elegir-versiones-del-entorno-de-ejecución",
+        "monorepositorios",
+        "usar-el-nombre-de-una-imagen",
+        "usar-un-dockerfile"
+      ]
+    },
+    "/es-ES/docs/cdd-migration": {
+      "kind": "legacy",
+      "ids": [
+        "cambios-importantes-de-captainduckduck-a-caprover",
+        "con-registro-autohospedado",
+        "consejos-para-la-migración",
+        "script-de-migración",
+        "sin-registro-autohospedado"
+      ]
+    },
+    "/es-ES/docs/certbot-config": {
+      "kind": "legacy",
+      "ids": [
+        "1-certbot-docker-imagen",
+        "1-crear-archivo-de-configuración",
+        "2-configurar-los-valores",
+        "2-guarde-sus-credenciales-dns",
+        "3-anular-el-comando-certbot",
+        "3-reiniciar-certbot",
+        "4-registro-caa",
+        "4-reiniciar-caprover",
+        "configure-certbot-para-usar-un-nuevo-servidor-acme",
+        "nota",
+        "personaliza-el-comando-certbot-para-usar-el-desafío-dns-01"
+      ]
+    },
+    "/es-ES/docs/ci-cd-integration": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/es-ES/docs/ci-cd-integration/deploy-from-github": {
+      "kind": "legacy",
+      "ids": [
+        "add-the-github-secrets",
+        "agregar-archivos-al-proyecto",
+        "agregar-un-docker-registry-privado-a-caprover",
+        "agregue-los-secretos-github",
+        "confirma-cambios-en-tu-código-para-implementar",
+        "crea-el-github-action",
+        "crear-un-token-de-acceso-personal-github",
+        "crear-una-nueva-aplicación",
+        "create-a-new-app",
+        "desplegar",
+        "enable-app-token",
+        "habilitar-token-de-aplicación",
+        "implementación-directamente-desde-github",
+        "método-alternativo-más-eficiente",
+        "necesitas-ayuda"
+      ]
+    },
+    "/es-ES/docs/ci-cd-integration/deploy-from-gitlab": {
+      "kind": "legacy",
+      "ids": [
+        "1--crear-gitlab-repositorio",
+        "2--agregar-código-fuente-de-muestra",
+        "3--dockerfile",
+        "4--crea-un-token-de-acceso-para-caprover",
+        "5--agregar-token-a-caprover",
+        "6--deshabilitar-el-push-predeterminado",
+        "7--crea-una-aplicación-caprover",
+        "8--crear-cicd-variables",
+        "9--gitlab-archivo-ci",
+        "fichas-de-aplicación",
+        "método-alternativo",
+        "nota-sobre-el-uso-de---imagename-con-un-registro-privado"
+      ]
+    },
+    "/es-ES/docs/cli-commands": {
+      "kind": "legacy",
+      "ids": [
+        "acceso",
+        "cerrar-sesión",
+        "configuración-del-servidor",
+        "desplegar",
+        "lista-de-servidores-registrados",
+        "opciones"
+      ]
+    },
+    "/es-ES/docs/complete-webapp-tutorial": {
+      "kind": "legacy",
+      "ids": [
+        "acceso-interno",
+        "arquitectura-de-la-aplicación",
+        "creando-servicios",
+        "descripción-de-la-aplicación",
+        "persistencia-o-no"
+      ]
+    },
+    "/es-ES/docs/database-connection": {
+      "kind": "legacy",
+      "ids": [
+        "conexiones-externas",
+        "conexiones-internas"
+      ]
+    },
+    "/es-ES/docs/deployment-methods": {
+      "kind": "legacy",
+      "ids": [
+        "bitbucket",
+        "github",
+        "gitlab-y-otros",
+        "implementación-automática-usando-github-bitbucket-etc",
+        "implementar-a-través-de-cli",
+        "implementar-a-través-del-panel-web",
+        "revertir-con-un-clic"
+      ]
+    },
+    "/es-ES/docs/disk-cleanup": {
+      "kind": "legacy",
+      "ids": [
+        "docker-imágenes",
+        "docker-volúmenes"
+      ]
+    },
+    "/es-ES/docs/docker-compose": {
+      "kind": "legacy",
+      "ids": [
+        "campos-compatibles",
+        "desplegar-un-archivo-compose",
+        "ejecutar-compose-fuera-de-caprover"
+      ]
+    },
+    "/es-ES/docs/firewall": {
+      "kind": "legacy",
+      "ids": [
+        "puertos-del-clúster",
+        "puertos-públicos"
+      ]
+    },
+    "/es-ES/docs/get-started": {
+      "kind": "legacy",
+      "ids": [
+        "a-nombre-de-dominio",
+        "b-servidor",
+        "b1-ip-pública",
+        "b2-especificaciones-del-servidor",
+        "b3-docker",
+        "b4-configurar-el-cortafuegos",
+        "con-cli-recomendado",
+        "con-la-interfaz-web-no-requiere-npm",
+        "configuración-sencilla",
+        "paso-1-instalación-de-caprover",
+        "paso-2-conectar-el-dominio-raíz",
+        "paso-3-configurar-e-inicializar-caprover",
+        "paso-4-opcional-configurar-el-archivo-de-intercambio",
+        "requisitos-previos",
+        "step-5-deploy-the-test-app"
+      ]
+    },
+    "/es-ES/docs/nginx-customization": {
+      "kind": "legacy",
+      "ids": [
+        "archivos-y-directorios-personalizados",
+        "personaliza-y-anula-la-configuración-nginx-para-todas-las-aplicaciones",
+        "personalización-de-configuración"
+      ]
+    },
+    "/es-ES/docs/one-click-apps": {
+      "kind": "legacy",
+      "ids": [
+        "actualización-de-aplicaciones-one-click",
+        "actualización-de-imagen-simple",
+        "ajustes-de-configuración",
+        "bases-de-datos-y-gui-de-base-de-datos",
+        "blogs-y-contenido",
+        "conexión-a-bases-de-datos",
+        "conexión-dentro-del-clúster-caprover",
+        "conexión-remota",
+        "herramientas-de-desarrollo",
+        "otras-aplicaciones",
+        "otros-casos",
+        "qué-pasa-con-otras-aplicaciones"
+      ]
+    },
+    "/es-ES/docs/persistent-apps": {
+      "kind": "legacy",
+      "ids": [
+        "aplicaciones-no-persistentes",
+        "aplicaciones-persistentes",
+        "aplicaciones-persistentes-versus-no-persistentes",
+        "definición-de-directorios-persistentes",
+        "eliminación-de-aplicaciones-persistentes"
+      ]
+    },
+    "/es-ES/docs/play-with-docker": {
+      "kind": "legacy",
+      "ids": [
+        "demostración-de-solo-visualización",
+        "demostración-de-trabajo"
+      ]
+    },
+    "/es-ES/docs/pre-deploy-script": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/es-ES/docs/recipe-deploy-create-react-app": {
+      "kind": "legacy",
+      "ids": [
+        "aplicación-de-muestra",
+        "construir-en-la-máquina-local",
+        "crea-el-archivo-tar",
+        "crea-tu-aplicación",
+        "crear-captain-definition",
+        "implementar-con-caprover"
+      ]
+    },
+    "/es-ES/docs/resource-monitoring": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/es-ES/docs/run-locally": {
+      "kind": "legacy",
+      "ids": [
+        "configuración",
+        "diferencias",
+        "instalación",
+        "instalar-caprover-en-una-red-privada-local",
+        "opción-1-solo-caso-de-uso-interno",
+        "opción-2-hacer-que-la-instancia-sea-accesible-desde-el-exterior",
+        "principal-ip",
+        "solución-de-problemas"
+      ]
+    },
+    "/es-ES/docs/sample-apps": {
+      "kind": "legacy",
+      "ids": [
+        "aplicaciones-comunitarias",
+        "caprover-django",
+        "caprover-laravel",
+        "elixirphoenix-implementación-de-la-aplicación",
+        "listo-para-ser-implementado"
+      ]
+    },
+    "/es-ES/docs/server-purchase/digitalocean": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/es-ES/docs/server-purchase/openstack": {
+      "kind": "legacy",
+      "ids": [
+        "configurar-un-proveedor-openstack",
+        "implementar-el-archivo-de-plantilla-openstack-heat",
+        "instala-el-openstack-cli-y-valida-la-conexión",
+        "por-qué-openstack",
+        "validar-la-implementación"
+      ]
+    },
+    "/es-ES/docs/service-update-override": {
+      "kind": "legacy",
+      "ids": [
+        "casos-de-uso-de-muestra",
+        "esquema",
+        "volver-al-valor-predeterminado"
+      ]
+    },
+    "/es-ES/docs/stateless-with-persistent-data": {
+      "kind": "legacy",
+      "ids": [
+        "1-preparando-rclone",
+        "2-prepare-su-sistema-de-almacenamiento",
+        "3-preparando-el-complemento-docker-rclone",
+        "4-preparando-la-aplicación",
+        "variables-de-marcador-de-posición"
+      ]
+    },
+    "/es-ES/docs/support": {
+      "kind": "legacy",
+      "ids": [
+        "dónde-obtener-soporte",
+        "necesita-consulta-por-horas",
+        "necesita-soporte-comercial",
+        "necesita-un-sistema-hermético",
+        "servicios-de-internet-premoweb",
+        "tú"
+      ]
+    },
+    "/es-ES/docs/theme-customization": {
+      "kind": "legacy",
+      "ids": [
+        "caprover-configuraciones-adicionales",
+        "envía-tus-temas-personalizados",
+        "incrustar-elementos-en-head",
+        "otras-personalizaciones"
+      ]
+    },
+    "/es-ES/docs/troubleshooting": {
+      "kind": "legacy",
+      "ids": [
+        "algo-malo-pasó",
+        "aws-configuración",
+        "cloudflare-ssl-configuración",
+        "cómo-detener-y-eliminar-captain",
+        "cómo-ejecutar-shell-dentro-de-mi-aplicación-dentro-del-contenedor",
+        "cómo-reiniciar-caprover",
+        "cómo-reiniciar-mi-aplicación",
+        "cómo-usar-la-versión-edge",
+        "error-en-la-verificación-del-dominio-error-1107",
+        "hice-un-cambio-en-la-configuración-nginx-que-rompió-la-interfaz-de-usuario-del-administrador",
+        "how-to-view-my-applications-log",
+        "implementación-exitosa-pero-error-502-de-puerta-de-enlace-incorrecta",
+        "no-se-puede-conectar-ip_server3000",
+        "personalizar-los-ajustes-de-configuración",
+        "primero",
+        "procesador-arm",
+        "recibí-un-correo-electrónico-de-lets-encrypt-diciendo-que-el-certificado-ssl-de-mi-dominio-está-venciendo-y-no-debería-estar-vencido",
+        "restablecer-contraseña",
+        "segundo",
+        "tercero",
+        "tiempos-de-espera-de-conexión",
+        "usar-enjambre-existente"
+      ]
+    },
+    "/es-ES/docs/troubleshooting-pro": {
+      "kind": "legacy",
+      "ids": [
+        "establecer-una-dirección-de-correo-electrónico-específica-para-las-alertas",
+        "implementar-con-otp-habilitado",
+        "restablecer-otp-autenticación-de-dos-factores",
+        "soporte-por-correo-electrónico"
+      ]
+    },
+    "/es-ES/docs/zero-downtime": {
+      "kind": "legacy",
+      "ids": [
+        "comprender-el-desafío",
+        "cuándo-no-funciona",
+        "ejemplo",
+        "el-papel-de-los-health-checks-de-docker",
+        "implementación-de-controles-de-estado-en-caprover"
+      ]
+    },
+    "/zh-CN/docs-next": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/advanced": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/advanced/custom-nginx": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/advanced/pre-deploy-function": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/advanced/service-update-override": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/create-manage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/environment-variables": {
+      "kind": "preview",
+      "ids": [
+        "build-time-variables",
+        "set-runtime-variables"
+      ]
+    },
+    "/zh-CN/docs-next/applications/http-settings": {
+      "kind": "preview",
+      "ids": [
+        "domains-and-https",
+        "other-options",
+        "web-apps"
+      ]
+    },
+    "/zh-CN/docs-next/applications/persistent-directories": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/projects": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/public-ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/scaling-placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/tags-descriptions": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/applications/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/backup-data": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/bind-mounts": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/deploy-databases": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/external-databases": {
+      "kind": "preview",
+      "ids": [
+        "prefer-a-private-path-when-possible",
+        "prepare-the-database",
+        "publish-a-restricted-port"
+      ]
+    },
+    "/zh-CN/docs-next/data-persistence/internal-databases": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/move-data": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/node-placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/shared-storage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/stateless-persistent": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/data-persistence/volumes": {
+      "kind": "preview",
+      "ids": [
+        "after-deleting-an-app",
+        "configure-a-volume"
+      ]
+    },
+    "/zh-CN/docs-next/deployments": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/builds-logs": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/captain-definition": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/ci-cd": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/ci-cd/deployment-tokens": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/ci-cd/generic": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/ci-cd/github-actions": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/ci-cd/gitlab-ci": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/cli": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/dashboard": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/docker-image": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/git": {
+      "kind": "preview",
+      "ids": [
+        "setup"
+      ]
+    },
+    "/zh-CN/docs-next/deployments/other": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/other/docker-compose": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/registries": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/registries/default-push": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/registries/private": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/registries/self-hosted": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/deployments/versions-rollback": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/advanced-certbot": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/advanced-nginx": {
+      "kind": "preview",
+      "ids": [
+        "recover-from-a-configuration-that-broke-the-dashboard"
+      ]
+    },
+    "/zh-CN/docs-next/domains/app-domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/certificate-renewal": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/cloudflare-reverse-proxies": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/custom-domains": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/firewall": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/https": {
+      "kind": "preview",
+      "ids": [
+        "applications",
+        "dashboard"
+      ]
+    },
+    "/zh-CN/docs-next/domains/internal-networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/nginx-routing": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/public-services": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/root-domain": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/domains/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/fundamentals": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/fundamentals/applications-and-services": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/fundamentals/builds-images-deployments": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/fundamentals/docker-swarm": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/fundamentals/how-caprover-works": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/fundamentals/networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/fundamentals/persistence": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/get-started": {
+      "kind": "preview",
+      "ids": [
+        "1-ports-and-firewall",
+        "2-install-docker",
+        "3-install-caprover",
+        "4-dns",
+        "5-configure-caprover",
+        "6-deploy-your-first-app",
+        "low-memory-builds-optional",
+        "requirements"
+      ]
+    },
+    "/zh-CN/docs-next/guides": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/guides/cdd-migration": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/guides/complete-webapp": {
+      "kind": "preview",
+      "ids": [
+        "1-create-the-private-database",
+        "2-build-the-web-and-worker-images",
+        "3-create-configure-and-deploy-the-other-apps",
+        "4-back-up-each-data-source"
+      ]
+    },
+    "/zh-CN/docs-next/guides/home-server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/guides/persistent-storage": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/guides/recipes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/guides/sample-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/guides/static-react": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation/advanced": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation/advanced/custom-host-ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation/advanced/existing-swarm": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation/advanced/reverse-proxy": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation/digitalocean": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation/local-private-network": {
+      "kind": "preview",
+      "ids": [
+        "prepare-the-machine",
+        "private-only-domain",
+        "public-access-through-the-router"
+      ]
+    },
+    "/zh-CN/docs-next/installation/manual": {
+      "kind": "preview",
+      "ids": [
+        "1-ports-and-firewall",
+        "2-install-docker",
+        "3-install-caprover"
+      ]
+    },
+    "/zh-CN/docs-next/installation/openstack": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation/play-with-docker": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/installation/standard-vps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/one-click-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/one-click-apps/authoring": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/one-click-apps/configure": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/one-click-apps/connect": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/one-click-apps/custom-repositories": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/one-click-apps/install": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/one-click-apps/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/one-click-apps/upgrade": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/production-checklist": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/api": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/app-configuration": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/backup-contents": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/captain-definition": {
+      "kind": "preview",
+      "ids": [
+        "built-in-templates-and-versions"
+      ]
+    },
+    "/zh-CN/docs-next/reference/cli": {
+      "kind": "preview",
+      "ids": [
+        "deploy-options"
+      ]
+    },
+    "/zh-CN/docs-next/reference/config-override": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/defaults-limits": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/docker-compose": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/glossary": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/legacy-compatibility": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/one-click-schema": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/ports": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/reference/server-environment": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/scaling": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/scaling/manage-nodes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/scaling/multi-node": {
+      "kind": "preview",
+      "ids": [
+        "1-prepare-server",
+        "2-networking-and-ssh",
+        "3-registry",
+        "4-add-and-verify-node",
+        "5-persistent-apps"
+      ]
+    },
+    "/zh-CN/docs-next/scaling/networking": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/scaling/persistent-apps": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/scaling/placement": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/scaling/scale-app": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/scaling/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/scaling/zero-downtime": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/backup": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/backup/automate": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/backup/contents": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/backup/create": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/backup/multi-node-restore": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/backup/restore": {
+      "kind": "preview",
+      "ids": [
+        "before-restoring",
+        "restore"
+      ]
+    },
+    "/zh-CN/docs-next/server/diagnostics": {
+      "kind": "preview",
+      "ids": [
+        "dashboard-unavailable-on-port-3000",
+        "restart-or-inspect-an-app"
+      ]
+    },
+    "/zh-CN/docs-next/server/disk-cleanup": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/goaccess": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/move-server": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/netdata": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/pro": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/security": {
+      "kind": "preview",
+      "ids": [
+        "recover-a-forgotten-dashboard-password"
+      ]
+    },
+    "/zh-CN/docs-next/server/settings": {
+      "kind": "preview",
+      "ids": [
+        "account-and-recovery",
+        "root-domain"
+      ]
+    },
+    "/zh-CN/docs-next/server/themes": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/uninstall": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/server/upgrade": {
+      "kind": "preview",
+      "ids": [
+        "testing-an-edge-image"
+      ]
+    },
+    "/zh-CN/docs-next/troubleshooting": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/troubleshooting/diagnostics": {
+      "kind": "preview",
+      "ids": [
+        "before-sharing",
+        "collect-a-full-server-report",
+        "quick-checks"
+      ]
+    },
+    "/zh-CN/docs-next/troubleshooting/report-bug": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs-next/troubleshooting/support": {
+      "kind": "preview",
+      "ids": []
+    },
+    "/zh-CN/docs/app-configuration": {
+      "kind": "legacy",
+      "ids": [
+        "http-设置",
+        "启用-https",
+        "实例数量",
+        "应用配置",
+        "持久化目录",
+        "服务标签",
+        "环境变量",
+        "端口映射",
+        "节点-id",
+        "预部署函数"
+      ]
+    },
+    "/zh-CN/docs/app-scaling-and-cluster": {
+      "kind": "legacy",
+      "ids": [
+        "多个-registry",
+        "添加私有-docker-registry",
+        "禁用-registry",
+        "设置-docker-registry",
+        "运行多个服务器",
+        "运行应用的多个实例",
+        "默认推送-registry"
+      ]
+    },
+    "/zh-CN/docs/backup-and-restore": {
+      "kind": "legacy",
+      "ids": [
+        "docker-registry-说明",
+        "保留旧服务器",
+        "哪些内容会被恢复",
+        "备份和恢复",
+        "备份过程",
+        "多节点",
+        "恢复过程",
+        "第三方-registry",
+        "自动化备份过程",
+        "自托管-registry"
+      ]
+    },
+    "/zh-CN/docs/best-practices": {
+      "kind": "legacy",
+      "ids": [
+        "为-git-使用服务账号",
+        "为新应用自定义-nginx-配置",
+        "强制-https",
+        "构建时内存不足",
+        "自定义默认密码",
+        "隐藏根域名"
+      ]
+    },
+    "/zh-CN/docs/captain-definition-file": {
+      "kind": "legacy",
+      "ids": [
+        "monorepo单仓库",
+        "使用-dockerfile",
+        "使用镜像名称",
+        "基础知识",
+        "选择运行时版本"
+      ]
+    },
+    "/zh-CN/docs/cdd-migration": {
+      "kind": "legacy",
+      "ids": [
+        "从-captainduckduck-到-caprover-的-breaking-changes",
+        "有-self-hosted-registry",
+        "没有-self-hosted-registry",
+        "迁移提示",
+        "迁移脚本"
+      ]
+    },
+    "/zh-CN/docs/certbot-config": {
+      "kind": "legacy",
+      "ids": [
+        "1-certbot-docker-镜像",
+        "1-创建配置文件",
+        "2-保存-dns-凭据",
+        "2-配置值",
+        "3-覆盖-certbot-命令",
+        "3-重启-certbot",
+        "4-caa-记录",
+        "4-重启-caprover",
+        "注意",
+        "自定义-certbot-命令以使用-dns-01-challenge",
+        "配置-certbot-使用新的-acme-server"
+      ]
+    },
+    "/zh-CN/docs/ci-cd-integration": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/zh-CN/docs/ci-cd-integration/deploy-from-github": {
+      "kind": "legacy",
+      "ids": [
+        "创建-github-action",
+        "创建-github-personal-access-token",
+        "创建新-app",
+        "创建新-app-1",
+        "向-caprover-添加-private-docker-registry",
+        "向-project-添加文件",
+        "启用-app-token",
+        "启用-app-token-1",
+        "提交代码更改以进行部署",
+        "替代方式更高效",
+        "添加-github-secrets",
+        "添加-github-secrets-1",
+        "直接从-github-部署",
+        "部署",
+        "需要帮助"
+      ]
+    },
+    "/zh-CN/docs/ci-cd-integration/deploy-from-gitlab": {
+      "kind": "legacy",
+      "ids": [
+        "1--创建-gitlab-repository",
+        "2--添加示例源代码",
+        "3--dockerfile",
+        "4--为-caprover-创建-access-token",
+        "5--将-token-添加到-caprover",
+        "6--禁用-default-push",
+        "7--创建-caprover-app",
+        "8--创建-cicd-variables",
+        "9--gitlab-ci-file",
+        "app-tokens",
+        "使用-private-registry-时关于---imagename-的说明",
+        "替代方式"
+      ]
+    },
+    "/zh-CN/docs/cli-commands": {
+      "kind": "legacy",
+      "ids": [
+        "列出已登录的服务器",
+        "服务器设置",
+        "登出",
+        "登录",
+        "选项",
+        "部署"
+      ]
+    },
+    "/zh-CN/docs/complete-webapp-tutorial": {
+      "kind": "legacy",
+      "ids": [
+        "内部访问",
+        "创建服务",
+        "应用描述",
+        "应用架构",
+        "是否需要持久化"
+      ]
+    },
+    "/zh-CN/docs/database-connection": {
+      "kind": "legacy",
+      "ids": [
+        "内部连接",
+        "外部连接"
+      ]
+    },
+    "/zh-CN/docs/deployment-methods": {
+      "kind": "legacy",
+      "ids": [
+        "bitbucket",
+        "github",
+        "gitlab-和其他平台",
+        "一键回滚",
+        "使用-githubbitbucket-等自动部署",
+        "通过-cli-部署",
+        "通过-web-控制面板部署"
+      ]
+    },
+    "/zh-CN/docs/disk-cleanup": {
+      "kind": "legacy",
+      "ids": [
+        "docker-卷",
+        "docker-镜像"
+      ]
+    },
+    "/zh-CN/docs/docker-compose": {
+      "kind": "legacy",
+      "ids": [
+        "在-caprover-外运行-compose",
+        "支持的字段",
+        "部署-compose-文件"
+      ]
+    },
+    "/zh-CN/docs/firewall": {
+      "kind": "legacy",
+      "ids": [
+        "公共端口",
+        "集群端口"
+      ]
+    },
+    "/zh-CN/docs/get-started": {
+      "kind": "legacy",
+      "ids": [
+        "a-域名",
+        "b-服务器",
+        "b1-公网-ip",
+        "b2-服务器规格",
+        "b3-docker",
+        "b4-配置防火墙",
+        "使用-cli推荐",
+        "使用-web-界面不需要-npm",
+        "前置条件",
+        "第-1-步安装-caprover",
+        "第-2-步连接根域名",
+        "第-3-步配置并初始化-caprover",
+        "第-4-步可选设置-swap-文件",
+        "第-5-步部署测试应用",
+        "简单设置"
+      ]
+    },
+    "/zh-CN/docs/nginx-customization": {
+      "kind": "legacy",
+      "ids": [
+        "为所有应用自定义和覆盖-nginx-配置",
+        "自定义文件和目录",
+        "配置自定义"
+      ]
+    },
+    "/zh-CN/docs/one-click-apps": {
+      "kind": "legacy",
+      "ids": [
+        "其他应用",
+        "其他应用怎么办",
+        "其他情况",
+        "升级一键应用",
+        "博客和内容",
+        "在-caprover-集群中连接",
+        "开发工具",
+        "数据库和数据库-gui",
+        "简单更新镜像",
+        "远程连接",
+        "连接数据库",
+        "配置设置"
+      ]
+    },
+    "/zh-CN/docs/persistent-apps": {
+      "kind": "legacy",
+      "ids": [
+        "定义持久化目录",
+        "持久化与非持久化应用",
+        "持久化应用",
+        "移除持久化应用",
+        "非持久化应用"
+      ]
+    },
+    "/zh-CN/docs/play-with-docker": {
+      "kind": "legacy",
+      "ids": [
+        "只读-demo",
+        "可操作-demo"
+      ]
+    },
+    "/zh-CN/docs/pre-deploy-script": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/zh-CN/docs/recipe-deploy-create-react-app": {
+      "kind": "legacy",
+      "ids": [
+        "使用-caprover-部署",
+        "创建-captain-definition",
+        "创建-tar-文件",
+        "在本地机器上构建",
+        "构建应用",
+        "示例应用"
+      ]
+    },
+    "/zh-CN/docs/resource-monitoring": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/zh-CN/docs/run-locally": {
+      "kind": "legacy",
+      "ids": [
+        "主-ip",
+        "在私有本地网络中安装-caprover",
+        "安装",
+        "差异",
+        "故障排查",
+        "设置",
+        "选项-1---仅供内部使用",
+        "选项-2---让实例可从外部访问"
+      ]
+    },
+    "/zh-CN/docs/sample-apps": {
+      "kind": "legacy",
+      "ids": [
+        "caprover-django",
+        "caprover-laravel",
+        "elixirphoenix-应用部署",
+        "可以部署的应用",
+        "社区应用"
+      ]
+    },
+    "/zh-CN/docs/server-purchase/digitalocean": {
+      "kind": "legacy",
+      "ids": []
+    },
+    "/zh-CN/docs/server-purchase/openstack": {
+      "kind": "legacy",
+      "ids": [
+        "为什么选择-openstack",
+        "安装-openstack-cli-并验证连接",
+        "设置-openstack-provider",
+        "部署-openstack-heat-template-file"
+      ]
+    },
+    "/zh-CN/docs/service-update-override": {
+      "kind": "legacy",
+      "ids": [
+        "schema-结构",
+        "恢复默认值",
+        "示例用例"
+      ]
+    },
+    "/zh-CN/docs/stateless-with-persistent-data": {
+      "kind": "legacy",
+      "ids": [
+        "1-准备-rclone",
+        "2-准备存储系统",
+        "3-准备-docker-rclone-插件",
+        "4-准备应用",
+        "占位变量"
+      ]
+    },
+    "/zh-CN/docs/support": {
+      "kind": "legacy",
+      "ids": [
+        "premoweb-internet-services",
+        "你",
+        "在哪里获得支持",
+        "需要商业支持",
+        "需要完全隔离的系统",
+        "需要按小时咨询"
+      ]
+    },
+    "/zh-CN/docs/theme-customization": {
+      "kind": "legacy",
+      "ids": [
+        "caprover-额外配置",
+        "其他自定义",
+        "将元素嵌入-head",
+        "提交你的自定义主题"
+      ]
+    },
+    "/zh-CN/docs/troubleshooting": {
+      "kind": "legacy",
+      "ids": [
+        "arm-处理器",
+        "aws-设置",
+        "cloudflare-ssl-设置",
+        "使用现有-swarm",
+        "发生了某些问题",
+        "域名验证失败---错误-1107",
+        "如何使用-edge-版本",
+        "如何停止并移除-captain",
+        "如何在应用内运行-shell在-container-内",
+        "如何查看应用日志",
+        "如何重启-caprover",
+        "如何重启应用",
+        "我修改-nginx-config-后破坏了-admin-ui",
+        "我收到-lets-encrypt-发来的邮件说我的-domain-的-ssl-certificate-即将过期但它不应该过期",
+        "无法连接到-ip_server3000",
+        "第一",
+        "第三",
+        "第二",
+        "自定义配置项",
+        "连接超时",
+        "部署成功但出现-502-bad-gateway-错误",
+        "重置密码"
+      ]
+    },
+    "/zh-CN/docs/troubleshooting-pro": {
+      "kind": "legacy",
+      "ids": [
+        "email-支持",
+        "为提醒设置特定-email-address",
+        "在启用-otp-的情况下部署",
+        "重置-otp双因素身份验证"
+      ]
+    },
+    "/zh-CN/docs/zero-downtime": {
+      "kind": "legacy",
+      "ids": [
+        "docker-健康检查的作用",
+        "了解挑战",
+        "什么时候不起作用",
+        "在-caprover-中实现健康检查",
+        "示例"
+      ]
+    }
+  }
+}

@@ -60,6 +60,19 @@ jobs:
       - name: Smoke test combined site
         run: node scripts/smoke-combined-site.mjs
 
+      - name: Test documentation redirect resolver
+        run: node --test scripts/docs-redirects.test.mjs
+
+      - name: Validate every historical documentation route and fragment
+        run: node scripts/check-docs-redirects.mjs
+
+      - name: Install browser test runtime
+        working-directory: docs-site
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify browser documentation navigation
+        run: docs-site/node_modules/.bin/playwright test
+
       - name: Upload combined site preview
         uses: actions/upload-artifact@v4
         with:
