@@ -14,7 +14,7 @@ slug: /deployments/ci-cd
 
 - Use the HTTPS dashboard URL and the exact app name in CI.
 - For the CLI, supply `--appToken` or set `CAPROVER_APP_TOKEN` in the process environment, together with the server URL and app name.
-- The community [GitHub deployment action](index.md) accepts the token as its `token` input.
+- The [GitHub deployment action](https://github.com/caprover/deploy-from-github) accepts it as the `token` input.
 
 - If the token is exposed, replace or disable it in the app settings and update your CI secret.
 - Give each deployment job only the registry credentials it also needs; an app token does not grant the CapRover server access to a private image registry.
@@ -23,67 +23,12 @@ slug: /deployments/ci-cd
 
 ## GitHub Actions
 
-Create a CapRover app and enable its [deployment token](index.md). In your GitHub repository, add `CAPROVER_APP_TOKEN` as an Actions secret. Add a `captain-definition` file for source deployments.
+Use [caprover/deploy-from-github](https://github.com/caprover/deploy-from-github) for the maintained workflows covering source, Docker images, prepared archives, and monorepos.
 
-For a small source build on the CapRover server, create `.github/workflows/deploy.yml`:
-
-```yaml
-name: Deploy to CapRover
-on:
-  push:
-    branches: [main]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: caprover/deploy-from-github@v2
-        with:
-          server: https://captain.apps.example.com
-          app: my-app
-          token: ${{ secrets.CAPROVER_APP_TOKEN }}
-```
-
-- Replace the server URL and app name.
-- The action packages committed files from the checked-out commit; a generated or uncommitted file requires its `tar-file` input.
-**Build the image in GitHub Actions** when the CapRover server has limited CPU or RAM:
-
-```yaml
-name: Build and deploy image
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v6
-      - uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: ghcr.io/YOUR_OWNER/YOUR_APP:${{ github.sha }}
-      - uses: caprover/deploy-from-github@v2
-        with:
-          server: https://captain.apps.example.com
-          app: my-app
-          token: ${{ secrets.CAPROVER_APP_TOKEN }}
-          image: ghcr.io/YOUR_OWNER/YOUR_APP:${{ github.sha }}
-```
-
-- Replace `YOUR_OWNER/YOUR_APP` with a lowercase registry image name and set the server/app details.
-- For private images, [configure a registry pull credential on CapRover](../registries/index.md) as well as on the Actions runner. A runner login alone cannot authenticate CapRover's Docker nodes.
-
-Review the [action's current inputs and image example](https://github.com/caprover/deploy-from-github) before adapting this workflow. An accepted token deployment can finish asynchronously; verify the resulting CapRover build and app health separately.
+- Enable an app deployment token and save it in GitHub Actions secrets.
+- Provide the action's `server`, `app`, and `token` inputs.
+- For private images, configure registry pull credentials in [CapRover](../registries/index.md).
+- Verify the resulting deployment and app health after the action succeeds.
 
 <span id="source-deployments-ci-cd-gitlab-ci"></span>
 
