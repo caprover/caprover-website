@@ -69,11 +69,18 @@ for (const locale of locales) {
     // actual file/URL destination; Docusaurus validates each localized anchor.
     const sourcePaths = linkTargets(source).map((link) => link.split("#")[0]);
     const translatedPaths = linkTargets(translated).map((link) => link.split("#")[0]);
-    if (JSON.stringify(sourcePaths) !== JSON.stringify(translatedPaths)) {
-      errors.push(prefix + ": Markdown link destinations differ");
+    // A localized explanation may add useful links or refer to the same code
+    // identifier twice. Require all source references in their original order.
+    const preservesSequence = (expected, actual) => {
+      let j = 0;
+      for (const item of actual) if (item === expected[j]) j++;
+      return j === expected.length;
+    };
+    if (!preservesSequence(sourcePaths, translatedPaths)) {
+      errors.push(prefix + ": source link targets are missing or reordered");
     }
-    if (JSON.stringify(inlineCode(source)) !== JSON.stringify(inlineCode(translated))) {
-      errors.push(prefix + ": inline code differs");
+    if (!preservesSequence(inlineCode(source), inlineCode(translated))) {
+      errors.push(prefix + ": source inline-code references are missing or reordered");
     }
     for (const key of ["id", "slug"]) {
       if (frontmatter(source, key) !== frontmatter(translated, key)) {
