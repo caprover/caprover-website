@@ -1,6 +1,6 @@
 ---
 id: index
-title: Escalado &amp; Disponibilidad
+title: Escalado y disponibilidad
 slug: /scaling
 ---
 
@@ -8,37 +8,37 @@ slug: /scaling
 
 ## Réplicas
 
-- **Instance Count** controla el número solicitado de tareas de servicio de Swarm.
-- Escala aplicaciones apátridas cuyo código y fondo de trabajo apoyan la ejecución simultánea.
-- Comprobar CPU, RAM, límites de conexión de bases de datos y estado de tarea con `docker service ps SERVICE_NAME`.
+- **Instance Count** determina cuántas tareas del servicio debe mantener Docker Swarm.
+- Escala aplicaciones stateless cuyo código y trabajos en segundo plano admiten la ejecución concurrente.
+- Comprueba CPU, RAM, límites de conexiones a la base de datos y estado de las tareas con `docker service ps SERVICE_NAME`.
 
 <span id="source-scaling-zero-downtime"></span>
 
-## Despliegues y controles de salud
+## Despliegues rolling y health checks
 
-- Las aplicaciones apátridas generalmente usan Docker Swarm **start-first** actualizaciones.
-- Aplicaciones con uso de datos montados **stop-first** actualizaciones por defecto para prevenir escritores simultáneos.
-- Un cheque de salud significativo ayuda a Swarm determinar la preparación:
+- Las aplicaciones stateless suelen utilizar actualizaciones **start-first** de Docker Swarm.
+- Las aplicaciones con almacenamiento montado utilizan **stop-first** por defecto para evitar escrituras simultáneas.
+- Un health check adecuado ayuda a Swarm a determinar si la aplicación está preparada:
 
 ```dockerfile
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD curl -fsS http://127.0.0.1:3000/health || exit 1
 ```
 
-Utilice un punto final de preparación real y un comando incluido en su imagen. Capacidad, dependencias y comportamiento de aplicación todavía determinan si las actualizaciones son libres de interrupciones.
+Utiliza un endpoint de readiness real y un comando disponible en la imagen. La capacidad, las dependencias y el comportamiento de la aplicación determinan si la actualización puede completarse sin interrupciones.
 
 <span id="source-scaling-placement"></span>
 
-## Ubicación de tareas
+## Asignación de nodos
 
-- Swarm programa tareas apátridas en los nodos disponibles basadas en limitaciones y capacidad.
-- CapRover coloca aplicaciones persistentes al nodo que alberga datos locales.
-- Compruebe el acceso al registro, la disponibilidad de nodos y las restricciones de colocación cuando las tareas permanecen pendientes.
+- Swarm distribuye las tareas stateless entre nodos disponibles según sus restricciones y recursos.
+- CapRover fija las aplicaciones con datos persistentes al nodo que almacena sus datos locales.
+- Si alguna tarea queda pendiente, comprueba el acceso al registry, la disponibilidad de nodos y las reglas de asignación.
 
 <span id="source-applications-scaling-placement"></span>
 
-## Escalado con estado
+## Escalar servicios con estado
 
-- Los volúmenes locales y las monturas de fijación no se comparten automáticamente entre los nodos.
-- Evite forzar a múltiples escritores contra los mismos datos locales. Para **start-first** sobre servicios estatales, la aplicación y el almacenamiento deben apoyarlo explícitamente.
-- Migrar datos antes de mover una aplicación persistente. Consulta [Almacenamiento persistente](../data-persistence/index.md) y [Configuración multinodo](multi-node.md).
+- Los volúmenes locales y bind mounts no se comparten automáticamente entre nodos.
+- Evita que varias réplicas escriban en los mismos datos locales. Para utilizar **start-first** en servicios con estado, tanto la aplicación como el almacenamiento deben permitirlo explícitamente.
+- Migra los datos antes de mover una aplicación persistente. Consulta [Almacenamiento persistente](../data-persistence/index.md) y [Configuración multinodo](multi-node.md).

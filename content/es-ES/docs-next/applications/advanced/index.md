@@ -8,9 +8,9 @@ slug: /applications/advanced
 
 ## Service Update Override
 
-- El **Service Update Override** campo fusiona la configuración JSON o YAML en la actualización de servicio Docker que CapRover prepara cuando una aplicación está configurada o desplegada.
-- Es útil para las opciones de servicio Docker que el dashboard no expone.
-- Comience con la anulación más pequeña posible:
+- El campo **Service Update Override** combina ajustes JSON o YAML con la actualización del servicio Docker que CapRover prepara al configurar o desplegar una aplicación.
+- Permite establecer opciones de Docker Service que el dashboard no expone.
+- Empieza con el override más pequeño posible:
 
 ```yaml
 TaskTemplate:
@@ -19,26 +19,26 @@ TaskTemplate:
       MemoryBytes: 104857600
 ```
 
-- Este ejemplo limita el servicio a 100 MiB de memoria.
-- Verificar el valor con `docker service inspect SERVICE_NAME`; obtener el nombre real de `docker service ls`.
-- Prueba bajo carga realista antes de mantener un límite.
+- Este ejemplo limita la memoria del servicio a 100 MiB.
+- Comprueba el valor con `docker service inspect SERVICE_NAME`; obtén el nombre real con `docker service ls`.
+- Prueba la aplicación con una carga representativa antes de mantener ese límite.
 
-- La orden de actualización es la configuración normal de CapRover, luego la anulación del servicio, luego la función opcional previa al despliegue.
-- Una anulación puede reemplazar un ajuste elegido por CapRover.
-- Los valores deben coincidir con la actualización de servicio de Docker API.
-- La eliminación de una anulación no necesariamente aclara un campo Docker que CapRover en sí no maneja; restablecer explícitamente el valor al deshacer tal cambio.
+- El orden de aplicación es: ajustes normales de CapRover, Service Update Override y, por último, la función opcional de pre-deploy.
+- Un override puede sustituir un valor elegido por CapRover.
+- Los valores deben seguir el esquema de la API de actualización de servicios Docker.
+- Quitar el override no siempre restablece un campo de Docker que CapRover no administra. Al revertir el cambio, restablece explícitamente el valor.
 
-- Mantenga una copia de la configuración del servicio de trabajo.
-- Una anulación inválida o contradictoria puede bloquear las implementaciones.
-- Consulta [Actualización de servicio de Docker API](https://docs.docker.com/reference/api/engine/) para el esquema utilizado por la versión Docker ejecutando su servidor.
+- Guarda una copia de los ajustes del servicio que sabes que funcionan.
+- Un override inválido o contradictorio puede impedir los despliegues.
+- Consulta la [API de actualización de servicios de Docker](https://docs.docker.com/reference/api/engine/) para ver el esquema de la versión de Docker instalada.
 
 <span id="source-applications-advanced-pre-deploy-function"></span>
 
-## Función previa al despliegue
+## Pre-Deploy Function
 
-- A **Función previa al despliegue** Es JavaScript ejecutado dentro del proceso CapRover antes de la actualización de servicio Docker de una aplicación.
-- Puede inspeccionar el objeto de aplicación almacenado y modificar el objeto de actualización del servicio.
-- Se ejecuta después de que se hayan aplicado los ajustes de aplicación estándar y Service Update Override.
+- Una **Pre-Deploy Function** es código JavaScript que se ejecuta dentro del proceso de CapRover antes de actualizar el servicio Docker de una aplicación.
+- Puede consultar el objeto de la aplicación guardada y modificar el objeto de actualización del servicio.
+- Se ejecuta después de aplicar los ajustes normales y el Service Update Override.
 
 ```javascript
 var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
@@ -46,11 +46,11 @@ var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
 };
 ```
 
-- La función debe devolver el objeto de actualización del servicio, posiblemente mediante una promesa.
-- Se ejecuta de nuevo en implementaciones y actualizaciones de configuración.
-- Pruébalo contra una aplicación desechable antes de utilizarla para servicios importantes, y conserva una copia de trabajo de la configuración de funciones y servicios.
+- La función debe devolver el objeto de actualización del servicio, directamente o mediante una promesa.
+- Vuelve a ejecutarse al desplegar o actualizar la configuración.
+- Pruébala primero en una aplicación descartable y conserva una copia funcional de la función y la configuración del servicio.
 
-- Este código tiene los privilegios del proceso CapRover.
-- Puede romper actualizaciones de servicio o acceder a datos sensibles, así que restringir quién puede editarlo.
-- Para los campos de servicio estáticos, prefiera un [Service Update Override](index.md).
-- Check `docker service logs captain-captain` si una actualización de servicio falla antes de llegar a Docker.
+- Este código tiene los mismos privilegios que el proceso de CapRover.
+- Puede impedir actualizaciones o acceder a información sensible. Limita quién puede editarlo.
+- Para campos de servicio estáticos, utiliza preferiblemente [Service Update Override](index.md).
+- Si una actualización falla antes de llegar a Docker, revisa `docker service logs captain-captain`.

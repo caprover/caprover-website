@@ -1,44 +1,44 @@
 ---
 id: index
-title: 缩放可用性( A)
+title: 扩容与可用性
 slug: /scaling
 ---
 
 <span id="source-scaling-scale-app"></span>
 
-## 复制品
+## 副本数量
 
-- **Instance Count** 控制请求的 Swarm 服务任务数量。
-- 缩放代码和背景工作支持同时执行的无状态应用。
-- 检查 CPU、 RAM、 数据库连接限制和任务状态 `docker service ps SERVICE_NAME`.
+- **Instance Count** 控制 Docker Swarm 服务预期运行的任务数量。
+- 只有代码和后台任务支持并发执行的无状态应用，才适合直接增加副本。
+- 使用 `docker service ps SERVICE_NAME` 查看任务状态，同时关注 CPU、内存和数据库连接数限制。
 
 <span id="source-scaling-zero-downtime"></span>
 
-## 滚动部署和体检
+## 滚动部署与健康检查
 
-- 无状态应用一般使用Docker Swarm **启动** 更新。
-- 带有挂载数据用途的应用程序 **第一站点** 默认更新,以防止同时写入 。
-- 有意义的健康检查有助于Swarm确定准备状态:
+- 无状态应用通常使用 Docker Swarm 的 **start-first** 更新策略。
+- 挂载持久化数据的应用默认使用 **stop-first**，避免新旧实例同时写入。
+- 合理的健康检查可以帮助 Swarm 判断应用是否就绪：
 
 ```dockerfile
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD curl -fsS http://127.0.0.1:3000/health || exit 1
 ```
 
-使用您镜像中包含的实际准备端点和命令 。 能力,依赖性和应用程序行为仍然决定更新是否无中断.
+请使用真正反映服务就绪状态的 endpoint，并确保镜像中包含健康检查命令。升级是否能做到零停机，还取决于资源容量、依赖服务和应用本身的行为。
 
 <span id="source-scaling-placement"></span>
 
 ## 节点调度
 
-- 根据制约因素和能力,Swarm将无状态任务排到现有节点之间。
-- CapRover 将持久化的应用程序标注在托管本地数据的节点上.
-- 检查任务待决时的registry访问、节点可用性和放置限制。
+- Swarm 根据节点资源和调度约束，在可用节点之间分配无状态服务的任务。
+- 对使用本地存储的持久化应用，CapRover 会将任务固定到数据所在节点。
+- 如果任务一直处于 pending 状态，请检查 registry 访问权限、节点可用性和调度约束。
 
 <span id="source-applications-scaling-placement"></span>
 
-## 状态缩放
+## 有状态服务扩容
 
-- 本地卷和绑定挂载不会自动在节点之间共享.
-- 避免强迫多个作者反对同一本地数据. 对于 **启动** 在国有服务方面,应用程序和存储必须明确支持。
-- 移动持续应用程序前迁移数据 。 见 [持久化储存](../data-persistence/index.md) 和 [多节点设置](multi-node.md).
+- 本地数据卷和 bind mount 不会自动跨节点共享。
+- 避免多个副本同时写入同一份本地数据。只有应用和存储都明确支持并发写入时，才能对有状态服务使用 **start-first**。
+- 移动持久化应用之前先迁移数据。参阅[持久化存储](../data-persistence/index.md)和[多节点部署](multi-node.md)。

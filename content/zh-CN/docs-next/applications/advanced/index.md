@@ -1,6 +1,6 @@
 ---
 id: index
-title: 高级应用程序配置
+title: 高级应用配置
 slug: /applications/advanced
 ---
 
@@ -8,9 +8,9 @@ slug: /applications/advanced
 
 ## Service Update Override
 
-- 这个 **Service Update Override** 字段将 JSON 或 YAML 设置合并到 CapRover 配置或部署应用程序时准备的 Docker 服务更新中。
-- 对Docker服务选项有用,因为dashboard不会曝光.
-- 从最小可能的覆盖开始 :
+- **Service Update Override** 字段允许在 CapRover 配置或部署应用时，将 JSON 或 YAML 配置合并到 Docker service update 请求中。
+- 适用于 dashboard 没有提供的 Docker service 选项。
+- 尽量从最小的 override 配置开始：
 
 ```yaml
 TaskTemplate:
@@ -19,26 +19,26 @@ TaskTemplate:
       MemoryBytes: 104857600
 ```
 
-- 这个例子将服务限制在100 MiB的内存.
-- 以 `docker service inspect SERVICE_NAME`; 从 `docker service ls`.
-- 以现实的载荷进行测试,然后保持极限.
+- 此示例将服务内存限制为 100 MiB。
+- 使用 `docker service inspect SERVICE_NAME` 检查配置结果；实际服务名可以通过 `docker service ls` 获取。
+- 保留限制前，应先用接近生产环境的负载进行测试。
 
-- 更新命令是CapRover的正常设置,然后是服务覆盖,然后是可选的部署前功能.
-- 覆盖可以替换所选择的 CapRover 设置 。
-- 值必须匹配Docker的服务更新 API.
-- 删除一个覆盖并不一定清除 CapRover 本身不管理的 Docker 字段; 在撤销此更改时明确重置该值 。
+- 应用顺序依次是 CapRover 常规设置、Service Update Override，然后是可选的 pre-deploy 函数。
+- Override 可能覆盖 CapRover 自动设置的值。
+- 传入的字段必须符合 Docker service update API 的格式。
+- 删除 override 后，CapRover 不一定会重置它本身不管理的 Docker 字段；撤销配置时请显式恢复原值。
 
-- 保留工作服务设置的副本。
-- 无效或自相矛盾的覆盖可以阻断部署.
-- 见 [Docker 服务更新 API](https://docs.docker.com/reference/api/engine/) 用于运行您的服务器的 Docker 版本所使用的计划。
+- 保存一份可正常工作的 service 配置。
+- 错误或冲突的 override 可能导致部署失败。
+- 具体字段格式请参考当前 Docker 版本对应的 [Docker service update API 文档](https://docs.docker.com/reference/api/engine/)。
 
 <span id="source-applications-advanced-pre-deploy-function"></span>
 
-## 部署前函数
+## Pre-Deploy Function
 
-- A **部署前函数** 是在一个应用程序的 Docker 服务更新前 CapRover 进程内执行的 JavaScript 。
-- 它可以检查存储的应用对象并修改服务更新对象.
-- 它在标准应用程序设置和服务更新 Override 应用之后运行.
+- **Pre-Deploy Function** 是在 CapRover 进程中执行的一段 JavaScript，运行时间在应用的 Docker service 更新之前。
+- 它可以读取已保存的应用对象，并修改 Docker service update 对象。
+- 它在常规应用配置和 Service Update Override 生效后执行。
 
 ```javascript
 var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
@@ -46,11 +46,11 @@ var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
 };
 ```
 
-- 该函数必须返回服务更新对象,可能通过承诺.
-- 它在部署和配置更新时再次执行.
-- 在将它用于重要服务之前,先对一次性应用程序进行测试,并保存功能和服务配置的工作副本。
+- 函数必须返回 service update 对象，也可以通过 Promise 返回。
+- 每次部署或更新应用配置时都会再次执行。
+- 用于重要服务前，先在测试应用中验证，并保存函数和服务配置的可用版本。
 
-- 此代码具有CapRover进程的特权.
-- 它可以中断服务更新或访问敏感数据,从而限制谁可以编辑.
-- 对于静态服务字段,偏好 [Service Update Override](index.md).
-- 检查 `docker service logs captain-captain` 如果服务更新在到达Docker之前失败。
+- 这段代码以 CapRover 进程的权限执行。
+- 它可能造成 service update 失败，也可能读取敏感信息，因此需要严格控制编辑权限。
+- 对于固定的 service 字段，优先使用 [Service Update Override](index.md)。
+- 如果更新在调用 Docker 前失败，请检查 `docker service logs captain-captain`。
