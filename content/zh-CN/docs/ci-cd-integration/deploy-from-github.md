@@ -216,4 +216,4 @@ jobs:
 
 ### 需要帮助？
 
-我们提供商业和社区支持。详情请访问 [Help and Support](/docs/support "Help and Support") 页面。
+我们提供商业和社区支持。详情请访问 [Help and Support](/docs-legacy/support "Help and Support") 页面。
