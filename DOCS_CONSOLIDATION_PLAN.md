@@ -1,6 +1,6 @@
 # Consolidate CapRover documentation
 
-**Status: information architecture proposal.** This PR changes no live documentation pages, sidebar or routes.
+**Status: historical 141→47 consolidation plan.** The preview now has **48 pages**: one additional Manual Setup page was added after consolidation for the alternative installation procedure. The original 141 route mappings remain unchanged.
 
 ## Outcome
 
