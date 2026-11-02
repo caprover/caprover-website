@@ -51,7 +51,7 @@ const consolidation = JSON.parse(
   await readFile(path.join(root, "DOCS_CONSOLIDATION_MAP.json"), "utf8"),
 );
 const canonicalDocs = new Set(consolidation.sections.flatMap((section) =>
-  section.pages.map((page) => "/docs/" + page.target.replace(/\\/index$/, "")),
+  section.pages.map((page) => "/docs/" + page.target.replace(/\/index$/, "")),
 ));
 const originalDocs = consolidation.legacyEnglishRoutes;
 const preservedTranslations = {
