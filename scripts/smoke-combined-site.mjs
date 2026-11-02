@@ -81,7 +81,7 @@ try {
       ),
     );
     const docsSource = await readFile(
-      path.resolve("content/en/docs-next/get-started.md"),
+      path.resolve(`content/${locale.code}/docs-next/get-started.md`),
       "utf8",
     );
     const archivedSource = await readFile(
@@ -119,7 +119,7 @@ try {
     const localizedDocs = await docsResponse.text();
     assert(localizedDocs.includes(docsTitle), `${locale.code} documentation content is missing`);
     const editUrl =
-      "https://github.com/caprover/caprover-website/edit/master/content/en/docs-next/get-started.md";
+      `https://github.com/caprover/caprover-website/edit/master/content/${locale.code}/docs-next/get-started.md`;
     assert(
       localizedDocs.includes(editUrl),
       `${locale.code} documentation edit URL is incorrect`,
@@ -132,9 +132,9 @@ try {
       "/docs/installation/manual");
     assert.equal(manual.status, 200, "Manual Setup page is missing");
     const manualHtml = await manual.text();
-    assert(manualHtml.includes("Install Docker") &&
-      manualHtml.includes("Install CapRover"),
-      "Manual Setup is missing Docker/bootstrap commands");
+    assert(manualHtml.includes("docker run") &&
+      manualHtml.includes("docker.sock"),
+      "Manual Setup is missing the original Docker/bootstrap commands");
     const gettingStarted = await fetch(origin + locale.pathPrefix +
       "/docs/get-started");
     assert.equal(gettingStarted.status, 200);
@@ -153,8 +153,10 @@ try {
     assert(archivedHtml.includes(archivedTitle),
       "Archived translation must retain its original title");
     if (!locale.default) {
-      assert(localizedDocs.includes(locale.pathPrefix + "/docs-legacy/get-started"),
-        "Untranslated docs must link to the archived translation");
+      assert(!localizedDocs.includes("Esta documentación está en inglés."),
+        "Spanish docs must not display the English fallback");
+      assert(!localizedDocs.includes("此文档目前为英文。"),
+        "Chinese docs must not display the English fallback");
       assert.match(archivedHtml, /name=(?:"robots"|robots) content="noindex, nofollow"/);
     }
     for (const old of consolidation.legacyEnglishRoutes) {
@@ -240,14 +242,14 @@ try {
   assert.match(docs, /src=["']\/locale-preference\.js["']/);
   const spanishDocs = await responses.spanishDocs.text();
   assert.match(spanishDocs, /<html lang=["']?es-ES(?:["'\s>])/);
-  assert.match(spanishDocs, /Getting Started/);
-  assert.match(spanishDocs, /Esta documentación está en inglés/);
+  assert.match(spanishDocs, /<html lang=["']?es-ES/);
+  assert.doesNotMatch(spanishDocs, /Esta documentación está en inglés/);
   assert.match(spanishDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
   assert.match(spanishDocs, /src=["']\/locale-preference\.js["']/);
   const chineseDocs = await responses.chineseDocs.text();
   assert.match(chineseDocs, /<html lang=["']?zh-CN(?:["'\s>])/);
-  assert.match(chineseDocs, /Getting Started/);
-  assert.match(chineseDocs, /此文档目前为英文/);
+  assert.match(chineseDocs, /<html lang=["']?zh-CN/);
+  assert.doesNotMatch(chineseDocs, /此文档目前为英文/);
   assert.match(chineseDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
   assert.match(chineseDocs, /src=["']\/locale-preference\.js["']/);
   const englishHomepageAlias = await responses.englishHomepageAlias.text();
@@ -320,10 +322,8 @@ try {
       ...Object.values(marketingRoutes).map(
         (route) => `https://caprover.com${locale.pathPrefix}${route.path}`,
       ),
-      ...(locale.default ? [
-        "https://caprover.com/docs/get-started",
-        "https://caprover.com/docs/installation/manual",
-      ] : []),
+      `https://caprover.com${locale.pathPrefix}/docs/get-started`,
+      `https://caprover.com${locale.pathPrefix}/docs/installation/manual`,
     ];
     for (const expectedUrl of expectedUrls) {
       assert.equal(
@@ -332,12 +332,6 @@ try {
         `Sitemap must contain exactly one entry for ${expectedUrl}`,
       );
     }
-  }
-
-  for (const locale of locales.filter((item) => !item.default)) {
-    assert(!sitemapLocations.some((location) =>
-      location.startsWith(`https://caprover.com${locale.pathPrefix}/docs/`)),
-      "Untranslated locale docs should be excluded from the sitemap");
   }
 
   const localePreferenceScript = await responses.localePreference.text();
