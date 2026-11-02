@@ -22,7 +22,7 @@ docker service logs captain-captain --tail 100
 - **Networking:** Check DNS and test HTTP and HTTPS separately.
 - **Storage:** Check mounts, disk space, and node placement.
 
-## Full server report
+## Collect a full server report
 
 Use the [diagnostic collector](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) if the dashboard is unavailable, several services fail, or quick checks are inconclusive. Run on a Debian/Ubuntu **Swarm manager** with systemd:
 
