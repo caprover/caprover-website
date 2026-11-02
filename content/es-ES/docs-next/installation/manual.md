@@ -18,7 +18,7 @@ sudo ufw allow 3000/tcp   # Dashboard setup
 sudo ufw status
 ```
 
-Si UFW está desactivado, puedes habilitarlo con `sudo ufw enable` **después de permitir el acceso SSH**. Cuando el dashboard funcione mediante HTTPS, restringe el acceso público al puerto 3000. Consulta [Firewall](domains/firewall.md) para conocer los puertos necesarios en clústeres multinodo.
+Si UFW está desactivado, puedes habilitarlo con `sudo ufw enable` **después de permitir el acceso SSH**. Cuando el dashboard funcione mediante HTTPS, restringe el acceso público al puerto 3000. Consulta [Firewall](../domains/firewall.md) para conocer los puertos necesarios en clústeres multinodo.
 
 ## 2. Instalar Docker
 
