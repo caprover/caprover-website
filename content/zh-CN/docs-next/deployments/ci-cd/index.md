@@ -1,46 +1,46 @@
 ---
 id: index
-title: 排雷中心/CD
+title: CI/CD
 slug: /deployments/ci-cd
 ---
 
 <span id="source-deployments-ci-cd-deployment-tokens"></span>
 
-## 部署
+## 应用部署 Token
 
-- 一个应用部署符让自动化在不使用dashboard密码的情况下部署一个CapRover应用.
-- 创建应用程序, 打开它 **部署** 选项卡,启用应用程序令牌,并将值复制到您的 CI 系统的秘密商店。
-- 将符号和任何 Git Webhook URL 都视为证书 。
+- 应用部署 token 允许 CI 只部署指定的 CapRover 应用，无需使用 dashboard 登录密码。
+- 创建应用后，打开 **Deployment** 标签页，启用应用 token，并将其存入 CI 系统的 Secrets。
+- 将 token 和 Git webhook URL 视为敏感凭据，避免公开或写入日志。
 
-- 使用 HTTPS dashboard URL 和 CI 中的确切应用名称 。
-- 供应 `--appToken` 或设置 `CAPROVER_APP_TOKEN` 在进程环境中,连同服务器 URL 和 app 名称。
-- 这个 [GitHub 部署动作](https://github.com/caprover/deploy-from-github) 接受为 `token` 输入。
+- 在 CI 中使用 HTTPS dashboard URL 和准确的应用名称。
+- 使用 CLI 时，传入 `--appToken`，或通过环境变量 `CAPROVER_APP_TOKEN` 提供 token，并指定服务器 URL 和应用名称。
+- [GitHub 部署 Action](https://github.com/caprover/deploy-from-github) 使用 `token` input 接收应用 token。
 
-- 如果令牌被曝光, 在应用程序设置中替换或禁用, 并更新您的 CI 密钥 。
-- 给每个部署任务只提供它同样需要的注册证书;一个应用符号不能让 CapRover 服务器访问私人镜像注册 。
+- 如果 token 泄露，请在应用设置中更新或禁用它，并更新 CI Secret。
+- 如果部署的镜像位于私有 registry，还需要单独配置镜像拉取凭据。应用 token 不会自动授予 CapRover 服务器访问私有 registry 的权限。
 
 <span id="source-deployments-ci-cd-github-actions"></span>
 
 ## GitHub Actions
 
-使用 [轮渡/调离](https://github.com/caprover/deploy-from-github) 用于覆盖源、Docker镜像、已准备好的档案和单列的工作流程。
+推荐使用维护中的 [caprover/deploy-from-github](https://github.com/caprover/deploy-from-github)。它支持从源代码、Docker 镜像、预先打包的归档文件及 monorepo 部署。
 
-- 启用应用程序部署令牌并保存在 GitHub ActionsSecrets中 。
-- 提供动作的 `server`, `app`,以及 `token` 投入。
-- 对于私有镜像, 配置注册证书 [CapRover](../registries/index.md).
-- 在行动成功后,对部署结果进行核查并应用健康技术。
+- 在 CapRover 中启用应用部署 token，并将其保存为 GitHub Actions Secret。
+- 配置 Action 的 `server`、`app` 和 `token` input。
+- 如果镜像是私有的，请在 [CapRover 的 registry 设置](../registries/index.md)中添加可用于 pull 的凭据。
+- Action 成功后，仍应检查实际部署结果和应用健康状态。
 
 <span id="source-deployments-ci-cd-gitlab-ci"></span>
 
 ## GitLab CI
 
-在 GitLab CI 中建立镜像,将其推至 GitLab 容器注册处,并将精确的标签部署到 CapRover 。 这使得昂贵的构建远离CapRover服务器.
+在 GitLab CI 中构建镜像并 push 到 GitLab Container Registry，然后让 CapRover 部署这个精确的镜像 tag。这样可以减轻 CapRover 服务器的构建负担。
 
-1. 在 CapRover 创建应用程序并启用其 [部署符号](index.md).
-2. 在 GitLab 中, 将 CapRover HTTPS URL, app name, 和符号存储为受保护的 CI/ CD 变量 。 当您可变设置允许时, 请保留此符号 。
-3. 使用特定任务标签构建和推动镜像, 如 `$CI_COMMIT_SHA` 至GitLab容器注册处。
-4. 如果该注册镜像是私有的,请添加 `registry.gitlab.com`,一个范围读取证书,以及 CapRover 的正确镜像前缀 [私人注册处](../registries/index.md)。仅仅运行方认证是不够的。
-5. 确保您的 GitLab 运行器以 TLS 证书卷支持 Docker- in- Docker 。 添加这个 `.gitlab-ci.yml` 以 Docker 文件创建仓库 :
+1. 在 CapRover 中创建应用，并启用[部署 token](index.md)。
+2. 在 GitLab CI/CD Variables 中保存 CapRover 的 HTTPS URL、应用名称和 token。将变量设为 Protected；如果 GitLab 允许，也应启用 Masked。
+3. 构建镜像并使用提交对应的 tag（例如 `$CI_COMMIT_SHA`）push 到 GitLab Container Registry。
+4. 如果镜像是私有的，需要在 CapRover 的[私有 registry 设置](../registries/index.md)中添加 `registry.gitlab.com`、具有读取权限的凭据和正确的镜像路径前缀。GitLab runner 自己能够登录 registry，并不意味着 CapRover 节点也能拉取镜像。
+5. 确保 GitLab runner 已正确配置支持 TLS 的 Docker-in-Docker，并能访问证书卷。在包含 Dockerfile 的仓库中添加如下 `.gitlab-ci.yml`：
 
    ```yaml
    stages: [build, deploy]
@@ -70,23 +70,23 @@ slug: /deployments/ci-cd
        - if: '$CI_COMMIT_BRANCH == "main"'
    ```
 
-- 设定 `CAPROVER_URL`, `CAPROVER_APP`,以及 `CAPROVER_APP_TOKEN` 作为 GitLab CI/CD 变量; 保护和遮盖符号。
-- GitLab 供应 `CI_REGISTRY_*` 并在启用镜像仓库时输入变量。
-- 替换 `main` 如果你的释放分支不同。
-6. CapRover 任务成功后验证镜像标签和服务健康 。 一个成功的CLI部署意味着CapRover接受了更新;应用程序仍然需要一个健康的容器和正确的HTTP端口.
+- 将 `CAPROVER_URL`、`CAPROVER_APP`、`CAPROVER_APP_TOKEN` 设置为 GitLab CI/CD Variables，并保护及隐藏 token。
+- 如果启用了 GitLab Container Registry，GitLab 会提供 `CI_REGISTRY_*` 及 commit 相关变量。
+- 如果发布分支不是 `main`，请相应调整规则。
+6. CI job 完成后，检查 CapRover 的镜像 tag 和服务健康状态。CLI 部署成功仅表示 CapRover 接受了更新，仍需确认容器正常运行且 HTTP 端口配置正确。
 
-- 见 [GitLab 的 Docker- in- Docker 跑车设置](https://docs.gitlab.com/ci/docker/docker_in_docker/) 如果构建无法连接到 Docker 守护进程。
-- 避免嵌入dashboard密码或可变 `latest` pipeline中的镜像标签 。
-- GitLab 推推 Webhook 是另一个选项, 当从源头在 CapRover 上构建是可以接受的。
+- 如果 build 无法连接 Docker daemon，请参考 [GitLab Docker-in-Docker runner 配置](https://docs.gitlab.com/ci/docker/docker_in_docker/)。
+- 避免在 pipeline 中写入 dashboard 密码，也不要依赖可变的 `latest` 镜像 tag。
+- 如果允许在 CapRover 服务器上从源代码构建，也可以使用 GitLab push webhook。
 
 <span id="source-deployments-ci-cd-generic"></span>
 
-## 通用 CI
+## 通用 CI 系统
 
-- 任何CI系统都可以部署到CapRover,如果它能通过HTTPS到达dashboard并持有应用程序 [部署符号](index.md).
-- 选择一个包含 `captain-definition` 或服务器可访问的预建镜像。
+- 只要 CI 系统能通过 HTTPS 访问 CapRover dashboard 并持有应用的[部署 token](index.md)，就能触发部署。
+- 可以部署包含 `captain-definition` 的源码归档，也可以部署服务器能够访问的预构建镜像。
 
-- 最简单的可重复释放流是: 构建一个镜像,用一个不可改变的承诺或释放标识符标签它,将其推向一个注册,授权CapRover来拉,然后使用CLI或API来部署准确的镜像.
-- 将应用符号和注册证书保存在CI秘密商店,避免在日志中输出,并在CapRover接受部署后验证最终应用健康.
+- 可重复、可追踪的部署流程通常是：构建镜像 → 使用不可变的 commit/release 标识打 tag → push 到 registry → 配置 CapRover 的 pull 权限 → 通过 CLI 或 API 部署指定镜像。
+- 将应用 token 和 registry 凭据保存在 CI Secrets 中，避免在日志中输出。CapRover 接受部署后，还需要验证应用健康状态。
 
-如果CI发送源,则CapRover服务器执行构建,需要足够的内存和磁盘. 见 [构建和构建日志](../builds-logs.md) 用来解决问题的
+如果 CI 上传的是源代码，CapRover 服务器会自行执行构建，因此需要足够的内存和磁盘空间。排查问题请参阅[构建与构建日志](../builds-logs.md)。
