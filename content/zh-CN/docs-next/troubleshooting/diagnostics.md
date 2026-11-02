@@ -22,9 +22,7 @@ docker service logs captain-captain --tail 100
 - **网络：**检查 DNS，并分别测试 HTTP 与 HTTPS。
 - **存储：**检查挂载、磁盘空间和任务所在节点。
 
-<span id="collect-a-full-server-report"></span>
-
-## 收集完整服务器报告
+## 收集完整服务器报告 {#collect-a-full-server-report}
 
 如果 dashboard 无法访问、多个服务发生故障或快速检查没有明确结果，可以运行[诊断收集脚本](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh)。在使用 systemd 的 Debian/Ubuntu **Swarm manager** 上执行：
 
