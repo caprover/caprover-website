@@ -1,0 +1,20 @@
+---
+id: one-click-schema
+title: Plan de aplicación de un solo clic
+slug: /reference/one-click-schema
+---
+
+Una plantilla de un clic es una combinación `services` asignación más `captainVersion` y `caproverOneClickApp`El [Tipo fuente](https://github.com/caprover/caprover/blob/master/src/models/IOneClickAppModels.ts) define metadatos:
+
+| Campo | Tipo |
+| --- | --- |
+| `caproverOneClickApp.displayName` | cuerda |
+| `caproverOneClickApp.instructions.start`, `.end` | cuerda |
+| `caproverOneClickApp.variables` | array de definiciones variables |
+| Variable `id`, `label` | cuerdas requeridas |
+| Variable `defaultValue`, `validRegex`, `description` | cadenas opcionales |
+
+- Cada servicio admite [Subconjunto de composición](../deployments/other/docker-compose.md).
+- Las variables One-Click se sustituyen en la plantilla durante el despliegue; tratar los valores presentados como substituciones sensibles y de prueba.
+- Si `$$cap_appname` es declarado, se requiere un valor no vacío.
+- See [Autorización de un clic](../one-click-apps/authoring.md) para una guía de tareas y ejemplos reales.
