@@ -4,13 +4,13 @@ title: Network and Firewall Ports
 slug: /reference/ports
 ---
 
-The [default installation](../get-started.md) publishes TCP ports 80, 443, and 3000, plus UDP port 443. The registry and SSH ports below apply when their corresponding feature or host service is enabled:
+The [default installation](../get-started.md) publishes TCP ports 80, 443, and 3000. CapRover's NGINX service also publishes UDP port 443, although its default NGINX configuration does not enable QUIC/HTTP/3. The registry and SSH ports below apply when their corresponding feature or host service is enabled:
 
 | Port | Protocol | Use |
 | --- | --- | --- |
 | 80 | TCP | HTTP and certificate challenges. |
 | 443 | TCP | HTTPS. |
-| 443 | UDP | Published by the default NGINX service; allow through the external firewall when clients need HTTP/3. |
+| 443 | UDP | Published by NGINX, but unused for HTTP/3 in the stock templates. Requires a compatible custom QUIC configuration. |
 | 3000 | TCP | Initial admin dashboard; restrict public access after dashboard HTTPS is working. |
 | 996 | TCP | Self hosted registry when enabled; allow intended registry clients and cluster nodes. |
 | 22 | TCP | Host SSH administration and CapRover's SSH access to added nodes; your host may use a different SSH port. |

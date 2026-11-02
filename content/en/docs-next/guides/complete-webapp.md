@@ -215,6 +215,14 @@ The [CapRover sample applications](https://github.com/caprover/caprover/tree/mas
 
 Treat sample credentials and sample data as examples only. Before production use, set real secrets, add persistence where needed, and plan [backups](../server/backup/index.md).
 
+Additional community framework examples from the legacy documentation:
+
+- [CapRover Django example](https://gitlab.com/kamneros/caprover-django)
+- [Laravel CapRover template](https://github.com/jackbrycesmith/laravel-caprover-template)
+- [Elixir/Phoenix sample](https://github.com/TehSnappy/phoenix_sample)
+
+These third-party examples may be unmaintained. Review their image versions and dependencies before deploying.
+
 <span id="source-guides-recipes"></span>
 
 ## Additional Recipes

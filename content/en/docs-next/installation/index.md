@@ -39,6 +39,8 @@ The same firewall, RAM and wildcard DNS requirements apply to both options.
 
 ## Play with Docker (temporary demo)
 
+For a read-only dashboard preview, use the **Live demo** link on [caprover.com](https://caprover.com/).
+
 CapRover can run on [Play with Docker](https://labs.play-with-docker.com/):
 
 ```bash

@@ -12,7 +12,7 @@ slug: /domains/firewall
 |---|---|---|
 | `80/tcp` | Public inbound | HTTP routing and the usual Let's Encrypt HTTP challenge |
 | `443/tcp` | Public inbound | HTTPS routing |
-| `443/udp` | Public inbound when used | HTTP/3 |
+| `443/udp` | Optional, custom configuration only | Published by CapRover's NGINX service, but the stock templates have no QUIC listener. Opening the firewall does not enable HTTP/3. |
 | `3000/tcp` | Initial admin access | Initial dashboard setup; restrict after dashboard HTTPS works |
 | `996/tcp` | Registry clients or cluster nodes when used | CapRover self-hosted Docker registry |
 | `2377/tcp` | Trusted Swarm nodes only | Cluster management |

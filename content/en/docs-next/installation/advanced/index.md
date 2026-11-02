@@ -30,6 +30,13 @@ sudo docker run -e ACCEPTED_TERMS=true -e MAIN_NODE_IP_ADDRESS=192.168.1.12 \
 
 Use the machine's actual LAN IP in `MAIN_NODE_IP_ADDRESS`. From another LAN device, open `http://192.168.1.12:3000` and change the initial password. Allow these ports through the machine's firewall for your intended clients.
 
+### Local development hostname
+
+- On systems that resolve `*.localhost` to the local machine, use `captain.localhost` as the root domain and `http://captain.captain.localhost` for the dashboard.
+- If wildcard `.localhost` resolution is unavailable, use a local DNS server for your chosen development domain; a plain `/etc/hosts` entry cannot provide wildcard DNS.
+- For Docker Desktop, ensure `/captain` is shared/mounted correctly before installation.
+- Use `MAIN_NODE_IP_ADDRESS=127.0.0.1` for a single-machine localhost test. Avoid public Let's Encrypt validation for localhost domains.
+
 ### Private-only domain
 
 - Configure a local DNS server to point `*.apps.home.example` to `192.168.1.12`, and set the CapRover root domain to `apps.home.example` in the dashboard.

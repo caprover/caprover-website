@@ -46,8 +46,42 @@ jobs:
 
 - Replace the server URL and app name.
 - The action packages committed files from the checked-out commit; a generated or uncommitted file requires its `tar-file` input.
-- For heavy builds, build and push an image in Actions and pass its name through the action's `image` input.
-- If the image is private, [configure registry credentials on CapRover](../registries/index.md) as well as on the runner.
+**Build the image in GitHub Actions** when the CapRover server has limited CPU or RAM:
+
+```yaml
+name: Build and deploy image
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/YOUR_OWNER/YOUR_APP:${{ github.sha }}
+      - uses: caprover/deploy-from-github@v2
+        with:
+          server: https://captain.apps.example.com
+          app: my-app
+          token: ${{ secrets.CAPROVER_APP_TOKEN }}
+          image: ghcr.io/YOUR_OWNER/YOUR_APP:${{ github.sha }}
+```
+
+- Replace `YOUR_OWNER/YOUR_APP` with a lowercase registry image name and set the server/app details.
+- For private images, [configure a registry pull credential on CapRover](../registries/index.md) as well as on the Actions runner. A runner login alone cannot authenticate CapRover's Docker nodes.
 
 Review the [action's current inputs and image example](https://github.com/caprover/deploy-from-github) before adapting this workflow. An accepted token deployment can finish asynchronously; verify the resulting CapRover build and app health separately.
 

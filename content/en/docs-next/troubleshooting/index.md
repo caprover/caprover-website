@@ -42,6 +42,8 @@ For a comprehensive host report, use [Collect Diagnostics](diagnostics.md).
 
 ## Storage and databases
 
+- **Idle database connections timing out:** Use your client's connection retry and keepalive settings, and check Docker network state before changing CapRover configuration.
+
 - Lost data: Check the container mount path, actual Docker volume or bind-mount path, and task placement.
 - Permission errors: Check container UID, read-only flags, directory existence and disk capacity.
 - External database connection failures: Verify internal database health, listener/authentication, published host port and firewall.
@@ -60,7 +62,10 @@ For a comprehensive host report, use [Collect Diagnostics](diagnostics.md).
 
 ## Support
 
-Search [GitHub Discussions](https://github.com/caprover/caprover/discussions) and [issues](https://github.com/caprover/caprover/issues) for the exact error.
+- [GitHub Discussions](https://github.com/caprover/caprover/discussions) for usage questions
+- [GitHub issues](https://github.com/caprover/caprover/issues) for reproducible defects
+- [CapRover Slack community](https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA) for community help
+- For paid consultation, contact `support@caprover.com`. Pro subscribers can use `pro.support@caprover.com` for subscription support.
 
 <span id="source-troubleshooting-report-bug"></span>
 
