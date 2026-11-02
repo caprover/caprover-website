@@ -320,8 +320,10 @@ try {
       ...Object.values(marketingRoutes).map(
         (route) => `https://caprover.com${locale.pathPrefix}${route.path}`,
       ),
-      `https://caprover.com${locale.pathPrefix}/docs/get-started`,
-      `https://caprover.com${locale.pathPrefix}/docs/installation/manual`,
+      ...(locale.default ? [
+        "https://caprover.com/docs/get-started",
+        "https://caprover.com/docs/installation/manual",
+      ] : []),
     ];
     for (const expectedUrl of expectedUrls) {
       assert.equal(
@@ -330,6 +332,12 @@ try {
         `Sitemap must contain exactly one entry for ${expectedUrl}`,
       );
     }
+  }
+
+  for (const locale of locales.filter((item) => !item.default)) {
+    assert(!sitemapLocations.some((location) =>
+      location.startsWith(`https://caprover.com${locale.pathPrefix}/docs/`)),
+      "Untranslated locale docs should be excluded from the sitemap");
   }
 
   const localePreferenceScript = await responses.localePreference.text();

@@ -54,17 +54,6 @@ const canonicalDocs = new Set(consolidation.sections.flatMap((section) =>
   section.pages.map((page) => "/docs/" + page.target.replace(/\/index$/, "")),
 ));
 const originalDocs = consolidation.legacyEnglishRoutes;
-const preservedTranslations = {
-  "es-ES": {
-    notice: "Esta documentación está en inglés.",
-    label: "Documentación anterior en español",
-  },
-  "zh-CN": {
-    notice: "此文档目前为英文。",
-    label: "查看存档中文版文档",
-  },
-};
-
 function combinedMarketingRouteFile(locale, route) {
   return path.join(combinedSite, localeOutputRoot(locale), route, "index.html");
 }
@@ -261,7 +250,6 @@ for (const locale of locales) {
   // pages lead to the preserved, noindex translation archive.
   for (const route of originalDocs) {
     const oldPath = route.legacy;
-    const localPath = prefix + oldPath;
     const newPath = locale.default
       ? route.newCanonical
       : prefix + "/docs-legacy/" + oldPath.slice("/docs/".length);
@@ -306,8 +294,13 @@ assert.equal(
   "Marketing sitemap is missing localized URLs",
 );
 const docsUrls = docsSitemaps.flatMap(
-  (sitemap) => (sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [])
-    .filter((url) => !/\/docs-legacy(?:\/|<)|\/docs-next(?:\/|<)/.test(url)),
+  (sitemap, localeIndex) => (sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [])
+    .filter((url) => {
+      if (/\/docs-legacy(?:\/|<)|\/docs-next(?:\/|<)/.test(url)) return false;
+      // The current Spanish/Chinese pages still contain English and are noindex.
+      const locale = locales[localeIndex];
+      return locale.default || !url.includes(`https://caprover.com${locale.pathPrefix}/docs/`);
+    }),
 );
 const allUrls = [...docsUrls, ...marketingUrls];
 const sitemapLocations = allUrls.flatMap((entry) =>
@@ -440,23 +433,6 @@ const localizedHtmlFiles = new Set([
     marketingRoutes.map((route) => combinedMarketingRouteFile(locale, route)),
   ),
 ]);
-
-// The 48 updated docs currently have English source text in all locales.
-// Preserve the earlier translations at stable archive URLs and label the fallback.
-for (const { locale, files } of docsBefore) {
-  const translation = preservedTranslations[locale.code];
-  if (!translation) continue;
-  const banner = '<aside role="note" style="padding:12px 16px;margin:0 0 16px;border:1px solid var(--ifm-color-emphasis-300);border-radius:6px">' +
-    translation.notice + ' <a href="' + locale.pathPrefix +
-    '/docs-legacy/get-started">' + translation.label + '</a></aside>';
-  for (const relative of files.keys()) {
-    if (!relative.endsWith(".html")) continue;
-    const file = path.join(combinedSite, localeOutputRoot(locale), "docs", relative);
-    const html = await readFile(file, "utf8");
-    assert(/<main\b[^>]*>/i.test(html), "Expected <main> in localized docs page: " + file);
-    await writeFile(file, html.replace(/<main\b[^>]*>/i, (tag) => tag + banner));
-  }
-}
 
 await Promise.all([
   writeFile(
