@@ -1,23 +1,23 @@
 ---
 id: git
-title: 从基特部署
+title: 从 Git 部署
 slug: /deployments/git
 ---
 
-## 设置
+## 配置流程
 
-1. 添加一个 `captain-definition` 文档到您的仓库。
-2. 创建 CapRover 应用程序 。
-3. 在其部署设置中,输入寄存器 URL,分支,和证书.
-4. 保存并复制生成的 Webhook URL 。
-5. 添加该 URL为 **推动网点** 在你的Git供应商。
-6. 发泄一个承诺。 检查CapRover部署记录
+1. 在代码仓库中添加 `captain-definition` 文件。
+2. 在 CapRover 中创建应用。
+3. 在应用部署设置中填写仓库 URL、分支和访问凭据。
+4. 保存设置，并复制自动生成的 webhook URL。
+5. 在 Git 托管服务中将该 URL 配置为 **push webhook**。
+6. 推送一次 commit，并查看 CapRover 部署日志。
 
-**私人仓库:** 使用只读部署密钥或有限服务账户.
+**私有仓库：**建议使用只读 deploy key，或权限受限的 service account。
 
-**重要内容 :**
+**注意：**
 
-- 一个webhook推让CapRover获取配置的分支并构建应用程序.
-- 将 Webhook URL 视为一个秘密 。
-- 仓库 URL 格式、 SSH 密钥和 Webhook 屏幕取决于您的服务商 。
-- 对于离服务器更远的可复制构件,请使用 [排雷中心/CD](ci-cd/index.md) 以部署镜像。
+- 接收到 push webhook 后，CapRover 会拉取配置的分支并构建应用。
+- Webhook URL 应视为敏感凭据。
+- 仓库 URL 格式、SSH key 和 webhook 配置界面因 Git 服务商而异。
+- 如果希望构建过程可复现且不占用服务器资源，可以通过 [CI/CD](ci-cd/index.md) 构建并部署镜像。
