@@ -67,7 +67,7 @@ Si falla la emisión del certificado, comprueba DNS y el acceso entrante por TCP
 ## Desplegar la primera aplicación
 
 1. Abre **Apps** y crea una aplicación web llamada `my-first-app`.
-2. En **Deployment**, pega esta definición de Captain y despliega la aplicación:
+2. En **Deployment**, pega la siguiente Captain Definition y despliega la aplicación:
 
    ```json
    {
