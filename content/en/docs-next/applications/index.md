@@ -6,99 +6,52 @@ slug: /applications
 
 <span id="source-applications-create-manage"></span>
 
-## Create and Manage Apps
+## Application settings
 
-- In the dashboard, open **Apps**, enter a name, and create the app.
-- Choose whether it has persistent data at creation.
-- CapRover registers the app and initially deploys a placeholder image; deploy your own source or image from the app's **Deployment** tab.
+- **Web app:** CapRover routes requests through NGINX to the configured container HTTP port.
+- **Private service:** Select **Do not expose as web app** for workers or databases without an HTTP endpoint.
+- **Listen address:** Your web process should bind to `0.0.0.0` inside the container.
+- **Delete app:** Back up any Docker volumes, bind mounts, or external data first. Removing the app does not constitute a backup.
 
-- Open the app's configuration to change its description, project, tags, environment variables, HTTP behavior, instance count, ports, or placement.
-- Save the relevant settings and verify the service remains healthy after any change that updates Docker or NGINX.
-- For source code or image deployment methods, see [Deployments](../deployments/index.md).
-
-- Deleting an app removes its CapRover-managed service and settings.
-- Before deletion, identify any Docker volumes, bind-mounted files, or external database state you must preserve.
-- Back up that data separately and verify the app's consumers no longer depend on its domains or ports.
+For source/image deployment options, see [Deployments](../deployments/index.md).
 
 <span id="source-applications-projects"></span>
 
-## Organize Apps with Projects
+## Projects
 
-- Projects organize apps in the dashboard.
-- A project has a name and optional description, and can have a parent project.
-- An app can be assigned to a project; the backend checks that the selected project exists before saving the app's configuration.
+- Organize apps into projects and nested projects.
+- Projects are organizational only. They provide no network isolation or access boundary.
 
-- Create a project in the dashboard's Projects area, optionally choose a parent, then assign apps to it from the app settings.
-- Use a hierarchy that helps your operators find related services, such as `Production → Payments`.
-- Project membership is an organizational attribute of the app rather than a separate Docker network or access boundary.
+<span id="source-applications-tags-descriptions"></span>
 
-Review any apps and nested projects before deleting a project. Project deletion changes organization, not the need to back up or migrate those apps and their data.
+## Tags and descriptions
+
+- Descriptions and tags make apps easier to find.
+- Tags can span projects; neither setting changes networking, deployment, or isolation.
 
 <span id="source-applications-environment-variables"></span>
 
-## Environment Variables
+## Environment variables
 
-### Set runtime variables
+- Runtime variables are stored with the app's service configuration.
+- An image rollback does **not** restore older variable values.
+- App configuration and CapRover backups may contain secrets. Keep credentials out of the repository and `captain-definition` files.
 
-1. Open your app in the dashboard.
-2. Under **Environment Variables**, add the key/value pairs.
-3. Save and verify that the service starts.
-
-Example in Node.js: `process.env.DATABASE_URL`.
-
-**Important:**
-
-- Keep passwords out of the repository and `captain-definition` files.
-- Protect dashboard access and backups. App configuration may contain secrets.
-- Image rollback preserves the current runtime variables.
-
-### Build-time variables
-
-For Dockerfile builds, use `ARG` and `ENV` for nonsecret build values:
+For nonsecret Dockerfile build arguments:
 
 ```dockerfile
 ARG PUBLIC_BUILD_VALUE
 ENV PUBLIC_BUILD_VALUE=${PUBLIC_BUILD_VALUE}
 ```
 
-- CapRover provides `CAPROVER_GIT_COMMIT_SHA` during source builds.
-- Build-time values may become part of the image. Keep secrets out.
-- Inspect the deployed service configuration when debugging variable changes.
+CapRover also provides `CAPROVER_GIT_COMMIT_SHA` during source builds. Build values may be embedded in the resulting image.
 
 <span id="source-applications-http-settings"></span>
 
-## HTTP Settings
+## HTTP settings
 
-### Web apps
-
-- Requests reach your app through CapRover's NGINX.
-- Set **Container HTTP Port** to the port your process listens on (often `80` for NGINX).
-- Bind the app to `0.0.0.0` inside the container.
-
-### Domains and HTTPS
-
-- Default hostname: `<app-name>.<root-domain>`
-- Custom domains: Point DNS to the server, then add the domain.
-- HTTPS: Verify DNS and ports 80/443, enable HTTPS, then enable **Force HTTPS**.
-
-See [App Domains](../domains/index.md) and [HTTPS](../domains/index.md).
-
-### Other options
-
-- **Private services:** Select **Do not expose as web app** for workers and private databases.
-- **WebSocket:** Enable support where required by the app.
-- **HTTP Basic Authentication:** Restricts access to HTTP endpoints. Keep application permissions configured separately.
-- **Redirect domains:** Sends incoming requests to another domain. Verify the destination first.
-
-<span id="source-applications-tags-descriptions"></span>
-
-## Tags and Descriptions
-
-- Add an app description to explain its purpose and operational owner.
-- Add tags when you want to group or filter services in the dashboard.
-- Both are stored with the app definition; they do not change its Docker networking, resource isolation, or deployment behavior.
-
-- Projects give apps a nested organizational location.
-- Tags can cut across that hierarchy, such as `customer-facing`, `staging`, or a team name.
-- Keep names consistent so other operators can find an app quickly.
-- See [Organize Apps with Projects](index.md).
+- **Default domain:** `<app-name>.<root-domain>`. See [Domains & HTTPS](../domains/index.md).
+- **Container HTTP Port:** Must match the port the process listens on.
+- **HTTP Basic Authentication:** Restricts HTTP access; application-specific user authorization remains separate.
+- **Redirect domains:** Confirm the destination hostname is reachable before enabling redirects.
+- **Public TCP/UDP ports:** Use explicit published port mappings. See [Firewall & Networking](../domains/firewall.md).

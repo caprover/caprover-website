@@ -4,113 +4,68 @@ title: Troubleshooting
 slug: /troubleshooting
 ---
 
-Choose the area that matches the failure:
-
-| Symptom | Start here |
-| --- | --- |
-| Installation or dashboard setup | [Installation](../installation/index.md) and [Getting Started](../get-started.md) |
-| Build, image, or deployment | [Deployments troubleshooting](index.md) |
-| App settings or availability | [Applications troubleshooting](index.md) |
-| DNS, HTTPS, 502, or domain | [Domains troubleshooting](index.md) |
-| Volumes or lost data | [Data troubleshooting](index.md) |
-| Cluster or node placement | [Scaling troubleshooting](index.md) |
-| One-Click installation | [One-Click troubleshooting](../one-click-apps/index.md) |
-| Upgrade, backup, cleanup, or host | [Server diagnostics](diagnostics.md) |
-
-To ask for help, [collect diagnostics](diagnostics.md), [find support](index.md), or [report a bug](index.md).
-
-<span id="source-troubleshooting-support"></span>
-
-## Get Support
-
-First choose the [troubleshooting route](index.md) that matches your symptom, then collect [diagnostics](diagnostics.md). Search existing [CapRover discussions](https://github.com/caprover/caprover/discussions) and [issues](https://github.com/caprover/caprover/issues) for the exact error.
-
-- For configuration advice, ask in GitHub Discussions with the CapRover and Docker versions, relevant sanitized logs, deployment method, and steps tried.
-- For a reproducible product defect, [report a bug](index.md).
-- Do not publish secrets, private SSH keys, or an unredacted backup.
-
-<span id="source-troubleshooting-report-bug"></span>
-
-## Report a Bug
-
-Check existing [issues](https://github.com/caprover/caprover/issues) first. When opening a new issue, include:
-
-- CapRover version, Docker version, host OS, and whether this is a single server or cluster.
-- The affected page, feature, or API request and the exact steps to reproduce it.
-- Expected versus actual behavior, the time of failure, and sanitized error or service logs.
-- Whether the problem occurs with a minimal test app and which changes preceded it.
-
-Use [CapRover issues](https://github.com/caprover/caprover/issues) for product defects and [website issues](https://github.com/caprover/caprover-website/issues) for documentation defects. Never attach a raw backup, password, token, or private data.
+For a comprehensive host report, use [Collect Diagnostics](diagnostics.md).
 
 <span id="source-applications-troubleshooting"></span>
 
-## Troubleshooting Applications
+## App unavailable or HTTP 502
 
-- Start with the app's deployment and service logs.
-- If the build failed, use [Troubleshooting Deployments](index.md).
-- If the build succeeded but the browser shows a 502 error, confirm the container runs, listens on `0.0.0.0`, and matches the configured container HTTP port.
-
-- For DNS, HTTPS, redirect, or NGINX issues, use [Domains & Networking troubleshooting](index.md).
-- For a missing file or an app that moved nodes, check [Data & Persistence troubleshooting](index.md).
-- For insufficient replicas, check the app's instance count, node placement, and Docker service state.
-
-Record the app name, the action that failed, relevant logs, and the first observed error before seeking [support](index.md). Redact credentials and tokens.
+- Check the app's deployment and service logs.
+- Confirm the container listens on `0.0.0.0` and that **Container HTTP Port** matches the process.
+- Inspect `docker service ps SERVICE_NAME` for task failures.
+- For missing data, inspect the configured volume and the node hosting the task.
 
 <span id="source-deployments-troubleshooting"></span>
 
-## Troubleshooting Deployments
+## Deployment fails
 
-- Identify the stage that failed: upload or Git fetch, image build or pull, Docker service update, container start, or public HTTP routing.
-- The app's deployment log covers the early stages; the app/service logs and `docker service ps SERVICE_NAME` help after the image is built.
-
-- **Git fetch fails:** Check the repository address, branch, deploy key or limited credentials, and network access from the server.
-- **Build fails:** Inspect the first error, Dockerfile and Captain Definition path, and available memory and disk.
-- **Image pull fails:** Check image name, tag, registry reachability, and stored credentials. In a cluster, verify each node can pull it.
-- **Service is running but HTTP fails:** Confirm DNS, configured container port, app listen address, and NGINX routing. See [Applications troubleshooting](index.md).
-
-Capture relevant logs and the requested image or commit ID. Redact passwords, repository tokens, and deploy webhook URLs before sharing them.
+| Failure | Check |
+| --- | --- |
+| Git fetch | Repository URL, branch, deploy credentials, network access |
+| Build | First build error, Dockerfile / `captain-definition`, RAM, disk |
+| Image pull | Registry availability, image tag and credentials; every node in a cluster must pull |
+| Service update | `docker service ps SERVICE_NAME` and service logs |
 
 <span id="source-domains-troubleshooting"></span>
 
-## Troubleshooting
+## DNS, HTTPS and routing
 
-Check the request path in order:
+1. **DNS:** Check the hostname's A/AAAA records, wildcard DNS and proxy mode.
+2. **Reachability:** Check public `80/tcp` and `443/tcp`, including provider firewalls.
+3. **HTTP routing:** Verify the container port, listener and Docker task state.
+4. **Certificates:** Check Certbot logs and HTTP-01 reachability.
+5. **Redirect loops:** Check Force HTTPS, custom redirects and upstream proxies.
 
-1. **DNS:** Does the exact hostname resolve to the intended server IP? Check wildcard and custom records, and any stale AAAA record.
-2. **Firewall:** Do public ports 80 and 443 reach CapRover? Is a provider firewall or proxy intercepting them?
-3. **HTTP routing:** Does plain HTTP select the correct app? If it returns 502, check the container HTTP port, app listen address, and Docker task state.
-4. **Certificate:** Did HTTPS get enabled for this exact hostname? Check the Certbot logs and HTTP challenge reachability before retrying.
-5. **Redirects:** After HTTPS works, test Force HTTPS and any redirect-domain or reverse-proxy rule for loops.
-
-Record the failing hostname, DNS answer, HTTP response, and relevant service logs. Remove tokens and passwords before sharing diagnostics. See [Firewall](../domains/firewall.md) and [HTTPS](../domains/index.md) for the setup prerequisites.
-
-- If CapRover reports **domain verification error 1107**, first confirm that the exact domain resolves directly to this server and is reachable on port 80 from outside your network.
-- A DNS proxy or incorrect AAAA record can make CapRover's view differ from yours.
-- For a private network where a public DNS verification cannot work, see [Local / Private Network](../installation/advanced/index.md); its `skipVerifyingDomains` override disables CapRover's check but does not make DNS or public certificate issuance work.
-- Do not enable that override to conceal a broken public DNS configuration.
+**Domain verification error 1107:** Check that the exact public hostname resolves to this server and is reachable on port 80. For private-only networks, see [Advanced Installation](../installation/advanced/index.md) and its `skipVerifyingDomains` setting. The override does not provide DNS or public TLS certificates.
 
 <span id="source-data-persistence-troubleshooting"></span>
 
-## Troubleshooting
+## Storage and databases
 
-- If data disappears after deployment, check whether the app wrote to the configured **container path** inside a volume or bind mount.
-- Verify the Docker task is running on the node that holds the data, and inspect the actual volume name or host path there.
-
-- If the app cannot write, check container user permissions, directory existence, read-only flags, and free disk space.
-- If an external database client cannot connect, verify the database is healthy internally first, then the host port mapping, publish mode, provider firewall, and database listener/authentication.
-
-Do not delete an app, volume, or host directory while diagnosing missing data. Preserve a copy and use [Back Up Persistent Data](../data-persistence/backup-data.md) before making changes that could overwrite it.
+- Lost data: Check the container mount path, actual Docker volume or bind-mount path, and task placement.
+- Permission errors: Check container UID, read-only flags, directory existence and disk capacity.
+- External database connection failures: Verify internal database health, listener/authentication, published host port and firewall.
+- Preserve volumes and host paths during investigation. See [Backup Persistent Data](../data-persistence/backup-data.md).
 
 <span id="source-scaling-troubleshooting"></span>
 
-## Troubleshooting
+## Swarm and multi-node failures
 
-- When a node fails to join, check the default push registry first: CapRover requires one before it calls Docker's join path.
-- Then verify the new server's Docker installation, inactive Swarm state, SSH key/user/port, manager and worker IPs as seen by each other, and trusted inter-node firewall rules.
+- **Join fails:** Confirm a default push registry is configured, SSH works, the joining node's Swarm is inactive, and trusted node-to-node ports are reachable.
+- **Task pending/restarting:** Inspect `docker node ls`, `docker service ps SERVICE_NAME`, image pull logs, placement constraints and available memory.
+- **Persistent task moved:** Data on node-local volumes does not automatically move with the task.
+- Review provider firewall restrictions after CapRover modifies UFW rules during node joining.
 
-- For tasks stuck pending or restarting, inspect `docker node ls`, `docker service ps SERVICE_NAME`, and relevant service logs.
-- A registry pull failure, placement constraint, insufficient memory, or a missing local volume can appear as an app outage even though the node is healthy.
+<span id="source-troubleshooting-support"></span>
 
-- Review UFW rules on a node after a dashboard join.
-- CapRover issues allow commands during joining; keep provider firewall rules restricted to trusted addresses.
-- For persistent app incidents, preserve the original data and consult [Data & Persistence](../data-persistence/index.md) before moving a task.
+## Support
+
+Search [GitHub Discussions](https://github.com/caprover/caprover/discussions) and [issues](https://github.com/caprover/caprover/issues) for the exact error.
+
+<span id="source-troubleshooting-report-bug"></span>
+
+## Report a bug
+
+Use [CapRover issues](https://github.com/caprover/caprover/issues) for product defects, or [website issues](https://github.com/caprover/caprover-website/issues) for documentation defects.
+
+Include version, Docker/OS details, deployment method, reproduction steps, expected/actual behavior, and sanitized logs. Remove all passwords, tokens, private keys and personal data before sharing.

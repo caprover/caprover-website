@@ -159,11 +159,11 @@ try {
 
   assert.equal(await responses.noJekyll.text(), "", ".nojekyll must be empty");
   const legacyEnglishDocsRedirect = await responses.legacyEnglishDocs.text();
-  assert.match(legacyEnglishDocsRedirect, /window\.location\.replace\(["']\/docs\/get-started["']/);
+  assert(legacyEnglishDocsRedirect.includes('new URL("/docs/get-started"'));
   const legacySpanishDocsRedirect = await responses.legacySpanishDocs.text();
-  assert.match(legacySpanishDocsRedirect, /window\.location\.replace\(["']\/es-ES\/docs\/get-started["']/);
+  assert(legacySpanishDocsRedirect.includes('new URL("/es-ES/docs/get-started"'));
   const legacyChineseDocsRedirect = await responses.legacyChineseDocs.text();
-  assert.match(legacyChineseDocsRedirect, /window\.location\.replace\(["']\/zh-CN\/docs\/get-started["']/);
+  assert(legacyChineseDocsRedirect.includes('new URL("/zh-CN/docs/get-started"'));
 
   const docs = await responses.docs.text();
   assert.match(docs, /Getting Started/i);
