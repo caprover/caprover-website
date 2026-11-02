@@ -4,7 +4,9 @@ title: Advanced Installation
 slug: /installation/advanced
 ---
 
-## Local / Private Network {#source-installation-local-private-network}
+<span id="source-installation-local-private-network"></span>
+
+## Local / Private Network
 
 - Run CapRover on a machine with a private IP for local testing or a home server.
 - First decide whether it will be reachable only on your LAN or from the public internet.
@@ -47,7 +49,9 @@ Use HTTP on this private-only name. Do not enable CapRover's public Let's Encryp
 - Set the public root domain in CapRover, verify `captain.<root-domain>` resolves and reaches the server over HTTP, then enable dashboard and app HTTPS as described in [Getting Started](../../get-started.md).
 - Keep the admin port `3000` restricted to your LAN or another trusted access path rather than forwarding it publicly.
 
-## Custom Host Ports {#source-installation-advanced-custom-host-ports}
+<span id="source-installation-advanced-custom-host-ports"></span>
+
+## Custom Host Ports
 
 - CapRover normally publishes HTTP on host port 80, HTTPS on 443, and the initial admin interface on 3000.
 - On a fresh server, use those defaults.
@@ -71,7 +75,9 @@ sudo docker run -p 10080:80 -p 10443:443 -p 13000:3000 \
 
 CapRover passes these host-port values into its services at installation. Changing the published port of an existing installation requires extra care and is outside this fresh-install example.
 
-## Reverse Proxy Scenarios {#source-installation-advanced-reverse-proxy}
+<span id="source-installation-advanced-reverse-proxy"></span>
+
+## Reverse Proxy Scenarios
 
 - CapRover already runs NGINX for its dashboard and web applications.
 - The simplest public installation lets CapRover own ports 80 and 443.
@@ -87,7 +93,9 @@ CapRover passes these host-port values into its services at installation. Changi
 
 Reverse proxy configurations depend on the proxy and the desired TLS boundary. This page does not prescribe a universal configuration; a tested provider-specific configuration is deferred.
 
-## Existing Docker Swarm {#source-installation-advanced-existing-swarm}
+<span id="source-installation-advanced-existing-swarm"></span>
+
+## Existing Docker Swarm
 
 - CapRover normally initializes Docker Swarm during installation.
 - The `useExistingSwarm` configuration override lets the installer join an existing initialized Swarm instead.
@@ -108,7 +116,9 @@ echo '{"useExistingSwarm":true}' | sudo tee /captain/data/config-override.json
 
 For app scheduling beyond one node, a default push registry is required before adding nodes through CapRover. Read [Set Up a Multi-Node Cluster](../../scaling/multi-node.md) before deploying applications across nodes.
 
-## Home / Local Server Setup {#source-guides-home-server}
+<span id="source-guides-home-server"></span>
+
+## Home / Local Server Setup
 
 For a local test, use [Local / Private Network installation](index.md#source-installation-local-private-network). A public home deployment also needs a stable way for incoming traffic to reach the host.
 

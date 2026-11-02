@@ -4,7 +4,9 @@ title: Scaling & Clusters
 slug: /scaling
 ---
 
-## Scale an Application {source-scaling-scale-app}
+<span id="source-scaling-scale-app"></span>
+
+## Scale an Application
 
 - For a stateless app, open its **App Config**, increase **Instance Count**, and save.
 - Docker Swarm starts the requested number of service tasks.
@@ -17,7 +19,9 @@ slug: /scaling
 - For a multi-node cluster, follow [Set Up a Multi-Node Cluster](multi-node.md) first.
 - A persistent app is normally pinned to one node and one instance; overriding that without compatible storage can corrupt data.
 
-## Health Checks and Zero-Downtime Deployments {source-scaling-zero-downtime}
+<span id="source-scaling-zero-downtime"></span>
+
+## Health Checks and Zero-Downtime Deployments
 
 - For a stateless app without attached volumes, CapRover asks Docker Swarm to update with **start-first** ordering: start the new task before stopping the old one.
 - An app that takes time to become ready should also define a meaningful Docker `HEALTHCHECK` in its image.
@@ -35,7 +39,9 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
 
 For an app with mounted volumes, CapRover selects **stop-first** ordering by default to avoid overlapping writers on local data. Forcing start-first through a service override can corrupt data unless the app and storage support it. See [Service Update Override](../applications/advanced/index.md#source-applications-advanced-service-update-override).
 
-## Application Placement {source-scaling-placement}
+<span id="source-scaling-placement"></span>
+
+## Application Placement
 
 Docker Swarm schedules stateless app tasks on available nodes according to service constraints and capacity. CapRover stores a node ID for persistent apps to keep them near local storage.
 
@@ -45,7 +51,9 @@ Docker Swarm schedules stateless app tasks on available nodes according to servi
 
 See [Node Placement](../data-persistence/index.md#source-data-persistence-node-placement) for safe data movement and [Set Up a Multi-Node Cluster](multi-node.md) for first-time setup.
 
-## Scaling and Placement {source-applications-scaling-placement}
+<span id="source-applications-scaling-placement"></span>
+
+## Scaling and Placement
 
 - Set the **Instance Count** in an app's configuration to tell Docker Swarm how many copies of its container to run.
 - Start with one, then increase it for a stateless app whose requests and background work can run safely in parallel.

@@ -4,7 +4,9 @@ title: Server Administration
 slug: /server
 ---
 
-## Server Settings {source-server-settings}
+<span id="source-server-settings"></span>
+
+## Server Settings
 
 Use the dashboard's **Settings** area to manage the root domain, account password, updates, and CapRover backups. Back up the server before changing its domain or upgrading.
 
@@ -16,7 +18,9 @@ Point the wildcard DNS record and dashboard hostname at the server before settin
 
 Change the initial password after installation, secure the dashboard with HTTPS, and store recovery credentials safely. Review [Security & Access](index.md#source-server-security) and [Backup & Restore](backup/index.md) before production use.
 
-## Security & Access {source-server-security}
+<span id="source-server-security"></span>
+
+## Security & Access
 
 - Change the initial dashboard password, enable HTTPS for the dashboard, and restrict access to ports and SSH using host and provider firewalls.
 - Limit Swarm ports to trusted cluster nodes; see [Multi-Node Setup](../scaling/multi-node.md).
@@ -59,7 +63,9 @@ Back up CapRover configuration and application data separately and practice rest
 
 If two-factor authentication also blocks access, see [Pro OTP recovery](index.md#source-server-pro). These are separate recovery steps.
 
-## CapRover Pro {source-server-pro}
+<span id="source-server-pro"></span>
+
+## CapRover Pro
 
 - CapRover Pro adds subscription-backed features configured through the dashboard with a Pro API key.
 - Available controls include two-factor authentication, login alerts, build-success and build-failure alerts, and email or webhook actions.
@@ -84,7 +90,9 @@ docker exec -it "$(docker ps --filter name=captain-captain -q | head -n 1)" npm 
 
 Verify the target container first, use this only for your own instance, then sign in and configure two-factor authentication again. See [Pro troubleshooting](../troubleshooting/diagnostics.md).
 
-## Dashboard Themes {source-server-themes}
+<span id="source-server-themes"></span>
+
+## Dashboard Themes
 
 - The dashboard's **Themes** settings let you choose a built-in theme or create a custom one.
 - Custom theme content is a JavaScript object passed to Ant Design, rather than JSON text.

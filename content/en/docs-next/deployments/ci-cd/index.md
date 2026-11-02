@@ -4,7 +4,9 @@ title: CI/CD
 slug: /deployments/ci-cd
 ---
 
-## Deployment Tokens {source-deployments-ci-cd-deployment-tokens}
+<span id="source-deployments-ci-cd-deployment-tokens"></span>
+
+## Deployment Tokens
 
 - An app deployment token lets automation deploy one CapRover app without using the dashboard password.
 - Create the app, open its **Deployment** tab, enable the app token, and copy the value into your CI system's secret store.
@@ -17,7 +19,9 @@ slug: /deployments/ci-cd
 - If the token is exposed, replace or disable it in the app settings and update your CI secret.
 - Give each deployment job only the registry credentials it also needs; an app token does not grant the CapRover server access to a private image registry.
 
-## GitHub Actions {source-deployments-ci-cd-github-actions}
+<span id="source-deployments-ci-cd-github-actions"></span>
+
+## GitHub Actions
 
 Create a CapRover app and enable its [deployment token](index.md#source-deployments-ci-cd-deployment-tokens). In your GitHub repository, add `CAPROVER_APP_TOKEN` as an Actions secret. Add a `captain-definition` file for source deployments.
 
@@ -47,7 +51,9 @@ jobs:
 
 Review the [action's current inputs and image example](https://github.com/caprover/deploy-from-github) before adapting this workflow. An accepted token deployment can finish asynchronously; verify the resulting CapRover build and app health separately.
 
-## GitLab CI {source-deployments-ci-cd-gitlab-ci}
+<span id="source-deployments-ci-cd-gitlab-ci"></span>
+
+## GitLab CI
 
 Build an image in GitLab CI, push it to GitLab Container Registry, and deploy that exact tag to CapRover. This moves the expensive build away from the CapRover server.
 
@@ -94,7 +100,9 @@ Build an image in GitLab CI, push it to GitLab Container Registry, and deploy th
 - Avoid embedding a dashboard password or a mutable `latest` image tag in the pipeline.
 - A GitLab push webhook is another option when building from source on CapRover is acceptable.
 
-## Generic CI {source-deployments-ci-cd-generic}
+<span id="source-deployments-ci-cd-generic"></span>
+
+## Generic CI
 
 - Any CI system can deploy to CapRover if it can reach the dashboard over HTTPS and hold an app [deployment token](index.md#source-deployments-ci-cd-deployment-tokens).
 - Choose either a source archive containing `captain-definition` or a prebuilt image accessible to the server.

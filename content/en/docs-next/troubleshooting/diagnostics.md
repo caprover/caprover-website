@@ -58,7 +58,9 @@ The collector briefly tests local `hello-world` and `nginx:1.27.2` images **if a
 
 See [Server Diagnostics](diagnostics.md#source-server-diagnostics) for targeted recovery steps.
 
-## Diagnostics {source-server-diagnostics}
+<span id="source-server-diagnostics"></span>
+
+## Diagnostics
 
 Start with the failing request or app, its timestamp, and the exact error. In the dashboard, inspect the application's deployment history and logs. On the manager host:
 

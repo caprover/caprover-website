@@ -13,7 +13,9 @@ A CapRover backup captures CapRover state and configuration, **not** the content
 
 Back up CapRover's configuration as a separate step through [Backup & Restore CapRover](../server/backup/index.md). A usable disaster-recovery plan needs both sides and the registry images needed to run the apps.
 
-## Move Persistent Data {source-data-persistence-move-data}
+<span id="source-data-persistence-move-data"></span>
+
+## Move Persistent Data
 
 - Moving a persistent app requires moving its data as well as updating its CapRover settings.
 - First identify the actual volume or bind path and the source node.

@@ -19,7 +19,9 @@ Choose the area that matches the failure:
 
 To ask for help, [collect diagnostics](diagnostics.md), [find support](index.md#source-troubleshooting-support), or [report a bug](index.md#source-troubleshooting-report-bug).
 
-## Get Support {source-troubleshooting-support}
+<span id="source-troubleshooting-support"></span>
+
+## Get Support
 
 First choose the [troubleshooting route](index.md) that matches your symptom, then collect [diagnostics](diagnostics.md). Search existing [CapRover discussions](https://github.com/caprover/caprover/discussions) and [issues](https://github.com/caprover/caprover/issues) for the exact error.
 
@@ -27,7 +29,9 @@ First choose the [troubleshooting route](index.md) that matches your symptom, th
 - For a reproducible product defect, [report a bug](index.md#source-troubleshooting-report-bug).
 - Do not publish secrets, private SSH keys, or an unredacted backup.
 
-## Report a Bug {source-troubleshooting-report-bug}
+<span id="source-troubleshooting-report-bug"></span>
+
+## Report a Bug
 
 Check existing [issues](https://github.com/caprover/caprover/issues) first. When opening a new issue, include:
 
@@ -38,7 +42,9 @@ Check existing [issues](https://github.com/caprover/caprover/issues) first. When
 
 Use [CapRover issues](https://github.com/caprover/caprover/issues) for product defects and [website issues](https://github.com/caprover/caprover-website/issues) for documentation defects. Never attach a raw backup, password, token, or private data.
 
-## Troubleshooting Applications {source-applications-troubleshooting}
+<span id="source-applications-troubleshooting"></span>
+
+## Troubleshooting Applications
 
 - Start with the app's deployment and service logs.
 - If the build failed, use [Troubleshooting Deployments](index.md#source-deployments-troubleshooting).
@@ -50,7 +56,9 @@ Use [CapRover issues](https://github.com/caprover/caprover/issues) for product d
 
 Record the app name, the action that failed, relevant logs, and the first observed error before seeking [support](index.md#source-troubleshooting-support). Redact credentials and tokens.
 
-## Troubleshooting Deployments {source-deployments-troubleshooting}
+<span id="source-deployments-troubleshooting"></span>
+
+## Troubleshooting Deployments
 
 - Identify the stage that failed: upload or Git fetch, image build or pull, Docker service update, container start, or public HTTP routing.
 - The app's deployment log covers the early stages; the app/service logs and `docker service ps SERVICE_NAME` help after the image is built.
@@ -62,7 +70,9 @@ Record the app name, the action that failed, relevant logs, and the first observ
 
 Capture relevant logs and the requested image or commit ID. Redact passwords, repository tokens, and deploy webhook URLs before sharing them.
 
-## Troubleshooting {source-domains-troubleshooting}
+<span id="source-domains-troubleshooting"></span>
+
+## Troubleshooting
 
 Check the request path in order:
 
@@ -79,7 +89,9 @@ Record the failing hostname, DNS answer, HTTP response, and relevant service log
 - For a private network where a public DNS verification cannot work, see [Local / Private Network](../installation/advanced/index.md#source-installation-local-private-network); its `skipVerifyingDomains` override disables CapRover's check but does not make DNS or public certificate issuance work.
 - Do not enable that override to conceal a broken public DNS configuration.
 
-## Troubleshooting {source-data-persistence-troubleshooting}
+<span id="source-data-persistence-troubleshooting"></span>
+
+## Troubleshooting
 
 - If data disappears after deployment, check whether the app wrote to the configured **container path** inside a volume or bind mount.
 - Verify the Docker task is running on the node that holds the data, and inspect the actual volume name or host path there.
@@ -89,7 +101,9 @@ Record the failing hostname, DNS answer, HTTP response, and relevant service log
 
 Do not delete an app, volume, or host directory while diagnosing missing data. Preserve a copy and use [Back Up Persistent Data](../data-persistence/backup-data.md) before making changes that could overwrite it.
 
-## Troubleshooting {source-scaling-troubleshooting}
+<span id="source-scaling-troubleshooting"></span>
+
+## Troubleshooting
 
 - When a node fails to join, check the default push registry first: CapRover requires one before it calls Docker's join path.
 - Then verify the new server's Docker installation, inactive Swarm state, SSH key/user/port, manager and worker IPs as seen by each other, and trusted inter-node firewall rules.

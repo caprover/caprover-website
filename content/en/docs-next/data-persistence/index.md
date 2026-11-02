@@ -4,7 +4,9 @@ title: Data & Persistence
 slug: /data-persistence
 ---
 
-## Stateless vs Persistent Apps {source-data-persistence-stateless-persistent}
+<span id="source-data-persistence-stateless-persistent"></span>
+
+## Stateless vs Persistent Apps
 
 - A stateless app can be replaced or moved without losing required local data.
 - A persistent app stores important files in a Docker volume or host bind mount.
@@ -18,7 +20,9 @@ slug: /data-persistence
 - Back up the database and object store separately.
 - See [Docker Volumes](index.md#source-data-persistence-volumes), [Bind Mounts](index.md#source-data-persistence-bind-mounts), and [Node Placement](index.md#source-data-persistence-node-placement).
 
-## Docker Volumes {source-data-persistence-volumes}
+<span id="source-data-persistence-volumes"></span>
+
+## Docker Volumes
 
 ### Configure a volume
 
@@ -54,7 +58,9 @@ Docker volumes may remain after app deletion.
 
 An in-use volume cannot be removed. Avoid `docker volume prune` on shared hosts: it can remove unrelated unused volumes.
 
-## Bind Mounts {source-data-persistence-bind-mounts}
+<span id="source-data-persistence-bind-mounts"></span>
+
+## Bind Mounts
 
 - A bind mount maps a specific host directory into a container.
 - Create the host directory on the node that will run the app, set its ownership and permissions for the container process, then enter the host path and container path in the app's persistent-directory settings.
@@ -65,7 +71,9 @@ An in-use volume cannot be removed. Avoid `docker volume prune` on shared hosts:
 
 The path is node-local. If a task is scheduled on another server, an identical path there is not automatically the same data. Keep the app pinned to its data node or provide tested shared storage. Back up the host directory independently of CapRover configuration.
 
-## Node Placement {source-data-persistence-node-placement}
+<span id="source-data-persistence-node-placement"></span>
+
+## Node Placement
 
 - CapRover records a node ID for a persistent app and checks that the requested node belongs to the Swarm when settings change.
 - This placement keeps the app near its local volume or bind mount.
@@ -76,7 +84,9 @@ The path is node-local. If a task is scheduled on another server, an identical p
 
 If you want multiple replicas on different nodes, design the storage and application for concurrent access. CapRover does not make node-local storage shared. See [Persistent Applications in Clusters](../scaling/multi-node.md#source-scaling-persistent-apps).
 
-## Persistent Directories {source-applications-persistent-directories}
+<span id="source-applications-persistent-directories"></span>
+
+## Persistent Directories
 
 - Persistent directories store selected container paths outside the replaceable app container.
 - In the app configuration, add a Docker volume or bind mount and identify the **container path** your app actually writes to.
@@ -88,7 +98,9 @@ If you want multiple replicas on different nodes, design the storage and applica
 
 See [Docker Volumes](index.md#source-data-persistence-volumes), [Bind Mounts](index.md#source-data-persistence-bind-mounts), and [Back Up Persistent Data](backup-data.md) for storage and recovery workflows.
 
-## Persistent Storage Recipes {source-guides-persistent-storage}
+<span id="source-guides-persistent-storage"></span>
+
+## Persistent Storage Recipes
 
 For an application that writes files, find the exact container directory it uses and mount a persistent directory there before storing real data.
 

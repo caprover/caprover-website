@@ -4,7 +4,9 @@ title: Advanced App Configuration
 slug: /applications/advanced
 ---
 
-## Service Update Override {source-applications-advanced-service-update-override}
+<span id="source-applications-advanced-service-update-override"></span>
+
+## Service Update Override
 
 - The **Service Update Override** field merges JSON or YAML settings into the Docker service update that CapRover prepares when an app is configured or deployed.
 - It is useful for Docker service options that the dashboard does not expose.
@@ -30,7 +32,9 @@ TaskTemplate:
 - An invalid or contradictory override can block deployments.
 - See [Docker's service update API](https://docs.docker.com/reference/api/engine/) for the schema used by the Docker version running your server.
 
-## Pre-Deploy Function {source-applications-advanced-pre-deploy-function}
+<span id="source-applications-advanced-pre-deploy-function"></span>
+
+## Pre-Deploy Function
 
 - A **Pre-Deploy Function** is JavaScript executed inside the CapRover process before an app's Docker service update.
 - It can inspect the stored app object and modify the service update object.

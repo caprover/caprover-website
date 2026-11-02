@@ -4,7 +4,9 @@ title: Backup & Restore CapRover
 slug: /server/backup
 ---
 
-## What Is Backed Up {source-server-backup-contents}
+<span id="source-server-backup-contents"></span>
+
+## What Is Backed Up
 
 A CapRover backup copies **`/captain/data`** and adds metadata about cluster nodes. This includes CapRover configuration and state, such as app definitions, domain settings, and certificates stored there.
 
@@ -18,7 +20,9 @@ A CapRover backup copies **`/captain/data`** and adds metadata about cluster nod
 
 See [Create a Backup](index.md#source-server-backup-create), [Restore a Server](restore.md), and [Persistent Directories](../../data-persistence/index.md).
 
-## Create a Backup {source-server-backup-create}
+<span id="source-server-backup-create"></span>
+
+## Create a Backup
 
 1. In the CapRover dashboard, go to **Settings** and select **Create Backup**.
 2. Download the resulting `.tar` file, verify it is nonempty, and store it outside the server with access controls.
@@ -29,7 +33,9 @@ See [Create a Backup](index.md#source-server-backup-create), [Restore a Server](
 - Keep your own copy: the generated download is temporary.
 - If a self hosted registry is enabled, allow space for its image data in the archive.
 
-## Automate Backups {source-server-backup-automate}
+<span id="source-server-backup-automate"></span>
+
+## Automate Backups
 
 - The dashboard's **Create Backup** action has a corresponding authenticated API endpoint.
 - The following example needs `curl` and `jq`.
@@ -54,7 +60,9 @@ test -s backup.tar
 - The download token is temporary; finish the download in the same run.
 - Schedule separate database and volume backups and regularly test restoration.
 
-## Backup Contents {source-reference-backup-contents}
+<span id="source-reference-backup-contents"></span>
+
+## Backup Contents
 
 The [backup implementation](https://github.com/caprover/caprover/blob/master/src/user/system/BackupManager.ts) archives `/captain/data` and adds `meta/backup.json` with the CapRover salt and cluster node metadata.
 

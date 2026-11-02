@@ -4,7 +4,9 @@ title: Applications
 slug: /applications
 ---
 
-## Create and Manage Apps {source-applications-create-manage}
+<span id="source-applications-create-manage"></span>
+
+## Create and Manage Apps
 
 - In the dashboard, open **Apps**, enter a name, and create the app.
 - Choose whether it has persistent data at creation.
@@ -18,7 +20,9 @@ slug: /applications
 - Before deletion, identify any Docker volumes, bind-mounted files, or external database state you must preserve.
 - Back up that data separately and verify the app's consumers no longer depend on its domains or ports.
 
-## Organize Apps with Projects {source-applications-projects}
+<span id="source-applications-projects"></span>
+
+## Organize Apps with Projects
 
 - Projects organize apps in the dashboard.
 - A project has a name and optional description, and can have a parent project.
@@ -30,7 +34,9 @@ slug: /applications
 
 Review any apps and nested projects before deleting a project. Project deletion changes organization, not the need to back up or migrate those apps and their data.
 
-## Environment Variables {source-applications-environment-variables}
+<span id="source-applications-environment-variables"></span>
+
+## Environment Variables
 
 ### Set runtime variables
 
@@ -59,7 +65,9 @@ ENV PUBLIC_BUILD_VALUE=${PUBLIC_BUILD_VALUE}
 - Build-time values may become part of the image. Keep secrets out.
 - Inspect the deployed service configuration when debugging variable changes.
 
-## HTTP Settings {source-applications-http-settings}
+<span id="source-applications-http-settings"></span>
+
+## HTTP Settings
 
 ### Web apps
 
@@ -82,7 +90,9 @@ See [App Domains](../domains/index.md#source-domains-app-domains) and [HTTPS](..
 - **HTTP Basic Authentication:** Restricts access to HTTP endpoints. Keep application permissions configured separately.
 - **Redirect domains:** Sends incoming requests to another domain. Verify the destination first.
 
-## Tags and Descriptions {source-applications-tags-descriptions}
+<span id="source-applications-tags-descriptions"></span>
+
+## Tags and Descriptions
 
 - Add an app description to explain its purpose and operational owner.
 - Add tags when you want to group or filter services in the dashboard.

@@ -73,7 +73,9 @@ Docker group membership gives root-equivalent access. Keep both SSH and Swarm po
 - Back up and migrate data before changing placement.
 - See [Persistent Applications in Clusters](multi-node.md#source-scaling-persistent-apps).
 
-## Manage Nodes {source-scaling-manage-nodes}
+<span id="source-scaling-manage-nodes"></span>
+
+## Manage Nodes
 
 Use the **Cluster → Nodes** view and `docker node ls` on a manager to check node availability and role. `docker service ps SERVICE_NAME` shows where an app's tasks run and why a task failed to start.
 
@@ -84,7 +86,9 @@ Use the **Cluster → Nodes** view and `docker node ls` on a manager to check no
 - Keep Swarm management and overlay ports restricted to trusted node addresses.
 - If a node cannot join, verify Docker is installed, its Swarm is inactive, SSH credentials work from the manager, and the registry and inter-node routes are reachable.
 
-## Persistent Applications in Clusters {source-scaling-persistent-apps}
+<span id="source-scaling-persistent-apps"></span>
+
+## Persistent Applications in Clusters
 
 - CapRover normally limits a persistent app to one instance on a selected node.
 - A Docker named volume using the default local driver and a bind mount both store data on that node; a second node will not automatically see those files.
@@ -97,7 +101,9 @@ Use the **Cluster → Nodes** view and `docker node ls` on a manager to check no
 - Increasing instance count alone does not provide that storage.
 - See [Shared / External Storage](../data-persistence/shared-storage.md).
 
-## Multi-Node Networking {source-scaling-networking}
+<span id="source-scaling-networking"></span>
+
+## Multi-Node Networking
 
 - Docker Swarm's overlay network lets services communicate across nodes.
 - Between trusted nodes, permit `2377/tcp` for management, `7946/tcp` and `7946/udp` for node communication, and `4789/udp` for overlay traffic.

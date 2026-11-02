@@ -15,7 +15,9 @@ slug: /deployments/builds-logs
 - For heavy builds, use CI to build and push the image outside the CapRover server, then deploy that image.
 - For a stalled deployment, collect the failing build log, service state, and recent app logs before following [Troubleshooting Deployments](../troubleshooting/index.md#source-deployments-troubleshooting).
 
-## Versions and Rollback {source-deployments-versions-rollback}
+<span id="source-deployments-versions-rollback"></span>
+
+## Versions and Rollback
 
 - CapRover records image versions for an app.
 - From the app's deployment history, choose a previously deployed version to roll back its image.

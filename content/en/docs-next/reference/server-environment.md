@@ -20,7 +20,9 @@ The [environment-variable parser](https://github.com/caprover/caprover/blob/mast
 - The parser treats several boolean flags as true when the variable is a **nonempty string**; passing the literal string `false` does not necessarily turn them off.
 - Supply installation variables to the initial container command, and use [config overrides](server-environment.md#source-reference-config-override) for configurable server constants.
 
-## config-override.json {source-reference-config-override}
+<span id="source-reference-config-override"></span>
+
+## config-override.json
 
 CapRover reads user overrides from `/captain/data/config-override.json`. Only keys under `configs` in [CaptainConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) are intended for this file. Example:
 

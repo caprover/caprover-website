@@ -16,7 +16,9 @@ slug: /data-persistence/deploy-databases
 
 Check the chosen database image's storage path and initialization variables; they differ between PostgreSQL, MySQL, Redis, and other services.
 
-## Connect to Databases Internally {source-data-persistence-internal-databases}
+<span id="source-data-persistence-internal-databases"></span>
+
+## Connect to Databases Internally
 
 - Apps on CapRover's overlay network can connect to a database service by its app name and container port.
 - For a PostgreSQL app named `postgres`, use host `postgres` and port `5432` in the client app, along with the database's configured name, username, and password.
@@ -29,7 +31,9 @@ Check the chosen database image's storage path and initialization variables; the
 - Keep credentials in app environment settings or a suitable secret mechanism, and make sure the database app has persistent storage and backups.
 - See [Deploy Databases](deploy-databases.md) first if the database is not yet installed.
 
-## Connect to Databases Externally {source-data-persistence-external-databases}
+<span id="source-data-persistence-external-databases"></span>
+
+## Connect to Databases Externally
 
 - Use an internal service connection when the client also runs on CapRover.
 - For an external client, decide whether a restricted published port or a tunnel is appropriate before exposing a database to the internet.

@@ -138,7 +138,9 @@ sudo swapon /swapfile
 
 To keep swap after reboot, add `/swapfile none swap sw 0 0` **once** to `/etc/fstab`. For frequent builds, use more RAM or build in CI.
 
-## Start {source-index}
+<span id="source-index"></span>
+
+## Start
 
 Find what you need:
 

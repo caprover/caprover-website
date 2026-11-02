@@ -19,7 +19,9 @@ CapRover stores app settings separately from the Captain Definition. The [app mo
 - A persistent directory contains `containerPath`, optional `hostPath` or `volumeName`, and optional `mode`.
 - Configure these through the dashboard or API instead of hand-editing stored JSON.
 
-## Defaults and Limits {source-reference-defaults-limits}
+<span id="source-reference-defaults-limits"></span>
+
+## Defaults and Limits
 
 Selected defaults from [CaptainConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) and [EnvVars.ts](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts):
 
@@ -37,7 +39,9 @@ Selected defaults from [CaptainConstants.ts](https://github.com/caprover/caprove
 
 These are source defaults, not guarantees for every installation; values can be overridden and may change by release. Check your instance's version and the matching source before automating against them.
 
-## Legacy Compatibility {source-reference-legacy-compatibility}
+<span id="source-reference-legacy-compatibility"></span>
+
+## Legacy Compatibility
 
 - CapRover has historical names and links from its CaptainDuckDuck predecessor.
 - Existing `/docs/*` paths remain live during this preview; see the [draft URL map](https://github.com/caprover/caprover-website/blob/master/DOCS_NEXT_URL_MAP.md) for proposed old-to-new destinations.

@@ -36,7 +36,9 @@ sudo docker service scale captain-captain=1
 - Wait for `docker service ps captain-captain` and `docker service ps captain-nginx` to show healthy tasks.
 - If this does not resolve the issue, inspect their logs and restore your backup before trying another change.
 
-## NGINX Routing {source-domains-nginx-routing}
+<span id="source-domains-nginx-routing"></span>
+
+## NGINX Routing
 
 - For public web requests, DNS points a hostname at the CapRover server.
 - CapRover's NGINX service receives traffic on 80 or 443, selects the matching dashboard or app domain, and forwards the request to the app's Docker service at its configured container HTTP port.
@@ -47,7 +49,9 @@ sudo docker service scale captain-captain=1
 
 App-specific NGINX changes belong in that app's [Custom NGINX](advanced-nginx.md#source-applications-advanced-custom-nginx) settings. Global templates affect more routes; use [Advanced NGINX Configuration](advanced-nginx.md) carefully.
 
-## Custom NGINX {source-applications-advanced-custom-nginx}
+<span id="source-applications-advanced-custom-nginx"></span>
+
+## Custom NGINX
 
 - CapRover generates NGINX configuration for each web app.
 - Use the app's **HTTP Settings** to edit its NGINX template when you need a route-specific timeout, upload limit, or other NGINX behavior that the standard controls do not expose.

@@ -17,7 +17,9 @@ slug: /fundamentals/how-caprover-works
 
 Start with [Getting Started](../get-started.md), then explore [Applications](../applications/index.md), [Deployments](../deployments/index.md), and [Data & Persistence](../data-persistence/index.md).
 
-## Applications and Docker Services {source-fundamentals-applications-and-services}
+<span id="source-fundamentals-applications-and-services"></span>
+
+## Applications and Docker Services
 
 - A CapRover **app** is a managed Docker Swarm service.
 - Its name identifies the service and normally gives it a default subdomain under your root domain.
@@ -32,7 +34,9 @@ Start with [Getting Started](../get-started.md), then explore [Applications](../
 - A newly created app can exist before the intended image is deployed.
 - See [Create and Manage Apps](../applications/index.md#source-applications-create-manage) and [Scale an Application](../scaling/index.md#source-scaling-scale-app).
 
-## Builds, Images, and Deployments {source-fundamentals-builds-images-deployments}
+<span id="source-fundamentals-builds-images-deployments"></span>
+
+## Builds, Images, and Deployments
 
 - An **image** packages application code and runtime dependencies.
 - CapRover can build an image from a repository or uploaded source, or deploy a prebuilt image from a registry.
@@ -47,7 +51,9 @@ Start with [Getting Started](../get-started.md), then explore [Applications](../
 
 Use [Deployments](../deployments/index.md) for the task guides and [Captain Definition Schema](../reference/captain-definition.md) for the exact format.
 
-## Networking {source-fundamentals-networking}
+<span id="source-fundamentals-networking"></span>
+
+## Networking
 
 There are two common routes to an app:
 
@@ -61,7 +67,9 @@ There are two common routes to an app:
 - Review the exposure carefully, especially for databases.
 - See [Domains & Networking](../domains/index.md) and the complete [port reference](../reference/ports.md).
 
-## Persistence {source-fundamentals-persistence}
+<span id="source-fundamentals-persistence"></span>
+
+## Persistence
 
 Containers are replaceable. Files written only inside a container can disappear when a deployment replaces it. A persistent app keeps selected data outside that container in a Docker volume or a bind mount on a host node.
 
@@ -69,7 +77,9 @@ Persistence affects placement. A node-local volume or bind mount is not automati
 
 Start with [Stateless vs Persistent Apps](../data-persistence/index.md#source-data-persistence-stateless-persistent) before deploying a database or any app that stores uploads. Use [Node Placement](../data-persistence/index.md#source-data-persistence-node-placement) for the cluster implications.
 
-## Docker Swarm {source-fundamentals-docker-swarm}
+<span id="source-fundamentals-docker-swarm"></span>
+
+## Docker Swarm
 
 - Docker Swarm manages services across one or more nodes.
 - CapRover initializes Swarm on a standard fresh installation, even if the server is the only node.
@@ -81,7 +91,9 @@ Start with [Stateless vs Persistent Apps](../data-persistence/index.md#source-da
 
 Swarm networking is separate from storage: local volumes remain local to their nodes. Read [Set Up a Multi-Node Cluster](../scaling/multi-node.md) before joining a second server.
 
-## Glossary {source-reference-glossary}
+<span id="source-reference-glossary"></span>
+
+## Glossary
 
 | Term | Meaning |
 | --- | --- |

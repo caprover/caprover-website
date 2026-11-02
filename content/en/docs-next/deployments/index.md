@@ -4,7 +4,9 @@ title: Deployments
 slug: /deployments
 ---
 
-## Deploy from the Dashboard {source-deployments-dashboard}
+<span id="source-deployments-dashboard"></span>
+
+## Deploy from the Dashboard
 
 - Create an app in **Apps**, open its **Deployment** tab, and choose the input appropriate for your project.
 - To deploy an archive, package the project with its `captain-definition` file at the expected path and upload the tar file.
@@ -20,7 +22,9 @@ For example, paste this definition to deploy an existing public image:
 - For a private image, configure registry credentials first.
 - See [Deploy a Docker Image](index.md#source-deployments-docker-image).
 
-## Deploy a Docker Image {source-deployments-docker-image}
+<span id="source-deployments-docker-image"></span>
+
+## Deploy a Docker Image
 
 Build and push your image to a registry, or use a public image. Create a CapRover app, then paste an image-only definition into its **Deployment** tab:
 

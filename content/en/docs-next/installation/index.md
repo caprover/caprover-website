@@ -4,7 +4,9 @@ title: Installation
 slug: /installation
 ---
 
-## Standard VPS {#source-installation-standard-vps}
+<span id="source-installation-standard-vps"></span>
+
+## Standard VPS
 
 **Requirements:**
 
@@ -25,7 +27,9 @@ slug: /installation
 - If Docker is installed, verify `sudo docker version` and `sudo docker run --rm hello-world`. Avoid the snap installation.
 - Review the [production checklist](../production-checklist.md) before hosting important data.
 
-## DigitalOcean {#source-installation-digitalocean}
+<span id="source-installation-digitalocean"></span>
+
+## DigitalOcean
 
 **Choose an installation:**
 
@@ -39,7 +43,9 @@ slug: /installation
 - **DNS:** Point a wildcard A record (for example, `*.apps.example.com`) to the Droplet IP.
 - **Verify:** Open `http://YOUR_SERVER_IP:3000`. Check that the dashboard and an app subdomain resolve before enabling HTTPS.
 
-## OpenStack {#source-installation-openstack}
+<span id="source-installation-openstack"></span>
+
+## OpenStack
 
 Use an OpenStack compute instance with a public or floating IPv4 address. The provider-specific names of images, flavors, and networks vary.
 
@@ -53,7 +59,9 @@ Use an OpenStack compute instance with a public or floating IPv4 address. The pr
 - Do not deploy that template unchanged.
 - Use the manual instance steps above unless you have reviewed and corrected it for your OpenStack environment.
 
-## Play with Docker {#source-installation-play-with-docker}
+<span id="source-installation-play-with-docker"></span>
+
+## Play with Docker
 
 Play with Docker provides short-lived Docker hosts for trying CapRover without provisioning a VPS. Treat everything you deploy there as disposable. HTTPS certificate setup is not available in this environment.
 

@@ -4,7 +4,9 @@ title: Domains & Networking
 slug: /domains
 ---
 
-## Root Domain and Wildcard DNS {source-domains-root-domain}
+<span id="source-domains-root-domain"></span>
+
+## Root Domain and Wildcard DNS
 
 - The CapRover **root domain** is the suffix used for its dashboard and default app domains.
 - If the root is `apps.example.com`, the dashboard is `captain.apps.example.com` and an app named `api` gets `api.apps.example.com`.
@@ -18,7 +20,9 @@ slug: /domains
 - Keep the DNS record in place for certificate renewal.
 - If using a DNS proxy, use DNS-only mode for initial HTTP-01 certificate setup and test the route directly to CapRover.
 
-## App Domains {source-domains-app-domains}
+<span id="source-domains-app-domains"></span>
+
+## App Domains
 
 Every web app receives a default hostname under the CapRover root domain, such as `api.apps.example.com`. The root domain's wildcard A record should already point to your CapRover server.
 
@@ -30,7 +34,9 @@ Every web app receives a default hostname under the CapRover root domain, such a
 - For an independent domain owned by the app, follow [Custom Domains](index.md#source-domains-custom-domains).
 - A non-web app does not use these NGINX routes; it may use an internal service name or an explicitly published TCP/UDP port.
 
-## Custom Domains {source-domains-custom-domains}
+<span id="source-domains-custom-domains"></span>
+
+## Custom Domains
 
 - You can attach an additional hostname, such as `www.example.com`, to a CapRover web app.
 - First create a DNS record that points the hostname to the CapRover server and verify resolution.
@@ -45,7 +51,9 @@ Every web app receives a default hostname under the CapRover root domain, such a
 - If a domain should redirect to another hostname, configure the app's redirect-domain setting deliberately and test both source and destination.
 - Keep DNS pointed to CapRover for any source hostname that needs CapRover to issue or renew its certificate.
 
-## HTTPS {source-domains-https}
+<span id="source-domains-https"></span>
+
+## HTTPS
 
 CapRover uses Certbot for dashboard and app certificates.
 
@@ -73,7 +81,9 @@ CapRover uses Certbot for dashboard and app certificates.
 - Wildcard DNS covers subdomains; certificates are issued for the appropriate hostnames.
 - Behind another reverse proxy, forward ACME validation requests to CapRover or configure an alternative challenge. See [Advanced Certbot / ACME](advanced-certbot.md).
 
-## Certificate Renewal {source-domains-certificate-renewal}
+<span id="source-domains-certificate-renewal"></span>
+
+## Certificate Renewal
 
 - CapRover manages Certbot and certificate renewal for domains whose HTTPS it controls.
 - Leave the hostname's DNS pointing to the correct server and keep the HTTP challenge path reachable on public port 80.

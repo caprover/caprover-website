@@ -202,7 +202,9 @@ curl https://demo-web.apps.example.com/upload
 - This tutorial keeps both stateful apps on a single node; [local volumes do not move with a Swarm task](../data-persistence/index.md#source-data-persistence-volumes).
 - A production app also needs authentication, an upload policy, job claiming for multiple workers, and a deployment and database migration strategy.
 
-## Sample Applications {source-guides-sample-apps}
+<span id="source-guides-sample-apps"></span>
+
+## Sample Applications
 
 The [CapRover sample applications](https://github.com/caprover/caprover/tree/master/captain-sample-apps) demonstrate Dockerfiles and Captain Definitions for several frameworks.
 
@@ -213,7 +215,9 @@ The [CapRover sample applications](https://github.com/caprover/caprover/tree/mas
 
 Treat sample credentials and sample data as examples only. Before production use, set real secrets, add persistence where needed, and plan [backups](../server/backup/index.md).
 
-## Additional Recipes {source-guides-recipes}
+<span id="source-guides-recipes"></span>
+
+## Additional Recipes
 
 Use these focused recipes for common follow-up tasks:
 

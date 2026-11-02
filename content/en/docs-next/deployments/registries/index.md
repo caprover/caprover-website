@@ -4,7 +4,9 @@ title: Container Registries
 slug: /deployments/registries
 ---
 
-## Private Registries {source-deployments-registries-private}
+<span id="source-deployments-registries-private"></span>
+
+## Private Registries
 
 - CapRover needs registry credentials when a Docker image is private.
 - In the dashboard's **Cluster / Registries** area, add a remote registry with its domain, username, password or read token, and optional image prefix.
@@ -19,7 +21,9 @@ slug: /deployments/registries
 - Pushing an image from CI does not automatically authenticate CapRover to pull it.
 - If you only need to pull prebuilt images, do not select this registry as the default push registry for CapRover-built images.
 
-## Default Push Registry {source-deployments-registries-default-push}
+<span id="source-deployments-registries-default-push"></span>
+
+## Default Push Registry
 
 - The **default push registry** stores images CapRover builds so other Swarm nodes can pull them.
 - Choose a reachable registry in the dashboard's Cluster / Registries settings and configure its credentials.
@@ -31,7 +35,9 @@ slug: /deployments/registries
 
 Use a [self-hosted registry](index.md#source-deployments-registries-self-hosted) or an appropriate remote registry. Pull-only credentials for prebuilt images are a separate need and do not require default push.
 
-## Self-Hosted Registry {source-deployments-registries-self-hosted}
+<span id="source-deployments-registries-self-hosted"></span>
+
+## Self-Hosted Registry
 
 - CapRover can manage a Docker registry for its own cluster.
 - Configure it in the dashboard's Cluster / Registries area, then select it as the default push registry when you plan to add nodes.

@@ -11,7 +11,9 @@ slug: /server/netdata
 
 Check application logs and [Diagnostics](../troubleshooting/diagnostics.md#source-server-diagnostics) alongside host metrics. Monitoring does not provide a backup or guarantee that apps remain healthy; configure separate alerts and [backups](backup/index.md) for production.
 
-## HTTP Analytics with GoAccess {source-server-goaccess}
+<span id="source-server-goaccess"></span>
+
+## HTTP Analytics with GoAccess
 
 - GoAccess produces per-app HTTP traffic reports from NGINX access logs.
 - Enable it in the dashboard's monitoring/analytics settings, then open the reports for an app and domain.

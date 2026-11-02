@@ -14,7 +14,9 @@ slug: /deployments/other/docker-compose
 
 Named volumes are managed through the generated CapRover apps. A port mapping needs a `HOST:CONTAINER` form. For stacks that require unsupported Compose behavior, run Compose separately and explicitly connect the service to CapRover's external `captain-overlay-network` only when needed. Services managed outside CapRover remain outside its app lifecycle and backup behavior. See the [support matrix](docker-compose.md#source-reference-docker-compose).
 
-## Docker Compose Support Matrix {source-reference-docker-compose}
+<span id="source-reference-docker-compose"></span>
+
+## Docker Compose Support Matrix
 
 CapRover's One-Click format accepts a **subset** of Docker Compose service settings; it is not a general `docker compose up` replacement. The [model](https://github.com/caprover/caprover/blob/master/src/models/IOneClickAppModels.ts) declares:
 

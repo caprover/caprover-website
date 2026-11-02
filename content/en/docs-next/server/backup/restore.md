@@ -41,7 +41,9 @@ slug: /server/backup/restore
 
 Keep the original server and backups until verification succeeds.
 
-## Multi-Node Restore {source-server-backup-multi-node-restore}
+<span id="source-server-backup-multi-node-restore"></span>
+
+## Multi-Node Restore
 
 Prepare the new manager and each replacement worker with Docker, network access, and a plan for the old nodes' persistent data. Follow [Restore a Server](restore.md) on the new manager.
 
@@ -57,7 +59,9 @@ Prepare the new manager and each replacement worker with Docker, network access,
 - Restore each node's volumes and bind mounts separately, verify registry access and redeploy unavailable images, then inspect placement and services.
 - Never point production DNS at the new cluster until validation is complete.
 
-## Move CapRover to Another Server {source-server-move-server}
+<span id="source-server-move-server"></span>
+
+## Move CapRover to Another Server
 
 - Use [Create a Backup](index.md#source-server-backup-create) on the source and back up every application's volumes, databases, and uploaded files separately.
 - Record the root domain, DNS records, registry location, custom ports, and each app's node placement.

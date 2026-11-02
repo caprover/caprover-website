@@ -27,7 +27,9 @@ slug: /domains/firewall
 
 The [Network and Firewall Ports reference](../reference/ports.md) records the port roles and their scope. Check Docker's [packet-filtering documentation](https://docs.docker.com/engine/network/packet-filtering-firewalls/) before relying on UFW to restrict a Docker-published port.
 
-## Public TCP / UDP Services {source-domains-public-services}
+<span id="source-domains-public-services"></span>
+
+## Public TCP / UDP Services
 
 - CapRover's NGINX routes HTTP and HTTPS by hostname.
 - Other protocols need an app port mapping in **App Config**: choose a host port, a container port, and `tcp` or `udp`.
@@ -41,7 +43,9 @@ The [Network and Firewall Ports reference](../reference/ports.md) records the po
 - Restrict the host port to the intended clients and use application-level authentication and encryption as needed.
 - For a database example, follow [Connect to Databases Externally](../data-persistence/deploy-databases.md#source-data-persistence-external-databases).
 
-## Internal App-to-App Networking {source-domains-internal-networking}
+<span id="source-domains-internal-networking"></span>
+
+## Internal App-to-App Networking
 
 - CapRover apps on its Docker overlay network can reach one another by service name and the destination's container port.
 - For a new app named `database`, a web app can connect to `database:5432` for PostgreSQL without a public port mapping.
@@ -52,7 +56,9 @@ The [Network and Firewall Ports reference](../reference/ports.md) records the po
 
 This internal path is preferable for routine app-to-database traffic. Publishing a port is only necessary for an external client. See [Connect to Databases Internally](../data-persistence/deploy-databases.md#source-data-persistence-internal-databases).
 
-## Public TCP / UDP Ports {source-applications-public-ports}
+<span id="source-applications-public-ports"></span>
+
+## Public TCP / UDP Ports
 
 Use an app port mapping when clients outside CapRover's Docker network need direct TCP or UDP access to a container. Internal app-to-app communication does not require a public mapping.
 
