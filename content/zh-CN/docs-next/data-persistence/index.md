@@ -1,26 +1,26 @@
 ---
 id: index
-title: 持久化储存
+title: 持久化存储
 slug: /data-persistence
 ---
 
 <span id="source-data-persistence-stateless-persistent"></span>
 
-## 何时使用持久化
+## 何时需要持久化
 
-- 使用 **Has Persistent Data** 用于存储本地上传的数据库和应用程序。
-- 只有已配置的挂载路径在容器替换中幸存 。 仅使用持久应用的旗帜并不能保存任意的容器文件.
-- 无状态的Web 应用可以使用外部数据库或对象存储.
+- 数据库和需要保存本地上传文件的应用，应启用 **Has Persistent Data**。
+- 只有显式配置了挂载的路径，才能在容器替换后保留数据。单纯启用持久化开关并不会保存容器内所有文件。
+- 无状态 Web 应用可以使用外部数据库或对象存储。
 
 <span id="source-data-persistence-volumes"></span>
 
-## Docker 卷
+## Docker 数据卷
 
-- 设定 **音量名称** 和应用程序的容器路径 。
-- PostgreSQL 常用软件 `/var/lib/postgresql/data`; 验证您镜像的路径。
-- 当前 CapRover 版本使用您输入的音量名称 。 旧卷(1.15以前) `captain--` 前缀; 检查为 `docker volume ls`.
+- 设置**数据卷名称**以及应用在容器内写入数据的路径。
+- PostgreSQL 常用 `/var/lib/postgresql/data`；具体路径请根据镜像文档确认。
+- 当前 CapRover 使用用户指定的数据卷名称。1.15 之前创建的旧卷可能带有 `captain--` 前缀，可通过 `docker volume ls` 检查。
 
-要检查应用程序删除后的孤卷 :
+删除应用后，如果需要排查遗留数据卷：
 
 ```bash
 docker volume ls
@@ -28,36 +28,36 @@ docker volume inspect VOLUME_NAME
 docker ps -a --filter volume=VOLUME_NAME
 ```
 
-只有在确认所有权、不使用和备份后,才删除 `docker volume rm VOLUME_NAME`。避免宽泛 `docker volume prune` 在共享主机上。
+确认数据卷的归属、已不再被使用并且存在备份后，才能执行 `docker volume rm VOLUME_NAME`。不要在共享服务器上随意运行 `docker volume prune`。
 
 <span id="source-data-persistence-bind-mounts"></span>
 
-## bind mount
+## Bind mount
 
-- 将一个绝对主机目录映射到容器路径, 例如 `/srv/app/uploads` → `/app/uploads`.
-- 为容器用户创建主机路径并设置权限 。
-- 避免将敏感的主机目录暴露于不信任的容器.
+- 将宿主机绝对路径映射到容器路径，例如 `/srv/app/uploads` → `/app/uploads`。
+- 先创建宿主机目录，并为容器内运行的用户配置正确的文件权限。
+- 不要将宿主机敏感目录挂载到不可信容器中。
 
 <span id="source-applications-persistent-directories"></span>
 
 ## 持久化目录
 
-- 在应用程序中配置挂载路径 **持久化目录** 设置。
-- 校验运行中的应用程序写入 **容器路径** 你骑。
-- 从 CapRover 配置备份中单独备份挂载的数据 。
+- 在应用的 **Persistent Directories** 设置中配置挂载路径。
+- 确认运行中的应用确实写入已挂载的**容器路径**。
+- 挂载数据需要单独备份，CapRover 配置备份不包含这些数据。
 
 <span id="source-data-persistence-node-placement"></span>
 
-## 节点位置
+## 节点调度
 
-- 命名的卷和绑定山通常 **节点本地**.
-- CapRover在节点上标注了持续的应用 保存着数据 不同节点上的相同目录名称并不意味着共享内容.
-- 当移动一个持久化的应用程序时:停止写入,备份,迁移数据,验证权限,更改位置,然后验证恢复的数据.
+- 命名卷和 bind mount 通常属于**单个节点的本地存储**。
+- CapRover 会将持久化应用固定到存储所在节点。不同节点上相同的目录名不代表内容会自动同步。
+- 迁移持久化应用时，应停止写入、备份并迁移数据、确认权限、修改节点调度，然后验证恢复后的数据。
 
 <span id="source-guides-persistent-storage"></span>
 
-## 存储测试
+## 持久化验证
 
-将一个代表性文件写入挂载路径, 重新部署应用程序, 并验证它是否还剩 。 对于数据库,使用了解数据库的导出/备份。
+在挂载目录中写入测试文件，重新部署应用后检查文件是否还在。数据库则应使用数据库专用的导出或备份机制。
 
-关于跨节点共享存储,参见 [共享存储](shared-storage.md)。关于备份和迁移,参见 [备份持久数据](backup-data.md).
+跨节点共享存储参阅[共享存储](shared-storage.md)，备份和迁移参阅[持久化数据备份](backup-data.md)。

@@ -1,37 +1,37 @@
 ---
 id: server-environment
-title: Variables de entorno
+title: Variables de entorno del servidor
 slug: /reference/server-environment
 ---
 
-El [analizador de variables de entorno](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts) reconoce estas entradas de nivel servidor:
+El [parser de variables de entorno](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts) reconoce estos parámetros del servidor:
 
 | Nombre | Efecto |
 | --- | --- |
-| `ACCEPTED_TERMS` | Aceptar los términos de instalación en el lanzamiento inicial. |
-| `DEFAULT_PASSWORD` | Establecer la contraseña inicial del dashboard; reemplazarla después de la configuración. |
-| `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, `CAPTAIN_HOST_ADMIN_PORT` | Puertos del host publicados; por defecto son 80, 443, y 3000. Coincide con el lado host del Docker `-p` cartografías. |
-| `MAIN_NODE_IP_ADDRESS` | Suministrar la dirección de gestión para la instalación cuando la detección automática no es adecuada. |
-| `CAPTAIN_BASE_DIRECTORY` | Superar el predeterminado `/captain` directorio base. |
-| `CAPROVER_DISABLE_ANALYTICS`, `DO_NOT_TRACK` | Desactivar la analítica cuando se establece. |
-| `CAPTAIN_DOCKER_API` | Override Docker API detalles de conexión. |
-| `CAPTAIN_IS_DEBUG`, `IS_CAPTAIN_INSTANCE`, `DEMO_MODE_ADMIN_IP`, `FORCE_ENABLE_PRO`, `BY_PASS_PROXY_CHECK` | Controles internos, de desarrollo o de uso especial; use sólo después de leer su uso de fuentes. |
+| `ACCEPTED_TERMS` | Acepta los términos al iniciar la instalación. |
+| `DEFAULT_PASSWORD` | Configura la contraseña inicial del dashboard; cámbiala después. |
+| `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, `CAPTAIN_HOST_ADMIN_PORT` | Puertos publicados del host: por defecto 80, 443 y 3000. Deben coincidir con el lado host de los mapeos Docker `-p`. |
+| `MAIN_NODE_IP_ADDRESS` | Especifica la dirección del manager cuando la detección automática no es adecuada. |
+| `CAPTAIN_BASE_DIRECTORY` | Cambia el directorio base predeterminado `/captain`. |
+| `CAPROVER_DISABLE_ANALYTICS`, `DO_NOT_TRACK` | Desactiva la analítica cuando se establecen. |
+| `CAPTAIN_DOCKER_API` | Modifica los detalles de conexión con la API Docker. |
+| `CAPTAIN_IS_DEBUG`, `IS_CAPTAIN_INSTANCE`, `DEMO_MODE_ADMIN_IP`, `FORCE_ENABLE_PRO`, `BY_PASS_PROXY_CHECK` | Opciones internas, de desarrollo o para escenarios especiales: revisa su uso en el código antes de configurarlas. |
 
-- El parser trata varias banderas booleanas como verdadera cuando la variable es una **cadena no vacía**; pasando la cadena literal `false` no necesariamente los apaga.
-- Suministro de variables de instalación al comando inicial del contenedor, y uso [config overrides](server-environment.md) para constantes de servidor configurables.
+- Para varias flags booleanas, el parser interpreta como true cualquier **cadena de texto no vacía**. Pasar la cadena literal `false` no siempre las desactiva.
+- Proporciona las variables de instalación en el comando inicial del contenedor. Para las constantes configurables, utiliza [overrides de configuración](server-environment.md).
 
 <span id="source-reference-config-override"></span>
 
 ## config-override.json
 
-CapRover lee que el usuario anula desde `/captain/data/config-override.json`Sólo las llaves bajo `configs` dentro [CaptainConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) están destinados a este archivo. Ejemplo:
+CapRover carga las configuraciones personalizadas desde `/captain/data/config-override.json`. Solo las claves de `configs` definidas en [CaptainConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) están previstas para este archivo. Por ejemplo:
 
 ```json
 {"defaultMaxLogSize": "256m"}
 ```
 
-- Retroceda el archivo antes de cambiarlo, utilice JSON válido, y reinicie el servicio CapRover para que los ajustes de arranque surtan efecto.
-- Las anulaciones incorrectas pueden prevenir la puesta en marcha o debilitar la verificación de dominio.
-- Revise los defectos de fuente reales y la versión de su instalación antes de cambiar los valores; `skipVerifyingDomains` es para configuraciones excepcionales controladas en lugar de la instalación pública rutinaria.
+- Haz un backup antes de editar el archivo, utiliza JSON válido y reinicia el servicio de CapRover para aplicar los ajustes que se cargan al arrancar.
+- Un override incorrecto puede impedir el arranque o reducir la seguridad de la validación de dominios.
+- Comprueba los valores del código fuente correspondiente a tu versión antes de cambiarlos. `skipVerifyingDomains` es para instalaciones excepcionales y controladas, no para instalaciones públicas habituales.
 
-Este archivo está bajo `/captain/data`, por lo que se incluye en [Copia de seguridad](../server/backup/index.md).
+Como el archivo está bajo `/captain/data`, se incluye en el [backup de CapRover](../server/backup/index.md).

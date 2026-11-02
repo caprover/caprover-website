@@ -1,36 +1,36 @@
 ---
 id: static-react
-title: Desplegar una aplicación estática / React
+title: Desplegar una aplicación estática o React
 slug: /guides/static-react
 ---
 
-- Construya su React u otro sitio estático localmente y sirva los archivos compilados de una pequeña imagen NGINX.
-- Esto mantiene dependencias de tiempo de build fuera del host CapRover.
-- El ejemplo utiliza un estilo Vite `dist` directorio; reemplazarlo por `build` si eso es lo que produce su proyecto.
+- Compila tu aplicación React u otro sitio estático localmente y sirve los archivos resultantes desde una imagen NGINX ligera.
+- Así evitas instalar las dependencias de build en el host CapRover.
+- Este ejemplo usa el directorio `dist` habitual de Vite; sustitúyelo por `build` si es el directorio de salida de tu proyecto.
 
-1. Corre `npm ci && npm run build` en su proyecto. Mira eso. `dist/index.html` existe.
-2. Crear un `Dockerfile` en la raíz del proyecto:
+1. Ejecuta `npm ci && npm run build` en el proyecto. Comprueba que existe `dist/index.html`.
+2. Crea un `Dockerfile` en la raíz:
 
    ```dockerfile
    FROM nginx:stable-alpine
    COPY dist/ /usr/share/nginx/html/
    ```
 
-3. Crear un archivo llamado `captain-definition` junto con él que contiene `{"schemaVersion":2,"dockerfilePath":"./Dockerfile"}`.
-4. Paquete el Dockerfile, definición, y **Producción construida** de la raíz del proyecto, luego desplegar el archivo:
+3. Crea un archivo `captain-definition` en el mismo directorio con `{"schemaVersion":2,"dockerfilePath":"./Dockerfile"}`.
+4. Empaqueta el Dockerfile, la definición y los **archivos compilados** y despliega el tar:
 
    ```bash
    tar -cf deploy.tar captain-definition Dockerfile dist
    caprover deploy --tarFile ./deploy.tar
    ```
 
-   Crear la aplicación web CapRover primero, y seleccionarla cuando el CLI le indique. Puedes subir `deploy.tar` de su **Despliegue** tab. Establecer el puerto HTTP contenedor `80`.
-5. Visite la dirección HTTP de la aplicación, a continuación, active HTTPS y verifique el dominio público. Recompilar y reempaquetar la salida para cada nuevo despliegue.
+   Antes debes crear la aplicación web en CapRover y seleccionarla cuando lo pida la CLI. También puedes subir `deploy.tar` desde la pestaña **Deployment**. Configura el puerto HTTP del contenedor en `80`.
+5. Abre la dirección HTTP de la aplicación, activa HTTPS y comprueba el dominio público. En cada nuevo despliegue debes volver a compilar y empaquetar.
 
-- El CLI ordinario Usos de despliegue de Git `git archive` omite archivos no comprometidos o ignorados por Git.
-- Puesto que la salida compilada se ignora comúnmente, utilice el flujo de trabajo de tarta por encima en lugar de `caprover deploy` sin `--tarFile`.
+- El despliegue Git de la CLI utiliza `git archive` y excluye archivos sin commit o ignorados por Git.
+- Como los archivos compilados suelen ignorarse, elige el método tar anterior; ejecutar directamente `caprover deploy` sin `--tarFile` podría omitirlos.
 
-Para rutas cliente-side tales como `/settings`, poner lo siguiente en `nginx.conf` en la raíz del proyecto para que un navegador refresca la aplicación:
+Para soportar rutas del frontend como `/settings`, añade el siguiente archivo `nginx.conf` en la raíz del proyecto, para que el navegador cargue la aplicación al refrescar:
 
 ```nginx
 server {
@@ -41,4 +41,4 @@ server {
 }
 ```
 
-Añadir `COPY nginx.conf /etc/nginx/conf.d/default.conf` al Dockerfile, luego incluir `nginx.conf` en el `tar -cf` comando arriba. Reconstruir y redistribuir. No ponga secretos privados en variables de tiempo de build: compilado JavaScript es público. Si la aplicación tiene una API, implementarla por separado y apuntar el frontend a su URL HTTPS.
+Añade `COPY nginx.conf /etc/nginx/conf.d/default.conf` al Dockerfile e incluye `nginx.conf` en el comando `tar -cf` anterior. Vuelve a compilar y desplegar. No pongas secretos en variables de build: el JavaScript compilado es público. Si tu aplicación utiliza una API, despliega el backend por separado y configura su URL HTTPS en el frontend.
