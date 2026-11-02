@@ -4,18 +4,18 @@ title: Network and Firewall Ports
 slug: /reference/ports
 ---
 
-The [default installation](../get-started.md) publishes TCP ports 80, 443, and 3000. CapRover's NGINX service also publishes UDP port 443, although its default NGINX configuration does not enable QUIC/HTTP/3. The registry and SSH ports below apply when their corresponding feature or host service is enabled:
-
-| Port | Protocol | Use |
+| Port | Protocol | Purpose |
 | --- | --- | --- |
-| 80 | TCP | HTTP and certificate challenges. |
-| 443 | TCP | HTTPS. |
-| 443 | UDP | Published by NGINX, but unused for HTTP/3 in the stock templates. Requires a compatible custom QUIC configuration. |
-| 3000 | TCP | Initial admin dashboard; restrict public access after dashboard HTTPS is working. |
-| 996 | TCP | Self hosted registry when enabled; allow intended registry clients and cluster nodes. |
-| 22 | TCP | Host SSH administration and CapRover's SSH access to added nodes; your host may use a different SSH port. |
+| 80 | TCP | HTTP and certificate validation |
+| 443 | TCP | HTTPS |
+| 3000 | TCP | Initial dashboard setup |
+| 996 | TCP | Self-hosted registry, if enabled |
+| 22 | TCP | SSH, or your configured SSH port |
+| 2377 | TCP | Swarm management |
+| 7946 | TCP/UDP | Swarm node communication |
+| 4789 | UDP | Swarm overlay traffic |
 
-- For a multi-node Docker Swarm, nodes also need trusted private connectivity for Swarm management (`2377/tcp`), node discovery (`7946/tcp,udp`), overlay traffic (`4789/udp`), and SSH (`22/tcp` or your configured port) from the manager to added nodes.
-- Restrict these to cluster nodes and check [cluster networking](../scaling/multi-node.md) for provider firewall considerations.
-- Expose additional app ports only when the application requires them.
-- `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, and `CAPTAIN_HOST_ADMIN_PORT` alter the published host mappings; see [Server Environment](server-environment.md).
+- Only SSH, 80, 443, and 3000 are relevant to initial single-node setup.
+- Restrict Swarm ports to trusted cluster nodes and 3000 after dashboard HTTPS setup.
+- App-specific published TCP/UDP ports require their own access rules.
+- Custom host ports: `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, and `CAPTAIN_HOST_ADMIN_PORT`. See [Server Environment](server-environment.md).
