@@ -1,21 +1,21 @@
 ---
 id: get-started
-title: Comienzo
+title: Primeros pasos
 slug: /get-started
 ---
 
-Instala CapRover en un nuevo servidor Ubuntu 24.04.
+Instala CapRover en un servidor nuevo con Ubuntu 24.04.
 
-## Necesidades
+## Requisitos
 
-- Servidor AMD64 o ARM64, IPv4, sudo/root.
-- Al menos 1 GiB RAM y 5 GiB espacio libre de disco.
-- Un dominio con acceso DNS comodín.
-- Puertos TCP entrantes públicos **80**, **443**, y **3000** permitido por su proveedor de alojamiento.
+- Servidor AMD64 o ARM64 con IPv4 pública y acceso de administrador (sudo/root).
+- Al menos 1 GiB de RAM y 5 GiB de espacio libre en disco.
+- Un dominio en el que puedas configurar registros DNS comodín.
+- Los puertos TCP **80**, **443** y **3000** deben permitir conexiones entrantes desde Internet en el firewall de tu proveedor.
 
 ## Instalar CapRover
 
-En el servidor:
+Ejecuta estos comandos en el servidor:
 
 ```bash
 sudo apt update && sudo apt install -y curl
@@ -25,49 +25,49 @@ sudo bash caprover-install.sh --check
 sudo bash caprover-install.sh
 ```
 
-- [Fuente de instalación y opciones](https://github.com/caprover/caprover/tree/master/scripts/user/installer). Revisar el script descargado antes de ejecutarlo como root.
-- `--check`: sólo lectura de controles para OS, RAM, disco, Docker, Swarm, puertos y conflictos de cortafuegos. Resolver problemas de bloqueo antes de instalar.
-- El instalador instala Docker Engine cuando está ausente y preserva las cargas de trabajo existentes de Docker.
-- En un firewall UFW activo, permite TCP 80/443/3000. Deja inactivo UFW y firewalls de proveedor de alojamiento sin cambios.
-- Después de la instalación, comprueba la posibilidad de llegar a los puertos externos e informa advertencias. DNS, configuración de dashboard y HTTPS permanecen manuales.
+- [Código fuente y opciones del instalador](https://github.com/caprover/caprover/tree/master/scripts/user/installer). Revisa el script descargado antes de ejecutarlo como root.
+- `--check`: realiza comprobaciones de solo lectura del sistema operativo, RAM, disco, Docker, Swarm, puertos y posibles conflictos del firewall. Resuelve los errores detectados antes de instalar.
+- El instalador configura Docker Engine si aún no está instalado y conserva las cargas de trabajo existentes de Docker.
+- Si UFW está activo, permite el tráfico TCP por los puertos 80, 443 y 3000. No activa UFW ni modifica el firewall del proveedor de alojamiento.
+- Al terminar, comprueba la accesibilidad externa de los puertos e informa de posibles problemas. La configuración de DNS, el panel de administración y HTTPS se realiza por separado.
 
-**Otros métodos:** [Configuración manual](installation/manual.md) (Docker y CapRover comandos), [Mercado DigitalOcean](installation/index.md)o [Instalación avanzada](installation/advanced/index.md) para redes privadas, Swarms existentes y puertos personalizados.
+**Otras opciones:** [Instalación manual](installation/manual.md) (comandos de Docker y CapRover), [DigitalOcean Marketplace](installation/index.md) o [Instalación avanzada](installation/advanced/index.md) para redes privadas, clústeres Swarm existentes o puertos personalizados.
 
 ## DNS
 
-Cree un registro en su proveedor de DNS:
+Crea este registro A con tu proveedor DNS:
 
-| Tipo | Nombre (in `example.com`) | Valor |
+| Tipo | Nombre (en `example.com`) | Valor |
 | --- | --- | --- |
-| A | `*.apps` | Dirección IPv4 pública de su servidor |
+| A | `*.apps` | Dirección IPv4 pública del servidor |
 
-Esta guía utiliza `apps.example.com` como el dominio raíz CapRover. Las cubiertas del comodín `captain.apps.example.com` y dominios de aplicaciones tales como `my-first-app.apps.example.com`.
+En esta guía, el dominio raíz de CapRover es `apps.example.com`. El registro comodín cubre `captain.apps.example.com` y los dominios de las aplicaciones, como `my-first-app.apps.example.com`.
 
-Verificar DNS:
+Comprueba que DNS responde correctamente:
 
 ```bash
 dig +short captain.apps.example.com
 dig +short test.apps.example.com
 ```
 
-Ambos deben devolver la IP de su servidor. Si utiliza un proxy DNS como Cloudflare, cambie a **DNS only** durante la configuración. El nombre de host raíz `apps.example.com` necesita un registro separado sólo si planea utilizarlo directamente.
+Ambos comandos deben devolver la IP del servidor. Si utilizas un proxy DNS como Cloudflare, selecciona **DNS only** durante la instalación. Solo necesitas un registro independiente para `apps.example.com` si piensas utilizar directamente ese nombre.
 
-## Configure CapRover
+## Configurar CapRover
 
-Abierto `http://YOUR_SERVER_IP:3000`. **Contraseña inicial:** `captain42`.
+Abre `http://YOUR_SERVER_IP:3000`. **Contraseña inicial:** `captain42`.
 
-- Cambiar la contraseña y establecer el dominio raíz `apps.example.com` (sin `*.` o `captain.`).
-- Dashboard hostname: `captain.apps.example.com`HTTPS y HTTPS de la Fuerza una vez que el DNS y el trabajo de expedición de certificados.
-- Restrict public access to `3000/tcp` después de que el panel HTTPS funcione.
+- Cambia la contraseña y establece `apps.example.com` como dominio raíz (sin `*.` ni `captain.`).
+- El nombre del panel será `captain.apps.example.com`. Activa HTTPS y **Force HTTPS** cuando DNS funcione y puedas emitir el certificado.
+- Una vez que el panel funcione por HTTPS, restringe el acceso público al puerto `3000/tcp`.
 
-Para fallos de certificado, consulte DNS e inbound TCP 80/443. See [Dominios &quot; HTTPS](domains/index.md).
+Si falla la emisión del certificado, comprueba DNS y el acceso entrante por TCP 80/443. Consulta [Dominios y HTTPS](domains/index.md).
 
-**CLI alternative:** Instalar el CLI con `npm install -g caprover` y correr `caprover serversetup` de tu computadora. See [Comandos CLI](reference/cli.md).
+**Alternativa con CLI:** Instala la herramienta con `npm install -g caprover` y ejecuta `caprover serversetup` desde tu equipo. Consulta [Comandos CLI](reference/cli.md).
 
-## Despliegue su primera aplicación
+## Desplegar la primera aplicación
 
-1. Abierto **Aplicaciones** y crear `my-first-app` como una aplicación web.
-2. Under **Despliegue**, pega esta definición del capitán y desplegar:
+1. Abre **Apps** y crea una aplicación web llamada `my-first-app`.
+2. En **Deployment**, pega esta definición de Captain y despliega la aplicación:
 
    ```json
    {
@@ -76,15 +76,15 @@ Para fallos de certificado, consulte DNS e inbound TCP 80/443. See [Dominios &qu
    }
    ```
 
-3. Set **Container HTTP Port** a `80`.
-4. Abierto `http://my-first-app.apps.example.com`Deberías ver la página de bienvenida NGINX.
-5. Configura HTTPS para la aplicación en su configuración HTTP cuando DNS y puerto 80 son accesibles.
+3. Establece **Container HTTP Port** en `80`.
+4. Abre `http://my-first-app.apps.example.com`. Deberías ver la página de bienvenida de NGINX.
+5. Configura HTTPS para la aplicación en sus ajustes HTTP cuando DNS y el puerto 80 sean accesibles.
 
-**Siguiente:** [Implemente su propio código](deployments/index.md) · [Configurar aplicaciones](applications/index.md) · [Datos persistentes](data-persistence/index.md)
+**Siguiente paso:** [Desplegar tu código](deployments/index.md) · [Configurar aplicaciones](applications/index.md) · [Datos persistentes](data-persistence/index.md)
 
-## Bajo memoria construye (opcional)
+## Compilaciones con poca memoria (opcional)
 
-Si un edificio se queda sin memoria, compruebe `free -h` y `swapon --show`. Si usted tiene espacio de disco libre y `/swapfile` no existe ya:
+Si una compilación se queda sin memoria, comprueba `free -h` y `swapon --show`. Si tienes espacio libre en disco y aún no existe `/swapfile`:
 
 ```bash
 sudo fallocate -l 2G /swapfile
@@ -93,16 +93,16 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
 
-Para mantener el intercambio después del reinicio, añadir `/swapfile none swap sw 0 0` **una vez** a `/etc/fstab`Para construcciones frecuentes, use más RAM o construya en CI.
+Para conservar la memoria de intercambio después de reiniciar, añade `/swapfile none swap sw 0 0` **una sola vez** a `/etc/fstab`. Si compilas con frecuencia, amplía la RAM o realiza las compilaciones en CI.
 
 <span id="source-index"></span>
 
-## Comienzo
+## Índice
 
-Encuentra lo que necesitas:
+Encuentra la documentación que necesitas:
 
-- **Nueva instalación:** [Comienzo](get-started.md)
+- **Nueva instalación:** [Primeros pasos](get-started.md)
 - **Aplicaciones y ajustes:** [Aplicaciones](applications/index.md)
-- **Deployments:** [Despliegue](deployments/index.md)
+- **Despliegues:** [Despliegues](deployments/index.md)
 - **Mantenimiento del servidor:** [Administración del servidor](server/index.md)
 - **Problemas:** [Solución de problemas](troubleshooting/index.md)
