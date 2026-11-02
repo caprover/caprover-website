@@ -14,7 +14,7 @@ slug: /reference/captain-definition
 | `dockerfileLines` | 字符串 [] | 内线多克文件的行数 。 |
 | `templateId` | 字符串 | 使用内置的Dockerfile模板. |
 
-提供 **一个** 四个选择者中。 这个 [解析器](https://github.com/caprover/caprover/blob/master/src/user/ImageMaker.ts) 拒绝0或多个选择器。
+提供 **一个** 四个选择者中。 这个 [解析器](https://github.com/caprover/caprover/blob/master/src/user/ImageMaker.ts) 不允许缺少选择器或指定多个选择器。
 
 ```json
 {"schemaVersion": 2, "imageName": "nginx:stable-alpine"}
