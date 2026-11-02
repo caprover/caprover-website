@@ -1,14 +1,14 @@
 ---
 id: manual
-title: Configuración manual
+title: Instalación manual
 slug: /installation/manual
 ---
 
-Utilice este camino para instalar Docker y bootstrap CapRover usted mismo en un servidor Ubuntu 24.04 fresco.
+Utiliza esta guía si prefieres instalar Docker e iniciar CapRover manualmente en un servidor nuevo con Ubuntu 24.04. Para instalaciones habituales, consulta el [instalador automático](../get-started.md).
 
-## 1. Puertos y cortafuegos
+## 1. Puertos y firewall
 
-Permitir los siguientes puertos en el firewall de su proveedor de alojamiento y, si utiliza UFW, en el servidor:
+Abre estos puertos en el firewall de tu proveedor de alojamiento. Si usas UFW en el servidor, ejecuta:
 
 ```bash
 sudo ufw allow OpenSSH
@@ -18,11 +18,11 @@ sudo ufw allow 3000/tcp   # Dashboard setup
 sudo ufw status
 ```
 
-Si UFW es inactivo, lo habilita con `sudo ufw enable` **después** permitiendo SSH. Puede restringir el puerto 3000 una vez que el panel funciona sobre HTTPS. Consulta [Firewall](domains/firewall.md) para puertos multinodos.
+Si UFW está desactivado, puedes habilitarlo con `sudo ufw enable` **después de permitir el acceso SSH**. Cuando el dashboard funcione mediante HTTPS, restringe el acceso público al puerto 3000. Consulta [Firewall](domains/firewall.md) para conocer los puertos necesarios en clústeres multinodo.
 
 ## 2. Instalar Docker
 
-Corre en el servidor:
+Ejecuta estos comandos en el servidor:
 
 ```bash
 sudo apt update
@@ -46,7 +46,7 @@ sudo docker version
 sudo docker run --rm hello-world
 ```
 
-Si la instalación falla debido a los paquetes existentes, siga [Guía Ubuntu de Docker](https://docs.docker.com/engine/install/ubuntu/)Use Docker Engine en lugar del paquete de snap.
+Si la instalación falla por conflictos con paquetes existentes, consulta la [guía oficial de Docker para Ubuntu](https://docs.docker.com/engine/install/ubuntu/). Usa Docker Engine en lugar de la versión distribuida mediante snap.
 
 ## 3. Instalar CapRover
 
@@ -58,10 +58,10 @@ sudo docker run -p 80:80 -p 443:443 -p 3000:3000 \
   caprover/caprover
 ```
 
-Cuando la configuración termina, abre `http://YOUR_SERVER_IP:3000`.
+Cuando termine la inicialización, abre `http://YOUR_SERVER_IP:3000`.
 
 **Contraseña inicial:** `captain42`
 
-Si el dashboard es inalcanzable, compruebe `sudo docker service ls` y las reglas del cortafuegos del paso 1.
+Si el dashboard no responde, revisa `sudo docker service ls` y las reglas del firewall del paso 1.
 
-Continuar con [Configuración DNS y dashboard](../get-started.md#dns).
+Continúa con la [configuración de DNS y del dashboard](../get-started.md#dns).
