@@ -1,6 +1,6 @@
 ---
 id: index
-title: Container Registries
+title: Registros de imágenes Docker
 slug: /deployments/registries
 ---
 
