@@ -6,45 +6,45 @@ slug: /deployments/registries
 
 <span id="source-deployments-registries-private"></span>
 
-## Registros privados
+## Registries privados
 
-- CapRover necesita credenciales de registro cuando una imagen Docker es privada.
-- En el dashboard **Grupo / Registros** área, añadir un registro remoto con su dominio, nombre de usuario, contraseña o token de lectura, y prefijo de imagen opcional.
-- CapRover busca las credenciales correspondientes a el nombre de la imagen comenzando con `DOMAIN/PREFIX/` cuando se establece un prefijo, o `DOMAIN/` cuando está en blanco.
-- También utiliza el prefijo al etiquetar imágenes de CapRover para el registry de push predeterminado.
-- Verifique el nombre completo de imagen antes de confiar en esas credenciales.
+- CapRover necesita credenciales de registry para descargar imágenes Docker privadas.
+- En **Cluster / Registries** del dashboard, añade el registry remoto indicando dominio, usuario, contraseña o token de lectura y, si corresponde, un prefijo de imagen.
+- CapRover utiliza las credenciales de pull para nombres de imagen que empiezan por `DOMAIN/PREFIX/` si configuras un prefijo, o `DOMAIN/` si lo dejas vacío.
+- También utiliza ese prefijo al etiquetar imágenes que CapRover compila para el registry de push predeterminado.
+- Comprueba el nombre completo de la imagen antes de confiar en esas credenciales.
 
-- Para `ghcr.io/my-org/my-api:tag`, uso del dominio del registro `ghcr.io` y el camino del propietario o de la organización coincidente como el prefijo de la imagen, con una credenciales permitidas para leer ese paquete.
-- Para `registry.gitlab.com/my-group/my-project/image:tag`, utilice la ruta de registro GitLab y una credencial de lectura ampliada.
+- Para `ghcr.io/my-org/my-api:tag`, utiliza `ghcr.io` como dominio del registry y la ruta correspondiente a la organización o propietario como prefijo, con un token autorizado a leer el paquete.
+- Para `registry.gitlab.com/my-group/my-project/image:tag`, utiliza la ruta de registry de GitLab y credenciales de lectura con permisos mínimos.
 
-- Implementar una imagen usando su nombre completo calificado de registro y verificar que se puede extraer en cada nodo deseado.
-- Empujar una imagen de CI no autenticar automáticamente CapRover para tirarla.
-- Si sólo necesita extraer imágenes preconstruidas, no seleccione este registro como el registry de push predeterminado para las imágenes construidas con CapRover.
+- Despliega la imagen con su nombre completo de registry y verifica que pueda descargarse desde todos los nodos previstos.
+- Que CI haga push de una imagen no autentica automáticamente a CapRover para hacer pull.
+- Si solo necesitas descargar imágenes ya compiladas, no selecciones ese registry como predeterminado para hacer push de las imágenes que construye CapRover.
 
 <span id="source-deployments-registries-default-push"></span>
 
 ## Registry de push predeterminado
 
-- El **registry predeterminado** almacena imágenes CapRover construye para que otros nodos de Swarm puedan sacarlas.
-- Elija un registro accesible en la configuración de Cluster / Registries del dashboard y configure sus credenciales.
-- Un servidor de un solo nodo puede funcionar sin uno; CapRover requiere un registry de push predeterminado antes de añadir otro nodo a través de su flujo de trabajo de racimo.
+- El **default push registry** almacena las imágenes construidas por CapRover para que otros nodos de Swarm puedan descargarlas.
+- Selecciona un registry accesible en **Cluster / Registries** del dashboard y configura sus credenciales.
+- Un servidor de un único nodo puede funcionar sin él. CapRover requiere un default push registry antes de añadir nodos mediante su flujo de clúster.
 
-- Si se construyeron aplicaciones antes de configurar el registro, redespliegue esas aplicaciones para que sus imágenes sean empujadas y disponibles a nuevos nodos.
-- Verificar un nuevo despliegue empuja con éxito antes de añadir un worker.
-- Mantenga el registro disponible durante los lanzamientos y la recuperación; desactivar o eliminar las credenciales en un clúster puede evitar que los nodos descarguen imágenes de aplicaciones.
+- Si compilaste aplicaciones antes de configurar el registry, vuelve a desplegarlas para publicar las imágenes que utilizarán los nuevos nodos.
+- Comprueba que un despliegue nuevo hace push correctamente antes de añadir un worker.
+- Mantén el registry disponible durante despliegues y recuperación. Eliminar o desactivar las credenciales en un clúster puede impedir que sus nodos descarguen imágenes.
 
-Usar un [Registro autoanfitriono](index.md) o un registro remoto apropiado. Las credenciales sólo para las imágenes preconstruidas son una necesidad separada y no requieren presión predeterminada.
+Puedes utilizar un [registry autohospedado](index.md) o uno remoto. Las credenciales solo de pull para imágenes precompiladas son independientes y no requieren configurar default push.
 
 <span id="source-deployments-registries-self-hosted"></span>
 
 ## Registry autohospedado
 
-- CapRover puede gestionar un registro de Docker para su propio cluster.
-- Configure en el área de Cluster / Registries del dashboard, a continuación, seleccione como el registry de push predeterminado cuando planea agregar nodos.
-- Compruebe que cada nodo puede llegar al registro antes de desplegarse en todo el grupo.
+- CapRover puede administrar un Docker registry para su propio clúster.
+- Configúralo desde **Cluster / Registries** y selecciónalo como default push registry si vas a añadir nodos.
+- Comprueba que todos los nodos pueden acceder al registry antes de desplegar aplicaciones por el clúster.
 
-- El registry autohospedado de CapRover utiliza puerto `996/tcp` para el acceso al registro.
-- Exponerlo sólo donde los clientes o los nodos lo necesitan, y protegerlo con la autenticación configurada.
-- Un registro en el mismo servidor físico sigue siendo una dependencia: si ese servidor o su almacenamiento de imagen no está disponible, los nuevos nodos pueden no ser capaces de extraer imágenes.
+- El registry autohospedado de CapRover usa el puerto `996/tcp`.
+- Abre ese puerto solo para los clientes o nodos que realmente lo necesiten y utiliza la autenticación configurada.
+- Un registry que se ejecuta en el mismo servidor sigue siendo una dependencia: si ese host o su almacenamiento deja de funcionar, los nodos nuevos pueden quedarse sin acceso a las imágenes.
 
-Después de habilitar el empuje predeterminado, redespliegue las aplicaciones construidas existentes para publicar sus imágenes. Entonces sigue el [Guía de configuración de varios nodos](../../scaling/multi-node.md) para agregar y verificar workers.
+Tras habilitar default push, vuelve a desplegar las aplicaciones existentes para publicar sus imágenes. Después sigue la [guía de configuración multinodo](../../scaling/multi-node.md) para añadir y comprobar los workers.

@@ -4,11 +4,11 @@ title: Certbot avanzado / ACME
 slug: /domains/advanced-certbot
 ---
 
-La ruta normal de Certbot utiliza un reto webroot HTTP-01. Mantenga el puerto 80 accesible y el nombre de host apuntado a CapRover. Cambia esto sólo cuando ese camino no puede cumplir con los requisitos de tu certificado.
+La configuración normal de Certbot utiliza un desafío HTTP-01 mediante webroot. Mantén el puerto 80 accesible y el hostname apuntando a CapRover. Cambia este flujo solo si no cubre los requisitos de tus certificados.
 
 - CapRover puede leer `certbotCertCommandRules` y `certbotImageName` desde `/captain/data/config-override.json`.
-- DNS-01 necesita una imagen de plugin Certbot compatible y de larga duración y credenciales legibles dentro de ese contenedor.
-- Para un plugin de Cloudflare DNS, por ejemplo, almacenar su archivo de credenciales bajo `/captain/data/letsencrypt/etc/captain-files/` con permisos restrictivos, luego configura la imagen y el comando:
+- Para DNS-01 necesitas una imagen de Certbot compatible que incluya el plugin necesario y credenciales accesibles desde ese contenedor durante su ejecución.
+- Por ejemplo, con el plugin DNS de Cloudflare, guarda su archivo de credenciales bajo `/captain/data/letsencrypt/etc/captain-files/` con permisos restrictivos y configura la imagen y el comando:
 
 ```json
 {
@@ -22,14 +22,14 @@ La ruta normal de Certbot utiliza un reto webroot HTTP-01. Mantenga el puerto 80
 }
 ```
 
-- Reemplaza la imagen con una que incluye el plugin DNS y funciona como CapRover espera; la imagen de stock no incluye cada plugin DNS de terceros. `${domainName}` se expande por CapRover.
-- El `"domain": "*"` la norma aplicable **cada uno** solicitud de certificado, pero este comando sólo solicita el nombre de host exacto CapRover suministros.
-- Si usted necesita un certificado de comodín, plan que solicite por separado con el dominio base y su nombre de comodín.
-- Una regla abarcada a un dominio base también coincide con sus subdominios, así que compruebe el [regla matcher](https://github.com/caprover/caprover/blob/master/src/user/system/CertbotManager.ts) antes de añadir un comodín a una regla.
-- Prueba el comando resultante en un dominio desechable; las banderas de plugin exactas y las credenciales DNS dependen de su proveedor.
-- Si la verificación de dominio de CapRover no es adecuada para la validación sólo DNS, revise `skipVerifyingDomains` por separado y confirmar la propiedad usted mismo.
+- Sustituye la imagen por una compatible con el plugin DNS y el entorno de CapRover; la imagen estándar no incluye todos los plugins de terceros. CapRover sustituye `${domainName}`.
+- La regla `"domain": "*"` se aplica a **todas** las solicitudes de certificados, pero este comando solicita solo el hostname exacto suministrado por CapRover.
+- Si necesitas un certificado wildcard, planifica una solicitud separada para el dominio base y su nombre wildcard.
+- Una regla aplicada al dominio base también coincide con sus subdominios. Revisa el [matcher de reglas](https://github.com/caprover/caprover/blob/master/src/user/system/CertbotManager.ts) antes de añadir un wildcard.
+- Prueba el comando en un dominio descartable. Los parámetros del plugin y las credenciales dependen de tu proveedor.
+- Si la verificación de dominios de CapRover no encaja con DNS-01, revisa `skipVerifyingDomains` por separado y verifica la titularidad del dominio.
 
-- Antes de cambiar un servidor de producción, guarde el estado de anulación de trabajo y certificado, valide su comando Certbot personalizado contra la documentación del plugin, y la emisión de prueba en un dominio desechable.
-- reiniciar el servicio CapRover con `docker service update captain-captain --force` Así que carga la anulación cambiada.
-- Para un servidor ACME alternativo, Certbot también puede necesitar un `cli.ini` menores `/captain/data/letsencrypt/etc/` conteniendo la URL del servidor y cualquier credenciales de conexión externa requeridas; compruebe las instrucciones del proveedor de ACME y sus registros de DNS CAA.
-- Nunca comprometas las credenciales de DNS API a un repositorio.
+- Antes de cambiar producción, guarda el override y los certificados actuales, comprueba el comando con la documentación del plugin y prueba la emisión en un dominio de prueba.
+- Reinicia el servicio con `docker service update captain-captain --force` para cargar el override.
+- Si utilizas un servidor ACME alternativo, Certbot también puede necesitar `cli.ini` bajo `/captain/data/letsencrypt/etc/` con la URL del servidor y las credenciales de external-account-binding. Consulta al proveedor ACME y comprueba los registros CAA.
+- No subas credenciales DNS API a un repositorio.
