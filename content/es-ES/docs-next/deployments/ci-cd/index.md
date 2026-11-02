@@ -6,41 +6,41 @@ slug: /deployments/ci-cd
 
 <span id="source-deployments-ci-cd-deployment-tokens"></span>
 
-## Deployment Tokens
+## Tokens de despliegue
 
-- Un token de despliegue de aplicaciones permite la automatización desplegar una aplicación CapRover sin usar la contraseña de dashboard.
-- Crear la aplicación, abrir su **Despliegue** pestaña, habilitar la token de la aplicación y copiar el valor en la tienda secreta del sistema CI.
-- Trate tanto el token como cualquier URL Git webhook como credenciales.
+- Un token de despliegue permite a CI desplegar una aplicación concreta de CapRover sin utilizar la contraseña del dashboard.
+- Crea la aplicación, abre la pestaña **Deployment**, habilita el token de la app y guárdalo como secreto en tu sistema de CI.
+- Trata el token y cualquier URL de Git webhook como credenciales sensibles.
 
-- Utilice la URL del dashboard HTTPS y el nombre exacto de la aplicación en CI.
-- Para el CLI, suministro `--appToken` o conjunto `CAPROVER_APP_TOKEN` en el entorno de proceso, junto con la URL del servidor y el nombre de la aplicación.
-- El [GitHub deployment action](https://github.com/caprover/deploy-from-github) lo acepta como `token` entrada.
+- En CI, utiliza la URL HTTPS del dashboard y el nombre exacto de la aplicación.
+- Con la CLI, proporciona `--appToken` o define `CAPROVER_APP_TOKEN` como variable de entorno, junto con la URL del servidor y el nombre de la aplicación.
+- La [GitHub Action oficial](https://github.com/caprover/deploy-from-github) acepta el token en el input `token`.
 
-- Si el token está expuesta, sustitúyala o deshágala en la configuración de la aplicación y actualice su secreto de CI.
-- Dar cada trabajo de despliegue sólo las credenciales de registro que también necesita; una token de la aplicación no otorga al servidor CapRover acceso a un registro de imagen privado.
+- Si se filtra el token, sustitúyelo o desactívalo en los ajustes de la aplicación y actualiza el secreto de CI.
+- Si despliegas imágenes privadas, configura también las credenciales del registry. Un token de despliegue no concede al servidor CapRover acceso a un registry privado.
 
 <span id="source-deployments-ci-cd-github-actions"></span>
 
 ## GitHub Actions
 
-Uso [caprover/deploy-from-github](https://github.com/caprover/deploy-from-github) para los flujos de trabajo mantenidos que cubren fuente, imágenes Docker, archivos preparados y monorepos.
+Utiliza [caprover/deploy-from-github](https://github.com/caprover/deploy-from-github), que mantiene los workflows para desplegar desde código fuente, imágenes Docker, archivos preparados y monorepos.
 
-- Permitir un despliegue de aplicaciones token y guardarlo en los secretos de GitHub Actions.
-- Proveer la acción `server`, `app`, y `token` entradas.
-- Para imágenes privadas, configure las credenciales de registro en [CapRover](../registries/index.md).
-- Verifique el despliegue y la salud de las aplicaciones resultantes después de que la acción tenga éxito.
+- Habilita un token de despliegue para la aplicación y guárdalo en los Secrets de GitHub Actions.
+- Configura los inputs `server`, `app` y `token` de la Action.
+- Si la imagen es privada, añade en [CapRover](../registries/index.md) las credenciales necesarias para hacer pull del registry.
+- Cuando la Action termine, verifica el despliegue y el estado de salud de la aplicación.
 
 <span id="source-deployments-ci-cd-gitlab-ci"></span>
 
 ## GitLab CI
 
-Construir una imagen en GitLab CI, empujarla a GitLab Container Registry, e implementar esa etiqueta exacta a CapRover. Esto mueve la build que consume muchos recursos lejos del servidor CapRover.
+Puedes construir la imagen en GitLab CI, publicarla en GitLab Container Registry y desplegar exactamente ese tag en CapRover. Así evitas consumir recursos del servidor CapRover durante el build.
 
-1. Crear la aplicación en CapRover y habilitar su [token de despliegue](index.md).
-2. En GitLab, almacena la URL de CapRover HTTPS, nombre de aplicación y token como variables protegidas CI/CD. Mantenga el token enmascarada cuando su configuración variable lo permita.
-3. Construir y empujar la imagen con una etiqueta específica de commit como `$CI_COMMIT_SHA` a GitLab Container Registry.
-4. Si esa imagen de registro es privada, añadir `registry.gitlab.com`, una credencial de alcance, y el prefijo de imagen correcto a CapRover [registros privados](../registries/index.md)La autenticación del lado del corredor es insuficiente.
-5. Asegúrese de que su corredor GitLab admite Docker-in-Docker con el volumen de certificado TLS. Añadir esto `.gitlab-ci.yml` a un repositorio con un Dockerfile:
+1. Crea la aplicación en CapRover y habilita su [token de despliegue](index.md).
+2. Guarda la URL HTTPS de CapRover, el nombre de la app y el token como variables protegidas de GitLab CI/CD. Marca el token como Masked cuando sea posible.
+3. Construye la imagen y haz push a GitLab Container Registry usando un tag asociado al commit, por ejemplo `$CI_COMMIT_SHA`.
+4. Si la imagen es privada, configura en CapRover el registry `registry.gitlab.com`, credenciales con permisos de lectura y el prefijo correcto de imagen. Consulta [registros privados](../registries/index.md). El login del runner de GitLab por sí solo no permite que CapRover descargue la imagen.
+5. Configura el GitLab runner para utilizar Docker-in-Docker con el volumen de certificados TLS. En un repositorio que contenga un Dockerfile, añade este archivo `.gitlab-ci.yml`:
 
    ```yaml
    stages: [build, deploy]
@@ -70,23 +70,23 @@ Construir una imagen en GitLab CI, empujarla a GitLab Container Registry, e impl
        - if: '$CI_COMMIT_BRANCH == "main"'
    ```
 
-- Establece `CAPROVER_URL`, `CAPROVER_APP`, y `CAPROVER_APP_TOKEN` como variables GitLab CI/CD; proteger y enmascarar el token.
-- GitLab suministra el `CI_REGISTRY_*` y comprometer variables cuando su registro de contenedores esté habilitado.
-- Sustitución `main` si su rama de liberación difiere.
-6. Verifique la etiqueta de imagen y la salud de servicio en CapRover después de que el trabajo de CI tenga éxito. Un exitoso despliegue de CLI significa que CapRover aceptó la actualización; la aplicación todavía necesita un contenedor saludable y el puerto HTTP correcto.
+- Configura `CAPROVER_URL`, `CAPROVER_APP` y `CAPROVER_APP_TOKEN` como variables de GitLab CI/CD. Protege y oculta el token.
+- GitLab proporciona las variables `CI_REGISTRY_*` y las variables del commit cuando está habilitado Container Registry.
+- Cambia `main` si publicas desde otra rama.
+6. Tras el job de CI, comprueba el tag de la imagen y el estado del servicio en CapRover. Que la CLI confirme el despliegue significa que CapRover ha aceptado la actualización; además, el contenedor debe estar saludable y escuchar en el puerto HTTP correcto.
 
-- Consulta [GitLab's Docker-in-Docker Runner setup](https://docs.gitlab.com/ci/docker/docker_in_docker/) si la build no puede conectarse al daemon Docker.
-- Evite incrustar una contraseña de dashboard o un mutable `latest` etiqueta de imagen en el gasoducto.
-- Un GitLab push webhook es otra opción cuando construir desde la fuente en CapRover es aceptable.
+- Si el build no puede conectarse a Docker, consulta [la configuración de Docker-in-Docker de GitLab](https://docs.gitlab.com/ci/docker/docker_in_docker/).
+- Evita guardar la contraseña del dashboard en el pipeline o usar el tag mutable `latest` como identificador de una release.
+- También puedes usar un webhook de push de GitLab si prefieres que CapRover construya el código fuente.
 
 <span id="source-deployments-ci-cd-generic"></span>
 
-## Genérico CI
+## CI genérico
 
-- Cualquier sistema CI puede desplegarse en CapRover si puede llegar al panel sobre HTTPS y mantener una aplicación [token de despliegue](index.md).
-- Elija un archivo fuente que contenga `captain-definition` o una imagen preconstruida accesible al servidor.
+- Cualquier sistema CI puede desplegar en CapRover si tiene acceso al dashboard mediante HTTPS y un [token de despliegue](index.md).
+- Puedes enviar un archivo de código fuente con `captain-definition` o una imagen preconstruida accesible desde el servidor.
 
-- El flujo de liberación repetible más simple es: construir una imagen, etiquetarla con un identificador de confirmación inmutable o liberación, empujarla a un registro, autorizar CapRover para tirarla, luego desplegar esa imagen exacta utilizando el CLI o API.
-- Mantenga la token de la aplicación y registro credencial en la tienda secreta de CI, evite imprimirlos en registros, y verifique la salud de la aplicación final después de que CapRover acepte el despliegue.
+- Un flujo reproducible es: construir una imagen, asignarle un tag inmutable de commit o release, publicarla en un registry, configurar el acceso de CapRover para hacer pull y desplegar ese tag exacto mediante la CLI o API.
+- Guarda el token y las credenciales del registry en los Secrets del sistema CI, evita imprimirlos en los logs y comprueba que la aplicación funciona después del despliegue.
 
-Si CI envía fuente en su lugar, el servidor CapRover realiza la build y necesita suficiente memoria y disco. Consulta [Builds y logs](../builds-logs.md) para resolver problemas.
+Si envías el código fuente, el servidor CapRover realizará el build y necesitará memoria y disco suficientes. Consulta [Builds y logs](../builds-logs.md) si algo falla.
