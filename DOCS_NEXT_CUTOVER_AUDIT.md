@@ -86,7 +86,8 @@ Existing translated legacy pages also contain **stale fixed-credit claims**, so 
 2. **Restoration:** Actual config+volume recovery and multi-node IP/SSH mapping, including self-hosted registry images.
 3. **CI/CD:** Run GitHub and GitLab examples against a real CapRover instance. Syntax and source/API contract checks alone do not guarantee integration success.
 4. **Advanced integration:** Custom Certbot DNS plugins, older OpenStack templates, rclone plugin, third-party sample repositories. These depend on external versions and credentials.
-5. **Localization parity:** Retain or explicitly archive the existing Spanish and Chinese translations; do not silently substitute English.\n6. **Cutover URL verification:** Current preview redirects and builds are separate from full historical `/docs/*.html`, fragment and localized route preservation. Complete this in the future cutover PR.
+5. **Localization parity:** Retain or explicitly archive the existing Spanish and Chinese translations; do not silently substitute English.
+6. **Cutover URL verification:** Current preview redirects and builds are separate from full historical `/docs/*.html`, fragment and localized route preservation. Complete this in the future cutover PR.
 
 ## Recommendation
 
