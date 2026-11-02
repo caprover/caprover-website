@@ -1,0 +1,1434 @@
+{
+  "version": 1,
+  "stage": "architecture-proposal",
+  "baseCommit": "b15f34e24ae9a367d98cf902e1fd65d034b61200",
+  "originalPageCount": 141,
+  "targetPageCount": 47,
+  "sections": [
+    {
+      "name": "Start & Guides",
+      "pages": [
+        {
+          "target": "get-started",
+          "sources": [
+            "get-started",
+            "index"
+          ],
+          "retain": "Fresh installation of a server and first HTTPS app; omit standard UI clicks."
+        },
+        {
+          "target": "installation/index",
+          "sources": [
+            "installation/index",
+            "installation/standard-vps",
+            "installation/digitalocean",
+            "installation/openstack",
+            "installation/play-with-docker"
+          ],
+          "retain": "Installation options, supported host requirements and Marketplace path; retain referral link without promising fixed credits."
+        },
+        {
+          "target": "installation/advanced/index",
+          "sources": [
+            "installation/advanced/index",
+            "installation/local-private-network",
+            "installation/advanced/custom-host-ports",
+            "installation/advanced/reverse-proxy",
+            "installation/advanced/existing-swarm",
+            "guides/home-server"
+          ],
+          "retain": "Nonstandard installation modes and their real differences and limits."
+        },
+        {
+          "target": "fundamentals/how-caprover-works",
+          "sources": [
+            "fundamentals/how-caprover-works",
+            "fundamentals/index",
+            "fundamentals/applications-and-services",
+            "fundamentals/builds-images-deployments",
+            "fundamentals/networking",
+            "fundamentals/persistence",
+            "fundamentals/docker-swarm",
+            "reference/glossary"
+          ],
+          "retain": "One short architecture explanation. Define unfamiliar Swarm terms inline."
+        },
+        {
+          "target": "production-checklist",
+          "sources": [
+            "production-checklist"
+          ],
+          "retain": "Production readiness checklist, excluding generic filler."
+        },
+        {
+          "target": "guides/complete-webapp",
+          "sources": [
+            "guides/complete-webapp",
+            "guides/index",
+            "guides/sample-apps",
+            "guides/recipes"
+          ],
+          "retain": "The tested multi-service tutorial and genuinely useful sample links."
+        },
+        {
+          "target": "guides/static-react",
+          "sources": [
+            "guides/static-react"
+          ],
+          "retain": "Static-site deployment example."
+        },
+        {
+          "target": "guides/cdd-migration",
+          "sources": [
+            "guides/cdd-migration"
+          ],
+          "retain": "CapRover migration-specific procedure."
+        }
+      ]
+    },
+    {
+      "name": "Applications & Deployments",
+      "pages": [
+        {
+          "target": "applications/index",
+          "sources": [
+            "applications/index",
+            "applications/create-manage",
+            "applications/projects",
+            "applications/environment-variables",
+            "applications/http-settings",
+            "applications/tags-descriptions"
+          ],
+          "retain": "App configuration, settings, and important semantic caveats. Eliminate obvious UI walkthroughs."
+        },
+        {
+          "target": "applications/advanced/index",
+          "sources": [
+            "applications/advanced/index",
+            "applications/advanced/service-update-override",
+            "applications/advanced/pre-deploy-function"
+          ],
+          "retain": "Advanced service-update and pre-deploy controls."
+        },
+        {
+          "target": "deployments/index",
+          "sources": [
+            "deployments/index",
+            "deployments/dashboard",
+            "deployments/docker-image"
+          ],
+          "retain": "Common deployment modes, only meaningful required fields."
+        },
+        {
+          "target": "deployments/cli",
+          "sources": [
+            "deployments/cli"
+          ],
+          "retain": "CLI deployment walkthrough. Detailed flags in reference."
+        },
+        {
+          "target": "deployments/git",
+          "sources": [
+            "deployments/git"
+          ],
+          "retain": "Git webhook setup and secrets."
+        },
+        {
+          "target": "deployments/captain-definition",
+          "sources": [
+            "deployments/captain-definition"
+          ],
+          "retain": "Captain Definition usage/examples. Exact schema in reference."
+        },
+        {
+          "target": "deployments/builds-logs",
+          "sources": [
+            "deployments/builds-logs",
+            "deployments/versions-rollback"
+          ],
+          "retain": "Build logs and rollback limits, especially retained data."
+        },
+        {
+          "target": "deployments/registries/index",
+          "sources": [
+            "deployments/registries/index",
+            "deployments/registries/private",
+            "deployments/registries/default-push",
+            "deployments/registries/self-hosted"
+          ],
+          "retain": "Registry credentials, image names, default-push and cluster requirements."
+        },
+        {
+          "target": "deployments/ci-cd/index",
+          "sources": [
+            "deployments/ci-cd/index",
+            "deployments/ci-cd/deployment-tokens",
+            "deployments/ci-cd/github-actions",
+            "deployments/ci-cd/gitlab-ci",
+            "deployments/ci-cd/generic"
+          ],
+          "retain": "Token scope, GitHub and GitLab practical examples, generic CI alternative."
+        },
+        {
+          "target": "deployments/other/docker-compose",
+          "sources": [
+            "deployments/other/docker-compose",
+            "deployments/other/index",
+            "reference/docker-compose"
+          ],
+          "retain": "Experimental Compose usage and supported/unsupported fields."
+        }
+      ]
+    },
+    {
+      "name": "One-Click Apps",
+      "pages": [
+        {
+          "target": "one-click-apps/index",
+          "sources": [
+            "one-click-apps/index",
+            "one-click-apps/install",
+            "one-click-apps/configure",
+            "one-click-apps/connect",
+            "one-click-apps/upgrade",
+            "one-click-apps/custom-repositories",
+            "one-click-apps/troubleshooting"
+          ],
+          "retain": "Managing installed One-Click apps and templates, stateful upgrades and custom repositories."
+        },
+        {
+          "target": "one-click-apps/authoring",
+          "sources": [
+            "one-click-apps/authoring"
+          ],
+          "retain": "One-Click template authoring with author-specific requirements."
+        }
+      ]
+    },
+    {
+      "name": "Domains & Networking",
+      "pages": [
+        {
+          "target": "domains/index",
+          "sources": [
+            "domains/index",
+            "domains/root-domain",
+            "domains/app-domains",
+            "domains/custom-domains",
+            "domains/https",
+            "domains/certificate-renewal"
+          ],
+          "retain": "Wildcard/apex DNS, TLS prerequisites, renewals. Remove self-evident Enable HTTPS steps."
+        },
+        {
+          "target": "domains/firewall",
+          "sources": [
+            "domains/firewall",
+            "domains/public-services",
+            "domains/internal-networking",
+            "applications/public-ports"
+          ],
+          "retain": "Public and private networking, port table and Docker/UFW pitfalls."
+        },
+        {
+          "target": "domains/advanced-nginx",
+          "sources": [
+            "domains/advanced-nginx",
+            "domains/nginx-routing",
+            "applications/advanced/custom-nginx"
+          ],
+          "retain": "NGINX template behavior and advanced routing overrides."
+        },
+        {
+          "target": "domains/advanced-certbot",
+          "sources": [
+            "domains/advanced-certbot"
+          ],
+          "retain": "Nondefault Certbot/DNS-01 configuration with credential caveats."
+        },
+        {
+          "target": "domains/cloudflare-reverse-proxies",
+          "sources": [
+            "domains/cloudflare-reverse-proxies"
+          ],
+          "retain": "Cloudflare/reverse-proxy-specific pitfalls."
+        }
+      ]
+    },
+    {
+      "name": "Data & Persistence",
+      "pages": [
+        {
+          "target": "data-persistence/index",
+          "sources": [
+            "data-persistence/index",
+            "data-persistence/stateless-persistent",
+            "data-persistence/volumes",
+            "data-persistence/bind-mounts",
+            "data-persistence/node-placement",
+            "applications/persistent-directories",
+            "guides/persistent-storage"
+          ],
+          "retain": "Volumes, bind mounts, node locality, permissions and moving persistent data."
+        },
+        {
+          "target": "data-persistence/deploy-databases",
+          "sources": [
+            "data-persistence/deploy-databases",
+            "data-persistence/internal-databases",
+            "data-persistence/external-databases"
+          ],
+          "retain": "Database deployment and internal/external connectivity with host-port/security differences."
+        },
+        {
+          "target": "data-persistence/backup-data",
+          "sources": [
+            "data-persistence/backup-data",
+            "data-persistence/move-data"
+          ],
+          "retain": "Back up, restore and move persistent application data separately from server config."
+        },
+        {
+          "target": "data-persistence/shared-storage",
+          "sources": [
+            "data-persistence/shared-storage"
+          ],
+          "retain": "Advanced shared storage, applicability and limitations."
+        }
+      ]
+    },
+    {
+      "name": "Server & Clusters",
+      "pages": [
+        {
+          "target": "server/index",
+          "sources": [
+            "server/index",
+            "server/settings",
+            "server/security",
+            "server/pro",
+            "server/themes"
+          ],
+          "retain": "Server settings, access/security, Pro and themes as brief headed sections."
+        },
+        {
+          "target": "server/upgrade",
+          "sources": [
+            "server/upgrade"
+          ],
+          "retain": "Exact upgrade and recovery requirements."
+        },
+        {
+          "target": "server/backup/index",
+          "sources": [
+            "server/backup/index",
+            "server/backup/contents",
+            "server/backup/create",
+            "server/backup/automate",
+            "reference/backup-contents"
+          ],
+          "retain": "CapRover configuration backups: contents, omissions and automation."
+        },
+        {
+          "target": "server/backup/restore",
+          "sources": [
+            "server/backup/restore",
+            "server/backup/multi-node-restore",
+            "server/move-server"
+          ],
+          "retain": "Restore ordering, nodes, DNS migration, application-data and image recovery."
+        },
+        {
+          "target": "server/netdata",
+          "sources": [
+            "server/netdata",
+            "server/goaccess"
+          ],
+          "retain": "Resource monitoring and HTTP analytics."
+        },
+        {
+          "target": "server/disk-cleanup",
+          "sources": [
+            "server/disk-cleanup"
+          ],
+          "retain": "Safe disk cleanup and image retention."
+        },
+        {
+          "target": "server/uninstall",
+          "sources": [
+            "server/uninstall"
+          ],
+          "retain": "Destructive uninstall with data-loss safeguards."
+        },
+        {
+          "target": "scaling/index",
+          "sources": [
+            "scaling/index",
+            "scaling/scale-app",
+            "scaling/zero-downtime",
+            "scaling/placement",
+            "applications/scaling-placement"
+          ],
+          "retain": "Replica count, updates and placement: exact operational caveats."
+        },
+        {
+          "target": "scaling/multi-node",
+          "sources": [
+            "scaling/multi-node",
+            "scaling/manage-nodes",
+            "scaling/persistent-apps",
+            "scaling/networking"
+          ],
+          "retain": "Cluster setup, manager/worker SSH, networking, registry and node-local persistence."
+        }
+      ]
+    },
+    {
+      "name": "Troubleshooting",
+      "pages": [
+        {
+          "target": "troubleshooting/index",
+          "sources": [
+            "troubleshooting/index",
+            "troubleshooting/support",
+            "troubleshooting/report-bug",
+            "applications/troubleshooting",
+            "deployments/troubleshooting",
+            "domains/troubleshooting",
+            "data-persistence/troubleshooting",
+            "scaling/troubleshooting"
+          ],
+          "retain": "Symptom-based checks and specific remedies, support/reporting links."
+        },
+        {
+          "target": "troubleshooting/diagnostics",
+          "sources": [
+            "troubleshooting/diagnostics",
+            "server/diagnostics"
+          ],
+          "retain": "One canonical diagnostic collector procedure with privacy safeguards."
+        }
+      ]
+    },
+    {
+      "name": "Reference",
+      "pages": [
+        {
+          "target": "reference/captain-definition",
+          "sources": [
+            "reference/captain-definition"
+          ],
+          "retain": "Captain Definition exact field schema and versioning."
+        },
+        {
+          "target": "reference/app-configuration",
+          "sources": [
+            "reference/app-configuration",
+            "reference/index",
+            "reference/defaults-limits",
+            "reference/legacy-compatibility"
+          ],
+          "retain": "App config, defaults, compatibility notes and limits."
+        },
+        {
+          "target": "reference/cli",
+          "sources": [
+            "reference/cli"
+          ],
+          "retain": "Exact CLI flags and examples."
+        },
+        {
+          "target": "reference/api",
+          "sources": [
+            "reference/api"
+          ],
+          "retain": "API endpoints, auth and client conventions."
+        },
+        {
+          "target": "reference/server-environment",
+          "sources": [
+            "reference/server-environment",
+            "reference/config-override"
+          ],
+          "retain": "Environment variables and config override settings."
+        },
+        {
+          "target": "reference/ports",
+          "sources": [
+            "reference/ports"
+          ],
+          "retain": "Complete CapRover / Swarm port matrix."
+        },
+        {
+          "target": "reference/one-click-schema",
+          "sources": [
+            "reference/one-click-schema"
+          ],
+          "retain": "One-Click template schema."
+        }
+      ]
+    }
+  ],
+  "previewRoutes": [
+    {
+      "from": "/docs-next/get-started",
+      "to": "/docs-next/get-started",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/",
+      "to": "/docs-next/get-started",
+      "decision": "remove"
+    },
+    {
+      "from": "/docs-next/installation",
+      "to": "/docs-next/installation",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/installation/standard-vps",
+      "to": "/docs-next/installation",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/installation/digitalocean",
+      "to": "/docs-next/installation",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/installation/openstack",
+      "to": "/docs-next/installation",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/installation/play-with-docker",
+      "to": "/docs-next/installation",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/installation/advanced",
+      "to": "/docs-next/installation/advanced",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/installation/local-private-network",
+      "to": "/docs-next/installation/advanced",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/installation/advanced/custom-host-ports",
+      "to": "/docs-next/installation/advanced",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/installation/advanced/reverse-proxy",
+      "to": "/docs-next/installation/advanced",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/installation/advanced/existing-swarm",
+      "to": "/docs-next/installation/advanced",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/guides/home-server",
+      "to": "/docs-next/installation/advanced",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/fundamentals/how-caprover-works",
+      "to": "/docs-next/fundamentals/how-caprover-works",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/fundamentals",
+      "to": "/docs-next/fundamentals/how-caprover-works",
+      "decision": "remove"
+    },
+    {
+      "from": "/docs-next/fundamentals/applications-and-services",
+      "to": "/docs-next/fundamentals/how-caprover-works",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/fundamentals/builds-images-deployments",
+      "to": "/docs-next/fundamentals/how-caprover-works",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/fundamentals/networking",
+      "to": "/docs-next/fundamentals/how-caprover-works",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/fundamentals/persistence",
+      "to": "/docs-next/fundamentals/how-caprover-works",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/fundamentals/docker-swarm",
+      "to": "/docs-next/fundamentals/how-caprover-works",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/reference/glossary",
+      "to": "/docs-next/fundamentals/how-caprover-works",
+      "decision": "remove"
+    },
+    {
+      "from": "/docs-next/production-checklist",
+      "to": "/docs-next/production-checklist",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/guides/complete-webapp",
+      "to": "/docs-next/guides/complete-webapp",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/guides",
+      "to": "/docs-next/guides/complete-webapp",
+      "decision": "remove"
+    },
+    {
+      "from": "/docs-next/guides/sample-apps",
+      "to": "/docs-next/guides/complete-webapp",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/guides/recipes",
+      "to": "/docs-next/guides/complete-webapp",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/guides/static-react",
+      "to": "/docs-next/guides/static-react",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/guides/cdd-migration",
+      "to": "/docs-next/guides/cdd-migration",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/applications",
+      "to": "/docs-next/applications",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/applications/create-manage",
+      "to": "/docs-next/applications",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/projects",
+      "to": "/docs-next/applications",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/environment-variables",
+      "to": "/docs-next/applications",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/http-settings",
+      "to": "/docs-next/applications",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/tags-descriptions",
+      "to": "/docs-next/applications",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/advanced",
+      "to": "/docs-next/applications/advanced",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/applications/advanced/service-update-override",
+      "to": "/docs-next/applications/advanced",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/advanced/pre-deploy-function",
+      "to": "/docs-next/applications/advanced",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments",
+      "to": "/docs-next/deployments",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/deployments/dashboard",
+      "to": "/docs-next/deployments",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/docker-image",
+      "to": "/docs-next/deployments",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/cli",
+      "to": "/docs-next/deployments/cli",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/deployments/git",
+      "to": "/docs-next/deployments/git",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/deployments/captain-definition",
+      "to": "/docs-next/deployments/captain-definition",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/deployments/builds-logs",
+      "to": "/docs-next/deployments/builds-logs",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/deployments/versions-rollback",
+      "to": "/docs-next/deployments/builds-logs",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/registries",
+      "to": "/docs-next/deployments/registries",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/deployments/registries/private",
+      "to": "/docs-next/deployments/registries",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/registries/default-push",
+      "to": "/docs-next/deployments/registries",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/registries/self-hosted",
+      "to": "/docs-next/deployments/registries",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/ci-cd",
+      "to": "/docs-next/deployments/ci-cd",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/deployments/ci-cd/deployment-tokens",
+      "to": "/docs-next/deployments/ci-cd",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/ci-cd/github-actions",
+      "to": "/docs-next/deployments/ci-cd",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/ci-cd/gitlab-ci",
+      "to": "/docs-next/deployments/ci-cd",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/ci-cd/generic",
+      "to": "/docs-next/deployments/ci-cd",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/other/docker-compose",
+      "to": "/docs-next/deployments/other/docker-compose",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/deployments/other",
+      "to": "/docs-next/deployments/other/docker-compose",
+      "decision": "remove"
+    },
+    {
+      "from": "/docs-next/reference/docker-compose",
+      "to": "/docs-next/deployments/other/docker-compose",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/one-click-apps",
+      "to": "/docs-next/one-click-apps",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/one-click-apps/install",
+      "to": "/docs-next/one-click-apps",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/one-click-apps/configure",
+      "to": "/docs-next/one-click-apps",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/one-click-apps/connect",
+      "to": "/docs-next/one-click-apps",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/one-click-apps/upgrade",
+      "to": "/docs-next/one-click-apps",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/one-click-apps/custom-repositories",
+      "to": "/docs-next/one-click-apps",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/one-click-apps/troubleshooting",
+      "to": "/docs-next/one-click-apps",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/one-click-apps/authoring",
+      "to": "/docs-next/one-click-apps/authoring",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/domains",
+      "to": "/docs-next/domains",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/domains/root-domain",
+      "to": "/docs-next/domains",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/app-domains",
+      "to": "/docs-next/domains",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/custom-domains",
+      "to": "/docs-next/domains",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/https",
+      "to": "/docs-next/domains",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/certificate-renewal",
+      "to": "/docs-next/domains",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/firewall",
+      "to": "/docs-next/domains/firewall",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/domains/public-services",
+      "to": "/docs-next/domains/firewall",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/internal-networking",
+      "to": "/docs-next/domains/firewall",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/public-ports",
+      "to": "/docs-next/domains/firewall",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/advanced-nginx",
+      "to": "/docs-next/domains/advanced-nginx",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/domains/nginx-routing",
+      "to": "/docs-next/domains/advanced-nginx",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/advanced/custom-nginx",
+      "to": "/docs-next/domains/advanced-nginx",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/advanced-certbot",
+      "to": "/docs-next/domains/advanced-certbot",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/domains/cloudflare-reverse-proxies",
+      "to": "/docs-next/domains/cloudflare-reverse-proxies",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/data-persistence",
+      "to": "/docs-next/data-persistence",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/data-persistence/stateless-persistent",
+      "to": "/docs-next/data-persistence",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/data-persistence/volumes",
+      "to": "/docs-next/data-persistence",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/data-persistence/bind-mounts",
+      "to": "/docs-next/data-persistence",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/data-persistence/node-placement",
+      "to": "/docs-next/data-persistence",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/persistent-directories",
+      "to": "/docs-next/data-persistence",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/guides/persistent-storage",
+      "to": "/docs-next/data-persistence",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/data-persistence/deploy-databases",
+      "to": "/docs-next/data-persistence/deploy-databases",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/data-persistence/internal-databases",
+      "to": "/docs-next/data-persistence/deploy-databases",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/data-persistence/external-databases",
+      "to": "/docs-next/data-persistence/deploy-databases",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/data-persistence/backup-data",
+      "to": "/docs-next/data-persistence/backup-data",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/data-persistence/move-data",
+      "to": "/docs-next/data-persistence/backup-data",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/data-persistence/shared-storage",
+      "to": "/docs-next/data-persistence/shared-storage",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/server",
+      "to": "/docs-next/server",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/server/settings",
+      "to": "/docs-next/server",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/security",
+      "to": "/docs-next/server",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/pro",
+      "to": "/docs-next/server",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/themes",
+      "to": "/docs-next/server",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/upgrade",
+      "to": "/docs-next/server/upgrade",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/server/backup",
+      "to": "/docs-next/server/backup",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/server/backup/contents",
+      "to": "/docs-next/server/backup",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/backup/create",
+      "to": "/docs-next/server/backup",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/backup/automate",
+      "to": "/docs-next/server/backup",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/reference/backup-contents",
+      "to": "/docs-next/server/backup",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/backup/restore",
+      "to": "/docs-next/server/backup/restore",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/server/backup/multi-node-restore",
+      "to": "/docs-next/server/backup/restore",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/move-server",
+      "to": "/docs-next/server/backup/restore",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/netdata",
+      "to": "/docs-next/server/netdata",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/server/goaccess",
+      "to": "/docs-next/server/netdata",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/server/disk-cleanup",
+      "to": "/docs-next/server/disk-cleanup",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/server/uninstall",
+      "to": "/docs-next/server/uninstall",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/scaling",
+      "to": "/docs-next/scaling",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/scaling/scale-app",
+      "to": "/docs-next/scaling",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/scaling/zero-downtime",
+      "to": "/docs-next/scaling",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/scaling/placement",
+      "to": "/docs-next/scaling",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/scaling-placement",
+      "to": "/docs-next/scaling",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/scaling/multi-node",
+      "to": "/docs-next/scaling/multi-node",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/scaling/manage-nodes",
+      "to": "/docs-next/scaling/multi-node",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/scaling/persistent-apps",
+      "to": "/docs-next/scaling/multi-node",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/scaling/networking",
+      "to": "/docs-next/scaling/multi-node",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/troubleshooting",
+      "to": "/docs-next/troubleshooting",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/troubleshooting/support",
+      "to": "/docs-next/troubleshooting",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/troubleshooting/report-bug",
+      "to": "/docs-next/troubleshooting",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/applications/troubleshooting",
+      "to": "/docs-next/troubleshooting",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/deployments/troubleshooting",
+      "to": "/docs-next/troubleshooting",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/domains/troubleshooting",
+      "to": "/docs-next/troubleshooting",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/data-persistence/troubleshooting",
+      "to": "/docs-next/troubleshooting",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/scaling/troubleshooting",
+      "to": "/docs-next/troubleshooting",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/troubleshooting/diagnostics",
+      "to": "/docs-next/troubleshooting/diagnostics",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/server/diagnostics",
+      "to": "/docs-next/troubleshooting/diagnostics",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/reference/captain-definition",
+      "to": "/docs-next/reference/captain-definition",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/reference/app-configuration",
+      "to": "/docs-next/reference/app-configuration",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/reference",
+      "to": "/docs-next/reference/app-configuration",
+      "decision": "remove"
+    },
+    {
+      "from": "/docs-next/reference/defaults-limits",
+      "to": "/docs-next/reference/app-configuration",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/reference/legacy-compatibility",
+      "to": "/docs-next/reference/app-configuration",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/reference/cli",
+      "to": "/docs-next/reference/cli",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/reference/api",
+      "to": "/docs-next/reference/api",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/reference/server-environment",
+      "to": "/docs-next/reference/server-environment",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/reference/config-override",
+      "to": "/docs-next/reference/server-environment",
+      "decision": "merge"
+    },
+    {
+      "from": "/docs-next/reference/ports",
+      "to": "/docs-next/reference/ports",
+      "decision": "keep"
+    },
+    {
+      "from": "/docs-next/reference/one-click-schema",
+      "to": "/docs-next/reference/one-click-schema",
+      "decision": "keep"
+    }
+  ],
+  "legacyEnglishRoutes": [
+    {
+      "legacy": "/docs/get-started",
+      "previousPreview": "/docs-next/get-started",
+      "source": "get-started",
+      "newCanonical": "/docs/get-started",
+      "type": "same path"
+    },
+    {
+      "legacy": "/docs/cdd-migration",
+      "previousPreview": "/docs-next/guides/cdd-migration",
+      "source": "guides/cdd-migration",
+      "newCanonical": "/docs/guides/cdd-migration",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/captain-definition-file",
+      "previousPreview": "/docs-next/deployments/captain-definition",
+      "source": "deployments/captain-definition",
+      "newCanonical": "/docs/deployments/captain-definition",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/deployment-methods",
+      "previousPreview": "/docs-next/deployments",
+      "source": "deployments/index",
+      "newCanonical": "/docs/deployments",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/app-configuration",
+      "previousPreview": "/docs-next/applications",
+      "source": "applications/index",
+      "newCanonical": "/docs/applications",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/persistent-apps",
+      "previousPreview": "/docs-next/data-persistence/stateless-persistent",
+      "source": "data-persistence/stateless-persistent",
+      "newCanonical": "/docs/data-persistence",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/cli-commands",
+      "previousPreview": "/docs-next/reference/cli",
+      "source": "reference/cli",
+      "newCanonical": "/docs/reference/cli",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/one-click-apps",
+      "previousPreview": "/docs-next/one-click-apps",
+      "source": "one-click-apps/index",
+      "newCanonical": "/docs/one-click-apps",
+      "type": "same path"
+    },
+    {
+      "legacy": "/docs/complete-webapp-tutorial",
+      "previousPreview": "/docs-next/guides/complete-webapp",
+      "source": "guides/complete-webapp",
+      "newCanonical": "/docs/guides/complete-webapp",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/resource-monitoring",
+      "previousPreview": "/docs-next/server/netdata",
+      "source": "server/netdata",
+      "newCanonical": "/docs/server/netdata",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/nginx-customization",
+      "previousPreview": "/docs-next/domains/advanced-nginx",
+      "source": "domains/advanced-nginx",
+      "newCanonical": "/docs/domains/advanced-nginx",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/service-update-override",
+      "previousPreview": "/docs-next/applications/advanced/service-update-override",
+      "source": "applications/advanced/service-update-override",
+      "newCanonical": "/docs/applications/advanced",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/app-scaling-and-cluster",
+      "previousPreview": "/docs-next/scaling",
+      "source": "scaling/index",
+      "newCanonical": "/docs/scaling",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/pre-deploy-script",
+      "previousPreview": "/docs-next/applications/advanced/pre-deploy-function",
+      "source": "applications/advanced/pre-deploy-function",
+      "newCanonical": "/docs/applications/advanced",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/play-with-docker",
+      "previousPreview": "/docs-next/installation/play-with-docker",
+      "source": "installation/play-with-docker",
+      "newCanonical": "/docs/installation",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/run-locally",
+      "previousPreview": "/docs-next/installation/local-private-network",
+      "source": "installation/local-private-network",
+      "newCanonical": "/docs/installation/advanced",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/certbot-config",
+      "previousPreview": "/docs-next/domains/advanced-certbot",
+      "source": "domains/advanced-certbot",
+      "newCanonical": "/docs/domains/advanced-certbot",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/theme-customization",
+      "previousPreview": "/docs-next/server/themes",
+      "source": "server/themes",
+      "newCanonical": "/docs/server",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/sample-apps",
+      "previousPreview": "/docs-next/guides/sample-apps",
+      "source": "guides/sample-apps",
+      "newCanonical": "/docs/guides/complete-webapp",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/zero-downtime",
+      "previousPreview": "/docs-next/scaling/zero-downtime",
+      "source": "scaling/zero-downtime",
+      "newCanonical": "/docs/scaling",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/database-connection",
+      "previousPreview": "/docs-next/data-persistence/deploy-databases",
+      "source": "data-persistence/deploy-databases",
+      "newCanonical": "/docs/data-persistence/deploy-databases",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/best-practices",
+      "previousPreview": "/docs-next/production-checklist",
+      "source": "production-checklist",
+      "newCanonical": "/docs/production-checklist",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/backup-and-restore",
+      "previousPreview": "/docs-next/server/backup",
+      "source": "server/backup/index",
+      "newCanonical": "/docs/server/backup",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/recipe-deploy-create-react-app",
+      "previousPreview": "/docs-next/guides/static-react",
+      "source": "guides/static-react",
+      "newCanonical": "/docs/guides/static-react",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/stateless-with-persistent-data",
+      "previousPreview": "/docs-next/data-persistence/shared-storage",
+      "source": "data-persistence/shared-storage",
+      "newCanonical": "/docs/data-persistence/shared-storage",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/docker-compose",
+      "previousPreview": "/docs-next/deployments/other/docker-compose",
+      "source": "deployments/other/docker-compose",
+      "newCanonical": "/docs/deployments/other/docker-compose",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/ci-cd-integration",
+      "previousPreview": "/docs-next/deployments/ci-cd",
+      "source": "deployments/ci-cd/index",
+      "newCanonical": "/docs/deployments/ci-cd",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/ci-cd-integration/deploy-from-github",
+      "previousPreview": "/docs-next/deployments/ci-cd/github-actions",
+      "source": "deployments/ci-cd/github-actions",
+      "newCanonical": "/docs/deployments/ci-cd",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/ci-cd-integration/deploy-from-gitlab",
+      "previousPreview": "/docs-next/deployments/ci-cd/gitlab-ci",
+      "source": "deployments/ci-cd/gitlab-ci",
+      "newCanonical": "/docs/deployments/ci-cd",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/server-purchase/digitalocean",
+      "previousPreview": "/docs-next/installation/digitalocean",
+      "source": "installation/digitalocean",
+      "newCanonical": "/docs/installation",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/server-purchase/openstack",
+      "previousPreview": "/docs-next/installation/openstack",
+      "source": "installation/openstack",
+      "newCanonical": "/docs/installation",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/disk-cleanup",
+      "previousPreview": "/docs-next/server/disk-cleanup",
+      "source": "server/disk-cleanup",
+      "newCanonical": "/docs/server/disk-cleanup",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/firewall",
+      "previousPreview": "/docs-next/domains/firewall",
+      "source": "domains/firewall",
+      "newCanonical": "/docs/domains/firewall",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/troubleshooting",
+      "previousPreview": "/docs-next/troubleshooting",
+      "source": "troubleshooting/index",
+      "newCanonical": "/docs/troubleshooting",
+      "type": "split"
+    },
+    {
+      "legacy": "/docs/troubleshooting-pro",
+      "previousPreview": "/docs-next/server/pro",
+      "source": "server/pro",
+      "newCanonical": "/docs/server",
+      "type": "moved"
+    },
+    {
+      "legacy": "/docs/support",
+      "previousPreview": "/docs-next/troubleshooting/support",
+      "source": "troubleshooting/support",
+      "newCanonical": "/docs/troubleshooting",
+      "type": "moved"
+    }
+  ],
+  "note": "PR1 is a proposal only; PR2 rewrites, consolidates and adds preview redirects; PR3 publishes canonical /docs, fixes legacy and translated redirects."
+}

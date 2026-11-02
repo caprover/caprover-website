@@ -24,6 +24,9 @@ jobs:
             docs-site/package-lock.json
             marketing-site/package-lock.json
 
+      - name: Check documentation consolidation inventory
+        run: node scripts/check-docs-consolidation.mjs
+
       - name: Install documentation dependencies
         working-directory: docs-site
         run: npm ci
