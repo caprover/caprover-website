@@ -18,7 +18,7 @@ sudo ufw allow 3000/tcp   # Dashboard setup
 sudo ufw status
 ```
 
-如果 UFW 尚未启用，请**先确保 SSH 已放行**，再执行 `sudo ufw enable`。管理面板通过 HTTPS 正常工作后，可以限制 3000 端口的公网访问。多节点所需端口参阅[防火墙配置](domains/firewall.md)。
+如果 UFW 尚未启用，请**先确保 SSH 已放行**，再执行 `sudo ufw enable`。管理面板通过 HTTPS 正常工作后，可以限制 3000 端口的公网访问。多节点所需端口参阅[防火墙配置](../domains/firewall.md)。
 
 ## 2. 安装 Docker
 
