@@ -1,6 +1,6 @@
 ---
 id: one-click-schema
-title: Plan de aplicación de un solo clic
+title: Esquema One-Click
 slug: /reference/one-click-schema
 ---
 
@@ -17,4 +17,4 @@ Una plantilla de un clic es una combinación `services` asignación más `captai
 - Cada servicio admite [Subconjunto de composición](../deployments/other/docker-compose.md).
 - Las variables One-Click se sustituyen en la plantilla durante el despliegue; tratar los valores presentados como substituciones sensibles y de prueba.
 - Si `$$cap_appname` es declarado, se requiere un valor no vacío.
-- See [Autorización de un clic](../one-click-apps/authoring.md) para una guía de tareas y ejemplos reales.
+- Consulta [Autorización de un clic](../one-click-apps/authoring.md) para una guía de tareas y ejemplos reales.

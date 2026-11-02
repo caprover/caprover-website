@@ -14,11 +14,11 @@ Una copia de seguridad de CapRover **`/captain/data`** y añade metadatos sobre 
 - Retroceda cada base de datos usando su propio proceso de exportación o instantánea consistente, y copiar los directorios persistentes que realmente utiliza.
 - Prueba que tanto el archivo CapRover como los datos de aplicación pueden ser restaurados.
 
-- Una excepción a la regla de la imagen es una **registro del autor**: sus datos de imagen almacenados `/captain/data/registry`, por lo que ese directorio es copiado y puede aumentar enormemente el tamaño de archivo.
+- Una excepción a la regla de la imagen es una **registry autohospedado**: sus datos de imagen almacenados `/captain/data/registry`, por lo que ese directorio es copiado y puede aumentar enormemente el tamaño de archivo.
 - Con un registro externo, mantenga sus credenciales y su política de retención de imágenes disponibles para su restauración.
 - Sin imágenes accesibles, redespliegue aplicaciones después de restaurar sus definiciones.
 
-See [Crear un respaldo](index.md), [Restaurar un servidor](restore.md), y [Persistent Directories](../../data-persistence/index.md).
+Consulta [Crear un respaldo](index.md), [Restaurar un servidor](restore.md), y [Persistent Directories](../../data-persistence/index.md).
 
 <span id="source-server-backup-create"></span>
 
@@ -31,7 +31,7 @@ See [Crear un respaldo](index.md), [Restaurar un servidor](restore.md), y [Persi
 
 - El archivo se genera en el servidor, luego se ofrece como una descarga temporal.
 - Mantenga su propia copia: la descarga generada es temporal.
-- Si se habilita un registro auto hospedado, permita espacio para sus datos de imagen en el archivo.
+- Si se habilita un registry autohospedado, permita espacio para sus datos de imagen en el archivo.
 
 <span id="source-server-backup-automate"></span>
 
@@ -39,7 +39,7 @@ See [Crear un respaldo](index.md), [Restaurar un servidor](restore.md), y [Persi
 
 - El salpicadero **Crear respaldo** acción tiene un punto final de API autenticado correspondiente.
 - Necesidades del siguiente ejemplo `curl` y `jq`.
-- Set `CAPROVER_URL` a su origen de panel HTTPS y proporcionar `CAPROVER_PASSWORD` a través de la tienda secreta de su agenda.
+- Establece `CAPROVER_URL` a su origen de panel HTTPS y proporcionar `CAPROVER_PASSWORD` a través de la tienda secreta de su agenda.
 
 ```bash
 set -euo pipefail
@@ -68,8 +68,8 @@ El [Aplicación de las medidas de apoyo](https://github.com/caprover/caprover/bl
 
 | Incluido | Excluido a menos que se almacene dentro `/captain/data` |
 | --- | --- |
-| Configuración guardada de CapRover, definiciones de aplicaciones, certificados y datos de registro auto hospedados bajo `/captain/data/registry`. | Docker volúmenes y host bind montajes en otro lugar, archivos de bases de datos allí, y local Docker tienda de imágenes. |
+| Configuración guardada de CapRover, definiciones de aplicaciones, certificados y datos de registry autohospedados bajo `/captain/data/registry`. | Docker volúmenes y host bind montajes en otro lugar, archivos de bases de datos allí, y local Docker tienda de imágenes. |
 
 - La excepción del registro puede hacer grandes archivos.
 - El código de restauración busca `/captain/backup.tar` en la instalación inicial y lo expande `/captain/restoring`.
-- See [Lo que está respaldado](index.md) y [Restaurar un servidor](restore.md) para la secuencia de recuperación completa.
+- Consulta [Lo que está respaldado](index.md) y [Restaurar un servidor](restore.md) para la secuencia de recuperación completa.

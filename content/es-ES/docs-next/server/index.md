@@ -12,7 +12,7 @@ Usa el panel **Ajustes** área para gestionar el dominio raíz, contraseña de c
 
 ### Dominio de raíz
 
-Apunte el registro de DNS Wildcard y el nombre de host de dashboard en el servidor antes de establecer el dominio raíz. Cambiarlo afecta a los nombres de host generados de aplicaciones y dashboard; comprobar DNS y renovar certificados HTTPS después del cambio. Si utiliza el registro auto hospedado, retire o migra ese registro antes de cambiar el dominio. See [DNS y dominios](../domains/index.md).
+Apunte el registro de DNS Wildcard y el nombre de host de dashboard en el servidor antes de establecer el dominio raíz. Cambiarlo afecta a los nombres de host generados de aplicaciones y dashboard; comprobar DNS y renovar certificados HTTPS después del cambio. Si utiliza el registry autohospedado, retire o migra ese registro antes de cambiar el dominio. Consulta [DNS y dominios](../domains/index.md).
 
 ### Cuenta y recuperación
 
@@ -22,13 +22,13 @@ Cambia la contraseña inicial después de la instalación, asegura el panel con 
 
 ## Seguridad y acceso
 
-- Cambia la contraseña inicial de panel, habilita HTTPS para el panel de control, y restringe el acceso a puertos y SSH utilizando firewalls host y proveedor.
+- Cambia la contraseña inicial de panel, habilita HTTPS para el dashboard, y restringe el acceso a puertos y SSH utilizando firewalls host y proveedor.
 - Limite los puertos de Swarm a los nodos de grupos de confianza; vea [Configuración multinodo](../scaling/multi-node.md).
 - Mantenga Docker y CapRover actualizado.
 
-- Trate de fichas de despliegue, credenciales de registro, variables ambientales, archivos de respaldo y claves SSH como secretos.
+- Trate de tokens de despliegue, credenciales de registro, variables ambientales, archivos de respaldo y claves SSH como secretos.
 - Utilizar credenciales separadas para la automatización, rotarlas cuando se expone, y revisar [CapRover Pro](index.md) opciones de dos factores si su instancia usa Pro.
-- Una persona con acceso a la toma de Docker en el administrador tiene un control anfitriono amplio; otorgar la cáscara y el acceso de panel deliberadamente.
+- Una persona con acceso a la socket de Docker en el administrador tiene un control anfitriono amplio; otorgar la shell y el acceso de panel deliberadamente.
 
 Respalde los datos de configuración y aplicación CapRover por separado y practique la restauración. Para problemas de acceso, consulte [Diagnósticos](../troubleshooting/diagnostics.md).
 
@@ -67,13 +67,13 @@ Si la autenticación de dos factores también bloquea el acceso, vea [Recuperaci
 
 ## CapRover Pro
 
-- CapRover Pro añade funciones respaldadas por suscripción configuradas a través del panel de control con una tecla Pro API.
-- Los controles disponibles incluyen autenticación de dos factores, alertas de inicio de sesión, avisos de éxito de construcción y avisos de falla de construcción, y acciones de correo electrónico o webhook.
-- Compruebe la configuración Pro del panel de control para las opciones habilitadas en su suscripción.
+- CapRover Pro añade funciones respaldadas por suscripción configuradas a través del dashboard con una tecla Pro API.
+- Los controles disponibles incluyen autenticación de dos factores, alertas de inicio de sesión, avisos de éxito de build y avisos de falla de build, y acciones de correo electrónico o webhook.
+- Compruebe la configuración Pro del dashboard para las opciones habilitadas en su suscripción.
 
 - Configurar y probar un destino de alerta antes de confiar en él.
-- Guarde su llave Pro de forma segura.
-- Cuando se habilita la autenticación de dos factores, un login interactivo CLI con su contraseña de panel de control también requiere el código de una sola vez actual:
+- Guarde su licencia Pro de forma segura.
+- Cuando se habilita la autenticación de dos factores, un login interactivo CLI con su contraseña de dashboard también requiere el código de una sola vez actual:
 
 ```bash
 CAPROVER_OTP_TOKEN=123456 caprover login
@@ -88,7 +88,7 @@ CAPROVER_OTP_TOKEN=123456 caprover login
 docker exec -it "$(docker ps --filter name=captain-captain -q | head -n 1)" npm run disable-otp
 ```
 
-Verifique primero el contenedor objetivo, use esto sólo para su propia instancia, luego inicie y configure nuevamente la autenticación de dos factores. See [Solución de problemas](../troubleshooting/diagnostics.md).
+Verifique primero el contenedor objetivo, use esto sólo para su propia instancia, luego inicie y configure nuevamente la autenticación de dos factores. Consulta [Solución de problemas](../troubleshooting/diagnostics.md).
 
 **Alertas de correo electrónico:** Si necesita alertas en una bandeja de entrada diferente, inspeccione un remitente de alerta actual (históricamente `alerts@mail.pro.caprover.com`) y utilizar un filtro de correo electrónico / reglas de avance. Prueba el reenvío antes de confiar en él.
 
@@ -118,4 +118,4 @@ Verifique primero el contenedor objetivo, use esto sólo para su propia instanci
 - Guarda tu trabajo, selecciona el tema y verifica la legibilidad tanto en modos ligeros como en oscuros.
 - Puede editar o eliminar temas personalizados; los temas incorporados están protegidos.
 
-Los temas sólo afectan la apariencia de panel de control; el estilo de aplicación pertenece a la aplicación misma. El [definiciones temáticas incorporadas](https://github.com/caprover/caprover/tree/master/template/themes) y [Ant Design tema tokens](https://ant.design/docs/react/customize-theme) proporcionar más ejemplos.
+Los temas sólo afectan la apariencia de dashboard; el estilo de aplicación pertenece a la aplicación misma. El [definiciones temáticas incorporadas](https://github.com/caprover/caprover/tree/master/template/themes) y [Ant Design tema tokens](https://ant.design/docs/react/customize-theme) proporcionar más ejemplos.

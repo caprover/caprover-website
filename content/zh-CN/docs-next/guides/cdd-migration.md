@@ -14,5 +14,5 @@ slug: /guides/cdd-migration
 
 - 检查每个 `captain-definition`: CapRover 使用 schema 版本 2 和 Docker 文件 `COPY` 路径可能需要从历史中更新 `./src/` 前缀。
 - 通过应用程序设置配置容器 HTTP 端口 。
-- 在结束维护窗口前,检查仪表板,应用路线,持续数据,以及HTTPS.
+- 在结束维护窗口前,检查dashboard,应用路线,持久化数据,以及HTTPS.
 - 换到新硬件,也跟着 [移动 CapRover](../server/backup/restore.md) 用于当前服务器边的程序。

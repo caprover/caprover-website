@@ -8,10 +8,10 @@ slug: /deployments/git
 
 1. Añadir un `captain-definition` archiva su repositorio.
 2. Cree la aplicación CapRover.
-3. En su configuración de implementación, introduzca la URL del repositorio, sucursal y credenciales.
+3. En su configuración de despliegue, introduzca la URL del repositorio, sucursal y credenciales.
 4. Guardar y copiar la URL generada de Webhook.
 5. Agregar esa URL como **push webhook** en su proveedor de Git.
-6. Empuja un compromiso. Revise los registros de implementación de CapRover.
+6. Haz push de un commit. Revise los registros de despliegue de CapRover.
 
 **Repositorios privados:** Utilice una cuenta de servicio clave o limitada.
 

@@ -1,23 +1,23 @@
 ---
 id: index
-title: 持久性储存
+title: 持久化储存
 slug: /data-persistence
 ---
 
 <span id="source-data-persistence-stateless-persistent"></span>
 
-## 何时使用持久性
+## 何时使用持久化
 
-- 使用 **有持久性数据** 用于存储本地上传的数据库和应用程序。
+- 使用 **有持久化数据** 用于存储本地上传的数据库和应用程序。
 - 只有已配置的挂载路径在容器替换中幸存 。 仅使用持久应用的旗帜并不能保存任意的容器文件.
 - 无国籍的网络应用可以使用外部数据库或对象存储.
 
 <span id="source-data-persistence-volumes"></span>
 
-## 嵌入量
+## Docker 卷
 
 - 设定 **音量名称** 和应用程序的容器路径 。
-- PostgreSQL 常用软件 `/var/lib/postgresql/data`; 验证您图像的路径。
+- PostgreSQL 常用软件 `/var/lib/postgresql/data`; 验证您镜像的路径。
 - 当前 CapRover 版本使用您输入的音量名称 。 旧卷(1.15以前) `captain--` 前缀; 检查为 `docker volume ls`.
 
 要检查应用程序删除后的孤卷 :
@@ -32,7 +32,7 @@ docker ps -a --filter volume=VOLUME_NAME
 
 <span id="source-data-persistence-bind-mounts"></span>
 
-## 捆绑挂载
+## bind mount
 
 - 将一个绝对主机目录映射到容器路径, 例如 `/srv/app/uploads` → `/app/uploads`.
 - 为容器用户创建主机路径并设置权限 。
@@ -40,9 +40,9 @@ docker ps -a --filter volume=VOLUME_NAME
 
 <span id="source-applications-persistent-directories"></span>
 
-## 持久性目录
+## 持久化目录
 
-- 在应用程序中配置挂载路径 **持久性目录** 设置。
+- 在应用程序中配置挂载路径 **持久化目录** 设置。
 - 校验运行中的应用程序写入 **容器路径** 你骑。
 - 从 CapRover 配置备份中单独备份挂载的数据 。
 
@@ -50,9 +50,9 @@ docker ps -a --filter volume=VOLUME_NAME
 
 ## 节点位置
 
-- 命名的卷和捆绑山通常 **节点本地**.
+- 命名的卷和绑定山通常 **节点本地**.
 - CapRover在节点上标注了持续的应用 保存着数据 不同节点上的相同目录名称并不意味着共享内容.
-- 当移动一个持久性的应用程序时:停止写入,备份,迁移数据,验证权限,更改位置,然后验证恢复的数据.
+- 当移动一个持久化的应用程序时:停止写入,备份,迁移数据,验证权限,更改位置,然后验证恢复的数据.
 
 <span id="source-guides-persistent-storage"></span>
 

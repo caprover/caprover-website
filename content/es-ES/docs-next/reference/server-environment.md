@@ -9,8 +9,8 @@ El [medio ambiente-variable parser](https://github.com/caprover/caprover/blob/ma
 | Nombre | Efecto |
 | --- | --- |
 | `ACCEPTED_TERMS` | Aceptar los términos de instalación en el lanzamiento inicial. |
-| `DEFAULT_PASSWORD` | Establecer la contraseña inicial del panel de control; reemplazarla después de la configuración. |
-| `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, `CAPTAIN_HOST_ADMIN_PORT` | Puertos de acogida publicados; por defecto son 80, 443, y 3000. Coincide con el lado anfitrión del Docker `-p` cartografías. |
+| `DEFAULT_PASSWORD` | Establecer la contraseña inicial del dashboard; reemplazarla después de la configuración. |
+| `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, `CAPTAIN_HOST_ADMIN_PORT` | Puertos de acogida publicados; por defecto son 80, 443, y 3000. Coincide con el lado host del Docker `-p` cartografías. |
 | `MAIN_NODE_IP_ADDRESS` | Suministrar la dirección de gestión para la instalación cuando la detección automática no es adecuada. |
 | `CAPTAIN_BASE_DIRECTORY` | Superar el predeterminado `/captain` directorio base. |
 | `CAPROVER_DISABLE_ANALYTICS`, `DO_NOT_TRACK` | Desactivar la analítica cuando se establece. |
@@ -24,7 +24,7 @@ El [medio ambiente-variable parser](https://github.com/caprover/caprover/blob/ma
 
 ## config-override.json
 
-CapRover lee que el usuario anula desde `/captain/data/config-override.json`Sólo las llaves bajo `configs` dentro [CapitánConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) están destinados a este archivo. Ejemplo:
+CapRover lee que el usuario anula desde `/captain/data/config-override.json`Sólo las llaves bajo `configs` dentro [CaptainConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) están destinados a este archivo. Ejemplo:
 
 ```json
 {"defaultMaxLogSize": "256m"}

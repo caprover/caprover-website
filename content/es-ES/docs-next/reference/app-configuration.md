@@ -11,7 +11,7 @@ CapRover almacena los ajustes de la aplicación separadamente de la definición 
 | Identidad | `projectId`, `description`, `tags` | Organización y etiquetas. |
 | Despliegue | `deployedVersion`, `versions`, `captainDefinitionRelativeFilePath` | Historia de la versión y ruta de definición. |
 | HTTP | `notExposeAsWebApp`, `containerHttpPort`, `forceSsl`, `hasDefaultSubDomainSsl`, `websocketSupport`, `customDomain`, `redirectDomain`, `httpAuth`, `customNginxConfig` | Routing y acceso. |
-| Lugar | `hasPersistentData`, `nodeId`, `instanceCount`, `networks` | Persistencia y colocación de Swarm. |
+| Ubicación de tareas | `hasPersistentData`, `nodeId`, `instanceCount`, `networks` | Persistencia y colocación de Swarm. |
 | Hora de correr | `envVars`, `ports`, `volumes`, `serviceUpdateOverride`, `preDeployFunction` | Medio ambiente, puertos publicados, monturas y personalización de servicios. |
 
 - Una variable de entorno es un `{key,value}` par.
@@ -23,7 +23,7 @@ CapRover almacena los ajustes de la aplicación separadamente de la definición 
 
 ## Defaults and Limits
 
-Preferencias seleccionadas de [CapitánConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) y [EnvVars.ts](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts):
+Preferencias seleccionadas de [CaptainConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) y [EnvVars.ts](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts):
 
 | Ajuste | Default |
 | --- | --- |
@@ -32,7 +32,7 @@ Preferencias seleccionadas de [CapitánConstants.ts](https://github.com/caprover
 | Subdominio de panel de mando | `captain` |
 | Versión API | `v2` |
 | Default Docker tamaño de registro | `512m` |
-| Construir líneas de registro y cola de registro de aplicaciones | `50` y `500` respectivamente |
+| Líneas de log de build y cola de registro de aplicaciones | `50` y `500` respectivamente |
 | Versiones de despliegue ahorradas | `50` |
 | Selector de versión Docker build | `2` |
 | Retención de limpieza de imagen programada cuando está deshabilitado | `1` |
@@ -47,7 +47,7 @@ Estos son defectos fuente, no garantías para cada instalación; los valores pue
 - Existencia `/docs/*` los caminos permanecen vivos durante esta vista previa; ver [borrador del mapa de URL](https://github.com/caprover/caprover-website/blob/master/DOCS_NEXT_URL_MAP.md) para destinos antiguos a nuevos propuestos.
 - Las redirecciones pertenecen a la revisión posterior de la reducción.
 
-- El analizador de definición del capitán acepta **`schemaVersion: 2`**.
+- El analizador de Captain Definition acepta **`schemaVersion: 2`**.
 - Las definiciones más antiguas necesitan migración; véase [La migración de los niños](../guides/cdd-migration.md).
 - El modelo de aplicación retiene `isLegacyAppName` para aplicaciones creadas antes de CapRover 1.15.0, que afecta la compatibilidad con el nombre de servicio.
 - Check [redes internas](../domains/firewall.md) antes de cambiar los nombres internos de host.

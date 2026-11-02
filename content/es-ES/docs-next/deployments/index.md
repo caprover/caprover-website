@@ -10,7 +10,7 @@ slug: /deployments
 
 - Crear una aplicación en **Aplicaciones**, abrir su **Despliegue** tab, y elegir la entrada apropiada para su proyecto.
 - Para desplegar un archivo, empaque el proyecto con su `captain-definition` archivo en la ruta esperada y subir el archivo tar.
-- El panel también acepta una definición de capitán pegada en su entrada de texto cuando no se necesitan archivos fuente.
+- El panel también acepta una Captain Definition pegada en su entrada de texto cuando no se necesitan archivos fuente.
 
 Por ejemplo, pega esta definición para desplegar una imagen pública existente:
 
@@ -18,15 +18,15 @@ Por ejemplo, pega esta definición para desplegar una imagen pública existente:
 {"schemaVersion":2,"imageName":"nginx:stable-alpine"}
 ```
 
-- Comience el despliegue, observe el estado de construcción o tire, a continuación, verifique el puerto HTTP contenedor de la aplicación y su dominio predeterminado.
+- Comience el despliegue, observe el estado de build o tire, a continuación, verifique el puerto HTTP contenedor de la aplicación y su dominio predeterminado.
 - Para una imagen privada, configure primero las credenciales del registro.
-- See [Implementar una imagen de Docker](index.md).
+- Consulta [Desplegar una imagen Docker](index.md).
 
 <span id="source-deployments-docker-image"></span>
 
-## Implementar una imagen de Docker
+## Desplegar una imagen Docker
 
-Construir y empujar su imagen a un registro, o utilizar una imagen pública. Crear una aplicación CapRover, luego pegar una definición solo de imagen en su **Despliegue** ficha:
+Construir y empujar su imagen a un registro, o utilizar una imagen pública. Crear una aplicación CapRover, luego pegar una definición solo de imagen en su **Despliegue** token:
 
 ```json
 {

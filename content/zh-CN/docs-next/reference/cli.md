@@ -15,7 +15,7 @@ npm install -g caprover
 | `caprover serversetup` | 初始化服务器和根域 |
 | `caprover login` | 保存服务器登录 |
 | `caprover list` | 列出已保存的服务器 |
-| `caprover deploy` | 部署分支、 归档或图像 |
+| `caprover deploy` | 部署分支、 归档或镜像 |
 | `caprover logout` | 删除已保存的登录 |
 | `caprover api` | 调用 API |
 
@@ -25,7 +25,7 @@ npm install -g caprover
 
 - `-b, --branch`======================================================================================
 - `-t, --tarFile`: 本地归档,包括生成的文件
-- `-i, --imageName`: 现有嵌入器图像
+- `-i, --imageName`: 现有Docker 镜像
 
 **目标与认证 :**
 

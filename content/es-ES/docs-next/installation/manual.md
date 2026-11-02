@@ -18,7 +18,7 @@ sudo ufw allow 3000/tcp   # Dashboard setup
 sudo ufw status
 ```
 
-Si UFW es inactivo, lo habilita con `sudo ufw enable` **después** permitiendo SSH. Puede restringir el puerto 3000 una vez que el panel funciona sobre HTTPS. See [Firewall](domains/firewall.md) para puertos multinodos.
+Si UFW es inactivo, lo habilita con `sudo ufw enable` **después** permitiendo SSH. Puede restringir el puerto 3000 una vez que el panel funciona sobre HTTPS. Consulta [Firewall](domains/firewall.md) para puertos multinodos.
 
 ## 2. Instalar Docker
 
@@ -62,6 +62,6 @@ Cuando la configuración termina, abre `http://YOUR_SERVER_IP:3000`.
 
 **Contraseña inicial:** `captain42`
 
-Si el tablero es inalcanzable, compruebe `sudo docker service ls` y las reglas del cortafuegos del paso 1.
+Si el dashboard es inalcanzable, compruebe `sudo docker service ls` y las reglas del cortafuegos del paso 1.
 
 Continuar con [Configuración DNS y dashboard](../get-started.md#dns).

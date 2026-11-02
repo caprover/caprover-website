@@ -46,9 +46,9 @@ Las plantillas de One-Click crean aplicaciones comunes de CapRover. Cada plantil
 
 CapRover puede cargar plantillas de repositorios One-Click de terceros.
 
-- Revise plantillas antes del despliegue: pueden ejecutar imágenes, puertos abiertos, almacenamiento de montaje y configurar credenciales.
+- Revise plantillas antes del despliegue: pueden ejecutar imágenes, abrir puertos, montar almacenamiento y configurar credenciales.
 - Grabar qué repositorio proporcionó su aplicación instalada para futuras actualizaciones.
-- See [Autorización de aplicaciones de un clic](authoring.md) para crear una plantilla.
+- Consulta [Crear plantillas One-Click](authoring.md) para crear una plantilla.
 
 <span id="source-one-click-apps-troubleshooting"></span>
 
@@ -56,7 +56,7 @@ CapRover puede cargar plantillas de repositorios One-Click de terceros.
 
 Identificar el servicio generado fallido. Inspeccione sus registros y compruebe:
 
-- Variables de plantilla, errores de imagen de arranque/construcción y credenciales.
+- Variables de plantilla, errores de imagen de arranque/build y credenciales.
 - Exposición portuaria, nombres de servicio interno, montajes de volumen y colocación.
 - Ya sea que una base de datos comenzó inesperadamente con un volumen nodo-local vacío.
 

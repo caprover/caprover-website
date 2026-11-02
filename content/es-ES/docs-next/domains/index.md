@@ -17,15 +17,15 @@ Ejemplo de dominio raíz: `apps.example.com`.
 
 - Entra `apps.example.com` como dominio raíz de CapRover, sin `*.` o `captain.`.
 - Mantenga Wildcard DNS apuntando a CapRover para dominios de aplicaciones y renovación de certificados.
-- Detrás de Cloudflare, uso **DNS only** durante la validación inicial del certificado HTTP-01. See [Proxies inversos](cloudflare-reverse-proxies.md).
+- Detrás de Cloudflare, uso **DNS only** durante la validación inicial del certificado HTTP-01. Consulta [Proxies inversos](cloudflare-reverse-proxies.md).
 
 <span id="source-domains-app-domains"></span>
 
 ## Dominios de aplicación
 
 - Dominio de aplicación predeterminado: `<app-name>.<root-domain>`.
-- Set **Container HTTP Port** al puerto de escucha de tu app. La aplicación debe unirse a `0.0.0.0`.
-- Los trabajadores y bases de datos que son servicios privados no necesitan dominio público.
+- Establece **Container HTTP Port** al puerto de escucha de tu app. La aplicación debe unirse a `0.0.0.0`.
+- Los workers y bases de datos que son servicios privados no necesitan dominio público.
 
 <span id="source-domains-custom-domains"></span>
 

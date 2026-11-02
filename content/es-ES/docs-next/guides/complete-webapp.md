@@ -4,8 +4,8 @@ title: Tutorial de aplicación web completa
 slug: /guides/complete-webapp
 ---
 
-- Este ejemplo combina una aplicación web pública Node, un trabajador privado, PostgreSQL y un directorio de carga persistente.
-- La aplicación web acepta un pequeño trabajo; el trabajador lo marca procesado en PostgreSQL.
+- Este ejemplo combina una aplicación web pública Node, un worker privado, PostgreSQL y un directorio de carga persistente.
+- La aplicación web acepta un pequeño trabajo; el worker lo marca procesado en PostgreSQL.
 - **Los puntos finales no tienen autenticación y son para un entorno de aprendizaje desechable.** Utilice un servidor de un solo nodo con suficiente memoria para los servicios de PostgreSQL y dos Nodos; un host de 1 GB puede ser demasiado pequeño para construir imágenes simultáneas.
 
 ## 1. Crear la base de datos privada
@@ -21,7 +21,7 @@ slug: /guides/complete-webapp
 | `POSTGRES_DB` | `demo` |
 | `POSTGRES_PASSWORD` | Una contraseña segura única |
 
-En el **Despliegue** tab, desplegar esta imagen solamente Definición Capitán:
+En el **Despliegue** tab, desplegar esta imagen solamente Captain Definition:
 
 ```json
 {"schemaVersion":2,"imageName":"postgres:17-alpine"}
@@ -31,7 +31,7 @@ En el **Despliegue** tab, desplegar esta imagen solamente Definición Capitán:
 - Mantenga el puerto de base `5432` privado; no hay necesidad de publicar un puerto host.
 - Cambio `POSTGRES_PASSWORD` después de la inicialización del volumen no cambia la contraseña del usuario de la base de datos existente.
 
-## 2. Construir la web y las imágenes de trabajadores
+## 2. Construir la web y las imágenes de workers
 
 En un nuevo directorio local, crear `package.json`:
 
@@ -142,7 +142,7 @@ COPY worker.mjs ./
 CMD ["node", "worker.mjs"]
 ```
 
-Crear dos archivos de definición de capitán en el mismo directorio:
+Crear dos archivos de Captain Definition en el mismo directorio:
 
 ```json title="captain-definition-web"
 {"schemaVersion":2,"dockerfilePath":"./Dockerfile.web"}
@@ -152,7 +152,7 @@ Crear dos archivos de definición de capitán en el mismo directorio:
 {"schemaVersion":2,"dockerfilePath":"./Dockerfile.worker"}
 ```
 
-Corre `npm install --package-lock-only` localmente para crear `package-lock.json`, luego empaquetar los archivos. Usos de la construcción `npm ci`, por lo que incluye el archivo de bloqueo en el archivo:
+Corre `npm install --package-lock-only` localmente para crear `package-lock.json`, luego empaquetar los archivos. Usos de la build `npm ci`, por lo que incluye el archivo de bloqueo en el archivo:
 
 ```bash
 npm install --package-lock-only
@@ -160,7 +160,7 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
   Dockerfile.web Dockerfile.worker captain-definition-web captain-definition-worker
 ```
 
-## 3. Crear, configurar y desplegar las otras aplicaciones
+## 3. Crear, configurar y desplegar las demás aplicaciones
 
 - Crear `demo-web` con **Tiene datos persistentes** habilitado.
 - Añadir un volumen llamado `demo-uploads` a `/data/uploads`, establecer el puerto HTTP contenedor `3000`, y darle las variables de base de datos a continuación.
@@ -175,10 +175,10 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 | `PGPASSWORD` | La misma contraseña `demo-db` |
 
 - Las nuevas aplicaciones CapRover usan su nombre de aplicación como el nombre de servicio Docker interno; confirma el nombre real con `docker service ls` si estás usando una aplicación heredada.
-- In `demo-web`'s **Despliegue** pestaña, establecer el camino de definición del capitán `./captain-definition-web` y subir `deploy.tar`.
-- Después de la aplicación web comienza y crea `jobs` cuadro, conjunto `demo-worker`Es el camino de definición del capitán `./captain-definition-worker` y subir el mismo archivo allí.
-- Inspeccione los registros de construcción y servicio para ambas aplicaciones.
-- El trabajador no necesita dominio público ni cartografía portuaria.
+- En `demo-web`'s **Despliegue** pestaña, establecer el camino de Captain Definition `./captain-definition-web` y subir `deploy.tar`.
+- Después de la aplicación web comienza y crea `jobs` cuadro, conjunto `demo-worker`Es el camino de Captain Definition `./captain-definition-worker` y subir el mismo archivo allí.
+- Inspeccione los registros de build y servicio para ambas aplicaciones.
+- El worker no necesita dominio público ni cartografía portuaria.
 
 Visita `http://demo-web.<root-domain>/jobs` y esperar `[]`. A continuación, active HTTPS para `demo-web`, verificar su certificado, y hacer estas solicitudes, reemplazando el nombre de host ejemplo:
 
@@ -194,26 +194,26 @@ curl https://demo-web.apps.example.com/upload
 - Redistribución `demo-web` y verificar los restos de carga; reiniciar `demo-db` y confirmar el trabajo sigue en la lista.
 - Si uno desaparece, inspeccione la ruta de montaje configurada y el nodo que alberga ese servicio.
 
-## 4. Respaldar cada fuente de datos
+## 4. Hacer copia de seguridad de cada origen de datos
 
 - CapRover [configuración copia de seguridad](../server/backup/index.md) no contiene `demo-db-data` o `demo-uploads`.
 - Configurar una copia de seguridad lógica PostgreSQL y una copia separada del volumen de carga, almacenar ambos fuera del host y la restauración de pruebas.
-- See [Volver arriba Datos persistentes](../data-persistence/backup-data.md).
+- Consulta [Volver arriba Datos persistentes](../data-persistence/backup-data.md).
 - Este tutorial mantiene ambas aplicaciones de estado en un solo nodo; [los volúmenes locales no se mueven con una tarea de Swarm](../data-persistence/index.md).
-- Una aplicación de producción también necesita autenticación, una política de carga, empleo que reclama para múltiples trabajadores, y una estrategia de implementación y migración de bases de datos.
+- Una aplicación de producción también necesita autenticación, una política de carga, empleo que reclama para múltiples workers, y una estrategia de despliegue y migración de bases de datos.
 
 <span id="source-guides-sample-apps"></span>
 
 ## Aplicaciones de muestra
 
-El [Aplicaciones de la muestra CapRover](https://github.com/caprover/caprover/tree/master/captain-sample-apps) Demostrar Dockerfiles y definiciones de Capitán para varios marcos.
+El [Aplicaciones de ejemplo de CapRover](https://github.com/caprover/caprover/tree/master/captain-sample-apps) Demostrar Dockerfiles y definiciones de Capitán para varios marcos.
 
 1. Escoge una muestra e inspecciona su `captain-definition`, Dockerfile, puerto de contenedores expuestos y variables ambientales requeridas.
 2. Cree una aplicación desechable en el panel.
-3. Elija un método de implementación: empaque los archivos de implementación de la muestra en un archivo de tar y suba desde la aplicación **Despliegue** tab, **o** comprometer la muestra a una rama de Git y desplegarla con la [CLI](../deployments/cli.md)El modo Git normal del CLI excluye archivos no comprometidos e ignorados.
-4. Mira registros de construcción. Si el contenedor escucha en un puerto distinto al predeterminado de CapRover, establece el puerto HTTP contenedor de la aplicación en consecuencia. Compruebe la URL de la aplicación sobre HTTP y luego HTTPS.
+3. Elija un método de despliegue: empaque los archivos de despliegue de la muestra en un archivo de tar y suba desde la aplicación **Despliegue** tab, **o** comprometer la muestra a una rama de Git y desplegarla con la [CLI](../deployments/cli.md)El modo Git normal del CLI excluye archivos no comprometidos e ignorados.
+4. Mira registros de build. Si el contenedor escucha en un puerto distinto al predeterminado de CapRover, establece el puerto HTTP contenedor de la aplicación en consecuencia. Compruebe la URL de la aplicación sobre HTTP y luego HTTPS.
 
-Tratar credenciales de muestra y datos de muestra como ejemplos solamente. Antes de utilizar la producción, establecer secretos reales, añadir persistencia cuando sea necesario, y planificar [backups](../server/backup/index.md).
+Protege las credenciales de muestra y datos de muestra como ejemplos solamente. Antes de utilizar la producción, establecer secretos reales, añadir persistencia cuando sea necesario, y planificar [backups](../server/backup/index.md).
 
 Ejemplos adicionales del marco comunitario de la documentación heredada:
 

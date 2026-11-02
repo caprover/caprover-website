@@ -5,7 +5,7 @@ slug: /guides/static-react
 ---
 
 - Construya su React u otro sitio estático localmente y sirva los archivos compilados de una pequeña imagen NGINX.
-- Esto mantiene dependencias de tiempo de construcción fuera del anfitrión CapRover.
+- Esto mantiene dependencias de tiempo de build fuera del host CapRover.
 - El ejemplo utiliza un estilo Vite `dist` directorio; reemplazarlo por `build` si eso es lo que produce su proyecto.
 
 1. Corre `npm ci && npm run build` en su proyecto. Mira eso. `dist/index.html` existe.
@@ -41,4 +41,4 @@ server {
 }
 ```
 
-Añadir `COPY nginx.conf /etc/nginx/conf.d/default.conf` al Dockerfile, luego incluir `nginx.conf` en el `tar -cf` comando arriba. Reconstruir y redistribuir. No ponga secretos privados en variables de tiempo de construcción: compilado JavaScript es público. Si la aplicación tiene una API, implementarla por separado y apuntar el frontend a su URL HTTPS.
+Añadir `COPY nginx.conf /etc/nginx/conf.d/default.conf` al Dockerfile, luego incluir `nginx.conf` en el `tar -cf` comando arriba. Reconstruir y redistribuir. No ponga secretos privados en variables de tiempo de build: compilado JavaScript es público. Si la aplicación tiene una API, implementarla por separado y apuntar el frontend a su URL HTTPS.

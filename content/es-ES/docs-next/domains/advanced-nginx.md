@@ -8,20 +8,20 @@ slug: /domains/advanced-nginx
 - Preferir cambios específicos de aplicaciones cuando sólo una aplicación necesita una regla diferente de límite o de enrutamiento.
 
 - Archivos generados bajo `/captain/generated/nginx` mostrar la salida efectiva, pero CapRover puede sobreescribirlos.
-- Guardar cambios a través de la plantilla de panel de control relevante.
+- Guardar cambios a través de la plantilla de dashboard relevante.
 - El directorio host `/captain/data/nginx-shared` se monta en el contenedor NGINX como `/nginx-shared` para apoyar archivos como un certificado personalizado.
 
 - Para una plantilla predeterminada aplicada a aplicaciones recién creadas, CapRover puede leer `/captain/data/server-block-conf-override.ejs`.
 - Comience de la coincidencia [plantilla de origen](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs), mantener una copia de seguridad, y reiniciar el servicio CapRover después de escribir la anulación.
 - Prueba el config resultante con una aplicación desechable antes de aplicarla ampliamente.
-- Una plantilla global inválida puede afectar el panel de control y múltiples aplicaciones.
+- Una plantilla global inválida puede afectar el dashboard y múltiples aplicaciones.
 
-## Recuperar de una configuración que rompió el panel de control
+## Recuperar de una configuración que rompió el dashboard
 
 - Si el panel no puede cargar debido a un ajuste personalizado NGINX, primera reserva `/captain/data/config-captain.json` y cualquier `/captain/data/server-block-conf-override.ejs` archivo.
 - Si este último causó el fracaso, moverlo fuera de esa ubicación antes de reiniciar CapRover.
 - De lo contrario, lo siguiente **despeja la base personalizada, dashboard y la configuración NGINX de cada aplicación**; mantener la copia de seguridad para que pueda restaurar los cambios individuales más adelante.
-- Corre en el gerente con `jq` instalado:
+- Corre en el nodo manager con `jq` instalado:
 
 ```bash
 sudo cp -a /captain/data/config-captain.json /captain/data/config-captain.json.before-nginx-reset
@@ -57,7 +57,7 @@ Los cambios NGINX específicos de la aplicación pertenecen a la aplicación [Cu
 - Utilice la aplicación **Ajustes HTTP** para editar su plantilla NGINX cuando usted necesita un tiempo de salida, límite de carga, u otro comportamiento NGINX que los controles estándar no expongan.
 
 1. Guardar una copia de la plantilla actual antes de editar.
-2. Cambie la directiva más pequeña y guárdala en el tablero.
+2. Cambie la directiva más pequeña y guárdala en el dashboard.
 3. Verifique que el dashboard acepta la configuración NGINX, luego pruebe todos los dominios adjuntos a la aplicación sobre HTTP y HTTPS. Una plantilla de aplicación compartida afecta esos dominios juntos.
 
 - Una configuración inválida puede interrumpir el enrutamiento.

@@ -24,7 +24,7 @@ Antes de alojar aplicaciones importantes, compruebe:
   - Prueba una recuperación de datos de aplicaciones.
   - Grabar lugares de imagen, colocación de nodos y acceso al registro.
 - **Capacidad**
-  - Deja la CPU, RAM y el audífono del disco para las construcciones.
+  - Deja la CPU, RAM y el audífono del disco para las builds.
   - Supervisar el uso del disco.
   - Elija una política de limpieza de imágenes que preserve los rollos útiles.
 - **Redes**

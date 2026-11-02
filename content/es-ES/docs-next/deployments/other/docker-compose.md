@@ -4,7 +4,7 @@ title: Docker Compose (Experimental)
 slug: /deployments/other/docker-compose
 ---
 
-- **Experimental:** El panel de control de CapRover puede importar un subconjunto limitado de Docker Compose en aplicaciones administradas.
+- **Experimental:** El dashboard de CapRover puede importar un subconjunto limitado de Docker Compose en aplicaciones administradas.
 - Abierto **Aplicaciones → Docker Compose**, pegar el YAML, revisar las aplicaciones generadas y desplegar.
 - Compruebe el puerto HTTP de cada aplicación, variables ambientales, datos persistentes y puertos expuestos después.
 
@@ -16,7 +16,7 @@ Los volúmenes designados se gestionan a través de las aplicaciones de CapRover
 
 <span id="source-reference-docker-compose"></span>
 
-## Matriz de soporte de compostura Docker
+## Compatibilidad con Docker Compose
 
 El formato One-Click de CapRover acepta un **subset** de la configuración de servicio Docker Compose; no es un general `docker compose up` reemplazo. El [modelo](https://github.com/caprover/caprover/blob/master/src/models/IOneClickAppModels.ts) declara:
 
@@ -26,9 +26,9 @@ El formato One-Click de CapRover acepta un **subset** de la configuración de se
 | `volumes` | Montajes de cuerda; comprobar el camino de destino y la persistencia. |
 | `ports` | Estring host: pares de contenedores. |
 | `environment` | Mapping of variable names to string values. |
-| `depends_on` | Conjunto de nombre de servicio utilizado para ordenar la implementación de One-Click. |
+| `depends_on` | Conjunto de nombre de servicio utilizado para ordenar la despliegue de One-Click. |
 | `caproverExtra` | Extensión CapRover para `dockerfileLines`, `containerHttpPort`, `notExposeAsWebApp`, y `websocketSupport`. |
 
-- El ayudante de despliegue mapea estos valores en aplicaciones y convierte opciones adicionales de configuración seleccionadas a una cancelación de servicio.
-- Compruebe el comportamiento exacto en [OneClickAppDeploymentHelper.ts](https://github.com/caprover/caprover/blob/master/src/user/oneclick/OneClickAppDeploymentHelper.ts) y plantillas de prueba en una instalación desechable.
+- El asistente de despliegue mapea estos valores en aplicaciones y convierte opciones adicionales de configuración seleccionadas a una override del servicio.
+- Compruebe el comportamiento exacto en [OneClickAppDeploymentHelper.ts](https://github.com/caprover/caprover/blob/master/src/user/oneclick/OneClickAppDeploymentHelper.ts) y plantillas de prueba en una instalación de prueba.
 - Las claves de compostura ausentes del modelo no se prometen trabajar.

@@ -5,14 +5,14 @@ slug: /domains/cloudflare-reverse-proxies
 ---
 
 - 对于与 Cloudflare DNS 的初始设置,将通配符 A 记录指向 CapRover 服务器并选择 **仅限 DNS** (没有Cloudflare代理).
-- 在请求证书前确认仪表板和样本应用软件在HTTP上的工作.
+- 在请求证书前确认dashboard和样本应用软件在HTTP上的工作.
 - 这让CapRover的普通HTTP挑战达到自己的NGINX服务.
 
 - 如果您稍后打开了代理服务器, 请验证其 TLS 模式, 原始 `Host` 标题, WebSocket 处理,缓存行为,以及证书更新路径.
 - 终止 HTTPS 代理服务器不会自动加密与 CapRover 的连接 。
 - 防止公众请求 `/.well-known/acme-challenge/` 从到达 CapRover 可以中断发行或更新。
 
-关于拥有主机端口80和443的上游反向代理,见 [反向代理假想](../installation/advanced/index.md)。在启用两个层的强制 HTTPS 之前, 配置和测试代理的准确行为 。
+关于拥有host 端口80和443的上游反向代理,见 [反向代理场景](../installation/advanced/index.md)。在启用两个层的强制 HTTPS 之前, 配置和测试代理的准确行为 。
 
 ## Cloudflare 通用 SSL 和嵌入式应用域
 

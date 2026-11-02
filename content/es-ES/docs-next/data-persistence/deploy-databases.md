@@ -11,7 +11,7 @@ slug: /data-persistence/deploy-databases
 2. Configure el nombre de usuario, contraseña y nombre de la base de datos requeridos a través de su configuración de aplicaciones o un instalador de One-Click. Utilizar credenciales únicas y mantenerlas fuera del control de fuentes.
 3. Montar un volumen llamado o un enlace en el directorio de datos de la imagen de la base de datos. Coloque la aplicación en el nodo sosteniendo ese almacenamiento.
 4. Implementar y leer los registros de servicios hasta que la base de datos reporte que está lista. Reiniciar o redistribuir una vez para confirmar sus datos permanece presente.
-5. Conectar otra aplicación por el nombre de servicio de la base de datos y el puerto interno de contenedores. Publicar un puerto anfitrión sólo si un cliente externo lo necesita; seguir [guía de conexión externa](deploy-databases.md) por su cortafuegos y pasos de seguridad.
+5. Conectar otra aplicación por el nombre de servicio de la base de datos y el puerto interno de contenedores. Publicar un puerto del host sólo si un cliente externo lo necesita; seguir [guía de conexión externa](deploy-databases.md) por su cortafuegos y pasos de seguridad.
 6. Programar copias de seguridad de la base de datos y probar una restauración. La copia de seguridad de configuración de CapRover no contiene los registros de bases de datos.
 
 Compruebe la ruta de almacenamiento de la imagen de la base de datos elegida y las variables de inicialización; difieren entre PostgreSQL, MySQL, Redis y otros servicios.
@@ -29,7 +29,7 @@ Compruebe la ruta de almacenamiento de la imagen de la base de datos elegida y l
 - Las aplicaciones actualizadas antes de CapRover 1.15 pueden retener un `srv-captain--` nombre de servicio y alias de red; inspeccionar el servicio real si un nombre de host no resuelve.
 
 - Mantenga las credenciales en la configuración del entorno de aplicaciones o un mecanismo secreto adecuado, y asegúrese de que la aplicación de la base de datos tenga almacenamiento y respaldos persistentes.
-- See [Implementar bases de datos](deploy-databases.md) primero si la base de datos aún no está instalada.
+- Consulta [Implementar bases de datos](deploy-databases.md) primero si la base de datos aún no está instalada.
 
 <span id="source-data-persistence-external-databases"></span>
 
@@ -47,7 +47,7 @@ Compruebe la ruta de almacenamiento de la imagen de la base de datos elegida y l
 
 ### Publicar un puerto restringido
 
-- En la aplicación de bases de datos **App Config**, mapa un puerto anfitrión elegido, por ejemplo `12345/tcp`, al puerto de contenedores de la base de datos, por ejemplo PostgreSQL `5432/tcp`.
+- En la aplicación de bases de datos **App Config**, mapa un puerto del host elegido, por ejemplo `12345/tcp`, al puerto de contenedores de la base de datos, por ejemplo PostgreSQL `5432/tcp`.
 - Guardar y verificar la actualización del servicio.
 - Desde su cliente, conéctese a `SERVER_PUBLIC_IP:12345` con el nombre de usuario y contraseña de la base de datos.
 

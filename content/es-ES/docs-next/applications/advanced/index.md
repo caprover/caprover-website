@@ -1,14 +1,14 @@
 ---
 id: index
-title: Configuración de aplicaciones avanzadas
+title: Configuración avanzada de aplicaciones
 slug: /applications/advanced
 ---
 
 <span id="source-applications-advanced-service-update-override"></span>
 
-## Actualización de servicio Override
+## Service Update Override
 
-- El **Actualización de servicio Override** campo fusiona la configuración JSON o YAML en la actualización de servicio Docker que CapRover prepara cuando una aplicación está configurada o desplegada.
+- El **Service Update Override** campo fusiona la configuración JSON o YAML en la actualización de servicio Docker que CapRover prepara cuando una aplicación está configurada o desplegada.
 - Es útil para las opciones de servicio Docker que el dashboard no expone.
 - Comience con la anulación más pequeña posible:
 
@@ -30,7 +30,7 @@ TaskTemplate:
 
 - Mantenga una copia de la configuración del servicio de trabajo.
 - Una anulación inválida o contradictoria puede bloquear las implementaciones.
-- See [Actualización de servicio de Docker API](https://docs.docker.com/reference/api/engine/) para el esquema utilizado por la versión Docker ejecutando su servidor.
+- Consulta [Actualización de servicio de Docker API](https://docs.docker.com/reference/api/engine/) para el esquema utilizado por la versión Docker ejecutando su servidor.
 
 <span id="source-applications-advanced-pre-deploy-function"></span>
 
@@ -52,5 +52,5 @@ var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
 
 - Este código tiene los privilegios del proceso CapRover.
 - Puede romper actualizaciones de servicio o acceder a datos sensibles, así que restringir quién puede editarlo.
-- Para los campos de servicio estáticos, prefiera un [Actualización de servicio Override](index.md).
+- Para los campos de servicio estáticos, prefiera un [Service Update Override](index.md).
 - Check `docker service logs captain-captain` si una actualización de servicio falla antes de llegar a Docker.

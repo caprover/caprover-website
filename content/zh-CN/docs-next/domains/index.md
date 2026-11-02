@@ -6,7 +6,7 @@ slug: /domains
 
 <span id="source-domains-root-domain"></span>
 
-## 根域和通配符 DNS
+## 根域名与通配符 DNS
 
 示例根域 : `apps.example.com`.
 
@@ -24,22 +24,22 @@ slug: /domains
 ## App 域
 
 - 默认应用域 : `<app-name>.<root-domain>`.
-- 设定 **集装箱 HTTP 端口** 到你的应用程序的监听端口。 应用程序必须绑定 `0.0.0.0`.
-- 属于私人服务的工人和数据库不需要公共领域。
+- 设定 **容器 HTTP 端口** 到你的应用程序的监听端口。 应用程序必须绑定 `0.0.0.0`.
+- 属于私人服务的worker和数据库不需要公网域名。
 
 <span id="source-domains-custom-domains"></span>
 
 ## 自定义域
 
 - 将主机名指向 CapRover 服务器,然后将其附加到应用程序中.
-- 对于顶级域,使用A记录或DNS提供者支持的别名机制.
+- 对于顶级域,使用A记录或DNS服务商支持的别名机制.
 - 域重定向和证书更新取决于源主机名继续解决到CapRover.
 
 <span id="source-domains-https"></span>
 
-## HTTPS 密码
+## HTTPS
 
-CapRover使用Certbot为单个仪表板和app主机名颁发证书.
+CapRover使用Certbot为单个dashboard和app主机名颁发证书.
 
 **证书先决条件 :**
 

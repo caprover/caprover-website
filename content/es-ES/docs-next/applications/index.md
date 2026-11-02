@@ -9,9 +9,9 @@ slug: /applications
 ## Ajustes de la aplicación
 
 - **Aplicación web:** Las rutas de CapRover solicitan a través de NGINX al puerto HTTP de contenedor configurado.
-- **Servicio privado:** Seleccione **No exponer como aplicación web** para trabajadores o bases de datos sin un punto final HTTP.
+- **Servicio privado:** Seleccione **No exponer como aplicación web** para workers o bases de datos sin un punto final HTTP.
 - **Dirección de escucha:** Su proceso web debe unirse a `0.0.0.0` dentro del contenedor.
-- **Suprimir la aplicación:** Retroceda cualquier volumen Docker, monturas enlazadas o datos externos primero. La eliminación de la aplicación no constituye una copia de seguridad.
+- **Eliminar la aplicación:** Retroceda cualquier volumen Docker, monturas enlazadas o datos externos primero. La eliminación de la aplicación no constituye una copia de seguridad.
 
 Para las opciones de despliegue de fuentes/imagen, véase [Despliegue](../deployments/index.md).
 
@@ -44,7 +44,7 @@ ARG PUBLIC_BUILD_VALUE
 ENV PUBLIC_BUILD_VALUE=${PUBLIC_BUILD_VALUE}
 ```
 
-CapRover también proporciona `CAPROVER_GIT_COMMIT_SHA` durante la fuente construye. Los valores de construcción pueden estar incrustados en la imagen resultante.
+CapRover también proporciona `CAPROVER_GIT_COMMIT_SHA` durante la fuente construye. Los valores de build pueden estar incrustados en la imagen resultante.
 
 <span id="source-applications-http-settings"></span>
 
@@ -54,4 +54,4 @@ CapRover también proporciona `CAPROVER_GIT_COMMIT_SHA` durante la fuente constr
 - **Puerto HTTP de contenedores:** Debe coincidir con el puerto que el proceso escucha.
 - **HTTP Autenticación Básica:** Restricts HTTP access; application-specific user authorization remains separate.
 - **Dominios redirigidos:** Confirme el nombre de host de destino es accesible antes de habilitar redirecciones.
-- **Puertos públicos TCP/UDP:** Utilice mapas de puertos publicados explícitamente. See [Firewall &amp; Networking](../domains/firewall.md).
+- **Puertos públicos TCP/UDP:** Utilice mapas de puertos publicados explícitamente. Consulta [Firewall &amp; Networking](../domains/firewall.md).

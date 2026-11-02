@@ -32,14 +32,14 @@ Utilice la IP LAN real de la máquina en `MAIN_NODE_IP_ADDRESS`. De otro disposi
 
 ### Nombre de host local de desarrollo
 
-- Sobre sistemas que resuelven `*.localhost` a la máquina local, uso `captain.localhost` como el dominio raíz y `http://captain.captain.localhost` para el tablero.
+- Sobre sistemas que resuelven `*.localhost` a la máquina local, uso `captain.localhost` como el dominio raíz y `http://captain.captain.localhost` para el dashboard.
 - Si comodín `.localhost` la resolución no está disponible, utilice un servidor DNS local para su dominio de desarrollo elegido; un sencillo `/etc/hosts` entrada no puede proporcionar DNS comodín.
 - Para Docker Desktop, asegúrese `/captain` se comparte / monta correctamente antes de la instalación.
 - Uso `MAIN_NODE_IP_ADDRESS=127.0.0.1` para una prueba localhost de una sola máquina. Evite la validación de cifrado público para dominios localeshost.
 
 ### Solo dominio privado
 
-- Configurar un servidor DNS local para apuntar `*.apps.home.example` a `192.168.1.12`, y establecer el dominio raíz de CapRover `apps.home.example` en el tablero.
+- Configurar un servidor DNS local para apuntar `*.apps.home.example` a `192.168.1.12`, y establecer el dominio raíz de CapRover `apps.home.example` en el dashboard.
 - Si su servidor DNS no puede crear registros de tarjetas silvestres, añadir `captain.apps.home.example` y cada subdominio de aplicaciones individualmente.
 - El archivo hosts en un ordenador no proporciona DNS comodín a otros dispositivos.
 - Revise la resolución de nombre de un cliente antes de crear una aplicación.
@@ -52,16 +52,16 @@ Use HTTP en este nombre solo privado. No active el flujo de CapRover para un dom
 - Puerto del router `80/tcp` a `192.168.1.12:80` y `443/tcp` a `192.168.1.12:443`.
 - El servidor debe mantener una IP LAN estable, y las conexiones de entrada deben llegar al router; NAT de grado portador puede prevenir esta configuración.
 
-- Establecer el dominio de raíz pública en CapRover, verificar `captain.<root-domain>` resuelve y alcanza el servidor sobre HTTP, a continuación, activar el panel de control y la aplicación HTTPS como se describe en [Comienzo](../../get-started.md).
+- Establecer el dominio de raíz pública en CapRover, verificar `captain.<root-domain>` resuelve y alcanza el servidor sobre HTTP, a continuación, activar el dashboard y la aplicación HTTPS como se describe en [Comienzo](../../get-started.md).
 - Mantenga el puerto de administración `3000` restringido a su LAN u otra vía de acceso de confianza en lugar de remitirlo públicamente.
 
 <span id="source-installation-advanced-custom-host-ports"></span>
 
 ## Puertos de acogida personalizados
 
-- CapRover normalmente publica HTTP en el puerto anfitrión 80, HTTPS en 443, y la interfaz de administración inicial en 3000.
+- CapRover normalmente publica HTTP en el puerto del host 80, HTTPS en 443, y la interfaz de administración inicial en 3000.
 - En un servidor nuevo, utilice esos defectos.
-- Cuando otro servicio ya ocupa un puerto anfitrión, utilice el arranque manual y cambie tanto el lado anfitrión del mapeo de Docker como el emparejado `CAPTAIN_HOST_*` ajuste:
+- Cuando otro servicio ya ocupa un puerto del host, utilice el arranque manual y cambie tanto el lado host del mapeo de Docker como el emparejado `CAPTAIN_HOST_*` ajuste:
 
 ```bash
 sudo docker run -p 10080:80 -p 10443:443 -p 13000:3000 \
@@ -75,8 +75,8 @@ sudo docker run -p 10080:80 -p 10443:443 -p 13000:3000 \
 
 - Los puertos laterales de contenedores permanecen 80, 443, y 3000.
 - El acceso inicial en este ejemplo es `http://SERVER_IP:13000`.
-- Abra sólo los puertos anfitriones requeridos por su arquitectura.
-- Un flujo de certificado público y ordinario `https://your-domain` Las direcciones URL todavía necesitan puertos externos 80 y 443 encaminadas a CapRover; cambiar sus puertos anfitriones por sí solo no encamina esos puertos estándar.
+- Abra sólo los puertos del host requeridos por su arquitectura.
+- Un flujo de certificado público y ordinario `https://your-domain` Las direcciones URL todavía necesitan puertos externos 80 y 443 encaminadas a CapRover; cambiar sus puertos del host por sí solo no encamina esos puertos estándar.
 - Planifique su proxy inverso o reenvío de puerto antes de habilitar HTTPS.
 
 CapRover pasa estos valores de host-port en sus servicios en la instalación. Cambiar el puerto publicado de una instalación existente requiere cuidado extra y está fuera de este ejemplo de instalación fresca.
@@ -93,9 +93,9 @@ CapRover pasa estos valores de host-port en sus servicios en la instalación. Ca
 - El propio desafío de Encrypt HTTP de CapRover necesita sus solicitudes de validación para llegar a CapRover en el puerto 80.
 - Terminar HTTPS en un proxy no proporciona automáticamente HTTPS entre el proxy y CapRover.
 
-- Para una instalación fresca detrás de un proxy que posee los puertos de host estándar, vea [Puertos de acogida personalizados](index.md) publicar CapRover en diferentes puertos anfitriones.
+- Para una instalación fresca detrás de un proxy que posee los puertos de host estándar, vea [Puertos de acogida personalizados](index.md) publicar CapRover en diferentes puertos del host.
 - Verifique el enrutamiento del panel, una aplicación de muestra y el comportamiento del certificado antes de mover el tráfico existente.
-- See [Cloudflare y Proxies Inversos](../../domains/cloudflare-reverse-proxies.md) para las consideraciones de nivel de dominio.
+- Consulta [Cloudflare y Proxies Inversos](../../domains/cloudflare-reverse-proxies.md) para las consideraciones de nivel de dominio.
 
 Las configuraciones proxy inversas dependen del proxy y del límite TLS deseado. Esta página no prescribe una configuración universal; se aplazará una configuración específica de proveedor probado.
 
@@ -105,9 +105,9 @@ Las configuraciones proxy inversas dependen del proxy y del límite TLS deseado.
 
 - CapRover normalmente inicializa Docker Swarm durante la instalación.
 - El `useExistingSwarm` configuración override permite al instalador unirse a un Swarm inicial existente en su lugar.
-- Esto es avanzado: primero entender cómo el gerente de CapRover, NGINX, registro y servicios persistentes serán colocados en sus nodos.
+- Esto es avanzado: primero entender cómo el nodo manager de CapRover, NGINX, registro y servicios persistentes serán colocados en sus nodos.
 
-En el nodo de gerente previsto, confirme que `sudo docker info` reporta un Swarm activo y que este nodo puede manejarlo. Asegurar que los puertos de redes Swarm estén abiertos entre los nodos de confianza: `2377/tcp`, `7946/tcp`, `7946/udp`, y `4789/udp`Mantenga el tráfico superpuesto privado.
+En el nodo manager previsto, confirme que `sudo docker info` reporta un Swarm activo y que este nodo puede manejarlo. Asegurar que los puertos de redes Swarm estén abiertos entre los nodos de confianza: `2377/tcp`, `7946/tcp`, `7946/udp`, y `4789/udp`Mantenga el tráfico superpuesto privado.
 
 Antes de la primera instalación, escriba el override en el directorio persistente de CapRover:
 
@@ -116,11 +116,11 @@ sudo mkdir -p /captain/data
 echo '{"useExistingSwarm":true}' | sudo tee /captain/data/config-override.json
 ```
 
-- Ejecute el comando Docker bootstrap en [Configuración manual](../manual.md) en este nodo de gerente. El instalador automatizado rechaza la preexistente `/captain` configuración y no es adecuado para esta anulación.
+- Ejecute el comando Docker bootstrap en [Configuración manual](../manual.md) en este nodo manager. El instalador automatizado rechaza la preexistente `/captain` configuración y no es adecuado para esta anulación.
 - CapRover lee `useExistingSwarm` y utiliza el Swarm existente.
-- Hacer esto en un grupo desechable o cuidadosamente planificado primero: CapRover crea y gestiona servicios y redes en ese Swarm, y su estado persistente permanece bajo `/captain` en el nodo CapRover.
+- Hacer esto en un clúster desechable o cuidadosamente planificado primero: CapRover crea y gestiona servicios y redes en ese Swarm, y su estado persistente permanece bajo `/captain` en el nodo CapRover.
 
-Para programar aplicaciones más allá de un nodo, se requiere un registro de presión predeterminado antes de añadir nodos a través de CapRover. Leer [Configurar un Cluster Multi-Nodo](../../scaling/multi-node.md) antes de desplegar aplicaciones a través de nodos.
+Para programar aplicaciones más allá de un nodo, se requiere un registry de push predeterminado antes de añadir nodos a través de CapRover. Leer [Configurar un Cluster Multi-Nodo](../../scaling/multi-node.md) antes de desplegar aplicaciones a través de nodos.
 
 <span id="source-guides-home-server"></span>
 
@@ -128,11 +128,11 @@ Para programar aplicaciones más allá de un nodo, se requiere un registro de pr
 
 Para una prueba local, use [Instalación de redes locales / privadas](index.md)Un despliegue en el hogar público también necesita una manera estable de entrar en el tráfico para llegar al host.
 
-1. Dar al anfitrión una dirección LAN estable. Para instalación manual Docker, uso [Configuración manual](../manual.md).
+1. Dar al host una dirección LAN estable. Para instalación manual Docker, uso [Configuración manual](../manual.md).
 2. Para el estándar [instalador](../../get-started.md), adelante TCP 80, 443, y 3000 de su router al host. El instalador informa de controles de capacidad externa después de la configuración; NAT y firewalls proveedores todavía necesitan atención manual.
 3. Instala CapRover, luego señala el nombre de host Wildcard DNS y el dashboard a la dirección pública del router. Si su ISP cambia esa dirección, utilice un proceso de actualización DNS confiable.
 4. Completar los pasos de raíz-dominio y HTTPS en [Comienzo](../../get-started.md), y verificar el dashboard y una aplicación de prueba de un dispositivo **afuera** la LAN.
-5. Después de que el panel funciona sobre HTTPS desde fuera de la LAN, retire la regla de reenvío del puerto público 3000 y mantenga el acceso del administrador a través del nombre de host de panel de control. Respalde tanto el estado de CapRover como los datos de aplicaciones fuera del sitio.
+5. Después de que el panel funciona sobre HTTPS desde fuera de la LAN, retire la regla de reenvío del puerto público 3000 y mantenga el acceso del administrador a través del nombre de host de dashboard. Respalde tanto el estado de CapRover como los datos de aplicaciones fuera del sitio.
 
 - NAT de grado de portador, puertos de entrada bloqueados, o una conexión IPv6 solo puede prevenir el acceso público normal y la emisión de certificados.
 - En esos casos utiliza un VPS público, un proxy/tunnel reverso adecuado con su propio modelo de seguridad, o mantiene la instalación privada.

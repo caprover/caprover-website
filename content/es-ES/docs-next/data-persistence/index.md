@@ -28,11 +28,11 @@ docker volume inspect VOLUME_NAME
 docker ps -a --filter volume=VOLUME_NAME
 ```
 
-Sólo después de confirmar la propiedad, no uso y copia de seguridad, eliminar con `docker volume rm VOLUME_NAME`Evitar la amplitud `docker volume prune` en anfitriones compartidos.
+Sólo después de confirmar la propiedad, no uso y copia de seguridad, eliminar con `docker volume rm VOLUME_NAME`Evitar la amplitud `docker volume prune` en hosts compartidos.
 
 <span id="source-data-persistence-bind-mounts"></span>
 
-## Montajes Bind
+## Bind mounts
 
 - Mapa un directorio host absoluto a la ruta de contenedores, como `/srv/app/uploads` → `/app/uploads`.
 - Crear la ruta de host y establecer permisos para el usuario del contenedor.
@@ -40,7 +40,7 @@ Sólo después de confirmar la propiedad, no uso y copia de seguridad, eliminar 
 
 <span id="source-applications-persistent-directories"></span>
 
-## Directores permanentes
+## Directorios persistentes
 
 - Configurar los caminos montados en la aplicación **Persistent Directories** Ajustes.
 - Verifica que la aplicación ejecutada escribe a la **Carretera de contenedores** Tú montaste.
@@ -58,6 +58,6 @@ Sólo después de confirmar la propiedad, no uso y copia de seguridad, eliminar 
 
 ## Prueba de almacenamiento
 
-Escriba un archivo representativo en la ruta montada, redistribuya la aplicación y verifique que queda. Para bases de datos, utilice una exportación/retroalimentación de datos.
+Escriba un archivo representativo en la ruta montada, redistribuya la aplicación y verifique que queda. Para bases de datos, utilice una exportación/restauración de datos.
 
 Para almacenamiento compartido a través de los nodos, vea [Almacenamiento compartido](shared-storage.md). Para respaldos y migraciones, vea [Datos persistentes](backup-data.md).

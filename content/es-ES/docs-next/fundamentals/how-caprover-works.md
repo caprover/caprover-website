@@ -6,7 +6,7 @@ slug: /fundamentals/how-caprover-works
 
 CapRover administra los servicios Docker Swarm en uno o más servidores.
 
-- **CapRover:** Almacena configuración de aplicaciones, dominios, historial de implementación y configuraciones.
+- **CapRover:** Almacena configuración de aplicaciones, dominios, historial de despliegue y configuraciones.
 - **Docker Swarm:** Comienza contenedores, actualiza imágenes de servicio y mantiene réplicas solicitadas.
 - **NGINX:** Rutas HTTP(S) tráfico por nombre de host al puerto de contenedores de una aplicación.
 - **Registro Docker:** Distribuye imágenes a nodos en un cluster.
@@ -19,19 +19,19 @@ CapRover administra los servicios Docker Swarm en uno o más servidores.
 Una aplicación CapRover mapas a un servicio Docker Swarm.
 
 - Una aplicación web normalmente recibe `<app-name>.<root-domain>`.
-- Los trabajadores y las bases de datos pueden funcionar sin enrutamiento público de HTTP.
+- Los workers y las bases de datos pueden funcionar sin enrutamiento público de HTTP.
 - Las aplicaciones estatales que utilizan almacenamiento local deben permanecer en el nodo manteniendo esos datos.
 
 <span id="source-fundamentals-builds-images-deployments"></span>
 
-## Construcciones y despliegues
+## Builds y despliegues
 
 - Implementar una imagen existente o construir una utilizando `captain-definition`.
 - El despliegue actualiza el servicio Docker para ejecutar esa imagen.
-- Una construcción de imagen exitosa **no** garantizar una aplicación saludable. El proceso debe escuchar en el puerto de contenedores configurado.
+- Una build de la imagen exitosa **no** garantizar una aplicación saludable. El proceso debe escuchar en el puerto de contenedores configurado.
 - Los rollos de imagen no restauran variables ambientales, esquemas de bases de datos o contenidos de volumen.
 
-See [Despliegue](../deployments/index.md) y [Definición](../reference/captain-definition.md).
+Consulta [Despliegue](../deployments/index.md) y [Definición](../reference/captain-definition.md).
 
 <span id="source-fundamentals-networking"></span>
 
@@ -39,7 +39,7 @@ See [Despliegue](../deployments/index.md) y [Definición](../reference/captain-d
 
 - **Tráfico web público:** DNS → CapRover NGINX → el puerto HTTP de la aplicación.
 - **Tráfico interno:** Nombre de servicio de Swarm y puerto interno, como `postgres:5432`, sin publicar un puerto de base de datos.
-- **Otros protocolos:** Publicar puertos TCP/UDP explícitamente. See [Referencia del puerto](../reference/ports.md).
+- **Otros protocolos:** Publicar puertos TCP/UDP explícitamente. Consulta [Referencia del puerto](../reference/ports.md).
 
 <span id="source-fundamentals-persistence"></span>
 
@@ -49,15 +49,15 @@ See [Despliegue](../deployments/index.md) y [Definición](../reference/captain-d
 - Los volúmenes de docker y monturas de fijación son generalmente **nodos locales**. Swarm no replica sus datos.
 - Retroceda los datos de la aplicación por separado de la configuración propia de CapRover.
 
-See [Almacenamiento persistente](../data-persistence/index.md).
+Consulta [Almacenamiento persistente](../data-persistence/index.md).
 
 <span id="source-fundamentals-docker-swarm"></span>
 
 ## Docker Swarm
 
 - CapRover inicializa un Swarm incluso para una instalación de un solo nodo.
-- **Managers** controlar el Swarm; **trabajadores** ejecutar tareas asignadas.
-- Las configuraciones de múltiples nodos requieren la creación de redes internodos confiables y un registro de presión predeterminado accesible. See [Configuración multinodo](../scaling/multi-node.md).
+- **Managers** controlar el Swarm; **workers** ejecutar tareas asignadas.
+- Las configuraciones de múltiples nodos requieren la creación de redes internodos confiables y un registry de push predeterminado accesible. Consulta [Configuración multinodo](../scaling/multi-node.md).
 
 <span id="source-reference-glossary"></span>
 

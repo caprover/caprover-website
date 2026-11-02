@@ -6,9 +6,9 @@ slug: /installation/manual
 
 使用此路径将 Docker 和 riottrap CapRover 自己安装到新的 Ubuntu 24.04 服务器上 。
 
-## 1. 港口和防火墙
+## 1. 端口和防火墙
 
-允许在主机提供者的防火墙中设置下列端口,如果使用UFW,则在服务器上安装:
+允许在云服务商的防火墙中设置下列端口,如果使用UFW,则在服务器上安装:
 
 ```bash
 sudo ufw allow OpenSSH
@@ -18,9 +18,9 @@ sudo ufw allow 3000/tcp   # Dashboard setup
 sudo ufw status
 ```
 
-如果UFW不活动,则启用它 `sudo ufw enable` **之后** 允许SSH。 一旦仪表板在HTTPS上工作,可以限制端口3000. 见 [防火墙](domains/firewall.md) 用于多节点端口。
+如果UFW不活动,则启用它 `sudo ufw enable` **之后** 允许SSH。 一旦dashboard在HTTPS上工作,可以限制端口3000. 见 [防火墙](domains/firewall.md) 用于多节点端口。
 
-## 2. 安装嵌入器
+## 2. 安装 Docker
 
 在服务器上运行 :
 
@@ -62,6 +62,6 @@ sudo docker run -p 80:80 -p 443:443 -p 3000:3000 \
 
 **初始密码 :** `captain42`
 
-如果仪表板无法到达,请检查 `sudo docker service ls` 和防火墙规则 从步骤1。
+如果dashboard无法到达,请检查 `sudo docker service ls` 和防火墙规则 从步骤1。
 
-继续 [DNS和仪表板设置](../get-started.md#dns).
+继续 [DNS和dashboard设置](../get-started.md#dns).

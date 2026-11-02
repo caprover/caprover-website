@@ -9,7 +9,7 @@ slug: /applications/advanced
 ## 服务更新覆盖
 
 - 这个 **服务更新覆盖** 字段将 JSON 或 YAML 设置合并到 CapRover 配置或部署应用程序时准备的 Docker 服务更新中。
-- 对Docker服务选项有用,因为仪表板不会曝光.
+- 对Docker服务选项有用,因为dashboard不会曝光.
 - 从最小可能的覆盖开始 :
 
 ```yaml
@@ -25,7 +25,7 @@ TaskTemplate:
 
 - 更新命令是CapRover的正常设置,然后是服务覆盖,然后是可选的部署前功能.
 - 覆盖可以替换所选择的 CapRover 设置 。
-- 值必须匹配多克的服务更新 API.
+- 值必须匹配Docker的服务更新 API.
 - 删除一个覆盖并不一定清除 CapRover 本身不管理的 Docker 字段; 在撤销此更改时明确重置该值 。
 
 - 保留工作服务设置的副本。

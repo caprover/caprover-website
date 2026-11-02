@@ -25,15 +25,15 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD curl -fsS http://127.0.0.1:3000/health || exit 1
 ```
 
-使用您图像中包含的实际准备端点和命令 。 能力,依赖性和应用程序行为仍然决定更新是否无中断.
+使用您镜像中包含的实际准备端点和命令 。 能力,依赖性和应用程序行为仍然决定更新是否无中断.
 
 <span id="source-scaling-placement"></span>
 
-## 职位安排
+## 节点调度
 
 - 根据制约因素和能力,Swarm将无国籍任务排到现有节点之间。
-- CapRover 将持久性的应用程序标注在托管本地数据的节点上.
-- 检查任务待决时的登记册访问、节点可用性和放置限制。
+- CapRover 将持久化的应用程序标注在托管本地数据的节点上.
+- 检查任务待决时的registry访问、节点可用性和放置限制。
 
 <span id="source-applications-scaling-placement"></span>
 
@@ -41,4 +41,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
 
 - 本地卷和绑定挂载不会自动在节点之间共享.
 - 避免强迫多个作者反对同一本地数据. 对于 **启动** 在国有服务方面,应用程序和存储必须明确支持。
-- 移动持续应用程序前迁移数据 。 见 [持久性储存](../data-persistence/index.md) 和 [多节点设置](multi-node.md).
+- 移动持续应用程序前迁移数据 。 见 [持久化储存](../data-persistence/index.md) 和 [多节点设置](multi-node.md).

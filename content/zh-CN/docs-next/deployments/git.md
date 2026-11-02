@@ -19,5 +19,5 @@ slug: /deployments/git
 
 - 一个webhook推让CapRover获取配置的分支并构建应用程序.
 - 将 Webhook URL 视为一个秘密 。
-- 存储器 URL 格式、 SSH 密钥和 Webhook 屏幕取决于您的提供者 。
-- 对于离服务器更远的可复制构件,请使用 [排雷中心/CD](ci-cd/index.md) 以部署图像。
+- 仓库 URL 格式、 SSH 密钥和 Webhook 屏幕取决于您的服务商 。
+- 对于离服务器更远的可复制构件,请使用 [排雷中心/CD](ci-cd/index.md) 以部署镜像。

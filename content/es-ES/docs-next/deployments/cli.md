@@ -5,7 +5,7 @@ slug: /deployments/cli
 ---
 
 - Instala el CLI CapRover en tu máquina de desarrollo con `npm install -g caprover`.
-- Establecer el servidor primero, crear una aplicación en su panel de control, y registrarse en la URL de panel HTTPS:
+- Establecer el servidor primero, crear una aplicación en su dashboard, y registrarse en la URL de panel HTTPS:
 
 ```bash
 caprover login

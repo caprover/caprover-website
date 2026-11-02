@@ -4,7 +4,7 @@ title: Supervisión con NetData
 slug: /server/netdata
 ---
 
-- En el tablero, abierto **Supervisión** y permitir NetData inspeccionar el servidor CPU, memoria, disco y actividad de red.
+- En el dashboard, abierto **Supervisión** y permitir NetData inspeccionar el servidor CPU, memoria, disco y actividad de red.
 - Utilice el enlace de monitoreo mostrado para abrir sus gráficos.
 - El servidor también admite destinos opcionales de alerta NetData para SMTP, Slack, Telegram y Pushbullet.
 - Configure sus credenciales en el dashboard y verifique que una notificación de alerta llegue al destino antes de confiar en él.
@@ -16,7 +16,7 @@ Compruebe los registros de aplicaciones y [Diagnósticos](../troubleshooting/dia
 ## HTTP Análisis con GoAccess
 
 - GoAccess produce informes de tráfico HTTP por aplicación de los registros de acceso NGINX.
-- Hágalo en la configuración de monitoreo/análisis del panel de control, y luego abra los informes para una aplicación y dominio.
+- Hágalo en la configuración de monitoreo/análisis del dashboard, y luego abra los informes para una aplicación y dominio.
 - Establecer un cronograma de rotación de registros y un período de retención apropiado para su tráfico y capacidad de disco.
 - CapRover valida la expresión cron y almacena el ajuste de retención con la configuración GoAccess.
 

@@ -4,34 +4,34 @@ title: 完成网络应用程序教程
 slug: /guides/complete-webapp
 ---
 
-- 这个例子结合了一个公共节点网络应用,一个私人工人PostgreSQL,和一个持久的上传目录.
-- 网络应用接受一份小工作;工人在PostgreSQL中对其进行了标记.
-- **端点没有认证,为一次性学习环境.** 使用一个具有足够的内存的单节点服务器PostgreSQL和两个节点服务;一个1GB主机可能太小,无法同时构建图像.
+- 这个例子结合了一个公共节点网络应用,一个私人workerPostgreSQL,和一个持久的上传目录.
+- 网络应用接受一份小工作;worker在PostgreSQL中对其进行了标签.
+- **端点没有认证,为一次性学习环境.** 使用一个具有足够的内存的单节点服务器PostgreSQL和两个节点服务;一个1GB主机可能太小,无法同时构建镜像.
 
 ## 1. 建立私人数据库
 
-- 完成 [开始](../get-started.md),包括通配符DNS和仪表板HTTPS.
-- 创建名为 CapRover 的应用程序 `demo-db` 与 **有持久性数据** 启用和 **不要作为网络应用程序曝光** 选中 。
-- 添加一个命名音量 `demo-db-data` 时间 `/var/lib/postgresql/data`,用于 PostgreSQL 17 图像的数据路径。
+- 完成 [开始](../get-started.md),包括通配符DNS和dashboardHTTPS.
+- 创建名为 CapRover 的应用程序 `demo-db` 与 **有持久化数据** 启用和 **不要作为网络应用程序曝光** 选中 。
+- 添加一个命名音量 `demo-db-data` 时间 `/var/lib/postgresql/data`,用于 PostgreSQL 17 镜像的数据路径。
 - 在第一次部署前设定这些应用环境变量 :
 
 | 变量 | 数值 |
 | --- | --- |
 | `POSTGRES_USER` | `demo` |
 | `POSTGRES_DB` | `demo` |
-| `POSTGRES_PASSWORD` | 您安全保存的独有的强大密码 |
+| `POSTGRES_PASSWORD` | 您安全保存的唯一的强密码 |
 
-在那个 **部署** 选项卡,部署此图像唯一的队长定义 :
+在那个 **部署** 选项卡,部署此镜像唯一的队长定义 :
 
 ```json
 {"schemaVersion":2,"imageName":"postgres:17-alpine"}
 ```
 
 - 等待它的服务运行,它的日志说它已经准备好连接了.
-- 保留数据库端口 `5432` 私人;不需要发布主机端口.
+- 保留数据库端口 `5432` 私人;不需要发布host 端口.
 - 变化 `POSTGRES_PASSWORD` 在音量初始化后,不会更改现有的数据库用户密码.
 
-## 2. 建立网络和工人形象
+## 2. 建立网络和worker 镜像
 
 在新的本地目录中创建 `package.json`:
 
@@ -152,7 +152,7 @@ CMD ["node", "worker.mjs"]
 {"schemaVersion":2,"dockerfilePath":"./Dockerfile.worker"}
 ```
 
-运行 `npm install --package-lock-only` 本地创建 `package-lock.json`,然后包装文件。 建筑用途 `npm ci`,所以在归档中包含锁文件 :
+运行 `npm install --package-lock-only` 本地创建 `package-lock.json`,然后包装文件。 构建用途 `npm ci`,所以在归档中包含锁文件 :
 
 ```bash
 npm install --package-lock-only
@@ -162,7 +162,7 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 
 ## 3. 创建、配置和部署其他应用程序
 
-- 创建 `demo-web` 与 **有持久性数据** 已启用。
+- 创建 `demo-web` 与 **有持久化数据** 已启用。
 - 添加一个命名音量 `demo-uploads` 时间 `/data/uploads`,将容器 HTTP 端口设置为 `3000`,并给出下面的数据库变量。
 - 创建 `demo-worker` 作为无音量和相同数据库变量的非网络应用程序:
 
@@ -176,9 +176,9 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 
 - 新的 CapRover apps 将自己的应用名称作为内部 Docker 服务名称; 用 `docker service ls` 如果你正在使用一个遗留的应用程序。
 - 内 `demo-web`'s **部署** 选项卡,设置队长定义路径到 `./captain-definition-web` 上传 `deploy.tar`.
-- 网络应用程序启动并创建后 `jobs` 表格,设置 `demo-worker`船长定义路径 `./captain-definition-worker` 并上传同一档案。
+- 网络应用程序启动并创建后 `jobs` 表格,设置 `demo-worker`Captain Definition路径 `./captain-definition-worker` 并上传同一档案。
 - 检查两个应用程序的构建和服务日志.
-- 工人不需要公共领域或港口测绘。
+- worker不需要公网域名或端口映射。
 
 访问 `http://demo-web.<root-domain>/jobs` 和预期 `[]`。然后启用 HTTPS 用于 `demo-web`,验证其证书,并提出这些请求,替换示例主机名:
 
@@ -198,22 +198,22 @@ curl https://demo-web.apps.example.com/upload
 
 - 卡普罗弗 [配置备份](../server/backup/index.md) 不包含 `demo-db-data` 或 `demo-uploads`.
 - 设置 PostgreSQL 逻辑备份和上传音量的单独副本,将两者都存储在主机外,并测试恢复.
-- 见 [备份持久性数据](../data-persistence/backup-data.md).
+- 见 [备份持久化数据](../data-persistence/backup-data.md).
 - 这个教程在单个节点上保持两个状态的应用程序; [本地卷不随 Swararm 任务移动](../data-persistence/index.md).
-- 生产应用程序还需要认证、上传政策、为多个工人申请工作以及部署和数据库迁移战略。
+- 生产应用程序还需要认证、上传政策、为多个worker申请工作以及部署和数据库迁移战略。
 
 <span id="source-guides-sample-apps"></span>
 
-## 样本应用程序
+## 示例应用
 
 这个 [CapRover 样本应用](https://github.com/caprover/caprover/tree/master/captain-sample-apps) 为多个框架演示 Dockerfiles 和 Captain 定义 。
 
 1. 选个样本检查一下 `captain-definition`, Dockerfile, 曝光的容器端口, 以及所需的环境变量 。
-2. 在仪表盘中创建一次性应用.
+2. 在dashboard中创建一次性应用.
 3. 选择一种部署方法: 将样本的部署文件包成一个 tar 归档, 从应用程序上传 **部署** 选项卡, **或** 将样本输入一个 Git 分支, 并将其与 [国 际](../deployments/cli.md)。 CLI 的普通 Git 模式排除未承诺和忽略的文件。
 4. 观察积木. 如果容器在CapRover默认值以外的一个端口上收听,则将应用的容器HTTP端口相应设置. 在 HTTP 上检查应用程序 URL, 然后是 HTTPS 。
 
-仅将抽样证书和抽样数据作为例子。 在生产使用之前,确定真正的秘密,必要时增加持久性,并计划 [备份](../server/backup/index.md).
+仅将抽样证书和抽样数据作为例子。 在生产使用之前,确定真正的秘密,必要时增加持久化,并计划 [备份](../server/backup/index.md).
 
 遗留文献中的其他社区框架实例:
 
@@ -221,18 +221,18 @@ curl https://demo-web.apps.example.com/upload
 - [Laravel CapRover 模板](https://github.com/jackbrycesmith/laravel-caprover-template)
 - [Elixir/Phoenix样本](https://github.com/TehSnappy/phoenix_sample)
 
-这些第三方实例可能无法保存。 在部署前审查其图像版本和依赖性 。
+这些第三方实例可能无法保存。 在部署前审查其镜像版本和依赖性 。
 
 <span id="source-guides-recipes"></span>
 
-## 其他食谱
+## 其他示例方案
 
 利用这些有重点的办法执行共同的后续行动任务:
 
-- [部署已有的 Docker 图像](../deployments/index.md),然后设置容器 HTTP 端口并验证公共 URL。
+- [部署已有的 Docker 镜像](../deployments/index.md),然后设置容器 HTTP 端口并验证公共 URL。
 - [私下连接两个应用程序](../domains/firewall.md) 不发布数据库端口。
-- [附加自定义域](../domains/index.md) 并启用 [HTTPS 密码](../domains/index.md).
-- [添加持久性目录](../data-persistence/index.md) 在撰写文件之前。
+- [附加自定义域](../domains/index.md) 并启用 [HTTPS](../domains/index.md).
+- [添加持久化目录](../data-persistence/index.md) 在撰写文件之前。
 - [缩放应用程序](../scaling/index.md) 在检查会话和存储行为后。
 - [导出并恢复服务器配置](../server/backup/index.md) 与单独的 [数据备份](../data-persistence/backup-data.md).
 

@@ -19,7 +19,7 @@ curl --fail --silent --show-error "$CAPROVER_URL/api/v2/user/system/info/" \
   -H 'x-namespace: captain' -H "x-captain-auth: $token"
 ```
 
-- 使用HTTPS并避免打印令牌或密码.
+- 使用HTTPS并避免输出令牌或密码.
 - 主要路线组为: `/user/apps/`, `/user/projects/`, `/user/oneclick/`, `/user/registries/`, `/user/system/`,以及 `/user/pro/`.
 - 其请求机构和答复因终点而异; [服务器路由代码](https://github.com/caprover/caprover/tree/master/src/routes) 是已部署版本的权威目录。
 

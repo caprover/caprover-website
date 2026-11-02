@@ -1,14 +1,14 @@
 ---
 id: index
-title: Escalada &amp; Disponibilidad
+title: Escalado &amp; Disponibilidad
 slug: /scaling
 ---
 
 <span id="source-scaling-scale-app"></span>
 
-## Replicaciones
+## Réplicas
 
-- **Conde de instalación** controla el número solicitado de tareas de servicio de Swarm.
+- **Número de instancias** controla el número solicitado de tareas de servicio de Swarm.
 - Escala aplicaciones apátridas cuyo código y fondo de trabajo apoyan la ejecución simultánea.
 - Comprobar CPU, RAM, límites de conexión de bases de datos y estado de tarea con `docker service ps SERVICE_NAME`.
 
@@ -29,7 +29,7 @@ Utilice un punto final de preparación real y un comando incluido en su imagen. 
 
 <span id="source-scaling-placement"></span>
 
-## Lugar
+## Ubicación de tareas
 
 - Swarm programa tareas apátridas en los nodos disponibles basadas en limitaciones y capacidad.
 - CapRover coloca aplicaciones persistentes al nodo que alberga datos locales.
@@ -37,8 +37,8 @@ Utilice un punto final de preparación real y un comando incluido en su imagen. 
 
 <span id="source-applications-scaling-placement"></span>
 
-## Escalada estatal
+## Escalado con estado
 
 - Los volúmenes locales y las monturas de fijación no se comparten automáticamente entre los nodos.
 - Evite forzar a múltiples escritores contra los mismos datos locales. Para **start-first** sobre servicios estatales, la aplicación y el almacenamiento deben apoyarlo explícitamente.
-- Migrar datos antes de mover una aplicación persistente. See [Almacenamiento persistente](../data-persistence/index.md) y [Configuración multinodo](multi-node.md).
+- Migrar datos antes de mover una aplicación persistente. Consulta [Almacenamiento persistente](../data-persistence/index.md) y [Configuración multinodo](multi-node.md).

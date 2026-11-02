@@ -8,7 +8,7 @@ slug: /troubleshooting/diagnostics
 
 抓取:时间,操作,受影响的app/域,预期结果,实际结果,以及错误.
 
-打开 **沼泽管理器**:
+打开 **Swarm管理器**:
 
 ```bash
 docker service ls
@@ -19,12 +19,12 @@ docker service logs captain-captain --tail 100
 **检查症状:**
 
 - **应用 :** 在 `docker service ls`。老应用程序可能使用 `srv-captain--APP_NAME`组合 `docker service ps SERVICE_NAME` 和 `docker service logs SERVICE_NAME`.
-- **联网 :** 检查DNS并分别测试HTTP和HTTPS.
+- **网络 :** 检查DNS并分别测试HTTP和HTTPS.
 - **存储 :** 检查挂载、磁盘空间和节点位置 。
 
 ## 收集完整的服务器报告
 
-使用 [诊断收集器](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) 如果没有仪表板,若干服务失败,或快速检查没有结果。 运行在 Debian/ Ubuntu 上 **沼泽管理器** 已系统化 :
+使用 [诊断收集器](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) 如果没有dashboard,若干服务失败,或快速检查没有结果。 运行在 Debian/ Ubuntu 上 **Swarm管理器** 已系统化 :
 
 ```bash
 curl -fL https://raw.githubusercontent.com/caprover/caprover-website/master/scripts/caprover-diagnostic.sh -o caprover-diagnostic.sh
@@ -41,11 +41,11 @@ sudo sh ./caprover-diagnostic.sh
 - `/captain` 挂载和权限、网络、防火墙、内核和守护进程错误
 - 软件包历史和可用的容器运行时间
 
-收藏家简短测试本地 `hello-world` 和 `nginx:1.27.2` 图像 **如果已经可用**它不拉动图像或改变 CapRover 服务配置。
+收藏家简短测试本地 `hello-world` 和 `nginx:1.27.2` 镜像 **如果已经可用**它不拉动镜像或改变 CapRover 服务配置。
 
 **首先阅读报告摘要。** 实例:
 
-- **80/443号港口拥有另一个流程:** CapRover NGINX可能无法绑定.
+- **80/443号端口拥有另一个流程:** CapRover NGINX可能无法绑定.
 - **拒绝 Swarm 任务 :** 检查它的任务错误 。
 - **`/captain` 挂载缺失 :** 检查主机路径和挂载。
 - **Docker API 警告 :** 检查其他证据。 内 [问题2377](https://github.com/caprover/caprover/issues/2377),主机NGINX占领端口80.
@@ -60,7 +60,7 @@ sudo sh ./caprover-diagnostic.sh
 
 <span id="source-server-diagnostics"></span>
 
-## 恢复服务或检查服务
+## 重启或检查服务
 
 ```bash
 docker service update captain-captain --force   # Restart CapRover
@@ -68,11 +68,11 @@ docker service update SERVICE_NAME --force      # Restart an app
 docker service logs SERVICE_NAME --since 10m
 ```
 
-运行鼠标管理器上的 Docker 命令 。 获取确切的物理服务名称 `docker service ls`对于应用程序中的外壳,请使用 `docker exec` 任务所在的节点(见下文)。
+运行Swarm manager上的 Docker 命令 。 获取确切的物理服务名称 `docker service ls`对于应用程序中的外壳,请使用 `docker exec` 任务所在的节点(见下文)。
 
 ## 诊断
 
-从失败的请求或应用开始,它的时间戳,以及准确的错误. 在仪表板中,检查应用程序的部署历史和日志. 在管理器主机上 :
+从失败的请求或应用开始,它的时间戳,以及准确的错误. 在dashboard中,检查应用程序的部署历史和日志. 在管理器主机上 :
 
 ```bash
 docker service ls
@@ -94,13 +94,13 @@ docker system df
 
 - 在经理,检查 `docker service ps captain-captain --no-trunc`,然后检查 `docker service logs captain-captain --since 60m` 和 `docker service logs captain-nginx --since 60m`.
 - 运行 `curl -v http://127.0.0.1:3000/` 在经理。
-- 如果本地请求有效但公共IP不起作用,则检查提供者和主机防火墙及端口映射.
+- 如果本地请求有效但公共IP不起作用,则检查服务商和主机防火墙及端口映射.
 - 如果 CapRover 服务正在重新启动, 在更改网络之前使用任务错误和日志 。
 - 要在纠正基本问题后强制重启, 请运行 `docker service update captain-captain --force`.
 
 ### 重新启动或检查应用程序
 
-- 从仪表板上保存应用程序的配置以请求服务更新.
+- 从dashboard上保存应用程序的配置以请求服务更新.
 - 对于运行中的任务中的弹壳,首先从 `docker service ls`,查找主机 `docker service ps SERVICE_NAME`运行这些 **该主机**:
 
 ```bash
@@ -108,4 +108,4 @@ docker ps --filter label=com.docker.swarm.service.name=SERVICE_NAME
 docker exec -it CONTAINER_ID /bin/sh
 ```
 
-替换 `SERVICE_NAME` 和 `CONTAINER_ID` 你检查的值。 不是每个图像都包含 `/bin/bash`; `/bin/sh` 比较常见。 容器外壳可以广泛访问应用程序的数据和秘密.
+替换 `SERVICE_NAME` 和 `CONTAINER_ID` 你检查的值。 不是每个镜像都包含 `/bin/bash`; `/bin/sh` 比较常见。 容器外壳可以广泛访问应用程序的数据和秘密.

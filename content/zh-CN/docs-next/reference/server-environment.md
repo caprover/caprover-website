@@ -9,15 +9,15 @@ slug: /reference/server-environment
 | 名称 | 效果 |
 | --- | --- |
 | `ACCEPTED_TERMS` | 在初始发射时接受安装条件. |
-| `DEFAULT_PASSWORD` | 设置初始仪表板密码; 设置后替换. |
-| `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, `CAPTAIN_HOST_ADMIN_PORT` | 已发布主机端口;默认为80,443和3000. 匹配 Docker 的主机侧面 `-p` 测绘. |
+| `DEFAULT_PASSWORD` | 设置初始dashboard密码; 设置后替换. |
+| `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, `CAPTAIN_HOST_ADMIN_PORT` | 已发布host 端口;默认为80,443和3000. 匹配 Docker 的主机侧面 `-p` 测绘. |
 | `MAIN_NODE_IP_ADDRESS` | 在自动检测不合适时提供管理器地址进行安装. |
 | `CAPTAIN_BASE_DIRECTORY` | 覆盖默认 `/captain` 基础目录。 |
 | `CAPROVER_DISABLE_ANALYTICS`, `DO_NOT_TRACK` | 设定时禁用分析 。 |
-| `CAPTAIN_DOCKER_API` | 覆盖多克API连接细节. |
+| `CAPTAIN_DOCKER_API` | 覆盖DockerAPI连接细节. |
 | `CAPTAIN_IS_DEBUG`, `IS_CAPTAIN_INSTANCE`, `DEMO_MODE_ADMIN_IP`, `FORCE_ENABLE_PRO`, `BY_PASS_PROXY_CHECK` | 内部,开发,或特殊目的控制;仅在读取其源用后使用. |
 
-- 当变量为真时, 解析器将多个布尔标记视为真 **非空字符串**; 传递字串 `false` 不一定把它们关掉。
+- 当变量为真时, 解析器将多个布尔标签视为真 **非空字符串**; 传递字串 `false` 不一定把它们关掉。
 - 初始容器指令的供应安装变量和使用 [配置覆盖](server-environment.md) 用于配置服务器常数。
 
 <span id="source-reference-config-override"></span>

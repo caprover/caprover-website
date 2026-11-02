@@ -8,7 +8,7 @@ slug: /reference/ports
 | --- | --- | --- |
 | 80 | TCP | HTTP y validación de certificados |
 | 443 | TCP | HTTPS |
-| 3000 | TCP | Configuración inicial del tablero de mando |
+| 3000 | TCP | Configuración inicial del dashboard de mando |
 | 996 | TCP | Registro auto hospedado, si está habilitado |
 | 22 | TCP | SSH, o su puerto SSH configurado |
 | 2377 | TCP | Gestión del cirmo |

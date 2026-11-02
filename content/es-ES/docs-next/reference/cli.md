@@ -46,4 +46,4 @@ caprover deploy -u https://captain.apps.example.com -a my-app \
 - Las implementaciones de la rama de Git excluyen archivos no comprometidos e ignorados.
 - Check `caprover deploy --help` para su versión instalada.
 - Protege las credenciales del servidor y mantenlas fuera de los archivos comprometidos.
-- See [CLI Deployment](../deployments/cli.md) para el paseo.
+- Consulta [CLI Deployment](../deployments/cli.md) para el paseo.

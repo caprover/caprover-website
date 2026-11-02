@@ -11,7 +11,7 @@ slug: /troubleshooting
 ## 应用程序不可用或 HTTP 502
 
 - 检查应用的部署和服务日志.
-- 确认容器监听 `0.0.0.0` 还有, **集装箱 HTTP 端口** 匹配进程。
+- 确认容器监听 `0.0.0.0` 还有, **容器 HTTP 端口** 匹配进程。
 - 检查 `docker service ps SERVICE_NAME` 对于任务失败。
 - 对于缺失的数据,请检查配置的音量和主持任务的节点.
 
@@ -23,7 +23,7 @@ slug: /troubleshooting
 | --- | --- |
 | Git 获取 | 仓库 URL,分支,部署证书,网络访问 |
 | 构建 | 第一个构建错误, Dockerfile / `captain-definition`内存、磁盘 |
-| 图像拉动 | 记录可用性、图像标记和证书;集群中的每个节点必须拉动 |
+| 镜像拉动 | 记录可用性、镜像标签和证书;集群中的每个节点必须拉动 |
 | 服务更新 | `docker service ps SERVICE_NAME` 和服务日志 |
 
 <span id="source-domains-troubleshooting"></span>
@@ -42,19 +42,19 @@ slug: /troubleshooting
 
 ## 储存和数据库
 
-- **闲置数据库连接超时 :** 使用客户端的连接重试和保存设置,并在更改 CapRover 配置前检查多克网络状态.
+- **闲置数据库连接超时 :** 使用客户端的连接重试和保存设置,并在更改 CapRover 配置前检查Docker网络状态.
 
-- 丢失的数据:检查容器挂载路径, 实际多克体积或绑载挂载路径, 以及任务布置 。
-- 权限错误: 检查容器 UID, 只读标记, 目录存在和磁盘容量 。
-- 外部数据库连接失败: 校验内部数据库健康,收听者/认证,发布主机端口和防火墙.
+- 丢失的数据:检查容器挂载路径, 实际Docker卷或绑载挂载路径, 以及任务调度 。
+- 权限错误: 检查容器 UID, 只读标签, 目录存在和磁盘容量 。
+- 外部数据库连接失败: 校验内部数据库健康,收听者/认证,发布host 端口和防火墙.
 - 在调查期间保留数量和主机路径. 见 [备份持久数据](../data-persistence/backup-data.md).
 
 <span id="source-scaling-troubleshooting"></span>
 
-## 沼泽和多节点故障
+## Swarm和多节点故障
 
-- **连接失败 :** 确认默认的按键注册已配置, SSH 工作, 加入节点的 Swarm 不活动, 信任的节点到节点端口可以到达 。
-- **任务待决/重新开始 :** 检查 `docker node ls`, `docker service ps SERVICE_NAME`,图像拉日志,放置限制和可用的内存.
+- **连接失败 :** 确认默认的push registry已配置, SSH 工作, 加入节点的 Swarm 不活动, 信任的节点到节点端口可以到达 。
+- **任务待决/重新开始 :** 检查 `docker node ls`, `docker service ps SERVICE_NAME`,镜像拉日志,放置限制和可用的内存.
 - **持续任务已移动 :** 关于节点本地卷的数据不会随任务自动移动.
 - CapRover在节点加盟期间修改UFW规则后审查供应商防火墙限制.
 
