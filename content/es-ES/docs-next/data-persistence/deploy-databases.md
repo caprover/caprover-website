@@ -4,62 +4,62 @@ title: Desplegar bases de datos
 slug: /data-persistence/deploy-databases
 ---
 
-- Una base de datos en CapRover es una aplicación que necesita almacenamiento, credenciales y una ruta de red para sus clientes.
-- El [Aplicaciones de un solo clic](../one-click-apps/index.md) catálogo puede crear un servicio de base de datos compatible, o puede desplegar una imagen de base de datos usted mismo.
+- En CapRover, una base de datos es una aplicación que necesita almacenamiento persistente, credenciales y conectividad de red para sus clientes.
+- Puedes instalar una base de datos mediante el catálogo de [One-Click Apps](../one-click-apps/index.md) o desplegar directamente una imagen compatible.
 
-1. Elija la versión de la base de datos y la imagen. Crear su aplicación con **Has Persistent Data** habilitado y licencia **Do not expose as web app** seleccionada; las bases de datos generalmente no sirven HTTP a través de NGINX.
-2. Configure el nombre de usuario, contraseña y nombre de la base de datos requeridos a través de su configuración de aplicaciones o un instalador de One-Click. Utilizar credenciales únicas y mantenerlas fuera del control de fuentes.
-3. Montar un volumen llamado o un enlace en el directorio de datos de la imagen de la base de datos. Coloque la aplicación en el nodo sosteniendo ese almacenamiento.
-4. Implementar y leer los registros de servicios hasta que la base de datos reporte que está lista. Reiniciar o redistribuir una vez para confirmar sus datos permanece presente.
-5. Conectar otra aplicación por el nombre de servicio de la base de datos y el puerto interno de contenedores. Publicar un puerto del host sólo si un cliente externo lo necesita; seguir [guía de conexión externa](deploy-databases.md) por su cortafuegos y pasos de seguridad.
-6. Programar copias de seguridad de la base de datos y probar una restauración. La copia de seguridad de configuración de CapRover no contiene los registros de bases de datos.
+1. Elige el motor y la versión de la imagen. Crea la aplicación con **Has Persistent Data** activado y **Do not expose as web app** seleccionado; normalmente las bases de datos no sirven HTTP a través de NGINX.
+2. Configura el usuario, la contraseña y el nombre de la base de datos mediante los ajustes de la aplicación o el instalador One-Click. Utiliza credenciales únicas y mantenlas fuera del repositorio.
+3. Monta un volumen con nombre o un bind mount en el directorio de datos real de la imagen. Asigna la aplicación al nodo que contiene ese almacenamiento.
+4. Despliega la base de datos y consulta los logs hasta que esté lista para aceptar conexiones. Reinicia o vuelve a desplegar una vez para comprobar que los datos persisten.
+5. Desde otra aplicación, conecta usando el nombre del servicio y el puerto interno del contenedor. Publica un puerto del host solo si necesitas clientes externos; sigue los pasos de firewall y seguridad de la [guía de conexión externa](deploy-databases.md).
+6. Programa backups específicos para ese motor de base de datos y prueba una restauración. El backup de configuración de CapRover no incluye los registros de la base de datos.
 
-Compruebe la ruta de almacenamiento de la imagen de la base de datos elegida y las variables de inicialización; difieren entre PostgreSQL, MySQL, Redis y otros servicios.
+Consulta la documentación de la imagen elegida para verificar rutas de datos y variables de inicialización; pueden variar entre PostgreSQL, MySQL, Redis y otros servicios.
 
 <span id="source-data-persistence-internal-databases"></span>
 
-## Conectarse a bases de datos internamente
+## Conectar a bases de datos desde otras aplicaciones
 
-- Las aplicaciones en la red de superposición de CapRover pueden conectarse a un servicio de bases de datos por su nombre de aplicación y puerto de contenedores.
-- Para una aplicación PostgreSQL llamada `postgres`, use host `postgres` y puerto `5432` en la aplicación cliente, junto con el nombre configurado de la base de datos, nombre de usuario y contraseña.
+- Las aplicaciones de la red overlay de CapRover pueden acceder a la base de datos mediante el nombre del servicio y el puerto del contenedor.
+- Para PostgreSQL con una aplicación llamada `postgres`, utiliza el host `postgres` y el puerto `5432`, junto con el nombre, usuario y contraseña configurados.
 
-- Ejemplo: establecer la aplicación web `DATABASE_URL` a una cadena de conexión adecuada para el driver de base de datos.
-- Guardar la configuración de la aplicación web y probar una consulta.
+- Por ejemplo, establece la variable `DATABASE_URL` de tu aplicación web con la cadena de conexión apropiada para el driver.
+- Guarda la configuración y ejecuta una consulta de prueba.
 - No necesitas publicar ningún puerto.
-- Las aplicaciones actualizadas antes de CapRover 1.15 pueden retener un `srv-captain--` nombre de servicio y alias de red; inspeccionar el servicio real si un nombre de host no resuelve.
+- Las aplicaciones actualizadas desde versiones anteriores a CapRover 1.15 pueden conservar nombres o alias `srv-captain--`. Si falla la resolución del hostname, comprueba el nombre real del servicio.
 
-- Mantenga las credenciales en la configuración del entorno de aplicaciones o un mecanismo secreto adecuado, y asegúrese de que la aplicación de la base de datos tenga almacenamiento y respaldos persistentes.
-- Consulta [Desplegar bases de datos](deploy-databases.md) primero si la base de datos aún no está instalada.
+- Guarda las credenciales en las variables de entorno de la aplicación o en un mecanismo adecuado de secretos. Comprueba que la base de datos tenga almacenamiento persistente y backups.
+- Si todavía no tienes una base de datos instalada, consulta primero [Desplegar bases de datos](deploy-databases.md).
 
 <span id="source-data-persistence-external-databases"></span>
 
-## Conectarse a bases de datos externamente
+## Conectar a bases de datos desde fuera de CapRover
 
-- Utilice una conexión de servicio interno cuando el cliente también se ejecuta en CapRover.
-- Para un cliente externo, decida si un puerto publicado restringido o un túnel es apropiado antes de exponer una base de datos a Internet.
+- Si el cliente también se ejecuta en CapRover, utiliza la conexión interna.
+- Para clientes externos, decide si necesitas publicar un puerto con acceso restringido o usar un túnel antes de exponer la base de datos a Internet.
 
 ### Preparar la base de datos
 
-- Implementar la base de datos como una aplicación persistente y no-web.
-- Configure su volumen de datos o montura bind, credenciales y nombre de la base de datos.
-- Verifique que está listo en sus registros de servicio y que una aplicación CapRover puede alcanzarlo internamente por nombre de aplicación y puerto de contenedores.
-- Respalde los datos de la base de datos por separado de la configuración CapRover.
+- Despliega la base de datos como una aplicación persistente sin exposición web.
+- Configura el volumen o bind mount, las credenciales y el nombre de la base de datos.
+- Comprueba en los logs que está lista y verifica que otra aplicación de CapRover pueda conectarse mediante el nombre del servicio y el puerto interno.
+- Haz una copia de seguridad de los datos de la base de datos por separado de la configuración de CapRover.
 
 ### Publicar un puerto restringido
 
-- En la aplicación de bases de datos **App Config**, mapa un puerto del host elegido, por ejemplo `12345/tcp`, al puerto de contenedores de la base de datos, por ejemplo PostgreSQL `5432/tcp`.
-- Guardar y verificar la actualización del servicio.
-- Desde su cliente, conéctese a `SERVER_PUBLIC_IP:12345` con el nombre de usuario y contraseña de la base de datos.
+- En **App Config** de la base de datos, mapea un puerto del host, por ejemplo `12345/tcp`, al puerto del contenedor, como `5432/tcp` para PostgreSQL.
+- Guarda los cambios y comprueba que la actualización del servicio se haya completado.
+- Desde el cliente, conecta a `SERVER_PUBLIC_IP:12345` con el usuario y la contraseña de la base de datos.
 
-- Permitir entrada `12345/tcp` en el cortafuegos de su proveedor de alojamiento **sólo de las direcciones cliente que lo necesitan**.
-- Revisar también las reglas del host: Los puertos publicados por Docker pueden evitar restricciones UFW ordinarias.
-- En un clúster, elija la entrada o el modo host publicar deliberadamente y verifique qué nodo responde al puerto.
-- Utilice TLS del protocolo de base de datos y una fuerte autenticación cuando el tráfico cruza una red no confiada; un mapeo de puerto por sí solo no lo encripta.
+- En el firewall del proveedor, permite `12345/tcp` **únicamente desde las direcciones IP de los clientes autorizados**.
+- Comprueba también las reglas del host: los puertos publicados por Docker pueden eludir las restricciones habituales de UFW.
+- En un clúster, elige conscientemente entre los modos de publicación ingress y host y comprueba qué nodo recibe las conexiones.
+- Utiliza TLS y autenticación robusta del protocolo de base de datos cuando el tráfico pase por redes no confiables. El mapeo de puertos no cifra las conexiones.
 
-### Preferir un camino privado cuando sea posible
+### Preferir una conexión privada cuando sea posible
 
-- Un VPN o un túnel en un servicio en la red de superposición de CapRover evita un puerto de base de datos ampliamente publicado.
-- Host SSH solo no resuelve necesariamente ni alcanza el nombre interno de servicio Docker de una aplicación.
-- Un punto final del túnel debe tener conectividad a esa red superpuesta; verificar sus controles de ubicación y acceso antes de confiar en ella.
+- Una VPN o un túnel que llegue a la red overlay de CapRover permite evitar la publicación de un puerto de base de datos.
+- El acceso SSH al host no implica que el host pueda resolver o alcanzar automáticamente los nombres internos de los servicios Docker.
+- El punto de entrada del túnel debe tener conectividad con la red overlay. Verifica su ubicación y permisos antes de depender de él.
 
-Después de cualquier método funciona, prueba del cliente externo previsto, eliminar reglas temporales de cortafuegos amplios, y documentar el puerto, clientes permitidos, dueño de credenciales, respaldo y plan de apagado.
+Cuando el acceso funcione, pruébalo desde el cliente externo previsto, elimina reglas temporales demasiado permisivas y documenta el puerto, los clientes autorizados, quién administra las credenciales, los backups y el plan de retirada.
