@@ -12,4 +12,4 @@ slug: /domains/cloudflare-reverse-proxies
 - A proxy terminating HTTPS does not automatically encrypt the connection to CapRover.
 - A redirect or challenge rule that prevents public requests to `/.well-known/acme-challenge/` from reaching CapRover can break issuance or renewal.
 
-For an upstream reverse proxy that owns host ports 80 and 443, see [Reverse Proxy Scenarios](../installation/advanced/reverse-proxy.md). Configure and test the proxy's exact behavior before enabling forced HTTPS in both layers.
+For an upstream reverse proxy that owns host ports 80 and 443, see [Reverse Proxy Scenarios](../installation/advanced/index.md). Configure and test the proxy's exact behavior before enabling forced HTTPS in both layers.

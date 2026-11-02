@@ -12,7 +12,7 @@ Install CapRover on Ubuntu 24.04 and deploy your first app with HTTPS.
 - A domain with full DNS access (including wildcard records like `*.example.com`).
 - Root access to the server.
 
-Using the [DigitalOcean Marketplace image](./installation/digitalocean.md)? Skip steps 2 and 3. For installations without a public domain, see [Local / Private Network](./installation/local-private-network.md).
+Using the [DigitalOcean Marketplace image](installation/index.md)? Skip steps 2 and 3. For installations without a public domain, see [Local / Private Network](installation/advanced/index.md).
 
 ## 1. Ports and firewall
 
@@ -28,7 +28,7 @@ sudo ufw status
 
 Optional: `sudo ufw allow 443/udp` for HTTP/3.
 
-If UFW is inactive, enable it with `sudo ufw enable` **after** allowing SSH. You can restrict port 3000 once the dashboard works over HTTPS. See [Firewall](./domains/firewall.md) for multi-node ports.
+If UFW is inactive, enable it with `sudo ufw enable` **after** allowing SSH. You can restrict port 3000 once the dashboard works over HTTPS. See [Firewall](domains/firewall.md) for multi-node ports.
 
 ## 2. Install Docker
 
@@ -103,9 +103,9 @@ At `http://YOUR_SERVER_IP:3000`:
 4. Enable **HTTPS** for the dashboard.
 5. Visit `https://captain.apps.example.com`, verify the certificate, then enable **Force HTTPS**.
 
-If HTTPS fails, check DNS and ports 80/443. See [HTTPS troubleshooting](./domains/https.md).
+If HTTPS fails, check DNS and ports 80/443. See [HTTPS troubleshooting](domains/index.md).
 
-**CLI alternative:** On a fresh installation, run `npm install -g caprover` and then `caprover serversetup` from your computer before enabling Force HTTPS. See [CLI Commands](./reference/cli.md).
+**CLI alternative:** On a fresh installation, run `npm install -g caprover` and then `caprover serversetup` from your computer before enabling Force HTTPS. See [CLI Commands](reference/cli.md).
 
 ## 6. Deploy your first app
 
@@ -123,7 +123,7 @@ If HTTPS fails, check DNS and ports 80/443. See [HTTPS troubleshooting](./domain
 4. Open `http://my-first-app.apps.example.com`. You should see the NGINX welcome page.
 5. Enable **HTTPS** for the app, verify `https://my-first-app.apps.example.com`, then enable **Force HTTPS**.
 
-**Next:** [Deploy your own code](./deployments/index.md) · [Configure apps](./applications/index.md) · [Persistent data](./data-persistence/index.md)
+**Next:** [Deploy your own code](deployments/index.md) · [Configure apps](applications/index.md) · [Persistent data](data-persistence/index.md)
 
 ## Low-memory builds (optional)
 
@@ -137,3 +137,15 @@ sudo swapon /swapfile
 ```
 
 To keep swap after reboot, add `/swapfile none swap sw 0 0` **once** to `/etc/fstab`. For frequent builds, use more RAM or build in CI.
+
+<span id="source-index"></span>
+
+## Start
+
+Find what you need:
+
+- **New installation:** [Getting Started](get-started.md)
+- **Apps and settings:** [Applications](applications/index.md)
+- **Deployments:** [Deployments](deployments/index.md)
+- **Server maintenance:** [Server Administration](server/index.md)
+- **Problems:** [Troubleshooting](troubleshooting/index.md)

@@ -8,6 +8,10 @@ const siteRoot = path.resolve("build/combined-site");
 const locales = JSON.parse(
   await readFile(path.resolve("content/locales.json"), "utf8"),
 ).filter((locale) => locale.enabled);
+const consolidationRoutes = JSON.parse(
+  await readFile(path.resolve("DOCS_CONSOLIDATION_MAP.json"), "utf8"),
+).previewRoutes.filter((route) => route.decision !== "keep");
+
 const marketingRoutes = JSON.parse(
   await readFile(path.resolve("marketing-site/routes.json"), "utf8"),
 );
@@ -105,8 +109,25 @@ try {
       `${locale.code} documentation edit URL is incorrect`,
     );
     const preview = await previewResponse.text();
-    assert.match(preview, /Find what you need:/);
-    assert.match(preview, /name=robots content="noindex, nofollow"/);
+    assert(preview.includes(locale.pathPrefix + "/docs-next/get-started"),
+      "Preview root must redirect to Getting Started");
+    assert.match(preview, /name="robots" content="noindex, follow"/);
+    const oldPage = await fetch(origin + locale.pathPrefix +
+      "/docs-next/installation/digitalocean");
+    assert.equal(oldPage.status, 200);
+    const oldHtml = await oldPage.text();
+    assert(oldHtml.includes(locale.pathPrefix +
+      "/docs-next/installation#source-installation-digitalocean"));
+
+    // Validate every old preview URL, including aliases across all locales.
+    await Promise.all(consolidationRoutes.map(async (route) => {
+      const response = await fetch(origin + locale.pathPrefix + route.from);
+      assert.equal(response.status, 200, "Missing redirect: " + route.from);
+      const html = await response.text();
+      assert(html.includes("url=" + locale.pathPrefix + route.to),
+        "Incorrect destination for " + route.from);
+      assert(html.includes('name="robots" content="noindex, follow"'));
+    }));
   }
 
   const homepageResponse = await fetch(`${origin}/`);
@@ -152,11 +173,11 @@ try {
 
   assert.equal(await responses.noJekyll.text(), "", ".nojekyll must be empty");
   const legacyEnglishDocsRedirect = await responses.legacyEnglishDocs.text();
-  assert.match(legacyEnglishDocsRedirect, /window\.location\.replace\(["']\/docs\/get-started["']/);
+  assert(legacyEnglishDocsRedirect.includes('new URL("/docs/get-started"'));
   const legacySpanishDocsRedirect = await responses.legacySpanishDocs.text();
-  assert.match(legacySpanishDocsRedirect, /window\.location\.replace\(["']\/es-ES\/docs\/get-started["']/);
+  assert(legacySpanishDocsRedirect.includes('new URL("/es-ES/docs/get-started"'));
   const legacyChineseDocsRedirect = await responses.legacyChineseDocs.text();
-  assert.match(legacyChineseDocsRedirect, /window\.location\.replace\(["']\/zh-CN\/docs\/get-started["']/);
+  assert(legacyChineseDocsRedirect.includes('new URL("/zh-CN/docs/get-started"'));
 
   const docs = await responses.docs.text();
   assert.match(docs, /Getting Started/i);

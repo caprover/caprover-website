@@ -17,4 +17,4 @@ slug: /server/disk-cleanup
 - This is **image cleanup**, not database, volume, log, or registry cleanup.
 - Inspect `docker system df` and `docker volume ls` before any manual cleanup.
 - Avoid broad volume pruning: an unused volume can still contain important data for a stopped or broken app.
-- See [What Is Backed Up](./backup/contents.md).
+- See [What Is Backed Up](backup/index.md).
