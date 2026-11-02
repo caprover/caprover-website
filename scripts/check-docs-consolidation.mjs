@@ -6,7 +6,7 @@ const sidebar = readFileSync(new URL('docs-site/sidebars-next.js', root), 'utf8'
 const catalog = JSON.parse(readFileSync(new URL('DOCS_CONSOLIDATION_MAP.json', root), 'utf8'));
 const ids = new Set([
   ...[...sidebar.matchAll(/"id": "([^"]+)"/g)].map(x => x[1]),
-  ...[...sidebar.matchAll(/^\\s{8,}"([^"]+)",?$/gm)].map(x => x[1]),
+  ...[...sidebar.matchAll(/^\s{8,}"([^"]+)",?$/gm)].map(x => x[1]),
 ]);
 const pages = catalog.sections.flatMap(x => x.pages);
 const sources = pages.flatMap(p => p.sources);
