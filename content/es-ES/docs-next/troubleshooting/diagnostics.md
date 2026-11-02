@@ -22,7 +22,7 @@ docker service logs captain-captain --tail 100
 - **Networking:** Revise DNS y pruebe HTTP y HTTPS por separado.
 - **Almacenamiento:** Compruebe los montajes, el espacio de disco y la colocación de nodos.
 
-## Recoger un informe completo del servidor {#collect-a-full-server-report}
+## Recoger un informe completo del servidor
 
 Usar el [colector de diagnóstico](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) si el dashboard no está disponible, varios servicios fallan, o cheques rápidos son inconclusivos. Ejecutar en un Debian/Ubuntu **Swarm manager** con sistema:
 
@@ -88,7 +88,7 @@ docker system df
 - Eliminar contraseñas, fichas y datos privados de los registros antes de compartirlos.
 - See [Solución de problemas](index.md) encontrar un guía por síntoma.
 
-Para una salida que implica varios servicios del sistema o un fracaso host poco claro, [recopilar un informe completo del servidor](diagnostics.md#collect-a-full-server-report) en el gerente.
+Para una salida que implica varios servicios del sistema o un fracaso host poco claro, [recopilar un informe completo del servidor](diagnostics.md) en el gerente.
 
 ### Dashboard no disponible en el puerto 3000
 
