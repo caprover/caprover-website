@@ -39,45 +39,43 @@ npm ci
 npm start
 ```
 
-Add English Markdown files in `content/en/docs/` and register them in
-`docs-site/sidebars.js`. Docusaurus reads English directly from `content/`.
-The documentation commands validate every locale and generate translated
-Docusaurus build inputs before starting or building.
+The canonical 48-page documentation is maintained in `content/en/docs-next/`
+and published at `/docs/*`, using `docs-site/sidebars.js`. The source directory
+keeps its historical name to keep this routing cutover small.
 
-The next-generation English documentation is developed separately in
-`content/en/docs-next/`, with its own `docs-site/sidebars-next.js` and routes
-under `/docs-next/`. It is an unlinked preview. The preview pages are marked
-`noindex` and omitted from the sitemap; existing `/docs/` pages remain the
-published documentation. Translated builds currently fall back to English for
-the preview, while their existing `/docs/` content stays translated.
-The [draft URL map](DOCS_NEXT_URL_MAP.md) tracks legacy routes and their planned
-destinations. Topic pages marked as drafts remain incomplete until their content
-phase is finished.
+The older translated documentation remains in `content/<locale>/docs/` and
+is published at `/<locale>/docs-legacy/*` using `sidebars-legacy.js`.
+Spanish/Chinese `/docs/*` pages currently show English with a link to the
+archived translation. Archived pages are excluded from search indexing and
+the sitemap. See [cutover route policy](DOCS_NEXT_URL_MAP.md).
+
+Site commands validate the locale content and generate Docusaurus i18n inputs
+before every build.
 
 ### Documentation translations
 
 Docusaurus internationalization is configured by `content/locales.json`. English
-is the source language. English documentation is served from `/docs/*`, and
-translated documentation uses the locale prefix, such as `/es-ES/docs/*` or
-`/zh-CN/docs/*`. Compatibility pages preserve the former
-`/docs/<locale>/*.html` URLs.
+is the source language. English documentation is served from `/docs/*`. Current documentation under
+`/es-ES/docs/*` and `/zh-CN/docs/*` is an explicitly labeled English fallback.
+The existing Spanish and Chinese translations are available under
+`/es-ES/docs-legacy/*` and `/zh-CN/docs-legacy/*`.
+Compatibility redirects preserve historical `/docs/<locale>/*.html` URLs.
 
 Each locale is complete and self-contained under `content/<locale>/`:
 
-- `docs/` contains documentation Markdown.
+- `docs/` contains the archived documentation Markdown; the 48 new English docs live under `en/docs-next/`.
 - `marketing.json` contains the flat Next.js marketing-site message catalog.
 - `docs-ui.json` contains Docusaurus navigation, sidebar, document-title, and
   interface strings.
 - Add a locale to `content/locales.json` after all three surfaces are complete.
 
-Spanish and Simplified Chinese are enabled in `content/locales.json`. Their
-documentation is published at `/es-ES/docs/*` and `/zh-CN/docs/*`, and the
-Docusaurus language menu switches between the English, Spanish, and Chinese
-versions of the current document.
+Spanish and Simplified Chinese remain enabled. The Docusaurus language menu
+switches locale prefixes. The new pages are untranslated; the archived
+`docs-legacy` pages retain their original Spanish and Chinese content.
 
 On an unprefixed page view, the combined static site uses a saved language-menu
-choice or selects a supported locale from the browser's preferences. The URL
-always identifies the language of the page being viewed.
+choice or selects a supported locale from the browser's preferences. On current docs pages, a visible notice identifies the English fallback and
+links to the corresponding language's previous documentation.
 
 ## Translation guidelines
 

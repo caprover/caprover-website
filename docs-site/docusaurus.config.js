@@ -45,11 +45,11 @@ const config = {
           trackingID: "G-Z7DNNXJXSB",
         },
         docs: {
-          path: "../content/en/docs",
+          path: "../content/en/docs-next",
           routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: ({ locale, docPath }) =>
-            `https://github.com/caprover/caprover-website/edit/master/content/${locale}/docs/${docPath}`,
+          editUrl: ({ docPath }) =>
+            `https://github.com/caprover/caprover-website/edit/master/content/en/docs-next/${docPath}`,
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
         },
@@ -69,12 +69,12 @@ const config = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "next",
-        path: "../content/en/docs-next",
-        routeBasePath: "docs-next",
-        sidebarPath: require.resolve("./sidebars-next.js"),
-        editUrl: ({ docPath }) =>
-          `https://github.com/caprover/caprover-website/edit/master/content/en/docs-next/${docPath}`,
+        id: "archive",
+        path: "../content/en/docs",
+        routeBasePath: "docs-legacy",
+        sidebarPath: require.resolve("./sidebars-legacy.js"),
+        editUrl: ({ locale, docPath }) =>
+          `https://github.com/caprover/caprover-website/edit/master/content/${locale}/docs/${docPath}`,
         showLastUpdateAuthor: false,
         showLastUpdateTime: false,
         versions: { current: { noIndex: true } },

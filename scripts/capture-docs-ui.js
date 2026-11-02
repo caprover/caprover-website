@@ -26,7 +26,7 @@ function readCatalog(...parts) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
-const docs = readCatalog("docusaurus-plugin-content-docs", "current.json");
+const docs = readCatalog("docusaurus-plugin-content-docs-archive", "current.json");
 const navbar = readCatalog("docusaurus-theme-classic", "navbar.json");
 const footer = readCatalog("docusaurus-theme-classic", "footer.json");
 const result = fromDocusaurusCatalogs({ docs, navbar, footer });
