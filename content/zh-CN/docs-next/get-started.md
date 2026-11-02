@@ -93,7 +93,7 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
 
-若要重启后继续启用交换空间，请在 `/etc/fstab` 中**仅添加一次** `/swapfile none swap sw 0 0`。如果经常构建应用，建议增加内存或使用 CI 进行构建。
+若要重启后继续启用交换空间，请将 `/swapfile none swap sw 0 0` **仅添加一次**到 `/etc/fstab` 中。如果经常构建应用，建议增加内存或使用 CI 进行构建。
 
 <span id="source-index"></span>
 
