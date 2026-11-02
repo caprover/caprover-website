@@ -6,9 +6,9 @@ slug: /troubleshooting/diagnostics
 
 ## Comprobaciones rápidas
 
-Captura: tiempo, operación, aplicación afectada/dominio, resultado esperado, resultado real y error.
+Anota: fecha y hora, operación, aplicación o dominio afectado, resultado esperado, resultado real y mensaje de error.
 
-En el **Swarm manager**:
+En el **manager de Swarm**:
 
 ```bash
 docker service ls
@@ -16,15 +16,15 @@ docker service ps captain-captain --no-trunc
 docker service logs captain-captain --tail 100
 ```
 
-**Compruebe por síntoma:**
+**Según el síntoma:**
 
-- **Aplicación:** Encontrar su nombre en `docker service ls`. Las aplicaciones más antiguas pueden usar `srv-captain--APP_NAME`. Uso `docker service ps SERVICE_NAME` y `docker service logs SERVICE_NAME`.
-- **Networking:** Revise DNS y pruebe HTTP y HTTPS por separado.
-- **Almacenamiento:** Compruebe los montajes, el espacio de disco y la colocación de nodos.
+- **Aplicación:** busca su nombre en `docker service ls`. Las aplicaciones antiguas pueden usar `srv-captain--APP_NAME`. Comprueba `docker service ps SERVICE_NAME` y `docker service logs SERVICE_NAME`.
+- **Red:** comprueba DNS y prueba HTTP y HTTPS por separado.
+- **Almacenamiento:** revisa los montajes, espacio en disco y nodo asignado.
 
-## Recoger un informe completo del servidor
+## Recopilar un informe completo del servidor
 
-Usar el [colector de diagnóstico](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) si el dashboard no está disponible, varios servicios fallan, o cheques rápidos son inconclusivos. Ejecutar en un Debian/Ubuntu **Swarm manager** con sistema:
+Utiliza el [script de diagnóstico](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) si el dashboard no funciona, fallan varios servicios o las comprobaciones rápidas no muestran la causa. Ejecútalo en un **manager de Swarm** con Debian o Ubuntu y systemd:
 
 ```bash
 curl -fL https://raw.githubusercontent.com/caprover/caprover-website/master/scripts/caprover-diagnostic.sh -o caprover-diagnostic.sh
@@ -32,31 +32,31 @@ less caprover-diagnostic.sh
 sudo sh ./caprover-diagnostic.sh
 ```
 
-**Producto:** `/tmp/caprover-diagnostic.*.txt`Con permisos solo para el propietario.
+**Archivo de salida:** `/tmp/caprover-diagnostic.*.txt`, accesible solo al propietario.
 
-**Los cheques incluyen:**
+**El informe incluye:**
 
-- Port owners (80/443/3000), host web servers, local HTTP responses
-- Docker/Swarm servicios, errores de tarea, especificaciones y registros
-- `/captain` montajes y permisos, redes, cortafuegos, errores de kernel y daemon
-- Historial del paquete y tiempos de ejecución de contenedores disponibles
+- Procesos que ocupan puertos (80/443/3000), servidores web del host y respuestas HTTP locales.
+- Servicios Docker/Swarm, errores de tareas, especificaciones y logs.
+- Montajes y permisos de `/captain`, redes, firewall, errores del kernel y del daemon.
+- Historial de paquetes y runtimes de contenedores disponibles.
 
-El colector prueba brevemente local `hello-world` y `nginx:1.27.2` imágenes **si ya está disponible**. No descarga imágenes ni cambia la configuración de servicio CapRover.
+El script prueba brevemente las imágenes locales `hello-world` y `nginx:1.27.2` **solo si ya están descargadas**. No descarga imágenes ni modifica la configuración de los servicios CapRover.
 
-**Lea el resumen del informe primero.** Ejemplos:
+**Lee primero el resumen del informe.** Por ejemplo:
 
-- **Puerto 80/443 propiedad de otro proceso:** CapRover NGINX puede no atar.
-- **La tarea de Swarm rechazó:** Inspeccione su error de tarea.
-- **`/captain` Falta el montaje:** Inspeccione el camino de acogida y las monturas.
-- **Docker API warning:** Revisa otras pruebas también. En [cuestión #2377](https://github.com/caprover/caprover/issues/2377), host NGINX ocupado puerto 80.
+- **Otro proceso ocupa el puerto 80/443:** NGINX de CapRover podría no poder escuchar.
+- **Tarea de Swarm rechazada:** revisa el error de la tarea.
+- **Falta el montaje de `/captain`:** comprueba la ruta del host y los montajes.
+- **Advertencia de API Docker:** contrástala con otras pruebas. En el [issue #2377](https://github.com/caprover/caprover/issues/2377), NGINX del host ocupaba el puerto 80.
 
-## Antes de compartir
+## Antes de compartir el informe
 
-- Revise todo el informe para contraseñas, tokens, datos de usuario privado, nombres de aplicaciones e identificación de detalles de host.
-- El script de diagnóstico omite variables de entorno Docker y contenidos de configuración de CapRover, pero los registros, argumentos e historial de paquetes todavía pueden contener datos sensibles.
-- Compartir sólo secciones relevantes y sanitarias.
+- Revisa el archivo completo y elimina contraseñas, tokens, datos privados de usuarios, nombres de aplicaciones y detalles que identifiquen el servidor.
+- El script omite variables de entorno de Docker y el contenido de la configuración de CapRover, pero los logs, argumentos e historial de paquetes pueden contener información sensible.
+- Comparte solo las secciones necesarias después de sanitizarlas.
 
-Consulta [Diagnóstico del servidor](diagnostics.md) para las medidas de recuperación específicas.
+Consulta [Diagnósticos del servidor](diagnostics.md) para procedimientos más específicos.
 
 <span id="source-server-diagnostics"></span>
 
@@ -68,11 +68,11 @@ docker service update SERVICE_NAME --force      # Restart an app
 docker service logs SERVICE_NAME --since 10m
 ```
 
-Corre Docker ordena a un gerente de Swarm. Obtenga el nombre exacto del servicio físico `docker service ls`. Para un shell dentro de una aplicación, use `docker exec` sobre el nodo que acoge su tarea (véase infra).
+Ejecuta comandos Docker en un manager de Swarm. Obtén el nombre exacto del servicio mediante `docker service ls`. Si necesitas un shell dentro de una aplicación, ejecuta `docker exec` en el nodo donde se está ejecutando la tarea (ver más abajo).
 
-## Diagnósticos
+## Diagnóstico de errores
 
-Comience con la solicitud o aplicación de fallo, su marca de tiempo, y el error exacto. En el panel, inspeccione el historial de despliegue y los registros de la aplicación. En el host manager:
+Empieza por la petición o aplicación que falla, la hora y el error exacto. En el dashboard revisa el historial de despliegues y los logs. En el manager:
 
 ```bash
 docker service ls
@@ -81,31 +81,31 @@ docker service logs captain-captain --tail 100
 docker system df
 ```
 
-- Para una aplicación, encuentre su servicio en `docker service ls` y la inspección `docker service ps SERVICE_NAME --no-trunc` y `docker service logs SERVICE_NAME --tail 100`.
-- Las aplicaciones más nuevas generalmente usan el nombre de la aplicación; aplicaciones heredadas pueden usar `srv-captain--APP_NAME`.
-- Para fallos DNS o HTTPS, registros de verificación, posibilidad de llegar al puerto y estado de certificado del dominio.
-- Para cuestiones multinodo, verifique la disponibilidad de nodos y la creación de redes privadas.
-- Eliminar contraseñas, tokens y datos privados de los registros antes de compartirlos.
-- Consulta [Solución de problemas](index.md) encontrar un guía por síntoma.
+- Para una aplicación, busca su servicio en `docker service ls` y ejecuta `docker service ps SERVICE_NAME --no-trunc` y `docker service logs SERVICE_NAME --tail 100`.
+- Las aplicaciones nuevas suelen utilizar el nombre de la aplicación; las antiguas pueden usar `srv-captain--APP_NAME`.
+- Para DNS o HTTPS, comprueba registros, acceso a puertos y estado de certificados del dominio.
+- En un clúster multinodo, revisa la disponibilidad de nodos y su red privada.
+- Antes de compartir logs, elimina contraseñas, tokens y datos privados.
+- Consulta [Solución de problemas](index.md) para buscar por síntomas.
 
-Para una salida que implica varios servicios del sistema o un fracaso host poco claro, [recopilar un informe completo del servidor](diagnostics.md#recoger-un-informe-completo-del-servidor) en el nodo administrador.
+Si fallan varios servicios del sistema o el host presenta un error desconocido, [recopila un informe completo](diagnostics.md#collect-a-full-server-report) en el manager.
 
-### Dashboard no disponible en el puerto 3000
+### Dashboard inaccesible por el puerto 3000
 
-- En el nodo manager, compruebe `docker service ps captain-captain --no-trunc`, entonces inspeccionar `docker service logs captain-captain --since 60m` y `docker service logs captain-nginx --since 60m`.
-- Corre `curl -v http://127.0.0.1:3000/` en el nodo manager.
-- Si la solicitud local funciona pero la IP pública no lo hace, inspeccionar el proveedor y host firewalls y la mapeo de puertos.
-- Si el servicio CapRover está reiniciando, utilice el error de tarea y los registros antes de cambiar la red.
-- Para forzar un reinicio después de corregir el problema subyacente, ejecutar `docker service update captain-captain --force`.
+- En el manager, ejecuta `docker service ps captain-captain --no-trunc`, y revisa `docker service logs captain-captain --since 60m` y `docker service logs captain-nginx --since 60m`.
+- Prueba `curl -v http://127.0.0.1:3000/` desde el manager.
+- Si la petición local funciona pero la IP pública no, revisa los firewalls del proveedor y del host, además del mapeo de puertos.
+- Si el servicio CapRover se reinicia continuamente, consulta primero el error y los logs antes de cambiar la red.
+- Tras resolver la causa, puedes forzar un reinicio con `docker service update captain-captain --force`.
 
-### reiniciar o inspeccionar una aplicación
+### Reiniciar o inspeccionar una aplicación
 
-- Desde el panel, guarde la configuración de la aplicación para solicitar una actualización de servicio.
-- Para un shell en una tarea de ejecución, primero obtener su nombre de servicio físico `docker service ls`, encontrar el host utilizando `docker service ps SERVICE_NAME`, y ejecutar estos en **ese host**:
+- Desde el dashboard, guarda la configuración de la aplicación para solicitar una actualización del servicio.
+- Para abrir un shell en una tarea, obtén primero el nombre del servicio mediante `docker service ls`, identifica el host con `docker service ps SERVICE_NAME` y ejecuta en **ese host**:
 
 ```bash
 docker ps --filter label=com.docker.swarm.service.name=SERVICE_NAME
 docker exec -it CONTAINER_ID /bin/sh
 ```
 
-Sustitución `SERVICE_NAME` y `CONTAINER_ID` con los valores que inspeccionaste. No todas las imágenes contienen `/bin/bash`; `/bin/sh` es más común. Un contenedor tiene amplio acceso a los datos y secretos de la aplicación.
+Sustituye `SERVICE_NAME` y `CONTAINER_ID` por los valores reales. No todas las imágenes incluyen `/bin/bash`; suele estar disponible `/bin/sh`. Un shell dentro del contenedor puede acceder a sus datos y secretos.
