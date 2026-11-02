@@ -4,7 +4,7 @@ module.exports = {
     {
       type: "category",
       label: "Start & Guides",
-      collapsed: false,
+      collapsed: true,
       items: [
         "get-started",
         "installation/index",
@@ -19,7 +19,7 @@ module.exports = {
     {
       type: "category",
       label: "Applications & Deployments",
-      collapsed: false,
+      collapsed: true,
       items: [
         "applications/index",
         "applications/advanced/index",
@@ -36,7 +36,7 @@ module.exports = {
     {
       type: "category",
       label: "One-Click Apps",
-      collapsed: false,
+      collapsed: true,
       items: [
         "one-click-apps/index",
         "one-click-apps/authoring",
@@ -45,7 +45,7 @@ module.exports = {
     {
       type: "category",
       label: "Domains & Networking",
-      collapsed: false,
+      collapsed: true,
       items: [
         "domains/index",
         "domains/firewall",
@@ -57,7 +57,7 @@ module.exports = {
     {
       type: "category",
       label: "Data & Persistence",
-      collapsed: false,
+      collapsed: true,
       items: [
         "data-persistence/index",
         "data-persistence/deploy-databases",
@@ -68,7 +68,7 @@ module.exports = {
     {
       type: "category",
       label: "Server & Clusters",
-      collapsed: false,
+      collapsed: true,
       items: [
         "server/index",
         "server/upgrade",
@@ -84,7 +84,7 @@ module.exports = {
     {
       type: "category",
       label: "Troubleshooting",
-      collapsed: false,
+      collapsed: true,
       items: [
         "troubleshooting/index",
         "troubleshooting/diagnostics",
@@ -93,7 +93,7 @@ module.exports = {
     {
       type: "category",
       label: "Reference",
-      collapsed: false,
+      collapsed: true,
       items: [
         "reference/captain-definition",
         "reference/app-configuration",
