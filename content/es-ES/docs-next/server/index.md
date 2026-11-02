@@ -8,39 +8,39 @@ slug: /server
 
 ## Ajustes del servidor
 
-Usa el panel **Ajustes** área para gestionar el dominio raíz, contraseña de cuenta, actualizaciones y copias de seguridad de CapRover. Respalde el servidor antes de cambiar su dominio o actualización.
+Desde **Settings** en el dashboard puedes administrar el dominio raíz, la contraseña de la cuenta, las actualizaciones y los backups de CapRover. Haz un backup antes de cambiar el dominio o actualizar el servidor.
 
-### Dominio de raíz
+### Dominio raíz
 
-Apunte el registro de DNS Wildcard y el nombre de host de dashboard en el servidor antes de establecer el dominio raíz. Cambiarlo afecta a los nombres de host generados de aplicaciones y dashboard; comprobar DNS y renovar certificados HTTPS después del cambio. Si utiliza el registry autohospedado, retire o migra ese registro antes de cambiar el dominio. Consulta [DNS y dominios](../domains/index.md).
+Antes de configurar el dominio raíz, apunta el registro DNS wildcard y el hostname del dashboard al servidor. Cambiar el dominio raíz modifica los hostnames generados para las aplicaciones y el dashboard; comprueba el DNS y renueva los certificados HTTPS después del cambio. Si utilizas el registry autohospedado, retíralo o mígralo antes de cambiar el dominio. Consulta [DNS y dominios](../domains/index.md).
 
 ### Cuenta y recuperación
 
-Cambia la contraseña inicial después de la instalación, asegura el panel con HTTPS y almacena las credenciales de recuperación de forma segura. Examen [Seguridad y acceso](index.md) y [Restauración](backup/index.md) antes del uso de producción.
+Cambia la contraseña inicial después de instalar CapRover, protege el dashboard con HTTPS y guarda las credenciales de recuperación de forma segura. Revisa [Seguridad y acceso](index.md) y [Backup y restauración](backup/index.md) antes de utilizarlo en producción.
 
 <span id="source-server-security"></span>
 
 ## Seguridad y acceso
 
-- Cambia la contraseña inicial de panel, habilita HTTPS para el dashboard, y restringe el acceso a puertos y SSH utilizando firewalls host y proveedor.
-- Limite los puertos de Swarm a los nodos de grupos de confianza; vea [Configuración multinodo](../scaling/multi-node.md).
-- Mantenga Docker y CapRover actualizado.
+- Cambia la contraseña inicial del dashboard, habilita HTTPS y restringe los puertos y SSH mediante los firewalls del host y del proveedor.
+- Permite los puertos de Swarm solo entre nodos de confianza. Consulta [Configuración multinodo](../scaling/multi-node.md).
+- Mantén Docker y CapRover actualizados.
 
-- Trate de tokens de despliegue, credenciales de registro, variables de entorno, archivos de respaldo y claves SSH como secretos.
-- Utilizar credenciales separadas para la automatización, rotarlas cuando se expone, y revisar [CapRover Pro](index.md) opciones de dos factores si su instancia usa Pro.
-- Una persona con acceso a la socket de Docker en el administrador tiene un control anfitriono amplio; otorgar la shell y el acceso de panel deliberadamente.
+- Trata los tokens de despliegue, credenciales de registry, variables de entorno, archivos de backup y claves SSH como secretos.
+- Utiliza credenciales independientes para automatizaciones, rótalas si se exponen y consulta las opciones de 2FA de [CapRover Pro](index.md) si tu instalación utiliza Pro.
+- Quien tiene acceso al socket Docker del nodo manager puede controlar gran parte del host. Concede los accesos al servidor y al dashboard con cuidado.
 
-Respalde los datos de configuración y aplicación CapRover por separado y practique la restauración. Para problemas de acceso, consulte [Diagnósticos](../troubleshooting/diagnostics.md).
+Haz backups independientes de la configuración de CapRover y de los datos de las aplicaciones, y prueba las restauraciones. Si tienes problemas de acceso, consulta [Diagnósticos](../troubleshooting/diagnostics.md).
 
-### Recuperar una contraseña de panel olvidado
+### Recuperar una contraseña olvidada del dashboard
 
-- Utilice el flujo normal de cambio de contraseña del dashboard cuando aún puede iniciar sesión.
-- Si usted ha perdido el acceso pero mantener el acceso de shell al administrador, la corriente [autenticador](https://github.com/caprover/caprover/blob/master/src/user/Authenticator.ts) Vuelve a `DEFAULT_PASSWORD` sólo cuando no existe contraseña guardada.
-- Este procedimiento detiene brevemente CapRover y cambia su configuración guardada.
-- Tenga una copia de seguridad reciente, y ejecutarlo sólo en su propio servidor:
+- Si todavía puedes iniciar sesión, utiliza la opción normal de cambio de contraseña del dashboard.
+- Si has perdido el acceso al dashboard, pero conservas acceso shell al manager, el [autenticador](https://github.com/caprover/caprover/blob/master/src/user/Authenticator.ts) actual usa `DEFAULT_PASSWORD` únicamente cuando no existe un hash de contraseña guardado.
+- Este procedimiento detiene CapRover brevemente y modifica su configuración guardada.
+- Asegúrate de tener un backup reciente y ejecútalo solo en tu propio servidor:
 
-1. Garantía `jq` se instala, graba la corriente `captain-captain` imagen de servicio, y respaldo `/captain/data/config-captain.json` fuera del servidor.
-2. Preparar la configuración de reemplazo mientras el servicio se ejecuta:
+1. Comprueba que `jq` esté instalado, anota la imagen actual del servicio `captain-captain` y guarda una copia de `/captain/data/config-captain.json` fuera del servidor.
+2. Prepara una configuración de reemplazo mientras el servicio sigue funcionando:
 
    ```bash
    sudo cp -a /captain/data/config-captain.json /captain/data/config-captain.json.before-password-reset
@@ -48,7 +48,7 @@ Respalde los datos de configuración y aplicación CapRover por separado y pract
    sudo jq empty /captain/data/config-captain.json.new
    ```
 
-3. Elija una contraseña temporal de al menos ocho caracteres. Stop CapRover, instala el archivo preparado, establece la contraseña temporal, y reinicia el servicio:
+3. Elige una contraseña temporal de al menos ocho caracteres. Detén CapRover, sustituye la configuración, establece esa contraseña y reinicia el servicio:
 
    ```bash
    read -rsp 'Temporary password: ' CAPROVER_TEMP_PASSWORD; echo
@@ -59,46 +59,47 @@ Respalde los datos de configuración y aplicación CapRover por separado y pract
    unset CAPROVER_TEMP_PASSWORD
    ```
 
-4. Inicie sesión sobre HTTPS, cambie la contraseña temporal en Ajustes y verifique el nuevo login. Eliminar la variable de entorno temporal del servicio Docker con `sudo docker service update --env-rm DEFAULT_PASSWORD captain-captain`, luego verifique el login una vez más. El valor temporal puede ser visible en la inspección del servicio Docker hasta que se elimine. Mantenga la configuración de respaldo original hasta que la recuperación tenga éxito.
+4. Inicia sesión por HTTPS, cambia la contraseña temporal en Settings y comprueba que funciona. Elimina la variable de entorno temporal del servicio Docker con `sudo docker service update --env-rm DEFAULT_PASSWORD captain-captain` y verifica el acceso una vez más. Hasta que la elimines, la contraseña temporal podría aparecer en la inspección del servicio Docker. Conserva la configuración original hasta completar la recuperación.
 
-Si la autenticación de dos factores también bloquea el acceso, vea [Recuperación Pro OTP](index.md)Estos son pasos separados de recuperación.
+Si también has perdido acceso a 2FA, consulta [Recuperación de OTP de Pro](index.md). Son procedimientos independientes.
 
 <span id="source-server-pro"></span>
 
 ## CapRover Pro
 
-- CapRover Pro añade funciones respaldadas por suscripción configuradas a través del dashboard con una tecla Pro API.
-- Los controles disponibles incluyen autenticación de dos factores, alertas de inicio de sesión, avisos de éxito de build y avisos de falla de build, y acciones de correo electrónico o webhook.
-- Compruebe la configuración Pro del dashboard para las opciones habilitadas en su suscripción.
+- CapRover Pro incluye funciones asociadas a una suscripción, configuradas desde el dashboard con una clave de API Pro.
+- Entre ellas están la autenticación de dos factores, las alertas de inicio de sesión, los avisos de builds correctos o fallidos y las acciones de email o webhook.
+- Consulta los ajustes de Pro en el dashboard para ver qué opciones incluye tu suscripción.
 
-- Configurar y probar un destino de alerta antes de confiar en él.
-- Guarde su licencia Pro de forma segura.
-- Cuando se habilita la autenticación de dos factores, un login interactivo CLI con su contraseña de dashboard también requiere el código de una sola vez actual:
+- Configura y prueba el destino de alertas antes de utilizarlo en producción.
+- Protege tu clave Pro.
+- Con 2FA activo, iniciar sesión en la CLI con la contraseña del dashboard requiere también el código OTP actual:
 
 ```bash
 CAPROVER_OTP_TOKEN=123456 caprover login
 ```
 
-- Sustitución `123456` con un código actual.
-- El CLI envía `CAPROVER_OTP_TOKEN` durante la autenticación basada en contraseña, incluyendo un login activado por `caprover deploy` cuando necesite un nuevo período de sesiones.
-- Para la aplicación-scoped CI, utilice un [aplicación token](../deployments/ci-cd/index.md) en lugar de una contraseña dashboard y un OTP sensible al tiempo.
-- Si pierdes acceso a tu contraseña única, un administrador con acceso al administrador puede ejecutar el script de recuperación dentro del contenedor CapRover:
+- Sustituye `123456` por un código válido en ese momento.
+- La CLI envía `CAPROVER_OTP_TOKEN` durante la autenticación por contraseña, incluida la iniciada por `caprover deploy` cuando necesita una sesión nueva.
+- Para CI con permisos limitados a una aplicación, utiliza un [token de despliegue de aplicación](../deployments/ci-cd/index.md) en vez de una contraseña del dashboard y un OTP que caduca.
+- Si pierdes el segundo factor, un administrador con acceso shell al manager puede ejecutar el script de recuperación dentro del contenedor de CapRover:
 
 ```bash
 docker exec -it "$(docker ps --filter name=captain-captain -q | head -n 1)" npm run disable-otp
 ```
 
-Verifique primero el contenedor objetivo, use esto sólo para su propia instancia, luego inicie y configure nuevamente la autenticación de dos factores. Consulta [Solución de problemas](../troubleshooting/diagnostics.md).
+Comprueba primero que el contenedor elegido sea el correcto. Utiliza este procedimiento únicamente en tu propia instalación y vuelve a configurar 2FA después de entrar. Consulta [Problemas con Pro](../troubleshooting/diagnostics.md).
 
-**Alertas de correo electrónico:** Si necesita alertas en una bandeja de entrada diferente, inspeccione un remitente de alerta actual (históricamente `alerts@mail.pro.caprover.com`) y utilizar un filtro de correo electrónico / reglas de avance. Prueba el reenvío antes de confiar en él.
+**Alertas por email de Pro:** si necesitas recibir alertas en otra dirección, identifica el remitente actual (históricamente `alerts@mail.pro.caprover.com`) y configura un filtro o una regla de reenvío. Prueba el reenvío antes de depender de él.
 
 <span id="source-server-themes"></span>
 
-## Temas de Dashboard
+## Temas del dashboard
 
-- El salpicadero **Temas** Los ajustes le permiten elegir un tema incorporado o crear uno personalizado.
-- Contenido de tema personalizado es un objeto JavaScript pasado a Ant Design, en lugar de texto JSON.
-- El editor proporciona `isDarkMode`, `darkAlgorithm`, y `defaultAlgorithm`:
+Desde **Themes** puedes seleccionar un tema integrado o crear uno personalizado.
+
+- El contenido de un tema personalizado es un objeto JavaScript que se pasa a Ant Design, no texto JSON.
+- El editor ofrece las variables `isDarkMode`, `darkAlgorithm` y `defaultAlgorithm`:
 
 ```javascript
 {
@@ -112,10 +113,10 @@ Verifique primero el contenedor objetivo, use esto sólo para su propia instanci
 }
 ```
 
-- El **cabeza incrustada** campo puede cargar una fuente u otra marca de cabeza, por ejemplo `<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet" />`.
-- El **configuración extra** campo acepta un objeto JavaScript como `{ siderTheme: 'dark' }` para una barra lateral oscura.
-- Código de revisión antes de añadir scripts a la cabeza del panel.
-- Guarda tu trabajo, selecciona el tema y verifica la legibilidad tanto en modos ligeros como en oscuros.
-- Puede editar o eliminar temas personalizados; los temas incorporados están protegidos.
+- El campo **head embed** permite incluir una fuente u otro contenido del encabezado, por ejemplo `<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet" />`.
+- El campo **extra configuration** acepta un objeto JavaScript como `{ siderTheme: 'dark' }` para utilizar una barra lateral oscura.
+- Revisa cualquier código antes de insertar scripts en el encabezado del dashboard.
+- Guarda los cambios, selecciona el tema y comprueba que sea legible tanto en modo claro como oscuro.
+- Puedes editar o eliminar temas personalizados; los temas integrados están protegidos.
 
-Los temas sólo afectan la apariencia de dashboard; el estilo de aplicación pertenece a la aplicación misma. El [definiciones temáticas incorporadas](https://github.com/caprover/caprover/tree/master/template/themes) y [Ant Design tema tokens](https://ant.design/docs/react/customize-theme) proporcionar más ejemplos.
+Los temas solo modifican la apariencia del dashboard. El diseño visual de cada aplicación se configura dentro de ella. Consulta las [definiciones de temas integrados](https://github.com/caprover/caprover/tree/master/template/themes) y los [tokens de temas de Ant Design](https://ant.design/docs/react/customize-theme) para más ejemplos.

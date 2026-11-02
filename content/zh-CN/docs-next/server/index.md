@@ -8,39 +8,39 @@ slug: /server
 
 ## 服务器设置
 
-用dashboard **设置** 区域来管理根域、账户密码、更新和 CapRover 备份。 在更改其域或升级前备份服务器 。
+通过 dashboard 的 **Settings** 可以管理根域名、账户密码、升级和 CapRover 备份。在修改根域名或升级之前，请先备份服务器配置。
 
-### 根域
+### 根域名
 
-在设置根域之前,在服务器上标注通配符DNS记录和dashboard主机名. 更改它会影响生成的app和dashboard主机名;检查DNS,并在更改后更新HTTPS证书. 如果您使用自托管 registry,在更改域前删除或移动该注册。 见 [DNS 和域数](../domains/index.md).
+设置根域名前，先确认通配符 DNS 记录和 dashboard 域名都指向当前服务器。修改根域名会影响应用及 dashboard 自动生成的域名；修改后应检查 DNS 并更新 HTTPS 证书。如果启用了自托管 registry，应先停止使用或迁移它，再修改根域名。参阅 [DNS 与域名](../domains/index.md)。
 
-### 账户和回收
+### 账户与恢复
 
-安装后更改初始密码,用HTTPS保护dashboard,安全存储恢复凭据. 审查 [安全访问](index.md) 和 [备份恢复( R)](backup/index.md) 生产使用前。
+安装完成后立即修改初始密码，使用 HTTPS 保护 dashboard，并安全保存恢复凭据。生产环境上线前请阅读[安全与访问控制](index.md)及[备份与恢复](backup/index.md)。
 
 <span id="source-server-security"></span>
 
-## 安全访问
+## 安全与访问控制
 
-- 更改初始dashboard密码,启用用于dashboard的HTTPS,并使用主机和供应商防火墙限制访问端口和SSH.
-- 将 Swarm 端口限制为信任的集群节点; 参见 [多节点设置](../scaling/multi-node.md).
-- 不断更新Docker和CapRover.
+- 修改 dashboard 初始密码，启用 HTTPS，并通过宿主机及云服务商防火墙限制端口和 SSH 访问。
+- Swarm 端口只允许可信集群节点访问；参阅[多节点部署](../scaling/multi-node.md)。
+- 及时更新 Docker 和 CapRover。
 
-- 将部署令牌,registry 凭据,环境变量,备份档案,和SSH密钥视为秘密.
-- 使用单独的证书进行自动化,在曝光时旋转,并审查 [CapRover Pro (超级英雄)](index.md) 如果您使用 Pro 选项,则使用 2 因素选项。
-- 一个在管理器上拥有Docker socket访问权限的人实际上拥有广泛的主机控制;故意授予 shell和dashboard访问权限.
+- 部署 token、registry 凭据、环境变量、备份文件和 SSH 密钥都应作为敏感信息保护。
+- 为自动化任务使用独立凭据，一旦泄露立即轮换。如果使用 Pro，可查看 [CapRover Pro](index.md) 的双重身份验证选项。
+- 在 manager 节点拥有 Docker socket 访问权限的用户，实际上可以控制宿主机的大部分资源。谨慎授予 shell 和 dashboard 权限。
 
-分别备份 CapRover 配置和应用数据并练习恢复. 关于准入问题,见 [诊断](../troubleshooting/diagnostics.md).
+分别备份 CapRover 配置和应用数据，并定期测试恢复。如果遇到访问故障，参阅[诊断工具](../troubleshooting/diagnostics.md)。
 
-### 恢复被遗忘的dashboard密码
+### 忘记 dashboard 密码时如何恢复
 
-- 使用dashboard正常的密码更改流程,当你仍然可以签入.
-- 如果您已失去访问权限, 但保留 shell 访问权限给管理器, 当前 [认证器](https://github.com/caprover/caprover/blob/master/src/user/Authenticator.ts) 倒计时 `DEFAULT_PASSWORD` 仅当没有保存的密码散列存在时。
-- 此程序会短暂停止 CapRover 并更改其保存的配置 。
-- 拥有最近的备份, 只运行在您的服务器上 :
+- 如果还能登录，请直接使用 dashboard 的常规密码修改功能。
+- 如果已无法登录，但仍能通过 shell 访问 manager 节点，当前[身份验证实现](https://github.com/caprover/caprover/blob/master/src/user/Authenticator.ts)仅在配置中不存在密码 hash 时才回退到 `DEFAULT_PASSWORD`。
+- 下列步骤会短暂停止 CapRover 并修改已保存的配置。
+- 请先确认有近期备份，并且只在自己管理的服务器上执行：
 
-1. 确保 `jq` 已安装,记录当前 `captain-captain` 服务镜像,并备份 `/captain/data/config-captain.json` 在服务器外。
-2. 在服务运行时准备替换配置 :
+1. 确保安装了 `jq`，记录 `captain-captain` service 当前使用的镜像，并在服务器之外备份 `/captain/data/config-captain.json`。
+2. 保持服务运行，先生成新的配置文件：
 
    ```bash
    sudo cp -a /captain/data/config-captain.json /captain/data/config-captain.json.before-password-reset
@@ -48,7 +48,7 @@ slug: /server
    sudo jq empty /captain/data/config-captain.json.new
    ```
 
-3. 选择至少八个字符的临时密码 。 停止 CapRover, 安装准备的文件, 设置临时密码, 然后重新启动服务 :
+3. 选择至少八个字符的临时密码，停止 CapRover，替换配置，设置临时密码后重新启动：
 
    ```bash
    read -rsp 'Temporary password: ' CAPROVER_TEMP_PASSWORD; echo
@@ -59,46 +59,47 @@ slug: /server
    unset CAPROVER_TEMP_PASSWORD
    ```
 
-4. 在 HTTPS 上签名, 在设置中更改临时密码, 并验证新登录 。 从 Docker 服务中删除临时环境变量 `sudo docker service update --env-rm DEFAULT_PASSWORD captain-captain`,然后再次验证登录。 该临时值可能在Docker服务检查中可见,直到移除. 保留原备份配置直到恢复成功.
+4. 通过 HTTPS 登录，在 Settings 中修改临时密码并确认新密码有效。然后运行 `sudo docker service update --env-rm DEFAULT_PASSWORD captain-captain`，从 Docker service 中移除临时环境变量，并再次检查登录。删除前，临时密码可能通过 Docker service inspect 被看到。恢复成功前请保留原始配置备份。
 
-如果双因子认证也阻碍访问,请参见 [检察官办公室](index.md)这些是单独的回收步骤。
+如果同时无法通过双重身份验证，请查看 [Pro OTP 恢复](index.md)。这是独立的恢复流程。
 
 <span id="source-server-pro"></span>
 
 ## CapRover Pro
 
-- CapRover Pro增加了通过dashboard配置的订阅后功能,并配有Pro API密钥.
-- 可用的控制包括双因子认证,登录提醒,构建成功和构建失败提醒,以及电子邮件或webhook动作.
-- 请检查date=中的日期值 (帮助)
+- CapRover Pro 提供订阅功能，需要在 dashboard 中配置 Pro API key。
+- 可用功能包括双重身份验证、登录告警、构建成功或失败通知，以及邮件或 webhook 动作。
+- 实际功能以 dashboard 的 Pro 设置和当前订阅为准。
 
-- 在依赖之前设置并测试警戒目的地.
-- 安全存储您的Pro密钥。
-- 当启用两要素认证时,带有您dashboard密码的交互式CLI登录也要求当前一次性代码:
+- 正式依赖告警前，先配置并测试通知目标。
+- 安全保存 Pro key。
+- 启用双重身份验证后，使用 dashboard 密码进行交互式 CLI 登录时，还需要当前的一次性验证码：
 
 ```bash
 CAPROVER_OTP_TOKEN=123456 caprover login
 ```
 
-- 替换 `123456` 带有当前代码。
-- CLI发送 `CAPROVER_OTP_TOKEN` 在基于密码的认证过程中,包括由 `caprover deploy` 当它需要一个新的会话。
-- 对于应用扫描的CI,请使用 [应用程序部署符](../deployments/ci-cd/index.md) 而不是dashboard密码和时间敏感的检察官办公室。
-- 如果您无法访问您的一次性密码, 有 shell 访问管理器的管理员可以在 CapRover 容器内运行回收脚本 :
+- 将 `123456` 替换为当前有效的验证码。
+- CLI 在通过密码认证时发送 `CAPROVER_OTP_TOKEN`，包括 `caprover deploy` 需要重新登录时。
+- CI 部署单个应用时，建议使用[应用部署 token](../deployments/ci-cd/index.md)，避免在 CI 中保存 dashboard 密码和需要频繁更新的 OTP。
+- 如果丢失了 OTP，拥有 manager 节点 shell 权限的管理员可以在 CapRover 容器内运行恢复命令：
 
 ```bash
 docker exec -it "$(docker ps --filter name=captain-captain -q | head -n 1)" npm run disable-otp
 ```
 
-首先验证目标容器, 只为您自己实例使用, 然后再次签名并配置两个要素认证 。 见 [Pro 排除故障](../troubleshooting/diagnostics.md).
+执行前先确认选中的容器正确，并且仅对自己管理的实例使用。恢复登录后应重新配置双重身份验证。参阅 [Pro 故障排查](../troubleshooting/diagnostics.md)。
 
-**提议电子邮件提醒 :** 如果您需要不同收件箱中的提醒, 请检查当前提醒发送者( 历史 ) `alerts@mail.pro.caprover.com`)并使用电子邮件过滤/转发规则。 在依赖它之前先测试转发.
+**Pro 邮件告警：**如果需要将告警转发到其他邮箱，先确认当前告警的发件地址（历史上使用 `alerts@mail.pro.caprover.com`），然后配置邮件过滤或转发规则。正式使用前先测试。
 
 <span id="source-server-themes"></span>
 
 ## Dashboard 主题
 
-- dashboard **主题** 设置允许您选择内置主题或创建自定义主题。
-- 自定义主题内容是一个传递给Ant Design的JavaScript对象,而不是JSON文本.
-- 编辑提供 `isDarkMode`, `darkAlgorithm`,以及 `defaultAlgorithm`:
+dashboard 的 **Themes** 设置允许选择内置主题或创建自定义主题。
+
+- 自定义主题使用传给 Ant Design 的 JavaScript 对象，而不是 JSON 文本。
+- 编辑器提供 `isDarkMode`、`darkAlgorithm` 和 `defaultAlgorithm`：
 
 ```javascript
 {
@@ -112,10 +113,10 @@ docker exec -it "$(docker ps --filter name=captain-captain -q | head -n 1)" npm 
 }
 ```
 
-- 这个 **头部嵌入** 字段可以加载字体或其他头标签,例如 `<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet" />`.
-- 这个 **额外配置** 字段接受 JavaScript 对象, 如 `{ siderTheme: 'dark' }` 暗边栏。
-- 在给dashboard头添加脚本之前审查代码.
-- 保存您的工作, 选择主题, 并检查可读性, 无论是光模式还是暗模式 。
-- 您可以编辑或删除自定义主题;内置主题受到保护.
+- **head embed** 字段可添加字体或其他 head 内容，例如 `<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet" />`。
+- **extra configuration** 字段接受 JavaScript 对象，例如 `{ siderTheme: 'dark' }`，用于配置深色侧边栏。
+- 在 dashboard 的 head 中嵌入脚本前，务必检查代码的来源和安全性。
+- 保存主题并应用后，检查亮色和暗色模式下的可读性。
+- 自定义主题可以编辑或删除，内置主题受保护。
 
-主题只影响dashboard的外观;应用程序的造型属于应用程序本身. 这个 [内置主题定义](https://github.com/caprover/caprover/tree/master/template/themes) 和 [蚂蚁设计主题标志](https://ant.design/docs/react/customize-theme) 提供更多实例。
+主题只影响 dashboard 外观，不会修改应用自身的 UI。更多示例参见[内置主题定义](https://github.com/caprover/caprover/tree/master/template/themes)和 [Ant Design 主题 token](https://ant.design/docs/react/customize-theme)。
