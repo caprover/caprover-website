@@ -2,7 +2,8 @@
 
 All reader-facing content is organized by locale:
 
-- `<locale>/docs/`: documentation Markdown
+- `en/docs-next/`: canonical English documentation served at `/docs`
+- `<locale>/docs/`: original documentation used by the archived `/docs-legacy` plugin
 - `<locale>/marketing.json`: flat Next.js marketing-site message catalog
 - `<locale>/docs-ui.json`: flat Docusaurus navigation, sidebar, and footer strings
 - `locales.json`: shared locale configuration
@@ -43,13 +44,13 @@ every homepage and comparison route for the new language.
 
 ### Add a documentation page
 
-1. Add the English Markdown file under `content/en/docs/`.
-2. Add the same relative file under every enabled locale's `docs/` directory.
-   Keep the filename, directory structure, and frontmatter ID identical.
-3. Add the document's relative path without `.md` to `docs-site/sidebars.js`.
-   For example, use `ci-cd-integration/deploy-from-github` for
-   `content/en/docs/ci-cd-integration/deploy-from-github.md`.
-4. Run the full validation sequence below.
+1. Add the canonical English Markdown file under `content/en/docs-next/`.
+2. Add its ID to `docs-site/sidebars.js`. Example: `installation/manual`.
+3. Run the full validation sequence below.
+
+Current Spanish/Chinese docs use the English fallback with links to the archived
+translations. Full 48-page translation migration will be handled separately;
+do not add untranslated files to the archive or present them as translations.
 
 ### Add a marketing-site string
 
@@ -72,8 +73,10 @@ cd docs-site
 npm run write-translations
 ```
 
-The command updates `content/en/docs-ui.json`. Apply the corresponding changes
-to every enabled locale's `docs-ui.json`. The `docs-site/i18n/` directory contains
+The command updates the archived sidebar/navbar/footer catalog at
+`content/en/docs-ui.json`. Apply corresponding changes to locale catalogs
+when editing the archived navigation. The new canonical sidebar currently uses
+English labels in every locale. The `docs-site/i18n/` directory contains
 generated build inputs and should not be edited directly.
 
 ### Validate localized content
