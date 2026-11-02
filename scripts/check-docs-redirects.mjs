@@ -8,7 +8,6 @@ import {
   documentMetadata,
   htmlFile,
   normalizeRoute,
-  outputFiles,
   readJson,
   resolveRedirect,
   routeCatalog,

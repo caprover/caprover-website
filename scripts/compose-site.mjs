@@ -54,12 +54,15 @@ function combinedMarketingRouteFile(locale, route) {
 
 async function injectLocalePreferenceScript(file) {
   const contents = await readFile(file, "utf8");
+  const compatibilityScript = /(?:^|\/)docs(?:-legacy)?\//.test(
+    path.relative(combinedSite, file).split(path.sep).join("/"),
+  ) ? '<script src="/docs-compat.js"></script>' : "";
   assert.match(contents, /<\/head>/i, `HTML head is missing: ${path.relative(root, file)}`);
   await writeFile(
     file,
     contents.replace(
       /<\/head>/i,
-      '    <script src="/docs-compat.js"></script><script src="/locale-preference.js"></script>\n  </head>',
+      `    ${compatibilityScript}<script src="/locale-preference.js"></script>\n  </head>`,
     ),
   );
 }

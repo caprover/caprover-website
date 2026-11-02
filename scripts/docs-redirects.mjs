@@ -218,14 +218,10 @@ export async function buildManifest(root, site) {
     await validate(entry.target);
     const current = await ids(entry.target);
     const historical = history.pages[entry.evidence]?.ids ?? [];
-    if (entry.kind !== "root")
-      assert(
-        history.pages[entry.evidence] ||
-          catalog.addedAfterOriginalConsolidation.some((id) =>
-            entry.source.endsWith("/docs-next/" + id),
-          ),
-        "Missing historical evidence: " + entry.source,
-      );
+    assert(
+      history.pages[entry.evidence],
+      "Missing historical evidence: " + entry.source,
+    );
     entry.fragments = {};
     const explicit = overrides.routes[entry.evidence] ?? {};
     for (const anchor of [

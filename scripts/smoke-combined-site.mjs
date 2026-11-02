@@ -112,6 +112,8 @@ try {
     }
 
     const localizedHomepage = await routeResponses[0].text();
+    assert.doesNotMatch(localizedHomepage, /src=["']\/docs-compat\.js["']/,
+      "Documentation compatibility code must not be injected into marketing pages");
     assert(
       localizedHomepage.includes(marketingCatalog["homepage.hero.titleLine1"]),
       `${locale.code} homepage content is missing`,
