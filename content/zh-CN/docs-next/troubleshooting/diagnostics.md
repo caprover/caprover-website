@@ -22,7 +22,7 @@ docker service logs captain-captain --tail 100
 - **联网 :** 检查DNS并分别测试HTTP和HTTPS.
 - **存储 :** 检查挂载、磁盘空间和节点位置 。
 
-## 收集完整的服务器报告
+## 收集完整的服务器报告 {#collect-a-full-server-report}
 
 使用 [诊断收集器](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh) 如果没有仪表板,若干服务失败,或快速检查没有结果。 运行在 Debian/ Ubuntu 上 **沼泽管理器** 已系统化 :
 
