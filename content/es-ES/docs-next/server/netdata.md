@@ -1,26 +1,26 @@
 ---
 id: netdata
-title: Supervisión con NetData
+title: Monitorización con NetData
 slug: /server/netdata
 ---
 
-- En el dashboard, abierto **Supervisión** y permitir NetData inspeccionar el servidor CPU, memoria, disco y actividad de red.
-- Utilice el enlace de monitoreo mostrado para abrir sus gráficos.
-- El servidor también admite destinos opcionales de alerta NetData para SMTP, Slack, Telegram y Pushbullet.
-- Configure sus credenciales en el dashboard y verifique que una notificación de alerta llegue al destino antes de confiar en él.
+- En el dashboard, abre **Monitoring** y activa NetData para consultar el consumo de CPU, memoria, disco y tráfico de red del servidor.
+- Usa el enlace de monitorización para abrir las gráficas.
+- El servidor también admite destinos de alertas de NetData mediante SMTP, Slack, Telegram y Pushbullet.
+- Configura las credenciales desde el dashboard y verifica que llega una alerta de prueba antes de depender de esas notificaciones.
 
-Compruebe los registros de aplicaciones y [Diagnósticos](../troubleshooting/diagnostics.md) junto a las métricas de host. El monitoreo no proporciona una copia de seguridad o garantiza que las aplicaciones permanecen sanas; configura alertas separadas y [backups](backup/index.md) para producción.
+Consulta los logs de las aplicaciones y [Diagnósticos](../troubleshooting/diagnostics.md) junto con las métricas del host. La monitorización no sustituye a los backups ni garantiza que las aplicaciones estén sanas; configura alertas adicionales y [backups](backup/index.md) para producción.
 
 <span id="source-server-goaccess"></span>
 
-## HTTP Análisis con GoAccess
+## Analítica HTTP con GoAccess
 
-- GoAccess produce informes de tráfico HTTP por aplicación de los registros de acceso NGINX.
-- Hágalo en la configuración de monitoreo/análisis del dashboard, y luego abra los informes para una aplicación y dominio.
-- Establecer un cronograma de rotación de registros y un período de retención apropiado para su tráfico y capacidad de disco.
-- CapRover valida la expresión cron y almacena el ajuste de retención con la configuración GoAccess.
+- GoAccess genera informes de tráfico HTTP por aplicación a partir de los logs de acceso de NGINX.
+- Actívalo desde los ajustes de monitorización y analítica del dashboard y abre los informes de la aplicación y el dominio.
+- Configura una expresión cron para rotar logs y un periodo de retención adecuado para el tráfico y la capacidad de disco.
+- CapRover valida la expresión cron y guarda el periodo de retención en la configuración de GoAccess.
 
-- Si un informe está vacío, genera tráfico a la aplicación seleccionada, espera el procesamiento y confirma que existen los registros de acceso de la aplicación.
-- Los informes se basan en solicitudes HTTP que llegan al NGINX de CapRover; el tráfico directo TCP/UDP está fuera de su alcance.
-- Maneja registros e informes brutos como datos potencialmente sensibles.
-- Para errores de aplicación, use [Diagnósticos](../troubleshooting/diagnostics.md) y registros de aplicaciones también.
+- Si el informe está vacío, genera tráfico en la aplicación, espera a que se procese y comprueba que existan logs de acceso.
+- Los informes solo incluyen peticiones HTTP que llegan al NGINX de CapRover. El tráfico TCP/UDP directo queda fuera de su alcance.
+- Trata los logs sin procesar y los informes como datos potencialmente sensibles.
+- Para errores de aplicaciones, revisa también [Diagnósticos](../troubleshooting/diagnostics.md) y sus logs.

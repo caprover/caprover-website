@@ -4,19 +4,19 @@ title: 升级 CapRover
 slug: /server/upgrade
 ---
 
-在升级之前 [下载 CapRover 备份](backup/index.md) 并分别备份应用程序数据和音量。 检查释放笔记,确认您的 Docker 主机有足够的自由磁盘空间 。
+升级前，先[下载 CapRover 备份](backup/index.md)，并单独备份应用数据和数据卷。阅读 release notes，确认 Docker 服务器有足够的空闲磁盘空间。
 
-- 在dashboard,打开 **设置** 并检查当前版本、可用版本和更改日志。
-- 报告更新可用时使用dashboard更新动作.
-- CapRover 拖动选中的镜像并更新 `captain-captain` 道克服务.
-- 允许服务时间重新启动,然后验证dashboard,部署应用,注册,和HTTPS.
+- 在 dashboard 中打开 **Settings**，检查当前版本、可升级版本和更新日志。
+- dashboard 提示有可用更新时，使用内置升级操作。
+- CapRover 会拉取对应镜像并更新 `captain-captain` Docker service。
+- 等待服务重启，然后检查 dashboard、已部署应用、registry 和 HTTPS。
 
-- 如果更新失败, 请检查 `docker service ps captain-captain --no-trunc` 和 `docker service logs captain-captain --tail 100` 在管理器节点。
-- 在尝试回滚前保存备份和上一个镜像标签; 见 [诊断](../troubleshooting/diagnostics.md).
+- 如果升级失败，在 manager 节点执行 `docker service ps captain-captain --no-trunc` 和 `docker service logs captain-captain --tail 100`。
+- 回滚前保留备份以及先前使用的镜像 tag。参阅[诊断指南](../troubleshooting/diagnostics.md)。
 
-## 测试边缘镜像
+## 测试 edge 镜像
 
-- 对于仅存在于边缘镜像的固定线的高级临时测试,记录准确的当前镜像。 `docker service inspect captain-captain`,备份 CapRover 和应用程序数据,然后将服务镜像更新为 a **特定测试的边缘标签或文摘** 使用 `docker service update captain-captain --image IMAGE`.
-- 这绕过了dashboard的正常版本流.
-- 边缘镜像可能不支持降级到目前发布的版本;等待兼容的发布或者在切换回之前恢复已测试的备份.
-- 在任何手动更新后验证dashboard、应用程序和服务日志。
+- 如果需要临时验证一个仅在 edge 镜像中提供的修复，先通过 `docker service inspect captain-captain` 记录当前镜像，备份 CapRover 和应用数据，然后使用 `docker service update captain-captain --image IMAGE` 更新到**明确指定且经过测试的 edge tag 或 digest**。
+- 此操作绕过 dashboard 的正常版本升级流程。
+- edge 镜像可能无法安全降级回当前稳定版。切换回稳定版前，应等待兼容的正式发布，或恢复经过测试的备份。
+- 任何手动更新之后都要检查 dashboard、应用和 service 日志。

@@ -1,45 +1,45 @@
 ---
 id: index
-title: Backup &amp; Restore CapRover
+title: Backup y restauración de CapRover
 slug: /server/backup
 ---
 
 <span id="source-server-backup-contents"></span>
 
-## Lo que está respaldado
+## Qué incluye un backup
 
-Una copia de seguridad de CapRover **`/captain/data`** y añade metadatos sobre los nodos de racimo. Esto incluye configuración y estado de CapRover, tales como definiciones de aplicaciones, configuraciones de dominio y certificados almacenados allí.
+Un backup de CapRover copia **`/captain/data`** y añade metadatos sobre los nodos del clúster. Incluye el estado y la configuración de CapRover, como las definiciones de aplicaciones, dominios y certificados almacenados en ese directorio.
 
-- Lo hace **no** automáticamente incluyen volúmenes Docker, monturas de host bind fuera de ese directorio, contenidos de bases de datos almacenados en esos lugares, archivos subidos allí, o imágenes Docker construidas localmente.
-- Realiza una copia de seguridad de cada base de datos usando su propio proceso de exportación o instantánea consistente, y copiar los directorios persistentes que realmente utiliza.
-- Prueba que tanto el archivo CapRover como los datos de aplicación pueden ser restaurados.
+- **No** incluye automáticamente volúmenes Docker, bind mounts externos a ese directorio, datos de bases de datos o archivos subidos allí, ni imágenes Docker compiladas localmente.
+- Haz backups independientes de cada base de datos mediante dumps o snapshots consistentes, y copia los directorios persistentes que utilicen tus aplicaciones.
+- Comprueba mediante una restauración que puedes recuperar tanto el archivo de CapRover como los datos de las aplicaciones.
 
-- Una excepción a la regla de la imagen es una **registry autohospedado**: sus datos de imagen almacenados `/captain/data/registry`, por lo que ese directorio es copiado y puede aumentar enormemente el tamaño de archivo.
-- Con un registro externo, mantenga sus credenciales y su política de retención de imágenes disponibles para su restauración.
-- Sin imágenes accesibles, redespliegue aplicaciones después de restaurar sus definiciones.
+- Hay una excepción respecto a las imágenes: los datos de un **registry autohospedado** están en `/captain/data/registry`. Ese directorio se copia y puede aumentar mucho el tamaño del backup.
+- Si utilizas un registry externo, asegúrate de conservar las credenciales y de que su política de retención permita restaurar las imágenes necesarias.
+- Si las imágenes ya no están disponibles, tendrás que volver a desplegar las aplicaciones después de restaurar sus definiciones.
 
-Consulta [Crear un respaldo](index.md), [Restaurar un servidor](restore.md), y [Persistent Directories](../../data-persistence/index.md).
+Consulta [Crear un backup](index.md), [Restaurar un servidor](restore.md) y [Directorios persistentes](../../data-persistence/index.md).
 
 <span id="source-server-backup-create"></span>
 
-## Crear un respaldo
+## Crear un backup
 
-1. En el panel CapRover, vaya a **Ajustes** y seleccionar **Crear respaldo**.
-2. Descargar el resultado `.tar` archivo, verifique que no es vacío, y almacenarlo fuera del servidor con controles de acceso.
-3. Respaldar las bases de datos de aplicaciones y los directorios persistentes por separado; [el archivo CapRover tiene alcance limitado](index.md).
-4. Restaurar periódicamente ambos tipos de respaldo a un servidor de prueba y verificar las aplicaciones.
+1. En el dashboard de CapRover, abre **Settings** y selecciona **Create Backup**.
+2. Descarga el archivo `.tar`, comprueba que no esté vacío y guárdalo fuera del servidor con permisos de acceso restringidos.
+3. Haz backups separados de bases de datos y directorios persistentes; [el backup de CapRover tiene un alcance limitado](index.md).
+4. Restaura periódicamente ambos tipos de backup en un servidor de prueba y verifica las aplicaciones.
 
-- El archivo se genera en el servidor, luego se ofrece como una descarga temporal.
-- Mantenga su propia copia: la descarga generada es temporal.
-- Si se habilita un registry autohospedado, permita espacio para sus datos de imagen en el archivo.
+- El archivo se genera en el servidor y se ofrece mediante una descarga temporal.
+- Guarda tu propia copia: el enlace de descarga generado caduca.
+- Si utilizas un registry autohospedado, reserva espacio suficiente para sus imágenes dentro del backup.
 
 <span id="source-server-backup-automate"></span>
 
-## Automate Backups
+## Automatizar backups
 
-- El salpicadero **Crear respaldo** acción tiene un punto final de API autenticado correspondiente.
-- Necesidades del siguiente ejemplo `curl` y `jq`.
-- Establece `CAPROVER_URL` a su origen de panel HTTPS y proporcionar `CAPROVER_PASSWORD` a través de la tienda secreta de su agenda.
+- La acción **Create Backup** del dashboard dispone de un endpoint autenticado en la API.
+- El siguiente ejemplo requiere `curl` y `jq`.
+- Configura `CAPROVER_URL` con la URL HTTPS del dashboard y proporciona `CAPROVER_PASSWORD` de forma segura mediante el gestor de secretos de tu scheduler.
 
 ```bash
 set -euo pipefail
@@ -56,20 +56,20 @@ curl --fail --silent --show-error -G "$CAPROVER_URL/api/v2/downloads/" \
 test -s backup.tar
 ```
 
-- Mueva el archivo a datar almacenamiento fuera del servicio, encriptarlo según corresponda, y establezca alertas de retención y fracaso.
-- El token de descarga es temporal; termine la descarga en la misma carrera.
-- Programar bases de datos y copias de seguridad de volumen separadas y la restauración de pruebas regularmente.
+- Mueve el archivo a almacenamiento externo con fecha, cifra su contenido cuando corresponda y configura retención y alertas de fallos.
+- El token de descarga es temporal: termina la descarga en la misma ejecución.
+- Programa backups independientes para las bases de datos y los volúmenes, y prueba la restauración periódicamente.
 
 <span id="source-reference-backup-contents"></span>
 
-## Contenidos de respaldo
+## Contenido del backup
 
-El [Aplicación de las medidas de apoyo](https://github.com/caprover/caprover/blob/master/src/user/system/BackupManager.ts) archivos `/captain/data` y adiciones `meta/backup.json` con la sal de CapRover y metadatos de nodos de racimo.
+La [implementación del backup](https://github.com/caprover/caprover/blob/master/src/user/system/BackupManager.ts) archiva `/captain/data` y añade `meta/backup.json` con el salt de CapRover y metadatos de los nodos del clúster.
 
-| Incluido | Excluido a menos que se almacene dentro `/captain/data` |
+| Incluido | Excluido salvo que esté dentro de `/captain/data` |
 | --- | --- |
-| Configuración guardada de CapRover, definiciones de aplicaciones, certificados y datos de registry autohospedados bajo `/captain/data/registry`. | Docker volúmenes y host bind montajes en otro lugar, archivos de bases de datos allí, y local Docker tienda de imágenes. |
+| Configuración guardada de CapRover, definiciones de aplicaciones, certificados y datos del registry autohospedado en `/captain/data/registry`. | Volúmenes Docker y bind mounts de otras rutas, archivos de bases de datos en esas ubicaciones y almacenamiento local de imágenes Docker. |
 
-- La excepción del registro puede hacer grandes archivos.
-- El código de restauración busca `/captain/backup.tar` en la instalación inicial y lo expande `/captain/restoring`.
-- Consulta [Lo que está respaldado](index.md) y [Restaurar un servidor](restore.md) para la secuencia de recuperación completa.
+- El registry autohospedado puede hacer que el archivo sea muy grande.
+- Durante la instalación inicial, el código de restauración busca `/captain/backup.tar` y extrae su contenido en `/captain/restoring`.
+- Consulta [Qué incluye un backup](index.md) y [Restaurar un servidor](restore.md) para ver todos los pasos de recuperación.

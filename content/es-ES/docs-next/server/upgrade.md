@@ -1,22 +1,22 @@
 ---
 id: upgrade
-title: Upgrade CapRover
+title: Actualizar CapRover
 slug: /server/upgrade
 ---
 
-Antes de mejorar, [descargar una copia de seguridad CapRover](backup/index.md) y copia de seguridad de datos y volúmenes de aplicaciones. Compruebe las notas de liberación y confirme que su host Docker tiene suficiente espacio de disco libre.
+Antes de actualizar, [descarga un backup de CapRover](backup/index.md) y haz copias independientes de los datos y volúmenes de las aplicaciones. Revisa las notas de la versión y comprueba que el host Docker tenga suficiente espacio libre.
 
-- En el dashboard, abierto **Ajustes** e inspeccionar la versión actual, la versión disponible, y cambiar el registro.
-- Utilice la acción de actualización de dashboard cuando reporte que una actualización está disponible.
-- CapRover tira la imagen seleccionada y actualiza la `captain-captain` Servicio Docker.
-- Permitir el tiempo de servicio para reiniciar, luego verificar el dashboard, aplicaciones desplegadas, registro y HTTPS.
+- En el dashboard, abre **Settings** y comprueba la versión instalada, la versión disponible y el changelog.
+- Cuando el dashboard indique que hay una actualización, usa su opción de actualización.
+- CapRover descarga la imagen seleccionada y actualiza el servicio Docker `captain-captain`.
+- Espera a que se reinicie el servicio y comprueba el dashboard, las aplicaciones, el registry y HTTPS.
 
-- Si la actualización falla, compruebe `docker service ps captain-captain --no-trunc` y `docker service logs captain-captain --tail 100` en el nodo manager.
-- Preserve una copia de seguridad y la etiqueta de imagen anterior antes de intentar un rollback; ver [Diagnósticos](../troubleshooting/diagnostics.md).
+- Si falla la actualización, ejecuta `docker service ps captain-captain --no-trunc` y `docker service logs captain-captain --tail 100` en el nodo manager.
+- Conserva un backup y la etiqueta de la imagen anterior antes de intentar un rollback. Consulta [Diagnósticos](../troubleshooting/diagnostics.md).
 
-## Probando una imagen edge
+## Probar una imagen edge
 
-- Para una prueba temporal avanzada de una solución disponible sólo en la imagen del borde, registre la imagen actual exacta de `docker service inspect captain-captain`, respaldo CapRover y datos de aplicaciones, y luego actualizar la imagen de servicio a **etiqueta de borde probado específico o digest** utilizando `docker service update captain-captain --image IMAGE`.
-- Esto supera el flujo normal de la versión del panel.
-- Las imágenes de borde pueden no apoyar la reducción a la versión actualmente lanzada; esperar una liberación compatible o restaurar una copia de seguridad probada antes de cambiar de nuevo.
-- Verifique el dashboard, aplicaciones y registros de servicio después de cualquier actualización manual.
+- Para probar temporalmente un fix que solo está disponible en la imagen edge, anota la imagen actual con `docker service inspect captain-captain`, realiza backups de CapRover y de las aplicaciones y actualiza el servicio a una **etiqueta o digest edge específico y probado** con `docker service update captain-captain --image IMAGE`.
+- Este procedimiento evita el sistema habitual de versiones del dashboard.
+- Puede que una imagen edge no permita volver a la versión estable anterior. Antes de regresar, espera una versión compatible o restaura un backup probado.
+- Después de cualquier actualización manual, comprueba el dashboard, las aplicaciones y los logs del servicio.

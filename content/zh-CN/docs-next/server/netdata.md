@@ -1,26 +1,26 @@
 ---
 id: netdata
-title: 使用NetData进行监控
+title: 使用 NetData 监控服务器
 slug: /server/netdata
 ---
 
-- 在dashboard,打开 **监测** 并允许NetData检查服务器CPU,内存,磁盘,和网络活动.
-- 使用显示的监测链接打开其图表 。
-- 服务器还支持SMTP,Slack,Telegram和Pushbullet的可选NetData提醒目的地.
-- 在dashboard上配置他们的证书,并核查一份警报通知在依赖它之前到达目的地。
+- 在 dashboard 中打开 **Monitoring**，启用 NetData，即可查看服务器 CPU、内存、磁盘和网络使用情况。
+- 使用页面显示的监控链接打开图表。
+- 服务器还支持通过 SMTP、Slack、Telegram 和 Pushbullet 发送 NetData 告警。
+- 在 dashboard 中设置对应凭据，并确认测试告警能正常送达，再用于生产监控。
 
-检查应用程序日志和 [诊断](../troubleshooting/diagnostics.md) 与主机的度量衡。 监测不能提供备份或保证应用程序保持健康; [备份](backup/index.md) 用于生产。
+排查问题时，应将主机指标与应用日志和[诊断信息](../troubleshooting/diagnostics.md)一起分析。监控既不能替代备份，也无法保证应用始终健康。生产环境还需要单独配置告警和[备份](backup/index.md)。
 
 <span id="source-server-goaccess"></span>
 
-## HTTP 软件 与 Goaccess 分析
+## 使用 GoAccess 分析 HTTP 流量
 
-- GoAccess从NGINX访问日志中生成每个应用的HTTP流量报告.
-- 在dashboard的监控/分析设置中启用它,然后打开一个应用和域名的报告.
-- 设置一个与您的流量和磁盘容量相适应的日志旋转编程和保留期。
-- CapRover 验证 cron 表达式,并将保留设置与 GoAccess 配置一同存储.
+- GoAccess 根据 NGINX access log 生成每个应用的 HTTP 流量报告。
+- 在 dashboard 的监控与分析设置中启用 GoAccess，然后查看指定应用和域名的报告。
+- 根据流量规模和磁盘容量，设置日志轮转的 cron 表达式及保留期限。
+- CapRover 会校验 cron 表达式，并在 GoAccess 配置中保存保留期限。
 
-- 如果报告为空,则生成对所选应用的流量,等待处理,并确认该应用的访问日志存在.
-- 这些报告是根据HTTP的要求编写的,这些要求到达了CapRover的NGINX;直接的TCP/UDP流量超出了它们的范围.
-- 处理原始记录和报告为潜在的敏感数据。
-- 对于应用程序错误, 使用 [诊断](../troubleshooting/diagnostics.md) 还有应用日志
+- 如果报告为空，请先向应用发送一些请求，等待处理完成并确认对应的 access log 存在。
+- 报告只统计经过 CapRover NGINX 的 HTTP 请求，不包含直接的 TCP/UDP 流量。
+- 原始日志及报告可能包含敏感信息，需要妥善处理。
+- 排查应用错误时还应结合[诊断工具](../troubleshooting/diagnostics.md)和应用日志。

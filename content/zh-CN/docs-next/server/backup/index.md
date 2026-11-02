@@ -1,45 +1,45 @@
 ---
 id: index
-title: 备份并恢复 CapRover
+title: CapRover 备份与恢复
 slug: /server/backup
 ---
 
 <span id="source-server-backup-contents"></span>
 
-## 什么是备份
+## 备份包含哪些内容
 
-一个 CapRover 备份会复制 **`/captain/data`** 并添加关于集群节点的元数据。 这包括CapRover配置和状态,如app定义,域设置,以及存储在那里的证书.
+CapRover 备份会复制 **`/captain/data`**，并附加集群节点的元数据。该目录中的 CapRover 配置和状态会被包含在内，例如应用定义、域名配置和证书。
 
-- 没错 **没有** 自动包括Docker卷,主机绑定挂载在该目录外,存储在这些位置的数据库内容,上传到那里的文件,或者本地构建的Docker镜像.
-- 使用自己的一致导出或快照进程备份每个数据库,并复制您实际使用的持久目录 。
-- 测试 CapRover 归档和应用数据都可以恢复.
+- 备份**不会**自动包含其他位置的 Docker 数据卷、宿主机 bind mount、数据库文件、上传文件或本地构建的 Docker 镜像。
+- 对数据库应使用对应数据库支持的一致性 dump 或快照方案；对应用持久化目录也需要单独备份。
+- 应实际测试能否同时恢复 CapRover 备份文件和应用数据。
 
-- 镜像规则的一个例外是 **自托管 registry**: 其存储的镜像数据位于 `/captain/data/registry`,因此该目录被复制,并可能大大增加归档大小。
-- 设有外部registry,保留其证书和镜像保存政策,以供恢复。
-- 没有可访问的镜像,在恢复其定义后重新部署应用.
+- 镜像有一个例外：**自托管 registry** 的镜像数据保存在 `/captain/data/registry`，因此也会进入备份，可能显著增加文件大小。
+- 使用外部 registry 时，请确保恢复阶段仍能使用其凭据，并且镜像保留策略足够。
+- 如果所需镜像已不可用，恢复应用定义后还需要重新部署应用。
 
-见 [创建备份](index.md), [恢复服务器](restore.md),以及 [持久化目录](../../data-persistence/index.md).
+参阅[创建备份](index.md)、[恢复服务器](restore.md)和[持久化目录](../../data-persistence/index.md)。
 
 <span id="source-server-backup-create"></span>
 
 ## 创建备份
 
-1. 在CapRoverdashboard,去 **设置** 选择 **创建备份**.
-2. 下载结果 `.tar` 文件, 校验它是非空的, 并将其保存在服务器外, 有访问控制 。
-3. 分别备份应用程序数据库和持久化目录; [CapRover 存档范围有限](index.md).
-4. 定期恢复两种备份到测试服务器,并验证应用程序.
+1. 在 CapRover dashboard 中打开 **Settings**，选择 **Create Backup**。
+2. 下载生成的 `.tar` 文件，检查文件非空，并将其保存在服务器之外的受控存储位置。
+3. 数据库和应用持久化目录需要单独备份，因为 [CapRover 备份不包含全部应用数据](index.md)。
+4. 定期在测试服务器上恢复这两类备份，并验证应用可以正常运行。
 
-- 存档在服务器上生成,然后作为临时下载提供.
-- 保留自己的副本:生成的下载是临时的.
-- 如果启用了自托管 registry,则允许其镜像数据在归档中留有空间.
+- 备份文件先在服务器上生成，再通过临时下载链接提供。
+- 请自行保留副本；生成的下载链接是临时的。
+- 启用自托管 registry 时，应为镜像数据预留足够的备份空间。
 
 <span id="source-server-backup-automate"></span>
 
-## 自动备份
+## 自动化备份
 
-- dashboard **创建备份** 动作有相应的认证 API 端点。
-- 以下例子需要: `curl` 和 `jq`.
-- 设定 `CAPROVER_URL` HTTPS dashboard来源 `CAPROVER_PASSWORD` 安全地通过你的日程安排员的秘密商店。
+- dashboard 的 **Create Backup** 操作对应一个需要身份验证的 API endpoint。
+- 以下示例需要 `curl` 和 `jq`。
+- 将 `CAPROVER_URL` 设置为 dashboard 的 HTTPS 地址，并通过任务调度器的 secrets 管理功能安全提供 `CAPROVER_PASSWORD`。
 
 ```bash
 set -euo pipefail
@@ -56,20 +56,20 @@ curl --fail --silent --show-error -G "$CAPROVER_URL/api/v2/downloads/" \
 test -s backup.tar
 ```
 
-- 将文件移动到日期外服务器存储,酌情加密,并设置保存和故障提示.
-- 下载符是临时的;在同一运行中完成下载.
-- 安排单独的数据库和音量备份,并定期测试修复.
+- 将备份文件按日期存入服务器外部的存储，按需加密，并设置保留策略和失败告警。
+- 下载 token 有有效期，因此应在同一次任务执行中完成下载。
+- 另外安排数据库与数据卷备份，并定期验证恢复流程。
 
 <span id="source-reference-backup-contents"></span>
 
-## 备份内容
+## 备份文件内容
 
-这个 [备份执行](https://github.com/caprover/caprover/blob/master/src/user/system/BackupManager.ts) 档案 `/captain/data` 添加 `meta/backup.json` 与 CapRover 盐和集群节点元数据。
+[备份实现](https://github.com/caprover/caprover/blob/master/src/user/system/BackupManager.ts)会归档 `/captain/data`，并添加 `meta/backup.json`，其中包含 CapRover salt 和集群节点元数据。
 
-| 包含 | 排除, 除非存储在内 `/captain/data` |
+| 包含 | 不包含（除非位于 `/captain/data` 内） |
 | --- | --- |
-| 保存 CapRover 配置、 应用程序定义、 证书和自托管 registry数据 `/captain/data/registry`. | Docker卷和主机绑定在别处挂载,那里有数据库文件,以及当地的Docker镜像商店. |
+| CapRover 配置、应用定义、证书，以及 `/captain/data/registry` 中的自托管 registry 数据。 | 其他位置的 Docker 数据卷、bind mount、数据库文件和本地 Docker 镜像存储。 |
 
-- 注册例外可使档案量大。
-- 恢复代码寻找 `/captain/backup.tar` 在初始安装时将其扩展为 `/captain/restoring`.
-- 见 [什么是备份](index.md) 和 [恢复服务器](restore.md) 完全恢复序列。
+- registry 中的镜像可能导致备份文件很大。
+- 初次安装时，恢复程序会查找 `/captain/backup.tar`，并将内容解压到 `/captain/restoring`。
+- 完整恢复流程参阅[备份内容](index.md)与[恢复服务器](restore.md)。
