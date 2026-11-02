@@ -22,7 +22,7 @@ docker service logs captain-captain --tail 100
 - **网络：**检查 DNS，并分别测试 HTTP 与 HTTPS。
 - **存储：**检查挂载、磁盘空间和任务所在节点。
 
-## 收集完整服务器报告 {#collect-a-full-server-report}
+## 收集完整服务器报告
 
 如果 dashboard 无法访问、多个服务发生故障或快速检查没有明确结果，可以运行[诊断收集脚本](https://github.com/caprover/caprover-website/blob/master/scripts/caprover-diagnostic.sh)。在使用 systemd 的 Debian/Ubuntu **Swarm manager** 上执行：
 
@@ -88,7 +88,7 @@ docker system df
 - 分享日志前删除密码、token 和其他敏感数据。
 - 更多按症状分类的指南参阅[故障排查](index.md)。
 
-如果多个系统服务同时故障，或宿主机问题不明确，请在 manager 上[收集完整报告](diagnostics.md#collect-a-full-server-report)。
+如果多个系统服务同时故障，或宿主机问题不明确，请在 manager 上[收集完整报告](diagnostics.md#收集完整服务器报告)。
 
 ### 无法通过 3000 端口访问 dashboard
 
