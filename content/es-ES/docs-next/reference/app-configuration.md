@@ -1,55 +1,55 @@
 ---
 id: app-configuration
-title: Configuración de la aplicación
+title: Configuración de aplicaciones
 slug: /reference/app-configuration
 ---
 
-CapRover almacena los ajustes de la aplicación separadamente de la definición Capitán. El [modelo de aplicación](https://github.com/caprover/caprover/blob/master/src/models/AppDefinition.ts) Incluye:
+CapRover guarda la configuración de cada aplicación por separado de Captain Definition. El [modelo de aplicación](https://github.com/caprover/caprover/blob/master/src/models/AppDefinition.ts) incluye:
 
-| Zona | Campos salvados | Propósito |
+| Área | Campos guardados | Uso |
 | --- | --- | --- |
 | Identidad | `projectId`, `description`, `tags` | Organización y etiquetas. |
-| Despliegue | `deployedVersion`, `versions`, `captainDefinitionRelativeFilePath` | Historia de la versión y ruta de definición. |
-| HTTP | `notExposeAsWebApp`, `containerHttpPort`, `forceSsl`, `hasDefaultSubDomainSsl`, `websocketSupport`, `customDomain`, `redirectDomain`, `httpAuth`, `customNginxConfig` | Routing y acceso. |
-| Ubicación de tareas | `hasPersistentData`, `nodeId`, `instanceCount`, `networks` | Persistencia y colocación de Swarm. |
-| Hora de correr | `envVars`, `ports`, `volumes`, `serviceUpdateOverride`, `preDeployFunction` | Medio ambiente, puertos publicados, monturas y personalización de servicios. |
+| Despliegue | `deployedVersion`, `versions`, `captainDefinitionRelativeFilePath` | Historial de versiones y ruta de la definición. |
+| HTTP | `notExposeAsWebApp`, `containerHttpPort`, `forceSsl`, `hasDefaultSubDomainSsl`, `websocketSupport`, `customDomain`, `redirectDomain`, `httpAuth`, `customNginxConfig` | Enrutamiento y acceso. |
+| Asignación | `hasPersistentData`, `nodeId`, `instanceCount`, `networks` | Persistencia y asignación en Swarm. |
+| Runtime | `envVars`, `ports`, `volumes`, `serviceUpdateOverride`, `preDeployFunction` | Variables de entorno, puertos publicados, montajes y ajustes avanzados. |
 
-- Una variable de entorno es un `{key,value}` par.
-- Un puerto publicado tiene `hostPort`, `containerPort`, opcional `protocol` (`tcp` o `udp`), y opcional `publishMode` (`ingress` o `host`).
-- Un directorio persistente contiene `containerPath`, opcional `hostPath` o `volumeName`, y opcional `mode`.
-- Configure estos a través del dashboard o API en lugar de la edición manual almacenada JSON.
+- Una variable de entorno es un par `{key,value}`.
+- Un puerto publicado tiene `hostPort`, `containerPort`, el `protocol` opcional (`tcp` o `udp`) y el `publishMode` opcional (`ingress` o `host`).
+- Un directorio persistente contiene `containerPath`, un `hostPath` o `volumeName` opcional y, si corresponde, `mode`.
+- Configura estos valores desde el dashboard o la API, sin editar manualmente el JSON almacenado.
 
 <span id="source-reference-defaults-limits"></span>
 
-## Defaults and Limits
+## Valores predeterminados y límites
 
-Preferencias seleccionadas de [CaptainConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) y [EnvVars.ts](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts):
+Algunos valores predeterminados de [CaptainConstants.ts](https://github.com/caprover/caprover/blob/master/src/utils/CaptainConstants.ts) y [EnvVars.ts](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts):
 
-| Ajuste | Default |
+| Ajuste | Valor predeterminado |
 | --- | --- |
-| Directorio estatal de CapRover | `/captain`; datos de respaldo `/captain/data` |
-| Host HTTP, HTTPS, puertos de administración | `80`, `443`, `3000` |
-| Subdominio de panel de mando | `captain` |
-| Versión API | `v2` |
-| Default Docker tamaño de registro | `512m` |
-| Líneas de log de build y cola de registro de aplicaciones | `50` y `500` respectivamente |
-| Versiones de despliegue ahorradas | `50` |
-| Selector de versión Docker build | `2` |
-| Retención de limpieza de imagen programada cuando está deshabilitado | `1` |
+| Directorio de estado de CapRover | `/captain`; datos incluidos en backups: `/captain/data` |
+| Puertos HTTP, HTTPS y administración del host | `80`, `443`, `3000` |
+| Subdominio del dashboard | `captain` |
+| Versión de API | `v2` |
+| Tamaño predeterminado de logs Docker | `512m` |
+| Líneas de logs del build y tail de logs de aplicación | `50` y `500`, respectivamente |
+| Máximo de versiones de despliegue guardadas | `50` |
+| Selector de versión del build Docker | `2` |
+| Retención de limpieza de imágenes programada cuando está desactivada | `1` |
 
-Estos son defectos fuente, no garantías para cada instalación; los valores pueden ser anulados y pueden cambiar por versión. Comprueba la versión de tu instancia y la fuente de coincidencia antes de automatizarlas.
+Estos valores proceden del código fuente. Pueden modificarse mediante overrides y cambiar entre versiones. Comprueba tu versión instalada y su código antes de automatizar.
 
 <span id="source-reference-legacy-compatibility"></span>
 
-## Compatibilidad Legacy
+## Compatibilidad con versiones antiguas
 
-- CapRover tiene nombres históricos y enlaces de su predecesor de CaptainDuckDuck.
-- Existencia `/docs/*` los caminos permanecen vivos durante esta vista previa; ver [borrador del mapa de URL](https://github.com/caprover/caprover-website/blob/master/DOCS_NEXT_URL_MAP.md) para destinos antiguos a nuevos propuestos.
-- Las redirecciones pertenecen a la revisión posterior de la reducción.
+- CapRover conserva nombres y enlaces históricos de CaptainDuckDuck, su predecesor.
+- Las rutas `/docs/*` existentes siguen disponibles durante esta fase preliminar. Consulta el [mapa de URLs propuesto](https://github.com/caprover/caprover-website/blob/master/DOCS_NEXT_URL_MAP.md) para los destinos nuevos.
+- Las redirecciones forman parte de una revisión posterior.
 
-- El analizador de Captain Definition acepta **`schemaVersion: 2`**.
-- Las definiciones más antiguas necesitan migración; véase [La migración de los niños](../guides/cdd-migration.md).
-- El modelo de aplicación retiene `isLegacyAppName` para aplicaciones creadas antes de CapRover 1.15.0, que afecta la compatibilidad con el nombre de servicio.
-- Check [redes internas](../domains/firewall.md) antes de cambiar los nombres internos de host.
+- El parser de Captain Definition admite **`schemaVersion: 2`**.
+- Las definiciones antiguas necesitan migración; consulta [Migración desde CaptainDuckDuck](../guides/cdd-migration.md).
+- El modelo conserva `isLegacyAppName` para aplicaciones creadas antes de CapRover 1.15.0, lo que afecta a la compatibilidad de nombres de servicio.
+- Consulta [Red interna](../domains/firewall.md) antes de modificar hostnames internos hardcodeados.
 
-No eliminar URLs existentes o alias de servicio heredados como parte de la publicación de previsualización. Prueba cada enlace histórico y aplicación desplegada en la eventual reducción.
+Conserva las URLs y los alias de servicios antiguos durante esta fase. Prueba cada enlace histórico y las aplicaciones desplegadas cuando hagas la migración definitiva.
