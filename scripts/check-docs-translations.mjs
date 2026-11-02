@@ -69,18 +69,23 @@ for (const locale of locales) {
     // actual file/URL destination; Docusaurus validates each localized anchor.
     const sourcePaths = linkTargets(source).map((link) => link.split("#")[0]);
     const translatedPaths = linkTargets(translated).map((link) => link.split("#")[0]);
-    // A localized explanation may add useful links or refer to the same code
-    // identifier twice. Require all source references in their original order.
-    const preservesSequence = (expected, actual) => {
-      let j = 0;
-      for (const item of actual) if (item === expected[j]) j++;
-      return j === expected.length;
+    // Word order changes naturally across locales. Keep every source link and
+    // identifier (including repeated occurrences) while allowing reordering.
+    const preservesOccurrences = (expected, actual) => {
+      const counts = new Map();
+      for (const item of actual) counts.set(item, (counts.get(item) ?? 0) + 1);
+      for (const item of expected) {
+        const remaining = counts.get(item) ?? 0;
+        if (remaining === 0) return false;
+        counts.set(item, remaining - 1);
+      }
+      return true;
     };
-    if (!preservesSequence(sourcePaths, translatedPaths)) {
-      errors.push(prefix + ": source link targets are missing or reordered");
+    if (!preservesOccurrences(sourcePaths, translatedPaths)) {
+      errors.push(prefix + ": source link targets are missing");
     }
-    if (!preservesSequence(inlineCode(source), inlineCode(translated))) {
-      errors.push(prefix + ": source inline-code references are missing or reordered");
+    if (!preservesOccurrences(inlineCode(source), inlineCode(translated))) {
+      errors.push(prefix + ": source inline-code references are missing");
     }
     for (const key of ["id", "slug"]) {
       if (frontmatter(source, key) !== frontmatter(translated, key)) {
