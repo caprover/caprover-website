@@ -1,16 +1,16 @@
 ---
 id: multi-node
-title: 设置多节点集群
+title: 配置多节点集群
 slug: /scaling/multi-node
 ---
 
-CapRover使用Docker Swarm. 经理管理CapRover的控制服务;worker管理应用任务.
+CapRover 基于 Docker Swarm。Manager 节点运行 CapRover 控制服务，worker 节点负责执行应用任务。
 
-**添加节点前 :** 准备Docker,私人网络,SSH,和一个共享的注册.
+**添加节点前：**准备 Docker、节点间私有网络、SSH 访问和共享镜像仓库。
 
 ## 1. 准备服务器
 
-在新的 Ubuntu 服务器上安装 Docker 引擎 :
+在新 Ubuntu 服务器上安装 Docker Engine：
 
 ```bash
 sudo apt update
@@ -32,85 +32,80 @@ sudo docker version
 sudo docker info --format '{{.Swarm.LocalNodeState}}'
 ```
 
-- 使用管理器中可到达的稳定IP.
-- Docker的Swarm状态应该是 `inactive`.
-- 选择 **worker 节点** 对于普通的应用程序主机。 manager 节点的作用需要法定人数规划。
+- 使用 manager 节点能够访问的固定 IP。
+- 新节点的 Docker Swarm 状态应为 `inactive`。
+- 普通应用服务器选择 **worker** 角色。添加 manager 节点需要考虑 Swarm quorum（仲裁）。
 
-## 2. 网络和SSH
+## 2. 节点间网络和 SSH
 
-**仅在信任的节点之间 :**
+**以下端口仅对可信节点开放：**
 
-- `2377/tcp`: Swarm管理
-- `7946/tcp` 和 `7946/udp`: 节点通信
-- `4789/udp`: 重叠网络
+- `2377/tcp`：Swarm 管理通信
+- `7946/tcp` 和 `7946/udp`：节点间通信
+- `4789/udp`：overlay 网络
 
-**嘘:**
+**SSH：**
 
-1. 使用专用的私人密钥和有Docker访问权限的用户(通常是root).
-2. 将公钥添加到新服务器 `authorized_keys`.
-3. 测试 SSH **从经理的网络** 到新服务器。
-4. 在节点设置时给 CapRover 私人密钥 。
+1. 使用专用 SSH 私钥，并选择具有 Docker 操作权限的用户（通常是 root）。
+2. 将公钥加入新服务器的 `authorized_keys`。
+3. 从 **manager 节点所在网络**测试 SSH 连接到新服务器。
+4. 在 CapRover 中添加节点时提供私钥。
 
-Docker组成员给予root等同的访问权限. 将SSH和Swarm两个端口都限制在信任的主机内. 审查UFW规则 CapRover 在加入时添加.
+Docker 用户组成员通常具有与 root 等效的权限。将 SSH 和 Swarm 端口限制在可信主机之间，并检查 CapRover 在节点加入时配置的 UFW 规则。
 
-## 3. 镜像仓库
+## 3. 配置镜像仓库
 
-1. 配置 a [默认 push registry](../deployments/registries/index.md) 可达者 **每个节点**。CapRover在添加节点前需要它。
-2. 重新部署在registry启用之前建造的应用程序,以推进其镜像。
-3. 校验新节点可以拉出新建的镜像 。 预建的私人镜像也需要牵引访问.
+1. 配置所有节点都能访问的[默认 push registry](../deployments/registries/index.md)。这是通过 CapRover 添加多节点的前提。
+2. 如果某些应用在启用 registry 前已经构建，重新部署它们，让镜像被 push 到 registry。
+3. 检查新节点能否 pull 新构建的镜像。对于私有预构建镜像，也需要配置拉取权限。
 
-## 4. 添加和核实节点
+## 4. 添加并验证节点
 
-1. 内 **集群 + 节点**,输入管理器和workerIP,SSH主机/端口/用户,私钥,以及节点角色.
-2. 加入节点. 检查它看起来健康,检查 `docker node ls` 在经理。
-3. 规模a **无国籍人** 测试应用并检查位置 `docker service ps SERVICE_NAME`.
-4. 测试应用域. 如果放置失败,则检查注册拉动、节点健康和任务错误。
+1. 在 **Cluster → Nodes** 中填写 manager/worker IP、SSH 主机名、端口、用户、私钥及节点角色。
+2. 加入节点后，确认 CapRover 显示节点健康，并在 manager 节点运行 `docker node ls`。
+3. 将一个**无状态（stateless）**测试应用扩容，使用 `docker service ps SERVICE_NAME` 检查任务所在节点。
+4. 访问应用域名。如果调度失败，检查 registry pull、节点状态和任务错误。
 
-## 5. 持久化应用程序
+## 5. 持久化应用
 
-- 本地卷和绑定在节点上。
-- CapRover pins 持久应用程序; 加入一个节点不会复制数据 。
-- 在改变位置前备份并迁移数据.
-- 见 [集群中的持续应用](multi-node.md).
+- 本地 Docker 数据卷和 bind mount 中的数据保留在原节点。
+- CapRover 会将有持久化数据的应用固定到指定节点；添加节点不会复制数据。
+- 修改节点调度前先备份并迁移数据。
+- 参阅[集群中的持久化应用](multi-node.md)。
 
 <span id="source-scaling-manage-nodes"></span>
 
 ## 管理节点
 
-使用 **集群 + 节点** 视图和 `docker node ls` 以检查节点的可用性和作用。 `docker service ps SERVICE_NAME` 显示应用程序的任务运行地点和任务为何启动。
+通过 CapRover 的 **Cluster → Nodes** 页面以及 manager 上的 `docker node ls` 检查节点状态和角色。`docker service ps SERVICE_NAME` 可以查看任务运行的位置及启动失败原因。
 
-- 在移除或排出节点之前,请识别其运行的应用程序和任何本地卷或绑定的挂载.
-- 如果可从registry获取镜像,通常可以重新安排无国籍任务;持久化数据不会自动跟踪这些任务。
-- 在更改位置之前, 备份并刻意移动数据 。
-
-- 保持 Swarm 管理和覆盖端口仅限于信任的节点地址.
-- 如果一个节点不能加入,则验证Docker被安装,其Swarm不活动,SSH证书从管理器工作,注册和节点间路由可以到达.
+- 移除或 drain 节点前，先确认该节点运行的应用及其本地数据卷和 bind mount。
+- 如果镜像可从 registry 获取，无状态任务通常可以重新调度；持久化数据不会随任务自动迁移。
+- 更改调度位置前，有计划地备份并迁移数据。
+- Swarm 管理端口和 overlay 网络端口仅应对可信节点开放。
+- 节点无法加入时，检查 Docker 安装、Swarm 是否为 `inactive`、从 manager 发起的 SSH 连接，以及 registry 和节点间网络连通性。
 
 <span id="source-scaling-persistent-apps"></span>
 
-## 集群中的持续应用
+## 集群中的持久化应用
 
-- CapRover 通常将持续应用限制在一个选定的节点上的一个实例.
-- 使用默认本地驱动程序命名的 Docker 音量, 并绑定在节点上同时存储数据; 第二个节点不会自动看到这些文件 。
-
-- 要移动一个持久化的应用程序,备份和 tiesce 写入,恢复目的地的数据,检查权限,更新放置,然后用一个实例验证该应用程序.
-- 保留旧副本直到新实例得到证实为止.
-- 一个节点失败会使一个被绑定的app无法使用,直到它的数据在其他地方恢复为止.
-
-- 共享或外部存储是一种高级设计,必须支持应用程序的一致性和同时写入的要求.
-- 单靠越来越多的实例数并不能提供这种存储。
-- 见 [共享/ 外部存储](../data-persistence/shared-storage.md).
+- CapRover 通常将有持久化数据的应用限制为指定节点上的一个实例。
+- 默认 local driver 的 Docker named volume 和 bind mount 都使用该节点的本地存储。其他节点无法自动访问这些文件。
+- 迁移持久化应用前，先备份并暂停写入，将数据恢复到目标节点，核实权限，再更新节点调度，最后用单实例验证应用。
+- 新实例验证完成前，保留旧数据副本。
+- 固定到某个节点的应用在该节点故障后，可能需要先将数据恢复到其他节点才能重新运行。
+- 共享或外部存储需要正确处理应用的一致性和并发写入需求，属于高级部署方案。
+- 单纯增加实例数并不能提供共享存储。参阅[共享／外部存储](../data-persistence/shared-storage.md)。
 
 <span id="source-scaling-networking"></span>
 
-## 多节点网络配置
+## 多节点网络
 
-- Docker Swarm的覆盖网络允许服务在节点之间进行通信.
-- 在信任的节点之间, 允许 `2377/tcp` 管理层 `7946/tcp` 和 `7946/udp` 用于节点通信,以及 `4789/udp` 堵车
-- 将这些端口限制在节点地址;公共网络流量仍然到达CapRover的HTTP/HTTPS入口点.
+- Docker Swarm overlay 网络允许跨节点服务通信。
+- 在可信节点间开放 `2377/tcp`（管理）、`7946/tcp` 和 `7946/udp`（节点通信）、`4789/udp`（overlay 流量）。
+- 这些端口应限制为节点地址；公网 Web 请求仍通过 CapRover 的 HTTP/HTTPS 入口。
+- 使用 `ingress` 模式发布的端口可以通过 Swarm routing mesh 转发。
+- 使用 `host` 模式时，端口只发布在运行任务的节点上，因此任务调度会影响哪个节点能接收请求。
+- 数据库等内部通信使用目标应用的服务名和容器端口，无需发布公网端口。
 
-- 公共应用程序端口在 `ingress` 模式可以使用 Swarm 路由网。
-- 内 `host` 模式它发布在任务运行的地方,所以放置会影响哪个节点的地址答案。
-- 对于内部数据库流量,使用目的地app的服务名称和容器端口而不使用公共映射.
-
-如果新节点加入但任务无法沟通,则在更改应用设置前检查节点间防火墙,Docker服务状态,以及网络成员. 见全 [端口参考](../reference/ports.md).
+如果新节点已经加入，但任务间无法通信，先检查节点间防火墙、Docker 服务状态和网络成员关系。参阅完整的[端口参考](../reference/ports.md)。
