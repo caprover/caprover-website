@@ -112,6 +112,8 @@ try {
     }
 
     const localizedHomepage = await routeResponses[0].text();
+    assert.doesNotMatch(localizedHomepage, /src=["']\/docs-compat\.js["']/,
+      "Documentation compatibility code must not be injected into marketing pages");
     assert(
       localizedHomepage.includes(marketingCatalog["homepage.hero.titleLine1"]),
       `${locale.code} homepage content is missing`,
@@ -168,9 +170,7 @@ try {
       const response = await fetch(origin + locale.pathPrefix + old.legacy);
       assert.equal(response.status, 200, "Missing old documentation route: " + old.legacy);
       const html = await response.text();
-      const destination = locale.default
-        ? old.newCanonical
-        : locale.pathPrefix + "/docs-legacy/" + old.legacy.slice("/docs/".length);
+      const destination = locale.pathPrefix + old.newCanonical;
       assert(html.includes("url=" + destination), "Incorrect legacy route: " + old.legacy);
     }
 
@@ -229,11 +229,11 @@ try {
 
   assert.equal(await responses.noJekyll.text(), "", ".nojekyll must be empty");
   const legacyEnglishDocsRedirect = await responses.legacyEnglishDocs.text();
-  assert(legacyEnglishDocsRedirect.includes('new URL("/docs/get-started"'));
+  assert(legacyEnglishDocsRedirect.includes('"target":"/docs/get-started"'));
   const legacySpanishDocsRedirect = await responses.legacySpanishDocs.text();
-  assert(legacySpanishDocsRedirect.includes('new URL("/es-ES/docs-legacy/get-started"'));
+  assert(legacySpanishDocsRedirect.includes('"target":"/es-ES/docs/get-started"'));
   const legacyChineseDocsRedirect = await responses.legacyChineseDocs.text();
-  assert(legacyChineseDocsRedirect.includes('new URL("/zh-CN/docs-legacy/get-started"'));
+  assert(legacyChineseDocsRedirect.includes('"target":"/zh-CN/docs/get-started"'));
 
   const docs = await responses.docs.text();
   assert.match(docs, /Getting Started/i);
@@ -389,9 +389,8 @@ try {
   });
   assert.equal(
     spanishBrowser.redirect,
-    "/es-ES/docs/get-started?source=test#install",
+    undefined,
   );
-  assert.equal(spanishBrowser.storage.get("caprover.locale"), "es-ES");
 
   const chineseBrowser = runLocalePreference({
     pathname: "/docs/get-started",
@@ -401,9 +400,8 @@ try {
   });
   assert.equal(
     chineseBrowser.redirect,
-    "/zh-CN/docs/get-started?source=test#install",
+    undefined,
   );
-  assert.equal(chineseBrowser.storage.get("caprover.locale"), "zh-CN");
 
   assert.equal(runLocalePreference({ languages: ["fr-FR"] }).redirect, undefined);
   assert.equal(

@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "revisions": {
+    "caprover/caprover-website": "a50858c01d443580558afd6f17ce684609df8e3c",
+    "caprover/caprover": "90c8f9dac561bac274ea1be1948e952893c5f444",
+    "caprover/caprover-cli": "418b8893fb2e49da02b9176cfd5e40b5edf76f64",
+    "caprover/one-click-apps": "d2f39fd4db5215ff37a4cc2567932da85a6b9939",
+    "caprover/deploy-from-github": "68ab51ebfb8da5054c20427f4e8e654a1cb2fbbf"
+  },
+  "scope": "Tracked text in current official checkouts. Website excludes generated compatibility data and validation fixtures. Root-relative public documentation links included. Git history and every release note revision are outside this bounded scan.",
+  "exclusions": [
+    {
+      "repository": "caprover/caprover-website",
+      "file": "ImprovementPlan.md",
+      "line": 11,
+      "url": "https://caprover.com/docs/...",
+      "reason": "Illustrative placeholder, not a published page link."
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "ImprovementPlan.md",
+      "line": 14,
+      "url": "https://caprover.com/docs-next/...",
+      "reason": "Illustrative placeholder, not a published page link."
+    }
+  ],
+  "references": [
+    {
+      "repository": "caprover/caprover-website",
+      "file": "ImprovementPlan.md",
+      "line": 21,
+      "url": "https://caprover.com/docs/get-started"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "ImprovementPlan.md",
+      "line": 24,
+      "url": "https://caprover.com/docs-next/get-started"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/en/docs/best-practices.md",
+      "line": 51,
+      "url": "https://caprover.com/docs/nginx-customization.html#customize-and-override-the-nginx-config-for-all-apps"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/en/docs/ci-cd-integration/deploy-from-github.md",
+      "line": 144,
+      "url": "https://caprover.com/docs/app-scaling-and-cluster.html#add-a-private-docker-registry"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/en/docs/server-purchase/openstack.md",
+      "line": 97,
+      "url": "https://caprover.com/docs/get-started.html"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/en/docs/troubleshooting.md",
+      "line": 175,
+      "url": "https://caprover.com/docs/troubleshooting.html#how-to-restart-caprover"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/es-ES/docs/best-practices.md",
+      "line": 51,
+      "url": "https://caprover.com/docs/nginx-customization.html#customize-and-override-the-nginx-config-for-all-apps"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/es-ES/docs/ci-cd-integration/deploy-from-github.md",
+      "line": 144,
+      "url": "https://caprover.com/docs/app-scaling-and-cluster.html#add-a-private-docker-registry"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/es-ES/docs/server-purchase/openstack.md",
+      "line": 97,
+      "url": "https://caprover.com/docs/get-started.html"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/es-ES/docs/troubleshooting.md",
+      "line": 175,
+      "url": "https://caprover.com/docs/troubleshooting.html#how-to-restart-caprover"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/zh-CN/docs/best-practices.md",
+      "line": 51,
+      "url": "https://caprover.com/docs/nginx-customization.html#customize-and-override-the-nginx-config-for-all-apps"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/zh-CN/docs/ci-cd-integration/deploy-from-github.md",
+      "line": 144,
+      "url": "https://caprover.com/docs/app-scaling-and-cluster.html#add-a-private-docker-registry"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/zh-CN/docs/server-purchase/openstack.md",
+      "line": 85,
+      "url": "https://caprover.com/docs/get-started.html"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "content/zh-CN/docs/troubleshooting.md",
+      "line": 175,
+      "url": "https://caprover.com/docs/troubleshooting.html#how-to-restart-caprover"
+    },
+    {
+      "repository": "caprover/caprover-website",
+      "file": "docs-site/docusaurus.config.js",
+      "line": 123,
+      "url": "https://caprover.com/docs/get-started"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "CHANGELOG.md",
+      "line": 183,
+      "url": "https://caprover.com/docs/service-update-override.html"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "CHANGELOG.md",
+      "line": 301,
+      "url": "https://caprover.com/docs/cdd-migration.html"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "CHANGELOG.md",
+      "line": 340,
+      "url": "https://caprover.com/docs/cdd-migration.html"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "captain-sample-apps/readme.md",
+      "line": 7,
+      "url": "https://caprover.com/docs/sample-apps.html#community-apps"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "dev-scripts/digitalocean-oneclick-app-generator",
+      "line": 51,
+      "url": "https://caprover.com/docs/get-started.html#step-3-install-caprover-cli"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "dev-scripts/openstack/single-instance.yml",
+      "line": 90,
+      "url": "https://caprover.com/docs/get-started.html"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "scripts/user/installer/README.md",
+      "line": 5,
+      "url": "https://caprover.com/docs-next/get-started"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "scripts/user/installer/README.md",
+      "line": 5,
+      "url": "https://caprover.com/docs-next/domains/firewall"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "scripts/user/installer/caprover-install.sh",
+      "line": 193,
+      "url": "https://caprover.com/docs-next/get-started"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "src/user/system/LoadBalancerManager.ts",
+      "line": 778,
+      "url": "https://caprover.com/docs/troubleshooting.html#successful-deploy-but-502-bad-gateway-error"
+    },
+    {
+      "repository": "caprover/caprover",
+      "file": "src/utils/CaptainInstaller.ts",
+      "line": 262,
+      "url": "https://caprover.com/docs/troubleshooting.html"
+    },
+    {
+      "repository": "caprover/caprover-cli",
+      "file": "readme.md",
+      "line": 17,
+      "url": "https://caprover.com/docs/get-started.html#caprover-setup"
+    },
+    {
+      "repository": "caprover/caprover-cli",
+      "file": "readme.md",
+      "line": 125,
+      "url": "https://caprover.com/docs/captain-definition-file.html"
+    },
+    {
+      "repository": "caprover/one-click-apps",
+      "file": "public/v4/apps/archivebox.yml",
+      "line": 36,
+      "url": "https://caprover.com/docs/troubleshooting.html#how-to-run-shell-inside-my-application-inside-container"
+    },
+    {
+      "repository": "caprover/one-click-apps",
+      "file": "public/v4/apps/gitlab-ce.yml",
+      "line": 35,
+      "url": "https://caprover.com/docs/firewall.html"
+    }
+  ]
+}

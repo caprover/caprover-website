@@ -8,6 +8,8 @@ slug: /troubleshooting
 
 <span id="source-applications-troubleshooting"></span>
 
+<span id="部署成功但出现-502-bad-gateway-错误"></span>
+
 ## 应用无法访问或返回 HTTP 502
 
 - 检查应用的部署日志和服务日志。

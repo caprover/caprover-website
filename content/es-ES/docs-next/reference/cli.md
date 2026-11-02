@@ -4,6 +4,8 @@ title: Comandos CLI
 slug: /reference/cli
 ---
 
+<span id="install-cli"></span>
+
 Instala la [CLI de CapRover](https://github.com/caprover/caprover-cli) en tu equipo:
 
 ```bash

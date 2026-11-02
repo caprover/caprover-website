@@ -17,6 +17,8 @@ Las plantillas One-Click crean aplicaciones normales de CapRover. Una plantilla 
 
 <span id="source-one-click-apps-configure"></span>
 
+<span id="ajustes-de-configuración"></span>
+
 ## Configuración
 
 - Puedes configurar las aplicaciones generadas desde sus ajustes normales de CapRover.
@@ -32,6 +34,8 @@ Las plantillas One-Click crean aplicaciones normales de CapRover. Una plantilla 
 - Para clientes externos a CapRover, consulta [Conexiones externas a bases de datos](../data-persistence/deploy-databases.md).
 
 <span id="source-one-click-apps-upgrade"></span>
+
+<span id="actualización-de-aplicaciones-one-click"></span>
 
 ## Actualizaciones
 

@@ -8,6 +8,8 @@ Para obtener un informe completo del servidor, utiliza [Recopilar diagnósticos]
 
 <span id="source-applications-troubleshooting"></span>
 
+<span id="implementación-exitosa-pero-error-502-de-puerta-de-enlace-incorrecta"></span>
+
 ## La aplicación no responde o devuelve HTTP 502
 
 - Revisa los logs de despliegue y del servicio.

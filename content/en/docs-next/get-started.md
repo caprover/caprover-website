@@ -13,6 +13,8 @@ Install CapRover on a fresh Ubuntu 24.04 server.
 - A domain with wildcard DNS access.
 - Public inbound TCP ports **80**, **443**, and **3000** allowed by your hosting provider.
 
+<span id="step-1-caprover-installation"></span>
+
 ## Install CapRover
 
 On the server:
@@ -33,6 +35,8 @@ sudo bash caprover-install.sh
 
 **Other methods:** [Manual Setup](installation/manual.md) (Docker and CapRover commands), [DigitalOcean Marketplace](installation/index.md), or [Advanced Installation](installation/advanced/index.md) for private networks, existing Swarms, and custom ports.
 
+<span id="step-2-connect-root-domain"></span>
+
 ## DNS
 
 Create an A record in your DNS provider:
@@ -52,6 +56,8 @@ dig +short test.apps.example.com
 
 Both should return your server's IP. If using a DNS proxy such as Cloudflare, switch to **DNS only** during setup. The root hostname `apps.example.com` needs a separate record only if you plan to use it directly.
 
+<span id="step-3-configure-and-initialize-caprover"></span>
+
 ## Configure CapRover
 
 Open `http://YOUR_SERVER_IP:3000`. **Initial password:** `captain42`.
@@ -63,6 +69,8 @@ Open `http://YOUR_SERVER_IP:3000`. **Initial password:** `captain42`.
 For certificate failures, check DNS and inbound TCP 80/443. See [Domains & HTTPS](domains/index.md).
 
 **CLI alternative:** Install the CLI with `npm install -g caprover` and run `caprover serversetup` from your computer. See [CLI Commands](reference/cli.md).
+
+<span id="step-5-deploy-the-test-app"></span>
 
 ## Deploy your first app
 

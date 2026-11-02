@@ -13,6 +13,8 @@ slug: /get-started
 - 一个可以配置通配符 DNS 记录的域名。
 - 云服务商防火墙允许公网访问 TCP **80**、**443** 和 **3000** 端口。
 
+<span id="第-1-步安装-caprover"></span>
+
 ## 安装 CapRover
 
 在服务器上执行：
@@ -33,6 +35,8 @@ sudo bash caprover-install.sh
 
 **其他安装方式：** [手动安装](installation/manual.md)（手动执行 Docker 和 CapRover 命令）、[DigitalOcean Marketplace](installation/index.md)，以及适用于私有网络、现有 Swarm 集群或自定义端口的[高级安装](installation/advanced/index.md)。
 
+<span id="第-2-步连接根域名"></span>
+
 ## DNS
 
 在 DNS 服务商处创建一条 A 记录：
@@ -52,6 +56,8 @@ dig +short test.apps.example.com
 
 两个命令都应返回服务器的 IP 地址。如果使用 Cloudflare 等 DNS 代理，安装时请选择 **DNS only**（仅 DNS）。只有需要直接使用 `apps.example.com` 时，才需要为这个根主机名单独创建 DNS 记录。
 
+<span id="第-3-步配置并初始化-caprover"></span>
+
 ## 配置 CapRover
 
 打开 `http://YOUR_SERVER_IP:3000`。**初始密码：**`captain42`。
@@ -63,6 +69,8 @@ dig +short test.apps.example.com
 如果证书签发失败，请检查 DNS 和 TCP 80/443 端口的入站访问。参阅[域名和 HTTPS](domains/index.md)。
 
 **CLI 替代方案：** 在自己的电脑上运行 `npm install -g caprover` 安装 CLI，然后执行 `caprover serversetup`。参阅 [CLI 命令](reference/cli.md)。
+
+<span id="第-5-步部署测试应用"></span>
 
 ## 部署第一个应用
 

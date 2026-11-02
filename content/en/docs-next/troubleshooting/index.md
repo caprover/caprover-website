@@ -8,6 +8,8 @@ For a comprehensive host report, use [Collect Diagnostics](diagnostics.md).
 
 <span id="source-applications-troubleshooting"></span>
 
+<span id="successful-deploy-but-502-bad-gateway-error"></span>
+
 ## App unavailable or HTTP 502
 
 - Check the app's deployment and service logs.

@@ -17,6 +17,8 @@ One-Click templates create ordinary CapRover apps. Each template may provision m
 
 <span id="source-one-click-apps-configure"></span>
 
+<span id="configuration-settings"></span>
+
 ## Configuration
 
 - Generated apps can be configured using their usual CapRover app settings.
@@ -32,6 +34,8 @@ One-Click templates create ordinary CapRover apps. Each template may provision m
 - For clients outside CapRover, see [External database connections](../data-persistence/deploy-databases.md).
 
 <span id="source-one-click-apps-upgrade"></span>
+
+<span id="upgrading-one-click-apps"></span>
 
 ## Upgrades
 

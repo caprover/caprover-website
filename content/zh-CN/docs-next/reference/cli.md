@@ -4,6 +4,8 @@ title: CLI 命令参考
 slug: /reference/cli
 ---
 
+<span id="install-cli"></span>
+
 在自己的电脑上安装 [CapRover CLI](https://github.com/caprover/caprover-cli)：
 
 ```bash

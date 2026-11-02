@@ -65,6 +65,7 @@ const config = {
       },
     ],
   ],
+  clientModules: [require.resolve("./src/docs-compat-client.js")],
   plugins: [
     [
       "@docusaurus/plugin-content-docs",

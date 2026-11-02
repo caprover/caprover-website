@@ -1,0 +1,934 @@
+{
+  "version": 1,
+  "routes": {
+    "/docs-next/get-started": {
+      "1-ports-and-firewall": {
+        "target": "/docs/installation/manual#1-ports-and-firewall",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "2-install-docker": {
+        "target": "/docs/installation/manual#2-install-docker",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "3-install-caprover": {
+        "target": "/docs/get-started#install-caprover",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "4-dns": {
+        "target": "/docs/get-started#dns",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "5-configure-caprover": {
+        "target": "/docs/get-started#configure-caprover",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "6-deploy-your-first-app": {
+        "target": "/docs/get-started#deploy-your-first-app",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      }
+    },
+    "/docs/app-scaling-and-cluster": {
+      "add-a-private-docker-registry": {
+        "target": "/docs/deployments/registries#source-deployments-registries-private",
+        "policy": "equivalent",
+        "reason": "The historical add-a-private-docker-registry section is covered by the named current source-deployments-registries-private section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "run-multiple-instances-of-app": {
+        "target": "/docs/scaling#source-scaling-scale-app",
+        "policy": "equivalent",
+        "reason": "The historical run-multiple-instances-of-app section is covered by the named current source-scaling-scale-app section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "default-push-registry": {
+        "target": "/docs/deployments/registries#source-deployments-registries-default-push",
+        "policy": "equivalent",
+        "reason": "The historical default-push-registry section is covered by the named current source-deployments-registries-default-push section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "setup-docker-registry": {
+        "target": "/docs/deployments/registries#source-deployments-registries-self-hosted",
+        "policy": "equivalent",
+        "reason": "The historical setup-docker-registry section is covered by the named current source-deployments-registries-self-hosted section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/docs/get-started": {
+      "step-5-deploy-the-test-app": {
+        "target": "/docs/get-started#deploy-your-first-app",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "step-3-configure-and-initialize-caprover": {
+        "target": "/docs/get-started#configure-caprover",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "step-2-connect-root-domain": {
+        "target": "/docs/get-started#dns",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "step-1-caprover-installation": {
+        "target": "/docs/get-started#install-caprover",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "caprover-setup": {
+        "target": "/docs/get-started#configure-caprover",
+        "policy": "pre-existing-stale",
+        "reason": "CLI README setup reference predates the preserved archive; current configuration section covers server initialization."
+      },
+      "step-3-install-caprover-cli": {
+        "target": "/docs/reference/cli#install-cli",
+        "policy": "pre-existing-stale",
+        "reason": "DigitalOcean installer reference predates archive headings; CLI reference starts with npm install -g caprover."
+      }
+    },
+    "/docs/one-click-apps": {
+      "upgrading-one-click-apps": {
+        "target": "/docs/one-click-apps#upgrades",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "configuration-settings": {
+        "target": "/docs/one-click-apps#configuration",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      }
+    },
+    "/docs/troubleshooting": {
+      "successful-deploy-but-502-bad-gateway-error": {
+        "target": "/docs/troubleshooting#app-unavailable-or-http-502",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "ive-made-a-change-to-the-nginx-config-that-broke-the-admin-ui": {
+        "target": "/docs/domains/advanced-nginx#recover-from-a-configuration-that-broke-the-dashboard",
+        "policy": "equivalent",
+        "reason": "The historical ive-made-a-change-to-the-nginx-config-that-broke-the-admin-ui section is covered by the named current recover-from-a-configuration-that-broke-the-dashboard section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/es-ES/docs-next/deployments/git": {
+      "setup": {
+        "target": "/es-ES/docs/deployments/git#configuración",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs-next/domains/advanced-nginx": {
+      "recover-from-a-configuration-that-broke-the-dashboard": {
+        "target": "/es-ES/docs/domains/advanced-nginx#recuperar-el-dashboard-tras-romper-su-configuración",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs-next/get-started": {
+      "1-ports-and-firewall": {
+        "target": "/es-ES/docs/installation/manual#1-puertos-y-firewall",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "2-install-docker": {
+        "target": "/es-ES/docs/installation/manual#2-instalar-docker",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "3-install-caprover": {
+        "target": "/es-ES/docs/get-started#instalar-caprover",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "4-dns": {
+        "target": "/es-ES/docs/get-started#dns",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "5-configure-caprover": {
+        "target": "/es-ES/docs/get-started#configurar-caprover",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "6-deploy-your-first-app": {
+        "target": "/es-ES/docs/get-started#desplegar-la-primera-aplicación",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "requirements": {
+        "target": "/es-ES/docs/get-started#requisitos",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "install-caprover": {
+        "target": "/es-ES/docs/get-started#instalar-caprover",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "dns": {
+        "target": "/es-ES/docs/get-started#dns",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "configure-caprover": {
+        "target": "/es-ES/docs/get-started#configurar-caprover",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "deploy-your-first-app": {
+        "target": "/es-ES/docs/get-started#desplegar-la-primera-aplicación",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "low-memory-builds-optional": {
+        "target": "/es-ES/docs/get-started#compilaciones-con-poca-memoria-opcional",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "start": {
+        "target": "/es-ES/docs/get-started#índice",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      }
+    },
+    "/es-ES/docs-next/guides/complete-webapp": {
+      "1-create-the-private-database": {
+        "target": "/es-ES/docs/guides/complete-webapp#1-crear-la-base-de-datos-privada",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "2-build-the-web-and-worker-images": {
+        "target": "/es-ES/docs/guides/complete-webapp#2-compilar-las-imágenes-web-y-worker",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "3-create-configure-and-deploy-the-other-apps": {
+        "target": "/es-ES/docs/guides/complete-webapp#3-crear-configurar-y-desplegar-las-demás-aplicaciones",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "4-back-up-each-data-source": {
+        "target": "/es-ES/docs/guides/complete-webapp#4-hacer-backup-de-cada-fuente-de-datos",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs-next/reference/captain-definition": {
+      "built-in-templates-and-versions": {
+        "target": "/es-ES/docs/reference/captain-definition#plantillas-integradas-y-versiones",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs-next/reference/cli": {
+      "deploy-options": {
+        "target": "/es-ES/docs/reference/cli#opciones-de-despliegue",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs-next/scaling/multi-node": {
+      "1-prepare-server": {
+        "target": "/es-ES/docs/scaling/multi-node#1-preparar-el-servidor",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "2-networking-and-ssh": {
+        "target": "/es-ES/docs/scaling/multi-node#2-red-y-ssh",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "3-registry": {
+        "target": "/es-ES/docs/scaling/multi-node#3-configurar-el-registry",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "4-add-and-verify-node": {
+        "target": "/es-ES/docs/scaling/multi-node#4-añadir-y-comprobar-un-nodo",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "5-persistent-apps": {
+        "target": "/es-ES/docs/scaling/multi-node#5-aplicaciones-persistentes",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs-next/server/backup/restore": {
+      "before-restoring": {
+        "target": "/es-ES/docs/server/backup/restore#antes-de-restaurar",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "restore": {
+        "target": "/es-ES/docs/server/backup/restore#restauración",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs-next/server/upgrade": {
+      "testing-an-edge-image": {
+        "target": "/es-ES/docs/server/upgrade#probar-una-imagen-edge",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs-next/troubleshooting/diagnostics": {
+      "before-sharing": {
+        "target": "/es-ES/docs/troubleshooting/diagnostics#antes-de-compartir-el-informe",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "collect-a-full-server-report": {
+        "target": "/es-ES/docs/troubleshooting/diagnostics#recopilar-un-informe-completo-del-servidor",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "quick-checks": {
+        "target": "/es-ES/docs/troubleshooting/diagnostics#comprobaciones-rápidas",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/es-ES/docs/get-started": {
+      "step-5-deploy-the-test-app": {
+        "target": "/es-ES/docs/get-started#desplegar-la-primera-aplicación",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "paso-3-configurar-e-inicializar-caprover": {
+        "target": "/es-ES/docs/get-started#configurar-caprover",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "paso-2-conectar-el-dominio-raíz": {
+        "target": "/es-ES/docs/get-started#dns",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "paso-1-instalación-de-caprover": {
+        "target": "/es-ES/docs/get-started#instalar-caprover",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      }
+    },
+    "/es-ES/docs/one-click-apps": {
+      "actualización-de-aplicaciones-one-click": {
+        "target": "/es-ES/docs/one-click-apps#actualizaciones",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "ajustes-de-configuración": {
+        "target": "/es-ES/docs/one-click-apps#configuración",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      }
+    },
+    "/es-ES/docs/troubleshooting": {
+      "implementación-exitosa-pero-error-502-de-puerta-de-enlace-incorrecta": {
+        "target": "/es-ES/docs/troubleshooting#la-aplicación-no-responde-o-devuelve-http-502",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      }
+    },
+    "/zh-CN/docs-next/deployments/git": {
+      "setup": {
+        "target": "/zh-CN/docs/deployments/git#配置流程",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs-next/domains/advanced-nginx": {
+      "recover-from-a-configuration-that-broke-the-dashboard": {
+        "target": "/zh-CN/docs/domains/advanced-nginx#nginx-配置错误导致-dashboard-无法打开时",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs-next/get-started": {
+      "1-ports-and-firewall": {
+        "target": "/zh-CN/docs/installation/manual#1-端口与防火墙",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "2-install-docker": {
+        "target": "/zh-CN/docs/installation/manual#2-安装-docker",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "3-install-caprover": {
+        "target": "/zh-CN/docs/get-started#安装-caprover",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "4-dns": {
+        "target": "/zh-CN/docs/get-started#dns",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "5-configure-caprover": {
+        "target": "/zh-CN/docs/get-started#配置-caprover",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "6-deploy-your-first-app": {
+        "target": "/zh-CN/docs/get-started#部署第一个应用",
+        "policy": "equivalent",
+        "reason": "The former setup step is covered by this current setup section; Docker and firewall steps remain in Manual Setup."
+      },
+      "requirements": {
+        "target": "/zh-CN/docs/get-started#系统要求",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "install-caprover": {
+        "target": "/zh-CN/docs/get-started#安装-caprover",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "dns": {
+        "target": "/zh-CN/docs/get-started#dns",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "configure-caprover": {
+        "target": "/zh-CN/docs/get-started#配置-caprover",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "deploy-your-first-app": {
+        "target": "/zh-CN/docs/get-started#部署第一个应用",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "low-memory-builds-optional": {
+        "target": "/zh-CN/docs/get-started#内存不足时的构建方案可选",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      },
+      "start": {
+        "target": "/zh-CN/docs/get-started#文档导航",
+        "policy": "equivalent",
+        "reason": "The original English preview section corresponds to this translated current setup heading."
+      }
+    },
+    "/zh-CN/docs-next/guides/complete-webapp": {
+      "1-create-the-private-database": {
+        "target": "/zh-CN/docs/guides/complete-webapp#1-创建内部数据库",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "2-build-the-web-and-worker-images": {
+        "target": "/zh-CN/docs/guides/complete-webapp#2-构建-web-与-worker-镜像",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "3-create-configure-and-deploy-the-other-apps": {
+        "target": "/zh-CN/docs/guides/complete-webapp#3-创建并部署其他应用",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "4-back-up-each-data-source": {
+        "target": "/zh-CN/docs/guides/complete-webapp#4-备份每个数据源",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs-next/reference/captain-definition": {
+      "built-in-templates-and-versions": {
+        "target": "/zh-CN/docs/reference/captain-definition#内置模板及版本",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs-next/reference/cli": {
+      "deploy-options": {
+        "target": "/zh-CN/docs/reference/cli#部署参数",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs-next/scaling/multi-node": {
+      "1-prepare-server": {
+        "target": "/zh-CN/docs/scaling/multi-node#1-准备服务器",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "2-networking-and-ssh": {
+        "target": "/zh-CN/docs/scaling/multi-node#2-节点间网络和-ssh",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "3-registry": {
+        "target": "/zh-CN/docs/scaling/multi-node#3-配置镜像仓库",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "4-add-and-verify-node": {
+        "target": "/zh-CN/docs/scaling/multi-node#4-添加并验证节点",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "5-persistent-apps": {
+        "target": "/zh-CN/docs/scaling/multi-node#5-持久化应用",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs-next/server/backup/restore": {
+      "before-restoring": {
+        "target": "/zh-CN/docs/server/backup/restore#恢复前的准备",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "restore": {
+        "target": "/zh-CN/docs/server/backup/restore#恢复步骤",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs-next/server/upgrade": {
+      "testing-an-edge-image": {
+        "target": "/zh-CN/docs/server/upgrade#测试-edge-镜像",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs-next/troubleshooting/diagnostics": {
+      "before-sharing": {
+        "target": "/zh-CN/docs/troubleshooting/diagnostics#分享报告前",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "collect-a-full-server-report": {
+        "target": "/zh-CN/docs/troubleshooting/diagnostics#收集完整服务器报告",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      },
+      "quick-checks": {
+        "target": "/zh-CN/docs/troubleshooting/diagnostics#快速检查",
+        "policy": "equivalent",
+        "reason": "The preview used English fallback; the corresponding translated heading preserves the same section."
+      }
+    },
+    "/zh-CN/docs/get-started": {
+      "第-5-步部署测试应用": {
+        "target": "/zh-CN/docs/get-started#部署第一个应用",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "第-3-步配置并初始化-caprover": {
+        "target": "/zh-CN/docs/get-started#配置-caprover",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "第-2-步连接根域名": {
+        "target": "/zh-CN/docs/get-started#dns",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "第-1-步安装-caprover": {
+        "target": "/zh-CN/docs/get-started#安装-caprover",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      }
+    },
+    "/zh-CN/docs/one-click-apps": {
+      "升级一键应用": {
+        "target": "/zh-CN/docs/one-click-apps#更新",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      },
+      "配置设置": {
+        "target": "/zh-CN/docs/one-click-apps#配置",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      }
+    },
+    "/zh-CN/docs/troubleshooting": {
+      "部署成功但出现-502-bad-gateway-错误": {
+        "target": "/zh-CN/docs/troubleshooting#应用无法访问或返回-http-502",
+        "policy": "equivalent",
+        "reason": "Equivalent installation, configuration, upgrade, or HTTP 502 troubleshooting section retained in current documentation."
+      }
+    },
+    "/es-ES/docs-next/installation/manual": {
+      "1-ports-and-firewall": {
+        "target": "/es-ES/docs/installation/manual#1-puertos-y-firewall",
+        "policy": "equivalent",
+        "reason": "The English Manual Setup preview step corresponds to this translated manual setup step."
+      },
+      "2-install-docker": {
+        "target": "/es-ES/docs/installation/manual#2-instalar-docker",
+        "policy": "equivalent",
+        "reason": "The English Manual Setup preview step corresponds to this translated manual setup step."
+      },
+      "3-install-caprover": {
+        "target": "/es-ES/docs/installation/manual#3-instalar-caprover",
+        "policy": "equivalent",
+        "reason": "The English Manual Setup preview step corresponds to this translated manual setup step."
+      }
+    },
+    "/zh-CN/docs-next/installation/manual": {
+      "1-ports-and-firewall": {
+        "target": "/zh-CN/docs/installation/manual#1-端口与防火墙",
+        "policy": "equivalent",
+        "reason": "The English Manual Setup preview step corresponds to this translated manual setup step."
+      },
+      "2-install-docker": {
+        "target": "/zh-CN/docs/installation/manual#2-安装-docker",
+        "policy": "equivalent",
+        "reason": "The English Manual Setup preview step corresponds to this translated manual setup step."
+      },
+      "3-install-caprover": {
+        "target": "/zh-CN/docs/installation/manual#3-安装-caprover",
+        "policy": "equivalent",
+        "reason": "The English Manual Setup preview step corresponds to this translated manual setup step."
+      }
+    },
+    "/docs/app-configuration": {
+      "persistent-directories": {
+        "target": "/docs/data-persistence#source-applications-persistent-directories",
+        "policy": "equivalent",
+        "reason": "The historical persistent-directories section is covered by the named current source-applications-persistent-directories section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "instance-count": {
+        "target": "/docs/scaling#source-scaling-scale-app",
+        "policy": "equivalent",
+        "reason": "The historical instance-count section is covered by the named current source-scaling-scale-app section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "node-id": {
+        "target": "/docs/data-persistence#source-data-persistence-node-placement",
+        "policy": "equivalent",
+        "reason": "The historical node-id section is covered by the named current source-data-persistence-node-placement section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "service-tags": {
+        "target": "/docs/applications#source-applications-tags-descriptions",
+        "policy": "equivalent",
+        "reason": "The historical service-tags section is covered by the named current source-applications-tags-descriptions section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "predeploy-function": {
+        "target": "/docs/applications/advanced#source-applications-advanced-pre-deploy-function",
+        "policy": "equivalent",
+        "reason": "The historical predeploy-function section is covered by the named current source-applications-advanced-pre-deploy-function section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "port-mapping": {
+        "target": "/docs/domains/firewall#source-applications-public-ports",
+        "policy": "equivalent",
+        "reason": "The historical port-mapping section is covered by the named current source-applications-public-ports section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/es-ES/docs/app-configuration": {
+      "directorios-persistentes": {
+        "target": "/es-ES/docs/data-persistence#source-applications-persistent-directories",
+        "policy": "equivalent",
+        "reason": "The historical persistent-directories section is covered by the named current source-applications-persistent-directories section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "recuento-de-instancias": {
+        "target": "/es-ES/docs/scaling#source-scaling-scale-app",
+        "policy": "equivalent",
+        "reason": "The historical instance-count section is covered by the named current source-scaling-scale-app section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "id-de-nodo": {
+        "target": "/es-ES/docs/data-persistence#source-data-persistence-node-placement",
+        "policy": "equivalent",
+        "reason": "The historical node-id section is covered by the named current source-data-persistence-node-placement section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "etiquetas-de-servicio": {
+        "target": "/es-ES/docs/applications#source-applications-tags-descriptions",
+        "policy": "equivalent",
+        "reason": "The historical service-tags section is covered by the named current source-applications-tags-descriptions section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "función-previa-a-la-implementación": {
+        "target": "/es-ES/docs/applications/advanced#source-applications-advanced-pre-deploy-function",
+        "policy": "equivalent",
+        "reason": "The historical predeploy-function section is covered by the named current source-applications-advanced-pre-deploy-function section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "port-mapping": {
+        "target": "/es-ES/docs/domains/firewall#source-applications-public-ports",
+        "policy": "equivalent",
+        "reason": "The historical port-mapping section is covered by the named current source-applications-public-ports section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/zh-CN/docs/app-configuration": {
+      "持久化目录": {
+        "target": "/zh-CN/docs/data-persistence#source-applications-persistent-directories",
+        "policy": "equivalent",
+        "reason": "The historical persistent-directories section is covered by the named current source-applications-persistent-directories section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "实例数量": {
+        "target": "/zh-CN/docs/scaling#source-scaling-scale-app",
+        "policy": "equivalent",
+        "reason": "The historical instance-count section is covered by the named current source-scaling-scale-app section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "节点-id": {
+        "target": "/zh-CN/docs/data-persistence#source-data-persistence-node-placement",
+        "policy": "equivalent",
+        "reason": "The historical node-id section is covered by the named current source-data-persistence-node-placement section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "服务标签": {
+        "target": "/zh-CN/docs/applications#source-applications-tags-descriptions",
+        "policy": "equivalent",
+        "reason": "The historical service-tags section is covered by the named current source-applications-tags-descriptions section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "预部署函数": {
+        "target": "/zh-CN/docs/applications/advanced#source-applications-advanced-pre-deploy-function",
+        "policy": "equivalent",
+        "reason": "The historical predeploy-function section is covered by the named current source-applications-advanced-pre-deploy-function section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "端口映射": {
+        "target": "/zh-CN/docs/domains/firewall#source-applications-public-ports",
+        "policy": "equivalent",
+        "reason": "The historical port-mapping section is covered by the named current source-applications-public-ports section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/docs/persistent-apps": {
+      "defining-persistent-directories": {
+        "target": "/docs/data-persistence#source-applications-persistent-directories",
+        "policy": "equivalent",
+        "reason": "The historical defining-persistent-directories section is covered by the named current source-applications-persistent-directories section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "non-persistent-apps": {
+        "target": "/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical non-persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "persistent-apps": {
+        "target": "/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "persistent-vs-non-persistent-apps": {
+        "target": "/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical persistent-vs-non-persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/es-ES/docs/persistent-apps": {
+      "definición-de-directorios-persistentes": {
+        "target": "/es-ES/docs/data-persistence#source-applications-persistent-directories",
+        "policy": "equivalent",
+        "reason": "The historical defining-persistent-directories section is covered by the named current source-applications-persistent-directories section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "aplicaciones-no-persistentes": {
+        "target": "/es-ES/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical non-persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "aplicaciones-persistentes": {
+        "target": "/es-ES/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "aplicaciones-persistentes-versus-no-persistentes": {
+        "target": "/es-ES/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical persistent-vs-non-persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/zh-CN/docs/persistent-apps": {
+      "定义持久化目录": {
+        "target": "/zh-CN/docs/data-persistence#source-applications-persistent-directories",
+        "policy": "equivalent",
+        "reason": "The historical defining-persistent-directories section is covered by the named current source-applications-persistent-directories section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "非持久化应用": {
+        "target": "/zh-CN/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical non-persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "持久化应用": {
+        "target": "/zh-CN/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "持久化与非持久化应用": {
+        "target": "/zh-CN/docs/data-persistence#source-data-persistence-stateless-persistent",
+        "policy": "equivalent",
+        "reason": "The historical persistent-vs-non-persistent-apps section is covered by the named current source-data-persistence-stateless-persistent section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/docs/database-connection": {
+      "internal-connections": {
+        "target": "/docs/data-persistence/deploy-databases#source-data-persistence-internal-databases",
+        "policy": "equivalent",
+        "reason": "The historical internal-connections section is covered by the named current source-data-persistence-internal-databases section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "external-connections": {
+        "target": "/docs/data-persistence/deploy-databases#source-data-persistence-external-databases",
+        "policy": "equivalent",
+        "reason": "The historical external-connections section is covered by the named current source-data-persistence-external-databases section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/es-ES/docs/database-connection": {
+      "conexiones-internas": {
+        "target": "/es-ES/docs/data-persistence/deploy-databases#source-data-persistence-internal-databases",
+        "policy": "equivalent",
+        "reason": "The historical internal-connections section is covered by the named current source-data-persistence-internal-databases section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "conexiones-externas": {
+        "target": "/es-ES/docs/data-persistence/deploy-databases#source-data-persistence-external-databases",
+        "policy": "equivalent",
+        "reason": "The historical external-connections section is covered by the named current source-data-persistence-external-databases section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/zh-CN/docs/database-connection": {
+      "内部连接": {
+        "target": "/zh-CN/docs/data-persistence/deploy-databases#source-data-persistence-internal-databases",
+        "policy": "equivalent",
+        "reason": "The historical internal-connections section is covered by the named current source-data-persistence-internal-databases section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "外部连接": {
+        "target": "/zh-CN/docs/data-persistence/deploy-databases#source-data-persistence-external-databases",
+        "policy": "equivalent",
+        "reason": "The historical external-connections section is covered by the named current source-data-persistence-external-databases section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/docs/deployment-methods": {
+      "deploy-via-web-dashboard": {
+        "target": "/docs/deployments#source-deployments-dashboard",
+        "policy": "equivalent",
+        "reason": "The historical deploy-via-web-dashboard section is covered by the named current source-deployments-dashboard section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/es-ES/docs/deployment-methods": {
+      "implementar-a-través-del-panel-web": {
+        "target": "/es-ES/docs/deployments#source-deployments-dashboard",
+        "policy": "equivalent",
+        "reason": "The historical deploy-via-web-dashboard section is covered by the named current source-deployments-dashboard section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/zh-CN/docs/deployment-methods": {
+      "通过-web-控制面板部署": {
+        "target": "/zh-CN/docs/deployments#source-deployments-dashboard",
+        "policy": "equivalent",
+        "reason": "The historical deploy-via-web-dashboard section is covered by the named current source-deployments-dashboard section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/es-ES/docs/app-scaling-and-cluster": {
+      "ejecute-varias-instancias-de-la-aplicación": {
+        "target": "/es-ES/docs/scaling#source-scaling-scale-app",
+        "policy": "equivalent",
+        "reason": "The historical run-multiple-instances-of-app section is covered by the named current source-scaling-scale-app section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "registro-de-inserción-predeterminado": {
+        "target": "/es-ES/docs/deployments/registries#source-deployments-registries-default-push",
+        "policy": "equivalent",
+        "reason": "The historical default-push-registry section is covered by the named current source-deployments-registries-default-push section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "configuración-docker-registry": {
+        "target": "/es-ES/docs/deployments/registries#source-deployments-registries-self-hosted",
+        "policy": "equivalent",
+        "reason": "The historical setup-docker-registry section is covered by the named current source-deployments-registries-self-hosted section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "agregar-un-privado-docker-registry": {
+        "target": "/es-ES/docs/deployments/registries#source-deployments-registries-private",
+        "policy": "equivalent",
+        "reason": "The historical add-a-private-docker-registry section is covered by the named current source-deployments-registries-private section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/zh-CN/docs/app-scaling-and-cluster": {
+      "运行应用的多个实例": {
+        "target": "/zh-CN/docs/scaling#source-scaling-scale-app",
+        "policy": "equivalent",
+        "reason": "The historical run-multiple-instances-of-app section is covered by the named current source-scaling-scale-app section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "默认推送-registry": {
+        "target": "/zh-CN/docs/deployments/registries#source-deployments-registries-default-push",
+        "policy": "equivalent",
+        "reason": "The historical default-push-registry section is covered by the named current source-deployments-registries-default-push section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "设置-docker-registry": {
+        "target": "/zh-CN/docs/deployments/registries#source-deployments-registries-self-hosted",
+        "policy": "equivalent",
+        "reason": "The historical setup-docker-registry section is covered by the named current source-deployments-registries-self-hosted section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "添加私有-docker-registry": {
+        "target": "/zh-CN/docs/deployments/registries#source-deployments-registries-private",
+        "policy": "equivalent",
+        "reason": "The historical add-a-private-docker-registry section is covered by the named current source-deployments-registries-private section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/docs/backup-and-restore": {
+      "automating-backup-process": {
+        "target": "/docs/server/backup#source-server-backup-automate",
+        "policy": "equivalent",
+        "reason": "The historical automating-backup-process section is covered by the named current source-server-backup-automate section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "backup-process": {
+        "target": "/docs/server/backup#source-server-backup-create",
+        "policy": "equivalent",
+        "reason": "The historical backup-process section is covered by the named current source-server-backup-create section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "what-is-restored": {
+        "target": "/docs/server/backup#source-server-backup-contents",
+        "policy": "equivalent",
+        "reason": "The historical what-is-restored section is covered by the named current source-server-backup-contents section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/es-ES/docs/backup-and-restore": {
+      "automatización-del-proceso-de-copia-de-seguridad": {
+        "target": "/es-ES/docs/server/backup#source-server-backup-automate",
+        "policy": "equivalent",
+        "reason": "The historical automating-backup-process section is covered by the named current source-server-backup-automate section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "proceso-de-copia-de-seguridad": {
+        "target": "/es-ES/docs/server/backup#source-server-backup-create",
+        "policy": "equivalent",
+        "reason": "The historical backup-process section is covered by the named current source-server-backup-create section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "qué-se-restaura": {
+        "target": "/es-ES/docs/server/backup#source-server-backup-contents",
+        "policy": "equivalent",
+        "reason": "The historical what-is-restored section is covered by the named current source-server-backup-contents section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/zh-CN/docs/backup-and-restore": {
+      "自动化备份过程": {
+        "target": "/zh-CN/docs/server/backup#source-server-backup-automate",
+        "policy": "equivalent",
+        "reason": "The historical automating-backup-process section is covered by the named current source-server-backup-automate section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "备份过程": {
+        "target": "/zh-CN/docs/server/backup#source-server-backup-create",
+        "policy": "equivalent",
+        "reason": "The historical backup-process section is covered by the named current source-server-backup-create section. Detailed obsolete examples elsewhere remain in the archive."
+      },
+      "哪些内容会被恢复": {
+        "target": "/zh-CN/docs/server/backup#source-server-backup-contents",
+        "policy": "equivalent",
+        "reason": "The historical what-is-restored section is covered by the named current source-server-backup-contents section. Detailed obsolete examples elsewhere remain in the archive."
+      }
+    },
+    "/docs/docker-compose": {
+      "supported-fields": {
+        "target": "/docs/deployments/other/docker-compose#source-reference-docker-compose",
+        "policy": "equivalent",
+        "reason": "The historical supported-fields list is covered by the current Docker Compose support matrix and its unsupported-field guidance."
+      }
+    },
+    "/es-ES/docs/docker-compose": {
+      "campos-compatibles": {
+        "target": "/es-ES/docs/deployments/other/docker-compose#source-reference-docker-compose",
+        "policy": "equivalent",
+        "reason": "The historical supported-fields list is covered by the current Docker Compose support matrix and its unsupported-field guidance."
+      }
+    },
+    "/zh-CN/docs/docker-compose": {
+      "支持的字段": {
+        "target": "/zh-CN/docs/deployments/other/docker-compose#source-reference-docker-compose",
+        "policy": "equivalent",
+        "reason": "The historical supported-fields list is covered by the current Docker Compose support matrix and its unsupported-field guidance."
+      }
+    }
+  },
+  "previewFallbacks": {
+    "/docs-next": "/docs/get-started#source-index",
+    "/docs-next/installation/play-with-docker": "/docs/installation#source-installation-standard-vps",
+    "/es-ES/docs-next": "/es-ES/docs/get-started#source-index",
+    "/es-ES/docs-next/installation/play-with-docker": "/es-ES/docs/installation#source-installation-standard-vps",
+    "/zh-CN/docs-next": "/zh-CN/docs/get-started#source-index",
+    "/zh-CN/docs-next/installation/play-with-docker": "/zh-CN/docs/installation#source-installation-standard-vps"
+  }
+}
