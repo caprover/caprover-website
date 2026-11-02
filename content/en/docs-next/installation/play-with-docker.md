@@ -16,4 +16,6 @@ Play with Docker provides short-lived Docker hosts for trying CapRover without p
 3. Wait for the installer to print a `captain.*.direct.labs.play-with-docker.com` URL. Open that URL and sign in with the initial password shown by the installer (historically `captain42`).
 4. Change the initial password if you plan to use the session beyond a quick demo. Create an app and deploy an image to explore the dashboard.
 
-This playground script is separate from the [standard installation](../get-started.md). Use a regular server and your own domain for a durable HTTPS installation. Inspect a downloaded script before running it if you need to assess what it does.
+- This playground script is separate from the [standard installation](../get-started.md).
+- Use a regular server and your own domain for a durable HTTPS installation.
+- Inspect a downloaded script before running it if you need to assess what it does.

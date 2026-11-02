@@ -39,4 +39,8 @@ CapRover's [template definitions](https://github.com/caprover/caprover/blob/mast
 | `python-django` | `python:VERSION-alpine` |
 | `ruby-rack` | `ruby:VERSION-alpine` |
 
-For `node/24`, the resulting base is `node:24-alpine`. The tag must exist in the relevant upstream image registry, and a major-only tag can move as that image is updated. Template-specific Dockerfile instructions are in CapRover's [`dockerfiles` directory](https://github.com/caprover/caprover/tree/master/dockerfiles). Inspect them before relying on a template's framework assumptions or changing versions. A repository-owned Dockerfile lets you pin an exact image tag or digest and control the build for other frameworks.
+- For `node/24`, the resulting base is `node:24-alpine`.
+- The tag must exist in the relevant upstream image registry, and a major-only tag can move as that image is updated.
+- Template-specific Dockerfile instructions are in CapRover's [`dockerfiles` directory](https://github.com/caprover/caprover/tree/master/dockerfiles).
+- Inspect them before relying on a template's framework assumptions or changing versions.
+- A repository-owned Dockerfile lets you pin an exact image tag or digest and control the build for other frameworks.

@@ -4,7 +4,9 @@ title: Automate Backups
 slug: /server/backup/automate
 ---
 
-The dashboard's **Create Backup** action has a corresponding authenticated API endpoint. The following example needs `curl` and `jq`. Set `CAPROVER_URL` to your HTTPS dashboard origin and provide `CAPROVER_PASSWORD` securely through your scheduler's secret store.
+- The dashboard's **Create Backup** action has a corresponding authenticated API endpoint.
+- The following example needs `curl` and `jq`.
+- Set `CAPROVER_URL` to your HTTPS dashboard origin and provide `CAPROVER_PASSWORD` securely through your scheduler's secret store.
 
 ```bash
 set -euo pipefail
@@ -21,4 +23,6 @@ curl --fail --silent --show-error -G "$CAPROVER_URL/api/v2/downloads/" \
 test -s backup.tar
 ```
 
-Move the file to dated off-server storage, encrypt it as appropriate, and set retention and failure alerts. The download token is temporary; finish the download in the same run. Schedule separate database and volume backups and regularly test restoration.
+- Move the file to dated off-server storage, encrypt it as appropriate, and set retention and failure alerts.
+- The download token is temporary; finish the download in the same run.
+- Schedule separate database and volume backups and regularly test restoration.

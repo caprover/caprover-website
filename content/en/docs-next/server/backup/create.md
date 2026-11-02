@@ -9,4 +9,6 @@ slug: /server/backup/create
 3. Back up application databases and persistent directories separately; [the CapRover archive has limited scope](./contents.md).
 4. Periodically restore both kinds of backup to a test server and verify the applications.
 
-The archive is generated on the server, then offered as a temporary download. Keep your own copy: the generated download is temporary. If a self hosted registry is enabled, allow space for its image data in the archive.
+- The archive is generated on the server, then offered as a temporary download.
+- Keep your own copy: the generated download is temporary.
+- If a self hosted registry is enabled, allow space for its image data in the archive.

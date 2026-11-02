@@ -15,7 +15,9 @@ The [CapRover CLI](https://github.com/caprover/caprover-cli) runs on your workst
 | `caprover logout` | Remove a stored server login. |
 | `caprover api` | Call the CapRover API through the CLI. |
 
-For `deploy`, select **one** input: `-b, --branch` archives the committed branch from the Git repository; `-t, --tarFile` uploads an existing archive, including files generated locally; `-i, --imageName` deploys an existing image. `-d, --default` reuses saved choices. Use `-u, --caproverUrl` and `-a, --caproverApp` to specify the server and app, with `--appToken` (or `CAPROVER_APP_TOKEN`) for app-scoped deployment. Other options include `-n, --caproverName`, `-p, --caproverPassword`, and `-c, --configFile`.
+- For `deploy`, select **one** input: `-b, --branch` archives the committed branch from the Git repository; `-t, --tarFile` uploads an existing archive, including files generated locally; `-i, --imageName` deploys an existing image. `-d, --default` reuses saved choices.
+- Use `-u, --caproverUrl` and `-a, --caproverApp` to specify the server and app, with `--appToken` (or `CAPROVER_APP_TOKEN`) for app-scoped deployment.
+- Other options include `-n, --caproverName`, `-p, --caproverPassword`, and `-c, --configFile`.
 
 For example, to deploy a locally built archive with an app token:
 
@@ -24,4 +26,7 @@ caprover deploy -u https://captain.apps.example.com -a my-app \
   --appToken "$CAPROVER_APP_TOKEN" -t ./deploy.tar
 ```
 
-The default Git mode excludes uncommitted and Git-ignored files. Run `caprover deploy --help` for the exact options supported by your installed version. Store server credentials securely; avoid putting them in a committed configuration file. See [CLI Deployment](../deployments/cli.md) for a walkthrough.
+- The default Git mode excludes uncommitted and Git-ignored files.
+- Run `caprover deploy --help` for the exact options supported by your installed version.
+- Store server credentials securely; avoid putting them in a committed configuration file.
+- See [CLI Deployment](../deployments/cli.md) for a walkthrough.

@@ -4,7 +4,9 @@ title: Firewall
 slug: /domains/firewall
 ---
 
-Open the ports for the workflow you are actually using. A hosting-provider firewall can block traffic even when the guest firewall allows it. Docker-published container ports can bypass simple UFW rules; restrict those with provider rules or Docker-aware filtering.
+- Open the ports for the workflow you are actually using.
+- A hosting-provider firewall can block traffic even when the guest firewall allows it.
+- Docker-published container ports can bypass simple UFW rules; restrict those with provider rules or Docker-aware filtering.
 
 | Port | Direction / audience | Purpose |
 |---|---|---|
@@ -18,6 +20,9 @@ Open the ports for the workflow you are actually using. A hosting-provider firew
 | `4789/udp` | Trusted Swarm nodes only | Overlay VXLAN traffic |
 | App-specific TCP/UDP mapping | Intended clients only | Direct access to a published app port |
 
-On a single-node Ubuntu server using UFW, allow SSH before enabling it and allow `80/tcp`, `443/tcp`, `3000/tcp`, and optionally `443/udp`. See the commands in [Getting Started](../get-started.md). For a multi-node cluster, permit Swarm ports between nodes on trusted addresses and do not expose the VXLAN port broadly. A mapped database port requires a separate deliberate rule.
+- On a single-node Ubuntu server using UFW, allow SSH before enabling it and allow `80/tcp`, `443/tcp`, `3000/tcp`, and optionally `443/udp`.
+- See the commands in [Getting Started](../get-started.md).
+- For a multi-node cluster, permit Swarm ports between nodes on trusted addresses and do not expose the VXLAN port broadly.
+- A mapped database port requires a separate deliberate rule.
 
 The [Network and Firewall Ports reference](../reference/ports.md) records the port roles and their scope. Check Docker's [packet-filtering documentation](https://docs.docker.com/engine/network/packet-filtering-firewalls/) before relying on UFW to restrict a Docker-published port.

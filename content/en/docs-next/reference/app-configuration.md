@@ -14,4 +14,7 @@ CapRover stores app settings separately from the Captain Definition. The [app mo
 | Placement | `hasPersistentData`, `nodeId`, `instanceCount`, `networks` | Persistence and Swarm placement. |
 | Runtime | `envVars`, `ports`, `volumes`, `serviceUpdateOverride`, `preDeployFunction` | Environment, published ports, mounts, and service customization. |
 
-An environment variable is a `{key,value}` pair. A published port has `hostPort`, `containerPort`, optional `protocol` (`tcp` or `udp`), and optional `publishMode` (`ingress` or `host`). A persistent directory contains `containerPath`, optional `hostPath` or `volumeName`, and optional `mode`. Configure these through the dashboard or API instead of hand-editing stored JSON.
+- An environment variable is a `{key,value}` pair.
+- A published port has `hostPort`, `containerPort`, optional `protocol` (`tcp` or `udp`), and optional `publishMode` (`ingress` or `host`).
+- A persistent directory contains `containerPath`, optional `hostPath` or `volumeName`, and optional `mode`.
+- Configure these through the dashboard or API instead of hand-editing stored JSON.
