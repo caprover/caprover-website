@@ -14,7 +14,7 @@ slug: /installation/advanced
 
 ### Prepare the machine
 
-- Install Docker Engine and verify it with `sudo docker version`.
+- Install Docker Engine as described in [Manual Setup](../manual.md), and verify it with `sudo docker version`.
 - Give the machine a stable LAN address.
 - In this example it is `192.168.1.12`.
 - Before installation, create `/captain/data/config-override.json` to skip the public DNS verification that is unsuitable for a private domain:
@@ -50,7 +50,6 @@ Use HTTP on this private-only name. Do not enable CapRover's public Let's Encryp
 
 - For a public domain and HTTPS, point the wildcard public DNS A record to your router's public IPv4 address.
 - Forward router port `80/tcp` to `192.168.1.12:80` and `443/tcp` to `192.168.1.12:443`.
-- Forward `443/udp` if you want HTTP/3.
 - The server must keep a stable LAN IP, and inbound connections must reach the router; carrier-grade NAT can prevent this setup.
 
 - Set the public root domain in CapRover, verify `captain.<root-domain>` resolves and reaches the server over HTTP, then enable dashboard and app HTTPS as described in [Getting Started](../../get-started.md).
@@ -62,7 +61,7 @@ Use HTTP on this private-only name. Do not enable CapRover's public Let's Encryp
 
 - CapRover normally publishes HTTP on host port 80, HTTPS on 443, and the initial admin interface on 3000.
 - On a fresh server, use those defaults.
-- When another service already occupies a host port, change both the host side of the Docker mapping and the matching `CAPTAIN_HOST_*` setting:
+- When another service already occupies a host port, use manual bootstrap and change both the host side of the Docker mapping and the matching `CAPTAIN_HOST_*` setting:
 
 ```bash
 sudo docker run -p 10080:80 -p 10443:443 -p 13000:3000 \
@@ -117,8 +116,8 @@ sudo mkdir -p /captain/data
 echo '{"useExistingSwarm":true}' | sudo tee /captain/data/config-override.json
 ```
 
-- Then run the normal installation command from [Getting Started](../../get-started.md) on this manager node.
-- The installer checks for an existing Swarm rather than creating one.
+- Run the Docker bootstrap command in [Manual Setup](../manual.md) on this manager node. The automated installer refuses pre-existing `/captain` configuration and is unsuitable for this override.
+- CapRover reads `useExistingSwarm` and uses the existing Swarm.
 - Do this on a disposable or carefully planned cluster first: CapRover creates and manages services and networks in that Swarm, and its persistent state remains under `/captain` on the CapRover node.
 
 For app scheduling beyond one node, a default push registry is required before adding nodes through CapRover. Read [Set Up a Multi-Node Cluster](../../scaling/multi-node.md) before deploying applications across nodes.
@@ -129,8 +128,8 @@ For app scheduling beyond one node, a default push registry is required before a
 
 For a local test, use [Local / Private Network installation](index.md). A public home deployment also needs a stable way for incoming traffic to reach the host.
 
-1. Give the host a stable LAN address and install Docker as described in [Getting Started](../../get-started.md).
-2. Before installing CapRover with the standard public-IP installer, temporarily forward TCP 80, 443, and 3000 from the router to that host. The installer checks all three ports against the detected public IP. Check provider and host firewalls too. A router without NAT loopback may still fail this self-check; use the [local/private installation path](index.md) with an explicit LAN IP if needed.
+1. Give the host a stable LAN address. For manual Docker installation, use [Manual Setup](../manual.md).
+2. For the standard [installer](../../get-started.md), forward TCP 80, 443, and 3000 from your router to the host. The installer reports external reachability checks after setup; NAT and provider firewalls still need manual attention.
 3. Install CapRover, then point wildcard DNS and the dashboard hostname to the router's public address. If your ISP changes that address, use a reliable DNS update process.
 4. Complete the root-domain and HTTPS steps in [Getting Started](../../get-started.md), and verify the dashboard and a test app from a device **outside** the LAN.
 5. After the dashboard works over HTTPS from outside the LAN, remove the public port 3000 forwarding rule and keep admin access through the dashboard hostname. Back up both CapRover state and application data off-site.
