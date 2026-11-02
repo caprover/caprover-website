@@ -1,17 +1,17 @@
 ---
 id: backup-data
-title: Volver arriba Datos persistentes
+title: Hacer copias de seguridad de datos persistentes
 slug: /data-persistence/backup-data
 ---
 
-Una copia de seguridad CapRover captura el estado y la configuración de CapRover, **no** el contenido de cada volumen de aplicación, directorio host o base de datos externa. Planifique copias de seguridad de datos de aplicaciones por volumen de trabajo.
+Una copia de seguridad de CapRover incluye el estado y la configuración de CapRover, **no** el contenido de cada volumen de aplicación, directorio host o base de datos externa. Planifique copias de seguridad de datos de aplicaciones por volumen de trabajo.
 
 1. Inventario de los nombres de volumen de la aplicación, caminos de unión, servicio de bases de datos y almacenamiento externo. Uso `docker volume ls` para confirmar los nombres físicos; antiguas instalaciones pueden tener `captain--` prefijos.
 2. Para bases de datos, utilice el procedimiento consistente de descarga o instantánea compatible con la base de datos. Para los archivos cargados, respaldo el directorio montado o la tienda de objetos usando un método que maneja concurrentes escribe apropiadamente.
 3. Almacenar copias fuera del servidor, protegerlas como sensibles, y definir retención y cifrado.
 4. Restaurar en una aplicación de prueba o servidor de prueba y verificar registros y archivos reales. Grabar las versiones de aplicaciones/image y bases de datos correspondientes necesarias para su recuperación.
 
-Retrocede la configuración de CapRover como un paso separado [Backup &amp; Restore CapRover](../server/backup/index.md). Un plan de recuperación de desastres utilizable necesita ambos lados y las imágenes del registro necesarias para ejecutar las aplicaciones.
+Haz una copia de seguridad de la configuración de CapRover como un paso separado [Backup &amp; Restore CapRover](../server/backup/index.md). Un plan de recuperación de desastres utilizable necesita ambos lados y las imágenes del registro necesarias para ejecutar las aplicaciones.
 
 <span id="source-data-persistence-move-data"></span>
 

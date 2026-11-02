@@ -9,10 +9,10 @@ Un archivo llamado `captain-definition` en la raíz de despliegue le dice a CapR
 | Campo | Tipo | Significado |
 | --- | --- | --- |
 | `schemaVersion` | Número | Se requiere; el parser actual acepta `2`. |
-| `imageName` | cuerda | Tire y despliegue una imagen Docker existente. |
-| `dockerfilePath` | cuerda | Camino a un Dockerfile en el archivo de despliegue. Se rechazan las trayectorias de parent-directory. |
+| `imageName` | cadena de texto | Tire y despliegue una imagen Docker existente. |
+| `dockerfilePath` | cadena de texto | Camino a un Dockerfile en el archivo de despliegue. Se rechazan las trayectorias de parent-directory. |
 | `dockerfileLines` | string[] | Líneas de un Dockerfile en línea. |
-| `templateId` | cuerda | Utilice una plantilla Dockerfile integrada. |
+| `templateId` | cadena de texto | Utilice una plantilla Dockerfile integrada. |
 
 Proporción **exactamente uno** de los cuatro selectores. El [parser](https://github.com/caprover/caprover/blob/master/src/user/ImageMaker.ts) rechaza cero o varios selectores.
 

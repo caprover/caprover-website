@@ -23,7 +23,7 @@ slug: /deployments/builds-logs
 - Desde el historial de despliegue de la aplicación, elija una versión previamente desplegada para volver a rodar su imagen.
 - Compruebe el resultado y la salud de la aplicación antes de reanudar el tráfico.
 
-- Rollback hace **no** restaurar variables ambientales anteriores, dominios, contenidos de volumen o esquema de bases de datos.
+- Rollback hace **no** restaurar variables de entorno anteriores, dominios, contenidos de volumen o esquema de bases de datos.
 - Si la versión más reciente cambió los datos persistentes, confirme que la imagen anterior sigue siendo compatible antes de volver a rodar.
 - Mantenga suficiente historia de la imagen o acceso al registro para recuperar la versión que pretende restaurar.
 

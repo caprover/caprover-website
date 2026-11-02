@@ -8,7 +8,7 @@ slug: /data-persistence
 
 ## Cuándo utilizar la persistencia
 
-- Uso **Tiene datos persistentes** para bases de datos y aplicaciones que almacenan cargas locales.
+- Uso **Has Persistent Data** para bases de datos y aplicaciones que almacenan cargas locales.
 - Sólo los caminos de montaje configurados sobreviven el reemplazo de contenedores. La bandera de aplicación persistente por sí sola no guarda archivos de contenedores arbitrarios.
 - Las aplicaciones web apátridas pueden utilizar bases de datos externas o almacenamiento de objetos.
 

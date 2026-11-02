@@ -57,7 +57,7 @@ dig +short test.apps.example.com
 打开 `http://YOUR_SERVER_IP:3000`。**初始密码：**`captain42`。
 
 - 更改密码，并将根域名设置为 `apps.example.com`（不包含 `*.` 或 `captain.`）。
-- 管理面板域名为 `captain.apps.example.com`。确认 DNS 正常且可以签发证书后，启用 HTTPS 和 **Force HTTPS**（强制 HTTPS）。
+- 管理面板域名为 `captain.apps.example.com`。确认 DNS 正常且可以签发证书后，启用 HTTPS 和 **Force HTTPS**（Force HTTPS）。
 - 管理面板通过 HTTPS 正常访问后，限制公网对 `3000/tcp` 端口的访问。
 
 如果证书签发失败，请检查 DNS 和 TCP 80/443 端口的入站访问。参阅[域名和 HTTPS](domains/index.md)。

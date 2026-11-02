@@ -6,9 +6,9 @@ slug: /applications/advanced
 
 <span id="source-applications-advanced-service-update-override"></span>
 
-## 服务更新覆盖
+## Service Update Override
 
-- 这个 **服务更新覆盖** 字段将 JSON 或 YAML 设置合并到 CapRover 配置或部署应用程序时准备的 Docker 服务更新中。
+- 这个 **Service Update Override** 字段将 JSON 或 YAML 设置合并到 CapRover 配置或部署应用程序时准备的 Docker 服务更新中。
 - 对Docker服务选项有用,因为dashboard不会曝光.
 - 从最小可能的覆盖开始 :
 
@@ -52,5 +52,5 @@ var preDeployFunction = function (captainAppObj, dockerUpdateObject) {
 
 - 此代码具有CapRover进程的特权.
 - 它可以中断服务更新或访问敏感数据,从而限制谁可以编辑.
-- 对于静态服务字段,偏好 [服务更新覆盖](index.md).
+- 对于静态服务字段,偏好 [Service Update Override](index.md).
 - 检查 `docker service logs captain-captain` 如果服务更新在到达Docker之前失败。

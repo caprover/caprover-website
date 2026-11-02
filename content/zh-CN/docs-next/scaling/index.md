@@ -8,15 +8,15 @@ slug: /scaling
 
 ## 复制品
 
-- **实例计数** 控制请求的 Swarm 服务任务数量。
-- 缩放代码和背景工作支持同时执行的无国籍应用程序。
+- **Instance Count** 控制请求的 Swarm 服务任务数量。
+- 缩放代码和背景工作支持同时执行的无状态应用。
 - 检查 CPU、 RAM、 数据库连接限制和任务状态 `docker service ps SERVICE_NAME`.
 
 <span id="source-scaling-zero-downtime"></span>
 
 ## 滚动部署和体检
 
-- 无国籍应用程序一般使用Docker Swarm **启动** 更新。
+- 无状态应用一般使用Docker Swarm **启动** 更新。
 - 带有挂载数据用途的应用程序 **第一站点** 默认更新,以防止同时写入 。
 - 有意义的健康检查有助于Swarm确定准备状态:
 
@@ -31,7 +31,7 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
 
 ## 节点调度
 
-- 根据制约因素和能力,Swarm将无国籍任务排到现有节点之间。
+- 根据制约因素和能力,Swarm将无状态任务排到现有节点之间。
 - CapRover 将持久化的应用程序标注在托管本地数据的节点上.
 - 检查任务待决时的registry访问、节点可用性和放置限制。
 

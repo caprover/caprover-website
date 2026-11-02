@@ -4,11 +4,11 @@ title: 高级证书/ ACME
 slug: /domains/advanced-certbot
 ---
 
-一般的Certbot路径使用HTTP-01网根挑战. 保持端口80可到达,主机名指向CapRover. 仅在路径无法满足您的证书要求时才更改 。
+一般的Certbot路径使用HTTP-01webroot 验证. 保持端口80可到达,主机名指向CapRover. 仅在路径无法满足您的证书要求时才更改 。
 
 - CapRover 能读到 `certbotCertCommandRules` 和 `certbotImageName` 从 `/captain/data/config-override.json`.
-- DNS-01需要一个兼容的,长期运行的 Certbot 插件镜像和证书可以在该容器内读取.
-- 例如,对于一个 Cloudflare DNS 插件, 将其证书文件存储在下面 `/captain/data/letsencrypt/etc/captain-files/` 然后配置镜像和命令:
+- DNS-01需要一个兼容的,长期运行的 Certbot 插件镜像和容器能够读取的凭据.
+- 例如,对于一个 Cloudflare DNS 插件, 将其凭据文件存储在下面 `/captain/data/letsencrypt/etc/captain-files/` 然后配置镜像和命令:
 
 ```json
 {

@@ -8,7 +8,7 @@ slug: /scaling
 
 ## Réplicas
 
-- **Número de instancias** controla el número solicitado de tareas de servicio de Swarm.
+- **Instance Count** controla el número solicitado de tareas de servicio de Swarm.
 - Escala aplicaciones apátridas cuyo código y fondo de trabajo apoyan la ejecución simultánea.
 - Comprobar CPU, RAM, límites de conexión de bases de datos y estado de tarea con `docker service ps SERVICE_NAME`.
 

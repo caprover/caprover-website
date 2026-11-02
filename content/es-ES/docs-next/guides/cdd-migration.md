@@ -10,7 +10,7 @@ CaptainDuckDuck es el predecesor de CapRover. Planifique esta migración como un
 - No ejecute el antiguo comando de migración de una línea contra un servidor de producción.
 - Preserve el antiguo servidor o una instantánea completa, incluyendo `/captain` y volúmenes de aplicaciones, y proporcionar una instalación actual independiente CapRover.
 - Inventario y redistribuir cada aplicación en el nuevo servidor, restaurar sus datos por separado, luego probar antes de mover DNS.
-- Una copia de seguridad CapRover de un servidor moderno no es un formato de importación documentado para el estado CaptainDuckDuck.
+- Una copia de seguridad de CapRover de un servidor moderno no es un formato de importación documentado para el estado CaptainDuckDuck.
 
 - Inspección cada uno `captain-definition`: CapRover utiliza la versión de esquema 2, y Dockerfile `COPY` caminos pueden necesitar actualización desde el histórico `./src/` Prefijo.
 - Configure los puertos HTTP contenedor a través de la configuración de la aplicación.

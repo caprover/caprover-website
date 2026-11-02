@@ -26,7 +26,7 @@ Cambia la contraseña inicial después de la instalación, asegura el panel con 
 - Limite los puertos de Swarm a los nodos de grupos de confianza; vea [Configuración multinodo](../scaling/multi-node.md).
 - Mantenga Docker y CapRover actualizado.
 
-- Trate de tokens de despliegue, credenciales de registro, variables ambientales, archivos de respaldo y claves SSH como secretos.
+- Trate de tokens de despliegue, credenciales de registro, variables de entorno, archivos de respaldo y claves SSH como secretos.
 - Utilizar credenciales separadas para la automatización, rotarlas cuando se expone, y revisar [CapRover Pro](index.md) opciones de dos factores si su instancia usa Pro.
 - Una persona con acceso a la socket de Docker en el administrador tiene un control anfitriono amplio; otorgar la shell y el acceso de panel deliberadamente.
 

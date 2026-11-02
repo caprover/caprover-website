@@ -19,7 +19,7 @@ slug: /deployments
 ```
 
 - 开始部署,监视构建或拉动状态,然后验证应用程序的容器HTTP端口及其默认域.
-- 对于私人镜像,请先配置注册证书。
+- 对于私人镜像,请先配置registry 凭据。
 - 见 [部署Docker 镜像](index.md).
 
 <span id="source-deployments-docker-image"></span>

@@ -53,7 +53,7 @@ App特定 NGINX 更改属于该应用程序 [自定义 NGINX](advanced-nginx.md)
 
 ## 自定义 NGINX
 
-- CapRover为每个网络应用程序生成NGINX配置.
+- CapRover为每个Web 应用生成NGINX配置.
 - 使用应用程序 **HTTP 设置** 以编辑其NGINX模板,当您需要特定路由的超时,上传限制,或者标准控制不暴露的其他NGINX行为.
 
 1. 在编辑前保存当前模板的副本 。

@@ -8,10 +8,10 @@ Una plantilla de un clic es una combinación `services` asignación más `captai
 
 | Campo | Tipo |
 | --- | --- |
-| `caproverOneClickApp.displayName` | cuerda |
-| `caproverOneClickApp.instructions.start`, `.end` | cuerda |
+| `caproverOneClickApp.displayName` | cadena de texto |
+| `caproverOneClickApp.instructions.start`, `.end` | cadena de texto |
 | `caproverOneClickApp.variables` | array de definiciones variables |
-| Variable `id`, `label` | cuerdas requeridas |
+| Variable `id`, `label` | cadenas obligatorias |
 | Variable `defaultValue`, `validRegex`, `description` | cadenas opcionales |
 
 - Cada servicio admite [Subconjunto de composición](../deployments/other/docker-compose.md).

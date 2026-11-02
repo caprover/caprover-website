@@ -9,7 +9,7 @@ slug: /domains/firewall
 | `80/tcp` | 公共 HTTP 和证书验证 |
 | `443/tcp` | 公共 HTTPS |
 | `3000/tcp` | 初始dashboard设置; HTTPS 后限制 |
-| `996/tcp` | 启用时自办registry |
+| `996/tcp` | 启用时自托管 registry |
 | `2377/tcp` | 信任节点之间的 Swarm 管理 |
 | `7946/tcp,udp` | Swarm节点通信 |
 | `4789/udp` | Swarm覆盖网络 |

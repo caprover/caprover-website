@@ -1,16 +1,16 @@
 ---
 id: one-click-schema
-title: 单击 App Schema
+title: One-Click App Schema
 slug: /reference/one-click-schema
 ---
 
-单点模板是类似Confose的 `services` 绘图加 `captainVersion` 和 `caproverOneClickApp`编辑 [源类型](https://github.com/caprover/caprover/blob/master/src/models/IOneClickAppModels.ts) 定义元数据 :
+One-Click 模板是类似Compose的 `services` 绘图加 `captainVersion` 和 `caproverOneClickApp`编辑 [源类型](https://github.com/caprover/caprover/blob/master/src/models/IOneClickAppModels.ts) 定义元数据 :
 
-| 外地 | 类型 |
+| 字段 | 类型 |
 | --- | --- |
 | `caproverOneClickApp.displayName` | 字符串 |
 | `caproverOneClickApp.instructions.start`, `.end` | 字符串 |
-| `caproverOneClickApp.variables` | 一系列可变定义 |
+| `caproverOneClickApp.variables` | 变量定义数组 |
 | 变量 `id`, `label` | 需要的字符串 |
 | 变量 `defaultValue`, `validRegex`, `description` | 可选字符串 |
 

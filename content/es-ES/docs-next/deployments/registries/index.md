@@ -10,7 +10,7 @@ slug: /deployments/registries
 
 - CapRover necesita credenciales de registro cuando una imagen Docker es privada.
 - En el dashboard **Grupo / Registros** área, añadir un registro remoto con su dominio, nombre de usuario, contraseña o token de lectura, y prefijo de imagen opcional.
-- Los partidos de CapRover tiran credenciales contra el nombre de la imagen comenzando con `DOMAIN/PREFIX/` cuando se establece un prefijo, o `DOMAIN/` cuando está en blanco.
+- CapRover busca las credenciales correspondientes a el nombre de la imagen comenzando con `DOMAIN/PREFIX/` cuando se establece un prefijo, o `DOMAIN/` cuando está en blanco.
 - También utiliza el prefijo al etiquetar imágenes de CapRover para el registry de push predeterminado.
 - Verifique el nombre completo de imagen antes de confiar en esas credenciales.
 

@@ -9,8 +9,8 @@ slug: /domains/firewall
 | `80/tcp` | HTTP público y validación de certificados |
 | `443/tcp` | HTTPS públicos |
 | `3000/tcp` | Configuración inicial del dashboard; restringir después de HTTPS |
-| `996/tcp` | Registro auto hospedado, cuando esté habilitado |
-| `2377/tcp` | Gestión del cisma entre los nodos de confianza |
+| `996/tcp` | Registry autohospedado, cuando esté habilitado |
+| `2377/tcp` | Gestión de Swarm entre nodos de confianza |
 | `7946/tcp,udp` | Comunicación de los nodos de Swarm |
 | `4789/udp` | Redes de superposición de Swarm |
 

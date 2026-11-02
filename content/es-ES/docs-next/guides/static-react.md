@@ -1,6 +1,6 @@
 ---
 id: static-react
-title: Implementar una aplicación estática / React
+title: Desplegar una aplicación estática / React
 slug: /guides/static-react
 ---
 

@@ -29,7 +29,7 @@ Una aplicación CapRover mapas a un servicio Docker Swarm.
 - Implementar una imagen existente o construir una utilizando `captain-definition`.
 - El despliegue actualiza el servicio Docker para ejecutar esa imagen.
 - Una build de la imagen exitosa **no** garantizar una aplicación saludable. El proceso debe escuchar en el puerto de contenedores configurado.
-- Los rollos de imagen no restauran variables ambientales, esquemas de bases de datos o contenidos de volumen.
+- Los rollos de imagen no restauran variables de entorno, esquemas de bases de datos o contenidos de volumen.
 
 Consulta [Despliegue](../deployments/index.md) y [Definición](../reference/captain-definition.md).
 

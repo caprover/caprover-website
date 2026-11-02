@@ -11,7 +11,7 @@ slug: /server/backup
 Una copia de seguridad de CapRover **`/captain/data`** y añade metadatos sobre los nodos de racimo. Esto incluye configuración y estado de CapRover, tales como definiciones de aplicaciones, configuraciones de dominio y certificados almacenados allí.
 
 - Lo hace **no** automáticamente incluyen volúmenes Docker, monturas de host bind fuera de ese directorio, contenidos de bases de datos almacenados en esos lugares, archivos subidos allí, o imágenes Docker construidas localmente.
-- Retroceda cada base de datos usando su propio proceso de exportación o instantánea consistente, y copiar los directorios persistentes que realmente utiliza.
+- Realiza una copia de seguridad de cada base de datos usando su propio proceso de exportación o instantánea consistente, y copiar los directorios persistentes que realmente utiliza.
 - Prueba que tanto el archivo CapRover como los datos de aplicación pueden ser restaurados.
 
 - Una excepción a la regla de la imagen es una **registry autohospedado**: sus datos de imagen almacenados `/captain/data/registry`, por lo que ese directorio es copiado y puede aumentar enormemente el tamaño de archivo.

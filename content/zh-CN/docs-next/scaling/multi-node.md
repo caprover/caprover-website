@@ -69,7 +69,7 @@ Docker 用户组成员通常具有与 root 等效的权限。将 SSH 和 Swarm �
 ## 5. 持久化应用
 
 - 本地 Docker 数据卷和 bind mount 中的数据保留在原节点。
-- CapRover 会将有持久化数据的应用固定到指定节点；添加节点不会复制数据。
+- CapRover 会将Has Persistent Data的应用固定到指定节点；添加节点不会复制数据。
 - 修改节点调度前先备份并迁移数据。
 - 参阅[集群中的持久化应用](multi-node.md)。
 
@@ -89,7 +89,7 @@ Docker 用户组成员通常具有与 root 等效的权限。将 SSH 和 Swarm �
 
 ## 集群中的持久化应用
 
-- CapRover 通常将有持久化数据的应用限制为指定节点上的一个实例。
+- CapRover 通常将Has Persistent Data的应用限制为指定节点上的一个实例。
 - 默认 local driver 的 Docker named volume 和 bind mount 都使用该节点的本地存储。其他节点无法自动访问这些文件。
 - 迁移持久化应用前，先备份并暂停写入，将数据恢复到目标节点，核实权限，再更新节点调度，最后用单实例验证应用。
 - 新实例验证完成前，保留旧数据副本。

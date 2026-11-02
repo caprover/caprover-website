@@ -1,18 +1,18 @@
 ---
 id: complete-webapp
-title: 完成网络应用程序教程
+title: 完成Web 应用教程
 slug: /guides/complete-webapp
 ---
 
-- 这个例子结合了一个公共节点网络应用,一个私人workerPostgreSQL,和一个持久的上传目录.
-- 网络应用接受一份小工作;worker在PostgreSQL中对其进行了标签.
+- 这个例子结合了一个公共节点Web 应用,一个私人workerPostgreSQL,和一个持久的上传目录.
+- Web 应用接受一个简单任务;worker在PostgreSQL中对其进行了标签.
 - **端点没有认证,为一次性学习环境.** 使用一个具有足够的内存的单节点服务器PostgreSQL和两个节点服务;一个1GB主机可能太小,无法同时构建镜像.
 
 ## 1. 建立私人数据库
 
 - 完成 [开始](../get-started.md),包括通配符DNS和dashboardHTTPS.
-- 创建名为 CapRover 的应用程序 `demo-db` 与 **有持久化数据** 启用和 **不要作为网络应用程序曝光** 选中 。
-- 添加一个命名音量 `demo-db-data` 时间 `/var/lib/postgresql/data`,用于 PostgreSQL 17 镜像的数据路径。
+- 创建名为 CapRover 的应用程序 `demo-db` 与 **Has Persistent Data** 启用和 **Do not expose as web app** 选中 。
+- 添加一个命名卷 `demo-db-data` 时间 `/var/lib/postgresql/data`,用于 PostgreSQL 17 镜像的数据路径。
 - 在第一次部署前设定这些应用环境变量 :
 
 | 变量 | 数值 |
@@ -162,9 +162,9 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 
 ## 3. 创建、配置和部署其他应用程序
 
-- 创建 `demo-web` 与 **有持久化数据** 已启用。
-- 添加一个命名音量 `demo-uploads` 时间 `/data/uploads`,将容器 HTTP 端口设置为 `3000`,并给出下面的数据库变量。
-- 创建 `demo-worker` 作为无音量和相同数据库变量的非网络应用程序:
+- 创建 `demo-web` 与 **Has Persistent Data** 已启用。
+- 添加一个命名卷 `demo-uploads` 时间 `/data/uploads`,将容器 HTTP 端口设置为 `3000`,并给出下面的数据库变量。
+- 创建 `demo-worker` 作为无音量和相同数据库变量的非Web 应用:
 
 | 变量 | 两个应用程序的值 |
 | --- | --- |
@@ -176,7 +176,7 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 
 - 新的 CapRover apps 将自己的应用名称作为内部 Docker 服务名称; 用 `docker service ls` 如果你正在使用一个遗留的应用程序。
 - 内 `demo-web`'s **部署** 选项卡,设置队长定义路径到 `./captain-definition-web` 上传 `deploy.tar`.
-- 网络应用程序启动并创建后 `jobs` 表格,设置 `demo-worker`Captain Definition路径 `./captain-definition-worker` 并上传同一档案。
+- Web 应用启动并创建后 `jobs` 表格,设置 `demo-worker`Captain Definition路径 `./captain-definition-worker` 并上传同一档案。
 - 检查两个应用程序的构建和服务日志.
 - worker不需要公网域名或端口映射。
 

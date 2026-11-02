@@ -8,7 +8,7 @@ slug: /production-checklist
 
 - **访问**
   - 更改初始密码 。
-  - 启用dashboard HTTPS 和 **强制 HTTPS**.
+  - 启用dashboard HTTPS 和 **Force HTTPS**.
   - 限制直接进入端口 `3000`.
   - 使用有限的证书进行自动化.
 - **DNS 和 HTTPS 软件**

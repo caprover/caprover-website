@@ -1,23 +1,23 @@
 ---
 id: server-environment
-title: Variables para el medio ambiente
+title: Variables de entorno
 slug: /reference/server-environment
 ---
 
-El [medio ambiente-variable parser](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts) reconoce estas entradas de nivel servidor:
+El [analizador de variables de entorno](https://github.com/caprover/caprover/blob/master/src/utils/EnvVars.ts) reconoce estas entradas de nivel servidor:
 
 | Nombre | Efecto |
 | --- | --- |
 | `ACCEPTED_TERMS` | Aceptar los términos de instalación en el lanzamiento inicial. |
 | `DEFAULT_PASSWORD` | Establecer la contraseña inicial del dashboard; reemplazarla después de la configuración. |
-| `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, `CAPTAIN_HOST_ADMIN_PORT` | Puertos de acogida publicados; por defecto son 80, 443, y 3000. Coincide con el lado host del Docker `-p` cartografías. |
+| `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, `CAPTAIN_HOST_ADMIN_PORT` | Puertos del host publicados; por defecto son 80, 443, y 3000. Coincide con el lado host del Docker `-p` cartografías. |
 | `MAIN_NODE_IP_ADDRESS` | Suministrar la dirección de gestión para la instalación cuando la detección automática no es adecuada. |
 | `CAPTAIN_BASE_DIRECTORY` | Superar el predeterminado `/captain` directorio base. |
 | `CAPROVER_DISABLE_ANALYTICS`, `DO_NOT_TRACK` | Desactivar la analítica cuando se establece. |
 | `CAPTAIN_DOCKER_API` | Override Docker API detalles de conexión. |
 | `CAPTAIN_IS_DEBUG`, `IS_CAPTAIN_INSTANCE`, `DEMO_MODE_ADMIN_IP`, `FORCE_ENABLE_PRO`, `BY_PASS_PROXY_CHECK` | Controles internos, de desarrollo o de uso especial; use sólo después de leer su uso de fuentes. |
 
-- El parser trata varias banderas booleanas como verdadera cuando la variable es una **cuerda no vacía**; pasando la cuerda literal `false` no necesariamente los apaga.
+- El parser trata varias banderas booleanas como verdadera cuando la variable es una **cadena no vacía**; pasando la cadena literal `false` no necesariamente los apaga.
 - Suministro de variables de instalación al comando inicial del contenedor, y uso [config overrides](server-environment.md) para constantes de servidor configurables.
 
 <span id="source-reference-config-override"></span>

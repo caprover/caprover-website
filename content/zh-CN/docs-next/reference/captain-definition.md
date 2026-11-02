@@ -6,11 +6,11 @@ slug: /reference/captain-definition
 
 名为文件 `captain-definition` 在部署根 告诉CapRover 部署什么。 内容 [源接口](https://github.com/caprover/caprover/blob/master/src/models/ICaptainDefinition.ts) 包含 `schemaVersion` 和四个可能的部署选择者。
 
-| 外地 | 类型 | 含义 |
+| 字段 | 类型 | 含义 |
 | --- | --- | --- |
 | `schemaVersion` | 编号 | 需要; 当前解析器接受 `2`. |
-| `imageName` | 字符串 | 拖动并部署已有的 Docker 镜像 。 |
-| `dockerfilePath` | 字符串 | 部署归档中的 Docker 文件路径 。 家长指导路径被拒绝. |
+| `imageName` | 字符串 | 拉取并部署已有的 Docker 镜像 。 |
+| `dockerfilePath` | 字符串 | 部署归档中的 Docker 文件路径 。 父目录路径被拒绝. |
 | `dockerfileLines` | 字符串 [] | 内线Dockerfile的行数 。 |
 | `templateId` | 字符串 | 使用内置的Dockerfile模板. |
 

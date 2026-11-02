@@ -94,7 +94,7 @@ Para una salida que implica varios servicios del sistema o un fracaso host poco 
 
 - En el nodo manager, compruebe `docker service ps captain-captain --no-trunc`, entonces inspeccionar `docker service logs captain-captain --since 60m` y `docker service logs captain-nginx --since 60m`.
 - Corre `curl -v http://127.0.0.1:3000/` en el nodo manager.
-- Si la solicitud local funciona pero la IP pública no lo hace, inspeccionar el proveedor y host firewalls y la cartografía portuaria.
+- Si la solicitud local funciona pero la IP pública no lo hace, inspeccionar el proveedor y host firewalls y la mapeo de puertos.
 - Si el servicio CapRover está reiniciando, utilice el error de tarea y los registros antes de cambiar la red.
 - Para forzar un reinicio después de corregir el problema subyacente, ejecutar `docker service update captain-captain --force`.
 

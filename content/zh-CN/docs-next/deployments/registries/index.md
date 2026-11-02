@@ -8,8 +8,8 @@ slug: /deployments/registries
 
 ## 私人注册
 
-- CapRover 当一个 Docker 镜像为私有时需要注册证书 。
-- 在dashboard上 **集群/注册** 区域中,添加带有其域名、用户名、密码或读取符号以及可选镜像前缀的远程注册。
+- CapRover 当一个 Docker 镜像为私有时需要registry 凭据 。
+- 在dashboard上 **集群/注册** 区域中,添加带有其域名、用户名、密码或读取 token以及可选镜像前缀的远程注册。
 - CapRover 匹配从开始的镜像名称对映证书 `DOMAIN/PREFIX/` 当设置前缀时,或 `DOMAIN/` 当它是空白的。
 - 它还在为默认的推器注册标签 CapRover 构建的镜像时使用前缀.
 - 在依赖这些证书之前验证完整的镜像名称 。
@@ -33,7 +33,7 @@ slug: /deployments/registries
 - 在添加worker之前, 验证新部署成功 。
 - 在推出和回收期间保持registry的可用性;取消或删除集群中的证书可以防止节点拉动应用镜像.
 
-使用一个 [自办registry](index.md) 或适当的远程注册处。 预建镜像的拉动证书是单独需要的,不需要默认推.
+使用一个 [自托管 registry](index.md) 或适当的远程注册处。 预建镜像的拉动证书是单独需要的,不需要默认推.
 
 <span id="source-deployments-registries-self-hosted"></span>
 

@@ -5,13 +5,13 @@ slug: /guides/complete-webapp
 ---
 
 - Este ejemplo combina una aplicación web pública Node, un worker privado, PostgreSQL y un directorio de carga persistente.
-- La aplicación web acepta un pequeño trabajo; el worker lo marca procesado en PostgreSQL.
-- **Los puntos finales no tienen autenticación y son para un entorno de aprendizaje desechable.** Utilice un servidor de un solo nodo con suficiente memoria para los servicios de PostgreSQL y dos Nodos; un host de 1 GB puede ser demasiado pequeño para construir imágenes simultáneas.
+- La aplicación web recibe un trabajo pequeño; el worker lo marca procesado en PostgreSQL.
+- **Los puntos finales no tienen autenticación y son para un entorno de aprendizaje desechable.** Utilice un servidor de un solo nodo con memoria suficiente para PostgreSQL y dos servicios Node.js; un host de 1 GB puede ser demasiado pequeño para construir imágenes simultáneas.
 
 ## 1. Crear la base de datos privada
 
 - Completa [Comienzo](../get-started.md), incluyendo DNS de comodín y HTTPS de dashboard.
-- Crear una aplicación CapRover `demo-db` con **Tiene datos persistentes** habilitados y habilitados **No exponer como aplicación web** seleccionada.
+- Crear una aplicación CapRover `demo-db` con **Has Persistent Data** habilitados y habilitados **Do not expose as web app** seleccionada.
 - Añadir un volumen llamado `demo-db-data` a `/var/lib/postgresql/data`, la ruta de datos para la imagen PostgreSQL 17.
 - Establecer estas variables de entorno de aplicación antes del primer despliegue:
 
@@ -162,7 +162,7 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 
 ## 3. Crear, configurar y desplegar las demás aplicaciones
 
-- Crear `demo-web` con **Tiene datos persistentes** habilitado.
+- Crear `demo-web` con **Has Persistent Data** habilitado.
 - Añadir un volumen llamado `demo-uploads` a `/data/uploads`, establecer el puerto HTTP contenedor `3000`, y darle las variables de base de datos a continuación.
 - Crear `demo-worker` como aplicación no USB sin volumen y las mismas variables de base:
 
@@ -178,7 +178,7 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 - En `demo-web`'s **Despliegue** pestaña, establecer el camino de Captain Definition `./captain-definition-web` y subir `deploy.tar`.
 - Después de la aplicación web comienza y crea `jobs` cuadro, conjunto `demo-worker`Es el camino de Captain Definition `./captain-definition-worker` y subir el mismo archivo allí.
 - Inspeccione los registros de build y servicio para ambas aplicaciones.
-- El worker no necesita dominio público ni cartografía portuaria.
+- El worker no necesita dominio público ni mapeo de puertos.
 
 Visita `http://demo-web.<root-domain>/jobs` y esperar `[]`. A continuación, active HTTPS para `demo-web`, verificar su certificado, y hacer estas solicitudes, reemplazando el nombre de host ejemplo:
 
@@ -198,7 +198,7 @@ curl https://demo-web.apps.example.com/upload
 
 - CapRover [configuración copia de seguridad](../server/backup/index.md) no contiene `demo-db-data` o `demo-uploads`.
 - Configurar una copia de seguridad lógica PostgreSQL y una copia separada del volumen de carga, almacenar ambos fuera del host y la restauración de pruebas.
-- Consulta [Volver arriba Datos persistentes](../data-persistence/backup-data.md).
+- Consulta [Hacer copias de seguridad de datos persistentes](../data-persistence/backup-data.md).
 - Este tutorial mantiene ambas aplicaciones de estado en un solo nodo; [los volúmenes locales no se mueven con una tarea de Swarm](../data-persistence/index.md).
 - Una aplicación de producción también necesita autenticación, una política de carga, empleo que reclama para múltiples workers, y una estrategia de despliegue y migración de bases de datos.
 
@@ -208,7 +208,7 @@ curl https://demo-web.apps.example.com/upload
 
 El [Aplicaciones de ejemplo de CapRover](https://github.com/caprover/caprover/tree/master/captain-sample-apps) Demostrar Dockerfiles y definiciones de Capitán para varios marcos.
 
-1. Escoge una muestra e inspecciona su `captain-definition`, Dockerfile, puerto de contenedores expuestos y variables ambientales requeridas.
+1. Escoge una muestra e inspecciona su `captain-definition`, Dockerfile, puerto de contenedores expuestos y variables de entorno requeridas.
 2. Cree una aplicación desechable en el panel.
 3. Elija un método de despliegue: empaque los archivos de despliegue de la muestra en un archivo de tar y suba desde la aplicación **Despliegue** tab, **o** comprometer la muestra a una rama de Git y desplegarla con la [CLI](../deployments/cli.md)El modo Git normal del CLI excluye archivos no comprometidos e ignorados.
 4. Mira registros de build. Si el contenedor escucha en un puerto distinto al predeterminado de CapRover, establece el puerto HTTP contenedor de la aplicación en consecuencia. Compruebe la URL de la aplicación sobre HTTP y luego HTTPS.

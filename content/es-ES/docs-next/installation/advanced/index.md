@@ -57,7 +57,7 @@ Use HTTP en este nombre solo privado. No active el flujo de CapRover para un dom
 
 <span id="source-installation-advanced-custom-host-ports"></span>
 
-## Puertos de acogida personalizados
+## Puertos del host personalizados
 
 - CapRover normalmente publica HTTP en el puerto del host 80, HTTPS en 443, y la interfaz de administración inicial en 3000.
 - En un servidor nuevo, utilice esos defectos.
@@ -93,7 +93,7 @@ CapRover pasa estos valores de host-port en sus servicios en la instalación. Ca
 - El propio desafío de Encrypt HTTP de CapRover necesita sus solicitudes de validación para llegar a CapRover en el puerto 80.
 - Terminar HTTPS en un proxy no proporciona automáticamente HTTPS entre el proxy y CapRover.
 
-- Para una instalación fresca detrás de un proxy que posee los puertos de host estándar, vea [Puertos de acogida personalizados](index.md) publicar CapRover en diferentes puertos del host.
+- Para una instalación fresca detrás de un proxy que posee los puertos de host estándar, vea [Puertos del host personalizados](index.md) publicar CapRover en diferentes puertos del host.
 - Verifique el enrutamiento del panel, una aplicación de muestra y el comportamiento del certificado antes de mover el tráfico existente.
 - Consulta [Cloudflare y Proxies Inversos](../../domains/cloudflare-reverse-proxies.md) para las consideraciones de nivel de dominio.
 

@@ -12,7 +12,7 @@ slug: /domains/cloudflare-reverse-proxies
 - 终止 HTTPS 代理服务器不会自动加密与 CapRover 的连接 。
 - 防止公众请求 `/.well-known/acme-challenge/` 从到达 CapRover 可以中断发行或更新。
 
-关于拥有host 端口80和443的上游反向代理,见 [反向代理场景](../installation/advanced/index.md)。在启用两个层的强制 HTTPS 之前, 配置和测试代理的准确行为 。
+关于拥有host 端口80和443的上游反向代理,见 [反向代理场景](../installation/advanced/index.md)。在启用两个层的Force HTTPS 之前, 配置和测试代理的准确行为 。
 
 ## Cloudflare 通用 SSL 和嵌入式应用域
 

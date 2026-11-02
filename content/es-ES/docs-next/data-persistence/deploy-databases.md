@@ -1,13 +1,13 @@
 ---
 id: deploy-databases
-title: Implementar bases de datos
+title: Desplegar bases de datos
 slug: /data-persistence/deploy-databases
 ---
 
 - Una base de datos en CapRover es una aplicación que necesita almacenamiento, credenciales y una ruta de red para sus clientes.
 - El [Aplicaciones de un solo clic](../one-click-apps/index.md) catálogo puede crear un servicio de base de datos compatible, o puede desplegar una imagen de base de datos usted mismo.
 
-1. Elija la versión de la base de datos y la imagen. Crear su aplicación con **Tiene datos persistentes** habilitado y licencia **No exponer como aplicación web** seleccionada; las bases de datos generalmente no sirven HTTP a través de NGINX.
+1. Elija la versión de la base de datos y la imagen. Crear su aplicación con **Has Persistent Data** habilitado y licencia **Do not expose as web app** seleccionada; las bases de datos generalmente no sirven HTTP a través de NGINX.
 2. Configure el nombre de usuario, contraseña y nombre de la base de datos requeridos a través de su configuración de aplicaciones o un instalador de One-Click. Utilizar credenciales únicas y mantenerlas fuera del control de fuentes.
 3. Montar un volumen llamado o un enlace en el directorio de datos de la imagen de la base de datos. Coloque la aplicación en el nodo sosteniendo ese almacenamiento.
 4. Implementar y leer los registros de servicios hasta que la base de datos reporte que está lista. Reiniciar o redistribuir una vez para confirmar sus datos permanece presente.
@@ -23,13 +23,13 @@ Compruebe la ruta de almacenamiento de la imagen de la base de datos elegida y l
 - Las aplicaciones en la red de superposición de CapRover pueden conectarse a un servicio de bases de datos por su nombre de aplicación y puerto de contenedores.
 - Para una aplicación PostgreSQL llamada `postgres`, use host `postgres` y puerto `5432` en la aplicación cliente, junto con el nombre configurado de la base de datos, nombre de usuario y contraseña.
 
-- Ejemplo: establecer la aplicación web `DATABASE_URL` a una cadena de conexión apropiada para su conductor.
+- Ejemplo: establecer la aplicación web `DATABASE_URL` a una cadena de conexión adecuada para el driver de base de datos.
 - Guardar la configuración de la aplicación web y probar una consulta.
-- No se necesita cartografía portuaria pública.
+- No necesitas publicar ningún puerto.
 - Las aplicaciones actualizadas antes de CapRover 1.15 pueden retener un `srv-captain--` nombre de servicio y alias de red; inspeccionar el servicio real si un nombre de host no resuelve.
 
 - Mantenga las credenciales en la configuración del entorno de aplicaciones o un mecanismo secreto adecuado, y asegúrese de que la aplicación de la base de datos tenga almacenamiento y respaldos persistentes.
-- Consulta [Implementar bases de datos](deploy-databases.md) primero si la base de datos aún no está instalada.
+- Consulta [Desplegar bases de datos](deploy-databases.md) primero si la base de datos aún no está instalada.
 
 <span id="source-data-persistence-external-databases"></span>
 

@@ -1,10 +1,10 @@
 ---
 id: static-react
-title: 部署静态/ 反应应用程序
+title: 部署静态/ React 应用
 slug: /guides/static-react
 ---
 
-- 在本地建立您的反应或其他静态站点,并服务从一个小的NGINX镜像中编译的文件.
+- 在本地建立您的React 或其他静态站点,并服务从一个小的NGINX镜像中编译的文件.
 - 这保持了CapRover主机的构建时间依赖性.
 - 示例使用 Vite 风格 `dist` 目录; 替换为 `build` 如果这就是你的项目产生的结果。
 
@@ -24,7 +24,7 @@ slug: /guides/static-react
    caprover deploy --tarFile ./deploy.tar
    ```
 
-   首先创建 CapRover 网络应用, 并在 CLI 提示您时选择 。 你可以直接上传 `deploy.tar` 联合国 **部署** 选项卡。 设定容器 HTTP 端口为 `80`.
+   首先创建 CapRover Web 应用, 并在 CLI 提示您时选择 。 你可以直接上传 `deploy.tar` 联合国 **部署** 选项卡。 设定容器 HTTP 端口为 `80`.
 5. 访问应用程序的HTTP地址,然后启用HTTPS并验证公有领域. 重建并重新包装每次新部署的产出。
 
 - 普通的CLI系统 Git 部署用途 `git archive` 并省略未承诺或Git-ignored文件。

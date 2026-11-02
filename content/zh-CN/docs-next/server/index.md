@@ -16,7 +16,7 @@ slug: /server
 
 ### 账户和回收
 
-安装后更改初始密码,用HTTPS保护dashboard,安全存储回收证书. 审查 [安全访问](index.md) 和 [备份恢复( R)](backup/index.md) 生产使用前。
+安装后更改初始密码,用HTTPS保护dashboard,安全存储恢复凭据. 审查 [安全访问](index.md) 和 [备份恢复( R)](backup/index.md) 生产使用前。
 
 <span id="source-server-security"></span>
 
@@ -26,7 +26,7 @@ slug: /server
 - 将 Swarm 端口限制为信任的集群节点; 参见 [多节点设置](../scaling/multi-node.md).
 - 不断更新Docker和CapRover.
 
-- 将部署令牌,注册证书,环境变量,备份档案,和SSH密钥视为秘密.
+- 将部署令牌,registry 凭据,环境变量,备份档案,和SSH密钥视为秘密.
 - 使用单独的证书进行自动化,在曝光时旋转,并审查 [CapRover Pro (超级英雄)](index.md) 如果您使用 Pro 选项,则使用 2 因素选项。
 - 一个在管理器上拥有Docker socket访问权限的人实际上拥有广泛的主机控制;故意授予 shell和dashboard访问权限.
 

@@ -85,7 +85,7 @@ CapRover在安装时将这些host 端口值传递到它的服务中. 更改已�
 
 ## 反向代理场景
 
-- CapRover已经为其dashboard和网络应用运行了NGINX.
+- CapRover已经为其dashboard和Web 应用运行了NGINX.
 - 最简单的公共安装让CapRover拥有80和443端口.
 - 如果另一个反向代理必须先终止流量,则在安装CapRover之前先规划路由.
 

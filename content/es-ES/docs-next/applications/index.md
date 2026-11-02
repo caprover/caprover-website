@@ -9,9 +9,9 @@ slug: /applications
 ## Ajustes de la aplicación
 
 - **Aplicación web:** Las rutas de CapRover solicitan a través de NGINX al puerto HTTP de contenedor configurado.
-- **Servicio privado:** Seleccione **No exponer como aplicación web** para workers o bases de datos sin un punto final HTTP.
+- **Servicio privado:** Seleccione **Do not expose as web app** para workers o bases de datos sin un punto final HTTP.
 - **Dirección de escucha:** Su proceso web debe unirse a `0.0.0.0` dentro del contenedor.
-- **Eliminar la aplicación:** Retroceda cualquier volumen Docker, monturas enlazadas o datos externos primero. La eliminación de la aplicación no constituye una copia de seguridad.
+- **Eliminar la aplicación:** Haz una copia de seguridad de los volúmenes Docker, monturas enlazadas o datos externos primero. La eliminación de la aplicación no constituye una copia de seguridad.
 
 Para las opciones de despliegue de fuentes/imagen, véase [Despliegue](../deployments/index.md).
 

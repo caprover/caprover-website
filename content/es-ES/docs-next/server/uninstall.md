@@ -6,7 +6,7 @@ slug: /server/uninstall
 
 Antes de eliminar CapRover, exportar a [Copia de seguridad](backup/index.md) y copias de seguridad separadas para los datos de cada aplicación. Registro DNS y dependencias del registro de imágenes. Eliminar CapRover o sus recursos Docker puede hacer que las aplicaciones no estén disponibles.
 
-CapRover no tiene un desinstalación de un solo ordenador que decida con seguridad qué datos de aplicación u otros servicios de Swarm desea conservar. Para jubilarse **dedicados** CapRover host:
+CapRover no tiene un comando único de desinstalación que decida con seguridad qué datos de aplicación u otros servicios de Swarm desea conservar. Para retirar un host **dedicado** a CapRover:
 
 1. Eliminar o mover cada aplicación a través del dashboard, registrando su nombre de servicio Docker real y preservando cualquier volumen o monturas enlazadas que necesite. Confirme que ningún cliente todavía depende de su dominio o puerto publicado.
 2. Corre `docker service ls` e identificar los servicios básicos de CapRover`captain-captain`, `captain-nginx`, `captain-certbot`, y cualquier registro opcional). Retirar **sólo los servicios que pretende retirar** con `docker service rm SERVICE_NAME`. No utilizar `docker service rm $(docker service ls -q)` sobre un Swarm compartido; también eliminaría aplicaciones no relacionadas.

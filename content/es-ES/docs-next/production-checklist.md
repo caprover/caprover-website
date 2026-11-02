@@ -8,7 +8,7 @@ Antes de alojar aplicaciones importantes, compruebe:
 
 - **Acceso**
   - Cambiar la contraseña inicial.
-  - HTTPS enable y **Fuerza HTTPS**.
+  - HTTPS enable y **Force HTTPS**.
   - Restringir el acceso directo al puerto `3000`.
   - Utilice credenciales limitadas para la automatización.
 - **DNS y HTTPS**
