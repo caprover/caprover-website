@@ -179,6 +179,7 @@ function copyDirectory(source, destination) {
 }
 
 const defaultRoot = path.join(contentRoot, defaultLocale.code);
+// These sources remain available as a translated, noindex archive.
 const defaultDocs = path.join(defaultRoot, "docs");
 const defaultDocFiles = relativeFiles(defaultDocs);
 const defaultMarketing = require(path.join(defaultRoot, "marketing.json"));
@@ -186,7 +187,7 @@ const defaultMarketingKeys = Object.keys(defaultMarketing).sort();
 const defaultDocsUi = require(path.join(defaultRoot, "docs-ui.json"));
 const defaultDocsUiKeys = objectKeys(defaultDocsUi, "");
 const sidebarIds = sidebarDocumentIds(
-  require(path.join(root, "docs-site", "sidebars.js")),
+  require(path.join(root, "docs-site", "sidebars-legacy.js")),
 );
 const defaultMarkdownFiles = defaultDocFiles.filter((file) => file.endsWith(".md"));
 const documentIds = new Set(
@@ -258,7 +259,7 @@ for (const locale of enabledLocales) {
       path.join(localeRoot, "docs"),
       path.join(
         localeI18n,
-        "docusaurus-plugin-content-docs",
+        "docusaurus-plugin-content-docs-archive",
         "current",
       ),
     );
@@ -268,7 +269,7 @@ for (const locale of enabledLocales) {
     writeCatalog(
       path.join(
         localeI18n,
-        "docusaurus-plugin-content-docs",
+        "docusaurus-plugin-content-docs-archive",
         "current.json",
       ),
       catalogs.docs,
