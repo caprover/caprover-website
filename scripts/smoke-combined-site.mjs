@@ -105,7 +105,7 @@ try {
       `${locale.code} documentation edit URL is incorrect`,
     );
     const preview = await previewResponse.text();
-    assert.match(preview, /early preview of the next CapRover documentation/);
+    assert.match(preview, /Find what you need:/);
     assert.match(preview, /name=robots content="noindex, nofollow"/);
   }
 

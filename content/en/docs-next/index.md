@@ -4,6 +4,10 @@ title: Start
 slug: /
 ---
 
-This is an early preview of the next CapRover documentation. The navigation shows the planned structure; individual guides will be completed in phases.
+Find what you need:
 
-For complete instructions during the preview, use the [current documentation](/docs/get-started).
+- **New installation:** [Getting Started](./get-started.md)
+- **Apps and settings:** [Applications](./applications/index.md)
+- **Deployments:** [Deployments](./deployments/index.md)
+- **Server maintenance:** [Server Administration](./server/index.md)
+- **Problems:** [Troubleshooting](./troubleshooting/index.md)

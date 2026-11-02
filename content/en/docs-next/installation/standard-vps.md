@@ -4,11 +4,21 @@ title: Standard VPS
 slug: /installation/standard-vps
 ---
 
-Use this path when you are bringing your own Ubuntu virtual server rather than a provider's CapRover image.
+**Requirements:**
 
-1. Create an Ubuntu 24.04 server with a public IPv4 address and SSH access. Choose AMD64 or ARM64 and at least 1 GB of RAM; more memory helps with builds.
-2. In your provider's firewall, permit inbound SSH, `80/tcp`, `443/tcp`, and `3000/tcp`. Permit `443/udp` if you want HTTP/3. Keep Docker Swarm's inter-node ports private unless you are building a cluster.
-3. Point a wildcard DNS A record, such as `*.apps.example.com`, directly to the server's public IP. This covers the dashboard and default app domains.
-4. Follow [Getting Started](../get-started.md) from the Docker installation step through the first HTTPS app. That guide includes the server-side firewall commands, CapRover installation command, dashboard setup, and verification.
+- Ubuntu 24.04, public IPv4, SSH access
+- AMD64 or ARM64, at least 1 GB RAM
+- Root access and DNS control
 
-If Docker is already installed, verify `sudo docker version` and `sudo docker run --rm hello-world` before running the CapRover installer. Avoid a Docker snap installation. Check the [production checklist](../production-checklist.md) before hosting important data.
+**Setup:**
+
+1. Create the server.
+2. Allow SSH, `80/tcp`, `443/tcp`, and `3000/tcp` in the provider firewall. Optional: `443/udp` for HTTP/3.
+3. Point a wildcard A record (for example, `*.apps.example.com`) to the server IP.
+4. Follow [Getting Started](../get-started.md) from Docker installation through the first HTTPS app.
+
+**Notes:**
+
+- Keep Docker Swarm inter-node ports private unless you are creating a cluster.
+- If Docker is installed, verify `sudo docker version` and `sudo docker run --rm hello-world`. Avoid the snap installation.
+- Review the [production checklist](../production-checklist.md) before hosting important data.

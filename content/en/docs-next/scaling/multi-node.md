@@ -4,11 +4,13 @@ title: Set Up a Multi-Node Cluster
 slug: /scaling/multi-node
 ---
 
-CapRover runs on Docker Swarm. Its leader hosts the CapRover control service and core components; workers run app tasks. Prepare images, network, and access **before** using the dashboard's add-node action.
+CapRover uses Docker Swarm. The manager runs CapRover's control services; workers run app tasks.
 
-## 1. Prepare the additional server
+**Before adding a node:** Prepare Docker, private networking, SSH, and a shared registry.
 
-Give the new Ubuntu server a stable IP reachable from the CapRover manager. Install Docker Engine from its official Ubuntu repository on the new server:
+## 1. Prepare server
+
+On the new Ubuntu server, install Docker Engine:
 
 ```bash
 sudo apt update
@@ -30,26 +32,43 @@ sudo docker version
 sudo docker info --format '{{.Swarm.LocalNodeState}}'
 ```
 
-The last command should report `inactive`; leave this server out of any other Swarm for the dashboard join. Use a worker role for an ordinary additional app host; plan manager roles only if you understand Swarm quorum.
+- Use a stable IP reachable from the manager.
+- Docker's Swarm state should be `inactive`.
+- Choose **worker** for ordinary app hosts. Manager roles require quorum planning.
 
-## 2. Configure networking and SSH
+## 2. Networking and SSH
 
-Allow `2377/tcp`, `7946/tcp`, `7946/udp`, and `4789/udp` **between trusted Swarm nodes**. Limit overlay and management ports to node addresses in your provider firewall. Keep SSH accessible from the CapRover manager. Check that the manager can reach the new node's SSH port and that both nodes can reach the selected registry.
+**Between trusted nodes only:**
 
-The dashboard join uses a private SSH key and an SSH user that can run Docker without `sudo` (usually root). Generate a dedicated key, install its public half in that user's `authorized_keys`, and test the connection **from the CapRover manager's network** to the new server before proceeding. For a non-root user, direct Docker access usually requires membership in the `docker` group, which grants root-equivalent host access. Protect the private key; paste it only into CapRover's node-join form.
+- `2377/tcp`: Swarm management
+- `7946/tcp` and `7946/udp`: Node communication
+- `4789/udp`: Overlay networking
 
-CapRover runs UFW allow commands on the new node while joining; review the resulting host rules and retain provider-side restrictions to trusted node addresses.
+**SSH:**
 
-## 3. Configure images before adding the node
+1. Use a dedicated private key and a user with Docker access (usually root).
+2. Add the public key to the new server's `authorized_keys`.
+3. Test SSH **from the manager's network** to the new server.
+4. Give CapRover the private key during node setup.
 
-Set up a [default push registry](../deployments/registries/default-push.md) reachable by every node. **CapRover rejects add-node requests without one.** Redeploy apps whose images were built before the registry was enabled so their images are pushed there. Verify a newly built app image can be pulled from the additional server. Public or private prebuilt images also require appropriate access from each node.
+Docker group membership gives root-equivalent access. Keep both SSH and Swarm ports restricted to trusted hosts. Review UFW rules CapRover adds during joining.
 
-## 4. Add and verify the node
+## 3. Registry
 
-In **Cluster → Nodes**, provide the manager IP as seen by the new server, the new node IP as seen by CapRover, its SSH host/port/user, the private key, and the chosen worker or manager role. Join the node. Confirm it appears healthy in the dashboard and `docker node ls` on the manager.
+1. Configure a [default push registry](../deployments/registries/default-push.md) reachable by **every node**. CapRover requires it before adding nodes.
+2. Redeploy apps built before the registry was enabled to push their images.
+3. Verify the new node can pull a newly built image. Prebuilt private images also need pull access.
 
-Increase the instance count of a **stateless** test app and use `docker service ps SERVICE_NAME` to confirm tasks are scheduled on the intended nodes. Test the app through its domain. If placement does not move as expected, check registry pulls, node availability, and task errors.
+## 4. Add and verify node
 
-## 5. Plan persistent apps separately
+1. In **Cluster → Nodes**, enter manager and worker IPs, SSH host/port/user, private key, and node role.
+2. Join the node. Verify it appears healthy and check `docker node ls` on the manager.
+3. Scale a **stateless** test app and check placement with `docker service ps SERVICE_NAME`.
+4. Test the app domain. If placement fails, inspect registry pulls, node health, and task errors.
 
-A local volume or bind mount stays on its node. CapRover pins persistent apps; a worker joining the cluster does not copy their data. Back up and deliberately migrate data before changing placement. See [Persistent Applications in Clusters](./persistent-apps.md).
+## 5. Persistent apps
+
+- Local volumes and bind mounts stay on their node.
+- CapRover pins persistent apps; joining a node does not copy data.
+- Back up and migrate data before changing placement.
+- See [Persistent Applications in Clusters](./persistent-apps.md).

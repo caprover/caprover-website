@@ -40,7 +40,11 @@ Build an image in GitLab CI, push it to GitLab Container Registry, and deploy th
        - if: '$CI_COMMIT_BRANCH == "main"'
    ```
 
-   Set `CAPROVER_URL`, `CAPROVER_APP`, and `CAPROVER_APP_TOKEN` as GitLab CI/CD variables; protect and mask the token. GitLab supplies the `CI_REGISTRY_*` and commit variables when its container registry is enabled. Replace `main` if your release branch differs.
+- Set `CAPROVER_URL`, `CAPROVER_APP`, and `CAPROVER_APP_TOKEN` as GitLab CI/CD variables; protect and mask the token.
+- GitLab supplies the `CI_REGISTRY_*` and commit variables when its container registry is enabled.
+- Replace `main` if your release branch differs.
 6. Verify the image tag and service health in CapRover after the CI job succeeds. A successful CLI deployment means CapRover accepted the update; the app still needs a healthy container and correct HTTP port.
 
-See [GitLab's Docker-in-Docker runner setup](https://docs.gitlab.com/ci/docker/docker_in_docker/) if the build cannot connect to the Docker daemon. Avoid embedding a dashboard password or a mutable `latest` image tag in the pipeline. A GitLab push webhook is another option when building from source on CapRover is acceptable.
+- See [GitLab's Docker-in-Docker runner setup](https://docs.gitlab.com/ci/docker/docker_in_docker/) if the build cannot connect to the Docker daemon.
+- Avoid embedding a dashboard password or a mutable `latest` image tag in the pipeline.
+- A GitLab push webhook is another option when building from source on CapRover is acceptable.

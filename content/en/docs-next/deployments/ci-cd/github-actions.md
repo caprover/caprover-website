@@ -25,6 +25,9 @@ jobs:
           token: ${{ secrets.CAPROVER_APP_TOKEN }}
 ```
 
-Replace the server URL and app name. The action packages committed files from the checked-out commit; a generated or uncommitted file requires its `tar-file` input. For heavy builds, build and push an image in Actions and pass its name through the action's `image` input. If the image is private, [configure registry credentials on CapRover](../registries/private.md) as well as on the runner.
+- Replace the server URL and app name.
+- The action packages committed files from the checked-out commit; a generated or uncommitted file requires its `tar-file` input.
+- For heavy builds, build and push an image in Actions and pass its name through the action's `image` input.
+- If the image is private, [configure registry credentials on CapRover](../registries/private.md) as well as on the runner.
 
 Review the [action's current inputs and image example](https://github.com/caprover/deploy-from-github) before adapting this workflow. An accepted token deployment can finish asynchronously; verify the resulting CapRover build and app health separately.

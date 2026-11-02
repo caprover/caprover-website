@@ -4,8 +4,23 @@ title: HTTP Settings
 slug: /applications/http-settings
 ---
 
-An HTTP app receives requests through CapRover's NGINX. In the app's **HTTP Settings**, set the **Container HTTP Port** to the port on which the process listens inside its container. This is usually `80` for NGINX images and often another port for frameworks. The app should listen on `0.0.0.0`, not only `127.0.0.1` inside the container.
+## Web apps
 
-The default app hostname is `<app-name>.<root-domain>`. You can add custom domains after their DNS points to the server. Enable HTTPS for each domain only after DNS resolves and ports 80 and 443 reach CapRover; then optionally enable **Force HTTPS**. See [App Domains](../domains/app-domains.md) and [HTTPS](../domains/https.md).
+- Requests reach your app through CapRover's NGINX.
+- Set **Container HTTP Port** to the port your process listens on (often `80` for NGINX).
+- Bind the app to `0.0.0.0` inside the container.
 
-For a database or worker that does not serve web traffic, select **Do not expose as web app**. WebSocket support, HTTP Basic Authentication, and redirect domains are additional HTTP settings. Basic Authentication protects HTTP access to the app; it does not replace your app's own user permissions. A redirect domain sends traffic to another domain, so confirm the destination works before enabling it.
+## Domains and HTTPS
+
+- Default hostname: `<app-name>.<root-domain>`
+- Custom domains: Point DNS to the server, then add the domain.
+- HTTPS: Verify DNS and ports 80/443, enable HTTPS, then enable **Force HTTPS**.
+
+See [App Domains](../domains/app-domains.md) and [HTTPS](../domains/https.md).
+
+## Other options
+
+- **Private services:** Select **Do not expose as web app** for workers and private databases.
+- **WebSocket:** Enable support where required by the app.
+- **HTTP Basic Authentication:** Restricts access to HTTP endpoints. Keep application permissions configured separately.
+- **Redirect domains:** Sends incoming requests to another domain. Verify the destination first.

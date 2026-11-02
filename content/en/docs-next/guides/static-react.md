@@ -4,7 +4,9 @@ title: Deploy a Static / React App
 slug: /guides/static-react
 ---
 
-Build your React or other static site locally and serve the compiled files from a small NGINX image. This keeps build-time dependencies off the CapRover host. The example uses a Vite-style `dist` directory; replace it with `build` if that is what your project produces.
+- Build your React or other static site locally and serve the compiled files from a small NGINX image.
+- This keeps build-time dependencies off the CapRover host.
+- The example uses a Vite-style `dist` directory; replace it with `build` if that is what your project produces.
 
 1. Run `npm ci && npm run build` in your project. Check that `dist/index.html` exists.
 2. Create a `Dockerfile` in the project root:
@@ -25,7 +27,8 @@ Build your React or other static site locally and serve the compiled files from 
    Create the CapRover web app first, and select it when the CLI prompts you. You can instead upload `deploy.tar` from its **Deployment** tab. Set the container HTTP port to `80`.
 5. Visit the app's HTTP address, then enable HTTPS and verify the public domain. Rebuild and repackage the output for each new deployment.
 
-The ordinary CLI Git deployment uses `git archive` and omits uncommitted or Git-ignored files. Since compiled output is commonly ignored, use the tar workflow above instead of `caprover deploy` without `--tarFile`.
+- The ordinary CLI Git deployment uses `git archive` and omits uncommitted or Git-ignored files.
+- Since compiled output is commonly ignored, use the tar workflow above instead of `caprover deploy` without `--tarFile`.
 
 For client-side routes such as `/settings`, put the following in `nginx.conf` at the project root so a browser refresh loads the app:
 

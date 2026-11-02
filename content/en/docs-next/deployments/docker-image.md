@@ -13,6 +13,10 @@ Build and push your image to a registry, or use a public image. Create a CapRove
 }
 ```
 
-The image must be accessible to the CapRover server. For a private registry, add its credentials under [Container Registries](./registries/index.md) before deploying. You can also use `caprover deploy --imageName IMAGE` from the CLI.
+- The image must be accessible to the CapRover server.
+- For a private registry, add its credentials under [Container Registries](./registries/index.md) before deploying.
+- You can also use `caprover deploy --imageName IMAGE` from the CLI.
 
-After deployment, set the app's container HTTP port to the port the image actually listens on, or mark a worker/database app as non-web. Verify the service and app logs. Prefer explicit tags or digests for predictable production rollouts; floating tags may resolve to a different image later.
+- After deployment, set the app's container HTTP port to the port the image actually listens on, or mark a worker/database app as non-web.
+- Verify the service and app logs.
+- Prefer explicit tags or digests for predictable production rollouts; floating tags may resolve to a different image later.

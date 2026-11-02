@@ -4,11 +4,16 @@ title: Complete Web Application Tutorial
 slug: /guides/complete-webapp
 ---
 
-This example combines a public Node web app, a private worker, PostgreSQL, and a persistent upload directory. The web app accepts a small job; the worker marks it processed in PostgreSQL. **The endpoints have no authentication and are for a disposable learning environment.** Use a single-node server with enough memory for PostgreSQL and two Node services; a 1 GB host may be too small for concurrent image builds.
+- This example combines a public Node web app, a private worker, PostgreSQL, and a persistent upload directory.
+- The web app accepts a small job; the worker marks it processed in PostgreSQL.
+- **The endpoints have no authentication and are for a disposable learning environment.** Use a single-node server with enough memory for PostgreSQL and two Node services; a 1 GB host may be too small for concurrent image builds.
 
 ## 1. Create the private database
 
-Complete [Getting Started](../get-started.md), including wildcard DNS and dashboard HTTPS. Create a CapRover app named `demo-db` with **Has Persistent Data** enabled and **Do not expose as web app** selected. Add a named volume `demo-db-data` at `/var/lib/postgresql/data`, the data path for the PostgreSQL 17 image. Set these app environment variables before the first deployment:
+- Complete [Getting Started](../get-started.md), including wildcard DNS and dashboard HTTPS.
+- Create a CapRover app named `demo-db` with **Has Persistent Data** enabled and **Do not expose as web app** selected.
+- Add a named volume `demo-db-data` at `/var/lib/postgresql/data`, the data path for the PostgreSQL 17 image.
+- Set these app environment variables before the first deployment:
 
 | Variable | Value |
 | --- | --- |
@@ -22,7 +27,9 @@ In the **Deployment** tab, deploy this image-only Captain Definition:
 {"schemaVersion":2,"imageName":"postgres:17-alpine"}
 ```
 
-Wait until its service is running and its logs say it is ready for connections. Keep the database port `5432` private; there is no need to publish a host port. Changing `POSTGRES_PASSWORD` after the volume has been initialized does not change the existing database user's password.
+- Wait until its service is running and its logs say it is ready for connections.
+- Keep the database port `5432` private; there is no need to publish a host port.
+- Changing `POSTGRES_PASSWORD` after the volume has been initialized does not change the existing database user's password.
 
 ## 2. Build the web and worker images
 
@@ -155,7 +162,9 @@ tar -cf deploy.tar package.json package-lock.json web.mjs worker.mjs \
 
 ## 3. Create, configure, and deploy the other apps
 
-Create `demo-web` with **Has Persistent Data** enabled. Add a named volume `demo-uploads` at `/data/uploads`, set the container HTTP port to `3000`, and give it the database variables below. Create `demo-worker` as a non-web app with no volume and the same database variables:
+- Create `demo-web` with **Has Persistent Data** enabled.
+- Add a named volume `demo-uploads` at `/data/uploads`, set the container HTTP port to `3000`, and give it the database variables below.
+- Create `demo-worker` as a non-web app with no volume and the same database variables:
 
 | Variable | Value on both apps |
 | --- | --- |
@@ -165,7 +174,11 @@ Create `demo-web` with **Has Persistent Data** enabled. Add a named volume `demo
 | `PGDATABASE` | `demo` |
 | `PGPASSWORD` | The same password set on `demo-db` |
 
-New CapRover apps use their app name as the internal Docker service name; confirm the actual name with `docker service ls` if you are using a legacy app. In `demo-web`'s **Deployment** tab, set the Captain Definition Path to `./captain-definition-web` and upload `deploy.tar`. After the web app starts and creates the `jobs` table, set `demo-worker`'s Captain Definition Path to `./captain-definition-worker` and upload the same archive there. Inspect the build and service logs for both apps. The worker needs no public domain or port mapping.
+- New CapRover apps use their app name as the internal Docker service name; confirm the actual name with `docker service ls` if you are using a legacy app.
+- In `demo-web`'s **Deployment** tab, set the Captain Definition Path to `./captain-definition-web` and upload `deploy.tar`.
+- After the web app starts and creates the `jobs` table, set `demo-worker`'s Captain Definition Path to `./captain-definition-worker` and upload the same archive there.
+- Inspect the build and service logs for both apps.
+- The worker needs no public domain or port mapping.
 
 Visit `http://demo-web.<root-domain>/jobs` and expect `[]`. Then enable HTTPS for `demo-web`, verify its certificate, and make these requests, replacing the example hostname:
 
@@ -176,8 +189,15 @@ curl -X PUT --data 'saved upload' https://demo-web.apps.example.com/upload
 curl https://demo-web.apps.example.com/upload
 ```
 
-Refresh `/jobs` after a few seconds and check that the job has `processed: true`. The upload should say `saved upload`. Redeploy `demo-web` and verify the upload remains; restart `demo-db` and confirm the job is still listed. If either disappears, inspect the configured mount path and the node hosting that service.
+- Refresh `/jobs` after a few seconds and check that the job has `processed: true`.
+- The upload should say `saved upload`.
+- Redeploy `demo-web` and verify the upload remains; restart `demo-db` and confirm the job is still listed.
+- If either disappears, inspect the configured mount path and the node hosting that service.
 
 ## 4. Back up each data source
 
-CapRover's [configuration backup](../server/backup/contents.md) does not contain `demo-db-data` or `demo-uploads`. Set up a PostgreSQL logical backup and a separate copy of the upload volume, store both off the host, and test restoration. See [Back Up Persistent Data](../data-persistence/backup-data.md). This tutorial keeps both stateful apps on a single node; [local volumes do not move with a Swarm task](../data-persistence/volumes.md). A production app also needs authentication, an upload policy, job claiming for multiple workers, and a deployment and database migration strategy.
+- CapRover's [configuration backup](../server/backup/contents.md) does not contain `demo-db-data` or `demo-uploads`.
+- Set up a PostgreSQL logical backup and a separate copy of the upload volume, store both off the host, and test restoration.
+- See [Back Up Persistent Data](../data-persistence/backup-data.md).
+- This tutorial keeps both stateful apps on a single node; [local volumes do not move with a Swarm task](../data-persistence/volumes.md).
+- A production app also needs authentication, an upload policy, job claiming for multiple workers, and a deployment and database migration strategy.

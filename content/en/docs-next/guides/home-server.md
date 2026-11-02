@@ -12,4 +12,6 @@ For a local test, use [Local / Private Network installation](../installation/loc
 4. Complete the root-domain and HTTPS steps in [Getting Started](../get-started.md), and verify the dashboard and a test app from a device **outside** the LAN.
 5. After the dashboard works over HTTPS from outside the LAN, remove the public port 3000 forwarding rule and keep admin access through the dashboard hostname. Back up both CapRover state and application data off-site.
 
-Carrier-grade NAT, blocked inbound ports, or an IPv6-only connection can prevent normal public access and certificate issuance. In those cases use a public VPS, a suitable reverse proxy/tunnel with its own security model, or keep the installation private. Check your router and ISP before troubleshooting CapRover.
+- Carrier-grade NAT, blocked inbound ports, or an IPv6-only connection can prevent normal public access and certificate issuance.
+- In those cases use a public VPS, a suitable reverse proxy/tunnel with its own security model, or keep the installation private.
+- Check your router and ISP before troubleshooting CapRover.

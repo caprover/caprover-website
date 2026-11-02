@@ -17,4 +17,5 @@ The [environment-variable parser](https://github.com/caprover/caprover/blob/mast
 | `CAPTAIN_DOCKER_API` | Override Docker API connection details. |
 | `CAPTAIN_IS_DEBUG`, `IS_CAPTAIN_INSTANCE`, `DEMO_MODE_ADMIN_IP`, `FORCE_ENABLE_PRO`, `BY_PASS_PROXY_CHECK` | Internal, development, or special-purpose controls; use only after reading their source usage. |
 
-The parser treats several boolean flags as true when the variable is a **nonempty string**; passing the literal string `false` does not necessarily turn them off. Supply installation variables to the initial container command, and use [config overrides](./config-override.md) for configurable server constants.
+- The parser treats several boolean flags as true when the variable is a **nonempty string**; passing the literal string `false` does not necessarily turn them off.
+- Supply installation variables to the initial container command, and use [config overrides](./config-override.md) for configurable server constants.

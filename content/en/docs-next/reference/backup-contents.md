@@ -10,4 +10,6 @@ The [backup implementation](https://github.com/caprover/caprover/blob/master/src
 | --- | --- |
 | Saved CapRover configuration, app definitions, certificates, and self hosted registry data under `/captain/data/registry`. | Docker volumes and host bind mounts elsewhere, database files there, and local Docker image store. |
 
-The registry exception can make archives large. The restore code looks for `/captain/backup.tar` at initial installation and expands it into `/captain/restoring`. See [What Is Backed Up](../server/backup/contents.md) and [Restore a Server](../server/backup/restore.md) for the full recovery sequence.
+- The registry exception can make archives large.
+- The restore code looks for `/captain/backup.tar` at initial installation and expands it into `/captain/restoring`.
+- See [What Is Backed Up](../server/backup/contents.md) and [Restore a Server](../server/backup/restore.md) for the full recovery sequence.

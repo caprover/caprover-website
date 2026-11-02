@@ -4,12 +4,36 @@ title: Docker Volumes
 slug: /data-persistence/volumes
 ---
 
-Use a Docker named volume when CapRover should manage the storage location. In the app configuration, add a persistent directory, choose the volume option, supply a volume name, and set the **container path** where the app writes its data. For PostgreSQL, a typical container data path is `/var/lib/postgresql/data`, but confirm it against the image you deploy.
+## Configure a volume
 
-Current CapRover versions use the volume name you enter. Volumes retained from pre-1.15 installs may have a `captain--` prefix; run `docker volume ls` to identify the actual name before a backup or migration. The local volume's data lives on its Docker node and is not automatically copied to other Swarm nodes.
+1. Open the app's persistent directories settings.
+2. Choose **Docker volume** and enter a volume name.
+3. Set the **container path** used by your app.
+4. Save, write test data, redeploy, and verify that the data remains.
 
-Verify persistence by writing representative data, redeploying the app, and reading the data again. A CapRover configuration backup does not contain the volume's files. Use [Back Up Persistent Data](./backup-data.md) for a separate backup and restore plan.
+**Example:** PostgreSQL commonly uses `/var/lib/postgresql/data`. Check your image's documentation.
 
-## After deleting a stateful app
+**Important:**
 
-Deleting its CapRover app does not mean you have backed up or intentionally discarded its Docker volume. On the node where the app ran, inspect `docker volume ls`, `docker volume inspect VOLUME_NAME`, and `docker ps -a --filter volume=VOLUME_NAME`. Confirm no other service uses that exact volume, take an off-host backup if the data matters, and check the name against your app's recorded mount. When you have decided to destroy that volume, run `docker volume rm VOLUME_NAME` on the node that owns it. An in-use volume cannot be removed. Avoid `docker volume prune` on a shared host because it can remove other unused volumes you meant to keep.
+- Current CapRover versions use the volume name you enter.
+- Volumes from before 1.15 may start with `captain--`. Check with `docker volume ls`.
+- Local volumes remain on their Docker node. They are not replicated across Swarm nodes.
+- CapRover configuration backups exclude volume contents. See [Back Up Persistent Data](./backup-data.md).
+
+## After deleting an app
+
+Docker volumes may remain after app deletion.
+
+1. On the app's node, inspect the volume:
+
+   ```bash
+   docker volume ls
+   docker volume inspect VOLUME_NAME
+   docker ps -a --filter volume=VOLUME_NAME
+   ```
+
+2. Confirm the volume belongs to the deleted app and is unused elsewhere.
+3. Back up its data off-host if needed.
+4. To permanently delete it, run `docker volume rm VOLUME_NAME` on that node.
+
+An in-use volume cannot be removed. Avoid `docker volume prune` on shared hosts: it can remove unrelated unused volumes.

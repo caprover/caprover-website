@@ -4,7 +4,8 @@ title: Deploy Databases
 slug: /data-persistence/deploy-databases
 ---
 
-A database on CapRover is an app that needs storage, credentials, and a network path for its clients. The [One-Click Apps](../one-click-apps/index.md) catalog can create a supported database service, or you can deploy a database image yourself.
+- A database on CapRover is an app that needs storage, credentials, and a network path for its clients.
+- The [One-Click Apps](../one-click-apps/index.md) catalog can create a supported database service, or you can deploy a database image yourself.
 
 1. Choose the database and image version. Create its app with **Has Persistent Data** enabled and leave **Do not expose as web app** selected; databases generally do not serve HTTP through NGINX.
 2. Configure the database's required username, password, and database name through its app settings or One-Click installer. Use unique credentials and keep them out of source control.

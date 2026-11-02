@@ -4,8 +4,28 @@ title: HTTPS
 slug: /domains/https
 ---
 
-CapRover uses Certbot to request certificates for the dashboard and app domains. Before clicking **Enable HTTPS**, make sure the exact hostname resolves to the intended server, external port `80/tcp` reaches CapRover for the normal HTTP challenge, and `443/tcp` is open for HTTPS traffic.
+CapRover uses Certbot for dashboard and app certificates.
 
-For the dashboard, set the root domain and confirm `http://captain.<root-domain>` works. Enable dashboard HTTPS in settings, visit the HTTPS URL, verify its certificate, then enable **Force HTTPS**. For an app, test the app domain over HTTP first, enable HTTPS in its HTTP settings, verify the certificate, and only then force HTTPS.
+**Before enabling HTTPS:**
 
-Wildcard DNS makes names resolve; it does not create one wildcard certificate. Each hostname still needs appropriate certificate handling. For a reverse proxy, ensure the ACME validation request reaches CapRover or deliberately configure a supported alternative challenge. See [Advanced Certbot / ACME](./advanced-certbot.md).
+- **DNS:** The hostname resolves to your server.
+- **Port 80:** Reachable from the internet for certificate validation.
+- **Port 443:** Open for HTTPS traffic.
+
+## Dashboard
+
+1. Set your root domain.
+2. Verify `http://captain.<root-domain>` works.
+3. Enable **HTTPS** in dashboard settings.
+4. Check the certificate, then enable **Force HTTPS**.
+
+## Applications
+
+1. Verify the app works over HTTP.
+2. Enable **HTTPS** in the app's HTTP settings.
+3. Check the certificate, then enable **Force HTTPS**.
+
+**Notes:**
+
+- Wildcard DNS covers subdomains; certificates are issued for the appropriate hostnames.
+- Behind another reverse proxy, forward ACME validation requests to CapRover or configure an alternative challenge. See [Advanced Certbot / ACME](./advanced-certbot.md).

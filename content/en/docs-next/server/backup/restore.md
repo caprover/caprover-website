@@ -4,10 +4,25 @@ title: Restore a Server
 slug: /server/backup/restore
 ---
 
-Restore to a fresh server with Docker installed, enough disk for the archive and its extracted data, and SSH access. Permit inbound `80/tcp`, `443/tcp`, and `3000/tcp` for initial setup in both provider and host firewalls; keep SSH open. For a cluster, also prepare the trusted [Swarm and registry ports](../../reference/ports.md) between nodes. **Do not run the usual CapRover installation container before placing the archive**: the installer detects `/captain/backup.tar` at startup. First read [What Is Backed Up](./contents.md) and obtain separate backups for databases and persistent volumes.
+## Before restoring
 
-1. Copy the selected archive to the new host and name it `/captain/backup.tar` (for example, `ssh root@NEW_IP 'mkdir -p /captain'` then `scp backup.tar root@NEW_IP:/captain/backup.tar`).
-2. On the new host, run this installation command **after** copying the archive:
+- **Server:** Fresh host with Docker, SSH, and enough disk for the archive and extracted data
+- **Firewall:** SSH, `80/tcp`, `443/tcp`, and `3000/tcp` open during setup
+- **Clusters:** Prepare trusted [Swarm and registry ports](../../reference/ports.md)
+- **Data:** Read [What Is Backed Up](./contents.md) and obtain separate database and volume backups
+
+**Important:** Place the archive at `/captain/backup.tar` **before** running the CapRover installer. The installer detects it at startup.
+
+## Restore
+
+1. Copy the archive to the new server:
+
+   ```bash
+   ssh root@NEW_IP 'mkdir -p /captain'
+   scp backup.tar root@NEW_IP:/captain/backup.tar
+   ```
+
+2. Run CapRover on the new server:
 
    ```bash
    sudo docker run -p 80:80 -p 443:443 -p 3000:3000 \
@@ -17,9 +32,11 @@ Restore to a fresh server with Docker installed, enough disk for the archive and
      caprover/caprover
    ```
 
-   If Docker is not yet installed, complete the Docker installation and verification section of [Getting Started](../../get-started.md) first.
-3. Watch the installer output. For a cluster, follow [Multi-Node Restore](./multi-node-restore.md) when the first run requests node mapping.
-4. Point the original root domain and wildcard DNS at the new server when ready for traffic. If this is a clone that will keep the old server online, plan a distinct root domain first.
-5. Restore application data to its volumes and bind mounts using each application's recovery procedure. Redeploy apps if their images are unavailable. Check the dashboard, HTTPS, services, and application data before moving traffic fully.
+   Need Docker? Follow [Getting Started](../../get-started.md) first.
 
-Keep the source server and its backups available until validation completes. Do not assume restored configuration means an application has its data or image.
+3. Watch the installer logs. For clusters, follow [Multi-Node Restore](./multi-node-restore.md) when prompted for node mapping.
+4. Point the original wildcard DNS to the new server when ready. For a clone running alongside the original, choose a different root domain.
+5. Restore database files, volumes, and bind mounts separately. Redeploy apps if their images are missing.
+6. Verify dashboard access, HTTPS, services, and application data before fully switching traffic.
+
+Keep the original server and backups until verification succeeds.

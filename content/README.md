@@ -101,6 +101,21 @@ code, links, anchors, Markdown structure, and translation fluency manually.
 
 Locale-specific terminology guidance may be recorded under `glossaries/`.
 
+## Documentation writing style
+
+Optimize documentation for fast scanning:
+
+- Use short, descriptive headings: **Ports and firewall** instead of **Open the required ports**.
+- Put prerequisites in brief bullet lists. Name the requirement, then the value.
+- Use numbered steps for procedures and bullets for options, requirements, and caveats.
+- Put commands, configuration examples, and tables near the action they support.
+- Explain unusual ports, flags, and risks inline. Skip explanations of self-evident steps.
+- Prefer imperative sentences: **Set the root domain** instead of **You can set the root domain**.
+- Keep bullets focused on one idea. Split dense bullets into steps, tables, or smaller bullets.
+- Preserve safety warnings, prerequisites, exact commands, and product-specific behavior.
+- Link to advanced background information rather than repeating it in a basic task guide.
+- Review rendered pages for excessive bullets and awkward fragmenting.
+
 ## Translation guidelines
 
 - Write natural technical prose for software engineers. Prefer terminology commonly used by engineers in the target language over literal translation.

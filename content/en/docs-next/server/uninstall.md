@@ -13,4 +13,5 @@ CapRover does not have a one-command uninstall that safely decides which applica
 3. After confirming you have a tested off-host backup, review `/captain` and the output of `docker volume ls`. Remove only the directories and volumes whose data you have explicitly chosen to destroy. A volume can still contain valuable data even if no container is running.
 4. Remove DNS records, forwarded ports, and firewall rules no longer needed. Leave the Swarm with `docker swarm leave --force` **only if** this host is being retired from that Swarm and no other service depends on it. Verify from another node first in a cluster.
 
-Keep the backup and registry images until the replacement system has passed its recovery checks. Avoid a blanket `docker system prune --all`: it can remove images needed by other apps or rollbacks.
+- Keep the backup and registry images until the replacement system has passed its recovery checks.
+- Avoid a blanket `docker system prune --all`: it can remove images needed by other apps or rollbacks.

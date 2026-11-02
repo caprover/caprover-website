@@ -4,7 +4,8 @@ title: Troubleshooting Deployments
 slug: /deployments/troubleshooting
 ---
 
-Identify the stage that failed: upload or Git fetch, image build or pull, Docker service update, container start, or public HTTP routing. The app's deployment log covers the early stages; the app/service logs and `docker service ps SERVICE_NAME` help after the image is built.
+- Identify the stage that failed: upload or Git fetch, image build or pull, Docker service update, container start, or public HTTP routing.
+- The app's deployment log covers the early stages; the app/service logs and `docker service ps SERVICE_NAME` help after the image is built.
 
 - **Git fetch fails:** Check the repository address, branch, deploy key or limited credentials, and network access from the server.
 - **Build fails:** Inspect the first error, Dockerfile and Captain Definition path, and available memory and disk.
