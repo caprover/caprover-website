@@ -216,4 +216,4 @@ Después de implementar estos cambios, confirme + envíelos a su repositorio y o
 
 ### ¿Necesitas ayuda?
 
-Se encuentra disponible soporte comercial y comunitario. Visite la página [Ayuda y soporte](/docs/support "Help and Support") para obtener más detalles.
+Se encuentra disponible soporte comercial y comunitario. Visite la página [Ayuda y soporte](/docs-legacy/support "Help and Support") para obtener más detalles.
