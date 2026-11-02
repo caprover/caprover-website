@@ -88,7 +88,7 @@ docker system df
 - Eliminar contraseñas, fichas y datos privados de los registros antes de compartirlos.
 - See [Solución de problemas](index.md) encontrar un guía por síntoma.
 
-Para una salida que implica varios servicios del sistema o un fracaso host poco claro, [recopilar un informe completo del servidor](diagnostics.md) en el gerente.
+Para una salida que implica varios servicios del sistema o un fracaso host poco claro, [recopilar un informe completo del servidor](diagnostics.md#recoger-un-informe-completo-del-servidor) en el nodo administrador.
 
 ### Dashboard no disponible en el puerto 3000
 
