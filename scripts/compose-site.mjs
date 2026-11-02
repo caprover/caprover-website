@@ -43,6 +43,28 @@ function docsOutputRoot(locale) {
     : path.join(docsSite, localeOutputRoot(locale), "docs");
 }
 
+function archiveOutputRoot(locale) {
+  return path.join(docsSite, localeOutputRoot(locale), "docs-legacy");
+}
+
+const consolidation = JSON.parse(
+  await readFile(path.join(root, "DOCS_CONSOLIDATION_MAP.json"), "utf8"),
+);
+const canonicalDocs = new Set(consolidation.sections.flatMap((section) =>
+  section.pages.map((page) => "/docs/" + page.target.replace(/\\/index$/, "")),
+));
+const originalDocs = consolidation.legacyEnglishRoutes;
+const preservedTranslations = {
+  "es-ES": {
+    notice: "Esta documentación está en inglés.",
+    label: "Documentación anterior en español",
+  },
+  "zh-CN": {
+    notice: "此文档目前为英文。",
+    label: "查看存档中文版文档",
+  },
+};
+
 function combinedMarketingRouteFile(locale, route) {
   return path.join(combinedSite, localeOutputRoot(locale), route, "index.html");
 }
@@ -136,9 +158,10 @@ async function writeRedirect(file, destination, language) {
 
 await Promise.all([
   requirePath(path.join(docsSite, "docs/get-started.html")),
-  ...locales.map((locale) =>
+  ...locales.flatMap((locale) => [
     requirePath(path.join(docsOutputRoot(locale), "get-started.html")),
-  ),
+    requirePath(path.join(archiveOutputRoot(locale), "get-started.html")),
+  ]),
   requirePath(path.join(docsSite, "img/logo.png")),
   requirePath(path.join(docsSite, "CNAME")),
   requirePath(cnameSource),
@@ -157,11 +180,17 @@ await Promise.all([
 const originalCname = await readFile(cnameSource);
 assert.equal(originalCname.toString().trim(), "caprover.com");
 
-const [docsBefore, imagesBefore] = await Promise.all([
+const [docsBefore, archivesBefore, imagesBefore] = await Promise.all([
   Promise.all(
     locales.map(async (locale) => ({
       locale,
       files: await snapshot(docsOutputRoot(locale)),
+    })),
+  ),
+  Promise.all(
+    locales.map(async (locale) => ({
+      locale,
+      files: await snapshot(archiveOutputRoot(locale)),
     })),
   ),
   snapshot(path.join(docsSite, "img")),
@@ -201,38 +230,57 @@ for (const locale of locales.filter((entry) => !entry.default)) {
   });
 }
 
-// Redirect superseded preview URLs to their consolidated pages.
-const consolidation = JSON.parse(
-  await readFile(path.join(root, "DOCS_CONSOLIDATION_MAP.json"), "utf8"),
-);
+// Every public preview URL, including the 48 canonical topics, now points to /docs.
+const previewRoutes = [
+  ...consolidation.previewRoutes,
+  ...consolidation.addedAfterOriginalConsolidation.map((id) => ({
+    from: "/docs-next/" + id,
+    to: "/docs-next/" + id,
+    decision: "keep",
+  })),
+];
 for (const locale of locales) {
-  for (const route of consolidation.previewRoutes) {
-    if (route.decision === "keep") continue;
+  const prefix = locale.pathPrefix;
+  const outputRoot = path.join(combinedSite, localeOutputRoot(locale));
+  const previewDir = path.join(outputRoot, "docs-next");
+
+  for (const route of previewRoutes) {
     const relative = route.from.slice("/docs-next/".length).replace(/\/$/, "");
-    const destination = locale.pathPrefix + route.to;
-    const sourceAnchor = relative
+    if (!relative) continue;
+    const destination = prefix + route.to.replace(/^\/docs-next/, "/docs");
+    const anchor = route.decision === "merge" && relative !== "installation/play-with-docker"
       ? "#source-" + relative.replace(/[^a-z0-9]+/gi, "-")
       : "";
-    const finalDestination = destination +
-      (route.decision === "merge" ? sourceAnchor : "");
-    const directory = path.join(combinedSite, localeOutputRoot(locale), "docs-next");
-    const stem = path.join(directory, relative);
-    await writeRedirect(stem + ".html", finalDestination, locale.code);
-    await writeRedirect(path.join(stem, "index.html"), finalDestination, locale.code);
+    const stem = path.join(previewDir, relative);
+    await writeRedirect(stem + ".html", destination + anchor, locale.code);
+    await writeRedirect(path.join(stem, "index.html"), destination + anchor, locale.code);
   }
-}
+  await writeRedirect(path.join(previewDir, "index.html"), prefix + "/docs/get-started", locale.code);
 
-for (const { locale, files } of docsBefore) {
-  for (const relative of files.keys()) {
-    if (!relative.endsWith(".html")) continue;
-    const documentPath = relative.slice(0, -".html".length);
-    const canonical = `${locale.pathPrefix}/docs/${documentPath}`;
-    await writeRedirect(
-      path.join(combinedSite, "docs", locale.code, relative),
-      canonical,
-      locale.code,
-    );
+  // Old English page names lead to the consolidated task; translated old
+  // pages lead to the preserved, noindex translation archive.
+  for (const route of originalDocs) {
+    const oldPath = route.legacy;
+    const localPath = prefix + oldPath;
+    const newPath = locale.default
+      ? route.newCanonical
+      : prefix + "/docs-legacy/" + oldPath.slice("/docs/".length);
+    if (!canonicalDocs.has(oldPath)) {
+      const stem = path.join(outputRoot, oldPath.slice(1));
+      await writeRedirect(stem + ".html", newPath, locale.code);
+      await writeRedirect(path.join(stem, "index.html"), newPath, locale.code);
+    }
+
+    // Preserve the old /docs/<locale>/name.html shape too.
+    const alias = path.join(combinedSite, "docs", locale.code, oldPath.slice("/docs/".length));
+    await writeRedirect(alias + ".html", newPath, locale.code);
+    await writeRedirect(path.join(alias, "index.html"), newPath, locale.code);
   }
+  await writeRedirect(
+    path.join(outputRoot, "docs-legacy", "index.html"),
+    prefix + "/docs-legacy/get-started",
+    locale.code,
+  );
 }
 
 const [docsSitemaps, marketingSitemap] = await Promise.all([
@@ -258,7 +306,8 @@ assert.equal(
   "Marketing sitemap is missing localized URLs",
 );
 const docsUrls = docsSitemaps.flatMap(
-  (sitemap) => sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [],
+  (sitemap) => (sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [])
+    .filter((url) => !/\/docs-legacy(?:\/|<)|\/docs-next(?:\/|<)/.test(url)),
 );
 const allUrls = [...docsUrls, ...marketingUrls];
 const sitemapLocations = allUrls.flatMap((entry) =>
@@ -304,12 +353,14 @@ const [imagesAfter, combinedCname, marketingHtml, docsHtmlByLocale] = await Prom
 ]);
 
 await Promise.all(
-  docsBefore.map(({ locale, files }) =>
+  [...docsBefore, ...archivesBefore].map(({ locale, files }, index) =>
     assertSnapshotPreserved(
       files,
-      locale.default
-        ? path.join(combinedSite, "docs")
-        : path.join(combinedSite, localeOutputRoot(locale), "docs"),
+      path.join(
+        combinedSite,
+        localeOutputRoot(locale),
+        index < docsBefore.length ? "docs" : "docs-legacy",
+      ),
       `${locale.code} documentation output`,
     ),
   ),
@@ -367,6 +418,13 @@ await Promise.all(
 );
 
 const localizedHtmlFiles = new Set([
+  ...archivesBefore.flatMap(({ locale, files }) =>
+    [...files.keys()]
+      .filter((relative) => relative.endsWith(".html"))
+      .map((relative) => path.join(
+        combinedSite, localeOutputRoot(locale), "docs-legacy", relative,
+      )),
+  ),
   ...docsBefore.flatMap(({ locale, files }) =>
     [...files.keys()]
       .filter((relative) => relative.endsWith(".html"))
@@ -382,6 +440,23 @@ const localizedHtmlFiles = new Set([
     marketingRoutes.map((route) => combinedMarketingRouteFile(locale, route)),
   ),
 ]);
+
+// The 48 updated docs currently have English source text in all locales.
+// Preserve the earlier translations at stable archive URLs and label the fallback.
+for (const { locale, files } of docsBefore) {
+  const translation = preservedTranslations[locale.code];
+  if (!translation) continue;
+  const banner = '<aside role="note" style="padding:12px 16px;margin:0 0 16px;border:1px solid var(--ifm-color-emphasis-300);border-radius:6px">' +
+    translation.notice + ' <a href="' + locale.pathPrefix +
+    '/docs-legacy/get-started">' + translation.label + '</a></aside>';
+  for (const relative of files.keys()) {
+    if (!relative.endsWith(".html")) continue;
+    const file = path.join(combinedSite, localeOutputRoot(locale), "docs", relative);
+    const html = await readFile(file, "utf8");
+    assert(/<main\b[^>]*>/i.test(html), "Expected <main> in localized docs page: " + file);
+    await writeFile(file, html.replace(/<main\b[^>]*>/i, (tag) => tag + banner));
+  }
+}
 
 await Promise.all([
   writeFile(
