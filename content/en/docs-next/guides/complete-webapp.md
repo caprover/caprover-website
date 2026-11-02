@@ -196,8 +196,32 @@ curl https://demo-web.apps.example.com/upload
 
 ## 4. Back up each data source
 
-- CapRover's [configuration backup](../server/backup/contents.md) does not contain `demo-db-data` or `demo-uploads`.
+- CapRover's [configuration backup](../server/backup/index.md#source-server-backup-contents) does not contain `demo-db-data` or `demo-uploads`.
 - Set up a PostgreSQL logical backup and a separate copy of the upload volume, store both off the host, and test restoration.
 - See [Back Up Persistent Data](../data-persistence/backup-data.md).
-- This tutorial keeps both stateful apps on a single node; [local volumes do not move with a Swarm task](../data-persistence/volumes.md).
+- This tutorial keeps both stateful apps on a single node; [local volumes do not move with a Swarm task](../data-persistence/index.md#source-data-persistence-volumes).
 - A production app also needs authentication, an upload policy, job claiming for multiple workers, and a deployment and database migration strategy.
+
+## Sample Applications {source-guides-sample-apps}
+
+The [CapRover sample applications](https://github.com/caprover/caprover/tree/master/captain-sample-apps) demonstrate Dockerfiles and Captain Definitions for several frameworks.
+
+1. Pick a sample and inspect its `captain-definition`, Dockerfile, exposed container port, and required environment variables.
+2. Create a disposable app in the dashboard.
+3. Choose one deployment method: package the sample's deployment files into a tar archive and upload it from the app's **Deployment** tab, **or** commit the sample to a Git branch and deploy it with the [CLI](../deployments/cli.md). The CLI's normal Git mode excludes uncommitted and ignored files.
+4. Watch build logs. If the container listens on a port other than CapRover's default, set the app's container HTTP port accordingly. Check the app URL over HTTP and then HTTPS.
+
+Treat sample credentials and sample data as examples only. Before production use, set real secrets, add persistence where needed, and plan [backups](../server/backup/index.md).
+
+## Additional Recipes {source-guides-recipes}
+
+Use these focused recipes for common follow-up tasks:
+
+- [Deploy an existing Docker image](../deployments/index.md#source-deployments-docker-image), then set the container HTTP port and verify the public URL.
+- [Connect two apps privately](../domains/firewall.md#source-domains-internal-networking) without publishing a database port.
+- [Attach a custom domain](../domains/index.md#source-domains-custom-domains) and enable [HTTPS](../domains/index.md#source-domains-https).
+- [Add a persistent directory](../data-persistence/index.md#source-applications-persistent-directories) before writing files.
+- [Scale an app](../scaling/index.md#source-scaling-scale-app) after checking session and storage behavior.
+- [Export and restore server configuration](../server/backup/index.md) alongside a separate [data backup](../data-persistence/backup-data.md).
+
+For full examples, see [Complete Web Application](complete-webapp.md) and [Static / React App](static-react.md).

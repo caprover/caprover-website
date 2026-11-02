@@ -20,4 +20,4 @@ slug: /deployments/git
 - A webhook push makes CapRover fetch the configured branch and build the app.
 - Treat the webhook URL as a secret.
 - Repository URL formats, SSH keys, and webhook screens depend on your provider.
-- For reproducible builds away from the server, use [CI/CD](./ci-cd/index.md) to deploy an image.
+- For reproducible builds away from the server, use [CI/CD](ci-cd/index.md) to deploy an image.

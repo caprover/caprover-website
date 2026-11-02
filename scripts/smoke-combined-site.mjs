@@ -105,8 +105,15 @@ try {
       `${locale.code} documentation edit URL is incorrect`,
     );
     const preview = await previewResponse.text();
-    assert.match(preview, /Find what you need:/);
-    assert.match(preview, /name=robots content="noindex, nofollow"/);
+    assert(preview.includes(locale.pathPrefix + "/docs-next/get-started"),
+      "Preview root must redirect to Getting Started");
+    assert.match(preview, /name="robots" content="noindex, follow"/);
+    const oldPage = await fetch(origin + locale.pathPrefix +
+      "/docs-next/installation/digitalocean");
+    assert.equal(oldPage.status, 200);
+    const oldHtml = await oldPage.text();
+    assert(oldHtml.includes(locale.pathPrefix +
+      "/docs-next/installation#source-installation-digitalocean"));
   }
 
   const homepageResponse = await fetch(`${origin}/`);

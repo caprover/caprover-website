@@ -36,4 +36,4 @@ Before hosting important applications, check:
   - Keep a recoverable backup.
   - Configure health checks for your availability needs.
 
-Start with [Getting Started](./get-started.md). For ongoing maintenance, see [Server Administration](./server/index.md).
+Start with [Getting Started](get-started.md). For ongoing maintenance, see [Server Administration](server/index.md).

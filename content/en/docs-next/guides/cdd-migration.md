@@ -15,4 +15,4 @@ CaptainDuckDuck is the predecessor of CapRover. Plan this migration as a mainten
 - Inspect each `captain-definition`: CapRover uses schema version 2, and Dockerfile `COPY` paths may need updating from the historical `./src/` prefix.
 - Configure container HTTP ports through the app settings.
 - Check the dashboard, app routes, persistent data, and HTTPS before ending the maintenance window.
-- For a move to new hardware, also follow [Move CapRover](../server/move-server.md) for the current-server side of the procedure.
+- For a move to new hardware, also follow [Move CapRover](../server/backup/restore.md#source-server-move-server) for the current-server side of the procedure.

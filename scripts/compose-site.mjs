@@ -127,7 +127,7 @@ async function writeRedirect(file, destination, language) {
   </head>
   <body>
     <p><a href="${destination}">Continue to the documentation</a></p>
-    <script>window.location.replace(${encodedDestination} + window.location.search + window.location.hash);</script>
+    <script>const target = new URL(${encodedDestination}, window.location.origin); window.location.replace(target.pathname + window.location.search + (window.location.hash || target.hash));</script>
   </body>
 </html>
 `,
@@ -199,6 +199,27 @@ for (const locale of locales.filter((entry) => !entry.default)) {
   await cp(path.join(marketingSite, outputRoot), path.join(combinedSite, outputRoot), {
     recursive: true,
   });
+}
+
+// Redirect superseded preview URLs to their consolidated pages.
+const consolidation = JSON.parse(
+  await readFile(path.join(root, "DOCS_CONSOLIDATION_MAP.json"), "utf8"),
+);
+for (const locale of locales) {
+  for (const route of consolidation.previewRoutes) {
+    if (route.decision === "keep") continue;
+    const relative = route.from.slice("/docs-next/".length).replace(/\/$/, "");
+    const destination = locale.pathPrefix + route.to;
+    const sourceAnchor = relative
+      ? "#source-" + relative.replace(/[^a-z0-9]+/gi, "-")
+      : "";
+    const finalDestination = destination +
+      (route.decision === "merge" ? sourceAnchor : "");
+    const directory = path.join(combinedSite, localeOutputRoot(locale), "docs-next");
+    const stem = path.join(directory, relative);
+    await writeRedirect(stem + ".html", finalDestination, locale.code);
+    await writeRedirect(path.join(stem, "index.html"), finalDestination, locale.code);
+  }
 }
 
 for (const { locale, files } of docsBefore) {
