@@ -4,46 +4,46 @@ title: Comandos CLI
 slug: /reference/cli
 ---
 
-Instalar el [CapRover CLI](https://github.com/caprover/caprover-cli) en su computadora:
+Instala la [CLI de CapRover](https://github.com/caprover/caprover-cli) en tu equipo:
 
 ```bash
 npm install -g caprover
 ```
 
-| Comando | Propósito |
+| Comando | Función |
 | --- | --- |
-| `caprover serversetup` | Iniciar servidor y dominio raíz |
-| `caprover login` | Guardar un servidor |
-| `caprover list` | Lista de servidores guardados |
-| `caprover deploy` | Implementar una rama, archivo o imagen |
-| `caprover logout` | Eliminar un login guardado |
-| `caprover api` | Llame a la API |
+| `caprover serversetup` | Inicializar servidor y dominio raíz |
+| `caprover login` | Guardar un inicio de sesión |
+| `caprover list` | Listar servidores guardados |
+| `caprover deploy` | Desplegar rama, archivo o imagen |
+| `caprover logout` | Cerrar una sesión guardada |
+| `caprover api` | Invocar la API |
 
 ## Opciones de despliegue
 
-**Fuente:**
+**Origen (elige uno):**
 
-- `-b, --branch`: rama de Git Cometida
-- `-t, --tarFile`: Archivo local, incluyendo archivos generados
-- `-i, --imageName`: Imagen de Docker existente
+- `-b, --branch`: rama Git commiteada.
+- `-t, --tarFile`: archivo local, incluidos archivos generados.
+- `-i, --imageName`: imagen Docker existente.
 
 **Destino y autenticación:**
 
-- `-u, --caproverUrl`: URL del servidor
-- `-a, --caproverApp`: Nombre de la aplicación
-- `--appToken` o `CAPROVER_APP_TOKEN`: Token de despliegue de la aplicación
-- `-d, --default`: Reutilizar opciones ahorradas
+- `-u, --caproverUrl`: URL del servidor.
+- `-a, --caproverApp`: nombre de la aplicación.
+- `--appToken` o `CAPROVER_APP_TOKEN`: token de despliegue limitado a la aplicación.
+- `-d, --default`: reutilizar los valores guardados.
 
-Opciones adicionales: `-n, --caproverName`, `-p, --caproverPassword`, y `-c, --configFile`.
+Otras opciones: `-n, --caproverName`, `-p, --caproverPassword` y `-c, --configFile`.
 
-**Ejemplo: Implementar un archivo**
+**Ejemplo: desplegar un archivo**
 
 ```bash
 caprover deploy -u https://captain.apps.example.com -a my-app \
   --appToken "$CAPROVER_APP_TOKEN" -t ./deploy.tar
 ```
 
-- Las implementaciones de la rama de Git excluyen archivos no comprometidos e ignorados.
-- Check `caprover deploy --help` para su versión instalada.
-- Protege las credenciales del servidor y mantenlas fuera de los archivos comprometidos.
-- Consulta [CLI Deployment](../deployments/cli.md) para el paseo.
+- Los despliegues desde Git excluyen archivos sin commit o ignorados.
+- Consulta `caprover deploy --help` en tu versión instalada.
+- Protege las credenciales y evita incluirlas en el repositorio.
+- Consulta [Despliegue con CLI](../deployments/cli.md) para ver el procedimiento completo.

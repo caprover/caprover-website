@@ -1,36 +1,36 @@
 ---
 id: index
-title: 安装选项
+title: 安装方式
 slug: /installation
 ---
 
-对于标准的 Ubuntu 服务器,请使用 [自动安装器](../get-started.md)。关于一步一步的Docker和CapRover命令,见 [手动设置](manual.md).
+标准 Ubuntu 服务器建议使用[自动安装脚本](../get-started.md)。如果希望手动执行 Docker 和 CapRover 的安装命令，请参考[手动安装](manual.md)。
 
 <span id="source-installation-standard-vps"></span>
 
-## 标准VPS
+## 标准 VPS
 
-- Ubuntu 24.04,AMD64/ARM64,公共IPv4,root访问,至少1GB RAM.
-- 允许SSH, `80/tcp`, `443/tcp`,以及 `3000/tcp` 在服务商防火墙。
-- 设置通配符 A 记录(例如, `*.apps.example.com`)到服务器的公开IP.
-- 避免通过snap安装Docker. 对于已有的 Docker 引擎, 请验证 `sudo docker version` 和 `sudo docker run --rm hello-world`.
+- Ubuntu 24.04、AMD64 或 ARM64、公网 IPv4、root 权限，以及至少 1 GB 内存。
+- 在云服务商防火墙中放行 SSH、`80/tcp`、`443/tcp` 和 `3000/tcp`。
+- 将通配符 A 记录（例如 `*.apps.example.com`）指向服务器公网 IP。
+- 避免安装 snap 版本的 Docker。若已有 Docker Engine，使用 `sudo docker version` 和 `sudo docker run --rm hello-world` 验证。
 
 <span id="source-installation-digitalocean"></span>
 
 ## DigitalOcean
 
-- **新鲜的 Ubuntu 滴滴 :** 跟着 [开始](../get-started.md).
-- **[CapRover 市场镜像](https://marketplace.digitalocean.com/apps/caprover):** Docker和CapRover被预先安装. 继续 [DNS和dashboard设置](../get-started.md#dns).
-- **新的DigitalOcean客户:** [移交注册](https://m.do.co/c/6410aa23d3f3) 任何现有的促销信贷。 报价不尽相同。
+- **全新的 Ubuntu Droplet：**按照[快速入门](../get-started.md)安装。
+- **[CapRover Marketplace 镜像](https://marketplace.digitalocean.com/apps/caprover)：**Docker 和 CapRover 已经预装，继续完成 [DNS 与 dashboard 配置](../get-started.md#dns)。
+- **DigitalOcean 新用户：**可以通过[推荐注册链接](https://m.do.co/c/6410aa23d3f3)查看目前是否有可用推广赠金，具体优惠可能变化。
 
-相同的防火墙,内存和通配符DNS要求适用于两个选项.
+这两种安装方式都需要满足相同的防火墙、内存和通配符 DNS 要求。
 
 <span id="source-installation-openstack"></span>
 
 ## OpenStack
 
-- 创建 Ubuntu 24.04 实例, 包含 公共/浮动 IPv4、 SSH 密钥、 外部连接和至少 1 GB RAM 。
-- 允许SSH, `80/tcp`, `443/tcp`,以及 `3000/tcp` 安全集群和客家防火墙
-- 将通配卡DNS指向公共IP. 继续 [开始](../get-started.md).
+- 创建 Ubuntu 24.04 实例，配置公网或 floating IPv4、SSH key、出站网络和至少 1 GB 内存。
+- 在 security group 和系统防火墙中放行 SSH、`80/tcp`、`443/tcp` 和 `3000/tcp`。
+- 将通配符 DNS 指向公网 IP，然后按照[快速入门](../get-started.md)继续配置。
 
-**旧热模板 :** 这个 [已有模板](https://github.com/caprover/caprover/blob/master/dev-scripts/openstack/single-instance.yml) 包含硬码值和问题网络/安全默认值。 在使用前审查并改正.
+**旧版 Heat 模板：**现有[模板](https://github.com/caprover/caprover/blob/master/dev-scripts/openstack/single-instance.yml)包含硬编码值和不安全的网络配置。使用前请仔细检查并修正。

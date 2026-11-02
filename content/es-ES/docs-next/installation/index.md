@@ -4,33 +4,33 @@ title: Opciones de instalación
 slug: /installation
 ---
 
-Para un servidor Ubuntu estándar, utilice el [instalador automatizado](../get-started.md). Para las órdenes paso a paso Docker y CapRover, vea [Configuración manual](manual.md).
+Para un servidor Ubuntu estándar, usa el [instalador automático](../get-started.md). Si prefieres ejecutar los comandos de Docker y CapRover, consulta la [instalación manual](manual.md).
 
 <span id="source-installation-standard-vps"></span>
 
 ## VPS estándar
 
-- Ubuntu 24.04, AMD64/ARM64, public IPv4, root access, at least 1 GB RAM.
-- Permite SSH, `80/tcp`, `443/tcp`, y `3000/tcp` en los cortafuegos del proveedor.
-- Establecer un comodín Un registro (por ejemplo, `*.apps.example.com`) a la IP pública del servidor.
-- Evite Docker instalado a través de snap. Para un motor Docker existente, verifique `sudo docker version` y `sudo docker run --rm hello-world`.
+- Ubuntu 24.04, AMD64 o ARM64, IPv4 pública, acceso root y al menos 1 GB de RAM.
+- Abre SSH, `80/tcp`, `443/tcp` y `3000/tcp` en el firewall del proveedor.
+- Apunta un registro A wildcard (por ejemplo, `*.apps.example.com`) a la IP pública del servidor.
+- Evita instalar Docker mediante snap. Si ya tienes Docker Engine, compruébalo con `sudo docker version` y `sudo docker run --rm hello-world`.
 
 <span id="source-installation-digitalocean"></span>
 
 ## DigitalOcean
 
-- **Fresh Ubuntu Droplet:** Seguir [Comienzo](../get-started.md).
-- **[Imagen del Mercado de CapRover](https://marketplace.digitalocean.com/apps/caprover):** Docker y CapRover están preinstalados. Continuar con [Configuración DNS y dashboard](../get-started.md#dns).
-- **Nuevos clientes de DigitalOcean:** [Registro de referencia](https://m.do.co/c/6410aa23d3f3) para cualquier crédito promocional disponible actualmente. Las ofertas varían.
+- **Droplet Ubuntu nuevo:** sigue [Primeros pasos](../get-started.md).
+- **[Imagen CapRover de Marketplace](https://marketplace.digitalocean.com/apps/caprover):** Docker y CapRover vienen instalados. Continúa con [DNS y configuración del dashboard](../get-started.md#dns).
+- **Nuevos clientes DigitalOcean:** consulta este [enlace de registro](https://m.do.co/c/6410aa23d3f3) para comprobar si hay créditos promocionales disponibles. Las ofertas pueden variar.
 
-Los mismos requisitos de firewall, RAM y wildcard DNS se aplican a ambas opciones.
+El firewall, la RAM y el DNS wildcard tienen los mismos requisitos en ambos casos.
 
 <span id="source-installation-openstack"></span>
 
 ## OpenStack
 
-- Crear una instancia Ubuntu 24.04 con IPv4, SSH key, conectividad externa y por lo menos 1 GB de RAM.
-- Permite SSH, `80/tcp`, `443/tcp`, y `3000/tcp` en grupos de seguridad y el cortafuegos invitado.
-- Point wildcard DNS al público IP. Continuar con [Comienzo](../get-started.md).
+- Crea una instancia Ubuntu 24.04 con IPv4 pública o floating IP, clave SSH, conexión de salida y al menos 1 GB de RAM.
+- Permite SSH, `80/tcp`, `443/tcp` y `3000/tcp` en los security groups y en el firewall del sistema.
+- Apunta el DNS wildcard a la IP pública y sigue [Primeros pasos](../get-started.md).
 
-**Plantilla de calor más vieja:** El [plantilla existente](https://github.com/caprover/caprover/blob/master/dev-scripts/openstack/single-instance.yml) contiene valores codificados y defectos de red/seguridad problemáticos. Revise y corríjalo antes de usarlo.
+**Plantilla Heat antigua:** la [plantilla existente](https://github.com/caprover/caprover/blob/master/dev-scripts/openstack/single-instance.yml) contiene valores hardcodeados y configuraciones de red y seguridad problemáticas. Revísala y corrígela antes de usarla.
