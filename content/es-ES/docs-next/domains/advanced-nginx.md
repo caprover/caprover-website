@@ -1,27 +1,27 @@
 ---
 id: advanced-nginx
-title: Configuración avanzada NGINX
+title: Configuración avanzada de NGINX
 slug: /domains/advanced-nginx
 ---
 
-- CapRover le permite editar su configuración base NGINX y plantilla de enrutamiento de panel a través de la configuración del servidor, y la plantilla NGINX de una aplicación a través de la configuración HTTP de esa aplicación.
-- Preferir cambios específicos de aplicaciones cuando sólo una aplicación necesita una regla diferente de límite o de enrutamiento.
+- Desde los ajustes del servidor, CapRover permite editar la configuración base de NGINX y la plantilla de rutas del dashboard. Los ajustes HTTP de cada aplicación incluyen su propia plantilla de NGINX.
+- Si solo una aplicación necesita cambiar un timeout, límite o regla de enrutamiento, utiliza preferiblemente su plantilla.
 
-- Archivos generados bajo `/captain/generated/nginx` mostrar la salida efectiva, pero CapRover puede sobreescribirlos.
-- Guardar cambios a través de la plantilla de dashboard relevante.
-- El directorio host `/captain/data/nginx-shared` se monta en el contenedor NGINX como `/nginx-shared` para apoyar archivos como un certificado personalizado.
+- Los archivos generados en `/captain/generated/nginx` muestran la configuración efectiva, pero CapRover puede sobrescribirlos.
+- Guarda los cambios mediante la plantilla correspondiente del dashboard.
+- El directorio del host `/captain/data/nginx-shared` se monta como `/nginx-shared` dentro del contenedor NGINX, por ejemplo para certificados personalizados.
 
-- Para una plantilla predeterminada aplicada a aplicaciones recién creadas, CapRover puede leer `/captain/data/server-block-conf-override.ejs`.
-- Comience de la coincidencia [plantilla de origen](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs), mantener una copia de seguridad, y reiniciar el servicio CapRover después de escribir la anulación.
-- Prueba el config resultante con una aplicación desechable antes de aplicarla ampliamente.
-- Una plantilla global inválida puede afectar el dashboard y múltiples aplicaciones.
+- Para aplicar una plantilla predeterminada a las aplicaciones nuevas, CapRover puede leer `/captain/data/server-block-conf-override.ejs`.
+- Parte de la [plantilla del código fuente](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs) correspondiente, conserva una copia y reinicia el servicio CapRover después de crear el override.
+- Pruébalo en una aplicación descartable antes de aplicarlo a todo el servidor.
+- Una plantilla global inválida puede afectar al dashboard y a varias aplicaciones.
 
-## Recuperar de una configuración que rompió el dashboard
+## Recuperar el dashboard tras romper su configuración
 
-- Si el panel no puede cargar debido a un ajuste personalizado NGINX, primera reserva `/captain/data/config-captain.json` y cualquier `/captain/data/server-block-conf-override.ejs` archivo.
-- Si este último causó el fracaso, moverlo fuera de esa ubicación antes de reiniciar CapRover.
-- De lo contrario, lo siguiente **despeja la base personalizada, dashboard y la configuración NGINX de cada aplicación**; mantener la copia de seguridad para que pueda restaurar los cambios individuales más adelante.
-- Corre en el nodo manager con `jq` instalado:
+- Si una configuración NGINX personalizada impide cargar el dashboard, guarda primero una copia de `/captain/data/config-captain.json` y de cualquier archivo `/captain/data/server-block-conf-override.ejs`.
+- Si el problema lo provocó ese último archivo, muévelo fuera de esa ruta antes de reiniciar CapRover.
+- Si el problema continúa, el siguiente procedimiento **borra la configuración NGINX personalizada de base, del dashboard y de todas las aplicaciones**. Conserva el backup para restaurar los cambios necesarios después.
+- Ejecútalo en el nodo manager con `jq` instalado:
 
 ```bash
 sudo cp -a /captain/data/config-captain.json /captain/data/config-captain.json.before-nginx-reset
@@ -33,35 +33,35 @@ sudo install -m 600 /captain/data/config-captain.json.new /captain/data/config-c
 sudo docker service scale captain-captain=1
 ```
 
-- Espera. `docker service ps captain-captain` y `docker service ps captain-nginx` para mostrar tareas saludables.
-- Si esto no resuelve el problema, inspeccionar sus registros y restaurar su copia de seguridad antes de intentar otro cambio.
+- Espera a que `docker service ps captain-captain` y `docker service ps captain-nginx` muestren tareas sanas.
+- Si no se resuelve, revisa los logs y restaura el backup antes de intentar otro cambio.
 
 <span id="source-domains-nginx-routing"></span>
 
-## NGINX Routing
+## Enrutamiento de NGINX
 
-- Para solicitudes web públicas, DNS señala un nombre de host en el servidor CapRover.
-- El servicio NGINX de CapRover recibe tráfico en 80 o 443, selecciona el dashboard o dominio de la aplicación correspondiente, y envía la solicitud al servicio Docker de la aplicación en su puerto HTTP de contenedor configurado.
+- En peticiones web públicas, DNS apunta el hostname al servidor CapRover.
+- NGINX recibe el tráfico por los puertos 80 o 443, selecciona el dominio de la aplicación o del dashboard y reenvía la petición al servicio Docker de la aplicación por su puerto HTTP interno configurado.
 
-- Una respuesta de 502 después de un exitoso despliegue generalmente significa que NGINX no pudo llegar a un contenedor saludable en ese puerto.
-- Confirmar la aplicación escucha en `0.0.0.0`, el puerto HTTP contenedor es correcto, y la tarea de servicio Docker está funcionando.
-- Un fallo DNS ocurre antes de esta ruta de enrutamiento, mientras que un fallo de certificado puede ocurrir antes de que el tráfico HTTPS llegue a la aplicación.
+- Un error 502 después de un despliegue correcto suele indicar que NGINX no puede acceder a un contenedor sano por ese puerto.
+- Comprueba que la aplicación escucha en `0.0.0.0`, que el puerto HTTP del contenedor es correcto y que la tarea Docker está ejecutándose.
+- Un error de DNS ocurre antes de este enrutamiento; un fallo de certificados puede producirse antes de que HTTPS llegue a la aplicación.
 
-Los cambios NGINX específicos de la aplicación pertenecen a la aplicación [Custom NGINX](advanced-nginx.md) Ajustes. Las plantillas globales afectan más rutas; uso [Configuración avanzada NGINX](advanced-nginx.md) cuidadosamente.
+Los cambios NGINX específicos de una aplicación se configuran en sus ajustes de [Custom NGINX](advanced-nginx.md). Las plantillas globales afectan a más rutas; utiliza la [configuración avanzada de NGINX](advanced-nginx.md) con precaución.
 
 <span id="source-applications-advanced-custom-nginx"></span>
 
 ## Custom NGINX
 
-- CapRover genera configuración NGINX para cada aplicación web.
-- Utilice la aplicación **Ajustes HTTP** para editar su plantilla NGINX cuando usted necesita un tiempo de salida, límite de carga, u otro comportamiento NGINX que los controles estándar no expongan.
+- CapRover genera la configuración NGINX para cada aplicación web.
+- En **HTTP Settings**, puedes editar la plantilla NGINX para configurar un timeout, límite de upload o comportamiento que no ofrecen las opciones habituales.
 
-1. Guardar una copia de la plantilla actual antes de editar.
-2. Cambie la directiva más pequeña y guárdala en el dashboard.
-3. Verifique que el dashboard acepta la configuración NGINX, luego pruebe todos los dominios adjuntos a la aplicación sobre HTTP y HTTPS. Una plantilla de aplicación compartida afecta esos dominios juntos.
+1. Guarda una copia de la plantilla actual antes de modificarla.
+2. Cambia únicamente las directivas necesarias y guarda desde el dashboard.
+3. Comprueba que la configuración es válida y prueba todos los dominios de esa aplicación por HTTP y HTTPS. La plantilla compartida afecta a todos esos dominios.
 
 - Una configuración inválida puede interrumpir el enrutamiento.
-- CapRover valida e intenta revertir una configuración de aplicación inválida, pero mantenga la última plantilla de trabajo para recuperarse rápidamente.
-- Archivos generados bajo `/captain/generated/nginx` son la salida, no la fuente para editar; CapRover puede sobreescribirlos.
+- CapRover valida e intenta revertir las configuraciones inválidas, pero conserva la última plantilla funcional para una recuperación rápida.
+- Los archivos de `/captain/generated/nginx` son salida generada, no la fuente para editar; CapRover puede sobrescribirlos.
 
-Para los cambios en las plantillas globales NGINX o dashboard, vea [Configuración avanzada NGINX](advanced-nginx.md). Use ese alcance más amplio sólo cuando la plantilla específica de la aplicación no pueda satisfacer sus necesidades.
+Para cambios globales o del dashboard, consulta [Configuración avanzada de NGINX](advanced-nginx.md). Utiliza ese alcance solo si la plantilla de aplicación no cubre tus necesidades.

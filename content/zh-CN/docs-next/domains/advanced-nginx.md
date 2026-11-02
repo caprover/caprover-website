@@ -4,24 +4,24 @@ title: 高级 NGINX 配置
 slug: /domains/advanced-nginx
 ---
 
-- CapRover允许您通过服务器设置编辑其基础NGINX配置和dashboard路由模板,并通过该应用程序的HTTP设置编辑一个app的NGINX模板.
-- 当只有一个应用需要不同的限制或路由规则时,更倾向于应用特定修改.
+- CapRover 允许在服务器设置中修改 NGINX 基础配置和 dashboard 路由模板，也可以从应用的 HTTP 设置修改对应应用的 NGINX 模板。
+- 如果只有单个应用需要调整超时、大小限制或路由规则，优先使用应用级配置。
 
-- 正在生成文件 `/captain/generated/nginx` 显示有效的输出, 但 CapRover 可以覆盖它们 。
-- 通过相关的dashboard模板保存更改.
-- 主机目录 `/captain/data/nginx-shared` 装在 NGINX 容器中作为 `/nginx-shared` 用于自定义证书等辅助文件。
+- `/captain/generated/nginx` 下的文件反映了最终生成的配置，但 CapRover 可能覆盖它们。
+- 请通过 dashboard 中对应的模板保存修改。
+- 宿主机目录 `/captain/data/nginx-shared` 会以 `/nginx-shared` 路径挂载到 NGINX 容器中，可用于共享自定义证书等文件。
 
-- CapRover 可改为: `/captain/data/server-block-conf-override.ejs`.
-- 从匹配开始 [源模板](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs),保留备份,并在写入覆盖后重新启动 CapRover 服务。
-- 在广泛应用之前,先用一次性应用程序测试结果的配置 。
-- 一个无效的全球模板可以影响dashboard和多个应用.
+- 如果希望对新创建的应用使用默认模板，可以让 CapRover 从 `/captain/data/server-block-conf-override.ejs` 加载覆盖文件。
+- 以对应的[源码模板](https://github.com/caprover/caprover/blob/master/template/server-block-conf.ejs)为基础，先备份，写入 override 后重启 CapRover service。
+- 在测试应用上验证配置后再广泛使用。
+- 无效的全局模板可能影响 dashboard 和多个应用。
 
-## 从损坏dashboard的配置回收
+## NGINX 配置错误导致 dashboard 无法打开时
 
-- 如果dashboard由于自定义的 NGINX 设置而无法加载,则首先保存 `/captain/data/config-captain.json` 和任何 `/captain/data/server-block-conf-override.ejs` 文档。
-- 如果后者造成故障,在重启CapRover之前将其移出该位置.
-- 否则,以下 **清除自定义基础、dashboard和每个应用程序的 NGINX 配置**;保留备份,以便日后恢复单个更改。
-- 运行管理器 `jq` 已安装 :
+- 如果自定义 NGINX 配置导致 dashboard 无法访问，先备份 `/captain/data/config-captain.json` 和任何 `/captain/data/server-block-conf-override.ejs` 文件。
+- 如果是后一个文件导致故障，先将它移出该目录，再重启 CapRover。
+- 如果仍无法恢复，下面的操作会**清除 NGINX 基础配置、dashboard 配置及所有应用的自定义 NGINX 配置**。务必保留原始备份，以便之后逐项恢复。
+- 在已安装 `jq` 的 manager 节点执行：
 
 ```bash
 sudo cp -a /captain/data/config-captain.json /captain/data/config-captain.json.before-nginx-reset
@@ -33,35 +33,35 @@ sudo install -m 600 /captain/data/config-captain.json.new /captain/data/config-c
 sudo docker service scale captain-captain=1
 ```
 
-- 等着 `docker service ps captain-captain` 和 `docker service ps captain-nginx` 以显示健康的任务。
-- 如果无法解决问题, 请检查他们的日志, 在尝试其他更改之前恢复您的备份 。
+- 等待 `docker service ps captain-captain` 和 `docker service ps captain-nginx` 显示正常运行的任务。
+- 如果问题仍然存在，请查看日志并恢复备份，避免继续修改扩大影响。
 
 <span id="source-domains-nginx-routing"></span>
 
-## NGINX 路线
+## NGINX 请求路由
 
-- 对于公共网络请求,DNS在CapRover服务器上指向一个主机名.
-- CapRover的NGINX服务在80或443上接收流量,选择匹配的dashboard或应用域,并将请求转发给该应用在其配置的容器HTTP端口的Docker服务.
+- 对公网 Web 请求，DNS 首先将 hostname 指向 CapRover 服务器。
+- CapRover NGINX 接收 80 或 443 端口的流量，根据 hostname 选择 dashboard 或应用域名，再转发到应用 Docker service 的 HTTP 容器端口。
 
-- 在成功部署后,502项反应通常意味着NGINX无法到达该端口的健康容器。
-- 确认应用程序监听 `0.0.0.0`,容器 HTTP 端口正确,Docker服务任务正在运行中.
-- 在此路由路径之前发生DNS故障,而在HTTPS流量到达应用之前可能发生证书故障.
+- 部署成功后仍出现 502，通常意味着 NGINX 无法通过对应端口访问健康的容器。
+- 确认应用监听 `0.0.0.0`、**Container HTTP Port** 设置正确，且 Docker service 任务正常运行。
+- DNS 故障发生在请求到达该路由之前；证书错误可能在 HTTPS 流量到达应用前出现。
 
-App特定 NGINX 更改属于该应用程序 [自定义 NGINX](advanced-nginx.md) 设置。 全局模板影响更多路径; 使用 [高级 NGINX 配置](advanced-nginx.md) 小心点
+应用专用 NGINX 配置应在其 [Custom NGINX](advanced-nginx.md) 设置中调整。全局模板影响更多路由，请谨慎使用[高级 NGINX 配置](advanced-nginx.md)。
 
 <span id="source-applications-advanced-custom-nginx"></span>
 
-## 自定义 NGINX
+## Custom NGINX
 
-- CapRover为每个Web 应用生成NGINX配置.
-- 使用应用程序 **HTTP 设置** 以编辑其NGINX模板,当您需要特定路由的超时,上传限制,或者标准控制不暴露的其他NGINX行为.
+- CapRover 为每个 Web 应用生成 NGINX 配置。
+- 如果需要针对某个应用调整 timeout、上传大小限制等高级行为，可以在 **HTTP Settings** 中编辑对应模板。
 
-1. 在编辑前保存当前模板的副本 。
-2. 更改最小的相关指令并将其保存在dashboard上.
-3. 验证dashboard接受NGINX配置,然后在HTTP和HTTPS上测试应用程序上所附的每一个域. 共享应用模板共同影响这些域.
+1. 编辑前先备份当前模板。
+2. 只修改必要的指令，并通过 dashboard 保存。
+3. 验证 NGINX 配置已被接受，然后测试应用关联的全部域名是否都能通过 HTTP 和 HTTPS 访问。同一应用的模板会影响其所有域名。
 
-- 无效的配置可以中断路由.
-- CapRover验证并试图还原无效的应用程序配置,但保留最后一个工作模板以快速恢复.
-- 正在生成文件 `/captain/generated/nginx` 是输出,而不是编辑的源; CapRover 可以覆盖它们。
+- 错误的配置可能导致请求路由中断。
+- CapRover 会尝试校验并回退无效配置，但仍应保存最后一份可用的模板。
+- `/captain/generated/nginx` 下的文件是生成结果，CapRover 可能随时覆盖，不应直接编辑。
 
-关于全球NGINX或dashboard模板的更改,见 [高级 NGINX 配置](advanced-nginx.md)。只有当特定应用程序模板无法满足您的需要时,才使用这一更广泛的范围。
+如果必须修改全局 NGINX 或 dashboard 模板，参阅[高级 NGINX 配置](advanced-nginx.md)。只有应用级模板无法满足需求时，才使用全局配置。
