@@ -1,16 +1,16 @@
 ---
 id: index
-title: Despliegue
+title: Despliegues
 slug: /deployments
 ---
 
 <span id="source-deployments-dashboard"></span>
 
-## Despliegue desde el panel
+## Desplegar desde el dashboard
 
-- Crear una aplicación en **Aplicaciones**, abrir su **Despliegue** tab, y elegir la entrada apropiada para su proyecto.
-- Para desplegar un archivo, empaque el proyecto con su `captain-definition` archivo en la ruta esperada y subir el archivo tar.
-- El panel también acepta una Captain Definition pegada en su entrada de texto cuando no se necesitan archivos fuente.
+- Crea una aplicación desde **Apps**, abre la pestaña **Deployment** y elige el método adecuado para tu proyecto.
+- Para desplegar un archivo, empaqueta el proyecto con su `captain-definition` en la ruta configurada y sube el archivo tar.
+- Si no necesitas archivos de código fuente, puedes pegar una Captain Definition directamente en el campo de texto del dashboard.
 
 Por ejemplo, pega esta definición para desplegar una imagen pública existente:
 
@@ -18,15 +18,15 @@ Por ejemplo, pega esta definición para desplegar una imagen pública existente:
 {"schemaVersion":2,"imageName":"nginx:stable-alpine"}
 ```
 
-- Comience el despliegue, observe el estado de build o tire, a continuación, verifique el puerto HTTP contenedor de la aplicación y su dominio predeterminado.
-- Para una imagen privada, configure primero las credenciales del registro.
+- Inicia el despliegue, sigue el estado del build o pull de la imagen y comprueba el puerto HTTP del contenedor y el dominio predeterminado.
+- Si la imagen es privada, configura primero las credenciales del registry.
 - Consulta [Desplegar una imagen Docker](index.md).
 
 <span id="source-deployments-docker-image"></span>
 
 ## Desplegar una imagen Docker
 
-Construir y empujar su imagen a un registro, o utilizar una imagen pública. Crear una aplicación CapRover, luego pegar una definición solo de imagen en su **Despliegue** token:
+Compila tu imagen y haz push a un registry, o utiliza una imagen pública. Crea una aplicación de CapRover y pega una definición que use la imagen en su pestaña **Deployment**:
 
 ```json
 {
@@ -35,10 +35,10 @@ Construir y empujar su imagen a un registro, o utilizar una imagen pública. Cre
 }
 ```
 
-- La imagen debe ser accesible al servidor CapRover.
-- Para un registro privado, añádase sus credenciales en [Container Registries](registries/index.md) antes de desplegarse.
-- También puede utilizar `caprover deploy --imageName IMAGE` del CLI.
+- El servidor CapRover debe poder acceder a la imagen.
+- Si utilizas un registry privado, añade sus credenciales en [Container Registries](registries/index.md) antes de desplegar.
+- También puedes ejecutar `caprover deploy --imageName IMAGE` desde la CLI.
 
-- Después del despliegue, establezca el puerto HTTP de contenedores de la aplicación al puerto la imagen realmente escucha, o marque una aplicación de trabajo / base de datos como no-web.
-- Verifique los registros de servicio y aplicaciones.
-- Preferir etiquetas explícitas o digieres para rollos de producción predecibles; las etiquetas flotantes pueden resolver a otra imagen más adelante.
+- Después del despliegue, configura el puerto HTTP del contenedor para que coincida con el puerto real en el que escucha la imagen. Para un worker o base de datos, marca la aplicación como servicio no web.
+- Comprueba el servicio y los logs de la aplicación.
+- Para despliegues reproducibles en producción, utiliza tags explícitos o digests. Un tag flotante puede apuntar a una imagen diferente en el futuro.

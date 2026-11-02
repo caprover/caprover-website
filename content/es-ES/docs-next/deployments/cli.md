@@ -1,27 +1,27 @@
 ---
 id: cli
-title: Despliegue con el CLI
+title: Desplegar con la CLI
 slug: /deployments/cli
 ---
 
-- Instala el CLI CapRover en tu máquina de desarrollo con `npm install -g caprover`.
-- Establecer el servidor primero, crear una aplicación en su dashboard, y registrarse en la URL de panel HTTPS:
+- Instala la CLI de CapRover en tu equipo con `npm install -g caprover`.
+- Configura el servidor, crea una aplicación desde el dashboard e inicia sesión con la URL HTTPS del dashboard:
 
 ```bash
 caprover login
 ```
 
-En la raíz de un proyecto Git, añadir un `captain-definition` archivo. Para un repositorio Dockerfile:
+En la raíz de un proyecto Git, añade el archivo `captain-definition`. Si tu repositorio contiene un Dockerfile:
 
 ```json
 {"schemaVersion":2,"dockerfilePath":"./Dockerfile"}
 ```
 
-- Corre `caprover deploy` desde ese directorio del proyecto y elegir el servidor, aplicación y rama guardado en los avisos.
-- El CLI sube el contenido de Git comprometido, inicia una compilación e informa el progreso.
-- Los archivos no comprometidos y Git ignorados no están incluidos.
-- Después de la primera carrera exitosa, `caprover deploy -d` reutiliza las opciones guardadas para ese directorio.
+- Ejecuta `caprover deploy` desde el directorio del proyecto. Selecciona el servidor, la aplicación y la rama cuando lo solicite la CLI.
+- La CLI sube el contenido de Git que ya está commiteado, ejecuta el build y muestra el progreso.
+- No se incluyen archivos sin commit ni archivos ignorados por Git.
+- Después de un despliegue correcto, puedes usar `caprover deploy -d` para reutilizar las opciones guardadas en ese directorio.
 
-- Para una imagen preconstruida, use `caprover deploy --imageName IMAGE` y proporcionar la información de la aplicación/servidor cuando se solicite.
-- Mantener las credenciales fuera de la historia de los proyectiles y los registros CI; [tokens de despliegue](ci-cd/index.md) son mejores para la automatización de aplicaciones.
-- Ver todo [Referencia del comando CLI](../reference/cli.md).
+- Para una imagen ya compilada, ejecuta `caprover deploy --imageName IMAGE` y proporciona la aplicación y el servidor cuando se solicite.
+- Evita exponer credenciales en el historial del shell o en logs de CI; usa [tokens de despliegue](ci-cd/index.md) para automatizaciones limitadas a una aplicación.
+- Consulta la [referencia completa de comandos CLI](../reference/cli.md).

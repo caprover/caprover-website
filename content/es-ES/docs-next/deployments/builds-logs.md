@@ -1,30 +1,30 @@
 ---
 id: builds-logs
-title: Builds y logs
+title: Builds y logs de compilación
 slug: /deployments/builds-logs
 ---
 
-- CapRover construye fuente en el servidor a menos que proporcione una imagen preconstruida.
-- Vea la salida de despliegue de la aplicación para el primer comando de build fallar.
-- Una build puede fallar de archivos perdidos, un mal archivo Docker, dependencias no disponibles, o RAM o disco insuficiente.
+- CapRover compila el código fuente en el servidor, salvo que proporciones una imagen ya construida.
+- Si falla un build, busca en los logs el primer comando que devuelve un error.
+- Los errores pueden deberse a archivos faltantes, un Dockerfile incorrecto, dependencias inaccesibles o falta de RAM o disco.
 
-- Una vez que la imagen construye, Docker actualiza el servicio de aplicación.
-- Revise los registros de servicio o aplicación por separado si el contenedor sale, falla un cheque de salud, o devuelve un 502.
-- El puerto HTTP de contenedor configurado debe coincidir con el puerto de escucha del proceso.
+- Una vez compilada la imagen, Docker actualiza el servicio de la aplicación.
+- Si el contenedor termina, falla un health check o devuelve un 502, revisa por separado los logs del servicio y de la aplicación.
+- El puerto HTTP configurado del contenedor debe coincidir con el puerto en el que escucha el proceso.
 
-- Para builds exigentes, utilice CI para construir y empujar la imagen fuera del servidor CapRover, luego desplegar esa imagen.
-- Para un despliegue estancado, recoger el registro de build, estado de servicio y registros recientes de aplicaciones antes de seguir [Despliegues de solución de problemas](../troubleshooting/index.md).
+- Para builds pesados, utiliza CI para construir y publicar la imagen fuera del servidor CapRover y luego despliega esa imagen.
+- Si un despliegue queda bloqueado, recopila el log del build fallido, el estado del servicio y los últimos logs de la aplicación antes de seguir la guía de [Solución de problemas de despliegue](../troubleshooting/index.md).
 
 <span id="source-deployments-versions-rollback"></span>
 
-## Versiones y Rollback
+## Versiones y rollback
 
-- CapRover registra versiones de imagen para una aplicación.
-- Desde el historial de despliegue de la aplicación, elija una versión previamente desplegada para volver a rodar su imagen.
-- Compruebe el resultado y la salud de la aplicación antes de reanudar el tráfico.
+- CapRover guarda el historial de versiones de imágenes de cada aplicación.
+- Desde el historial de despliegues, elige una versión anterior para hacer rollback de la imagen.
+- Comprueba el resultado y la salud de la aplicación antes de reanudar el tráfico.
 
-- Rollback hace **no** restaurar variables de entorno anteriores, dominios, contenidos de volumen o esquema de bases de datos.
-- Si la versión más reciente cambió los datos persistentes, confirme que la imagen anterior sigue siendo compatible antes de volver a rodar.
-- Mantenga suficiente historia de la imagen o acceso al registro para recuperar la versión que pretende restaurar.
+- Un rollback **no** restaura variables de entorno anteriores, dominios, datos de volúmenes ni el esquema de la base de datos.
+- Si la nueva versión modificó datos persistentes, comprueba la compatibilidad de la imagen anterior antes de hacer rollback.
+- Conserva suficientes imágenes en el historial o acceso al registry para recuperar la versión a la que quieras volver.
 
-Los controles de salud y los ajustes de actualización afectan cómo se comportan las solicitudes durante una puesta en marcha. Consulta [Health checks y despliegues de tiempo cero](../scaling/index.md) para la planificación de disponibilidad.
+Los health checks y la configuración de actualización determinan cómo se atienden las peticiones durante el despliegue. Consulta [Health checks y despliegues sin downtime](../scaling/index.md) para planificar la disponibilidad.

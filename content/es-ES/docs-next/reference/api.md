@@ -1,15 +1,15 @@
 ---
 id: api
-title: HTTP API / caprover-api
+title: API HTTP / caprover-api
 slug: /reference/api
 ---
 
-- CapRover sirve terminales HTTP versionados bajo `/api/v2`.
-- Iniciar sesión con `POST /api/v2/login` y JSON `{"password":"..."}` más `x-namespace: captain` Cabeza.
-- Las rutas de usuario autenticadas utilizan la respuesta `data.token` como `x-captain-auth`, también con `x-namespace: captain`.
-- El envoltorio de respuesta incluye un estado, mensaje y datos opcionales; verifique el estado en lugar de tratar cada respuesta HTTP como una operación exitosa.
+- CapRover expone endpoints HTTP versionados bajo `/api/v2`.
+- Inicia sesión con `POST /api/v2/login`, un JSON `{"password":"..."}` y el header `x-namespace: captain`.
+- Las rutas autenticadas utilizan el `data.token` de la respuesta como valor de `x-captain-auth`, manteniendo también `x-namespace: captain`.
+- La respuesta incluye estado, mensaje y datos opcionales. Comprueba el estado de la operación en lugar de asumir que cualquier respuesta HTTP implica éxito.
 
-Por ejemplo, después de exportar `CAPROVER_URL` y `CAPROVER_PASSWORD` en su shell:
+Por ejemplo, después de exportar `CAPROVER_URL` y `CAPROVER_PASSWORD` en el shell:
 
 ```bash
 token=$(curl --fail --silent --show-error "$CAPROVER_URL/api/v2/login" \
@@ -19,11 +19,11 @@ curl --fail --silent --show-error "$CAPROVER_URL/api/v2/user/system/info/" \
   -H 'x-namespace: captain' -H "x-captain-auth: $token"
 ```
 
-- Use HTTPS y evite imprimir el token o contraseña.
-- Los principales grupos de rutas son `/user/apps/`, `/user/projects/`, `/user/oneclick/`, `/user/registries/`, `/user/system/`, y `/user/pro/`.
-- Sus órganos de solicitud y sus respuestas varían según el punto final; [código de la ruta del servidor](https://github.com/caprover/caprover/tree/master/src/routes) es el inventario autorizado para la versión implementada.
+- Utiliza HTTPS y evita mostrar el token o la contraseña en los logs.
+- Los principales grupos de rutas son `/user/apps/`, `/user/projects/`, `/user/oneclick/`, `/user/registries/`, `/user/system/` y `/user/pro/`.
+- Los cuerpos y respuestas varían según el endpoint. El [código de rutas del servidor](https://github.com/caprover/caprover/tree/master/src/routes) es la referencia para la versión instalada.
 
-- El [caprover-api cliente](https://github.com/caprover/caprover-api) envuelve operaciones comunes.
-- Preferir tokens de despliegue de aplicaciones para empleos de CI que solo implementen una aplicación.
-- Evite dependiendo de un campo de respuesta indocumentado sin revisar la versión CapRover de destino.
-- Ver el [ejemplo de automatización de respaldo](../server/backup/index.md) para una secuencia de solicitud con un token de descarga temporal.
+- El cliente [caprover-api](https://github.com/caprover/caprover-api) encapsula operaciones habituales.
+- Para CI que solo despliega una aplicación, utiliza tokens de despliegue de esa aplicación.
+- Evita depender de campos de respuesta no documentados sin comprobar la versión específica de CapRover.
+- Consulta el [ejemplo de automatización de backups](../server/backup/index.md) para una secuencia que utiliza un token de descarga temporal.
