@@ -155,7 +155,7 @@ try {
     if (!locale.default) {
       assert(localizedDocs.includes(locale.pathPrefix + "/docs-legacy/get-started"),
         "Untranslated docs must link to the archived translation");
-      assert.match(archivedHtml, /name="robots" content="noindex(?:, follow)?"/);
+      assert.match(archivedHtml, /name=(?:"robots"|robots) content="noindex, nofollow"/);
     }
     for (const old of consolidation.legacyEnglishRoutes) {
       const isCanonical = consolidation.sections.some((section) =>
