@@ -22,15 +22,12 @@ On the server:
 ```bash
 sudo apt update && sudo apt install -y curl
 curl -fsSL https://get.caprover.com -o caprover-install.sh
-sudo bash caprover-install.sh --check
 sudo bash caprover-install.sh
 ```
 
-- [Installer source and options](https://github.com/caprover/caprover/tree/master/scripts/user/installer). Review the downloaded script before running it as root.
-- `--check`: read-only checks for OS, RAM, disk, Docker, Swarm, ports, and firewall conflicts. Resolve blocking issues before installing.
-- The installer installs Docker Engine when absent and preserves existing Docker workloads.
-- On an active UFW firewall, it allows TCP 80/443/3000. It leaves inactive UFW and hosting-provider firewalls unchanged.
-- After installation, it checks external port reachability and reports warnings. DNS, dashboard configuration, and HTTPS remain manual.
+[Installer source and options](https://github.com/caprover/caprover/tree/master/scripts/user/installer)
+
+For a read-only check, run `sudo bash caprover-install.sh --check`.
 
 **Other methods:** [Manual Setup](installation/manual.md) (Docker and CapRover commands), [DigitalOcean Marketplace](installation/index.md), or [Advanced Installation](installation/advanced/index.md) for private networks, existing Swarms, and custom ports.
 

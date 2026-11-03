@@ -4,14 +4,13 @@ title: Desplegar bases de datos
 slug: /data-persistence/deploy-databases
 ---
 
-- En CapRover, una base de datos es una aplicación que necesita almacenamiento persistente, credenciales y conectividad de red para sus clientes.
 - Puedes instalar una base de datos mediante el catálogo de [One-Click Apps](../one-click-apps/index.md) o desplegar directamente una imagen compatible.
 
 1. Elige el motor y la versión de la imagen. Crea la aplicación con **Has Persistent Data** activado y **Do not expose as web app** seleccionado; normalmente las bases de datos no sirven HTTP a través de NGINX.
 2. Configura el usuario, la contraseña y el nombre de la base de datos mediante los ajustes de la aplicación o el instalador One-Click. Utiliza credenciales únicas y mantenlas fuera del repositorio.
 3. Monta un volumen con nombre o un bind mount en el directorio de datos real de la imagen. Asigna la aplicación al nodo que contiene ese almacenamiento.
 4. Despliega la base de datos y consulta los logs hasta que esté lista para aceptar conexiones. Reinicia o vuelve a desplegar una vez para comprobar que los datos persisten.
-5. Desde otra aplicación, conecta usando el nombre del servicio y el puerto interno del contenedor. Publica un puerto del host solo si necesitas clientes externos; sigue los pasos de firewall y seguridad de la [guía de conexión externa](deploy-databases.md).
+5. Desde otra aplicación, conecta usando el nombre del servicio y el puerto interno del contenedor. Publica un puerto del host solo si necesitas clientes externos; sigue los pasos de firewall y seguridad de la [guía de conexión externa](#conectar-a-bases-de-datos-desde-fuera-de-caprover).
 6. Programa backups específicos para ese motor de base de datos y prueba una restauración. El backup de configuración de CapRover no incluye los registros de la base de datos.
 
 Consulta la documentación de la imagen elegida para verificar rutas de datos y variables de inicialización; pueden variar entre PostgreSQL, MySQL, Redis y otros servicios.
@@ -40,10 +39,7 @@ Consulta la documentación de la imagen elegida para verificar rutas de datos y 
 
 ### Preparar la base de datos
 
-- Despliega la base de datos como una aplicación persistente sin exposición web.
-- Configura el volumen o bind mount, las credenciales y el nombre de la base de datos.
-- Comprueba en los logs que está lista y verifica que otra aplicación de CapRover pueda conectarse mediante el nombre del servicio y el puerto interno.
-- Haz una copia de seguridad de los datos de la base de datos por separado de la configuración de CapRover.
+Despliega la base de datos como se describe arriba y comprueba en los logs que esté lista antes de habilitar el acceso.
 
 ### Publicar un puerto restringido
 

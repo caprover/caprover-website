@@ -39,10 +39,9 @@ One-Click templates create ordinary CapRover apps. Each template may provision m
 
 ## Upgrades
 
-- Read the upstream application's migration instructions and back up its data before upgrading.
-- A template can use a custom image or initialization scripts. Replacing it with a plain upstream image may lose essential configuration.
-- Image changes do not perform every database or application-schema migration.
-- Preserve and verify existing volumes when recreating or migrating stateful apps.
+For apps that support an image-only upgrade, follow the upstream instructions for any required backups or migrations. If the template uses a custom image or initialization scripts, check how the upgrade will preserve that configuration.
+
+In the app’s **Deployment** tab, open **Method 6: Deploy via ImageName**, enter the new image and tag, and deploy.
 
 <span id="source-one-click-apps-custom-repositories"></span>
 

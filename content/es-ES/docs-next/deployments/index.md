@@ -12,15 +12,7 @@ slug: /deployments
 - Para desplegar un archivo, empaqueta el proyecto con su `captain-definition` en la ruta configurada y sube el archivo tar.
 - Si no necesitas archivos de código fuente, puedes pegar una Captain Definition directamente en el campo de texto del dashboard.
 
-Por ejemplo, pega esta definición para desplegar una imagen pública existente:
-
-```json
-{"schemaVersion":2,"imageName":"nginx:stable-alpine"}
-```
-
-- Inicia el despliegue, sigue el estado del build o pull de la imagen y comprueba el puerto HTTP del contenedor y el dominio predeterminado.
-- Si la imagen es privada, configura primero las credenciales del registry.
-- Consulta [Desplegar una imagen Docker](index.md).
+[Desplegar una imagen Docker existente](#desplegar-una-imagen-docker)
 
 <span id="source-deployments-docker-image"></span>
 

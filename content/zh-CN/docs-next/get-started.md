@@ -22,15 +22,12 @@ slug: /get-started
 ```bash
 sudo apt update && sudo apt install -y curl
 curl -fsSL https://get.caprover.com -o caprover-install.sh
-sudo bash caprover-install.sh --check
 sudo bash caprover-install.sh
 ```
 
-- [安装脚本源码及参数](https://github.com/caprover/caprover/tree/master/scripts/user/installer)。以 root 权限运行之前，请先检查下载的脚本内容。
-- `--check`：只读检查操作系统、内存、磁盘、Docker、Swarm、端口以及防火墙冲突。安装前先解决检测到的阻塞问题。
-- 如果没有安装 Docker Engine，安装脚本会自动安装，并保留现有的 Docker 工作负载。
-- 如果 UFW 防火墙已启用，安装脚本会放行 TCP 80、443 和 3000 端口。脚本不会启用原本未启用的 UFW，也不会修改云服务商的防火墙。
-- 安装完成后，脚本会检查端口的外部可达性并显示警告。DNS、管理面板和 HTTPS 仍需要另行配置。
+[安装脚本源码及参数](https://github.com/caprover/caprover/tree/master/scripts/user/installer)
+
+如需执行只读检查，请运行 `sudo bash caprover-install.sh --check`。
 
 **其他安装方式：** [手动安装](installation/manual.md)（手动执行 Docker 和 CapRover 命令）、[DigitalOcean Marketplace](installation/index.md)，以及适用于私有网络、现有 Swarm 集群或自定义端口的[高级安装](installation/advanced/index.md)。
 

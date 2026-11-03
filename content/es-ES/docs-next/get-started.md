@@ -22,15 +22,12 @@ Ejecuta estos comandos en el servidor:
 ```bash
 sudo apt update && sudo apt install -y curl
 curl -fsSL https://get.caprover.com -o caprover-install.sh
-sudo bash caprover-install.sh --check
 sudo bash caprover-install.sh
 ```
 
-- [Código fuente y opciones del instalador](https://github.com/caprover/caprover/tree/master/scripts/user/installer). Revisa el script descargado antes de ejecutarlo como root.
-- `--check`: realiza comprobaciones de solo lectura del sistema operativo, RAM, disco, Docker, Swarm, puertos y posibles conflictos del firewall. Resuelve los errores detectados antes de instalar.
-- El instalador configura Docker Engine si aún no está instalado y conserva las cargas de trabajo existentes de Docker.
-- Si UFW está activo, permite el tráfico TCP por los puertos 80, 443 y 3000. No activa UFW ni modifica el firewall del proveedor de alojamiento.
-- Al terminar, comprueba la accesibilidad externa de los puertos e informa de posibles problemas. La configuración de DNS, el panel de administración y HTTPS se realiza por separado.
+[Código fuente y opciones del instalador](https://github.com/caprover/caprover/tree/master/scripts/user/installer)
+
+Para hacer una comprobación de solo lectura, ejecuta `sudo bash caprover-install.sh --check`.
 
 **Otras opciones:** [Instalación manual](installation/manual.md) (comandos de Docker y CapRover), [DigitalOcean Marketplace](installation/index.md) o [Instalación avanzada](installation/advanced/index.md) para redes privadas, clústeres Swarm existentes o puertos personalizados.
 
