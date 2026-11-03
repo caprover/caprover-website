@@ -3,7 +3,6 @@ const locales = require("../content/locales.json").filter(
   (locale) => locale.enabled,
 );
 const defaultLocale = locales.find((locale) => locale.default);
-const algoliaSearchApiKey = process.env.ALGOLIA_SEARCH_API_KEY;
 
 if (!defaultLocale) {
   throw new Error("An enabled default locale is required");
@@ -142,16 +141,12 @@ const config = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} githubsaturn`,
     },
-    ...(algoliaSearchApiKey
-      ? {
-          algolia: {
-            appId: "JO01DK487E",
-            apiKey: algoliaSearchApiKey,
-            indexName: "caprover",
-            contextualSearch: false,
-          },
-        }
-      : {}),
+    algolia: {
+      appId: "JO01DK487E",
+      apiKey: "REPLACE_WITH_SEARCH_ONLY_API_KEY",
+      indexName: "caprover",
+      contextualSearch: false,
+    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
