@@ -13,7 +13,9 @@ slug: /deployments/git
 5. Add that URL as a **push webhook** in your Git provider.
 6. Push a commit. Check the CapRover deployment logs.
 
-**Private repositories:** Use a read-only deploy key or limited service account.
+**Private repositories:** Use a read-only SSH deploy key or a limited service account. For SSH, generate a dedicated key with `ssh-keygen -t ed25519 -f ./deploykey -N ""`. Add `deploykey.pub` to the repository as a deploy key. Enter the SSH clone URL and the contents of `deploykey` in CapRover.
+
+**GitHub webhook:** Choose `application/json` and the push event. Leave GitHub’s separate **Secret** field empty.
 
 **Important:**
 

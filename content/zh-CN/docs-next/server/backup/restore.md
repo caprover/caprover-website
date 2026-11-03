@@ -32,7 +32,7 @@ slug: /server/backup/restore
      caprover/caprover
    ```
 
-   还没有安装 Docker？先参阅[快速入门](../../get-started.md)。
+   如果尚未安装 Docker，请仅完成[安装 Docker](../../installation/manual.md#2-安装-docker)一节，再运行上面的命令。
 
 3. 检查安装日志。恢复多节点集群时，根据提示执行[多节点恢复](restore.md)，完成节点映射。
 4. 准备切换时，将原有 wildcard DNS 指向新服务器。如果新旧服务器要同时运行，请给副本设置不同的根域名。

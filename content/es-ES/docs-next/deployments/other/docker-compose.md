@@ -12,7 +12,7 @@ slug: /deployments/other/docker-compose
 - Se ignoran los demás campos de Compose.
 - En particular, no asumas que `build`, las `networks` personalizadas, `secrets`, `configs`, `deploy`, `restart` o `container_name` funcionan igual que con `docker compose`.
 
-Los volúmenes con nombre se administran mediante las aplicaciones de CapRover generadas. El mapeo de puertos debe utilizar el formato `HOST:CONTAINER`. Si necesitas funciones de Compose que CapRover no admite, ejecuta Compose por separado y conecta el servicio a la red externa `captain-overlay-network` de CapRover únicamente cuando sea necesario. Los servicios administrados fuera de CapRover también quedan fuera de su ciclo de vida y del sistema de backups de las aplicaciones. Consulta la [matriz de compatibilidad](docker-compose.md).
+Los volúmenes con nombre se administran mediante las aplicaciones de CapRover generadas. Si necesitas funciones de Compose que CapRover no admite, ejecuta Compose por separado y conecta el servicio a la red externa `captain-overlay-network` de CapRover únicamente cuando sea necesario. Los servicios administrados fuera de CapRover también quedan fuera de su ciclo de vida y del sistema de backups de las aplicaciones. Consulta la [matriz de compatibilidad](docker-compose.md).
 
 <span id="source-reference-docker-compose"></span>
 
@@ -23,9 +23,9 @@ El formato One-Click de CapRover admite un **subconjunto** de los ajustes de ser
 | Clave del servicio | Configuración admitida |
 | --- | --- |
 | `image`, `command`, `hostname`, `cap_add` | Imagen y determinadas opciones del contenedor. |
-| `volumes` | Montajes expresados como cadenas; comprueba la ruta de destino y la persistencia. |
-| `ports` | Pares host:contenedor expresados como cadenas. |
-| `environment` | Mapeo de nombres de variables a valores de texto. |
+| `volumes` | Cadenas `source:target` u objetos con `type` (`volume` o `bind`), `source` y `target`. El sufijo `:ro` se ignora y `read_only: true` en formato largo se rechaza. |
+| `ports` | Cadenas `HOST:CONTAINER`, `HOST:CONTAINER/tcp`, `HOST:CONTAINER/udp` u objetos con `published`, `target`, `protocol` opcional (`tcp` o `udp`) y `mode` opcional (`ingress` o `host`). Si omites el protocolo, CapRover publica tanto TCP como UDP. |
+| `environment` | Un mapa de valores escalares o una lista de cadenas `KEY=value`. Las claves sin valor y los valores nulos se omiten. |
 | `depends_on` | Lista de nombres de servicios utilizada para ordenar el despliegue One-Click. |
 | `caproverExtra` | Extensión de CapRover para `dockerfileLines`, `containerHttpPort`, `notExposeAsWebApp` y `websocketSupport`. |
 
