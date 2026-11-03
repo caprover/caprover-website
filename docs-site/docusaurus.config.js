@@ -142,8 +142,8 @@ const config = {
       copyright: `Copyright © ${new Date().getFullYear()} githubsaturn`,
     },
     algolia: {
-      appId: "BH4D9OD16A",
-      apiKey: "81e546c2e0c9258e48c359465bde6909",
+      appId: "JO01DK487E",
+      apiKey: "ffda3bcbe0bd10bef83aa8ce0127e7ad",
       indexName: "caprover",
       contextualSearch: false,
     },
