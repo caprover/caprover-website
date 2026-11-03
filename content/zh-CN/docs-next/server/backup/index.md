@@ -24,7 +24,7 @@ CapRover 备份会复制 **`/captain/data`**，并附加集群节点的元数据
 
 ## 创建备份
 
-1. 在 CapRover dashboard 中打开 **Settings**，选择 **Create Backup**。
+1. 在 dashboard 中打开 **Maintenance → Configuration Backup**，点击 **Create Backup**。旧版 dashboard 的备份入口位于 **Settings**。
 2. 下载生成的 `.tar` 文件，检查文件非空，并将其保存在服务器之外的受控存储位置。
 3. 数据库和应用持久化目录需要单独备份，因为 [CapRover 备份不包含全部应用数据](index.md)。
 4. 定期在测试服务器上恢复这两类备份，并验证应用可以正常运行。
