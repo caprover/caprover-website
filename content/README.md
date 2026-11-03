@@ -113,6 +113,8 @@ Optimize documentation for fast scanning:
 - Put prerequisites in brief bullet lists. Name the requirement, then the value.
 - Use numbered steps for procedures and bullets for options, requirements, and caveats.
 - Put commands, configuration examples, and tables near the action they support.
+- Lead with the shortest supported workflow. Keep optional checks and advanced recovery in their own sections.
+- Put warnings next to the action they apply to and state the specific risk.
 - Explain unusual ports, flags, and risks inline. Skip explanations of self-evident steps.
 - Prefer imperative sentences: **Set the root domain** instead of **You can set the root domain**.
 - Keep bullets focused on one idea. Split dense bullets into steps, tables, or smaller bullets.

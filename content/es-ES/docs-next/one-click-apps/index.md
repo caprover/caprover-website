@@ -39,10 +39,9 @@ Las plantillas One-Click crean aplicaciones normales de CapRover. Una plantilla 
 
 ## Actualizaciones
 
-- Antes de actualizar, lee las instrucciones de migración del proyecto original y haz backup de sus datos.
-- Una plantilla puede usar una imagen personalizada o scripts de inicialización. Sustituirla por la imagen upstream sin más puede eliminar configuraciones necesarias.
-- Cambiar la imagen no ejecuta automáticamente todas las migraciones de bases de datos ni del esquema de la aplicación.
-- Conserva y verifica los volúmenes existentes al recrear o migrar aplicaciones con estado.
+En **Deployment**, abre **Method 6: Deploy via ImageName**, introduce la imagen con el nuevo tag y despliega. Sigue las instrucciones de actualización del proyecto original para las migraciones y los backups de datos.
+
+Si la plantilla usa una imagen personalizada o scripts de inicialización, comprueba qué configuran antes de sustituir la imagen.
 
 <span id="source-one-click-apps-custom-repositories"></span>
 

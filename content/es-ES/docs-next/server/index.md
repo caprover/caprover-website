@@ -8,7 +8,7 @@ slug: /server
 
 ## Ajustes del servidor
 
-Desde **Settings** en el dashboard puedes administrar el dominio raíz, la contraseña de la cuenta, las actualizaciones y los backups de CapRover. Haz un backup antes de cambiar el dominio o actualizar el servidor.
+Abre **Settings** para administrar el dominio raíz y la contraseña, [actualizar CapRover](upgrade.md) o [descargar un backup](backup/index.md).
 
 ### Dominio raíz
 

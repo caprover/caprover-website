@@ -19,9 +19,7 @@ slug: /deployments/builds-logs
 
 ## Versiones y rollback
 
-- CapRover guarda el historial de versiones de imágenes de cada aplicación.
-- Desde el historial de despliegues, elige una versión anterior para hacer rollback de la imagen.
-- Comprueba el resultado y la salud de la aplicación antes de reanudar el tráfico.
+En **Deployment**, abre **Version History** y elige una versión anterior para restaurar la imagen.
 
 - Un rollback **no** restaura variables de entorno anteriores, dominios, datos de volúmenes ni el esquema de la base de datos.
 - Si la nueva versión modificó datos persistentes, comprueba la compatibilidad de la imagen anterior antes de hacer rollback.

@@ -12,15 +12,7 @@ slug: /deployments
 - To deploy an archive, package the project with its `captain-definition` file at the expected path and upload the tar file.
 - The dashboard also accepts a Captain Definition pasted into its text input when no source files are needed.
 
-For example, paste this definition to deploy an existing public image:
-
-```json
-{"schemaVersion":2,"imageName":"nginx:stable-alpine"}
-```
-
-- Start the deployment, watch the build or pull status, then verify the app's container HTTP port and its default domain.
-- For a private image, configure registry credentials first.
-- See [Deploy a Docker Image](index.md).
+[Deploy an existing Docker image](#deploy-a-docker-image)
 
 <span id="source-deployments-docker-image"></span>
 

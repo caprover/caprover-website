@@ -8,7 +8,7 @@ slug: /server
 
 ## Server Settings
 
-Use the dashboard's **Settings** area to manage the root domain, account password, updates, and CapRover backups. Back up the server before changing its domain or upgrading.
+Open **Settings** to manage the root domain and account password, [update CapRover](upgrade.md), or [download a backup](backup/index.md).
 
 ### Root domain
 

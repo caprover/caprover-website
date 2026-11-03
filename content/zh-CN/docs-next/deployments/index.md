@@ -12,15 +12,7 @@ slug: /deployments
 - 如果上传归档文件，请将项目和对应的 `captain-definition` 一起打包到指定路径，再上传 tar 文件。
 - 如果部署不需要源代码文件，也可以直接在 dashboard 的文本输入框粘贴 Captain Definition。
 
-例如，使用下面的定义部署已有的公开镜像：
-
-```json
-{"schemaVersion":2,"imageName":"nginx:stable-alpine"}
-```
-
-- 开始部署，查看镜像构建或拉取进度，然后确认容器 HTTP 端口及默认域名。
-- 如果镜像存放在私有 registry，先配置拉取凭据。
-- 参阅[部署 Docker 镜像](index.md)。
+[部署已有 Docker 镜像](#部署-docker-镜像)
 
 <span id="source-deployments-docker-image"></span>
 
