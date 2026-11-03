@@ -24,7 +24,7 @@ Consulta [Crear un backup](index.md), [Restaurar un servidor](restore.md) y [Dir
 
 ## Crear un backup
 
-1. En el dashboard de CapRover, abre **Settings** y selecciona **Create Backup**.
+1. En el dashboard, abre **Maintenance → Configuration Backup** y haz clic en **Create Backup**. En versiones anteriores del dashboard, busca esta opción en **Settings**.
 2. Descarga el archivo `.tar`, comprueba que no esté vacío y guárdalo fuera del servidor con permisos de acceso restringidos.
 3. Haz backups separados de bases de datos y directorios persistentes; [el backup de CapRover tiene un alcance limitado](index.md).
 4. Restaura periódicamente ambos tipos de backup en un servidor de prueba y verifica las aplicaciones.
