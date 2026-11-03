@@ -19,7 +19,7 @@ slug: /deployments/builds-logs
 
 ## Versions and Rollback
 
-In the app’s **Deployment** tab, open **Version History** and select an earlier image version to roll back.
+In the app’s **Deployment** tab, open **Version History**, click **Revert to this version** on the row for the image you want, and confirm.
 
 - Rollback does **not** restore earlier environment variables, domains, volume contents, or database schema.
 - If the newer version changed persistent data, confirm the older image remains compatible before rolling back.

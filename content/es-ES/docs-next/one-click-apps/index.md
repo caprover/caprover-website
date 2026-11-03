@@ -39,9 +39,9 @@ Las plantillas One-Click crean aplicaciones normales de CapRover. Una plantilla 
 
 ## Actualizaciones
 
-En **Deployment**, abre **Method 6: Deploy via ImageName**, introduce la imagen con el nuevo tag y despliega. Sigue las instrucciones de actualización del proyecto original para las migraciones y los backups de datos.
+Si la aplicación admite una actualización con solo cambiar la imagen, sigue las instrucciones del proyecto original para realizar los backups o las migraciones necesarios. Si la plantilla usa una imagen personalizada o scripts de inicialización, comprueba cómo conservar esa configuración durante la actualización.
 
-Si la plantilla usa una imagen personalizada o scripts de inicialización, comprueba qué configuran antes de sustituir la imagen.
+En **Deployment**, abre **Method 6: Deploy via ImageName**, introduce la imagen con el nuevo tag y despliega.
 
 <span id="source-one-click-apps-custom-repositories"></span>
 

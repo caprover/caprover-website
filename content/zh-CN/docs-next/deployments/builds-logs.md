@@ -19,7 +19,7 @@ slug: /deployments/builds-logs
 
 ## 版本与回滚
 
-在应用的 **Deployment** 标签页中，打开 **Version History**，选择要回滚到的镜像版本。
+在应用的 **Deployment** 标签页中打开 **Version History**，在目标镜像所在行点击 **Revert to this version**，然后确认。
 
 - 回滚镜像**不会**恢复旧的环境变量、域名、数据卷内容或数据库 Schema。
 - 如果新版本修改了持久化数据，回滚前应确认旧镜像仍然兼容这些数据。

@@ -4,7 +4,7 @@ title: Upgrade CapRover
 slug: /server/upgrade
 ---
 
-In the dashboard, open **Settings** and use the update action when a stable update is available.
+In the dashboard, open **Maintenance → CapRover Updates** and click **Install Update** when a stable update is available. On older dashboards, look under **Settings**.
 
 Run these commands on the Swarm manager.
 

@@ -39,9 +39,9 @@ One-Click templates create ordinary CapRover apps. Each template may provision m
 
 ## Upgrades
 
-In the app’s **Deployment** tab, open **Method 6: Deploy via ImageName**, enter the new image and tag, and deploy. Follow the upstream upgrade instructions for migrations and data backups.
+For apps that support an image-only upgrade, follow the upstream instructions for any required backups or migrations. If the template uses a custom image or initialization scripts, check how the upgrade will preserve that configuration.
 
-If the template uses a custom image or initialization scripts, check what they configure before replacing the image.
+In the app’s **Deployment** tab, open **Method 6: Deploy via ImageName**, enter the new image and tag, and deploy.
 
 <span id="source-one-click-apps-custom-repositories"></span>
 

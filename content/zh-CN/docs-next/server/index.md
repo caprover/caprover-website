@@ -8,7 +8,7 @@ slug: /server
 
 ## 服务器设置
 
-打开 **Settings** 管理根域名和账户密码、[升级 CapRover](upgrade.md)或[下载备份](backup/index.md)。
+打开 **Settings** 管理根域名和账户密码。打开 **Maintenance** 可[升级 CapRover](upgrade.md)或[下载配置备份](backup/index.md)。
 
 ### 根域名
 

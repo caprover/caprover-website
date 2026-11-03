@@ -39,9 +39,9 @@ One-Click 模板会创建普通的 CapRover 应用。一个模板可以同时部
 
 ## 更新
 
-在应用的 **Deployment** 标签页中，打开 **Method 6: Deploy via ImageName**，输入带新 tag 的镜像并部署。数据迁移和备份请遵循上游项目的升级说明。
+如果应用支持仅替换镜像来升级，请先按上游项目的说明完成所需的备份或迁移。如果模板使用自定义镜像或初始化脚本，请先确认升级后如何保留这些配置。
 
-如果模板使用自定义镜像或初始化脚本，请在替换镜像之前检查其中的配置。
+在应用的 **Deployment** 标签页中，打开 **Method 6: Deploy via ImageName**，输入带新 tag 的镜像并部署。
 
 <span id="source-one-click-apps-custom-repositories"></span>
 

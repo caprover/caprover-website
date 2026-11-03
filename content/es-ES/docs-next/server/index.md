@@ -8,7 +8,7 @@ slug: /server
 
 ## Ajustes del servidor
 
-Abre **Settings** para administrar el dominio raíz y la contraseña, [actualizar CapRover](upgrade.md) o [descargar un backup](backup/index.md).
+Abre **Settings** para administrar el dominio raíz y la contraseña. Abre **Maintenance** para [actualizar CapRover](upgrade.md) o [descargar un backup de la configuración](backup/index.md).
 
 ### Dominio raíz
 

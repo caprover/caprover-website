@@ -19,7 +19,7 @@ slug: /deployments/builds-logs
 
 ## Versiones y rollback
 
-En **Deployment**, abre **Version History** y elige una versión anterior para restaurar la imagen.
+En **Deployment**, abre **Version History**, haz clic en **Revert to this version** en la fila de la imagen que quieres restaurar y confirma.
 
 - Un rollback **no** restaura variables de entorno anteriores, dominios, datos de volúmenes ni el esquema de la base de datos.
 - Si la nueva versión modificó datos persistentes, comprueba la compatibilidad de la imagen anterior antes de hacer rollback.

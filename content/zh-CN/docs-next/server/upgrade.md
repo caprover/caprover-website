@@ -4,7 +4,7 @@ title: 升级 CapRover
 slug: /server/upgrade
 ---
 
-在 dashboard 中打开 **Settings**，有可用的稳定版更新时，使用内置升级功能。
+在 dashboard 中打开 **Maintenance → CapRover Updates**。有可用的稳定版更新时，点击 **Install Update**。旧版 dashboard 的更新入口位于 **Settings**。
 
 在 Swarm manager 节点上执行以下命令。
 

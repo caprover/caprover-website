@@ -8,7 +8,7 @@ slug: /server
 
 ## Server Settings
 
-Open **Settings** to manage the root domain and account password, [update CapRover](upgrade.md), or [download a backup](backup/index.md).
+Open **Settings** to manage the root domain and account password. Open **Maintenance** to [update CapRover](upgrade.md) or [download a configuration backup](backup/index.md).
 
 ### Root domain
 
