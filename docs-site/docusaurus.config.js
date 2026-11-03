@@ -143,7 +143,7 @@ const config = {
     },
     algolia: {
       appId: "JO01DK487E",
-      apiKey: "REPLACE_WITH_SEARCH_ONLY_API_KEY",
+      apiKey: "ffda3bcbe0bd10bef83aa8ce0127e7ad",
       indexName: "caprover",
       contextualSearch: false,
     },
