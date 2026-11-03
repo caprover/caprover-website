@@ -1,0 +1,25 @@
+<!doctype html><html lang="es-ES"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/es-ES/docs/one-click-apps"></noscript>
+<link rel="canonical" href="https://caprover.com/es-ES/docs/one-click-apps">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/es-ES/docs/one-click-apps">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/es-ES/docs/one-click-apps","fragments":{"actualización-de-aplicaciones-one-click":{"target":"/es-ES/docs/one-click-apps#actualizaciones","policy":"equivalent"},"actualización-de-imagen-simple":{"target":"/es-ES/docs-legacy/one-click-apps#actualización-de-imagen-simple","policy":"archive"},"ajustes-de-configuración":{"target":"/es-ES/docs/one-click-apps#configuración","policy":"equivalent"},"bases-de-datos-y-gui-de-base-de-datos":{"target":"/es-ES/docs-legacy/one-click-apps#bases-de-datos-y-gui-de-base-de-datos","policy":"archive"},"blogs-y-contenido":{"target":"/es-ES/docs-legacy/one-click-apps#blogs-y-contenido","policy":"archive"},"conexión-a-bases-de-datos":{"target":"/es-ES/docs-legacy/one-click-apps#conexión-a-bases-de-datos","policy":"archive"},"conexión-dentro-del-clúster-caprover":{"target":"/es-ES/docs-legacy/one-click-apps#conexión-dentro-del-clúster-caprover","policy":"archive"},"conexión-remota":{"target":"/es-ES/docs-legacy/one-click-apps#conexión-remota","policy":"archive"},"herramientas-de-desarrollo":{"target":"/es-ES/docs-legacy/one-click-apps#herramientas-de-desarrollo","policy":"archive"},"otras-aplicaciones":{"target":"/es-ES/docs-legacy/one-click-apps#otras-aplicaciones","policy":"archive"},"otros-casos":{"target":"/es-ES/docs-legacy/one-click-apps#otros-casos","policy":"archive"},"qué-pasa-con-otras-aplicaciones":{"target":"/es-ES/docs-legacy/one-click-apps#qué-pasa-con-otras-aplicaciones","policy":"archive"}}}, window.location.href));</script>
+</body></html>

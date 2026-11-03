@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/deployments/ci-cd"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/deployments/ci-cd">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/deployments/ci-cd">Continue to the documentation</a></p>
+<script>try { localStorage.setItem("caprover.locale", "en"); } catch {}window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/deployments/ci-cd","fragments":{"add-a-private-docker-registry-to-caprover":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#add-a-private-docker-registry-to-caprover","policy":"archive"},"add-files-to-project":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#add-files-to-project","policy":"archive"},"add-the-github-secrets":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#add-the-github-secrets","policy":"archive"},"add-the-github-secrets-1":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#add-the-github-secrets-1","policy":"archive"},"alternative-method-more-efficient":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#alternative-method-more-efficient","policy":"archive"},"commit-changes-to-your-code-to-deploy":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#commit-changes-to-your-code-to-deploy","policy":"archive"},"create-a-github-personal-access-token":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#create-a-github-personal-access-token","policy":"archive"},"create-a-new-app":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#create-a-new-app","policy":"archive"},"create-a-new-app-1":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#create-a-new-app-1","policy":"archive"},"create-the-github-action":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#create-the-github-action","policy":"archive"},"deploy":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#deploy","policy":"archive"},"deploying-directly-from-github":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#deploying-directly-from-github","policy":"archive"},"enable-app-token":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#enable-app-token","policy":"archive"},"enable-app-token-1":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#enable-app-token-1","policy":"archive"},"need-help":{"target":"/docs-legacy/ci-cd-integration/deploy-from-github#need-help","policy":"archive"}}}, window.location.href));</script>
+</body></html>

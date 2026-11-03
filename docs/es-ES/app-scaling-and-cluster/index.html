@@ -1,0 +1,25 @@
+<!doctype html><html lang="es-ES"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/es-ES/docs/scaling"></noscript>
+<link rel="canonical" href="https://caprover.com/es-ES/docs/scaling">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/es-ES/docs/scaling">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/es-ES/docs/scaling","fragments":{"agregar-un-privado-docker-registry":{"target":"/es-ES/docs/deployments/registries#source-deployments-registries-private","policy":"equivalent"},"configuración-docker-registry":{"target":"/es-ES/docs/deployments/registries#source-deployments-registries-self-hosted","policy":"equivalent"},"deshabilitar-el-registro":{"target":"/es-ES/docs-legacy/app-scaling-and-cluster#deshabilitar-el-registro","policy":"archive"},"ejecute-varias-instancias-de-la-aplicación":{"target":"/es-ES/docs/scaling#source-scaling-scale-app","policy":"equivalent"},"ejecute-varios-servidores":{"target":"/es-ES/docs-legacy/app-scaling-and-cluster#ejecute-varios-servidores","policy":"archive"},"más-de-un-registro":{"target":"/es-ES/docs-legacy/app-scaling-and-cluster#más-de-un-registro","policy":"archive"},"registro-de-inserción-predeterminado":{"target":"/es-ES/docs/deployments/registries#source-deployments-registries-default-push","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

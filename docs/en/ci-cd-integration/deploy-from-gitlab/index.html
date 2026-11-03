@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/deployments/ci-cd"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/deployments/ci-cd">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/deployments/ci-cd">Continue to the documentation</a></p>
+<script>try { localStorage.setItem("caprover.locale", "en"); } catch {}window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/deployments/ci-cd","fragments":{"1--create-gitlab-repository":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#1--create-gitlab-repository","policy":"archive"},"2--add-sample-source-code":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#2--add-sample-source-code","policy":"archive"},"3--dockerfile":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#3--dockerfile","policy":"archive"},"4--create-an-access-token-for-caprover":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#4--create-an-access-token-for-caprover","policy":"archive"},"5--add-token-to-caprover":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#5--add-token-to-caprover","policy":"archive"},"6--disable-default-push":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#6--disable-default-push","policy":"archive"},"7--create-a-caprover-app":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#7--create-a-caprover-app","policy":"archive"},"8--create-cicd-variables":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#8--create-cicd-variables","policy":"archive"},"9--gitlab-ci-file":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#9--gitlab-ci-file","policy":"archive"},"alternative-method":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#alternative-method","policy":"archive"},"app-tokens":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#app-tokens","policy":"archive"},"note-on-using---imagename-with-a-private-registry":{"target":"/docs-legacy/ci-cd-integration/deploy-from-gitlab#note-on-using---imagename-with-a-private-registry","policy":"archive"}}}, window.location.href));</script>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/get-started"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/get-started">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/get-started">Continue to the documentation</a></p>
+<script>try { localStorage.setItem("caprover.locale", "en"); } catch {}window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/get-started","fragments":{"a-domain-name":{"target":"/docs-legacy/get-started#a-domain-name","policy":"archive"},"b-server":{"target":"/docs-legacy/get-started#b-server","policy":"archive"},"b1-public-ip":{"target":"/docs-legacy/get-started#b1-public-ip","policy":"archive"},"b2-server-specs":{"target":"/docs-legacy/get-started#b2-server-specs","policy":"archive"},"b3-docker":{"target":"/docs-legacy/get-started#b3-docker","policy":"archive"},"b4-configure-firewall":{"target":"/docs-legacy/get-started#b4-configure-firewall","policy":"archive"},"caprover-setup":{"target":"/docs/get-started#configure-caprover","policy":"pre-existing-stale"},"prerequisites":{"target":"/docs-legacy/get-started#prerequisites","policy":"archive"},"simple-setup":{"target":"/docs-legacy/get-started#simple-setup","policy":"archive"},"step-1-caprover-installation":{"target":"/docs/get-started#install-caprover","policy":"equivalent"},"step-2-connect-root-domain":{"target":"/docs/get-started#dns","policy":"equivalent"},"step-3-configure-and-initialize-caprover":{"target":"/docs/get-started#configure-caprover","policy":"equivalent"},"step-3-install-caprover-cli":{"target":"/docs/reference/cli#install-cli","policy":"pre-existing-stale"},"step-4-optional-set-up-swap-file":{"target":"/docs-legacy/get-started#step-4-optional-set-up-swap-file","policy":"archive"},"step-5-deploy-the-test-app":{"target":"/docs/get-started#deploy-your-first-app","policy":"equivalent"},"with-cli-recommended":{"target":"/docs-legacy/get-started#with-cli-recommended","policy":"archive"},"with-the-web-interface-doesnt-require-npm":{"target":"/docs-legacy/get-started#with-the-web-interface-doesnt-require-npm","policy":"archive"}}}, window.location.href));</script>
+</body></html>

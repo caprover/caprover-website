@@ -1,0 +1,25 @@
+<!doctype html><html lang="es-ES"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/es-ES/docs/server"></noscript>
+<link rel="canonical" href="https://caprover.com/es-ES/docs/server">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/es-ES/docs/server">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/es-ES/docs/server","fragments":{"establecer-una-dirección-de-correo-electrónico-específica-para-las-alertas":{"target":"/es-ES/docs-legacy/troubleshooting-pro#establecer-una-dirección-de-correo-electrónico-específica-para-las-alertas","policy":"archive"},"implementar-con-otp-habilitado":{"target":"/es-ES/docs-legacy/troubleshooting-pro#implementar-con-otp-habilitado","policy":"archive"},"restablecer-otp-autenticación-de-dos-factores":{"target":"/es-ES/docs-legacy/troubleshooting-pro#restablecer-otp-autenticación-de-dos-factores","policy":"archive"},"soporte-por-correo-electrónico":{"target":"/es-ES/docs-legacy/troubleshooting-pro#soporte-por-correo-electrónico","policy":"archive"}}}, window.location.href));</script>
+</body></html>

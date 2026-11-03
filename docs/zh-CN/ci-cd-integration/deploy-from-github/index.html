@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/deployments/ci-cd"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/deployments/ci-cd">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/deployments/ci-cd">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/deployments/ci-cd","fragments":{"创建-github-action":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#创建-github-action","policy":"archive"},"创建-github-personal-access-token":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#创建-github-personal-access-token","policy":"archive"},"创建新-app":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#创建新-app","policy":"archive"},"创建新-app-1":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#创建新-app-1","policy":"archive"},"向-caprover-添加-private-docker-registry":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#向-caprover-添加-private-docker-registry","policy":"archive"},"向-project-添加文件":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#向-project-添加文件","policy":"archive"},"启用-app-token":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#启用-app-token","policy":"archive"},"启用-app-token-1":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#启用-app-token-1","policy":"archive"},"提交代码更改以进行部署":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#提交代码更改以进行部署","policy":"archive"},"替代方式更高效":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#替代方式更高效","policy":"archive"},"添加-github-secrets":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#添加-github-secrets","policy":"archive"},"添加-github-secrets-1":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#添加-github-secrets-1","policy":"archive"},"直接从-github-部署":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#直接从-github-部署","policy":"archive"},"部署":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#部署","policy":"archive"},"需要帮助":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github#需要帮助","policy":"archive"}}}, window.location.href));</script>
+</body></html>

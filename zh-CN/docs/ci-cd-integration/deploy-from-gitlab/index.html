@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/deployments/ci-cd"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/deployments/ci-cd">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/deployments/ci-cd">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/deployments/ci-cd","fragments":{"1--创建-gitlab-repository":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#1--创建-gitlab-repository","policy":"archive"},"2--添加示例源代码":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#2--添加示例源代码","policy":"archive"},"3--dockerfile":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#3--dockerfile","policy":"archive"},"4--为-caprover-创建-access-token":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#4--为-caprover-创建-access-token","policy":"archive"},"5--将-token-添加到-caprover":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#5--将-token-添加到-caprover","policy":"archive"},"6--禁用-default-push":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#6--禁用-default-push","policy":"archive"},"7--创建-caprover-app":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#7--创建-caprover-app","policy":"archive"},"8--创建-cicd-variables":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#8--创建-cicd-variables","policy":"archive"},"9--gitlab-ci-file":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#9--gitlab-ci-file","policy":"archive"},"app-tokens":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#app-tokens","policy":"archive"},"使用-private-registry-时关于---imagename-的说明":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#使用-private-registry-时关于---imagename-的说明","policy":"archive"},"替代方式":{"target":"/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab#替代方式","policy":"archive"}}}, window.location.href));</script>
+</body></html>

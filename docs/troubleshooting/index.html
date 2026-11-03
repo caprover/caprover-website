@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/troubleshooting"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/troubleshooting">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/troubleshooting">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/troubleshooting","fragments":{"arm-processor":{"target":"/docs-legacy/troubleshooting#arm-processor","policy":"archive"},"aws-setup":{"target":"/docs-legacy/troubleshooting#aws-setup","policy":"archive"},"cannot-connect-ip_server3000":{"target":"/docs-legacy/troubleshooting#cannot-connect-ip_server3000","policy":"archive"},"cloudflare-ssl-setup":{"target":"/docs-legacy/troubleshooting#cloudflare-ssl-setup","policy":"archive"},"connection-timeouts":{"target":"/docs-legacy/troubleshooting#connection-timeouts","policy":"archive"},"customize-config-settings":{"target":"/docs-legacy/troubleshooting#customize-config-settings","policy":"archive"},"domain-verification-failed---error-1107":{"target":"/docs-legacy/troubleshooting#domain-verification-failed---error-1107","policy":"archive"},"first":{"target":"/docs-legacy/troubleshooting#first","policy":"archive"},"how-to-restart-caprover":{"target":"/docs-legacy/troubleshooting#how-to-restart-caprover","policy":"archive"},"how-to-restart-my-application":{"target":"/docs-legacy/troubleshooting#how-to-restart-my-application","policy":"archive"},"how-to-run-shell-inside-my-application-inside-container":{"target":"/docs-legacy/troubleshooting#how-to-run-shell-inside-my-application-inside-container","policy":"archive"},"how-to-stop-and-remove-captain":{"target":"/docs-legacy/troubleshooting#how-to-stop-and-remove-captain","policy":"archive"},"how-to-use-the-edge-version":{"target":"/docs-legacy/troubleshooting#how-to-use-the-edge-version","policy":"archive"},"how-to-view-my-applications-log":{"target":"/docs-legacy/troubleshooting#how-to-view-my-applications-log","policy":"archive"},"i-got-an-email-from-lets-encrypt-saying-my-domains-ssl-certificate-is-expiring-and-it-shouldnt-be":{"target":"/docs-legacy/troubleshooting#i-got-an-email-from-lets-encrypt-saying-my-domains-ssl-certificate-is-expiring-and-it-shouldnt-be","policy":"archive"},"ive-made-a-change-to-the-nginx-config-that-broke-the-admin-ui":{"target":"/docs/domains/advanced-nginx#recover-from-a-configuration-that-broke-the-dashboard","policy":"equivalent"},"reset-password":{"target":"/docs-legacy/troubleshooting#reset-password","policy":"archive"},"second":{"target":"/docs-legacy/troubleshooting#second","policy":"archive"},"something-bad-happened":{"target":"/docs-legacy/troubleshooting#something-bad-happened","policy":"archive"},"successful-deploy-but-502-bad-gateway-error":{"target":"/docs/troubleshooting#app-unavailable-or-http-502","policy":"equivalent"},"third":{"target":"/docs-legacy/troubleshooting#third","policy":"archive"},"use-existing-swarm":{"target":"/docs-legacy/troubleshooting#use-existing-swarm","policy":"archive"}}}, window.location.href));</script>
+</body></html>

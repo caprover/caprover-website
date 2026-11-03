@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/guides/static-react"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/guides/static-react">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/guides/static-react">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/guides/static-react","fragments":{"使用-caprover-部署":{"target":"/zh-CN/docs-legacy/recipe-deploy-create-react-app#使用-caprover-部署","policy":"archive"},"创建-captain-definition":{"target":"/zh-CN/docs-legacy/recipe-deploy-create-react-app#创建-captain-definition","policy":"archive"},"创建-tar-文件":{"target":"/zh-CN/docs-legacy/recipe-deploy-create-react-app#创建-tar-文件","policy":"archive"},"在本地机器上构建":{"target":"/zh-CN/docs-legacy/recipe-deploy-create-react-app#在本地机器上构建","policy":"archive"},"构建应用":{"target":"/zh-CN/docs-legacy/recipe-deploy-create-react-app#构建应用","policy":"archive"},"示例应用":{"target":"/zh-CN/docs-legacy/recipe-deploy-create-react-app#示例应用","policy":"archive"}}}, window.location.href));</script>
+</body></html>

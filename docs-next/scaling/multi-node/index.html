@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/scaling/multi-node"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/scaling/multi-node">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/scaling/multi-node">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/scaling/multi-node","fragments":{"1-prepare-server":{"target":"/docs/scaling/multi-node#1-prepare-server","policy":"current"},"2-networking-and-ssh":{"target":"/docs/scaling/multi-node#2-networking-and-ssh","policy":"current"},"3-registry":{"target":"/docs/scaling/multi-node#3-registry","policy":"current"},"4-add-and-verify-node":{"target":"/docs/scaling/multi-node#4-add-and-verify-node","policy":"current"},"5-persistent-apps":{"target":"/docs/scaling/multi-node#5-persistent-apps","policy":"current"}}}, window.location.href));</script>
+</body></html>

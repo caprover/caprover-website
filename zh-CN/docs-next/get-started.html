@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/get-started"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/get-started">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/get-started">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/get-started","fragments":{"1-ports-and-firewall":{"target":"/zh-CN/docs/installation/manual#1-端口与防火墙","policy":"equivalent"},"2-install-docker":{"target":"/zh-CN/docs/installation/manual#2-安装-docker","policy":"equivalent"},"3-install-caprover":{"target":"/zh-CN/docs/get-started#安装-caprover","policy":"equivalent"},"4-dns":{"target":"/zh-CN/docs/get-started#dns","policy":"equivalent"},"5-configure-caprover":{"target":"/zh-CN/docs/get-started#配置-caprover","policy":"equivalent"},"6-deploy-your-first-app":{"target":"/zh-CN/docs/get-started#部署第一个应用","policy":"equivalent"},"configure-caprover":{"target":"/zh-CN/docs/get-started#配置-caprover","policy":"equivalent"},"deploy-your-first-app":{"target":"/zh-CN/docs/get-started#部署第一个应用","policy":"equivalent"},"dns":{"target":"/zh-CN/docs/get-started#dns","policy":"equivalent"},"install-caprover":{"target":"/zh-CN/docs/get-started#安装-caprover","policy":"equivalent"},"low-memory-builds-optional":{"target":"/zh-CN/docs/get-started#内存不足时的构建方案可选","policy":"equivalent"},"requirements":{"target":"/zh-CN/docs/get-started#系统要求","policy":"equivalent"},"start":{"target":"/zh-CN/docs/get-started#文档导航","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/get-started"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/get-started">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/get-started">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/get-started","fragments":{"a-域名":{"target":"/zh-CN/docs-legacy/get-started#a-域名","policy":"archive"},"b-服务器":{"target":"/zh-CN/docs-legacy/get-started#b-服务器","policy":"archive"},"b1-公网-ip":{"target":"/zh-CN/docs-legacy/get-started#b1-公网-ip","policy":"archive"},"b2-服务器规格":{"target":"/zh-CN/docs-legacy/get-started#b2-服务器规格","policy":"archive"},"b3-docker":{"target":"/zh-CN/docs-legacy/get-started#b3-docker","policy":"archive"},"b4-配置防火墙":{"target":"/zh-CN/docs-legacy/get-started#b4-配置防火墙","policy":"archive"},"使用-cli推荐":{"target":"/zh-CN/docs-legacy/get-started#使用-cli推荐","policy":"archive"},"使用-web-界面不需要-npm":{"target":"/zh-CN/docs-legacy/get-started#使用-web-界面不需要-npm","policy":"archive"},"前置条件":{"target":"/zh-CN/docs-legacy/get-started#前置条件","policy":"archive"},"第-1-步安装-caprover":{"target":"/zh-CN/docs/get-started#安装-caprover","policy":"equivalent"},"第-2-步连接根域名":{"target":"/zh-CN/docs/get-started#dns","policy":"equivalent"},"第-3-步配置并初始化-caprover":{"target":"/zh-CN/docs/get-started#配置-caprover","policy":"equivalent"},"第-4-步可选设置-swap-文件":{"target":"/zh-CN/docs-legacy/get-started#第-4-步可选设置-swap-文件","policy":"archive"},"第-5-步部署测试应用":{"target":"/zh-CN/docs/get-started#部署第一个应用","policy":"equivalent"},"简单设置":{"target":"/zh-CN/docs-legacy/get-started#简单设置","policy":"archive"}}}, window.location.href));</script>
+</body></html>

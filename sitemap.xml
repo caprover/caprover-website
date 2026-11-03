@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url><loc>https://caprover.com/search</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/applications</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/applications/advanced</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/data-persistence</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/data-persistence/backup-data</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/data-persistence/deploy-databases</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/data-persistence/shared-storage</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/deployments</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/deployments/builds-logs</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/deployments/captain-definition</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/deployments/ci-cd</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/deployments/cli</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/deployments/git</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/deployments/other/docker-compose</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/deployments/registries</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/domains</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/domains/advanced-certbot</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/domains/advanced-nginx</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/domains/cloudflare-reverse-proxies</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/domains/firewall</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/fundamentals/how-caprover-works</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/get-started</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/guides/cdd-migration</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/guides/complete-webapp</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/guides/static-react</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/installation</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/installation/advanced</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/installation/manual</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/one-click-apps</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/one-click-apps/authoring</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/production-checklist</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/reference/api</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/reference/app-configuration</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/reference/captain-definition</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/reference/cli</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/reference/one-click-schema</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/reference/ports</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/reference/server-environment</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/scaling</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/scaling/multi-node</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/server</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/server/backup</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/server/backup/restore</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/server/disk-cleanup</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/server/netdata</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/server/uninstall</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/server/upgrade</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/troubleshooting</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/docs/troubleshooting/diagnostics</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/search</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/applications</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/applications/advanced</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/data-persistence</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/data-persistence/backup-data</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/data-persistence/deploy-databases</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/data-persistence/shared-storage</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/deployments</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/deployments/builds-logs</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/deployments/captain-definition</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/deployments/ci-cd</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/deployments/cli</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/deployments/git</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/deployments/other/docker-compose</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/deployments/registries</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/domains</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/domains/advanced-certbot</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/domains/advanced-nginx</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/domains/cloudflare-reverse-proxies</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/domains/firewall</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/fundamentals/how-caprover-works</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/get-started</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/guides/cdd-migration</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/guides/complete-webapp</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/guides/static-react</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/installation</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/installation/advanced</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/installation/manual</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/one-click-apps</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/one-click-apps/authoring</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/production-checklist</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/reference/api</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/reference/app-configuration</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/reference/captain-definition</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/reference/cli</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/reference/one-click-schema</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/reference/ports</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/reference/server-environment</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/scaling</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/scaling/multi-node</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/server</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/server/backup</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/server/backup/restore</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/server/disk-cleanup</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/server/netdata</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/server/uninstall</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/server/upgrade</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/troubleshooting</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/es-ES/docs/troubleshooting/diagnostics</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/search</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/applications</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/applications/advanced</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/data-persistence</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/data-persistence/backup-data</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/data-persistence/deploy-databases</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/data-persistence/shared-storage</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/deployments</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/deployments/builds-logs</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/deployments/captain-definition</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/deployments/ci-cd</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/deployments/cli</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/deployments/git</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/deployments/other/docker-compose</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/deployments/registries</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/domains</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/domains/advanced-certbot</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/domains/advanced-nginx</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/domains/cloudflare-reverse-proxies</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/domains/firewall</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/fundamentals/how-caprover-works</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/get-started</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/guides/cdd-migration</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/guides/complete-webapp</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/guides/static-react</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/installation</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/installation/advanced</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/installation/manual</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/one-click-apps</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/one-click-apps/authoring</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/production-checklist</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/reference/api</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/reference/app-configuration</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/reference/captain-definition</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/reference/cli</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/reference/one-click-schema</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/reference/ports</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/reference/server-environment</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/scaling</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/scaling/multi-node</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/server</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/server/backup</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/server/backup/restore</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/server/disk-cleanup</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/server/netdata</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/server/uninstall</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/server/upgrade</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/troubleshooting</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>https://caprover.com/zh-CN/docs/troubleshooting/diagnostics</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url>
+<loc>https://caprover.com/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://caprover.com/es-ES/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://caprover.com/zh-CN/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://caprover.com/compare/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/es-ES/compare/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/zh-CN/compare/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/compare/coolify/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/coolify/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/es-ES/compare/coolify/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/coolify/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/zh-CN/compare/coolify/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/coolify/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/coolify/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/compare/dokploy/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/dokploy/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/es-ES/compare/dokploy/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/dokploy/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/zh-CN/compare/dokploy/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/dokploy/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/dokploy/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://caprover.com/compare/dokku/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/dokku/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://caprover.com/es-ES/compare/dokku/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/dokku/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://caprover.com/zh-CN/compare/dokku/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://caprover.com/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="es-ES" href="https://caprover.com/es-ES/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="zh-CN" href="https://caprover.com/zh-CN/compare/dokku/" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://caprover.com/compare/dokku/" />
+<lastmod>2026-08-20T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+</urlset>

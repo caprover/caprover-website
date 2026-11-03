@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/reference/cli"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/reference/cli">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/reference/cli">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/reference/cli","fragments":{"列出已登录的服务器":{"target":"/zh-CN/docs-legacy/cli-commands#列出已登录的服务器","policy":"archive"},"服务器设置":{"target":"/zh-CN/docs-legacy/cli-commands#服务器设置","policy":"archive"},"登出":{"target":"/zh-CN/docs-legacy/cli-commands#登出","policy":"archive"},"登录":{"target":"/zh-CN/docs-legacy/cli-commands#登录","policy":"archive"},"选项":{"target":"/zh-CN/docs-legacy/cli-commands#选项","policy":"archive"},"部署":{"target":"/zh-CN/docs-legacy/cli-commands#部署","policy":"archive"}}}, window.location.href));</script>
+</body></html>

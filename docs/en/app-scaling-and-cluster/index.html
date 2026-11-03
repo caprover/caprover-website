@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/scaling"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/scaling">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/scaling">Continue to the documentation</a></p>
+<script>try { localStorage.setItem("caprover.locale", "en"); } catch {}window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/scaling","fragments":{"add-a-private-docker-registry":{"target":"/docs/deployments/registries#source-deployments-registries-private","policy":"equivalent"},"default-push-registry":{"target":"/docs/deployments/registries#source-deployments-registries-default-push","policy":"equivalent"},"disabling-registry":{"target":"/docs-legacy/app-scaling-and-cluster#disabling-registry","policy":"archive"},"more-than-one-registry":{"target":"/docs-legacy/app-scaling-and-cluster#more-than-one-registry","policy":"archive"},"run-multiple-instances-of-app":{"target":"/docs/scaling#source-scaling-scale-app","policy":"equivalent"},"run-multiple-servers":{"target":"/docs-legacy/app-scaling-and-cluster#run-multiple-servers","policy":"archive"},"setup-docker-registry":{"target":"/docs/deployments/registries#source-deployments-registries-self-hosted","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

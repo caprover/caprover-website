@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/installation/advanced"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/installation/advanced">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/installation/advanced">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/installation/advanced","fragments":{"differences":{"target":"/docs-legacy/run-locally#differences","policy":"archive"},"install-caprover-on-a-private-local-network":{"target":"/docs-legacy/run-locally#install-caprover-on-a-private-local-network","policy":"archive"},"installation":{"target":"/docs-legacy/run-locally#installation","policy":"archive"},"main-ip":{"target":"/docs-legacy/run-locally#main-ip","policy":"archive"},"option-1---only-internal-usecase":{"target":"/docs-legacy/run-locally#option-1---only-internal-usecase","policy":"archive"},"option-2---make-the-instance-accessible-from-the-outside":{"target":"/docs-legacy/run-locally#option-2---make-the-instance-accessible-from-the-outside","policy":"archive"},"setup":{"target":"/docs-legacy/run-locally#setup","policy":"archive"},"troubleshooting":{"target":"/docs-legacy/run-locally#troubleshooting","policy":"archive"}}}, window.location.href));</script>
+</body></html>

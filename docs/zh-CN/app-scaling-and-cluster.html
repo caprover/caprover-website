@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/scaling"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/scaling">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/scaling">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/scaling","fragments":{"多个-registry":{"target":"/zh-CN/docs-legacy/app-scaling-and-cluster#多个-registry","policy":"archive"},"添加私有-docker-registry":{"target":"/zh-CN/docs/deployments/registries#source-deployments-registries-private","policy":"equivalent"},"禁用-registry":{"target":"/zh-CN/docs-legacy/app-scaling-and-cluster#禁用-registry","policy":"archive"},"设置-docker-registry":{"target":"/zh-CN/docs/deployments/registries#source-deployments-registries-self-hosted","policy":"equivalent"},"运行多个服务器":{"target":"/zh-CN/docs-legacy/app-scaling-and-cluster#运行多个服务器","policy":"archive"},"运行应用的多个实例":{"target":"/zh-CN/docs/scaling#source-scaling-scale-app","policy":"equivalent"},"默认推送-registry":{"target":"/zh-CN/docs/deployments/registries#source-deployments-registries-default-push","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

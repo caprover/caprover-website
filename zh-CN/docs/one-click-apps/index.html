@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/one-click-apps"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/one-click-apps">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/one-click-apps">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/one-click-apps","fragments":{"其他应用":{"target":"/zh-CN/docs-legacy/one-click-apps#其他应用","policy":"archive"},"其他应用怎么办":{"target":"/zh-CN/docs-legacy/one-click-apps#其他应用怎么办","policy":"archive"},"其他情况":{"target":"/zh-CN/docs-legacy/one-click-apps#其他情况","policy":"archive"},"升级一键应用":{"target":"/zh-CN/docs/one-click-apps#更新","policy":"equivalent"},"博客和内容":{"target":"/zh-CN/docs-legacy/one-click-apps#博客和内容","policy":"archive"},"在-caprover-集群中连接":{"target":"/zh-CN/docs-legacy/one-click-apps#在-caprover-集群中连接","policy":"archive"},"开发工具":{"target":"/zh-CN/docs-legacy/one-click-apps#开发工具","policy":"archive"},"数据库和数据库-gui":{"target":"/zh-CN/docs-legacy/one-click-apps#数据库和数据库-gui","policy":"archive"},"简单更新镜像":{"target":"/zh-CN/docs-legacy/one-click-apps#简单更新镜像","policy":"archive"},"远程连接":{"target":"/zh-CN/docs-legacy/one-click-apps#远程连接","policy":"archive"},"连接数据库":{"target":"/zh-CN/docs-legacy/one-click-apps#连接数据库","policy":"archive"},"配置设置":{"target":"/zh-CN/docs/one-click-apps#配置","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

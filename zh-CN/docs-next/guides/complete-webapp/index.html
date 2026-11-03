@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/guides/complete-webapp"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/guides/complete-webapp">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/guides/complete-webapp">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/guides/complete-webapp","fragments":{"1-create-the-private-database":{"target":"/zh-CN/docs/guides/complete-webapp#1-创建内部数据库","policy":"equivalent"},"2-build-the-web-and-worker-images":{"target":"/zh-CN/docs/guides/complete-webapp#2-构建-web-与-worker-镜像","policy":"equivalent"},"3-create-configure-and-deploy-the-other-apps":{"target":"/zh-CN/docs/guides/complete-webapp#3-创建并部署其他应用","policy":"equivalent"},"4-back-up-each-data-source":{"target":"/zh-CN/docs/guides/complete-webapp#4-备份每个数据源","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>
