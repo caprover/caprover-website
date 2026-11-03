@@ -144,6 +144,10 @@ try {
     assert(startHtml.includes("caprover-install.sh") &&
       startHtml.includes("/docs/installation/manual"),
       "Getting Started must use the installer and link Manual Setup");
+    assert(startHtml.includes("https://get.caprover.com"),
+      `${locale.code} Getting Started must use the short installer URL`);
+    assert(!startHtml.includes("raw.githubusercontent.com/caprover/caprover/master/scripts/user/installer/caprover-install.sh"),
+      `${locale.code} Getting Started must not use the raw GitHub installer URL`);
     const oldPage = await fetch(origin + locale.pathPrefix +
       "/docs-next/installation/digitalocean");
     assert.equal(oldPage.status, 200);
