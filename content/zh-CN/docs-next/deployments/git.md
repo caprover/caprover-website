@@ -13,7 +13,9 @@ slug: /deployments/git
 5. 在 Git 托管服务中将该 URL 配置为 **push webhook**。
 6. 推送一次 commit，并查看 CapRover 部署日志。
 
-**私有仓库：**建议使用只读 deploy key，或权限受限的 service account。
+**私有仓库：**使用只读 SSH deploy key 或权限受限的服务账号。如果使用 SSH，请运行 `ssh-keygen -t ed25519 -f ./deploykey -N ""` 生成专用密钥。将 `deploykey.pub` 添加到仓库的 deploy keys，并在 CapRover 中填写 SSH 克隆 URL 和 `deploykey` 的内容。
+
+**GitHub webhook：**选择 `application/json` 和 push 事件，将 GitHub 单独的 **Secret** 字段留空。
 
 **注意：**
 

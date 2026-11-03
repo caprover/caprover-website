@@ -32,7 +32,7 @@ slug: /server/backup/restore
      caprover/caprover
    ```
 
-   Si necesitas instalar Docker, sigue primero la guía de [Primeros pasos](../../get-started.md).
+   Si necesitas Docker, completa solo el paso [Instalar Docker](../../installation/manual.md#2-instalar-docker) antes de ejecutar el comando anterior.
 
 3. Comprueba los logs del instalador. Para clústeres, sigue la [restauración multinodo](restore.md) cuando aparezca la solicitud de mapeo de nodos.
 4. Cuando esté preparado el cambio, apunta el wildcard DNS original al nuevo servidor. Si vas a ejecutar una copia en paralelo con el original, utiliza otro dominio raíz.

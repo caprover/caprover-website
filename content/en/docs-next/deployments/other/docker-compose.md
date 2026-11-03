@@ -12,7 +12,7 @@ slug: /deployments/other/docker-compose
 - Other Compose fields are ignored.
 - In particular, do not assume `build`, custom `networks`, `secrets`, `configs`, `deploy`, `restart`, or `container_name` behaves like `docker compose`.
 
-Named volumes are managed through the generated CapRover apps. A port mapping needs a `HOST:CONTAINER` form. For stacks that require unsupported Compose behavior, run Compose separately and explicitly connect the service to CapRover's external `captain-overlay-network` only when needed. Services managed outside CapRover remain outside its app lifecycle and backup behavior. See the [support matrix](docker-compose.md).
+Named volumes are managed through the generated CapRover apps. For stacks that require unsupported Compose behavior, run Compose separately and explicitly connect the service to CapRover's external `captain-overlay-network` only when needed. Services managed outside CapRover remain outside its app lifecycle and backup behavior. See the [support matrix](docker-compose.md).
 
 <span id="source-reference-docker-compose"></span>
 
@@ -23,9 +23,9 @@ CapRover's One-Click format accepts a **subset** of Docker Compose service setti
 | Service key | Supported input |
 | --- | --- |
 | `image`, `command`, `hostname`, `cap_add` | Image and selected container options. |
-| `volumes` | String mounts; check the target path and persistence. |
-| `ports` | String host:container pairs. |
-| `environment` | Mapping of variable names to string values. |
+| `volumes` | Short `source:target` strings or objects with `type` (`volume` or `bind`), `source`, and `target`. Short-form `:ro` is ignored and long-form `read_only: true` is rejected. |
+| `ports` | `HOST:CONTAINER`, `HOST:CONTAINER/tcp`, `HOST:CONTAINER/udp` strings or objects with `published`, `target`, optional `protocol` (`tcp` or `udp`), and optional `mode` (`ingress` or `host`). Without a protocol, CapRover publishes both TCP and UDP. |
+| `environment` | A map of scalar values or a list of `KEY=value` strings. Bare keys and null values are omitted. |
 | `depends_on` | Service-name array used to order One-Click deployment. |
 | `caproverExtra` | CapRover extension for `dockerfileLines`, `containerHttpPort`, `notExposeAsWebApp`, and `websocketSupport`. |
 

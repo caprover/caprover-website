@@ -32,7 +32,7 @@ slug: /server/backup/restore
      caprover/caprover
    ```
 
-   Need Docker? Follow [Getting Started](../../get-started.md) first.
+   Need Docker? Complete only [Install Docker](../../installation/manual.md#2-install-docker) before running the command above.
 
 3. Watch the installer logs. For clusters, follow [Multi-Node Restore](restore.md) when prompted for node mapping.
 4. Point the original wildcard DNS to the new server when ready. For a clone running alongside the original, choose a different root domain.
