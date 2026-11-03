@@ -21,8 +21,7 @@ On the server:
 
 ```bash
 sudo apt update && sudo apt install -y curl
-curl -fsSLo caprover-install.sh \
-  https://raw.githubusercontent.com/caprover/caprover/master/scripts/user/installer/caprover-install.sh
+curl -fsSL https://get.caprover.com -o caprover-install.sh
 sudo bash caprover-install.sh --check
 sudo bash caprover-install.sh
 ```
