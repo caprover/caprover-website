@@ -141,7 +141,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <span>CapRover</span>
         </a>
         <nav aria-label={messages.navigationAriaLabel}>
-          <a href="#features">{messages.navigation.features}</a>
           <a href={docs}>{messages.navigation.docs}</a>
           <a href={GITHUB}>
             <GitHubIcon />
