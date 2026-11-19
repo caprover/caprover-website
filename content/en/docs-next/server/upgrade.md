@@ -8,7 +8,9 @@ In the dashboard, open **Maintenance → CapRover Updates** and click **Install 
 
 Run these commands on the Swarm manager.
 
-## Docker API compatibility {#docker-api-compatibility}
+<span id="docker-api-compatibility"></span>
+
+## Docker API requirements
 
 If the dashboard blocks an upgrade because the host Docker API is too old, upgrade Docker Engine first, then retry from the dashboard.
 

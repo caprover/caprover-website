@@ -8,7 +8,9 @@ En el dashboard, abre **Maintenance → CapRover Updates** y haz clic en **Insta
 
 Ejecuta estos comandos en el nodo manager de Swarm.
 
-## Compatibilidad de la API de Docker {#docker-api-compatibility}
+<span id="docker-api-compatibility"></span>
+
+## Requisitos de la API de Docker
 
 Si el dashboard bloquea una actualización porque la API de Docker del servidor es demasiado antigua, actualiza primero Docker Engine y vuelve a intentarlo desde el dashboard.
 

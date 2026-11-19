@@ -8,7 +8,9 @@ slug: /server/upgrade
 
 在 Swarm manager 节点上执行以下命令。
 
-## Docker API 兼容性 {#docker-api-compatibility}
+<span id="docker-api-compatibility"></span>
+
+## Docker API 要求
 
 如果 dashboard 因主机的 Docker API 版本过旧而阻止升级，请先升级 Docker Engine，再从 dashboard 重试。
 
