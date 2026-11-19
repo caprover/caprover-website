@@ -1,0 +1,25 @@
+<!doctype html><html lang="es-ES"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/es-ES/docs/applications"></noscript>
+<link rel="canonical" href="https://caprover.com/es-ES/docs/applications">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/es-ES/docs/applications">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/es-ES/docs/applications","fragments":{"configuración-de-la-aplicación":{"target":"/es-ES/docs-legacy/app-configuration#configuración-de-la-aplicación","policy":"archive"},"configuración-http":{"target":"/es-ES/docs/applications#configuración-http","policy":"current"},"directorios-persistentes":{"target":"/es-ES/docs/data-persistence#source-applications-persistent-directories","policy":"equivalent"},"etiquetas-de-servicio":{"target":"/es-ES/docs/applications#source-applications-tags-descriptions","policy":"equivalent"},"función-previa-a-la-implementación":{"target":"/es-ES/docs/applications/advanced#source-applications-advanced-pre-deploy-function","policy":"equivalent"},"habilitando-https":{"target":"/es-ES/docs-legacy/app-configuration#habilitando-https","policy":"archive"},"id-de-nodo":{"target":"/es-ES/docs/data-persistence#source-data-persistence-node-placement","policy":"equivalent"},"port-mapping":{"target":"/es-ES/docs/domains/firewall#source-applications-public-ports","policy":"equivalent"},"recuento-de-instancias":{"target":"/es-ES/docs/scaling#source-scaling-scale-app","policy":"equivalent"},"variables-de-entorno":{"target":"/es-ES/docs/applications#variables-de-entorno","policy":"current"}}}, window.location.href));</script>
+</body></html>

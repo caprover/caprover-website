@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/installation"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/installation">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/installation">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/installation","fragments":{"deploy-the-openstack-heat-template-file":{"target":"/docs-legacy/server-purchase/openstack#deploy-the-openstack-heat-template-file","policy":"archive"},"install-the-openstack-cli-and-validate-the-connection":{"target":"/docs-legacy/server-purchase/openstack#install-the-openstack-cli-and-validate-the-connection","policy":"archive"},"set-up-an-openstack-provider":{"target":"/docs-legacy/server-purchase/openstack#set-up-an-openstack-provider","policy":"archive"},"why-openstack":{"target":"/docs-legacy/server-purchase/openstack#why-openstack","policy":"archive"}}}, window.location.href));</script>
+</body></html>

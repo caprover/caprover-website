@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/installation/advanced"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/installation/advanced">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/installation/advanced">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/installation/advanced","fragments":{"主-ip":{"target":"/zh-CN/docs-legacy/run-locally#主-ip","policy":"archive"},"在私有本地网络中安装-caprover":{"target":"/zh-CN/docs-legacy/run-locally#在私有本地网络中安装-caprover","policy":"archive"},"安装":{"target":"/zh-CN/docs-legacy/run-locally#安装","policy":"archive"},"差异":{"target":"/zh-CN/docs-legacy/run-locally#差异","policy":"archive"},"故障排查":{"target":"/zh-CN/docs-legacy/run-locally#故障排查","policy":"archive"},"设置":{"target":"/zh-CN/docs-legacy/run-locally#设置","policy":"archive"},"选项-1---仅供内部使用":{"target":"/zh-CN/docs-legacy/run-locally#选项-1---仅供内部使用","policy":"archive"},"选项-2---让实例可从外部访问":{"target":"/zh-CN/docs-legacy/run-locally#选项-2---让实例可从外部访问","policy":"archive"}}}, window.location.href));</script>
+</body></html>

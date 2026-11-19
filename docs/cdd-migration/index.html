@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/guides/cdd-migration"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/guides/cdd-migration">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/guides/cdd-migration">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/guides/cdd-migration","fragments":{"breaking-changes-from-captainduckduck-to-caprover":{"target":"/docs-legacy/cdd-migration#breaking-changes-from-captainduckduck-to-caprover","policy":"archive"},"migration-script":{"target":"/docs-legacy/cdd-migration#migration-script","policy":"archive"},"tips-for-migration":{"target":"/docs-legacy/cdd-migration#tips-for-migration","policy":"archive"},"with-self-hosted-registry":{"target":"/docs-legacy/cdd-migration#with-self-hosted-registry","policy":"archive"},"without-self-hosted-registry":{"target":"/docs-legacy/cdd-migration#without-self-hosted-registry","policy":"archive"}}}, window.location.href));</script>
+</body></html>

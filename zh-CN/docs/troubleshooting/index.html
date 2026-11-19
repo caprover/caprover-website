@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/troubleshooting"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/troubleshooting">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/troubleshooting">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/troubleshooting","fragments":{"arm-处理器":{"target":"/zh-CN/docs-legacy/troubleshooting#arm-处理器","policy":"archive"},"aws-设置":{"target":"/zh-CN/docs-legacy/troubleshooting#aws-设置","policy":"archive"},"cloudflare-ssl-设置":{"target":"/zh-CN/docs-legacy/troubleshooting#cloudflare-ssl-设置","policy":"archive"},"使用现有-swarm":{"target":"/zh-CN/docs-legacy/troubleshooting#使用现有-swarm","policy":"archive"},"发生了某些问题":{"target":"/zh-CN/docs-legacy/troubleshooting#发生了某些问题","policy":"archive"},"域名验证失败---错误-1107":{"target":"/zh-CN/docs-legacy/troubleshooting#域名验证失败---错误-1107","policy":"archive"},"如何使用-edge-版本":{"target":"/zh-CN/docs-legacy/troubleshooting#如何使用-edge-版本","policy":"archive"},"如何停止并移除-captain":{"target":"/zh-CN/docs-legacy/troubleshooting#如何停止并移除-captain","policy":"archive"},"如何在应用内运行-shell在-container-内":{"target":"/zh-CN/docs-legacy/troubleshooting#如何在应用内运行-shell在-container-内","policy":"archive"},"如何查看应用日志":{"target":"/zh-CN/docs-legacy/troubleshooting#如何查看应用日志","policy":"archive"},"如何重启-caprover":{"target":"/zh-CN/docs-legacy/troubleshooting#如何重启-caprover","policy":"archive"},"如何重启应用":{"target":"/zh-CN/docs-legacy/troubleshooting#如何重启应用","policy":"archive"},"我修改-nginx-config-后破坏了-admin-ui":{"target":"/zh-CN/docs-legacy/troubleshooting#我修改-nginx-config-后破坏了-admin-ui","policy":"archive"},"我收到-lets-encrypt-发来的邮件说我的-domain-的-ssl-certificate-即将过期但它不应该过期":{"target":"/zh-CN/docs-legacy/troubleshooting#我收到-lets-encrypt-发来的邮件说我的-domain-的-ssl-certificate-即将过期但它不应该过期","policy":"archive"},"无法连接到-ip_server3000":{"target":"/zh-CN/docs-legacy/troubleshooting#无法连接到-ip_server3000","policy":"archive"},"第一":{"target":"/zh-CN/docs-legacy/troubleshooting#第一","policy":"archive"},"第三":{"target":"/zh-CN/docs-legacy/troubleshooting#第三","policy":"archive"},"第二":{"target":"/zh-CN/docs-legacy/troubleshooting#第二","policy":"archive"},"自定义配置项":{"target":"/zh-CN/docs-legacy/troubleshooting#自定义配置项","policy":"archive"},"连接超时":{"target":"/zh-CN/docs-legacy/troubleshooting#连接超时","policy":"archive"},"部署成功但出现-502-bad-gateway-错误":{"target":"/zh-CN/docs/troubleshooting#应用无法访问或返回-http-502","policy":"equivalent"},"重置密码":{"target":"/zh-CN/docs-legacy/troubleshooting#重置密码","policy":"archive"}}}, window.location.href));</script>
+</body></html>

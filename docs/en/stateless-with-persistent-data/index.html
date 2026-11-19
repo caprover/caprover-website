@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/data-persistence/shared-storage"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/data-persistence/shared-storage">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/data-persistence/shared-storage">Continue to the documentation</a></p>
+<script>try { localStorage.setItem("caprover.locale", "en"); } catch {}window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/data-persistence/shared-storage","fragments":{"1-preparing-rclone":{"target":"/docs-legacy/stateless-with-persistent-data#1-preparing-rclone","policy":"archive"},"2-prepare-your-storage-system":{"target":"/docs-legacy/stateless-with-persistent-data#2-prepare-your-storage-system","policy":"archive"},"3-preparing-the-docker-rclone-plugin":{"target":"/docs-legacy/stateless-with-persistent-data#3-preparing-the-docker-rclone-plugin","policy":"archive"},"4-preparing-the-app":{"target":"/docs-legacy/stateless-with-persistent-data#4-preparing-the-app","policy":"archive"},"placeholder-variables":{"target":"/docs-legacy/stateless-with-persistent-data#placeholder-variables","policy":"archive"}}}, window.location.href));</script>
+</body></html>

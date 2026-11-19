@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/server/backup"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/server/backup">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/server/backup">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/server/backup","fragments":{"docker-registry-说明":{"target":"/zh-CN/docs-legacy/backup-and-restore#docker-registry-说明","policy":"archive"},"保留旧服务器":{"target":"/zh-CN/docs-legacy/backup-and-restore#保留旧服务器","policy":"archive"},"哪些内容会被恢复":{"target":"/zh-CN/docs/server/backup#source-server-backup-contents","policy":"equivalent"},"备份和恢复":{"target":"/zh-CN/docs-legacy/backup-and-restore#备份和恢复","policy":"archive"},"备份过程":{"target":"/zh-CN/docs/server/backup#source-server-backup-create","policy":"equivalent"},"多节点":{"target":"/zh-CN/docs-legacy/backup-and-restore#多节点","policy":"archive"},"恢复过程":{"target":"/zh-CN/docs-legacy/backup-and-restore#恢复过程","policy":"archive"},"第三方-registry":{"target":"/zh-CN/docs-legacy/backup-and-restore#第三方-registry","policy":"archive"},"自动化备份过程":{"target":"/zh-CN/docs/server/backup#source-server-backup-automate","policy":"equivalent"},"自托管-registry":{"target":"/zh-CN/docs-legacy/backup-and-restore#自托管-registry","policy":"archive"}}}, window.location.href));</script>
+</body></html>

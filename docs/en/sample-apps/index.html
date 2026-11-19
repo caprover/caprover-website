@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/guides/complete-webapp"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/guides/complete-webapp">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/guides/complete-webapp">Continue to the documentation</a></p>
+<script>try { localStorage.setItem("caprover.locale", "en"); } catch {}window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/guides/complete-webapp","fragments":{"caprover-django":{"target":"/docs-legacy/sample-apps#caprover-django","policy":"archive"},"caprover-laravel":{"target":"/docs-legacy/sample-apps#caprover-laravel","policy":"archive"},"community-apps":{"target":"/docs-legacy/sample-apps#community-apps","policy":"archive"},"elixirphoenix-app-deploy":{"target":"/docs-legacy/sample-apps#elixirphoenix-app-deploy","policy":"archive"},"ready-to-be-deployed":{"target":"/docs-legacy/sample-apps#ready-to-be-deployed","policy":"archive"}}}, window.location.href));</script>
+</body></html>

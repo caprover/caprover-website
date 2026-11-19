@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/production-checklist"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/production-checklist">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/production-checklist">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/production-checklist","fragments":{"custom-default-password":{"target":"/docs-legacy/best-practices#custom-default-password","policy":"archive"},"customize-the-nginx-config-for-new-apps":{"target":"/docs-legacy/best-practices#customize-the-nginx-config-for-new-apps","policy":"archive"},"enforce-https":{"target":"/docs-legacy/best-practices#enforce-https","policy":"archive"},"hidden-root-domain":{"target":"/docs-legacy/best-practices#hidden-root-domain","policy":"archive"},"out-of-memory-when-building":{"target":"/docs-legacy/best-practices#out-of-memory-when-building","policy":"archive"},"use-service-accounts-for-git":{"target":"/docs-legacy/best-practices#use-service-accounts-for-git","policy":"archive"}}}, window.location.href));</script>
+</body></html>

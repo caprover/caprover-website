@@ -1,0 +1,25 @@
+<!doctype html><html lang="es-ES"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/es-ES/docs/get-started"></noscript>
+<link rel="canonical" href="https://caprover.com/es-ES/docs/get-started">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/es-ES/docs/get-started">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/es-ES/docs/get-started","fragments":{"a-nombre-de-dominio":{"target":"/es-ES/docs-legacy/get-started#a-nombre-de-dominio","policy":"archive"},"b-servidor":{"target":"/es-ES/docs-legacy/get-started#b-servidor","policy":"archive"},"b1-ip-pública":{"target":"/es-ES/docs-legacy/get-started#b1-ip-pública","policy":"archive"},"b2-especificaciones-del-servidor":{"target":"/es-ES/docs-legacy/get-started#b2-especificaciones-del-servidor","policy":"archive"},"b3-docker":{"target":"/es-ES/docs-legacy/get-started#b3-docker","policy":"archive"},"b4-configurar-el-cortafuegos":{"target":"/es-ES/docs-legacy/get-started#b4-configurar-el-cortafuegos","policy":"archive"},"con-cli-recomendado":{"target":"/es-ES/docs-legacy/get-started#con-cli-recomendado","policy":"archive"},"con-la-interfaz-web-no-requiere-npm":{"target":"/es-ES/docs-legacy/get-started#con-la-interfaz-web-no-requiere-npm","policy":"archive"},"configuración-sencilla":{"target":"/es-ES/docs-legacy/get-started#configuración-sencilla","policy":"archive"},"paso-1-instalación-de-caprover":{"target":"/es-ES/docs/get-started#instalar-caprover","policy":"equivalent"},"paso-2-conectar-el-dominio-raíz":{"target":"/es-ES/docs/get-started#dns","policy":"equivalent"},"paso-3-configurar-e-inicializar-caprover":{"target":"/es-ES/docs/get-started#configurar-caprover","policy":"equivalent"},"paso-4-opcional-configurar-el-archivo-de-intercambio":{"target":"/es-ES/docs-legacy/get-started#paso-4-opcional-configurar-el-archivo-de-intercambio","policy":"archive"},"requisitos-previos":{"target":"/es-ES/docs-legacy/get-started#requisitos-previos","policy":"archive"},"step-5-deploy-the-test-app":{"target":"/es-ES/docs/get-started#desplegar-la-primera-aplicación","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/data-persistence/shared-storage"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/data-persistence/shared-storage">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/data-persistence/shared-storage">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/data-persistence/shared-storage","fragments":{"1-准备-rclone":{"target":"/zh-CN/docs-legacy/stateless-with-persistent-data#1-准备-rclone","policy":"archive"},"2-准备存储系统":{"target":"/zh-CN/docs-legacy/stateless-with-persistent-data#2-准备存储系统","policy":"archive"},"3-准备-docker-rclone-插件":{"target":"/zh-CN/docs-legacy/stateless-with-persistent-data#3-准备-docker-rclone-插件","policy":"archive"},"4-准备应用":{"target":"/zh-CN/docs-legacy/stateless-with-persistent-data#4-准备应用","policy":"archive"},"占位变量":{"target":"/zh-CN/docs-legacy/stateless-with-persistent-data#占位变量","policy":"archive"}}}, window.location.href));</script>
+</body></html>
