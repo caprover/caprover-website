@@ -8,6 +8,35 @@ En el dashboard, abre **Maintenance → CapRover Updates** y haz clic en **Insta
 
 Ejecuta estos comandos en el nodo manager de Swarm.
 
+## Compatibilidad de la API de Docker {#docker-api-compatibility}
+
+Si el dashboard bloquea una actualización porque la API de Docker del servidor es demasiado antigua, actualiza primero Docker Engine y vuelve a intentarlo desde el dashboard.
+
+El ajuste `dockerApiVersion` selecciona la versión de la API que usa CapRover. El desarrollo y las pruebas de CapRover se realizan con la versión predeterminada de la API. Que una actualización funcione con una versión anterior de la API no garantiza que las siguientes también funcionen.
+
+### Actualización manual con una versión de API personalizada
+
+Actualizar directamente el servicio `captain-captain` omite la comprobación de compatibilidad de CapRover. Captain podría no iniciarse y dejar el dashboard inaccesible, o podrían fallar operaciones como el despliegue de apps después del arranque. Continúa bajo tu responsabilidad y prepárate para verificar la actualización y recuperar el servidor.
+
+1. [Haz una copia de seguridad de CapRover y de los datos de tus aplicaciones](backup/index.md). Conéctate por SSH a un nodo manager de Swarm y guarda la referencia de la imagen actual, incluido el digest si aparece.
+
+   ```bash
+   docker service inspect --format '{{.Spec.TaskTemplate.ContainerSpec.Image}}' captain-captain
+   ```
+
+2. Sustituye `TARGET_VERSION` por la etiqueta exacta de la versión de CapRover y actualiza el servicio.
+
+   ```bash
+   docker service update --image caprover/caprover:TARGET_VERSION captain-captain
+   ```
+
+3. Comprueba la versión en el dashboard, que las apps sean accesibles y que se puedan desplegar.
+4. Si falla la actualización, sustituye `PREVIOUS_IMAGE` por la referencia completa que guardaste y vuelve a desplegar esa imagen. Si la versión introdujo cambios incompatibles en los datos, sigue la [guía de restauración](backup/restore.md).
+
+   ```bash
+   docker service update --image PREVIOUS_IMAGE captain-captain
+   ```
+
 <span id="probar-una-imagen-edge"></span>
 
 ## Cambiar a edge
