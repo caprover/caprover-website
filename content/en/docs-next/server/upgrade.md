@@ -12,13 +12,13 @@ Run these commands on the Swarm manager.
 
 ## Docker API requirements
 
-If the dashboard blocks an upgrade because the host Docker API is too old, upgrade Docker Engine first, then retry from the dashboard.
+If the dashboard blocks an upgrade because the host Docker API is too old, upgrade Docker Engine first, then retry from the dashboard. Before upgrading Docker Engine, check that the new Engine supports the API version selected by any `dockerApiVersion` override.
 
-The `dockerApiVersion` override selects which API CapRover uses. We develop and test CapRover against the default API version. An upgrade that works with a lower API version on one release offers no guarantee for future releases.
+The dashboard compares the host’s maximum Docker API version with the target release’s requirement. The `dockerApiVersion` override only selects the API version Captain uses for its own calls. We develop and test CapRover against the default API version. An upgrade that works with a lower API version on one release offers no guarantee for future releases.
 
 ### Manual upgrade with an override
 
-Updating the `captain-captain` service directly bypasses CapRover's compatibility check. Captain may fail to start, leaving the dashboard unavailable, or operations such as app deployments may fail after startup. Proceed at your own risk and be prepared to verify the upgrade and recover the server.
+Use this procedure only if your current CapRover installation already runs with a `dockerApiVersion` override. Updating the `captain-captain` service directly bypasses CapRover's compatibility check. Captain may fail to start, leaving the dashboard unavailable, or operations such as app deployments may fail after startup. Proceed at your own risk and be prepared to verify the upgrade and recover the server.
 
 1. [Back up CapRover and your application data](backup/index.md). Connect to a Swarm manager over SSH and record the current image reference, including its digest if present.
 
@@ -33,7 +33,7 @@ Updating the `captain-captain` service directly bypasses CapRover's compatibilit
    ```
 
 3. Verify the version in the dashboard and check that your apps are reachable and app deployments work.
-4. If the upgrade fails, replace `PREVIOUS_IMAGE` with the full image reference you recorded and redeploy it. If the release made incompatible data changes, follow the [restore guide](backup/restore.md).
+4. If the upgrade fails and the previous release can still read the current data, replace `PREVIOUS_IMAGE` with the full image reference you recorded and redeploy it. If the upgrade made incompatible data changes, [restore your pre-upgrade backup on a fresh server](backup/restore.md). In the restore guide’s `docker run` command, replace `caprover/caprover` with the full previous image reference you recorded.
 
    ```bash
    docker service update --image PREVIOUS_IMAGE captain-captain
