@@ -135,6 +135,29 @@ function CommunitySupport({
   );
 }
 
+function WorkloadExamples({
+  messages,
+}: {
+  messages: HomeMessages["workloads"];
+}) {
+  return (
+    <section
+      className="workload-examples shell"
+      aria-labelledby="workload-title"
+    >
+      <h2 id="workload-title">{messages.title}</h2>
+      <dl className="workload-list">
+        {messageList(messages.items).map(({ title, description }) => (
+          <div key={title}>
+            <dt>{title}</dt>
+            <dd>{description}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}
+
 function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
   return (
     <section
@@ -255,6 +278,7 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         <LiveDeployment messages={messages.hero} />
       </section>
 
+      <WorkloadExamples messages={messages.workloads} />
       <OneClickApps messages={messages.oneClick} />
 
       <DeploymentWorkflows
