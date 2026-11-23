@@ -75,8 +75,10 @@ export function CompareHeader({
 
 export function CompareFooter({
   locale = DEFAULT_LOCALE,
+  verifiedDate,
 }: {
   locale?: Locale;
+  verifiedDate?: string;
 }) {
   const copy = getMessages(locale).comparisonCommon;
   return (
@@ -89,7 +91,7 @@ export function CompareFooter({
           <a href={GITHUB}>{copy.footer.github}</a>
         </div>
         <small>
-          {copy.footer.lastVerified} {copy.verifiedDate}
+          {copy.footer.lastVerified} {verifiedDate ?? copy.verifiedDate}
         </small>
       </div>
     </footer>
@@ -285,7 +287,7 @@ export function ResourceCallout({
   const copy = getMessages(locale).comparisonCommon.resource;
   return (
     <aside className="resource-callout">
-      <div className="resource-number">1 GB</div>
+      <div className="resource-number">1 GiB</div>
       <div>
         <p className="compare-kicker">{copy.kicker}</p>
         {children}
@@ -364,8 +366,7 @@ export function ChoiceGrid({
       </article>
       <article>
         <p className="compare-kicker">
-          {copy.competitorBeforeName} {competitorName.toUpperCase()}{" "}
-          {copy.competitorAfterName}
+          {copy.competitorKicker.replace("{product}", competitorName)}
         </p>
         <ul>
           {competitor.map((item) => (
@@ -404,16 +405,18 @@ export function MarketingCta({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
 export function SourceLinks({
   children,
   locale = DEFAULT_LOCALE,
+  verifiedDate,
 }: {
   children: ReactNode;
   locale?: Locale;
+  verifiedDate?: string;
 }) {
   const copy = getMessages(locale).comparisonCommon;
   return (
     <div className="source-links">
       <h2>{copy.sources.title}</h2>
       <p>
-        {copy.sources.lastVerified} {copy.verifiedDate}.{" "}
+        {copy.sources.lastVerified} {verifiedDate ?? copy.verifiedDate}.{" "}
         {copy.sources.description}
       </p>
       <ul>{children}</ul>
@@ -421,20 +424,50 @@ export function SourceLinks({
   );
 }
 
+export function CapRoverDeploymentSources({ locale }: { locale: Locale }) {
+  const sources = getMessages(locale).comparisonCommon.sources;
+  return (
+    <>
+      <li>
+        <a href={docsUrl("deployments/other/docker-compose", locale)}>
+          {sources.caproverCompose}
+        </a>
+      </li>
+      <li>
+        <a href={docsUrl("deployments/registries", locale)}>
+          {sources.caproverRegistry}
+        </a>
+      </li>
+      <li>
+        <a
+          href={docsUrl(
+            "deployments/builds-logs#source-deployments-versions-rollback",
+            locale,
+          )}
+        >
+          {sources.caproverRollback}
+        </a>
+      </li>
+    </>
+  );
+}
+
 export function ComparePage({
   children,
   locale = DEFAULT_LOCALE,
   path,
+  verifiedDate,
 }: {
   children: ReactNode;
   locale?: Locale;
   path: string;
+  verifiedDate?: string;
 }) {
   return (
     <main className="compare-page" lang={locale}>
       <CompareHeader locale={locale} path={path} />
       {children}
-      <CompareFooter locale={locale} />
+      <CompareFooter locale={locale} verifiedDate={verifiedDate} />
     </main>
   );
 }

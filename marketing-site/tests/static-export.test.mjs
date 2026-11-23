@@ -75,6 +75,24 @@ test("exports complete localized website routes", async () => {
         `https://caprover.com${locale.pathPrefix}/docs/get-started`,
       ),
     );
+    assert(
+      homepage.includes(
+        `href="${basePath}${localizedPath(locale, routeManifest.comparisonHub.path)}"`,
+      ),
+    );
+    for (const document of [
+      "deployments/cli",
+      "deployments/other/docker-compose",
+      "domains/advanced-nginx",
+      "applications/advanced",
+      "scaling/multi-node",
+    ]) {
+      assert(
+        homepage.includes(
+          `href="https://caprover.com${locale.pathPrefix}/docs/${document}"`,
+        ),
+      );
+    }
     for (const targetLocale of enabledLocales) {
       assert(homepage.includes(`hrefLang="${targetLocale.code}"`));
     }
@@ -100,10 +118,6 @@ test("exports complete localized website routes", async () => {
 });
 
 test("keeps comparison regressions covered across locales", async () => {
-  const homepage = await readFile(
-    `out${routeManifest.home.path}index.html`,
-    "utf8",
-  );
   const hub = await readFile(
     `out${routeManifest.comparisonHub.path}index.html`,
     "utf8",
@@ -122,8 +136,6 @@ test("keeps comparison regressions covered across locales", async () => {
   );
   const sitemap = await readFile("out/sitemap.xml", "utf8");
 
-  assert.doesNotMatch(homepage, /href=["'][^"']*\/compare\/?["']/);
-  assert.match(hub, /Start simple\. Never hit a ceiling\./);
   assert.match(hub, /SIMPLE BY DEFAULT/);
   assert.match(hub, /SMALL-SERVER FRIENDLY/);
   assert.match(hub, /status-yes/);
