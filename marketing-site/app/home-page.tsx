@@ -18,6 +18,15 @@ const ASSET_PATH = "/homepage-assets";
 
 type HomeMessages = Messages["homepage"];
 
+const featuredApps = [
+  { name: "WordPress", logo: "wordpress" },
+  { name: "PostgreSQL", logo: "postgres" },
+  { name: "Redis", logo: "redis" },
+  { name: "Nextcloud", logo: "nextcloud" },
+  { name: "n8n", logo: "n8n-io" },
+  { name: "Uptime Kuma", logo: "uptime-kuma" },
+];
+
 function asset(path: string) {
   return `${BASE_PATH}${ASSET_PATH}${path}`;
 }
@@ -183,84 +192,61 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
       </section>
 
       <section
-        className="workflow-section shell"
-        aria-labelledby="workflow-title"
+        className="one-click-section shell"
+        aria-labelledby="one-click-title"
       >
-        <h2 id="workflow-title">{messages.workflow.title}</h2>
-        <p className="homepage-section-lead">{messages.workflow.description}</p>
-        <ol className="deployment-steps">
-          <li>
-            <div className="deployment-step">
-              <div>
-                <h3>{messages.workflow.prepareTitle}</h3>
-                <p>{messages.workflow.prepareDescription}</p>
-              </div>
-              <div className="deployment-files">
-                <figure>
-                  <figcaption>Dockerfile</figcaption>
-                  <pre className="deployment-code">
-                    <code>{`FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/index.html`}</code>
-                  </pre>
-                </figure>
-                <figure>
-                  <figcaption>captain-definition</figcaption>
-                  <pre className="deployment-code">
-                    <code>
-                      {'{"schemaVersion":2,"dockerfilePath":"./Dockerfile"}'}
-                    </code>
-                  </pre>
-                </figure>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="deployment-step">
-              <div>
-                <h3>{messages.workflow.deployTitle}</h3>
-                <p>{messages.workflow.deployDescription}</p>
-                <a
-                  className="text-link"
-                  href={docsUrl("deployments/cli", locale)}
-                >
-                  {messages.workflow.guideLink} <ArrowIcon />
-                </a>
-              </div>
-              <pre className="deployment-code">
-                <code>{`npm install -g caprover
-caprover login
-caprover deploy`}</code>
-              </pre>
-            </div>
-          </li>
-          <li>
-            <div className="deployment-step">
-              <div>
-                <h3>{messages.workflow.verifyTitle}</h3>
-                <p>{messages.workflow.verifyDescription}</p>
-              </div>
-              <figure className="deployment-result">
-                <a href={asset("/caprover-deployment-history.png")}>
-                  <img
-                    src={asset("/caprover-deployment-history.png")}
-                    width={836}
-                    height={458}
-                    loading="lazy"
-                    alt={messages.workflow.historyAlt}
-                  />
-                </a>
-                <figcaption>{messages.workflow.historyCaption}</figcaption>
-              </figure>
-            </div>
-          </li>
-        </ol>
+        <h2 id="one-click-title">{messages.oneClick.title}</h2>
+        <p className="homepage-section-lead">{messages.oneClick.description}</p>
+        <ul className="featured-apps">
+          {featuredApps.map(({ name, logo }) => (
+            <li key={logo}>
+              <img
+                src={asset(`/one-click/${logo}.png`)}
+                width={64}
+                height={48}
+                alt=""
+              />
+              <span>{name}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="homepage-links">
+          <a
+            className="text-link"
+            href="https://github.com/caprover/one-click-apps/tree/master/public/v4/apps"
+          >
+            {messages.oneClick.browse} <ArrowIcon />
+          </a>
+          <a className="text-link" href={docsUrl("one-click-apps", locale)}>
+            {messages.oneClick.install} <ArrowIcon />
+          </a>
+        </div>
       </section>
 
       <section
-        className="app-controls"
+        className="operations-section shell"
         id="features"
-        aria-labelledby="app-controls-title"
+        aria-labelledby="operations-title"
       >
+        <h2 id="operations-title">{messages.operations.title}</h2>
+        <dl className="operations-list">
+          {messageList(messages.operations.items).map(
+            ({ title, description, link }) => (
+              <div key={link.key}>
+                <dt>{title}</dt>
+                <dd>
+                  <p>{description}</p>
+                  <a className="text-link" href={docsUrl(link.key, locale)}>
+                    {link.label} <ArrowIcon />
+                  </a>
+                </dd>
+              </div>
+            ),
+          )}
+        </dl>
+      </section>
+
+      <section className="app-controls" aria-labelledby="app-controls-title">
         <div className="shell">
           <h2 id="app-controls-title">{messages.controls.title}</h2>
           <div className="app-control-list">
@@ -287,24 +273,8 @@ caprover deploy`}</code>
                 {messages.controls.dockerLink} <ArrowIcon />
               </a>
             </article>
-            <article>
-              <h3>{messages.controls.swarmTitle}</h3>
-              <p>{messages.controls.swarmDescription}</p>
-              <a
-                className="text-link"
-                href={docsUrl("scaling/multi-node", locale)}
-              >
-                {messages.controls.swarmLink} <ArrowIcon />
-              </a>
-            </article>
           </div>
           <div className="app-control-links">
-            <a
-              className="text-link"
-              href={docsUrl("deployments/other/docker-compose", locale)}
-            >
-              {messages.controls.composeLink} <ArrowIcon />
-            </a>
             <a
               className="text-link"
               href={`${BASE_PATH}${localizedPath(routes.comparisonHub.path, locale)}`}
@@ -313,6 +283,97 @@ caprover deploy`}</code>
             </a>
           </div>
         </div>
+      </section>
+
+      <section
+        className="workflow-section shell"
+        aria-labelledby="workflow-title"
+      >
+        <h2 id="workflow-title">{messages.workflow.title}</h2>
+        <p className="homepage-section-lead">{messages.workflow.description}</p>
+        <details className="deployment-example">
+          <summary>{messages.workflow.showExample}</summary>
+          <ol className="deployment-steps">
+            <li>
+              <div className="deployment-step">
+                <div>
+                  <h3>{messages.workflow.prepareTitle}</h3>
+                  <p>{messages.workflow.prepareDescription}</p>
+                </div>
+                <div className="deployment-files">
+                  <figure>
+                    <figcaption>server.js</figcaption>
+                    <pre className="deployment-code">
+                      <code>{`const http = require('node:http');
+
+http.createServer((_req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ ok: true }));
+}).listen(80, '0.0.0.0');`}</code>
+                    </pre>
+                  </figure>
+                  <figure>
+                    <figcaption>Dockerfile</figcaption>
+                    <pre className="deployment-code">
+                      <code>{`FROM node:24-alpine
+WORKDIR /app
+COPY server.js .
+EXPOSE 80
+CMD ["node", "server.js"]`}</code>
+                    </pre>
+                  </figure>
+                  <figure>
+                    <figcaption>captain-definition</figcaption>
+                    <pre className="deployment-code">
+                      <code>
+                        {'{"schemaVersion":2,"dockerfilePath":"./Dockerfile"}'}
+                      </code>
+                    </pre>
+                  </figure>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="deployment-step">
+                <div>
+                  <h3>{messages.workflow.deployTitle}</h3>
+                  <p>{messages.workflow.deployDescription}</p>
+                  <a
+                    className="text-link"
+                    href={docsUrl("deployments/cli", locale)}
+                  >
+                    {messages.workflow.guideLink} <ArrowIcon />
+                  </a>
+                </div>
+                <pre className="deployment-code">
+                  <code>{`npm install -g caprover
+caprover login
+caprover deploy`}</code>
+                </pre>
+              </div>
+            </li>
+            <li>
+              <div className="deployment-step">
+                <div>
+                  <h3>{messages.workflow.verifyTitle}</h3>
+                  <p>{messages.workflow.verifyDescription}</p>
+                </div>
+                <figure className="deployment-result">
+                  <a href={asset("/caprover-deployment-history.png")}>
+                    <img
+                      src={asset("/caprover-deployment-history.png")}
+                      width={836}
+                      height={458}
+                      loading="lazy"
+                      alt={messages.workflow.historyAlt}
+                    />
+                  </a>
+                  <figcaption>{messages.workflow.historyCaption}</figcaption>
+                </figure>
+              </div>
+            </li>
+          </ol>
+        </details>
       </section>
 
       <section className="final-cta shell">
