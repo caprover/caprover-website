@@ -4,7 +4,7 @@ import test from "node:test";
 
 const expectedAssets = [
   "caprover-deployment-history.png",
-  "caprover-dashboard.png",
+  "caprover-active-deployment.webp",
   "caprover-logo.png",
   "slack-icon.png",
   "one-click/wordpress.png",
@@ -14,7 +14,9 @@ const expectedAssets = [
   "one-click/n8n-io.png",
   "one-click/uptime-kuma.png",
 ];
+const responsiveAssets = ["caprover-active-deployment-mobile.webp"];
 const legacyAssets = [
+  "caprover-dashboard.png",
   "caprover-architecture.png",
   "caprover-tutorial.gif",
   "caprover-workflow.png",
@@ -90,6 +92,31 @@ test("exports complete localized website routes", async () => {
       assert(homepage.includes(catalog[`homepage.${pathTitle}`]));
     }
     assert.match(homepage, /<ul class="featured-apps">/);
+    assert(
+      homepage.indexOf('class="live-deployment"') <
+        homepage.indexOf('id="one-click-apps"'),
+    );
+    assert(
+      homepage.indexOf('id="one-click-apps"') <
+        homepage.indexOf('id="deploy-apps"'),
+    );
+    assert(
+      homepage.indexOf('id="deploy-apps"') <
+        homepage.indexOf('id="deploy-static"'),
+    );
+    for (const id of [
+      "deploy-apps",
+      "deploy-static",
+      "one-click-apps",
+      "deploy-compose",
+    ]) {
+      assert(homepage.includes(`href="#${id}"`));
+      assert(homepage.includes(`id="${id}"`));
+    }
+    assert.match(
+      homepage,
+      /https:\/\/demo-nodejs\.server\.demo\.caprover\.com\//,
+    );
     assert.match(homepage, /<dl class="operations-list">/);
     assert.match(homepage, /id="features"/);
     assert.match(homepage, /caprover deploy/);
@@ -116,7 +143,6 @@ test("exports complete localized website routes", async () => {
       "guides/static-react",
       "deployments",
       "deployments/builds-logs#source-deployments-versions-rollback",
-      "one-click-apps",
       "domains",
       "troubleshooting/diagnostics",
       "deployments/other/docker-compose",
@@ -139,7 +165,7 @@ test("exports complete localized website routes", async () => {
   assert(defaultAlias.includes("noindex, follow"));
 
   await Promise.all(
-    [...expectedAssets, ...legacyAssets].map((asset) =>
+    [...expectedAssets, ...responsiveAssets, ...legacyAssets].map((asset) =>
       access(`out/${assetPath}/${asset}`),
     ),
   );
@@ -149,6 +175,10 @@ test("exports complete localized website routes", async () => {
       defaultHtml,
       new RegExp(`(?:href|src)=["']${basePath}/${assetPath}/${asset}["']`),
     );
+  }
+
+  for (const asset of responsiveAssets) {
+    assert(defaultHtml.includes(`srcSet="${basePath}/${assetPath}/${asset}"`));
   }
 
   if (basePath) {
