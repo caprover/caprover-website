@@ -366,8 +366,7 @@ export function ChoiceGrid({
       </article>
       <article>
         <p className="compare-kicker">
-          {copy.competitorBeforeName} {competitorName.toUpperCase()}{" "}
-          {copy.competitorAfterName}
+          {copy.competitorKicker.replace("{product}", competitorName)}
         </p>
         <ul>
           {competitor.map((item) => (
