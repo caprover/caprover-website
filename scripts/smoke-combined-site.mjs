@@ -193,7 +193,7 @@ try {
   const homepageResponse = await fetch(`${origin}/`);
   assert.equal(homepageResponse.status, 200);
   const homepage = await homepageResponse.text();
-  assert.match(homepage, /Run Docker apps/);
+  assert.match(homepage, /Deploy apps<br\s*\/?>on your own server\./);
 
   const nextAsset = homepage.match(/(?:href|src)=["'](\/_next\/[^"']+\.(?:css|js))["']/)?.[1];
   assert(nextAsset, "Homepage does not reference a Next.js CSS or JavaScript asset");
@@ -257,17 +257,17 @@ try {
   assert.match(chineseDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
   assert.match(chineseDocs, /src=["']\/locale-preference\.js["']/);
   const englishHomepageAlias = await responses.englishHomepageAlias.text();
-  assert.match(englishHomepageAlias, /Run Docker apps/);
+  assert.match(englishHomepageAlias, /Deploy apps<br\s*\/?>on your own server\./);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
   const spanishHomepage = await responses.spanishHomepage.text();
-  assert.match(spanishHomepage, /Ejecuta aplicaciones Docker/);
+  assert.match(spanishHomepage, /Despliega aplicaciones<br\s*\/?>en tu propio servidor\./);
   assert.match(spanishHomepage, /href=["']https:\/\/caprover\.com\/es-ES\/docs\/get-started["']/);
   assert.match(spanishHomepage, /<html lang=["']es-ES["']/);
   assert.match(spanishHomepage, /<main lang=["']es-ES["']/);
   assert.match(spanishHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
   assert.match(spanishHomepage, /src=["']\/locale-preference\.js["']/);
   const chineseHomepage = await responses.chineseHomepage.text();
-  assert.match(chineseHomepage, /运行 Docker 应用/);
+  assert.match(chineseHomepage, /在自己的服务器上<br\s*\/?>部署应用。/);
   assert.match(chineseHomepage, /href=["']https:\/\/caprover\.com\/zh-CN\/docs\/get-started["']/);
   assert.match(chineseHomepage, /<html lang=["']zh-CN["']/);
   assert.match(chineseHomepage, /<main lang=["']zh-CN["']/);
