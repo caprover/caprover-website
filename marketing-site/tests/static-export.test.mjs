@@ -7,6 +7,12 @@ const expectedAssets = [
   "caprover-dashboard.png",
   "caprover-logo.png",
   "slack-icon.png",
+  "one-click/wordpress.png",
+  "one-click/postgres.png",
+  "one-click/redis.png",
+  "one-click/nextcloud.png",
+  "one-click/n8n-io.png",
+  "one-click/uptime-kuma.png",
 ];
 const legacyAssets = [
   "caprover-architecture.png",
@@ -72,7 +78,12 @@ test("exports complete localized website routes", async () => {
 
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
     assert.match(homepage, /class="kit-subscribe"/);
+    assert.match(homepage, /<details class="deployment-example">/);
     assert.match(homepage, /<ol class="deployment-steps">/);
+    assert.match(homepage, /server\.js/);
+    assert(homepage.includes(catalog["homepage.oneClick.title"]));
+    assert.match(homepage, /<ul class="featured-apps">/);
+    assert.match(homepage, /<dl class="operations-list">/);
     assert.match(homepage, /id="features"/);
     assert.match(homepage, /caprover deploy/);
     assert.match(homepage, /caprover-deployment-history\.png/);
@@ -95,6 +106,10 @@ test("exports complete localized website routes", async () => {
     );
     for (const document of [
       "deployments/cli",
+      "deployments/builds-logs#source-deployments-versions-rollback",
+      "one-click-apps",
+      "domains",
+      "troubleshooting/diagnostics",
       "deployments/other/docker-compose",
       "domains/advanced-nginx",
       "applications/advanced",
