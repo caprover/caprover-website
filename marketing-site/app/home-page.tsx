@@ -1,3 +1,4 @@
+import { DeploymentTabs } from "./deployment-tabs";
 import {
   DEFAULT_LOCALE,
   docsUrl,
@@ -135,26 +136,130 @@ function CommunitySupport({
   );
 }
 
-function WorkloadExamples({
-  messages,
+function FeaturedApps() {
+  return (
+    <ul className="featured-apps">
+      {featuredApps.map(({ name, logo }) => (
+        <li key={logo}>
+          <img
+            src={asset(`/one-click/${logo}.png`)}
+            width={88}
+            height={56}
+            alt=""
+          />
+          <span>{name}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function DeploymentSnippet({
+  filename,
+  source,
+  step,
 }: {
-  messages: HomeMessages["workloads"];
+  filename: string;
+  source: string;
+  step: string;
 }) {
   return (
-    <section
-      className="workload-examples shell"
-      aria-labelledby="workload-title"
-    >
-      <h2 id="workload-title">{messages.title}</h2>
-      <dl className="workload-list">
-        {messageList(messages.items).map(({ title, description }) => (
-          <div key={title}>
-            <dt>{title}</dt>
-            <dd>{description}</dd>
-          </div>
-        ))}
-      </dl>
-    </section>
+    <div className="deployment-snippet">
+      <div className="deployment-filename">{filename}</div>
+      <pre>
+        <code>{source}</code>
+      </pre>
+      <div className="deployment-step">{step}</div>
+    </div>
+  );
+}
+
+function DeploymentExamples({
+  messages,
+}: {
+  messages: HomeMessages["deploymentExamples"];
+}) {
+  const { staticSite, worker, catalog, compose } = messages;
+  return (
+    <DeploymentTabs
+      title={messages.title}
+      pauseLabel={messages.pause}
+      playLabel={messages.play}
+      methods={[
+        {
+          id: "static",
+          label: staticSite.label,
+          summary: staticSite.summary,
+          preview: (
+            <>
+              <h3>{staticSite.title}</h3>
+              <p>{staticSite.description}</p>
+              <DeploymentSnippet
+                filename="Dockerfile"
+                source={
+                  "FROM nginx:alpine\nCOPY ./public/ /usr/share/nginx/html/"
+                }
+                step="$ caprover deploy"
+              />
+              <p className="deployment-example-note">
+                {messages.definitionNote}
+              </p>
+            </>
+          ),
+        },
+        {
+          id: "worker",
+          label: worker.label,
+          summary: worker.summary,
+          preview: (
+            <>
+              <h3>{worker.title}</h3>
+              <p>{worker.description}</p>
+              <DeploymentSnippet
+                filename="Dockerfile"
+                source={
+                  'FROM python:3.13-slim\nWORKDIR /app\nCOPY worker.py .\nCMD ["python", "worker.py"]'
+                }
+                step="$ caprover deploy"
+              />
+              <p className="deployment-example-note">
+                {messages.definitionNote}
+              </p>
+            </>
+          ),
+        },
+        {
+          id: "catalog",
+          label: catalog.label,
+          summary: catalog.summary,
+          preview: (
+            <>
+              <h3>{catalog.title}</h3>
+              <p>{catalog.description}</p>
+              <FeaturedApps />
+            </>
+          ),
+        },
+        {
+          id: "compose",
+          label: compose.label,
+          summary: compose.summary,
+          preview: (
+            <>
+              <h3>{compose.title}</h3>
+              <p>{compose.description}</p>
+              <DeploymentSnippet
+                filename="compose.yaml"
+                source={
+                  "services:\n  web:\n    image: nginx:alpine\n  cache:\n    image: redis:7-alpine"
+                }
+                step={compose.step}
+              />
+            </>
+          ),
+        },
+      ]}
+    />
   );
 }
 
@@ -177,19 +282,7 @@ function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
           {messages.browse} <ArrowIcon />
         </a>
       </div>
-      <ul className="featured-apps">
-        {featuredApps.map(({ name, logo }) => (
-          <li key={logo}>
-            <img
-              src={asset(`/one-click/${logo}.png`)}
-              width={88}
-              height={56}
-              alt=""
-            />
-            <span>{name}</span>
-          </li>
-        ))}
-      </ul>
+      <FeaturedApps />
     </section>
   );
 }
@@ -278,8 +371,8 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         <LiveDeployment messages={messages.hero} />
       </section>
 
-      <WorkloadExamples messages={messages.workloads} />
       <OneClickApps messages={messages.oneClick} />
+      <DeploymentExamples messages={messages.deploymentExamples} />
 
       <DeploymentWorkflows
         messages={messages.deploymentWorkflows}
