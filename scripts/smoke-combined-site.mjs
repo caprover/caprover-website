@@ -193,7 +193,7 @@ try {
   const homepageResponse = await fetch(`${origin}/`);
   assert.equal(homepageResponse.status, 200);
   const homepage = await homepageResponse.text();
-  assert.match(homepage, /Deploy apps\./);
+  assert.match(homepage, /From your terminal/);
 
   const nextAsset = homepage.match(/(?:href|src)=["'](\/_next\/[^"']+\.(?:css|js))["']/)?.[1];
   assert(nextAsset, "Homepage does not reference a Next.js CSS or JavaScript asset");
@@ -257,24 +257,24 @@ try {
   assert.match(chineseDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
   assert.match(chineseDocs, /src=["']\/locale-preference\.js["']/);
   const englishHomepageAlias = await responses.englishHomepageAlias.text();
-  assert.match(englishHomepageAlias, /Deploy apps\./);
+  assert.match(englishHomepageAlias, /From your terminal/);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
   const spanishHomepage = await responses.spanishHomepage.text();
-  assert.match(spanishHomepage, /Despliega aplicaciones\./);
+  assert.match(spanishHomepage, /De tu terminal/);
   assert.match(spanishHomepage, /href=["']https:\/\/caprover\.com\/es-ES\/docs\/get-started["']/);
   assert.match(spanishHomepage, /<html lang=["']es-ES["']/);
   assert.match(spanishHomepage, /<main lang=["']es-ES["']/);
   assert.match(spanishHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
   assert.match(spanishHomepage, /src=["']\/locale-preference\.js["']/);
   const chineseHomepage = await responses.chineseHomepage.text();
-  assert.match(chineseHomepage, /掌控你的/);
+  assert.match(chineseHomepage, /从终端部署/);
   assert.match(chineseHomepage, /href=["']https:\/\/caprover\.com\/zh-CN\/docs\/get-started["']/);
   assert.match(chineseHomepage, /<html lang=["']zh-CN["']/);
   assert.match(chineseHomepage, /<main lang=["']zh-CN["']/);
   assert.match(chineseHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/zh-CN\/["']/);
   assert.match(chineseHomepage, /src=["']\/locale-preference\.js["']/);
   const chineseComparisonHub = await responses.chineseComparisonHub.text();
-  assert.match(chineseComparisonHub, /从简单开始，永远不会触顶。/);
+  assert.match(chineseComparisonHub, /选择适合你的 Docker 应用运行方式/);
   assert.match(chineseComparisonHub, /\/zh-CN\/compare\//);
   assert.match(chineseComparisonHub, /\/zh-CN\/docs\/get-started/);
   const spanishComparisonPages = await Promise.all(
@@ -285,7 +285,7 @@ try {
       responses.spanishDokkuComparison,
     ].map((response) => response.text()),
   );
-  assert.match(spanishComparisonPages[0], /Empieza de forma sencilla\./);
+  assert.match(spanishComparisonPages[0], /Elige cómo quieres ejecutar aplicaciones Docker\./);
   for (const page of spanishComparisonPages) {
     assert.match(page, /\/es-ES\/compare\//);
     assert.match(page, /\/es-ES\/docs\/get-started/);

@@ -2,6 +2,7 @@ import { DEFAULT_LOCALE, docsUrl, type Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import routes from "@/routes.json";
 import {
+  CapRoverDeploymentSources,
   ComparePage,
   ComparisonPrinciples,
   ComparisonTable,
@@ -34,6 +35,15 @@ export function ComparisonHubPage({
         </ResourceCallout>
       </section>
 
+      <section className="compare-section compare-shell">
+        <div className="compare-heading">
+          <p className="compare-kicker">{copy.oneOnOne.kicker}</p>
+          <h2>{copy.oneOnOne.title}</h2>
+          <p>{copy.oneOnOne.description}</p>
+        </div>
+        <MatchupLinks locale={locale} />
+      </section>
+
       <section className="compare-section compare-soft">
         <div className="compare-shell">
           <div className="compare-heading">
@@ -47,19 +57,11 @@ export function ComparisonHubPage({
       </section>
 
       <section className="compare-section compare-shell">
-        <div className="compare-heading">
-          <p className="compare-kicker">{copy.oneOnOne.kicker}</p>
-          <h2>{copy.oneOnOne.title}</h2>
-          <p>{copy.oneOnOne.description}</p>
-        </div>
-        <MatchupLinks locale={locale} />
         <MarketingCta locale={locale} />
-      </section>
-
-      <section className="compare-section compare-shell">
         <SourceLinks locale={locale}>
+          <CapRoverDeploymentSources locale={locale} />
           <li>
-            <a href={docsUrl("deployment-methods", locale)}>
+            <a href={docsUrl("deployments", locale)}>
               {sources.deploymentMethods}
             </a>
           </li>
@@ -69,15 +71,17 @@ export function ComparisonHubPage({
             </a>
           </li>
           <li>
-            <a href={docsUrl("app-scaling-and-cluster", locale)}>
+            <a href={docsUrl("scaling/multi-node", locale)}>
               {sources.clustering}
             </a>
           </li>
           <li>
-            <a href={docsUrl("nginx-customization", locale)}>{sources.nginx}</a>
+            <a href={docsUrl("domains/advanced-nginx", locale)}>
+              {sources.nginx}
+            </a>
           </li>
           <li>
-            <a href={docsUrl("service-update-override", locale)}>
+            <a href={docsUrl("applications/advanced", locale)}>
               {sources.serviceOverrides}
             </a>
           </li>
@@ -111,7 +115,7 @@ export function ComparisonHubPage({
             <a href="https://coolify.io/docs">{sources.coolifyDocs}</a>
           </li>
           <li>
-            <a href="https://coolify.io/docs/get-started/installation">
+            <a href="https://coolify.io/docs/start-with-self-hosted">
               {sources.coolifyInstallation}
             </a>
           </li>

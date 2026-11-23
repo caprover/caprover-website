@@ -24,7 +24,11 @@ export function DokkuComparisonPage({
   const copy = getMessages(locale).comparisonPages.dokku;
   const sources = copy.sourceLabels;
   return (
-    <ComparePage locale={locale} path={routes.dokku.path}>
+    <ComparePage
+      locale={locale}
+      path={routes.dokku.path}
+      verifiedDate={copy.verifiedDate}
+    >
       <PageHero {...copy.hero}>
         <div className="verdict">
           <strong>{copy.hero.verdictTitle}</strong>
@@ -81,7 +85,7 @@ export function DokkuComparisonPage({
       </section>
       <section className="compare-section compare-shell">
         <MatchupLinks current="dokku" locale={locale} />
-        <SourceLinks locale={locale}>
+        <SourceLinks locale={locale} verifiedDate={copy.verifiedDate}>
           <li>
             <a href={docsUrl("get-started", locale)}>{sources.installation}</a>
           </li>

@@ -1,4 +1,10 @@
-import { DEFAULT_LOCALE, docsUrl, type Locale } from "../i18n/config";
+import {
+  DEFAULT_LOCALE,
+  docsUrl,
+  localizedPath,
+  type Locale,
+} from "../i18n/config";
+import routes from "../routes.json";
 import { getMessages, messageList, type Messages } from "../i18n/messages";
 import { KitSubscribeForm } from "./kit-subscribe-form";
 import { LocaleSwitcher } from "./locale-switcher";
@@ -172,7 +178,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
             {messages.hero.titleLine1}
             <br />
             {messages.hero.titleLine2}
-            <br className="desktop-break" /> {messages.hero.titleLine3}
           </h1>
           <p className="hero-text">{messages.hero.description}</p>
           <div className="actions">
@@ -186,26 +191,42 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <p className="demo-access">
             {messages.hero.demoPasswordLabel} <code>captain42</code>
           </p>
-          <p className="micro-proof">
-            <span>✓</span> {messages.hero.proofs[0]} <i /> <span>✓</span>{" "}
-            {messages.hero.proofs[1]} <i /> <span>✓</span>{" "}
-            {messages.hero.proofs[2]}
-          </p>
+          <ul className="hero-proofs">
+            {messageList(messages.hero.proofs).map(({ key, label }) => (
+              <li key={key}>
+                <a href={docsUrl(key, locale)}>{label}</a>
+              </li>
+            ))}
+          </ul>
         </div>
         <Dashboard alt={messages.dashboardAlt} />
       </section>
 
-      <section className="trust-bar">
-        <div className="shell trust-grid">
-          {messageList(messages.trust).map(({ icon, title, description }) => (
-            <div className="trust-item" key={title}>
-              <b>{icon}</b>
-              <div>
-                <strong>{title}</strong>
-                <span>{description}</span>
-              </div>
+      <section className="workflow-section">
+        <div className="shell workflow-grid">
+          <div>
+            <p className="section-kicker">{messages.workflow.kicker}</p>
+            <h2>{messages.workflow.title}</h2>
+            <p>{messages.workflow.description}</p>
+            <a className="text-link" href={docsUrl("deployments/cli", locale)}>
+              {messages.workflow.guideLink} <ArrowIcon />
+            </a>
+          </div>
+          <div className="terminal">
+            <div className="term-top">
+              <span>
+                <i />
+                <i />
+                <i />
+              </span>
+              <b>caprover deploy</b>
             </div>
-          ))}
+            <code>
+              <span>$ caprover login</span>
+              <em>{messages.workflow.codeComment}</em>
+              <span>$ caprover deploy</span>
+            </code>
+          </div>
         </div>
       </section>
 
@@ -228,42 +249,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         </div>
       </section>
 
-      <CommunitySupport messages={messages.community} />
-
-      <section className="workflow-section">
-        <div className="shell workflow-grid">
-          <div>
-            <p className="section-kicker">{messages.workflow.kicker}</p>
-            <h2>{messages.workflow.title}</h2>
-            <p>{messages.workflow.description}</p>
-            <a className="text-link" href={docs}>
-              {messages.workflow.guideLink} <ArrowIcon />
-            </a>
-          </div>
-          <div className="terminal">
-            <div className="term-top">
-              <span>
-                <i />
-                <i />
-                <i />
-              </span>
-              <b>caprover deploy</b>
-            </div>
-            <code>
-              <span>$ caprover deploy</span>
-              {messageList(messages.workflow.steps).map((step) => (
-                <em key={step}>✓ {step}</em>
-              ))}
-              <strong>{messages.workflow.buildComplete}</strong>
-              <strong>{messages.workflow.deployed}</strong>
-              <a href="https://my-app.example.com">
-                https://my-app.example.com
-              </a>
-            </code>
-          </div>
-        </div>
-      </section>
-
       <section className="features shell" id="features">
         <div className="section-heading">
           <div>
@@ -273,15 +258,23 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <p>{messages.featuresSection.description}</p>
         </div>
         <div className="feature-grid">
-          {messageList(messages.featuresSection.items).map(
-            ({ icon, title, description }) => (
-              <article key={title}>
-                <span>{icon}</span>
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </article>
-            ),
-          )}
+          {messageList<{
+            icon: string;
+            title: string;
+            description: string;
+            link?: { key: string; label: string };
+          }>(messages.featuresSection.items).map((item) => (
+            <article key={item.title}>
+              <span aria-hidden="true">{item.icon}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              {item.link && (
+                <a className="text-link" href={docsUrl(item.link.key, locale)}>
+                  {item.link.label} <ArrowIcon />
+                </a>
+              )}
+            </article>
+          ))}
         </div>
       </section>
 
@@ -293,25 +286,39 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           </div>
           <div className="quote-code">
             <code>
-              <span>more_of(</span>showResults(getUserList())<span>);</span>
-              <br />
               <em>{messages.audience.codeComment}</em>
               <br />
-              apt-get install libstdc++6
+              <span>client_max_body_size</span> 100m;
             </code>
           </div>
           <div className="audience-cards">
             <article>
-              <b>01</b>
               <h3>{messages.audience.simpleTitle}</h3>
               <p>{messages.audience.simpleDescription}</p>
+              <a
+                className="text-link"
+                href={docsUrl("domains/advanced-nginx", locale)}
+              >
+                {messages.audience.nginxLink} <ArrowIcon />
+              </a>
             </article>
             <article>
-              <b>02</b>
               <h3>{messages.audience.powerfulTitle}</h3>
               <p>{messages.audience.powerfulDescription}</p>
+              <a
+                className="text-link"
+                href={docsUrl("applications/advanced", locale)}
+              >
+                {messages.audience.dockerLink} <ArrowIcon />
+              </a>
             </article>
           </div>
+          <a
+            className="text-link"
+            href={`${BASE_PATH}${localizedPath(routes.comparisonHub.path, locale)}`}
+          >
+            {messages.compareLink} <ArrowIcon />
+          </a>
         </div>
       </section>
 
@@ -405,6 +412,8 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           </div>
         </div>
       </section>
+
+      <CommunitySupport messages={messages.community} />
 
       <footer>
         <div className="shell footer-grid">

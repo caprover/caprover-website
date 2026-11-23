@@ -2,6 +2,7 @@ import { DEFAULT_LOCALE, docsUrl, type Locale } from "@/i18n/config";
 import { getMessages, messageList } from "@/i18n/messages";
 import routes from "@/routes.json";
 import {
+  CapRoverDeploymentSources,
   ChoiceGrid,
   ComparePage,
   ComparisonPrinciples,
@@ -21,7 +22,8 @@ export function DokployComparisonPage({
 }: {
   locale?: Locale;
 }) {
-  const copy = getMessages(locale).comparisonPages.dokploy;
+  const messages = getMessages(locale);
+  const copy = messages.comparisonPages.dokploy;
   const sources = copy.sourceLabels;
   return (
     <ComparePage locale={locale} path={routes.dokploy.path}>
@@ -82,24 +84,27 @@ export function DokployComparisonPage({
       <section className="compare-section compare-shell">
         <MatchupLinks current="dokploy" locale={locale} />
         <SourceLinks locale={locale}>
+          <CapRoverDeploymentSources locale={locale} />
           <li>
             <a href={docsUrl("get-started", locale)}>{sources.installation}</a>
           </li>
           <li>
-            <a href={docsUrl("deployment-methods", locale)}>
+            <a href={docsUrl("deployments", locale)}>
               {sources.deploymentMethods}
             </a>
           </li>
           <li>
-            <a href={docsUrl("service-update-override", locale)}>
+            <a href={docsUrl("applications/advanced", locale)}>
               {sources.serviceOverrides}
             </a>
           </li>
           <li>
-            <a href={docsUrl("nginx-customization", locale)}>{sources.nginx}</a>
+            <a href={docsUrl("domains/advanced-nginx", locale)}>
+              {sources.nginx}
+            </a>
           </li>
           <li>
-            <a href={docsUrl("app-scaling-and-cluster", locale)}>
+            <a href={docsUrl("scaling/multi-node", locale)}>
               {sources.clustering}
             </a>
           </li>
@@ -109,7 +114,9 @@ export function DokployComparisonPage({
             </a>
           </li>
           <li>
-            <a href="https://docs.dokploy.com/docs/cli">{sources.cli}</a>
+            <a href="https://docs.dokploy.com/docs/cli/application">
+              {sources.cli}
+            </a>
           </li>
           <li>
             <a href="https://docs.dokploy.com/docs/core/docker-compose">
@@ -124,6 +131,31 @@ export function DokployComparisonPage({
           <li>
             <a href="https://docs.dokploy.com/docs/core/permissions">
               {sources.permissions}
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.dokploy.com/docs/core/applications/rollbacks">
+              {messages.comparisonCommon.sources.dokployRollback}
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.dokploy.com/docs/core/registry">
+              {messages.comparisonCommon.sources.dokployRegistry}
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.dokploy.com/docs/core/applications/advanced">
+              {messages.comparisonCommon.sources.dokployAdvanced}
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.dokploy.com/docs/core/deployment-options">
+              {messages.comparisonCommon.sources.dokployServers}
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.dokploy.com/docs/core/volume-backups">
+              {messages.comparisonCommon.sources.dokployBackups}
             </a>
           </li>
         </SourceLinks>

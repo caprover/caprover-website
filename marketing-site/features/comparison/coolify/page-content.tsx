@@ -2,6 +2,7 @@ import { DEFAULT_LOCALE, docsUrl, type Locale } from "@/i18n/config";
 import { getMessages, messageList } from "@/i18n/messages";
 import routes from "@/routes.json";
 import {
+  CapRoverDeploymentSources,
   ChoiceGrid,
   ComparePage,
   ComparisonPrinciples,
@@ -21,7 +22,8 @@ export function CoolifyComparisonPage({
 }: {
   locale?: Locale;
 }) {
-  const copy = getMessages(locale).comparisonPages.coolify;
+  const messages = getMessages(locale);
+  const copy = messages.comparisonPages.coolify;
   const sources = copy.sourceLabels;
   return (
     <ComparePage locale={locale} path={routes.coolify.path}>
@@ -82,45 +84,68 @@ export function CoolifyComparisonPage({
       <section className="compare-section compare-shell">
         <MatchupLinks current="coolify" locale={locale} />
         <SourceLinks locale={locale}>
+          <CapRoverDeploymentSources locale={locale} />
           <li>
             <a href={docsUrl("get-started", locale)}>{sources.installation}</a>
           </li>
           <li>
-            <a href={docsUrl("deployment-methods", locale)}>
+            <a href={docsUrl("deployments", locale)}>
               {sources.deploymentMethods}
             </a>
           </li>
           <li>
-            <a href={docsUrl("app-scaling-and-cluster", locale)}>
+            <a href={docsUrl("scaling/multi-node", locale)}>
               {sources.clustering}
             </a>
           </li>
           <li>
-            <a href={docsUrl("nginx-customization", locale)}>{sources.nginx}</a>
+            <a href={docsUrl("domains/advanced-nginx", locale)}>
+              {sources.nginx}
+            </a>
           </li>
           <li>
-            <a href={docsUrl("service-update-override", locale)}>
+            <a href={docsUrl("applications/advanced", locale)}>
               {sources.serviceOverrides}
             </a>
           </li>
           <li>
-            <a href="https://coolify.io/docs/get-started/installation">
+            <a href="https://coolify.io/docs/start-with-self-hosted">
               {sources.competitorInstallation}
             </a>
           </li>
           <li>
-            <a href="https://coolify.io/docs/applications/build-packs/docker-compose">
+            <a href="https://coolify.io/docs/applications/builds/docker-compose">
               {sources.compose}
             </a>
           </li>
           <li>
-            <a href="https://coolify.io/docs/knowledge-base/server/openssh">
+            <a href="https://coolify.io/docs/core/how-coolify-works">
               {sources.servers}
             </a>
           </li>
           <li>
-            <a href="https://coolify.io/docs/knowledge-base/docker/swarm">
+            <a href="https://coolify.io/docs/core/infrastructure/scaling/docker-swarm">
               {sources.swarm}
+            </a>
+          </li>
+          <li>
+            <a href="https://coolify.io/docs/cli/deploy-applications">
+              {messages.comparisonCommon.sources.coolifyCli}
+            </a>
+          </li>
+          <li>
+            <a href="https://coolify.io/docs/applications/deployments/rollbacks">
+              {messages.comparisonCommon.sources.coolifyRollback}
+            </a>
+          </li>
+          <li>
+            <a href="https://coolify.io/docs/core/networking/proxy/traefik/overview">
+              {messages.comparisonCommon.sources.coolifyProxy}
+            </a>
+          </li>
+          <li>
+            <a href="https://coolify.io/docs/applications/deployments/preview-deployments">
+              {messages.comparisonCommon.sources.coolifyPreviews}
             </a>
           </li>
         </SourceLinks>
