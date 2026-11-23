@@ -13,6 +13,7 @@ const GITHUB = "https://github.com/caprover/caprover";
 const SLACK =
   "https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA";
 const LIVE_DEMO = "https://captain.server.demo.caprover.com/?demo=true";
+const DEMO_APP = "https://demo-nodejs.server.demo.caprover.com/";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ASSET_PATH = "/homepage-assets";
 
@@ -73,15 +74,34 @@ function SlackIcon() {
   );
 }
 
-function Dashboard({ alt }: { alt: string }) {
+function LiveDeployment({ messages }: { messages: HomeMessages["hero"] }) {
   return (
-    <div className="dashboard-wrap">
-      <img
-        className="dashboard-screenshot"
-        src={asset("/caprover-dashboard.png")}
-        alt={alt}
-      />
-    </div>
+    <figure className="live-deployment">
+      <picture>
+        <source
+          media="(max-width: 660px)"
+          srcSet={asset("/caprover-active-deployment-mobile.webp")}
+          width={672}
+          height={592}
+        />
+        <img
+          src={asset("/caprover-active-deployment.webp")}
+          width={1239}
+          height={507}
+          alt={messages.deploymentAlt}
+          fetchPriority="high"
+        />
+      </picture>
+      <figcaption>
+        <span className="live-deployment-label">
+          {messages.deploymentLabel}
+        </span>
+        <a href={DEMO_APP}>
+          <span className="sr-only">{messages.openDeployedApp}: </span>
+          demo-nodejs.server.demo.caprover.com <ArrowIcon />
+        </a>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -219,6 +239,42 @@ caprover deploy`}</code>
   );
 }
 
+function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
+  return (
+    <section
+      id="one-click-apps"
+      className="one-click-showcase shell"
+      aria-labelledby="one-click-title"
+    >
+      <div className="one-click-heading">
+        <div>
+          <h2 id="one-click-title">{messages.title}</h2>
+          <p>{messages.description}</p>
+        </div>
+        <a
+          className="catalog-link"
+          href="https://github.com/caprover/one-click-apps/tree/master/public/v4/apps"
+        >
+          {messages.browse} <ArrowIcon />
+        </a>
+      </div>
+      <ul className="featured-apps">
+        {featuredApps.map(({ name, logo }) => (
+          <li key={logo}>
+            <img
+              src={asset(`/one-click/${logo}.png`)}
+              width={88}
+              height={56}
+              alt=""
+            />
+            <span>{name}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function DeploymentPaths({
   messages,
   locale,
@@ -233,8 +289,40 @@ function DeploymentPaths({
       aria-labelledby="deployment-paths-title"
     >
       <h2 id="deployment-paths-title">{copy.title}</h2>
+      <ul className="deployment-path-index">
+        <li>
+          <a href="#deploy-apps">{copy.serviceIndex}</a>
+        </li>
+        <li>
+          <a href="#deploy-static">{copy.staticIndex}</a>
+        </li>
+        <li>
+          <a href="#one-click-apps">{copy.oneClickIndex}</a>
+        </li>
+        <li>
+          <a href="#deploy-compose">{copy.composeIndex}</a>
+        </li>
+      </ul>
 
-      <article className="deployment-path">
+      <article className="deployment-path" id="deploy-apps">
+        <div className="deployment-path-row">
+          <div>
+            <h3>{copy.serviceTitle}</h3>
+            <p>{copy.serviceDescription}</p>
+            <a className="text-link" href={docsUrl("deployments", locale)}>
+              {copy.serviceLink} <ArrowIcon />
+            </a>
+          </div>
+          <pre className="deployment-code deployment-command">
+            <code>
+              <span aria-hidden="true">$ </span>caprover deploy
+            </code>
+          </pre>
+        </div>
+        <NodeDeploymentExample messages={messages.workflow} locale={locale} />
+      </article>
+
+      <article className="deployment-path" id="deploy-static">
         <div className="deployment-path-row">
           <div>
             <h3>{copy.staticTitle}</h3>
@@ -246,61 +334,20 @@ function DeploymentPaths({
               {copy.staticLink} <ArrowIcon />
             </a>
           </div>
-          <pre className="deployment-code">
-            <code>{`tar -cf deploy.tar captain-definition Dockerfile dist
-caprover deploy --tarFile ./deploy.tar`}</code>
-          </pre>
-        </div>
-      </article>
-
-      <article className="deployment-path">
-        <div className="deployment-path-row">
-          <div>
-            <h3>{copy.serviceTitle}</h3>
-            <p>{copy.serviceDescription}</p>
-            <a className="text-link" href={docsUrl("deployments", locale)}>
-              {copy.serviceLink} <ArrowIcon />
-            </a>
-          </div>
-          <div>
-            <pre className="deployment-code">
-              <code>caprover deploy</code>
-            </pre>
+          <div className="static-preview" aria-hidden="true">
+            <div className="static-preview-address">example.com</div>
+            <div className="static-preview-page">
+              <span className="static-preview-title">
+                {copy.staticPreviewTitle}
+              </span>
+              <span className="static-preview-line" />
+              <span className="static-preview-line static-preview-line-short" />
+            </div>
           </div>
         </div>
-        <NodeDeploymentExample messages={messages.workflow} locale={locale} />
       </article>
 
-      <article className="deployment-path">
-        <h3>{messages.oneClick.title}</h3>
-        <p>{messages.oneClick.description}</p>
-        <ul className="featured-apps">
-          {featuredApps.map(({ name, logo }) => (
-            <li key={logo}>
-              <img
-                src={asset(`/one-click/${logo}.png`)}
-                width={64}
-                height={48}
-                alt=""
-              />
-              <span>{name}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="homepage-links">
-          <a
-            className="text-link"
-            href="https://github.com/caprover/one-click-apps/tree/master/public/v4/apps"
-          >
-            {messages.oneClick.browse} <ArrowIcon />
-          </a>
-          <a className="text-link" href={docsUrl("one-click-apps", locale)}>
-            {messages.oneClick.install} <ArrowIcon />
-          </a>
-        </div>
-      </article>
-
-      <article className="deployment-path">
+      <article className="deployment-path" id="deploy-compose">
         <div className="deployment-path-row">
           <div>
             <h3>{copy.composeTitle}</h3>
@@ -312,15 +359,18 @@ caprover deploy --tarFile ./deploy.tar`}</code>
               {copy.composeLink} <ArrowIcon />
             </a>
           </div>
-          <pre className="deployment-code">
-            <code>{`services:
+          <figure className="compose-preview">
+            <figcaption>compose.yaml</figcaption>
+            <pre className="deployment-code">
+              <code>{`services:
   web:
     image: nginx:stable-alpine
   cache:
     image: redis:alpine
     caproverExtra:
       notExposeAsWebApp: "true"`}</code>
-          </pre>
+            </pre>
+          </figure>
         </div>
       </article>
     </section>
@@ -363,7 +413,7 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
       </header>
 
       <section className="hero shell" id="top">
-        <div className="hero-copy">
+        <div>
           <p className="hero-label">{messages.hero.eyebrow}</p>
           <h1>
             {messages.hero.titleLine1}
@@ -379,6 +429,9 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
               {messages.hero.liveDemo}
             </a>
           </div>
+        </div>
+        <LiveDeployment messages={messages.hero} />
+        <div className="hero-details">
           <p className="demo-access">
             {messages.hero.demoPasswordLabel} <code>captain42</code>
           </p>
@@ -390,8 +443,9 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
             ))}
           </ul>
         </div>
-        <Dashboard alt={messages.dashboardAlt} />
       </section>
+
+      <OneClickApps messages={messages.oneClick} />
 
       <DeploymentPaths messages={messages} locale={locale} />
 
