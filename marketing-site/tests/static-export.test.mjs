@@ -80,42 +80,17 @@ test("exports complete localized website routes", async () => {
 
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
     assert.match(homepage, /class="kit-subscribe"/);
-    assert.match(homepage, /<details class="deployment-example">/);
-    assert.match(homepage, /<ol class="deployment-steps">/);
-    assert.match(homepage, /server\.js/);
-    for (const pathTitle of [
-      "deploymentPaths.staticTitle",
-      "deploymentPaths.serviceTitle",
-      "oneClick.title",
-      "deploymentPaths.composeTitle",
-    ]) {
-      assert(homepage.includes(catalog[`homepage.${pathTitle}`]));
-    }
     assert.match(homepage, /<ul class="featured-apps">/);
-    assert(
-      homepage.indexOf('class="live-deployment"') <
-        homepage.indexOf('id="one-click-apps"'),
-    );
-    assert(
-      homepage.indexOf('id="one-click-apps"') <
-        homepage.indexOf('id="deploy-apps"'),
-    );
-    assert(
-      homepage.indexOf('id="deploy-apps"') <
-        homepage.indexOf('id="deploy-static"'),
-    );
-    for (const id of [
-      "deploy-apps",
-      "deploy-static",
-      "one-click-apps",
-      "deploy-compose",
-    ]) {
-      assert(homepage.includes(`href="#${id}"`));
+    for (const id of ["one-click-apps", "deployment-workflows-title"]) {
       assert(homepage.includes(`id="${id}"`));
     }
-    assert.match(
+    assert(homepage.includes(catalog["homepage.deploymentWorkflows.title"]));
+    assert.match(homepage, /<dl class="workflow-grid">/);
+    assert.match(homepage, /Dockerfile/);
+    assert.match(homepage, /CI\/CD/);
+    assert.doesNotMatch(
       homepage,
-      /https:\/\/demo-nodejs\.server\.demo\.caprover\.com\//,
+      /hero-proofs|deployment-path-index|demo-nodejs\.server\.demo\.caprover\.com/,
     );
     assert.match(homepage, /<dl class="operations-list">/);
     assert.match(homepage, /id="features"/);
@@ -138,24 +113,11 @@ test("exports complete localized website routes", async () => {
         `href="${basePath}${localizedPath(locale, routeManifest.comparisonHub.path)}"`,
       ),
     );
-    for (const document of [
-      "deployments/cli",
-      "guides/static-react",
-      "deployments",
-      "deployments/builds-logs#source-deployments-versions-rollback",
-      "domains",
-      "troubleshooting/diagnostics",
-      "deployments/other/docker-compose",
-      "domains/advanced-nginx",
-      "applications/advanced",
-      "scaling/multi-node",
-    ]) {
-      assert(
-        homepage.includes(
-          `href="https://caprover.com${locale.pathPrefix}/docs/${document}"`,
-        ),
-      );
-    }
+    assert(
+      homepage.includes(
+        `href="https://caprover.com${locale.pathPrefix}/docs/deployments"`,
+      ),
+    );
     for (const targetLocale of enabledLocales) {
       assert(homepage.includes(`hrefLang="${targetLocale.code}"`));
     }

@@ -13,7 +13,6 @@ const GITHUB = "https://github.com/caprover/caprover";
 const SLACK =
   "https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA";
 const LIVE_DEMO = "https://captain.server.demo.caprover.com/?demo=true";
-const DEMO_APP = "https://demo-nodejs.server.demo.caprover.com/";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ASSET_PATH = "/homepage-assets";
 
@@ -92,15 +91,6 @@ function LiveDeployment({ messages }: { messages: HomeMessages["hero"] }) {
           fetchPriority="high"
         />
       </picture>
-      <figcaption>
-        <span className="live-deployment-label">
-          {messages.deploymentLabel}
-        </span>
-        <a href={DEMO_APP}>
-          <span className="sr-only">{messages.openDeployedApp}: </span>
-          demo-nodejs.server.demo.caprover.com <ArrowIcon />
-        </a>
-      </figcaption>
     </figure>
   );
 }
@@ -145,100 +135,6 @@ function CommunitySupport({
   );
 }
 
-function NodeDeploymentExample({
-  messages,
-  locale,
-}: {
-  messages: HomeMessages["workflow"];
-  locale: Locale;
-}) {
-  return (
-    <details className="deployment-example">
-      <summary>{messages.showExample}</summary>
-      <ol className="deployment-steps">
-        <li>
-          <div className="deployment-step">
-            <div>
-              <h3>{messages.prepareTitle}</h3>
-              <p>{messages.prepareDescription}</p>
-            </div>
-            <div className="deployment-files">
-              <figure>
-                <figcaption>server.js</figcaption>
-                <pre className="deployment-code">
-                  <code>{`const http = require('node:http');
-
-http.createServer((_req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify({ ok: true }));
-}).listen(80, '0.0.0.0');`}</code>
-                </pre>
-              </figure>
-              <figure>
-                <figcaption>Dockerfile</figcaption>
-                <pre className="deployment-code">
-                  <code>{`FROM node:24-alpine
-WORKDIR /app
-COPY server.js .
-EXPOSE 80
-CMD ["node", "server.js"]`}</code>
-                </pre>
-              </figure>
-              <figure>
-                <figcaption>captain-definition</figcaption>
-                <pre className="deployment-code">
-                  <code>
-                    {'{"schemaVersion":2,"dockerfilePath":"./Dockerfile"}'}
-                  </code>
-                </pre>
-              </figure>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div className="deployment-step">
-            <div>
-              <h3>{messages.deployTitle}</h3>
-              <p>{messages.deployDescription}</p>
-              <a
-                className="text-link"
-                href={docsUrl("deployments/cli", locale)}
-              >
-                {messages.guideLink} <ArrowIcon />
-              </a>
-            </div>
-            <pre className="deployment-code">
-              <code>{`npm install -g caprover
-caprover login
-caprover deploy`}</code>
-            </pre>
-          </div>
-        </li>
-        <li>
-          <div className="deployment-step">
-            <div>
-              <h3>{messages.verifyTitle}</h3>
-              <p>{messages.verifyDescription}</p>
-            </div>
-            <figure className="deployment-result">
-              <a href={asset("/caprover-deployment-history.png")}>
-                <img
-                  src={asset("/caprover-deployment-history.png")}
-                  width={836}
-                  height={458}
-                  loading="lazy"
-                  alt={messages.historyAlt}
-                />
-              </a>
-              <figcaption>{messages.historyCaption}</figcaption>
-            </figure>
-          </div>
-        </li>
-      </ol>
-    </details>
-  );
-}
-
 function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
   return (
     <section
@@ -275,104 +171,30 @@ function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
   );
 }
 
-function DeploymentPaths({
+function DeploymentWorkflows({
   messages,
   locale,
 }: {
-  messages: HomeMessages;
+  messages: HomeMessages["deploymentWorkflows"];
   locale: Locale;
 }) {
-  const copy = messages.deploymentPaths;
   return (
     <section
-      className="deployment-paths shell"
-      aria-labelledby="deployment-paths-title"
+      className="deployment-workflows shell"
+      aria-labelledby="deployment-workflows-title"
     >
-      <h2 id="deployment-paths-title">{copy.title}</h2>
-      <ul className="deployment-path-index">
-        <li>
-          <a href="#deploy-apps">{copy.serviceIndex}</a>
-        </li>
-        <li>
-          <a href="#deploy-static">{copy.staticIndex}</a>
-        </li>
-        <li>
-          <a href="#one-click-apps">{copy.oneClickIndex}</a>
-        </li>
-        <li>
-          <a href="#deploy-compose">{copy.composeIndex}</a>
-        </li>
-      </ul>
-
-      <article className="deployment-path" id="deploy-apps">
-        <div className="deployment-path-row">
-          <div>
-            <h3>{copy.serviceTitle}</h3>
-            <p>{copy.serviceDescription}</p>
-            <a className="text-link" href={docsUrl("deployments", locale)}>
-              {copy.serviceLink} <ArrowIcon />
-            </a>
+      <h2 id="deployment-workflows-title">{messages.title}</h2>
+      <dl className="workflow-grid">
+        {messageList(messages.items).map(({ title, description }) => (
+          <div key={title}>
+            <dt>{title}</dt>
+            <dd>{description}</dd>
           </div>
-          <pre className="deployment-code deployment-command">
-            <code>
-              <span aria-hidden="true">$ </span>caprover deploy
-            </code>
-          </pre>
-        </div>
-        <NodeDeploymentExample messages={messages.workflow} locale={locale} />
-      </article>
-
-      <article className="deployment-path" id="deploy-static">
-        <div className="deployment-path-row">
-          <div>
-            <h3>{copy.staticTitle}</h3>
-            <p>{copy.staticDescription}</p>
-            <a
-              className="text-link"
-              href={docsUrl("guides/static-react", locale)}
-            >
-              {copy.staticLink} <ArrowIcon />
-            </a>
-          </div>
-          <div className="static-preview" aria-hidden="true">
-            <div className="static-preview-address">example.com</div>
-            <div className="static-preview-page">
-              <span className="static-preview-title">
-                {copy.staticPreviewTitle}
-              </span>
-              <span className="static-preview-line" />
-              <span className="static-preview-line static-preview-line-short" />
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article className="deployment-path" id="deploy-compose">
-        <div className="deployment-path-row">
-          <div>
-            <h3>{copy.composeTitle}</h3>
-            <p>{copy.composeDescription}</p>
-            <a
-              className="text-link"
-              href={docsUrl("deployments/other/docker-compose", locale)}
-            >
-              {copy.composeLink} <ArrowIcon />
-            </a>
-          </div>
-          <figure className="compose-preview">
-            <figcaption>compose.yaml</figcaption>
-            <pre className="deployment-code">
-              <code>{`services:
-  web:
-    image: nginx:stable-alpine
-  cache:
-    image: redis:alpine
-    caproverExtra:
-      notExposeAsWebApp: "true"`}</code>
-            </pre>
-          </figure>
-        </div>
-      </article>
+        ))}
+      </dl>
+      <a className="text-link" href={docsUrl("deployments", locale)}>
+        {messages.guide} <ArrowIcon />
+      </a>
     </section>
   );
 }
@@ -406,9 +228,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
             path="/"
             ariaLabel={allMessages.common.languageSelectorAriaLabel}
           />
-          <a className="nav-cta" href={docs}>
-            {messages.navigation.getStarted} <ArrowIcon />
-          </a>
         </div>
       </header>
 
@@ -429,25 +248,19 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
               {messages.hero.liveDemo}
             </a>
           </div>
-        </div>
-        <LiveDeployment messages={messages.hero} />
-        <div className="hero-details">
           <p className="demo-access">
             {messages.hero.demoPasswordLabel} <code>captain42</code>
           </p>
-          <ul className="hero-proofs">
-            {messageList(messages.hero.proofs).map(({ key, label }) => (
-              <li key={key}>
-                <a href={docsUrl(key, locale)}>{label}</a>
-              </li>
-            ))}
-          </ul>
         </div>
+        <LiveDeployment messages={messages.hero} />
       </section>
 
       <OneClickApps messages={messages.oneClick} />
 
-      <DeploymentPaths messages={messages} locale={locale} />
+      <DeploymentWorkflows
+        messages={messages.deploymentWorkflows}
+        locale={locale}
+      />
 
       <section
         className="operations-section shell"
@@ -455,51 +268,43 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         aria-labelledby="operations-title"
       >
         <h2 id="operations-title">{messages.operations.title}</h2>
-        <dl className="operations-list">
-          {messageList(messages.operations.items).map(
-            ({ title, description, link }) => (
-              <div key={link.key}>
-                <dt>{title}</dt>
-                <dd>
-                  <p>{description}</p>
-                  <a className="text-link" href={docsUrl(link.key, locale)}>
-                    {link.label} <ArrowIcon />
-                  </a>
-                </dd>
-              </div>
-            ),
-          )}
-        </dl>
+        <div className="operations-layout">
+          <dl className="operations-list">
+            {messageList(messages.operations.items).map(
+              ({ title, description }) => (
+                <div key={title}>
+                  <dt>{title}</dt>
+                  <dd>{description}</dd>
+                </div>
+              ),
+            )}
+          </dl>
+          <figure className="deployment-result">
+            <img
+              src={asset("/caprover-deployment-history.png")}
+              width={836}
+              height={458}
+              loading="lazy"
+              alt={messages.operations.historyAlt}
+            />
+            <figcaption>{messages.operations.historyCaption}</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section className="app-controls" aria-labelledby="app-controls-title">
         <div className="shell">
           <h2 id="app-controls-title">{messages.controls.title}</h2>
-          <div className="app-control-list">
-            <article>
-              <h3>{messages.controls.nginxTitle}</h3>
-              <p>{messages.controls.nginxDescription}</p>
-              <pre className="deployment-code">
-                <code>client_max_body_size 100m;</code>
-              </pre>
-              <a
-                className="text-link"
-                href={docsUrl("domains/advanced-nginx", locale)}
-              >
-                {messages.controls.nginxLink} <ArrowIcon />
-              </a>
-            </article>
-            <article>
-              <h3>{messages.controls.dockerTitle}</h3>
-              <p>{messages.controls.dockerDescription}</p>
-              <a
-                className="text-link"
-                href={docsUrl("applications/advanced", locale)}
-              >
-                {messages.controls.dockerLink} <ArrowIcon />
-              </a>
-            </article>
-          </div>
+          <dl className="app-control-list">
+            {messageList(messages.controls.items).map(
+              ({ title, description }) => (
+                <div key={title}>
+                  <dt>{title}</dt>
+                  <dd>{description}</dd>
+                </div>
+              ),
+            )}
+          </dl>
           <div className="app-control-links">
             <a
               className="text-link"
@@ -518,9 +323,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <div className="actions">
             <a className="primary" href={docs}>
               {messages.finalCta.getStarted} <ArrowIcon />
-            </a>
-            <a className="secondary" href={LIVE_DEMO}>
-              {messages.finalCta.liveDemo}
             </a>
           </div>
         </div>
