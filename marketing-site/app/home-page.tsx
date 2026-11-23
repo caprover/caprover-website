@@ -13,7 +13,6 @@ const GITHUB = "https://github.com/caprover/caprover";
 const SLACK =
   "https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA";
 const LIVE_DEMO = "https://captain.server.demo.caprover.com/?demo=true";
-const TUTORIAL = "https://www.youtube.com/watch?v=VPHEXPfsvyQ";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ASSET_PATH = "/homepage-assets";
 
@@ -73,14 +72,6 @@ function Dashboard({ alt }: { alt: string }) {
         src={asset("/caprover-dashboard.png")}
         alt={alt}
       />
-      <div className="diagram-lines" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-        <b />
-        <b />
-        <b />
-      </div>
     </div>
   );
 }
@@ -92,17 +83,12 @@ function CommunitySupport({
 }) {
   return (
     <section className="community shell" aria-labelledby="community-title">
-      <div className="community-heading">
-        <p className="section-kicker">{messages.kicker}</p>
-        <h2 id="community-title">{messages.title}</h2>
-      </div>
+      <h2 id="community-title" className="sr-only">
+        {messages.title}
+      </h2>
       <div className="community-grid">
         <article className="support-card">
-          <span className="community-icon" aria-hidden="true">
-            ♡
-          </span>
           <h3>{messages.supportTitle}</h3>
-          <p>{messages.supportDescription}</p>
           <a
             className="collective-widget"
             href="https://opencollective.com/caprover"
@@ -118,11 +104,7 @@ function CommunitySupport({
           </a>
         </article>
         <article className="subscribe-card">
-          <span className="community-icon" aria-hidden="true">
-            ✉
-          </span>
           <h3>{messages.subscribeTitle}</h3>
-          <p>{messages.subscribeDescription}</p>
           <KitSubscribeForm
             emailLabel={messages.emailLabel}
             emailPlaceholder={messages.emailPlaceholder}
@@ -171,9 +153,7 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
 
       <section className="hero shell" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">
-            <span /> {messages.hero.eyebrow}
-          </p>
+          <p className="hero-label">{messages.hero.eyebrow}</p>
           <h1>
             {messages.hero.titleLine1}
             <br />
@@ -202,204 +182,141 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         <Dashboard alt={messages.dashboardAlt} />
       </section>
 
-      <section className="workflow-section">
-        <div className="shell workflow-grid">
-          <div>
-            <p className="section-kicker">{messages.workflow.kicker}</p>
-            <h2>{messages.workflow.title}</h2>
-            <p>{messages.workflow.description}</p>
-            <a className="text-link" href={docsUrl("deployments/cli", locale)}>
-              {messages.workflow.guideLink} <ArrowIcon />
-            </a>
-          </div>
-          <div className="terminal">
-            <div className="term-top">
-              <span>
-                <i />
-                <i />
-                <i />
-              </span>
-              <b>caprover deploy</b>
+      <section
+        className="workflow-section shell"
+        aria-labelledby="workflow-title"
+      >
+        <h2 id="workflow-title">{messages.workflow.title}</h2>
+        <p className="homepage-section-lead">{messages.workflow.description}</p>
+        <ol className="deployment-steps">
+          <li>
+            <div className="deployment-step">
+              <div>
+                <h3>{messages.workflow.prepareTitle}</h3>
+                <p>{messages.workflow.prepareDescription}</p>
+              </div>
+              <div className="deployment-files">
+                <figure>
+                  <figcaption>Dockerfile</figcaption>
+                  <pre className="deployment-code">
+                    <code>{`FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html`}</code>
+                  </pre>
+                </figure>
+                <figure>
+                  <figcaption>captain-definition</figcaption>
+                  <pre className="deployment-code">
+                    <code>
+                      {'{"schemaVersion":2,"dockerfilePath":"./Dockerfile"}'}
+                    </code>
+                  </pre>
+                </figure>
+              </div>
             </div>
-            <code>
-              <span>$ caprover login</span>
-              <em>{messages.workflow.codeComment}</em>
-              <span>$ caprover deploy</span>
-            </code>
-          </div>
-        </div>
-      </section>
-
-      <section className="intro shell">
-        <p className="section-kicker">{messages.intro.kicker}</p>
-        <h2>
-          {messages.intro.titleLine1}
-          <br />
-          {messages.intro.titleLine2}
-        </h2>
-        <p>{messages.intro.description}</p>
-        <div className="stack-row">
-          <span>Docker</span>
-          <i>＋</i>
-          <span>nginx</span>
-          <i>＋</i>
-          <span>Let&apos;s Encrypt</span>
-          <i>＋</i>
-          <span>Docker Swarm</span>
-        </div>
-      </section>
-
-      <section className="features shell" id="features">
-        <div className="section-heading">
-          <div>
-            <p className="section-kicker">{messages.featuresSection.kicker}</p>
-            <h2>{messages.featuresSection.title}</h2>
-          </div>
-          <p>{messages.featuresSection.description}</p>
-        </div>
-        <div className="feature-grid">
-          {messageList<{
-            icon: string;
-            title: string;
-            description: string;
-            link?: { key: string; label: string };
-          }>(messages.featuresSection.items).map((item) => (
-            <article key={item.title}>
-              <span aria-hidden="true">{item.icon}</span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              {item.link && (
-                <a className="text-link" href={docsUrl(item.link.key, locale)}>
-                  {item.link.label} <ArrowIcon />
+          </li>
+          <li>
+            <div className="deployment-step">
+              <div>
+                <h3>{messages.workflow.deployTitle}</h3>
+                <p>{messages.workflow.deployDescription}</p>
+                <a
+                  className="text-link"
+                  href={docsUrl("deployments/cli", locale)}
+                >
+                  {messages.workflow.guideLink} <ArrowIcon />
                 </a>
-              )}
-            </article>
-          ))}
-        </div>
+              </div>
+              <pre className="deployment-code">
+                <code>{`npm install -g caprover
+caprover login
+caprover deploy`}</code>
+              </pre>
+            </div>
+          </li>
+          <li>
+            <div className="deployment-step">
+              <div>
+                <h3>{messages.workflow.verifyTitle}</h3>
+                <p>{messages.workflow.verifyDescription}</p>
+              </div>
+              <figure className="deployment-result">
+                <a href={asset("/caprover-deployment-history.png")}>
+                  <img
+                    src={asset("/caprover-deployment-history.png")}
+                    width={836}
+                    height={458}
+                    loading="lazy"
+                    alt={messages.workflow.historyAlt}
+                  />
+                </a>
+                <figcaption>{messages.workflow.historyCaption}</figcaption>
+              </figure>
+            </div>
+          </li>
+        </ol>
       </section>
 
-      <section className="audience">
-        <div className="shell audience-grid">
-          <div>
-            <p className="section-kicker">{messages.audience.kicker}</p>
-            <h2>{messages.audience.title}</h2>
-          </div>
-          <div className="quote-code">
-            <code>
-              <em>{messages.audience.codeComment}</em>
-              <br />
-              <span>client_max_body_size</span> 100m;
-            </code>
-          </div>
-          <div className="audience-cards">
+      <section
+        className="app-controls"
+        id="features"
+        aria-labelledby="app-controls-title"
+      >
+        <div className="shell">
+          <h2 id="app-controls-title">{messages.controls.title}</h2>
+          <div className="app-control-list">
             <article>
-              <h3>{messages.audience.simpleTitle}</h3>
-              <p>{messages.audience.simpleDescription}</p>
+              <h3>{messages.controls.nginxTitle}</h3>
+              <p>{messages.controls.nginxDescription}</p>
+              <pre className="deployment-code">
+                <code>client_max_body_size 100m;</code>
+              </pre>
               <a
                 className="text-link"
                 href={docsUrl("domains/advanced-nginx", locale)}
               >
-                {messages.audience.nginxLink} <ArrowIcon />
+                {messages.controls.nginxLink} <ArrowIcon />
               </a>
             </article>
             <article>
-              <h3>{messages.audience.powerfulTitle}</h3>
-              <p>{messages.audience.powerfulDescription}</p>
+              <h3>{messages.controls.dockerTitle}</h3>
+              <p>{messages.controls.dockerDescription}</p>
               <a
                 className="text-link"
                 href={docsUrl("applications/advanced", locale)}
               >
-                {messages.audience.dockerLink} <ArrowIcon />
+                {messages.controls.dockerLink} <ArrowIcon />
+              </a>
+            </article>
+            <article>
+              <h3>{messages.controls.swarmTitle}</h3>
+              <p>{messages.controls.swarmDescription}</p>
+              <a
+                className="text-link"
+                href={docsUrl("scaling/multi-node", locale)}
+              >
+                {messages.controls.swarmLink} <ArrowIcon />
               </a>
             </article>
           </div>
-          <a
-            className="text-link"
-            href={`${BASE_PATH}${localizedPath(routes.comparisonHub.path, locale)}`}
-          >
-            {messages.compareLink} <ArrowIcon />
-          </a>
-        </div>
-      </section>
-
-      <section className="tutorial shell" aria-labelledby="tutorial-title">
-        <div className="tutorial-copy">
-          <p className="section-kicker">{messages.tutorial.kicker}</p>
-          <h2 id="tutorial-title">{messages.tutorial.title}</h2>
-          <p>{messages.tutorial.description}</p>
-          <a
-            className="text-link"
-            href={TUTORIAL}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {messages.tutorial.link} <ArrowIcon />
-          </a>
-        </div>
-        <a
-          className="tutorial-media"
-          href={TUTORIAL}
-          target="_blank"
-          rel="noreferrer noopener"
-          aria-label={messages.tutorial.linkAriaLabel}
-        >
-          <img
-            src={asset("/caprover-tutorial.gif")}
-            alt={messages.tutorial.imageAlt}
-          />
-        </a>
-      </section>
-
-      <section className="blueprints" aria-labelledby="blueprints-title">
-        <div className="shell">
-          <div className="blueprints-heading">
-            <p className="section-kicker">{messages.blueprints.kicker}</p>
-            <h2 id="blueprints-title">{messages.blueprints.title}</h2>
-            <p>{messages.blueprints.description}</p>
-          </div>
-          <div className="blueprints-grid">
-            <figure>
-              <div className="diagram-frame">
-                <img
-                  src={asset("/caprover-workflow.png")}
-                  alt={messages.blueprints.workflowAlt}
-                />
-              </div>
-              <figcaption>
-                <div>
-                  <strong>{messages.blueprints.workflowTitle}</strong>
-                  <span>{messages.blueprints.workflowDescription}</span>
-                </div>
-                <a href={asset("/caprover-workflow.png")} target="_blank">
-                  {messages.blueprints.openDiagram}
-                </a>
-              </figcaption>
-            </figure>
-            <figure>
-              <div className="diagram-frame">
-                <img
-                  src={asset("/caprover-architecture.png")}
-                  alt={messages.blueprints.architectureAlt}
-                />
-              </div>
-              <figcaption>
-                <div>
-                  <strong>{messages.blueprints.architectureTitle}</strong>
-                  <span>{messages.blueprints.architectureDescription}</span>
-                </div>
-                <a href={asset("/caprover-architecture.png")} target="_blank">
-                  {messages.blueprints.openDiagram}
-                </a>
-              </figcaption>
-            </figure>
+          <div className="app-control-links">
+            <a
+              className="text-link"
+              href={docsUrl("deployments/other/docker-compose", locale)}
+            >
+              {messages.controls.composeLink} <ArrowIcon />
+            </a>
+            <a
+              className="text-link"
+              href={`${BASE_PATH}${localizedPath(routes.comparisonHub.path, locale)}`}
+            >
+              {messages.compareLink} <ArrowIcon />
+            </a>
           </div>
         </div>
       </section>
 
       <section className="final-cta shell">
         <div>
-          <Mark />
-          <p className="section-kicker">{messages.finalCta.kicker}</p>
           <h2>{messages.finalCta.title}</h2>
           <p>{messages.finalCta.description}</p>
           <div className="actions">

@@ -3,12 +3,15 @@ import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const expectedAssets = [
-  "caprover-architecture.png",
+  "caprover-deployment-history.png",
   "caprover-dashboard.png",
   "caprover-logo.png",
+  "slack-icon.png",
+];
+const legacyAssets = [
+  "caprover-architecture.png",
   "caprover-tutorial.gif",
   "caprover-workflow.png",
-  "slack-icon.png",
 ];
 const routeManifest = JSON.parse(await readFile("routes.json", "utf8"));
 const routeTitleKeys = {
@@ -69,6 +72,16 @@ test("exports complete localized website routes", async () => {
 
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
     assert.match(homepage, /class="kit-subscribe"/);
+    assert.match(homepage, /<ol class="deployment-steps">/);
+    assert.match(homepage, /id="features"/);
+    assert.match(homepage, /caprover deploy/);
+    assert.match(homepage, /caprover-deployment-history\.png/);
+    for (const asset of legacyAssets) {
+      assert(
+        !homepage.includes(`/${asset}`),
+        `${locale.code} references ${asset}`,
+      );
+    }
     assert.doesNotMatch(homepage, /list-manage\.com\/subscribe\/post/);
     assert(
       homepage.includes(
@@ -102,7 +115,9 @@ test("exports complete localized website routes", async () => {
   assert(defaultAlias.includes("noindex, follow"));
 
   await Promise.all(
-    expectedAssets.map((asset) => access(`out/${assetPath}/${asset}`)),
+    [...expectedAssets, ...legacyAssets].map((asset) =>
+      access(`out/${assetPath}/${asset}`),
+    ),
   );
 
   for (const asset of expectedAssets) {
