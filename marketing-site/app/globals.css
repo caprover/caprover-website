@@ -140,18 +140,17 @@
 
 .live-deployment {
   margin: 0;
-  padding: clamp(10px, 1.5vw, 20px);
-  border-radius: 16px;
-  background: #14233c;
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 20px #10182810;
 }
 
 .live-deployment img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 8px 22px #0a122760;
+  border-radius: 11px;
 }
 
 .catalog-link {
