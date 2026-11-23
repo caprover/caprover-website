@@ -81,11 +81,13 @@ test("exports complete localized website routes", async () => {
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
     assert.match(homepage, /class="kit-subscribe"/);
     assert.match(homepage, /<ul class="featured-apps">/);
-    for (const id of ["one-click-apps", "deployment-workflows-title"]) {
-      assert(homepage.includes(`id="${id}"`));
-    }
-    assert(homepage.includes(catalog["homepage.deploymentWorkflows.title"]));
-    assert.match(homepage, /<dl class="workflow-grid">/);
+    assert.match(
+      homepage,
+      /id="one-click-apps"[\s\S]*id="deployment-examples-title"/,
+    );
+    assert(homepage.includes(catalog["homepage.oneClick.title"]));
+    assert(homepage.includes(catalog["homepage.deploymentExamples.workflows"]));
+    assert.doesNotMatch(homepage, /deployment-playback|workflow-grid/);
     assert.match(homepage, /Dockerfile/);
     assert.match(homepage, /CI\/CD/);
     assert.doesNotMatch(
