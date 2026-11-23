@@ -81,7 +81,14 @@ test("exports complete localized website routes", async () => {
     assert.match(homepage, /<details class="deployment-example">/);
     assert.match(homepage, /<ol class="deployment-steps">/);
     assert.match(homepage, /server\.js/);
-    assert(homepage.includes(catalog["homepage.oneClick.title"]));
+    for (const pathTitle of [
+      "deploymentPaths.staticTitle",
+      "deploymentPaths.serviceTitle",
+      "oneClick.title",
+      "deploymentPaths.composeTitle",
+    ]) {
+      assert(homepage.includes(catalog[`homepage.${pathTitle}`]));
+    }
     assert.match(homepage, /<ul class="featured-apps">/);
     assert.match(homepage, /<dl class="operations-list">/);
     assert.match(homepage, /id="features"/);
@@ -106,6 +113,8 @@ test("exports complete localized website routes", async () => {
     );
     for (const document of [
       "deployments/cli",
+      "guides/static-react",
+      "deployments",
       "deployments/builds-logs#source-deployments-versions-rollback",
       "one-click-apps",
       "domains",
