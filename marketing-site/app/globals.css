@@ -104,11 +104,23 @@
 }
 
 .hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   align-items: center;
   gap: 28px clamp(24px, 5vw, 72px);
   padding-block: clamp(34px, 4vw, 60px);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 calc((100% - 100vw) / 2) 0 34%;
+  background: linear-gradient(90deg, transparent, #edf2f7 44%, #e8eef5);
+  mask-image: linear-gradient(180deg, transparent, #000 16% 78%, transparent);
+  pointer-events: none;
 }
 
 .hero h1 {
@@ -376,6 +388,12 @@
   .hero {
     grid-template-columns: minmax(0, 1fr);
     padding-block: 32px 24px;
+  }
+
+  .hero::before {
+    inset: 45% -18px 0;
+    background: radial-gradient(ellipse at 72% 58%, #e8eef5, transparent 76%);
+    mask-image: none;
   }
 
   .live-deployment {
