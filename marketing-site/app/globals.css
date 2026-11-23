@@ -23,7 +23,7 @@
   font-weight: 650;
 }
 
-.deployment-workflows, .operations-section, .app-controls {
+.operations-section, .app-controls {
   padding-block: clamp(38px, 5vw, 72px);
 }
 
@@ -31,7 +31,7 @@
   border-top: 1px solid #d9e2ef;
 }
 
-.deployment-examples h2, .deployment-workflows h2, .one-click-showcase h2, .operations-section h2, .app-controls h2, .final-cta h2 {
+.deployment-examples h2, .one-click-showcase h2, .operations-section h2, .app-controls h2, .final-cta h2 {
   font-size: clamp(30px, 3.4vw, 46px);
   letter-spacing: -.045em;
   line-height: 1.12;
@@ -62,7 +62,7 @@
   margin-top: 18px;
 }
 
-.deployment-workflows .text-link, .app-controls .text-link {
+.deployment-workflow-note a, .app-controls .text-link {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -73,7 +73,7 @@
   text-underline-offset: 3px;
 }
 
-.deployment-workflows .text-link svg, .app-controls .text-link svg {
+.deployment-workflow-note svg, .app-controls .text-link svg {
   width: 16px;
   flex: 0 0 16px;
 }
@@ -104,11 +104,23 @@
 }
 
 .hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   align-items: center;
   gap: 28px clamp(24px, 5vw, 72px);
   padding-block: clamp(34px, 4vw, 60px);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 calc((100% - 100vw) / 2) 0 34%;
+  background: linear-gradient(90deg, transparent, #edf2f7 44%, #e8eef5);
+  mask-image: linear-gradient(180deg, transparent, #000 16% 78%, transparent);
+  pointer-events: none;
 }
 
 .hero h1 {
@@ -140,20 +152,17 @@
 
 .live-deployment {
   margin: 0;
-  padding: clamp(10px, 2vw, 23px);
   border: 1px solid var(--surface-border);
-  border-radius: 20px;
-  background: var(--surface-muted);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 20px #10182810;
 }
 
 .live-deployment img {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--surface-border);
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 8px 22px #1018280d;
+  border-radius: 11px;
 }
 
 .catalog-link {
@@ -174,42 +183,32 @@
 }
 
 .deployment-examples {
-  padding-top: clamp(40px, 6vw, 88px);
+  padding-block: clamp(36px, 5vw, 66px);
 }
 
-.deployment-examples-heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: space-between;
-  gap: 14px 24px;
+.deployment-examples h2 {
   margin-bottom: 24px;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 720;
+  text-wrap: balance;
 }
 
-.deployment-examples .deployment-examples-heading h2 {
-  max-width: 22ch;
-  font-weight: 750;
+.deployment-workflow-note {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 22px;
+  color: #475467;
 }
 
-.deployment-playback {
-  min-height: 44px;
-  flex: none;
-  padding: 6px 12px;
-  border: 1px solid var(--surface-border);
-  border-radius: 7px;
-  color: var(--blue-dark);
-  font-size: .875rem;
-  font-weight: 650;
-  cursor: pointer;
-}
-
-.deployment-playback:hover {
-  background: var(--blue-soft);
+.deployment-workflow-note a {
+  margin-top: 0;
 }
 
 .deployment-tab-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.25fr);
   align-items: start;
   gap: clamp(16px, 3vw, 44px);
 }
@@ -254,15 +253,12 @@
   display: grid;
   min-width: 0;
   overflow: hidden;
-  border: 1px solid #cddbed;
-  border-radius: 16px;
-  background: #f1f6ff;
 }
 
 .deployment-preview [role="tabpanel"] {
   grid-area: 1 / 1;
   min-width: 0;
-  padding: clamp(18px, 3.4vw, 46px);
+  padding: 4px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -290,7 +286,7 @@
 }
 
 .deployment-preview h3 {
-  font-size: clamp(24px, 3vw, 38px);
+  font-size: clamp(24px, 2.4vw, 34px);
   font-weight: 720;
   letter-spacing: -.035em;
   line-height: 1.15;
@@ -304,33 +300,32 @@
 
 .deployment-snippet {
   overflow: hidden;
-  margin-top: 20px;
-  border: 1px solid #cddbed;
-  border-radius: 9px;
-  background: #fff;
+  margin-top: 16px;
+  border-radius: 10px;
+  background: #101e36;
+  color: #eef4ff;
   font: .875rem/1.55 var(--font-geist-mono), monospace;
 }
 
 .deployment-snippet pre {
   margin: 0;
-  padding: 12px 14px;
+  padding: 12px 16px;
   overflow-x: auto;
-  color: #183767;
 }
 
 .deployment-filename, .deployment-step {
-  padding: 7px 14px;
+  padding: 8px 16px;
   overflow-wrap: anywhere;
 }
 
 .deployment-filename {
-  background: #e5eefb;
-  color: #30476b;
+  border-bottom: 1px solid #30415e;
+  color: #bdcdf0;
 }
 
 .deployment-step {
-  background: #101e36;
-  color: #eaf2ff;
+  border-top: 1px solid #30415e;
+  color: #afceff;
 }
 
 .deployment-example-note {
@@ -372,31 +367,33 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px 22px;
-}
-
-.one-click-heading p {
-  margin: 10px 0 0;
-  max-width: 62ch;
-  color: #475467;
-  line-height: 1.6;
 }
 
 .one-click-heading .catalog-link {
   padding-block: 6px;
 }
 
-.featured-apps img {
-  padding: 4px;
-  border-radius: 8px;
-  background: #fff;
+.one-click-showcase .featured-apps {
+  margin-top: 22px;
+}
+
+.one-click-showcase .featured-apps img {
+  width: min(74px, 100%);
+  height: 62px;
 }
 
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
     padding-block: 32px 24px;
+  }
+
+  .hero::before {
+    inset: 45% -18px 0;
+    background: radial-gradient(ellipse at 72% 58%, #e8eef5, transparent 76%);
+    mask-image: none;
   }
 
   .live-deployment {
@@ -436,26 +433,26 @@
   }
 }
 
-.workflow-grid, .app-control-list {
+.app-control-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px 28px;
   margin: 22px 0 8px;
 }
 
-.workflow-grid > div, .app-control-list > div {
+.app-control-list > div {
   border-top: 1px solid var(--surface-border);
   padding-top: 14px;
 }
 
-.workflow-grid dt, .operations-list dt, .app-control-list dt {
+.operations-list dt, .app-control-list dt {
   margin-bottom: 6px;
   font-size: 18px;
   font-weight: 690;
   line-height: 1.3;
 }
 
-.workflow-grid dd, .operations-list dd, .app-control-list dd {
+.operations-list dd, .app-control-list dd {
   max-width: 55ch;
   margin: 0;
   color: #475467;
@@ -477,7 +474,7 @@
 }
 
 @media (max-width: 760px) {
-  .deployment-tab-layout, .workflow-grid, .app-control-list, .operations-layout {
+  .deployment-tab-layout, .app-control-list, .operations-layout {
     grid-template-columns: minmax(0, 1fr);
   }
 }

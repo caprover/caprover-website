@@ -81,13 +81,13 @@ function LiveDeployment({ messages }: { messages: HomeMessages["hero"] }) {
         <source
           media="(max-width: 660px)"
           srcSet={asset("/caprover-active-deployment-mobile.webp")}
-          width={672}
-          height={592}
+          width={506}
+          height={256}
         />
         <img
           src={asset("/caprover-active-deployment.webp")}
-          width={1239}
-          height={507}
+          width={804}
+          height={256}
           alt={messages.deploymentAlt}
           fetchPriority="high"
         />
@@ -176,15 +176,23 @@ function DeploymentSnippet({
 
 function DeploymentExamples({
   messages,
+  locale,
 }: {
   messages: HomeMessages["deploymentExamples"];
+  locale: Locale;
 }) {
   const { staticSite, worker, catalog, compose } = messages;
   return (
     <DeploymentTabs
       title={messages.title}
-      pauseLabel={messages.pause}
-      playLabel={messages.play}
+      footer={
+        <div className="deployment-workflow-note">
+          <p>{messages.workflows}</p>
+          <a href={docsUrl("deployments", locale)}>
+            {messages.guide} <ArrowIcon />
+          </a>
+        </div>
+      }
       methods={[
         {
           id: "static",
@@ -271,10 +279,7 @@ function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
       aria-labelledby="one-click-title"
     >
       <div className="one-click-heading">
-        <div>
-          <h2 id="one-click-title">{messages.title}</h2>
-          <p>{messages.description}</p>
-        </div>
+        <h2 id="one-click-title">{messages.title}</h2>
         <a
           className="catalog-link"
           href="https://github.com/caprover/one-click-apps/tree/master/public/v4/apps"
@@ -283,34 +288,6 @@ function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
         </a>
       </div>
       <FeaturedApps />
-    </section>
-  );
-}
-
-function DeploymentWorkflows({
-  messages,
-  locale,
-}: {
-  messages: HomeMessages["deploymentWorkflows"];
-  locale: Locale;
-}) {
-  return (
-    <section
-      className="deployment-workflows shell"
-      aria-labelledby="deployment-workflows-title"
-    >
-      <h2 id="deployment-workflows-title">{messages.title}</h2>
-      <dl className="workflow-grid">
-        {messageList(messages.items).map(({ title, description }) => (
-          <div key={title}>
-            <dt>{title}</dt>
-            <dd>{description}</dd>
-          </div>
-        ))}
-      </dl>
-      <a className="text-link" href={docsUrl("deployments", locale)}>
-        {messages.guide} <ArrowIcon />
-      </a>
     </section>
   );
 }
@@ -372,10 +349,8 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
       </section>
 
       <OneClickApps messages={messages.oneClick} />
-      <DeploymentExamples messages={messages.deploymentExamples} />
-
-      <DeploymentWorkflows
-        messages={messages.deploymentWorkflows}
+      <DeploymentExamples
+        messages={messages.deploymentExamples}
         locale={locale}
       />
 
@@ -399,8 +374,8 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <figure className="deployment-result">
             <img
               src={asset("/caprover-deployment-history.png")}
-              width={836}
-              height={458}
+              width={804}
+              height={194}
               loading="lazy"
               alt={messages.operations.historyAlt}
             />

@@ -27,17 +27,15 @@ type DeploymentMethod = {
 
 export function DeploymentTabs({
   title,
-  pauseLabel,
-  playLabel,
+  footer,
   methods,
 }: {
   title: string;
-  pauseLabel: string;
-  playLabel: string;
+  footer: ReactNode;
   methods: DeploymentMethod[];
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [playing, setPlaying] = useState<boolean | null>(null);
+  const [interacted, setInteracted] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [inView, setInView] = useState(false);
   const section = useRef<HTMLElement>(null);
@@ -47,7 +45,6 @@ export function DeploymentTabs({
     () => window.matchMedia(MOTION_QUERY).matches,
     () => false,
   );
-  const shouldPlay = playing ?? !reducedMotion;
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -58,15 +55,22 @@ export function DeploymentTabs({
   }, []);
 
   useEffect(() => {
-    if (!shouldPlay || hovering || !inView) return;
+    if (interacted || reducedMotion || hovering || !inView) return;
     const timeout = window.setTimeout(() => {
       setActiveIndex((index) => (index + 1) % methods.length);
     }, ROTATION_MS);
     return () => window.clearTimeout(timeout);
-  }, [activeIndex, hovering, inView, methods.length, shouldPlay]);
+  }, [
+    activeIndex,
+    hovering,
+    inView,
+    interacted,
+    methods.length,
+    reducedMotion,
+  ]);
 
   function select(index: number) {
-    setPlaying(false);
+    setInteracted(true);
     setActiveIndex(index);
   }
 
@@ -98,23 +102,14 @@ export function DeploymentTabs({
       }}
       onPointerLeave={() => setHovering(false)}
     >
-      <div className="deployment-examples-heading">
-        <h2 id="deployment-examples-title">{title}</h2>
-        <button
-          type="button"
-          className="deployment-playback"
-          onClick={() => setPlaying(!shouldPlay)}
-        >
-          {shouldPlay ? pauseLabel : playLabel}
-        </button>
-      </div>
+      <h2 id="deployment-examples-title">{title}</h2>
       <div className="deployment-tab-layout">
         <div
           className="deployment-tab-list"
           role="tablist"
           aria-orientation="vertical"
           aria-labelledby="deployment-examples-title"
-          onFocus={() => setPlaying(false)}
+          onFocus={() => setInteracted(true)}
         >
           {methods.map(({ id, label, summary }, index) => (
             <button
@@ -136,7 +131,7 @@ export function DeploymentTabs({
             </button>
           ))}
         </div>
-        <div className="deployment-preview" onFocus={() => setPlaying(false)}>
+        <div className="deployment-preview" onFocus={() => setInteracted(true)}>
           {methods.map(({ id, preview }, index) => (
             <div
               key={id}
@@ -152,6 +147,7 @@ export function DeploymentTabs({
           ))}
         </div>
       </div>
+      {footer}
     </section>
   );
 }
