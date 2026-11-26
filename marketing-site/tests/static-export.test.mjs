@@ -80,16 +80,20 @@ test("exports complete localized website routes", async () => {
 
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
     assert.match(homepage, /class="kit-subscribe"/);
+    assert.match(homepage, /class="capability-strip"/);
+    assert.match(homepage, /class="control-cards"/);
     assert.match(homepage, /<ul class="featured-apps">/);
     assert.match(
       homepage,
-      /id="one-click-apps"[\s\S]*id="deployment-examples-title"/,
+      /id="app-controls-title"[\s\S]*id="deployment-examples-title"[\s\S]*id="one-click-apps"/,
     );
     assert(homepage.includes(catalog["homepage.oneClick.title"]));
     assert(homepage.includes(catalog["homepage.deploymentExamples.workflows"]));
     assert.doesNotMatch(homepage, /deployment-playback|workflow-grid/);
     assert.match(homepage, /Dockerfile/);
     assert.match(homepage, /CI\/CD/);
+    assert.match(homepage, /client_max_body_size 1g;/);
+    assert.match(homepage, /MemoryBytes: 536870912/);
     assert.doesNotMatch(
       homepage,
       /hero-proofs|deployment-path-index|demo-nodejs\.server\.demo\.caprover\.com/,
@@ -113,6 +117,16 @@ test("exports complete localized website routes", async () => {
     assert(
       homepage.includes(
         `href="${basePath}${localizedPath(locale, routeManifest.comparisonHub.path)}"`,
+      ),
+    );
+    assert(
+      homepage.includes(
+        `href="${basePath}${localizedPath(locale, routeManifest.coolify.path)}"`,
+      ),
+    );
+    assert(
+      homepage.includes(
+        `href="${basePath}${localizedPath(locale, routeManifest.dokploy.path)}"`,
       ),
     );
     assert(

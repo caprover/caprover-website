@@ -28,8 +28,27 @@ const featuredApps = [
   { name: "Uptime Kuma", logo: "uptime-kuma" },
 ];
 
+const controlExamples = [
+  {
+    code: "client_max_body_size 1g;\nadd_header X-Frame-Options SAMEORIGIN;\nproxy_read_timeout 300s;",
+    docSlug: "domains/advanced-nginx",
+  },
+  {
+    code: "TaskTemplate:\n  Resources:\n    Limits:\n      MemoryBytes: 536870912",
+    docSlug: "applications/advanced",
+  },
+  {
+    code: "$ docker node ls\n$ docker service ls",
+    docSlug: "scaling/multi-node",
+  },
+];
+
 function asset(path: string) {
   return `${BASE_PATH}${ASSET_PATH}${path}`;
+}
+
+function internal(path: string, locale: Locale) {
+  return `${BASE_PATH}${localizedPath(path, locale)}`;
 }
 
 function Mark() {
@@ -93,6 +112,21 @@ function LiveDeployment({ messages }: { messages: HomeMessages["hero"] }) {
         />
       </picture>
     </figure>
+  );
+}
+
+function CapabilityStrip({ messages }: { messages: HomeMessages }) {
+  return (
+    <section className="shell" aria-label={messages.proofsAriaLabel}>
+      <dl className="capability-strip">
+        {messageList(messages.proofs).map(({ value, label }) => (
+          <div key={value}>
+            <dt>{value}</dt>
+            <dd>{label}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }
 
@@ -195,27 +229,6 @@ function DeploymentExamples({
       }
       methods={[
         {
-          id: "static",
-          label: staticSite.label,
-          summary: staticSite.summary,
-          preview: (
-            <>
-              <h3>{staticSite.title}</h3>
-              <p>{staticSite.description}</p>
-              <DeploymentSnippet
-                filename="Dockerfile"
-                source={
-                  "FROM nginx:alpine\nCOPY ./public/ /usr/share/nginx/html/"
-                }
-                step="$ caprover deploy"
-              />
-              <p className="deployment-example-note">
-                {messages.definitionNote}
-              </p>
-            </>
-          ),
-        },
-        {
           id: "worker",
           label: worker.label,
           summary: worker.summary,
@@ -237,14 +250,23 @@ function DeploymentExamples({
           ),
         },
         {
-          id: "catalog",
-          label: catalog.label,
-          summary: catalog.summary,
+          id: "static",
+          label: staticSite.label,
+          summary: staticSite.summary,
           preview: (
             <>
-              <h3>{catalog.title}</h3>
-              <p>{catalog.description}</p>
-              <FeaturedApps />
+              <h3>{staticSite.title}</h3>
+              <p>{staticSite.description}</p>
+              <DeploymentSnippet
+                filename="Dockerfile"
+                source={
+                  "FROM nginx:alpine\nCOPY ./public/ /usr/share/nginx/html/"
+                }
+                step="$ caprover deploy"
+              />
+              <p className="deployment-example-note">
+                {messages.definitionNote}
+              </p>
             </>
           ),
         },
@@ -263,6 +285,18 @@ function DeploymentExamples({
                 }
                 step={compose.step}
               />
+            </>
+          ),
+        },
+        {
+          id: "catalog",
+          label: catalog.label,
+          summary: catalog.summary,
+          preview: (
+            <>
+              <h3>{catalog.title}</h3>
+              <p>{catalog.description}</p>
+              <FeaturedApps />
             </>
           ),
         },
@@ -296,6 +330,10 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
   const allMessages = getMessages(locale);
   const messages = allMessages.homepage;
   const docs = docsUrl("get-started", locale);
+  const compareHub = internal(routes.comparisonHub.path, locale);
+  const compareCoolify = internal(routes.coolify.path, locale);
+  const compareDokploy = internal(routes.dokploy.path, locale);
+  const controlItems = messageList(messages.controls.items);
 
   return (
     <main lang={locale}>
@@ -306,6 +344,7 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         </a>
         <nav aria-label={messages.navigationAriaLabel}>
           <a href={docs}>{messages.navigation.docs}</a>
+          <a href={compareHub}>{messages.navigation.compare}</a>
           <a href={GITHUB}>
             <GitHubIcon />
             {messages.navigation.github}
@@ -341,14 +380,56 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
               {messages.hero.liveDemo}
             </a>
           </div>
-          <p className="demo-access">
-            {messages.hero.demoPasswordLabel} <code>captain42</code>
-          </p>
+          <div className="hero-meta">
+            <p className="demo-access">
+              {messages.hero.demoPasswordLabel} <code>captain42</code>
+            </p>
+            <a className="hero-compare-link" href={compareHub}>
+              {messages.hero.compareLink} <ArrowIcon />
+            </a>
+          </div>
         </div>
         <LiveDeployment messages={messages.hero} />
       </section>
 
-      <OneClickApps messages={messages.oneClick} />
+      <CapabilityStrip messages={messages} />
+
+      <section className="app-controls" aria-labelledby="app-controls-title">
+        <div className="shell">
+          <div className="controls-header">
+            <h2 id="app-controls-title">{messages.controls.title}</h2>
+            <p className="controls-subtitle">{messages.controls.subtitle}</p>
+          </div>
+          <div className="control-cards">
+            {controlItems.map(
+              ({ title, description, snippetLabel, link }, index) => {
+                const example = controlExamples[index];
+                return (
+                  <article className="control-card" key={title}>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                    <div className="control-snippet">
+                      <div className="control-snippet-label">
+                        {snippetLabel}
+                      </div>
+                      <pre>
+                        <code>{example.code}</code>
+                      </pre>
+                    </div>
+                    <a
+                      className="text-link"
+                      href={docsUrl(example.docSlug, locale)}
+                    >
+                      {link} <ArrowIcon />
+                    </a>
+                  </article>
+                );
+              },
+            )}
+          </div>
+        </div>
+      </section>
+
       <DeploymentExamples
         messages={messages.deploymentExamples}
         locale={locale}
@@ -384,24 +465,28 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         </div>
       </section>
 
-      <section className="app-controls" aria-labelledby="app-controls-title">
-        <div className="shell">
-          <h2 id="app-controls-title">{messages.controls.title}</h2>
-          <dl className="app-control-list">
-            {messageList(messages.controls.items).map(
-              ({ title, description }) => (
-                <div key={title}>
-                  <dt>{title}</dt>
-                  <dd>{description}</dd>
-                </div>
-              ),
-            )}
-          </dl>
-          <div className="app-control-links">
-            <a
-              className="text-link"
-              href={`${BASE_PATH}${localizedPath(routes.comparisonHub.path, locale)}`}
-            >
+      <OneClickApps messages={messages.oneClick} />
+
+      <section
+        className="compare-callout shell"
+        aria-labelledby="compare-callout-title"
+      >
+        <div className="compare-callout-box">
+          <div>
+            <p className="compare-callout-kicker">
+              {messages.compareSection.kicker}
+            </p>
+            <h2 id="compare-callout-title">{messages.compareSection.title}</h2>
+            <p>{messages.compareSection.description}</p>
+          </div>
+          <div className="compare-callout-links">
+            <a className="compare-pill" href={compareCoolify}>
+              {messages.compareSection.coolifyLink} <ArrowIcon />
+            </a>
+            <a className="compare-pill" href={compareDokploy}>
+              {messages.compareSection.dokployLink} <ArrowIcon />
+            </a>
+            <a className="compare-pill is-subtle" href={compareHub}>
               {messages.compareLink} <ArrowIcon />
             </a>
           </div>
@@ -415,6 +500,9 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <div className="actions">
             <a className="primary" href={docs}>
               {messages.finalCta.getStarted} <ArrowIcon />
+            </a>
+            <a className="secondary" href={LIVE_DEMO}>
+              {messages.finalCta.liveDemo}
             </a>
           </div>
         </div>
@@ -431,6 +519,7 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <p>{messages.footer.tagline}</p>
           <div>
             <a href={docs}>{messages.footer.docs}</a>
+            <a href={compareHub}>{messages.footer.compare}</a>
             <a href={GITHUB}>{messages.footer.github}</a>
             <a href={SLACK}>{messages.footer.slack}</a>
           </div>

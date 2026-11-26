@@ -193,7 +193,7 @@ try {
   const homepageResponse = await fetch(`${origin}/`);
   assert.equal(homepageResponse.status, 200);
   const homepage = await homepageResponse.text();
-  assert.match(homepage, /Deploy apps<br\s*\/?>on your own server\./);
+  assert.match(homepage, /Simple Docker hosting<br\s*\/?>with full NGINX and Swarm control\./);
 
   const nextAsset = homepage.match(/(?:href|src)=["'](\/_next\/[^"']+\.(?:css|js))["']/)?.[1];
   assert(nextAsset, "Homepage does not reference a Next.js CSS or JavaScript asset");
@@ -257,24 +257,24 @@ try {
   assert.match(chineseDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
   assert.match(chineseDocs, /src=["']\/locale-preference\.js["']/);
   const englishHomepageAlias = await responses.englishHomepageAlias.text();
-  assert.match(englishHomepageAlias, /Deploy apps<br\s*\/?>on your own server\./);
+  assert.match(englishHomepageAlias, /Simple Docker hosting<br\s*\/?>with full NGINX and Swarm control\./);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
   const spanishHomepage = await responses.spanishHomepage.text();
-  assert.match(spanishHomepage, /Despliega aplicaciones<br\s*\/?>en tu propio servidor\./);
+  assert.match(spanishHomepage, /Alojamiento Docker sencillo<br\s*\/?>con control total de NGINX y Swarm\./);
   assert.match(spanishHomepage, /href=["']https:\/\/caprover\.com\/es-ES\/docs\/get-started["']/);
   assert.match(spanishHomepage, /<html lang=["']es-ES["']/);
   assert.match(spanishHomepage, /<main lang=["']es-ES["']/);
   assert.match(spanishHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
   assert.match(spanishHomepage, /src=["']\/locale-preference\.js["']/);
   const chineseHomepage = await responses.chineseHomepage.text();
-  assert.match(chineseHomepage, /在自己的服务器上<br\s*\/?>部署应用。/);
+  assert.match(chineseHomepage, /简洁的 Docker 托管<br\s*\/?>保留完整 NGINX 与 Swarm 控制权。/);
   assert.match(chineseHomepage, /href=["']https:\/\/caprover\.com\/zh-CN\/docs\/get-started["']/);
   assert.match(chineseHomepage, /<html lang=["']zh-CN["']/);
   assert.match(chineseHomepage, /<main lang=["']zh-CN["']/);
   assert.match(chineseHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/zh-CN\/["']/);
   assert.match(chineseHomepage, /src=["']\/locale-preference\.js["']/);
   const chineseComparisonHub = await responses.chineseComparisonHub.text();
-  assert.match(chineseComparisonHub, /选择适合你的 Docker 应用运行方式/);
+  assert.match(chineseComparisonHub, /选择适合你的自托管 Docker 工作流。/);
   assert.match(chineseComparisonHub, /\/zh-CN\/compare\//);
   assert.match(chineseComparisonHub, /\/zh-CN\/docs\/get-started/);
   const spanishComparisonPages = await Promise.all(
@@ -285,7 +285,7 @@ try {
       responses.spanishDokkuComparison,
     ].map((response) => response.text()),
   );
-  assert.match(spanishComparisonPages[0], /Elige cómo quieres ejecutar aplicaciones Docker\./);
+  assert.match(spanishComparisonPages[0], /Elige el flujo Docker autoalojado adecuado\./);
   for (const page of spanishComparisonPages) {
     assert.match(page, /\/es-ES\/compare\//);
     assert.match(page, /\/es-ES\/docs\/get-started/);
