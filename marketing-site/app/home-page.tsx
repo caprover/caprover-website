@@ -93,25 +93,22 @@ function SlackIcon() {
   );
 }
 
-function LiveDeployment({ messages }: { messages: HomeMessages["hero"] }) {
+function AppWalkthrough({ messages }: { messages: HomeMessages["workflow"] }) {
   return (
-    <figure className="live-deployment">
-      <picture>
-        <source
-          media="(max-width: 660px)"
-          srcSet={asset("/caprover-active-deployment-mobile.webp")}
-          width={506}
-          height={256}
-        />
-        <img
-          src={asset("/caprover-active-deployment.webp")}
-          width={804}
-          height={256}
-          alt={messages.deploymentAlt}
-          fetchPriority="high"
-        />
-      </picture>
-    </figure>
+    <section className="app-walkthrough" aria-labelledby="walkthrough-title">
+      <h2 id="walkthrough-title">{messages.title}</h2>
+      <ol>
+        <li>
+          {messages.deploy}
+          <code>caprover deploy</code>
+        </li>
+        <li>{messages.openApp}</li>
+        <li>
+          {messages.uploadLimit}
+          <code>client_max_body_size 100m;</code>
+        </li>
+      </ol>
+    </section>
   );
 }
 
@@ -383,13 +380,15 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <div className="hero-meta">
             <p className="demo-access">
               {messages.hero.demoPasswordLabel} <code>captain42</code>
+              {" · "}
+              {messages.hero.demoPath}
             </p>
             <a className="hero-compare-link" href={compareHub}>
               {messages.hero.compareLink} <ArrowIcon />
             </a>
           </div>
         </div>
-        <LiveDeployment messages={messages.hero} />
+        <AppWalkthrough messages={messages.workflow} />
       </section>
 
       <CapabilityStrip messages={messages} />
@@ -454,13 +453,13 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           </dl>
           <figure className="deployment-result">
             <img
-              src={asset("/caprover-deployment-history.png")}
-              width={804}
-              height={194}
+              src={asset("/caprover-runtime-status.webp")}
+              width={440}
+              height={480}
               loading="lazy"
-              alt={messages.operations.historyAlt}
+              alt={messages.operations.runtimeAlt}
             />
-            <figcaption>{messages.operations.historyCaption}</figcaption>
+            <figcaption>{messages.operations.runtimeCaption}</figcaption>
           </figure>
         </div>
       </section>

@@ -193,7 +193,7 @@ try {
   const homepageResponse = await fetch(`${origin}/`);
   assert.equal(homepageResponse.status, 200);
   const homepage = await homepageResponse.text();
-  assert.match(homepage, /Simple Docker hosting<br\s*\/?>with full NGINX and Swarm control\./);
+  assert.match(homepage, /Deploy from your terminal\.<br\s*\/?>Keep control of your app\./);
 
   const nextAsset = homepage.match(/(?:href|src)=["'](\/_next\/[^"']+\.(?:css|js))["']/)?.[1];
   assert(nextAsset, "Homepage does not reference a Next.js CSS or JavaScript asset");
@@ -257,17 +257,17 @@ try {
   assert.match(chineseDocs, /href=["']?\/docs\/get-started(?:["'\s>])/);
   assert.match(chineseDocs, /src=["']\/locale-preference\.js["']/);
   const englishHomepageAlias = await responses.englishHomepageAlias.text();
-  assert.match(englishHomepageAlias, /Simple Docker hosting<br\s*\/?>with full NGINX and Swarm control\./);
+  assert.match(englishHomepageAlias, /Deploy from your terminal\.<br\s*\/?>Keep control of your app\./);
   assert.match(englishHomepageAlias, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/["']/);
   const spanishHomepage = await responses.spanishHomepage.text();
-  assert.match(spanishHomepage, /Alojamiento Docker sencillo<br\s*\/?>con control total de NGINX y Swarm\./);
+  assert.match(spanishHomepage, /Despliega desde tu terminal\.<br\s*\/?>Mantén el control de tu app\./);
   assert.match(spanishHomepage, /href=["']https:\/\/caprover\.com\/es-ES\/docs\/get-started["']/);
   assert.match(spanishHomepage, /<html lang=["']es-ES["']/);
   assert.match(spanishHomepage, /<main lang=["']es-ES["']/);
   assert.match(spanishHomepage, /rel=["']canonical["'][^>]+href=["']https:\/\/caprover\.com\/es-ES\/["']/);
   assert.match(spanishHomepage, /src=["']\/locale-preference\.js["']/);
   const chineseHomepage = await responses.chineseHomepage.text();
-  assert.match(chineseHomepage, /简洁的 Docker 托管<br\s*\/?>保留完整 NGINX 与 Swarm 控制权。/);
+  assert.match(chineseHomepage, /从终端部署，<br\s*\/?>自己掌控应用。/);
   assert.match(chineseHomepage, /href=["']https:\/\/caprover\.com\/zh-CN\/docs\/get-started["']/);
   assert.match(chineseHomepage, /<html lang=["']zh-CN["']/);
   assert.match(chineseHomepage, /<main lang=["']zh-CN["']/);

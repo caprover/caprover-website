@@ -40,6 +40,12 @@
 .comparison-table tr:last-child>* ,.two-column-table tr:last-child>*{border-bottom:0}
 .comparison-table tr>*:last-child,.two-column-table tr>*:last-child{border-right:0}
 .simplicity-power{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:42px}
+.dockerfile-workflow {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:18px}
+.dockerfile-workflow article {padding:24px;border:1px solid #cfdcf0;border-radius:14px;background:#fff}
+.dockerfile-workflow h3 {margin:0;font-size:22px}
+.dockerfile-workflow dt {margin-top:16px;font-weight:700}
+.dockerfile-workflow dd {margin:4px 0 18px;color:#475467;line-height:1.6}
+.dockerfile-workflow a {color:var(--compare-blue-dark);text-decoration:underline}
 .simplicity-power article{border:1px solid #cfdcf0;border-radius:16px;padding:36px;background:#fff}
 .simplicity-power article:last-child{background:linear-gradient(145deg,#edf4ff,#fff);border-color:#8eb3f5}
 .simplicity-power h2{font-size:30px;line-height:1.15;letter-spacing:-.035em;margin:0 0 18px}

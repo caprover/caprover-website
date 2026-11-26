@@ -11,7 +11,7 @@ import {
   PageHero,
   ProofStrip,
   ResourceCallout,
-  SimplicityPower,
+  DockerfileWorkflow,
   SourceLinks,
 } from "./components";
 
@@ -31,7 +31,10 @@ export function ComparisonHubPage({
       </PageHero>
 
       <section className="compare-section compare-shell">
-        <SimplicityPower locale={locale} />
+        <DockerfileWorkflow
+          locale={locale}
+          competitors={["coolify", "dokploy"]}
+        />
         <ResourceCallout locale={locale}>
           <p>{copy.resourceDescription}</p>
         </ResourceCallout>
