@@ -121,19 +121,13 @@ test("exports complete localized website routes", async () => {
         `https://caprover.com${locale.pathPrefix}/docs/get-started`,
       ),
     );
+    assert.doesNotMatch(
+      homepage,
+      /compare-callout|hero-compare-link|Coolify|Dokploy/i,
+    );
     assert(
-      homepage.includes(
+      !homepage.includes(
         `href="${basePath}${localizedPath(locale, routeManifest.comparisonHub.path)}"`,
-      ),
-    );
-    assert(
-      homepage.includes(
-        `href="${basePath}${localizedPath(locale, routeManifest.coolify.path)}"`,
-      ),
-    );
-    assert(
-      homepage.includes(
-        `href="${basePath}${localizedPath(locale, routeManifest.dokploy.path)}"`,
       ),
     );
     assert(
