@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
+import path from "node:path";
 import test from "node:test";
 
 const expectedAssets = [
@@ -7,7 +8,7 @@ const expectedAssets = [
   "caprover-active-deployment.webp",
   "caprover-logo.png",
   "slack-icon.png",
-  "one-click/wordpress.png",
+  "one-click/wordpress.svg",
   "one-click/postgres.png",
   "one-click/redis.png",
   "one-click/nextcloud.png",
@@ -79,7 +80,24 @@ test("exports complete localized website routes", async () => {
     }
 
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
-    assert.match(homepage, /class="kit-subscribe"/);
+    assert.match(homepage, /class="newsletter-form"/);
+    assert.match(
+      homepage,
+      /action="https:\/\/app\.kit\.com\/forms\/10091348\/subscriptions"/,
+    );
+    assert.doesNotMatch(homepage, /caprover\.kit\.com|ck\.5\.js/);
+    assert.match(homepage, /class="collective-button"/);
+    assert.doesNotMatch(
+      homepage,
+      /opencollective\.com\/caprover\/donate\/button/,
+    );
+    assert.match(
+      homepage,
+      /class="shiki shiki-themes github-light github-dark"/,
+    );
+    assert.match(homepage, /--shiki-light:/);
+    assert.match(homepage, /--shiki-dark:/);
+    assert.match(homepage, /class="copy-button"/);
     assert.match(homepage, /class="capability-strip"/);
     assert.match(homepage, /class="control-cards"/);
     assert.match(homepage, /<ul class="featured-apps">/);
@@ -231,6 +249,33 @@ test("keeps comparison regressions covered across locales", async () => {
         ),
       );
     }
+  }
+});
+
+test("ships zero Shiki syntax-highlighter code to client JS chunks", async () => {
+  async function listJsFiles(dir) {
+    const entries = await readdir(dir, { withFileTypes: true });
+    const files = [];
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        files.push(...(await listJsFiles(fullPath)));
+      } else if (entry.name.endsWith(".js")) {
+        files.push(fullPath);
+      }
+    }
+    return files;
+  }
+
+  const chunkFiles = await listJsFiles("out/_next/static/chunks");
+  assert(chunkFiles.length > 0, "Expected client JS chunks in static export");
+  for (const file of chunkFiles) {
+    const content = await readFile(file, "utf8");
+    assert.doesNotMatch(
+      content,
+      /createHighlighter|shiki-themes|vscode-oniguruma|onig\.wasm/i,
+      `Client chunk ${file} must not bundle Shiki runtime code`,
+    );
   }
 });
 
