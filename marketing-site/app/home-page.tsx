@@ -1,11 +1,5 @@
 import { DeploymentTabs } from "./deployment-tabs";
-import {
-  DEFAULT_LOCALE,
-  docsUrl,
-  localizedPath,
-  type Locale,
-} from "../i18n/config";
-import routes from "../routes.json";
+import { DEFAULT_LOCALE, docsUrl, type Locale } from "../i18n/config";
 import { getMessages, messageList, type Messages } from "../i18n/messages";
 import { KitSubscribeForm } from "./kit-subscribe-form";
 import { LocaleSwitcher } from "./locale-switcher";
@@ -45,10 +39,6 @@ const controlExamples = [
 
 function asset(path: string) {
   return `${BASE_PATH}${ASSET_PATH}${path}`;
-}
-
-function internal(path: string, locale: Locale) {
-  return `${BASE_PATH}${localizedPath(path, locale)}`;
 }
 
 function Mark() {
@@ -330,9 +320,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
   const allMessages = getMessages(locale);
   const messages = allMessages.homepage;
   const docs = docsUrl("get-started", locale);
-  const compareHub = internal(routes.comparisonHub.path, locale);
-  const compareCoolify = internal(routes.coolify.path, locale);
-  const compareDokploy = internal(routes.dokploy.path, locale);
   const controlItems = messageList(messages.controls.items);
 
   return (
@@ -344,7 +331,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         </a>
         <nav aria-label={messages.navigationAriaLabel}>
           <a href={docs}>{messages.navigation.docs}</a>
-          <a href={compareHub}>{messages.navigation.compare}</a>
           <a href={GITHUB}>
             <GitHubIcon />
             {messages.navigation.github}
@@ -380,14 +366,9 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
               {messages.hero.liveDemo}
             </a>
           </div>
-          <div className="hero-meta">
-            <p className="demo-access">
-              {messages.hero.demoPasswordLabel} <code>captain42</code>
-            </p>
-            <a className="hero-compare-link" href={compareHub}>
-              {messages.hero.compareLink} <ArrowIcon />
-            </a>
-          </div>
+          <p className="demo-access">
+            {messages.hero.demoPasswordLabel} <code>captain42</code>
+          </p>
         </div>
         <LiveDeployment messages={messages.hero} />
       </section>
@@ -467,32 +448,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         </div>
       </section>
 
-      <section
-        className="compare-callout shell"
-        aria-labelledby="compare-callout-title"
-      >
-        <div className="compare-callout-box">
-          <div>
-            <p className="compare-callout-kicker">
-              {messages.compareSection.kicker}
-            </p>
-            <h2 id="compare-callout-title">{messages.compareSection.title}</h2>
-            <p>{messages.compareSection.description}</p>
-          </div>
-          <div className="compare-callout-links">
-            <a className="compare-pill" href={compareCoolify}>
-              {messages.compareSection.coolifyLink} <ArrowIcon />
-            </a>
-            <a className="compare-pill" href={compareDokploy}>
-              {messages.compareSection.dokployLink} <ArrowIcon />
-            </a>
-            <a className="compare-pill is-subtle" href={compareHub}>
-              {messages.compareLink} <ArrowIcon />
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section className="final-cta shell">
         <div>
           <h2>{messages.finalCta.title}</h2>
@@ -519,7 +474,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <p>{messages.footer.tagline}</p>
           <div>
             <a href={docs}>{messages.footer.docs}</a>
-            <a href={compareHub}>{messages.footer.compare}</a>
             <a href={GITHUB}>{messages.footer.github}</a>
             <a href={SLACK}>{messages.footer.slack}</a>
           </div>
