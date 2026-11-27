@@ -1,8 +1,10 @@
+import { CodeBlock, type SupportedCodeLang } from "./code-block";
+import type { CopyButtonLabels } from "./copy-button";
 import { DeploymentTabs } from "./deployment-tabs";
 import { DEFAULT_LOCALE, docsUrl, type Locale } from "../i18n/config";
 import { getMessages, messageList, type Messages } from "../i18n/messages";
-import { KitSubscribeForm } from "./kit-subscribe-form";
 import { LocaleSwitcher } from "./locale-switcher";
+import { NewsletterForm } from "./newsletter-form";
 
 const GITHUB = "https://github.com/caprover/caprover";
 const SLACK =
@@ -14,26 +16,35 @@ const ASSET_PATH = "/homepage-assets";
 type HomeMessages = Messages["homepage"];
 
 const featuredApps = [
-  { name: "WordPress", logo: "wordpress" },
-  { name: "PostgreSQL", logo: "postgres" },
-  { name: "Redis", logo: "redis" },
-  { name: "Nextcloud", logo: "nextcloud" },
-  { name: "n8n", logo: "n8n-io" },
-  { name: "Uptime Kuma", logo: "uptime-kuma" },
+  { name: "WordPress", logo: "wordpress.svg" },
+  { name: "PostgreSQL", logo: "postgres.png" },
+  { name: "Redis", logo: "redis.png" },
+  { name: "Nextcloud", logo: "nextcloud.png" },
+  { name: "n8n", logo: "n8n-io.png" },
+  { name: "Uptime Kuma", logo: "uptime-kuma.png" },
 ];
 
-const controlExamples = [
+const controlExamples: {
+  code: string;
+  lang: SupportedCodeLang;
+  docSlug: string;
+  showPrompt?: boolean;
+}[] = [
   {
-    code: "client_max_body_size 1g;\nadd_header X-Frame-Options SAMEORIGIN;\nproxy_read_timeout 300s;",
+    code: "client_max_body_size 1g;\nadd_header X-Frame-Options\n  SAMEORIGIN;\nproxy_read_timeout 300s;",
+    lang: "nginx",
     docSlug: "domains/advanced-nginx",
   },
   {
     code: "TaskTemplate:\n  Resources:\n    Limits:\n      MemoryBytes: 536870912",
+    lang: "yaml",
     docSlug: "applications/advanced",
   },
   {
-    code: "$ docker node ls\n$ docker service ls",
+    code: "docker node ls\ndocker service ls",
+    lang: "bash",
     docSlug: "scaling/multi-node",
+    showPrompt: true,
   },
 ];
 
@@ -52,11 +63,73 @@ function Mark() {
   );
 }
 
-function ArrowIcon() {
+function ArrowIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 20 20" aria-hidden="true">
+    <svg className={className} viewBox="0 0 20 20" aria-hidden="true">
       <path d="M4 10h11M11 6l4 4-4 4" />
     </svg>
+  );
+}
+
+function ExternalArrowIcon() {
+  return (
+    <svg className="external-arrow" viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M7 13 13 7M8 7h5v5" />
+    </svg>
+  );
+}
+
+function OpenCollectiveIcon() {
+  return (
+    <svg className="opencollective-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        fillOpacity="0.42"
+        d="M20.032 5.44a10 10 0 0 1 0 13.12l-2.548-2.548a6.4 6.4 0 0 0 0-8.024L20.032 5.44Z"
+      />
+      <path
+        fill="currentColor"
+        d="M17.484 18.56a10 10 0 1 1 0-13.12l-2.548 2.548a6.4 6.4 0 1 0 0 8.024l2.548 2.548Z"
+      />
+    </svg>
+  );
+}
+
+function InlineArrowLabel({ text }: { text: string }) {
+  const lastSpace = text.lastIndexOf(" ");
+  if (lastSpace > 0) {
+    return (
+      <>
+        {text.slice(0, lastSpace)}{" "}
+        <span className="link-tail">
+          {text.slice(lastSpace + 1)}
+          {"\u00A0"}
+          <ArrowIcon className="inline-arrow" />
+        </span>
+      </>
+    );
+  }
+
+  const chars = Array.from(text);
+  if (chars.length > 2) {
+    return (
+      <>
+        {chars.slice(0, -2).join("")}
+        <span className="link-tail">
+          {chars.slice(-2).join("")}
+          {"\u00A0"}
+          <ArrowIcon className="inline-arrow" />
+        </span>
+      </>
+    );
+  }
+
+  return (
+    <span className="link-tail">
+      {text}
+      {"\u00A0"}
+      <ArrowIcon className="inline-arrow" />
+    </span>
   );
 }
 
@@ -134,25 +207,27 @@ function CommunitySupport({
         <article className="support-card">
           <h3>{messages.supportTitle}</h3>
           <a
-            className="collective-widget"
+            className="collective-button"
             href="https://opencollective.com/caprover"
             target="_blank"
             rel="noreferrer noopener"
           >
-            <img
-              src="https://opencollective.com/caprover/donate/button@2x.png?color=blue"
-              width="300"
-              height="50"
-              alt={messages.donateAlt}
-            />
+            <OpenCollectiveIcon />
+            <span>{messages.sponsorButton}</span>
+            <ExternalArrowIcon />
           </a>
         </article>
         <article className="subscribe-card">
           <h3>{messages.subscribeTitle}</h3>
-          <KitSubscribeForm
+          <NewsletterForm
             emailLabel={messages.emailLabel}
             emailPlaceholder={messages.emailPlaceholder}
             subscribeButton={messages.subscribeButton}
+            submittingButton={messages.submittingButton}
+            subscribeSuccess={messages.subscribeSuccess}
+            subscribeVerifyPrompt={messages.subscribeVerifyPrompt}
+            subscribeVerifyAction={messages.subscribeVerifyAction}
+            subscribeError={messages.subscribeError}
           />
         </article>
       </div>
@@ -166,7 +241,7 @@ function FeaturedApps() {
       {featuredApps.map(({ name, logo }) => (
         <li key={logo}>
           <img
-            src={asset(`/one-click/${logo}.png`)}
+            src={asset(`/one-click/${logo}`)}
             width={88}
             height={56}
             alt=""
@@ -178,31 +253,13 @@ function FeaturedApps() {
   );
 }
 
-function DeploymentSnippet({
-  filename,
-  source,
-  step,
-}: {
-  filename: string;
-  source: string;
-  step: string;
-}) {
-  return (
-    <div className="deployment-snippet">
-      <div className="deployment-filename">{filename}</div>
-      <pre>
-        <code>{source}</code>
-      </pre>
-      <div className="deployment-step">{step}</div>
-    </div>
-  );
-}
-
 function DeploymentExamples({
   messages,
+  copyLabels,
   locale,
 }: {
   messages: HomeMessages["deploymentExamples"];
+  copyLabels: CopyButtonLabels;
   locale: Locale;
 }) {
   const { staticSite, worker, catalog, compose } = messages;
@@ -212,8 +269,8 @@ function DeploymentExamples({
       footer={
         <div className="deployment-workflow-note">
           <p>{messages.workflows}</p>
-          <a href={docsUrl("deployments", locale)}>
-            {messages.guide} <ArrowIcon />
+          <a className="text-link" href={docsUrl("deployments", locale)}>
+            <InlineArrowLabel text={messages.guide} />
           </a>
         </div>
       }
@@ -226,12 +283,15 @@ function DeploymentExamples({
             <>
               <h3>{worker.title}</h3>
               <p>{worker.description}</p>
-              <DeploymentSnippet
-                filename="Dockerfile"
-                source={
+              <CodeBlock
+                className="deployment-code-block"
+                label="Dockerfile"
+                lang="dockerfile"
+                code={
                   'FROM python:3.13-slim\nWORKDIR /app\nCOPY worker.py .\nCMD ["python", "worker.py"]'
                 }
-                step="$ caprover deploy"
+                footerStep="$ caprover deploy"
+                copyLabels={copyLabels}
               />
               <p className="deployment-example-note">
                 {messages.definitionNote}
@@ -247,12 +307,15 @@ function DeploymentExamples({
             <>
               <h3>{staticSite.title}</h3>
               <p>{staticSite.description}</p>
-              <DeploymentSnippet
-                filename="Dockerfile"
-                source={
+              <CodeBlock
+                className="deployment-code-block"
+                label="Dockerfile"
+                lang="dockerfile"
+                code={
                   "FROM nginx:alpine\nCOPY ./public/ /usr/share/nginx/html/"
                 }
-                step="$ caprover deploy"
+                footerStep="$ caprover deploy"
+                copyLabels={copyLabels}
               />
               <p className="deployment-example-note">
                 {messages.definitionNote}
@@ -268,12 +331,15 @@ function DeploymentExamples({
             <>
               <h3>{compose.title}</h3>
               <p>{compose.description}</p>
-              <DeploymentSnippet
-                filename="compose.yaml"
-                source={
+              <CodeBlock
+                className="deployment-code-block"
+                label="compose.yaml"
+                lang="yaml"
+                code={
                   "services:\n  web:\n    image: nginx:alpine\n  cache:\n    image: redis:7-alpine"
                 }
-                step={compose.step}
+                footerStep={compose.step}
+                copyLabels={copyLabels}
               />
             </>
           ),
@@ -305,10 +371,10 @@ function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
       <div className="one-click-heading">
         <h2 id="one-click-title">{messages.title}</h2>
         <a
-          className="catalog-link"
+          className="catalog-link text-link"
           href="https://github.com/caprover/one-click-apps/tree/master/public/v4/apps"
         >
-          {messages.browse} <ArrowIcon />
+          <InlineArrowLabel text={messages.browse} />
         </a>
       </div>
       <FeaturedApps />
@@ -321,6 +387,11 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
   const messages = allMessages.homepage;
   const docs = docsUrl("get-started", locale);
   const controlItems = messageList(messages.controls.items);
+  const copyLabels: CopyButtonLabels = {
+    copy: messages.code.copy,
+    copied: messages.code.copied,
+    ariaLabel: messages.code.copyAriaLabel,
+  };
 
   return (
     <main lang={locale}>
@@ -391,19 +462,19 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
                   <article className="control-card" key={title}>
                     <h3>{title}</h3>
                     <p>{description}</p>
-                    <div className="control-snippet">
-                      <div className="control-snippet-label">
-                        {snippetLabel}
-                      </div>
-                      <pre>
-                        <code>{example.code}</code>
-                      </pre>
-                    </div>
+                    <CodeBlock
+                      className="control-code-block"
+                      label={snippetLabel}
+                      lang={example.lang}
+                      code={example.code}
+                      showPrompt={example.showPrompt}
+                      copyLabels={copyLabels}
+                    />
                     <a
                       className="text-link"
                       href={docsUrl(example.docSlug, locale)}
                     >
-                      {link} <ArrowIcon />
+                      <InlineArrowLabel text={link} />
                     </a>
                   </article>
                 );
@@ -415,6 +486,7 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
 
       <DeploymentExamples
         messages={messages.deploymentExamples}
+        copyLabels={copyLabels}
         locale={locale}
       />
 
