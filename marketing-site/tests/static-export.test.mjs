@@ -4,6 +4,7 @@ import test from "node:test";
 
 const expectedAssets = [
   "caprover-runtime-status.webp",
+  "caprover-active-deployment.webp",
   "caprover-logo.png",
   "slack-icon.png",
   "one-click/wordpress.png",
@@ -14,9 +15,7 @@ const expectedAssets = [
   "one-click/uptime-kuma.png",
 ];
 const legacyAssets = [
-  "caprover-active-deployment-mobile.webp",
   "caprover-deployment-history.png",
-  "caprover-active-deployment.webp",
   "caprover-dashboard.png",
   "caprover-architecture.png",
   "caprover-tutorial.gif",
@@ -86,7 +85,7 @@ test("exports complete localized website routes", async () => {
     assert.match(homepage, /<ul class="featured-apps">/);
     assert.match(
       homepage,
-      /id="app-controls-title"[\s\S]*id="deployment-examples-title"[\s\S]*id="one-click-apps"/,
+      /id="one-click-apps"[\s\S]*id="app-controls-title"[\s\S]*id="deployment-examples-title"/,
     );
     assert(homepage.includes(catalog["homepage.oneClick.title"]));
     assert(homepage.includes(catalog["homepage.deploymentExamples.workflows"]));
@@ -103,7 +102,13 @@ test("exports complete localized website routes", async () => {
     assert.match(homepage, /id="features"/);
     assert.match(homepage, /caprover deploy/);
     assert.match(homepage, /caprover-runtime-status\.webp/);
-    assert.match(homepage, /client_max_body_size 100m;/);
+    const hero = homepage.match(
+      /<section class="hero shell"[\s\S]*?<\/section>/,
+    )?.[0];
+    assert(hero);
+    assert.match(hero, /caprover-active-deployment\.webp/);
+    assert.match(hero, /caprover-active-deployment-mobile\.webp/);
+    assert.doesNotMatch(hero, /caprover deploy|client_max_body_size/);
     for (const asset of legacyAssets) {
       assert(
         !homepage.includes(`/${asset}`),
@@ -145,9 +150,11 @@ test("exports complete localized website routes", async () => {
   assert(defaultAlias.includes("noindex, follow"));
 
   await Promise.all(
-    [...expectedAssets, ...legacyAssets].map((asset) =>
-      access(`out/${assetPath}/${asset}`),
-    ),
+    [
+      ...expectedAssets,
+      ...legacyAssets,
+      "caprover-active-deployment-mobile.webp",
+    ].map((asset) => access(`out/${assetPath}/${asset}`)),
   );
 
   for (const asset of expectedAssets) {

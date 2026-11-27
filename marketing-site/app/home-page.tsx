@@ -93,22 +93,25 @@ function SlackIcon() {
   );
 }
 
-function AppWalkthrough({ messages }: { messages: HomeMessages["workflow"] }) {
+function LiveDeployment({ messages }: { messages: HomeMessages["hero"] }) {
   return (
-    <section className="app-walkthrough" aria-labelledby="walkthrough-title">
-      <h2 id="walkthrough-title">{messages.title}</h2>
-      <ol>
-        <li>
-          {messages.deploy}
-          <code>caprover deploy</code>
-        </li>
-        <li>{messages.openApp}</li>
-        <li>
-          {messages.uploadLimit}
-          <code>client_max_body_size 100m;</code>
-        </li>
-      </ol>
-    </section>
+    <figure className="live-deployment">
+      <picture>
+        <source
+          media="(max-width: 660px)"
+          srcSet={asset("/caprover-active-deployment-mobile.webp")}
+          width={506}
+          height={256}
+        />
+        <img
+          src={asset("/caprover-active-deployment.webp")}
+          width={804}
+          height={256}
+          alt={messages.deploymentAlt}
+          fetchPriority="high"
+        />
+      </picture>
+    </figure>
   );
 }
 
@@ -380,18 +383,18 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           <div className="hero-meta">
             <p className="demo-access">
               {messages.hero.demoPasswordLabel} <code>captain42</code>
-              {" · "}
-              {messages.hero.demoPath}
             </p>
             <a className="hero-compare-link" href={compareHub}>
               {messages.hero.compareLink} <ArrowIcon />
             </a>
           </div>
         </div>
-        <AppWalkthrough messages={messages.workflow} />
+        <LiveDeployment messages={messages.hero} />
       </section>
 
       <CapabilityStrip messages={messages} />
+
+      <OneClickApps messages={messages.oneClick} />
 
       <section className="app-controls" aria-labelledby="app-controls-title">
         <div className="shell">
@@ -463,8 +466,6 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           </figure>
         </div>
       </section>
-
-      <OneClickApps messages={messages.oneClick} />
 
       <section
         className="compare-callout shell"
