@@ -12,7 +12,7 @@ import {
   PairwiseTable,
   ProofStrip,
   ResourceCallout,
-  SimplicityPower,
+  DockerfileWorkflow,
   SourceLinks,
 } from "../components";
 import type { PairwiseRow } from "../data";
@@ -35,7 +35,7 @@ export function CoolifyComparisonPage({
         <ProofStrip locale={locale} />
       </PageHero>
       <section className="compare-section compare-shell">
-        <SimplicityPower locale={locale} />
+        <DockerfileWorkflow locale={locale} competitors={["coolify"]} />
         <ResourceCallout locale={locale}>
           <p>{copy.resourceDescription}</p>
         </ResourceCallout>

@@ -3,7 +3,7 @@ import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const expectedAssets = [
-  "caprover-deployment-history.png",
+  "caprover-runtime-status.webp",
   "caprover-active-deployment.webp",
   "caprover-logo.png",
   "slack-icon.png",
@@ -14,8 +14,8 @@ const expectedAssets = [
   "one-click/n8n-io.png",
   "one-click/uptime-kuma.png",
 ];
-const responsiveAssets = ["caprover-active-deployment-mobile.webp"];
 const legacyAssets = [
+  "caprover-deployment-history.png",
   "caprover-dashboard.png",
   "caprover-architecture.png",
   "caprover-tutorial.gif",
@@ -80,16 +80,20 @@ test("exports complete localized website routes", async () => {
 
     const homepage = await readFile(outputFile(locale, "/"), "utf8");
     assert.match(homepage, /class="kit-subscribe"/);
+    assert.match(homepage, /class="capability-strip"/);
+    assert.match(homepage, /class="control-cards"/);
     assert.match(homepage, /<ul class="featured-apps">/);
     assert.match(
       homepage,
-      /id="one-click-apps"[\s\S]*id="deployment-examples-title"/,
+      /id="one-click-apps"[\s\S]*id="app-controls-title"[\s\S]*id="deployment-examples-title"/,
     );
     assert(homepage.includes(catalog["homepage.oneClick.title"]));
     assert(homepage.includes(catalog["homepage.deploymentExamples.workflows"]));
     assert.doesNotMatch(homepage, /deployment-playback|workflow-grid/);
     assert.match(homepage, /Dockerfile/);
     assert.match(homepage, /CI\/CD/);
+    assert.match(homepage, /client_max_body_size 1g;/);
+    assert.match(homepage, /MemoryBytes: 536870912/);
     assert.doesNotMatch(
       homepage,
       /hero-proofs|deployment-path-index|demo-nodejs\.server\.demo\.caprover\.com/,
@@ -97,7 +101,14 @@ test("exports complete localized website routes", async () => {
     assert.match(homepage, /<dl class="operations-list">/);
     assert.match(homepage, /id="features"/);
     assert.match(homepage, /caprover deploy/);
-    assert.match(homepage, /caprover-deployment-history\.png/);
+    assert.match(homepage, /caprover-runtime-status\.webp/);
+    const hero = homepage.match(
+      /<section class="hero shell"[\s\S]*?<\/section>/,
+    )?.[0];
+    assert(hero);
+    assert.match(hero, /caprover-active-deployment\.webp/);
+    assert.match(hero, /caprover-active-deployment-mobile\.webp/);
+    assert.doesNotMatch(hero, /caprover deploy|client_max_body_size/);
     for (const asset of legacyAssets) {
       assert(
         !homepage.includes(`/${asset}`),
@@ -117,6 +128,16 @@ test("exports complete localized website routes", async () => {
     );
     assert(
       homepage.includes(
+        `href="${basePath}${localizedPath(locale, routeManifest.coolify.path)}"`,
+      ),
+    );
+    assert(
+      homepage.includes(
+        `href="${basePath}${localizedPath(locale, routeManifest.dokploy.path)}"`,
+      ),
+    );
+    assert(
+      homepage.includes(
         `href="https://caprover.com${locale.pathPrefix}/docs/deployments"`,
       ),
     );
@@ -129,9 +150,11 @@ test("exports complete localized website routes", async () => {
   assert(defaultAlias.includes("noindex, follow"));
 
   await Promise.all(
-    [...expectedAssets, ...responsiveAssets, ...legacyAssets].map((asset) =>
-      access(`out/${assetPath}/${asset}`),
-    ),
+    [
+      ...expectedAssets,
+      ...legacyAssets,
+      "caprover-active-deployment-mobile.webp",
+    ].map((asset) => access(`out/${assetPath}/${asset}`)),
   );
 
   for (const asset of expectedAssets) {
@@ -139,10 +162,6 @@ test("exports complete localized website routes", async () => {
       defaultHtml,
       new RegExp(`(?:href|src)=["']${basePath}/${assetPath}/${asset}["']`),
     );
-  }
-
-  for (const asset of responsiveAssets) {
-    assert(defaultHtml.includes(`srcSet="${basePath}/${assetPath}/${asset}"`));
   }
 
   if (basePath) {
@@ -169,7 +188,7 @@ test("keeps comparison regressions covered across locales", async () => {
   );
   const sitemap = await readFile("out/sitemap.xml", "utf8");
 
-  assert.match(hub, /SIMPLE BY DEFAULT/);
+  assert.match(dokku, /SIMPLE BY DEFAULT/);
   assert.match(hub, /SMALL-SERVER FRIENDLY/);
   assert.match(hub, /status-yes/);
   assert.match(coolify, /CAPROVER VS COOLIFY/);
@@ -177,8 +196,6 @@ test("keeps comparison regressions covered across locales", async () => {
   assert.match(dokku, /CAPROVER VS DOKKU/);
 
   for (const matchup of [coolify, dokploy, dokku]) {
-    assert.match(matchup, /SIMPLE BY DEFAULT/);
-    assert.match(matchup, /POWERFUL WHEN NEEDED/);
     assert.match(matchup, /SMALL-SERVER FRIENDLY/);
     assert.match(matchup, /status-yes/);
     assert.doesNotMatch(matchup, /Raw Docker ServiceUpdate override/);
@@ -195,6 +212,24 @@ test("keeps comparison regressions covered across locales", async () => {
   assert.doesNotMatch(dokku, /Moving to Dokku/);
 
   for (const locale of enabledLocales) {
+    const catalog = await readCatalog(locale);
+    for (const route of [
+      routeManifest.comparisonHub,
+      routeManifest.coolify,
+      routeManifest.dokploy,
+    ]) {
+      const html = await readFile(outputFile(locale, route.path), "utf8");
+      assert(html.includes(catalog["comparisonCommon.workflow.title"]));
+      assert(html.includes("caprover deploy -d"));
+      if (route !== routeManifest.coolify)
+        assert(html.includes("https://docs.dokploy.com/docs/core/providers"));
+      if (route !== routeManifest.dokploy)
+        assert(
+          html.includes(
+            "https://coolify.io/docs/applications/builds/dockerfile",
+          ),
+        );
+    }
     for (const route of routes) {
       assert(
         sitemap.includes(

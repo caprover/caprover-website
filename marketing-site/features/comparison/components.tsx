@@ -255,6 +255,45 @@ export function PairwiseTable({
   );
 }
 
+export function DockerfileWorkflow({
+  locale,
+  competitors,
+}: {
+  locale: Locale;
+  competitors: ("coolify" | "dokploy")[];
+}) {
+  const copy = getMessages(locale).comparisonCommon.workflow;
+  const guides = {
+    caprover: docsUrl("deployments/cli", locale),
+    coolify: "https://coolify.io/docs/applications/builds/dockerfile",
+    dokploy: "https://docs.dokploy.com/docs/core/providers",
+  };
+  const platforms = ["caprover", ...competitors] as const;
+
+  return (
+    <>
+      <div className="compare-heading">
+        <h2>{copy.title}</h2>
+        <p>{copy.intro}</p>
+      </div>
+      <div className="dockerfile-workflow">
+        {platforms.map((platform) => (
+          <article key={platform}>
+            <h3>{copy[platform].name}</h3>
+            <dl>
+              <dt>{copy.first}</dt>
+              <dd>{copy[platform].first}</dd>
+              <dt>{copy.next}</dt>
+              <dd>{copy[platform].next}</dd>
+            </dl>
+            <a href={guides[platform]}>{copy[platform].link}</a>
+          </article>
+        ))}
+      </div>
+    </>
+  );
+}
+
 export function SimplicityPower({
   locale = DEFAULT_LOCALE,
 }: {

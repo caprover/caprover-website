@@ -11,7 +11,7 @@ import {
   PageHero,
   ProofStrip,
   ResourceCallout,
-  SimplicityPower,
+  DockerfileWorkflow,
   SourceLinks,
 } from "./components";
 
@@ -20,8 +20,10 @@ export function ComparisonHubPage({
 }: {
   locale?: Locale;
 }) {
-  const copy = getMessages(locale).comparisonPages.hub;
+  const messages = getMessages(locale);
+  const copy = messages.comparisonPages.hub;
   const sources = copy.sourceLabels;
+  const commonSources = messages.comparisonCommon.sources;
   return (
     <ComparePage locale={locale} path={routes.comparisonHub.path}>
       <PageHero {...copy.hero}>
@@ -29,7 +31,10 @@ export function ComparisonHubPage({
       </PageHero>
 
       <section className="compare-section compare-shell">
-        <SimplicityPower locale={locale} />
+        <DockerfileWorkflow
+          locale={locale}
+          competitors={["coolify", "dokploy"]}
+        />
         <ResourceCallout locale={locale}>
           <p>{copy.resourceDescription}</p>
         </ResourceCallout>
@@ -117,6 +122,31 @@ export function ComparisonHubPage({
           <li>
             <a href="https://coolify.io/docs/start-with-self-hosted">
               {sources.coolifyInstallation}
+            </a>
+          </li>
+          <li>
+            <a href="https://coolify.io/docs/core/infrastructure/scaling/docker-swarm">
+              {messages.comparisonPages.coolify.sourceLabels.swarm}
+            </a>
+          </li>
+          <li>
+            <a href="https://coolify.io/docs/applications/deployments/rollbacks">
+              {commonSources.coolifyRollback}
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.dokploy.com/docs/core/applications/rollbacks">
+              {commonSources.dokployRollback}
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.dokploy.com/docs/core/registry">
+              {commonSources.dokployRegistry}
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.dokploy.com/docs/core/volume-backups">
+              {commonSources.dokployBackups}
             </a>
           </li>
         </SourceLinks>
