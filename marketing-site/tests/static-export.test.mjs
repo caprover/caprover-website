@@ -5,15 +5,25 @@ import test from "node:test";
 
 const expectedAssets = [
   "caprover-runtime-status.webp",
-  "caprover-active-deployment.webp",
+  "caprover-hero-dashboard.webp",
   "caprover-logo.png",
   "slack-icon.png",
+  "one-click/postgres.svg",
+  "one-click/redis.svg",
   "one-click/wordpress.svg",
-  "one-click/postgres.png",
-  "one-click/redis.png",
-  "one-click/nextcloud.png",
-  "one-click/n8n-io.png",
-  "one-click/uptime-kuma.png",
+  "one-click/n8n-io.svg",
+  "one-click/nextcloud.svg",
+  "one-click/uptime-kuma.svg",
+  "one-click/pocketbase.svg",
+  "one-click/grafana.svg",
+  "one-click/gitea.svg",
+  "one-click/ghost.svg",
+  "one-click/plausible.svg",
+  "one-click/umami-postgresql.svg",
+  "one-click/minio.svg",
+  "one-click/meilisearch.svg",
+  "one-click/metabase.svg",
+  "one-click/mongodb.svg",
 ];
 const legacyAssets = [
   "caprover-deployment-history.png",
@@ -99,6 +109,11 @@ test("exports complete localized website routes", async () => {
     assert.match(homepage, /--shiki-dark:/);
     assert.match(homepage, /class="copy-button"/);
     assert.match(homepage, /class="capability-strip"/);
+    assert.match(homepage, /class="ram-budget"/);
+    assert.match(homepage, /class="vps-compatibility"/);
+    assert.match(homepage, /class="one-click-search-input"/);
+    assert.match(homepage, /class="one-click-grid"/);
+    assert.doesNotMatch(homepage, /homepage-assets\/one-click\/[^"']+\.png/);
     assert.match(homepage, /class="control-cards"/);
     assert.match(homepage, /<ul class="featured-apps">/);
     assert.match(
@@ -114,7 +129,7 @@ test("exports complete localized website routes", async () => {
     assert.match(homepage, /MemoryBytes: 536870912/);
     assert.doesNotMatch(
       homepage,
-      /hero-proofs|deployment-path-index|demo-nodejs\.server\.demo\.caprover\.com/,
+      /hero-proofs|deployment-path-index|demo-nodejs\.server\.demo\.caprover\.com|another-empty-app/,
     );
     assert.match(homepage, /<dl class="operations-list">/);
     assert.match(homepage, /id="features"/);
@@ -124,9 +139,17 @@ test("exports complete localized website routes", async () => {
       /<section class="hero shell"[\s\S]*?<\/section>/,
     )?.[0];
     assert(hero);
-    assert.match(hero, /caprover-active-deployment\.webp/);
-    assert.match(hero, /caprover-active-deployment-mobile\.webp/);
-    assert.doesNotMatch(hero, /caprover deploy|client_max_body_size/);
+    assert.match(hero, /class="hero-release-link"/);
+    assert.match(hero, /class="demo-password-chip"/);
+    assert.match(hero, /captain42/);
+    assert.match(hero, /caprover-hero-dashboard\.webp/);
+    assert.match(hero, /class="hero-terminal-frame"/);
+    assert.match(hero, /caprover deploy -a web-api -b main/);
+    assert.match(hero, /srv-captain--web-api/);
+    assert.doesNotMatch(
+      hero,
+      /caprover-active-deployment|caprover serversetup|client_max_body_size/,
+    );
     for (const asset of legacyAssets) {
       assert(
         !homepage.includes(`/${asset}`),
@@ -162,11 +185,9 @@ test("exports complete localized website routes", async () => {
   assert(defaultAlias.includes("noindex, follow"));
 
   await Promise.all(
-    [
-      ...expectedAssets,
-      ...legacyAssets,
-      "caprover-active-deployment-mobile.webp",
-    ].map((asset) => access(`out/${assetPath}/${asset}`)),
+    [...expectedAssets, ...legacyAssets].map((asset) =>
+      access(`out/${assetPath}/${asset}`),
+    ),
   );
 
   for (const asset of expectedAssets) {

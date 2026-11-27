@@ -1,28 +1,36 @@
+import {
+  COMPACT_FEATURED_APPS,
+  CURATED_ONE_CLICK_APPS,
+  getLatestRelease,
+  getOneClickCatalog,
+  type OneClickCatalog as OneClickCatalogData,
+} from "./caprover-data";
 import { CodeBlock, type SupportedCodeLang } from "./code-block";
 import type { CopyButtonLabels } from "./copy-button";
+import { DemoPasswordCopy } from "./demo-password-copy";
 import { DeploymentTabs } from "./deployment-tabs";
 import { DEFAULT_LOCALE, docsUrl, type Locale } from "../i18n/config";
 import { getMessages, messageList, type Messages } from "../i18n/messages";
 import { LocaleSwitcher } from "./locale-switcher";
 import { NewsletterForm } from "./newsletter-form";
+import { OneClickCatalog } from "./one-click-catalog";
 
 const GITHUB = "https://github.com/caprover/caprover";
 const SLACK =
   "https://join.slack.com/t/caprover/shared_invite/zt-3lmngygtv-MOIiGy~LHkZ6S8sbYYqTDA";
 const LIVE_DEMO = "https://captain.server.demo.caprover.com/?demo=true";
+const ONE_CLICK_CATALOG_URL =
+  "https://github.com/caprover/one-click-apps/tree/master/public/v4/apps";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ASSET_PATH = "/homepage-assets";
 
 type HomeMessages = Messages["homepage"];
 
-const featuredApps = [
-  { name: "WordPress", logo: "wordpress.svg" },
-  { name: "PostgreSQL", logo: "postgres.png" },
-  { name: "Redis", logo: "redis.png" },
-  { name: "Nextcloud", logo: "nextcloud.png" },
-  { name: "n8n", logo: "n8n-io.png" },
-  { name: "Uptime Kuma", logo: "uptime-kuma.png" },
-];
+const RAM_SEGMENTS = [
+  { key: "os", percent: 21.5 },
+  { key: "caprover", percent: 12.7 },
+  { key: "headroom", percent: 65.8 },
+] as const;
 
 const controlExamples: {
   code: string;
@@ -50,6 +58,17 @@ const controlExamples: {
 
 function asset(path: string) {
   return `${BASE_PATH}${ASSET_PATH}${path}`;
+}
+
+function formatMessage(
+  template: string,
+  values: Record<string, string | number>,
+) {
+  let result = template;
+  for (const [key, value] of Object.entries(values)) {
+    result = result.replaceAll(`{${key}}`, String(value));
+  }
+  return result;
 }
 
 function Mark() {
@@ -91,6 +110,16 @@ function OpenCollectiveIcon() {
         fill="currentColor"
         d="M17.484 18.56a10 10 0 1 1 0-13.12l-2.548 2.548a6.4 6.4 0 1 0 0 8.024l2.548 2.548Z"
       />
+    </svg>
+  );
+}
+
+function ServerNodeIcon() {
+  return (
+    <svg className="vps-mark" viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="2.25" y="2.75" width="11.5" height="4.25" rx="1.2" />
+      <rect x="2.25" y="9" width="11.5" height="4.25" rx="1.2" />
+      <path d="M5 4.88h.01M5 11.12h.01" />
     </svg>
   );
 }
@@ -156,39 +185,145 @@ function SlackIcon() {
   );
 }
 
-function LiveDeployment({ messages }: { messages: HomeMessages["hero"] }) {
+function HeroSpecimen({ messages }: { messages: HomeMessages["hero"] }) {
   return (
-    <figure className="live-deployment">
-      <picture>
-        <source
-          media="(max-width: 660px)"
-          srcSet={asset("/caprover-active-deployment-mobile.webp")}
-          width={506}
-          height={256}
-        />
-        <img
-          src={asset("/caprover-active-deployment.webp")}
-          width={804}
-          height={256}
-          alt={messages.deploymentAlt}
-          fetchPriority="high"
-        />
-      </picture>
-    </figure>
+    <div className="hero-specimen">
+      <figure className="hero-dashboard-frame">
+        <div className="specimen-bar">
+          <span className="specimen-bar-title">
+            <span className="specimen-status-dot" aria-hidden="true" />
+            {messages.specimenDashboardLabel}
+          </span>
+          <code className="specimen-bar-meta">captain.apps.example.com</code>
+        </div>
+        <div className="hero-dashboard-surface">
+          <img
+            src={asset("/caprover-hero-dashboard.webp")}
+            width={1420}
+            height={778}
+            alt={messages.deploymentAlt}
+            fetchPriority="high"
+          />
+        </div>
+      </figure>
+
+      <div
+        className="hero-terminal-frame"
+        role="region"
+        aria-label={messages.specimenTerminalAriaLabel}
+      >
+        <div className="specimen-bar">
+          <span className="specimen-bar-title">
+            {messages.specimenTerminalLabel}
+          </span>
+          <code className="specimen-bar-meta">~/web-api</code>
+        </div>
+        <pre className="hero-terminal-pre">
+          <code>
+            <span className="term-line">
+              <span className="terminal-prompt" aria-hidden="true">
+                $
+              </span>{" "}
+              <span className="term-cmd">
+                caprover deploy -a web-api -b main
+              </span>
+            </span>
+            <span className="term-line term-muted">
+              {"  "}Using ./captain-definition (Dockerfile)
+            </span>
+            <span className="term-line term-muted">
+              {"  "}Building img-captain--web-api:14 on VPS...
+            </span>
+            <span className="term-line term-success">
+              ✓ Swarm service srv-captain--web-api updated
+            </span>
+            <span className="term-line term-success">
+              ✓ Live at https://api.example.com
+            </span>
+          </code>
+        </pre>
+      </div>
+    </div>
   );
 }
 
-function CapabilityStrip({ messages }: { messages: HomeMessages }) {
+function CapabilityProofSection({ messages }: { messages: HomeMessages }) {
+  const ramSegments = messageList(messages.ramBudget.segments);
+  const providers = [
+    "Hetzner",
+    "DigitalOcean",
+    "AWS",
+    "Vultr",
+    "Linode",
+    messages.vpsCompatibility.bareMetal,
+  ];
+
   return (
-    <section className="shell" aria-label={messages.proofsAriaLabel}>
-      <dl className="capability-strip">
-        {messageList(messages.proofs).map(({ value, label }) => (
-          <div key={value}>
-            <dt>{value}</dt>
-            <dd>{label}</dd>
+    <section
+      className="capability-section shell"
+      aria-label={messages.proofsAriaLabel}
+    >
+      <div className="proof-panel">
+        <dl className="capability-strip">
+          {messageList(messages.proofs).map(({ value, label }) => (
+            <div key={value}>
+              <dt>{value}</dt>
+              <dd>{label}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="ram-budget">
+          <div className="ram-budget-header">
+            <div>
+              <h3 className="ram-budget-title">{messages.ramBudget.title}</h3>
+              <p className="ram-budget-subtitle">
+                {messages.ramBudget.subtitle}
+              </p>
+            </div>
+            <span className="ram-budget-total">{messages.ramBudget.total}</span>
           </div>
-        ))}
-      </dl>
+
+          <div
+            className="ram-budget-bar"
+            role="img"
+            aria-label={messages.ramBudget.barAriaLabel}
+          >
+            {RAM_SEGMENTS.map((segment) => (
+              <span
+                key={segment.key}
+                className={`ram-segment ram-segment-${segment.key}`}
+                style={{ width: `${segment.percent}%` }}
+              />
+            ))}
+          </div>
+
+          <ul className="ram-budget-legend">
+            {ramSegments.map((segment, index) => (
+              <li key={segment.label}>
+                <span
+                  className={`ram-swatch ram-swatch-${RAM_SEGMENTS[index]?.key ?? "headroom"}`}
+                  aria-hidden="true"
+                />
+                <span className="ram-legend-label">{segment.label}</span>
+                <code className="ram-legend-value">{segment.value}</code>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="vps-compatibility">
+        <span className="vps-compatibility-label">
+          <ServerNodeIcon />
+          {messages.vpsCompatibility.label}
+        </span>
+        <ul className="vps-providers">
+          {providers.map((provider) => (
+            <li key={provider}>{provider}</li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
@@ -238,14 +373,16 @@ function CommunitySupport({
 function FeaturedApps() {
   return (
     <ul className="featured-apps">
-      {featuredApps.map(({ name, logo }) => (
-        <li key={logo}>
-          <img
-            src={asset(`/one-click/${logo}`)}
-            width={88}
-            height={56}
-            alt=""
-          />
+      {COMPACT_FEATURED_APPS.map(({ id, name, logo }) => (
+        <li key={id}>
+          <span className="one-click-icon-tile" aria-hidden="true">
+            <img
+              src={asset(`/one-click/${logo}`)}
+              width={28}
+              height={28}
+              alt=""
+            />
+          </span>
           <span>{name}</span>
         </li>
       ))}
@@ -361,7 +498,16 @@ function DeploymentExamples({
   );
 }
 
-function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
+function OneClickApps({
+  messages,
+  catalog,
+}: {
+  messages: HomeMessages["oneClick"];
+  catalog: OneClickCatalogData;
+}) {
+  const subtitle = formatMessage(messages.subtitle, { count: catalog.count });
+  const browseLabel = formatMessage(messages.browse, { count: catalog.count });
+
   return (
     <section
       id="one-click-apps"
@@ -369,20 +515,49 @@ function OneClickApps({ messages }: { messages: HomeMessages["oneClick"] }) {
       aria-labelledby="one-click-title"
     >
       <div className="one-click-heading">
-        <h2 id="one-click-title">{messages.title}</h2>
+        <div>
+          <h2 id="one-click-title">{messages.title}</h2>
+          <p className="one-click-subtitle">{subtitle}</p>
+        </div>
         <a
           className="catalog-link text-link"
-          href="https://github.com/caprover/one-click-apps/tree/master/public/v4/apps"
+          href={ONE_CLICK_CATALOG_URL}
+          target="_blank"
+          rel="noreferrer noopener"
         >
-          <InlineArrowLabel text={messages.browse} />
+          <InlineArrowLabel text={browseLabel} />
         </a>
       </div>
-      <FeaturedApps />
+
+      <OneClickCatalog
+        apps={catalog.apps}
+        curated={CURATED_ONE_CLICK_APPS}
+        assetBasePath={asset("")}
+        catalogUrl={ONE_CLICK_CATALOG_URL}
+        labels={{
+          searchPlaceholder: messages.searchPlaceholder,
+          searchAriaLabel: messages.searchAriaLabel,
+          clearSearchAriaLabel: messages.clearSearchAriaLabel,
+          matchesSummary: messages.matchesSummary,
+          showingTop: messages.showingTop,
+          emptyState: messages.emptyState,
+          browseAll: browseLabel,
+        }}
+      />
     </section>
   );
 }
 
-export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+export async function HomePage({
+  locale = DEFAULT_LOCALE,
+}: {
+  locale?: Locale;
+}) {
+  const [release, oneClickCatalog] = await Promise.all([
+    getLatestRelease(),
+    getOneClickCatalog(),
+  ]);
+
   const allMessages = getMessages(locale);
   const messages = allMessages.homepage;
   const docs = docsUrl("get-started", locale);
@@ -421,32 +596,54 @@ export function HomePage({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
       </header>
 
       <section className="hero shell" id="top">
-        <div>
-          <p className="hero-label">{messages.hero.eyebrow}</p>
+        <div className="hero-copy">
+          <a
+            className="hero-release-link"
+            href={release.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={formatMessage(messages.hero.releaseLinkAriaLabel, {
+              tag: release.tag,
+            })}
+          >
+            <span className="hero-release-dot" aria-hidden="true" />
+            <span className="hero-release-tag">{release.tag}</span>
+            <span className="hero-release-sep" aria-hidden="true">
+              ·
+            </span>
+            <span>{messages.hero.eyebrow}</span>
+            <ArrowIcon className="hero-release-arrow" />
+          </a>
+
           <h1>
             {messages.hero.titleLine1}
             <br />
             {messages.hero.titleLine2}
           </h1>
           <p className="hero-text">{messages.hero.description}</p>
-          <div className="actions">
-            <a className="primary" href={docs}>
-              {messages.hero.getStarted} <ArrowIcon />
-            </a>
-            <a className="secondary" href={LIVE_DEMO}>
-              {messages.hero.liveDemo}
-            </a>
+          <div className="hero-cta-group">
+            <div className="actions">
+              <a className="primary" href={docs}>
+                {messages.hero.getStarted} <ArrowIcon />
+              </a>
+              <a className="secondary" href={LIVE_DEMO}>
+                {messages.hero.liveDemo}
+              </a>
+            </div>
+            <DemoPasswordCopy
+              label={messages.hero.demoPasswordLabel}
+              password="captain42"
+              copiedLabel={messages.hero.demoPasswordCopied}
+              copyAriaLabel={messages.hero.demoPasswordCopyAriaLabel}
+            />
           </div>
-          <p className="demo-access">
-            {messages.hero.demoPasswordLabel} <code>captain42</code>
-          </p>
         </div>
-        <LiveDeployment messages={messages.hero} />
+        <HeroSpecimen messages={messages.hero} />
       </section>
 
-      <CapabilityStrip messages={messages} />
+      <CapabilityProofSection messages={messages} />
 
-      <OneClickApps messages={messages.oneClick} />
+      <OneClickApps messages={messages.oneClick} catalog={oneClickCatalog} />
 
       <section className="app-controls" aria-labelledby="app-controls-title">
         <div className="shell">
