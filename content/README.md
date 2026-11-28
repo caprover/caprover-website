@@ -85,6 +85,7 @@ From the repository root:
 
 ```sh
 node scripts/prepare-localized-content.js
+node scripts/check-docs-translations.mjs
 (cd docs-site && npm run clean-build)
 (cd marketing-site && npm run lint && npm run format:check && npm test)
 node scripts/compose-site.mjs

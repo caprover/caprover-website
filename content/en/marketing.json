@@ -8,7 +8,6 @@
   "homepage.metadata.description": "Self-hosted Docker app hosting starting at 1 GiB RAM. Deploy directly with caprover deploy, edit full per-app NGINX templates, override Docker services, and scale on Docker Swarm.",
   "homepage.brandAriaLabel": "CapRover home",
   "homepage.navigationAriaLabel": "Main navigation",
-  "homepage.navigation.features": "Features",
   "homepage.navigation.docs": "Docs",
   "homepage.navigation.github": "GitHub",
   "homepage.navigation.slack": "Slack",

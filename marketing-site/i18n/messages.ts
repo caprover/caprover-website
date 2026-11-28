@@ -2,10 +2,8 @@ import englishCatalog from "../../content/en/marketing.json";
 import spanishCatalog from "../../content/es-ES/marketing.json";
 import chineseCatalog from "../../content/zh-CN/marketing.json";
 
-export const englishMessages = englishCatalog;
-
 export type MessageKey = keyof typeof englishCatalog;
-export type FlatMessages = Record<MessageKey, string>;
+type FlatMessages = Record<MessageKey, string>;
 
 type PathObject<Path extends string> =
   Path extends `${infer Head}.${infer Tail}`

@@ -1,5 +1,4 @@
 const docsUiMappings = [
-  ["docs", "version.label", "version.label"],
   ["navbar", "navbar.Docs", "item.label.Docs"],
   ["navbar", "navbar.GitHub", "item.label.GitHub"],
   ["navbar", "navbar.Slack Group", "item.label.Slack Group"],

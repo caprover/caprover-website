@@ -7,7 +7,7 @@ const MAX_SEARCH_RESULTS = 12;
 const CATALOG_REPO_BASE =
   "https://github.com/caprover/one-click-apps/blob/master/public/v4/apps";
 
-export type OneClickCatalogLabels = {
+type OneClickCatalogLabels = {
   searchPlaceholder: string;
   searchAriaLabel: string;
   clearSearchAriaLabel: string;

@@ -80,7 +80,7 @@ export const variants = (route) => [
   route + ".html",
   route + "/index.html",
 ];
-export const outputFiles = (route) => [
+const outputFiles = (route) => [
   route.slice(1) + ".html",
   route.slice(1) + "/index.html",
 ];
@@ -300,15 +300,14 @@ export async function writeCompatibility(site, manifest) {
       )
         continue;
       const file = path.join(site, relative);
+      await mkdir(path.dirname(file), { recursive: true });
       // Never overwrite a Docusaurus-owned file.
       try {
-        await readFile(file);
-        throw new Error("Output already exists: " + relative);
+        await writeFile(file, renderRedirect(entry), { flag: "wx" });
       } catch (error) {
-        if (error.code !== "ENOENT") throw error;
+        if (error.code !== "EEXIST") throw error;
+        throw new Error("Output already exists: " + relative, { cause: error });
       }
-      await mkdir(path.dirname(file), { recursive: true });
-      await writeFile(file, renderRedirect(entry));
     }
   }
   const active = Object.fromEntries(

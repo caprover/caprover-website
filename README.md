@@ -5,10 +5,12 @@ Source for [caprover.com](https://caprover.com), containing two independently bu
 - `marketing-site/`: Next.js marketing site
 - `docs-site/`: Docusaurus 3 documentation site
 - `content/`: English source content and translations, grouped by locale
-- `scripts/`: composition and production smoke checks
+- `docs-compat/`: historical documentation routes, anchors, and destinations
+- `scripts/`: localization, composition, and site validation
 
-The production build uses Docusaurus as the base, then overlays the marketing
-site's `index.html`, `_next/`, and `homepage-assets/` output.
+The production build uses Docusaurus as the base, adds the localized marketing
+homepages, comparison pages, and static assets, and generates the combined
+sitemap and documentation redirects.
 
 ## Marketing site development
 
@@ -66,8 +68,10 @@ Spanish and Simplified Chinese remain enabled. The Docusaurus language menu
 switches between translated current pages, preserving the route across locales.
 
 On an unprefixed page view, the combined static site uses a saved language-menu
-choice or selects a supported locale from the browser's preferences. The generated translation files are committed as static Markdown. Review
-new technical content in every enabled locale to maintain parity.
+choice or selects a supported locale from the browser's preferences. An anchored
+documentation link stays in the requested language. Source translations are
+tracked under `content/`, and the build generates Docusaurus inputs under
+`docs-site/i18n/`. Review new technical content in every enabled locale.
 
 ## Translation guidelines
 
@@ -79,6 +83,7 @@ Follow the repository-wide authoring and translation rules in
 From the repository root:
 
 ```sh
+node scripts/check-docs-translations.mjs
 (cd docs-site && npm ci && npm run clean-build)
 (cd marketing-site && npm ci && npm run lint && npm run format:check && npm test)
 node scripts/compose-site.mjs
@@ -86,6 +91,8 @@ node scripts/smoke-combined-site.mjs
 ```
 
 The deployable artifact is written to `build/combined-site/`.
+The pull request workflow also runs the historical redirect audit and Chromium
+navigation tests against this artifact.
 
 ## Deployment
 

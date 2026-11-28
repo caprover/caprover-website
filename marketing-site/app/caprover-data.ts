@@ -2,7 +2,7 @@ import https from "node:https";
 import oneClickAppsFallback from "../data/one-click-apps-fallback.json";
 import releaseFallback from "../data/release-fallback.json";
 
-export type ReleaseInfo = {
+type ReleaseInfo = {
   tag: string;
   url: string;
 };

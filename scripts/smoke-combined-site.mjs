@@ -1,9 +1,14 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createServer } from "node:http";
+import { createRequire } from "node:module";
 import path from "node:path";
 import vm from "node:vm";
 
+const { load } = createRequire(
+  new URL("../docs-site/package.json", import.meta.url),
+)("cheerio");
+const publicOrigin = "https://caprover.com";
 const siteRoot = path.resolve("build/combined-site");
 const locales = JSON.parse(
   await readFile(path.resolve("content/locales.json"), "utf8"),
@@ -53,6 +58,57 @@ const server = createServer(async (request, response) => {
     response.writeHead(404).end();
   }
 });
+
+async function checkLocalReferences(pages, origin) {
+  const references = new Map();
+  const stylesheets = new Set();
+
+  function addReference(value, page) {
+    const url = new URL(value, page);
+    if (url.origin !== publicOrigin) return;
+    if (!references.has(url.pathname)) references.set(url.pathname, page);
+    return url.pathname;
+  }
+
+  async function fetchPath(pathname, source) {
+    const response = await fetch(origin + pathname);
+    assert.equal(response.status, 200, `${pathname} is missing (linked from ${source})`);
+    return response;
+  }
+
+  for (const page of pages) {
+    const response = await fetchPath(new URL(page).pathname, "the sitemap or homepage alias");
+    const $ = load(await response.text());
+    for (const element of $("a[href], link[href], [src], [poster], [srcset], meta[property='og:image'], meta[name='twitter:image']")) {
+      const node = $(element);
+      for (const attribute of ["href", "src", "poster", "content"]) {
+        const value = node.attr(attribute);
+        if (value === undefined) continue;
+        const pathname = addReference(value, page);
+        if (pathname && node.is("link[rel='stylesheet']")) stylesheets.add(pathname);
+      }
+      const srcset = node.attr("srcset");
+      if (srcset) {
+        for (const [, url] of srcset.matchAll(/(?:^|,\s*)(\S+)(?:\s+[^,]*)?/g)) {
+          addReference(url, page);
+        }
+      }
+    }
+  }
+
+  for (const stylesheet of stylesheets) {
+    const response = await fetchPath(stylesheet, references.get(stylesheet));
+    const css = await response.text();
+    for (const [, quoted, singleQuoted, unquoted] of css.matchAll(/url\(\s*(?:"([^"]+)"|'([^']+)'|([^\s)]+))\s*\)/g)) {
+      addReference(quoted ?? singleQuoted ?? unquoted, publicOrigin + stylesheet);
+    }
+  }
+
+  await Promise.all([...references].map(async ([pathname, source]) => {
+    const response = await fetchPath(pathname, source);
+    await response.body?.cancel();
+  }));
+}
 
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 
@@ -290,6 +346,11 @@ try {
       );
     }
   }
+
+  await checkLocalReferences(
+    [...sitemapLocations, `${publicOrigin}/${locales.find((locale) => locale.default).code}/`],
+    origin,
+  );
 
   const localePreferenceScript = await responses.localePreference.text();
 

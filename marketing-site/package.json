@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "test": "npm run build && node --test tests/static-export.test.mjs",
-    "lint": "eslint . --ignore-pattern out --ignore-pattern .next --ignore-pattern dist",
+    "lint": "eslint .",
     "format": "prettier --write \"app/**/*.{ts,tsx}\" \"features/**/*.tsx\" \"i18n/**/*.ts\" \"tests/**/*.mjs\"",
     "format:check": "prettier --check \"app/**/*.{ts,tsx}\" \"features/**/*.tsx\" \"i18n/**/*.ts\" \"tests/**/*.mjs\""
   },
@@ -30,6 +30,5 @@
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3"
   },
-  "type": "module",
-  "displayName": "CapRover"
+  "type": "module"
 }
