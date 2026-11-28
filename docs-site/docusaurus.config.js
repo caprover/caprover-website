@@ -45,11 +45,11 @@ const config = {
           trackingID: "G-Z7DNNXJXSB",
         },
         docs: {
-          path: "../content/en/docs-next",
+          path: "../content/en/docs",
           routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: ({ locale, docPath }) =>
-            `https://github.com/caprover/caprover-website/edit/master/content/${locale}/docs-next/${docPath}`,
+            `https://github.com/caprover/caprover-website/edit/master/content/${locale}/docs/${docPath}`,
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
         },
@@ -66,22 +66,6 @@ const config = {
     ],
   ],
   clientModules: [require.resolve("./src/docs-compat-client.js")],
-  plugins: [
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "archive",
-        path: "../content/en/docs",
-        routeBasePath: "docs-legacy",
-        sidebarPath: require.resolve("./sidebars-legacy.js"),
-        editUrl: ({ locale, docPath }) =>
-          `https://github.com/caprover/caprover-website/edit/master/content/${locale}/docs/${docPath}`,
-        showLastUpdateAuthor: false,
-        showLastUpdateTime: false,
-        versions: { current: { noIndex: true } },
-      },
-    ],
-  ],
   themeConfig: {
     image: "img/logo.png",
     colorMode: {

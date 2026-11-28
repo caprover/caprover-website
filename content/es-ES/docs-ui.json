@@ -1,5 +1,5 @@
 {
-  "version.label": "Siguiente",
+  "version.label": "current",
   "navbar.Docs": "Documentación",
   "navbar.GitHub": "GitHub",
   "navbar.Slack Group": "Grupo de Slack",
@@ -10,10 +10,12 @@
   "footer.X": "X",
   "footer.Slack Group": "Grupo de Slack",
   "footer.GitHub": "GitHub",
-  "sidebar.Basics": "Conceptos básicos",
-  "sidebar.Do More": "Más opciones",
-  "sidebar.Recipes and Tips": "Recetas y consejos",
-  "sidebar.CI/CD Integration": "Integración CI/CD",
-  "sidebar.Help": "Ayuda",
-  "sidebar.Server Purchase": "Compra de servidor"
+  "sidebar.Start & Guides": "Inicio y guías",
+  "sidebar.Applications & Deployments": "Aplicaciones y despliegues",
+  "sidebar.One-Click Apps": "Aplicaciones de un clic",
+  "sidebar.Domains & Networking": "Dominios y redes",
+  "sidebar.Data & Persistence": "Datos y persistencia",
+  "sidebar.Server & Clusters": "Servidor y clústeres",
+  "sidebar.Troubleshooting": "Solución de problemas",
+  "sidebar.Reference": "Referencia"
 }

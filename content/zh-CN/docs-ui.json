@@ -1,5 +1,5 @@
 {
-  "version.label": "下一步",
+  "version.label": "current",
   "navbar.Docs": "文档",
   "navbar.GitHub": "GitHub",
   "navbar.Slack Group": "Slack 群组",
@@ -10,10 +10,12 @@
   "footer.X": "X",
   "footer.Slack Group": "Slack 群组",
   "footer.GitHub": "GitHub",
-  "sidebar.Basics": "基础",
-  "sidebar.Do More": "进阶操作",
-  "sidebar.Recipes and Tips": "示例与技巧",
-  "sidebar.CI/CD Integration": "CI/CD 集成",
-  "sidebar.Help": "帮助",
-  "sidebar.Server Purchase": "购买服务器"
+  "sidebar.Start & Guides": "入门与指南",
+  "sidebar.Applications & Deployments": "应用与部署",
+  "sidebar.One-Click Apps": "一键应用",
+  "sidebar.Domains & Networking": "域名与网络",
+  "sidebar.Data & Persistence": "数据与持久化",
+  "sidebar.Server & Clusters": "服务器与集群",
+  "sidebar.Troubleshooting": "故障排查",
+  "sidebar.Reference": "参考资料"
 }

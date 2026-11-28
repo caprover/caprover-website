@@ -60,10 +60,9 @@ export function renderLocalePreferenceScript(locales, defaultLocale) {
   }
 
   const currentLocale = localeForPath(location.pathname);
-  // Keep section links and archives in the requested language: IDs differ by locale.
-  const anchoredDocs = location.hash && /\\/(?:docs|docs-next)(?:\\/|$)/.test(location.pathname);
-  const archive = /\\/docs-legacy(?:\\/|$)/.test(location.pathname);
-  if (currentLocale.code === defaultLocale && !anchoredDocs && !archive) {
+  // Section IDs differ by language, so keep anchored docs in the requested locale.
+  const anchoredDocs = location.hash && /\\/docs(?:\\/|\\.html$|$)/.test(location.pathname);
+  if (currentLocale.code === defaultLocale && !anchoredDocs) {
     const preferredLocale = readSavedLocale() ?? preferredBrowserLocale();
     if (preferredLocale && preferredLocale.code !== defaultLocale) {
       saveLocale(preferredLocale);

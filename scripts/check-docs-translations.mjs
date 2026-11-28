@@ -4,8 +4,10 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const root = path.resolve("content");
-const sourceDir = path.join(root, "en", "docs-next");
-const locales = ["es-ES", "zh-CN"];
+const sourceDir = path.join(root, "en", "docs");
+const locales = JSON.parse(readFileSync(path.join(root, "locales.json"), "utf8"))
+  .filter(({ enabled, default: isDefault }) => enabled && !isDefault)
+  .map(({ code }) => code);
 
 function walk(dir, prefix = "") {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -53,10 +55,9 @@ function frontmatter(text, key) {
   return text.match(new RegExp("^" + key + ":\\s*(.+)$", "m"))?.[1] ?? null;
 }
 const files = walk(sourceDir);
-assert.equal(files.length, 48, "Expected all 48 canonical source pages");
 const errors = [];
 for (const locale of locales) {
-  const destination = path.join(root, locale, "docs-next");
+  const destination = path.join(root, locale, "docs");
   assert.deepEqual(walk(destination), files, locale + " has incomplete page coverage");
   for (const relative of files) {
     const source = readFileSync(path.join(sourceDir, relative), "utf8");
@@ -105,4 +106,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   throw new Error(errors.length + " translation integrity failures");
 }
-console.log("Translation integrity verified: 48 pages × 2 locales");
+console.log(`Translation integrity verified: ${files.length} pages × ${locales.length} locales`);

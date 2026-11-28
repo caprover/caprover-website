@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import {
   test,
   expect,
@@ -33,19 +34,18 @@ for (const suffix of [".html", "", "/", "/index.html"])
       )
       .toBe(true);
   });
-test("removed GitHub alternative uses preserved archive section and query", async ({
+test("removed GitHub method falls back to CI/CD and keeps query parameters", async ({
   page,
 }) => {
-  await page.goto(
-    "/docs/ci-cd-integration/deploy-from-github.html?utm_source=old-docs#alternative-method-more-efficient",
-  );
-  await expect(page).toHaveURL(
-    /\/docs-legacy\/ci-cd-integration\/deploy-from-github\?utm_source=old-docs#alternative-method-more-efficient$/,
-  );
-  await targetExists(page);
-  await expect(
-    page.locator('[id="alternative-method-more-efficient"]'),
-  ).toContainText("Alternative");
+  const query = "?utm_source=old-docs&tag=one&tag=two";
+  for (const source of [
+    "/docs/ci-cd-integration/deploy-from-github.html",
+    "/docs-legacy/ci-cd-integration/deploy-from-github/index.html",
+  ]) {
+    await page.goto(source + query + "#alternative-method-more-efficient");
+    await expect(page).toHaveURL("/docs/deployments/ci-cd" + query);
+    await expect(page.locator("article h1")).toHaveText("CI/CD");
+  }
 });
 test("preview source section and changed subsection", async ({ page }) => {
   await page.goto("/docs-next/installation/digitalocean.html");
@@ -67,21 +67,35 @@ test("Spanish legacy and Chinese locale alias prefer translations", async ({
   await expect(page).toHaveURL(/\/zh-CN\/docs\/deployments$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
 });
-test("localized historical fragments retain archive and encoded IDs", async ({
+test("localized archive URLs retain translated section destinations", async ({
   page,
 }) => {
   await page.goto(
-    "/es-ES/docs/troubleshooting.html?utm_source=old-docs#c%C3%B3mo-reiniciar-caprover",
+    "/es-ES/docs-legacy/troubleshooting.html?utm_source=old-docs#c%C3%B3mo-reiniciar-caprover",
   );
   await expect(page).toHaveURL(
-    /\/es-ES\/docs-legacy\/troubleshooting\?utm_source=old-docs#/,
+    "/es-ES/docs/troubleshooting/diagnostics?utm_source=old-docs#source-server-diagnostics",
   );
   await targetExists(page);
   await page.goto(
     "/zh-CN/docs/troubleshooting#%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81",
   );
-  await expect(page).toHaveURL(/\/zh-CN\/docs-legacy\/troubleshooting#/);
+  await expect(page).toHaveURL(/\/zh-CN\/docs\/server#/);
   await targetExists(page);
+});
+test("retired and localized documentation roots resolve to Getting Started", async ({
+  page,
+}) => {
+  for (const [source, target] of [
+    ["/docs", "/docs/get-started"],
+    ["/docs-legacy/index.html", "/docs/get-started"],
+    ["/docs/es-ES/", "/es-ES/docs/get-started"],
+    ["/zh-CN/docs-legacy/", "/zh-CN/docs/get-started"],
+  ]) {
+    await page.goto(source + "?source=historical");
+    await expect(page).toHaveURL(target + "?source=historical");
+    await expect(page.locator("article h1")).toBeVisible();
+  }
 });
 test("saved locale cannot hijack explicit localized or English section links", async ({
   browser,
@@ -112,7 +126,7 @@ test("initial load, hash changes, and browser history preserve current/old ancho
   await targetExists(page);
   await page.evaluate(() => (location.hash = "how-to-restart-caprover"));
   await expect(page).toHaveURL(
-    /\/docs-legacy\/troubleshooting#how-to-restart-caprover$/,
+    /\/docs\/troubleshooting\/diagnostics#source-server-diagnostics$/,
   );
   await targetExists(page);
   await page.goto("/docs/one-click-apps#installation");
@@ -144,7 +158,7 @@ test("Docusaurus client navigation invokes historical compatibility handler", as
   });
   await page.locator('a[href="/docs/troubleshooting"]').first().click();
   await expect(page).toHaveURL(
-    /\/docs-legacy\/troubleshooting#how-to-restart-caprover$/,
+    /\/docs\/troubleshooting\/diagnostics#source-server-diagnostics$/,
   );
   await targetExists(page);
 });
@@ -209,8 +223,8 @@ for (const [category, source, finalPath, heading] of [
   [
     "NGINX",
     "/docs/nginx-customization.html#custom-files-and-directories",
-    "/docs-legacy/nginx-customization",
-    "Custom files and directories",
+    "/docs/domains/advanced-nginx",
+    "",
   ],
   [
     "backup",
@@ -221,25 +235,30 @@ for (const [category, source, finalPath, heading] of [
   [
     "multi-node",
     "/docs/app-scaling-and-cluster.html#run-multiple-servers",
-    "/docs-legacy/app-scaling-and-cluster",
-    "Run Multiple Servers",
+    "/docs/scaling/multi-node",
+    "",
   ],
   [
-    "removed troubleshooting",
+    "dashboard password recovery",
     "/docs/troubleshooting.html#reset-password",
-    "/docs-legacy/troubleshooting",
-    "Reset Password",
+    "/docs/server",
+    "Recover a forgotten dashboard password",
   ],
   [
     "historical OpenStack",
     "/docs/server-purchase/openstack.html#deploy-the-openstack-heat-template-file",
-    "/docs-legacy/server-purchase/openstack",
-    "Deploy the OpenStack Heat template file",
+    "/docs/installation",
+    "",
   ],
 ])
   test("category review: " + category, async ({ page }) => {
     await page.goto(source);
     await expect.poll(() => new URL(page.url()).pathname).toBe(finalPath);
+    if (!heading) {
+      expect(new URL(page.url()).hash).toBe("");
+      await expect(page.locator("article h1")).toBeVisible();
+      return;
+    }
     await targetExists(page);
     const text = await page.evaluate(() => {
       let element = document.getElementById(
@@ -251,3 +270,46 @@ for (const [category, source, finalPath, heading] of [
     });
     expect(text.toLowerCase()).toContain(heading.toLowerCase());
   });
+
+test("localized docs use the configured Algolia index", async ({ page }) => {
+  const {
+    themeConfig: { algolia },
+  } = (await import("../docs-site/docusaurus.config.js")).default;
+  const host = algolia.appId.toLowerCase() + "-dsn.algolia.net";
+  await page.route(
+    (url) => url.hostname === host,
+    async (route) => {
+      await route.fulfill({
+        json: {
+          results: [
+            {
+              hits: [],
+              nbHits: 0,
+              page: 0,
+              nbPages: 0,
+              hitsPerPage: 10,
+              processingTimeMS: 1,
+            },
+          ],
+        },
+      });
+    },
+  );
+
+  for (const prefix of ["", "/es-ES", "/zh-CN"]) {
+    await page.goto(prefix + "/docs/get-started");
+    await page.locator("button.DocSearch-Button").click();
+    const searchRequest = page.waitForRequest((request) => {
+      const { hostname, pathname } = new URL(request.url());
+      return (
+        hostname === host &&
+        pathname === "/1/indexes/*/queries" &&
+        request.postData()?.includes("CapRover")
+      );
+    });
+    await page.locator("input.DocSearch-Input").fill("CapRover");
+    const request = await searchRequest;
+    const requests = request.postDataJSON().requests;
+    assert(requests.some(({ indexName }) => indexName === algolia.indexName));
+  }
+});

@@ -13,7 +13,7 @@ import {
 } from "node:fs/promises";
 import path from "node:path";
 import { renderLocalePreferenceScript } from "./locale-preference.mjs";
-import { buildManifest, writeCompatibility, renderRedirect } from "./docs-redirects.mjs";
+import { buildManifest, writeCompatibility } from "./docs-redirects.mjs";
 
 const root = process.cwd();
 const docsSite = path.join(root, "docs-site/build");
@@ -39,13 +39,7 @@ function marketingRouteFile(locale, route) {
 }
 
 function docsOutputRoot(locale) {
-  return locale.default
-    ? path.join(docsSite, "docs")
-    : path.join(docsSite, localeOutputRoot(locale), "docs");
-}
-
-function archiveOutputRoot(locale) {
-  return path.join(docsSite, localeOutputRoot(locale), "docs-legacy");
+  return path.join(docsSite, localeOutputRoot(locale), "docs");
 }
 
 function combinedMarketingRouteFile(locale, route) {
@@ -54,7 +48,7 @@ function combinedMarketingRouteFile(locale, route) {
 
 async function injectLocalePreferenceScript(file) {
   const contents = await readFile(file, "utf8");
-  const compatibilityScript = /(?:^|\/)docs(?:-legacy)?\//.test(
+  const compatibilityScript = /(?:^|\/)docs\//.test(
     path.relative(combinedSite, file).split(path.sep).join("/"),
   ) ? '<script src="/docs-compat.js"></script>' : "";
   assert.match(contents, /<\/head>/i, `HTML head is missing: ${path.relative(root, file)}`);
@@ -62,7 +56,7 @@ async function injectLocalePreferenceScript(file) {
     file,
     contents.replace(
       /<\/head>/i,
-      `    ${compatibilityScript}<script src="/locale-preference.js"></script>\n  </head>`,
+      `    <script src="/locale-preference.js"></script>${compatibilityScript}\n  </head>`,
     ),
   );
 }
@@ -119,17 +113,8 @@ async function assertSnapshotPreserved(expected, destination, description) {
   }
 }
 
-async function writeRedirect(file, destination, language) {
-  await mkdir(path.dirname(file), { recursive: true });
-  await writeFile(file, renderRedirect({source: "/docs-legacy", target: destination, locale: language, fragments: {}}));
-}
-
 await Promise.all([
-  requirePath(path.join(docsSite, "docs/get-started.html")),
-  ...locales.flatMap((locale) => [
-    requirePath(path.join(docsOutputRoot(locale), "get-started.html")),
-    requirePath(path.join(archiveOutputRoot(locale), "get-started.html")),
-  ]),
+  ...locales.map((locale) => requirePath(path.join(docsOutputRoot(locale), "get-started.html"))),
   requirePath(path.join(docsSite, "img/logo.png")),
   requirePath(path.join(docsSite, "CNAME")),
   requirePath(cnameSource),
@@ -148,17 +133,11 @@ await Promise.all([
 const originalCname = await readFile(cnameSource);
 assert.equal(originalCname.toString().trim(), "caprover.com");
 
-const [docsBefore, archivesBefore, imagesBefore] = await Promise.all([
+const [docsBefore, imagesBefore] = await Promise.all([
   Promise.all(
     locales.map(async (locale) => ({
       locale,
       files: await snapshot(docsOutputRoot(locale)),
-    })),
-  ),
-  Promise.all(
-    locales.map(async (locale) => ({
-      locale,
-      files: await snapshot(archiveOutputRoot(locale)),
     })),
   ),
   snapshot(path.join(docsSite, "img")),
@@ -200,14 +179,6 @@ for (const locale of locales.filter((entry) => !entry.default)) {
 
 const compatibility = await buildManifest(root, docsSite);
 await writeCompatibility(combinedSite, compatibility);
-for (const locale of locales) {
-  await writeRedirect(
-    path.join(combinedSite, localeOutputRoot(locale), "docs-legacy", "index.html"),
-    locale.pathPrefix + "/docs-legacy/get-started",
-    locale.code,
-  );
-}
-
 const [docsSitemaps, marketingSitemap] = await Promise.all([
   Promise.all(
     locales.map((locale) =>
@@ -231,8 +202,7 @@ assert.equal(
   "Marketing sitemap is missing localized URLs",
 );
 const docsUrls = docsSitemaps.flatMap(
-  (sitemap) => (sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [])
-    .filter((url) => !/\/docs-legacy(?:\/|<)|\/docs-next(?:\/|<)/.test(url)),
+  (sitemap) => sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [],
 );
 const allUrls = [...docsUrls, ...marketingUrls];
 const sitemapLocations = allUrls.flatMap((entry) =>
@@ -278,13 +248,13 @@ const [imagesAfter, combinedCname, marketingHtml, docsHtmlByLocale] = await Prom
 ]);
 
 await Promise.all(
-  [...docsBefore, ...archivesBefore].map(({ locale, files }, index) =>
+  docsBefore.map(({ locale, files }) =>
     assertSnapshotPreserved(
       files,
       path.join(
         combinedSite,
         localeOutputRoot(locale),
-        index < docsBefore.length ? "docs" : "docs-legacy",
+        "docs",
       ),
       `${locale.code} documentation output`,
     ),
@@ -343,13 +313,6 @@ await Promise.all(
 );
 
 const localizedHtmlFiles = new Set([
-  ...archivesBefore.flatMap(({ locale, files }) =>
-    [...files.keys()]
-      .filter((relative) => relative.endsWith(".html"))
-      .map((relative) => path.join(
-        combinedSite, localeOutputRoot(locale), "docs-legacy", relative,
-      )),
-  ),
   ...docsBefore.flatMap(({ locale, files }) =>
     [...files.keys()]
       .filter((relative) => relative.endsWith(".html"))

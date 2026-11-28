@@ -9,6 +9,272 @@
   ],
   "routes": [
     {
+      "source": "/docs",
+      "kind": "root",
+      "locale": "en",
+      "evidence": "/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy",
+      "kind": "root",
+      "locale": "en",
+      "evidence": "/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/app-configuration",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/app-scaling-and-cluster",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/backup-and-restore",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/best-practices",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/captain-definition-file",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/cdd-migration",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/certbot-config",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/ci-cd-integration",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/ci-cd-integration/deploy-from-github",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/ci-cd-integration/deploy-from-gitlab",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/cli-commands",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/complete-webapp-tutorial",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/database-connection",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/deployment-methods",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/disk-cleanup",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/docker-compose",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/firewall",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/get-started",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/nginx-customization",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/one-click-apps",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/persistent-apps",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/play-with-docker",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/pre-deploy-script",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/recipe-deploy-create-react-app",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/resource-monitoring",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/run-locally",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/sample-apps",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/server-purchase/digitalocean",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/server-purchase/openstack",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/service-update-override",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/stateless-with-persistent-data",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/support",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/theme-customization",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/troubleshooting",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/troubleshooting-pro",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/docs-legacy/zero-downtime",
+      "kind": "archive",
+      "locale": "en",
+      "evidence": "/docs/zero-downtime",
+      "canonical": false
+    },
+    {
       "source": "/docs-next",
       "kind": "preview",
       "locale": "en",
@@ -1115,6 +1381,13 @@
       "canonical": false
     },
     {
+      "source": "/docs/en",
+      "kind": "root",
+      "locale": "en",
+      "evidence": "/docs/get-started",
+      "canonical": false
+    },
+    {
       "source": "/docs/en/app-configuration",
       "kind": "alias",
       "locale": "en",
@@ -1364,6 +1637,13 @@
       "kind": "alias",
       "locale": "en",
       "evidence": "/docs/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/docs/es-ES",
+      "kind": "root",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/get-started",
       "canonical": false
     },
     {
@@ -1759,6 +2039,13 @@
       "canonical": false
     },
     {
+      "source": "/docs/zh-CN",
+      "kind": "root",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/get-started",
+      "canonical": false
+    },
+    {
       "source": "/docs/zh-CN/app-configuration",
       "kind": "alias",
       "locale": "zh-CN",
@@ -2008,6 +2295,272 @@
       "kind": "alias",
       "locale": "zh-CN",
       "evidence": "/zh-CN/docs/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs",
+      "kind": "root",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy",
+      "kind": "root",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/app-configuration",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/app-scaling-and-cluster",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/backup-and-restore",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/best-practices",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/captain-definition-file",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/cdd-migration",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/certbot-config",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/ci-cd-integration",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/ci-cd-integration/deploy-from-github",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/ci-cd-integration/deploy-from-gitlab",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/cli-commands",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/complete-webapp-tutorial",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/database-connection",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/deployment-methods",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/disk-cleanup",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/docker-compose",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/firewall",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/get-started",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/nginx-customization",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/one-click-apps",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/persistent-apps",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/play-with-docker",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/pre-deploy-script",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/recipe-deploy-create-react-app",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/resource-monitoring",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/run-locally",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/sample-apps",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/server-purchase/digitalocean",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/server-purchase/openstack",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/service-update-override",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/stateless-with-persistent-data",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/support",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/theme-customization",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/troubleshooting",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/troubleshooting-pro",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/es-ES/docs-legacy/zero-downtime",
+      "kind": "archive",
+      "locale": "es-ES",
+      "evidence": "/es-ES/docs/zero-downtime",
       "canonical": false
     },
     {
@@ -3254,6 +3807,272 @@
       "kind": "legacy",
       "locale": "es-ES",
       "evidence": "/es-ES/docs/zero-downtime",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs",
+      "kind": "root",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy",
+      "kind": "root",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/app-configuration",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/app-configuration",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/app-scaling-and-cluster",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/app-scaling-and-cluster",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/backup-and-restore",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/backup-and-restore",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/best-practices",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/best-practices",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/captain-definition-file",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/captain-definition-file",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/cdd-migration",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/cdd-migration",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/certbot-config",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/certbot-config",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/ci-cd-integration",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/ci-cd-integration/deploy-from-github",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration/deploy-from-github",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/ci-cd-integration/deploy-from-gitlab",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/ci-cd-integration/deploy-from-gitlab",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/cli-commands",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/cli-commands",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/complete-webapp-tutorial",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/complete-webapp-tutorial",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/database-connection",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/database-connection",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/deployment-methods",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/deployment-methods",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/disk-cleanup",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/disk-cleanup",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/docker-compose",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/docker-compose",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/firewall",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/firewall",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/get-started",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/get-started",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/nginx-customization",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/nginx-customization",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/one-click-apps",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/one-click-apps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/persistent-apps",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/persistent-apps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/play-with-docker",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/play-with-docker",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/pre-deploy-script",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/pre-deploy-script",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/recipe-deploy-create-react-app",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/recipe-deploy-create-react-app",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/resource-monitoring",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/resource-monitoring",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/run-locally",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/run-locally",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/sample-apps",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/sample-apps",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/server-purchase/digitalocean",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/server-purchase/digitalocean",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/server-purchase/openstack",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/server-purchase/openstack",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/service-update-override",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/service-update-override",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/stateless-with-persistent-data",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/stateless-with-persistent-data",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/support",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/support",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/theme-customization",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/theme-customization",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/troubleshooting",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/troubleshooting",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/troubleshooting-pro",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/troubleshooting-pro",
+      "canonical": false
+    },
+    {
+      "source": "/zh-CN/docs-legacy/zero-downtime",
+      "kind": "archive",
+      "locale": "zh-CN",
+      "evidence": "/zh-CN/docs/zero-downtime",
       "canonical": false
     },
     {
