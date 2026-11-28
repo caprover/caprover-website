@@ -20,7 +20,9 @@ npm run format:check
 npm test
 ```
 
-`npm run build` exports the complete static website to `out/`.
+`npm run build` exports the marketing pages and assets to `out/`. The root
+repository's combined build assembles the production site from this export and
+the documentation build.
 
 ## Internationalization
 

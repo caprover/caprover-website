@@ -61,19 +61,6 @@ function relativeFiles(directory) {
   return files.sort();
 }
 
-function objectKeys(value, prefix) {
-  const keys = [];
-  for (const key of Object.keys(value).sort()) {
-    const current = prefix ? `${prefix}.${key}` : key;
-    if (value[key] && typeof value[key] === "object" && !Array.isArray(value[key])) {
-      keys.push(...objectKeys(value[key], current));
-    } else {
-      keys.push(current);
-    }
-  }
-  return keys;
-}
-
 function assertSameList(actual, expected, description) {
   if (JSON.stringify(actual) !== JSON.stringify(expected)) {
     throw new Error(`${description} does not match ${defaultLocale.code}`);
@@ -152,39 +139,13 @@ function sidebarDocumentIds(value, result = new Set()) {
   return result;
 }
 
-function removeDirectory(directory) {
-  if (!fs.existsSync(directory)) return;
-  for (const entry of fs.readdirSync(directory)) {
-    const absolute = path.join(directory, entry);
-    if (fs.statSync(absolute).isDirectory()) {
-      removeDirectory(absolute);
-    } else {
-      fs.unlinkSync(absolute);
-    }
-  }
-  fs.rmdirSync(directory);
-}
-
-function copyDirectory(source, destination) {
-  fs.mkdirSync(destination, { recursive: true });
-  for (const entry of fs.readdirSync(source)) {
-    const from = path.join(source, entry);
-    const to = path.join(destination, entry);
-    if (fs.statSync(from).isDirectory()) {
-      copyDirectory(from, to);
-    } else {
-      fs.copyFileSync(from, to);
-    }
-  }
-}
-
 const defaultRoot = path.join(contentRoot, defaultLocale.code);
 const defaultDocs = path.join(defaultRoot, "docs");
 const defaultDocFiles = relativeFiles(defaultDocs);
 const defaultMarketing = require(path.join(defaultRoot, "marketing.json"));
 const defaultMarketingKeys = Object.keys(defaultMarketing).sort();
 const defaultDocsUi = require(path.join(defaultRoot, "docs-ui.json"));
-const defaultDocsUiKeys = objectKeys(defaultDocsUi, "");
+const defaultDocsUiKeys = Object.keys(defaultDocsUi).sort();
 const sidebar = require(path.join(root, "docs-site", "sidebars.js"));
 const sidebarIds = sidebarDocumentIds(sidebar);
 const categories = sidebar.docs.filter((entry) => entry.type === "category");
@@ -197,17 +158,22 @@ const defaultMarkdownFiles = defaultDocFiles.filter((file) => file.endsWith(".md
 const documentIds = new Set(
   defaultMarkdownFiles.map((relative) => relative.slice(0, -".md".length)),
 );
+const sourceIds = new Map();
 
 for (const relative of defaultMarkdownFiles) {
-  if (!frontmatterId(path.join(defaultDocs, relative))) {
+  const id = frontmatterId(path.join(defaultDocs, relative));
+  if (!id) {
     throw new Error(`${defaultLocale.code}/${relative} is missing a frontmatter ID`);
   }
+  sourceIds.set(relative, id);
 }
 
 assertFlatStringCatalog(defaultMarketing, `${defaultLocale.code} marketing catalog`);
+assertFlatStringCatalog(defaultDocsUi, `${defaultLocale.code} documentation UI catalog`);
 assertSameList([...sidebarIds].sort(), [...documentIds].sort(), "Sidebar document IDs");
 
-for (const locale of enabledLocales) {
+const translatedLocales = enabledLocales.filter((locale) => !locale.default);
+for (const locale of translatedLocales) {
   const localeRoot = path.join(contentRoot, locale.code);
   const docs = path.join(localeRoot, "docs");
   const marketing = require(path.join(localeRoot, "marketing.json"));
@@ -216,11 +182,11 @@ for (const locale of enabledLocales) {
 
   assertSameList(docFiles, defaultDocFiles, `${locale.code} documentation files`);
   assertSameList(Object.keys(marketing).sort(), defaultMarketingKeys, `${locale.code} marketing keys`);
-  assertSameList(objectKeys(docsUi, ""), defaultDocsUiKeys, `${locale.code} documentation UI keys`);
+  assertSameList(Object.keys(docsUi).sort(), defaultDocsUiKeys, `${locale.code} documentation UI keys`);
   assertFlatStringCatalog(marketing, `${locale.code} marketing catalog`);
+  assertFlatStringCatalog(docsUi, `${locale.code} documentation UI catalog`);
 
-  for (const relative of docFiles.filter((file) => file.endsWith(".md"))) {
-    const sourceId = frontmatterId(path.join(defaultDocs, relative));
+  for (const [relative, sourceId] of sourceIds) {
     const localeId = frontmatterId(path.join(docs, relative));
     if (sourceId !== localeId) {
       throw new Error(`${locale.code}/${relative} has a different frontmatter ID`);
@@ -238,7 +204,7 @@ for (const locale of enabledLocales) {
 
 const generatedI18n = path.join(root, "docs-site", "i18n");
 
-removeDirectory(generatedI18n);
+fs.rmSync(generatedI18n, { recursive: true, force: true });
 fs.mkdirSync(generatedI18n, { recursive: true });
 
 function writeCatalog(file, messages) {
@@ -255,25 +221,26 @@ function writeCatalog(file, messages) {
   );
 }
 
-for (const locale of enabledLocales) {
+for (const locale of translatedLocales) {
   const localeRoot = path.join(contentRoot, locale.code);
-  if (!locale.default) {
-    const localeI18n = path.join(generatedI18n, locale.code);
-    const docsI18n = path.join(localeI18n, "docusaurus-plugin-content-docs");
-    copyDirectory(path.join(localeRoot, "docs"), path.join(docsI18n, "current"));
+  const localeI18n = path.join(generatedI18n, locale.code);
+  const docsI18n = path.join(localeI18n, "docusaurus-plugin-content-docs");
+  fs.cpSync(path.join(localeRoot, "docs"), path.join(docsI18n, "current"), {
+    recursive: true,
+    dereference: true,
+  });
 
-    const docsUi = require(path.join(localeRoot, "docs-ui.json"));
-    const catalogs = toDocusaurusCatalogs(docsUi);
-    writeCatalog(path.join(docsI18n, "current.json"), catalogs.docs);
-    writeCatalog(
-      path.join(localeI18n, "docusaurus-theme-classic", "navbar.json"),
-      catalogs.navbar,
-    );
-    writeCatalog(
-      path.join(localeI18n, "docusaurus-theme-classic", "footer.json"),
-      catalogs.footer,
-    );
-  }
+  const docsUi = require(path.join(localeRoot, "docs-ui.json"));
+  const catalogs = toDocusaurusCatalogs(docsUi);
+  writeCatalog(path.join(docsI18n, "current.json"), catalogs.docs);
+  writeCatalog(
+    path.join(localeI18n, "docusaurus-theme-classic", "navbar.json"),
+    catalogs.navbar,
+  );
+  writeCatalog(
+    path.join(localeI18n, "docusaurus-theme-classic", "footer.json"),
+    catalogs.footer,
+  );
 }
 
 console.log(`Prepared localized content for: ${enabledLocales.map((locale) => locale.code).join(", ")}`);

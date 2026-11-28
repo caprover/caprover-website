@@ -32,7 +32,7 @@ for (const [index, directory] of inputs.entries()) {
   for (const file of files) {
     // Audit shipped sources and docs; ignore generated compatibility inventories and test fixtures.
     if (
-      /^(?:docs-compat\/|scripts\/|DOCS_|docs-site\/package-lock|marketing-site\/package-lock)/.test(
+      /^(?:docs-compat\/|scripts\/|docs-site\/package-lock|marketing-site\/package-lock)/.test(
         file,
       ) &&
       index === 0

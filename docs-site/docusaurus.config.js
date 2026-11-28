@@ -50,8 +50,6 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: ({ locale, docPath }) =>
             `https://github.com/caprover/caprover-website/edit/master/content/${locale}/docs/${docPath}`,
-          showLastUpdateAuthor: false,
-          showLastUpdateTime: false,
         },
         blog: false,
         pages: false,

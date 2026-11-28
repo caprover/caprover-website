@@ -5,7 +5,7 @@ import { THEME_STORAGE_KEY } from "./theme-script";
 
 const THEME_EVENT = "caprover-theme-change";
 
-export type ThemeMode = "light" | "dark";
+type ThemeMode = "light" | "dark";
 
 function readDomTheme(): ThemeMode {
   if (typeof document === "undefined") return "light";

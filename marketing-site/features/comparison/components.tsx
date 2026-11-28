@@ -20,7 +20,7 @@ const GITHUB = "https://github.com/caprover/caprover";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ASSET_PATH = "/homepage-assets";
 
-export function internal(path: string, locale: Locale = DEFAULT_LOCALE) {
+function internal(path: string, locale: Locale = DEFAULT_LOCALE) {
   return `${BASE_PATH}${localizedPath(path, locale)}`;
 }
 
@@ -42,7 +42,7 @@ function Logo({ locale }: { locale: Locale }) {
   );
 }
 
-export function CompareHeader({
+function CompareHeader({
   locale = DEFAULT_LOCALE,
   path,
 }: {
@@ -73,7 +73,7 @@ export function CompareHeader({
   );
 }
 
-export function CompareFooter({
+function CompareFooter({
   locale = DEFAULT_LOCALE,
   verifiedDate,
 }: {

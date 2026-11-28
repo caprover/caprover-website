@@ -3,7 +3,7 @@ import { getMessages, messageList } from "@/i18n/messages";
 
 export type Product = "caprover" | "dokploy" | "dokku" | "coolify";
 
-export type ComparisonStatus = "yes" | "partial" | "no";
+type ComparisonStatus = "yes" | "partial" | "no";
 
 export type ComparisonValue = {
   status: ComparisonStatus;
@@ -30,6 +30,5 @@ export function getComparisonData(locale: Locale = DEFAULT_LOCALE) {
   return {
     products: messageList(messages.comparisonData.products) as Array<{ key: Product; label: string }>,
     rows: messageList(messages.comparisonData.rows) as ComparisonRow[],
-    verifiedDate: messages.comparisonCommon.verifiedDate,
   };
 }

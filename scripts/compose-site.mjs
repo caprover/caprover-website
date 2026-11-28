@@ -8,7 +8,6 @@ import {
   readFile,
   readdir,
   rm,
-  stat,
   writeFile,
 } from "node:fs/promises";
 import path from "node:path";
@@ -227,7 +226,6 @@ await writeFile(
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${allUrls.join("\n")}\n</urlset>\n`,
 );
 await writeFile(path.join(combinedSite, ".nojekyll"), "");
-await requirePath(path.join(combinedSite, ".nojekyll"));
 
 const [imagesAfter, combinedCname, marketingHtml, docsHtmlByLocale] = await Promise.all([
   snapshot(path.join(combinedSite, "img")),
@@ -336,9 +334,6 @@ await Promise.all([
   ),
   ...[...localizedHtmlFiles].map(injectLocalePreferenceScript),
 ]);
-
-const combinedStats = await stat(combinedSite);
-assert(combinedStats.isDirectory());
 
 console.log("Combined site created at build/combined-site");
 console.log(

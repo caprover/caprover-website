@@ -45,7 +45,7 @@ const PAGE_METADATA = {
   }
 >;
 
-export type LocalizedPage = keyof typeof PAGE_METADATA;
+type LocalizedPage = keyof typeof PAGE_METADATA;
 
 function localizedMetadata(
   locale: Locale,

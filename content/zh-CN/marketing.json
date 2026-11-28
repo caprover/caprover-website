@@ -8,7 +8,6 @@
   "homepage.metadata.description": "最低 1 GiB 内存即可起步的自托管 Docker 应用托管平台。通过 caprover deploy 从终端直接部署，编辑每个应用的完整 NGINX 模板，覆盖原生 Docker 服务，并基于 Docker Swarm 扩展。",
   "homepage.brandAriaLabel": "CapRover 首页",
   "homepage.navigationAriaLabel": "主导航",
-  "homepage.navigation.features": "功能",
   "homepage.navigation.docs": "文档",
   "homepage.navigation.github": "GitHub",
   "homepage.navigation.slack": "Slack",
