@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/deployments/ci-cd"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/deployments/ci-cd">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/deployments/ci-cd">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/deployments/ci-cd","fragments":{"创建-github-action":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-github-actions","policy":"equivalent"},"创建-github-personal-access-token":{"target":"/zh-CN/docs/deployments/ci-cd","policy":"page-fallback"},"创建新-app":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-deployment-tokens","policy":"equivalent"},"创建新-app-1":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-deployment-tokens","policy":"equivalent"},"向-caprover-添加-private-docker-registry":{"target":"/zh-CN/docs/deployments/registries#source-deployments-registries-private","policy":"equivalent"},"向-project-添加文件":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-github-actions","policy":"equivalent"},"启用-app-token":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-deployment-tokens","policy":"equivalent"},"启用-app-token-1":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-deployment-tokens","policy":"equivalent"},"提交代码更改以进行部署":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-github-actions","policy":"equivalent"},"替代方式更高效":{"target":"/zh-CN/docs/deployments/ci-cd","policy":"page-fallback"},"添加-github-secrets":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-github-actions","policy":"equivalent"},"添加-github-secrets-1":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-github-actions","policy":"equivalent"},"直接从-github-部署":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-github-actions","policy":"equivalent"},"部署":{"target":"/zh-CN/docs/deployments/ci-cd#source-deployments-ci-cd-github-actions","policy":"equivalent"},"需要帮助":{"target":"/zh-CN/docs/troubleshooting#source-troubleshooting-support","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

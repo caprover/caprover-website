@@ -1,0 +1,25 @@
+<!doctype html><html lang="es-ES"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/es-ES/docs/get-started"></noscript>
+<link rel="canonical" href="https://caprover.com/es-ES/docs/get-started">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/es-ES/docs/get-started">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/es-ES/docs/get-started","fragments":{"a-nombre-de-dominio":{"target":"/es-ES/docs/get-started#dns","policy":"equivalent"},"b-servidor":{"target":"/es-ES/docs/get-started#requisitos","policy":"equivalent"},"b1-ip-pública":{"target":"/es-ES/docs/get-started#requisitos","policy":"equivalent"},"b2-especificaciones-del-servidor":{"target":"/es-ES/docs/get-started#requisitos","policy":"equivalent"},"b3-docker":{"target":"/es-ES/docs/installation/manual#2-instalar-docker","policy":"equivalent"},"b4-configurar-el-cortafuegos":{"target":"/es-ES/docs/installation/manual#1-puertos-y-firewall","policy":"equivalent"},"con-cli-recomendado":{"target":"/es-ES/docs/get-started#configurar-caprover","policy":"equivalent"},"con-la-interfaz-web-no-requiere-npm":{"target":"/es-ES/docs/get-started#configurar-caprover","policy":"equivalent"},"configuración-sencilla":{"target":"/es-ES/docs/get-started#instalar-caprover","policy":"equivalent"},"paso-1-instalación-de-caprover":{"target":"/es-ES/docs/get-started#paso-1-instalaci%C3%B3n-de-caprover","policy":"current"},"paso-2-conectar-el-dominio-raíz":{"target":"/es-ES/docs/get-started#paso-2-conectar-el-dominio-ra%C3%ADz","policy":"current"},"paso-3-configurar-e-inicializar-caprover":{"target":"/es-ES/docs/get-started#paso-3-configurar-e-inicializar-caprover","policy":"current"},"paso-4-opcional-configurar-el-archivo-de-intercambio":{"target":"/es-ES/docs/get-started#compilaciones-con-poca-memoria-opcional","policy":"equivalent"},"requisitos-previos":{"target":"/es-ES/docs/get-started#requisitos","policy":"equivalent"},"step-5-deploy-the-test-app":{"target":"/es-ES/docs/get-started#step-5-deploy-the-test-app","policy":"current"}}}, window.location.href));</script>
+</body></html>

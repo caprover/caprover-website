@@ -1,0 +1,25 @@
+<!doctype html><html lang="es-ES"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/es-ES/docs/domains/advanced-certbot"></noscript>
+<link rel="canonical" href="https://caprover.com/es-ES/docs/domains/advanced-certbot">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/es-ES/docs/domains/advanced-certbot">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/es-ES/docs/domains/advanced-certbot","fragments":{"1-certbot-docker-imagen":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"1-crear-archivo-de-configuración":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"2-configurar-los-valores":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"2-guarde-sus-credenciales-dns":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"3-anular-el-comando-certbot":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"3-reiniciar-certbot":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"4-registro-caa":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"4-reiniciar-caprover":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"configure-certbot-para-usar-un-nuevo-servidor-acme":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"nota":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"},"personaliza-el-comando-certbot-para-usar-el-desafío-dns-01":{"target":"/es-ES/docs/domains/advanced-certbot","policy":"page-fallback"}}}, window.location.href));</script>
+</body></html>

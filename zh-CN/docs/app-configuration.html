@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/applications"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/applications">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/applications">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/applications","fragments":{"http-设置":{"target":"/zh-CN/docs/applications#http-%E8%AE%BE%E7%BD%AE","policy":"current"},"启用-https":{"target":"/zh-CN/docs/domains#source-domains-https","policy":"equivalent"},"实例数量":{"target":"/zh-CN/docs/scaling#source-scaling-scale-app","policy":"equivalent"},"应用配置":{"target":"/zh-CN/docs/applications#source-applications-create-manage","policy":"equivalent"},"持久化目录":{"target":"/zh-CN/docs/data-persistence#source-applications-persistent-directories","policy":"equivalent"},"服务标签":{"target":"/zh-CN/docs/applications#source-applications-tags-descriptions","policy":"equivalent"},"环境变量":{"target":"/zh-CN/docs/applications#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F","policy":"current"},"端口映射":{"target":"/zh-CN/docs/domains/firewall#source-applications-public-ports","policy":"equivalent"},"节点-id":{"target":"/zh-CN/docs/data-persistence#source-data-persistence-node-placement","policy":"equivalent"},"预部署函数":{"target":"/zh-CN/docs/applications/advanced#source-applications-advanced-pre-deploy-function","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

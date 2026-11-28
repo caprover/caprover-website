@@ -1,0 +1,13 @@
+:HL["/_next/static/media/22a5144ee8d83bca-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/7d4881bb7e1bf84d-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/eb70ab214f1d396b.css","style"]
+:HL["/homepage-assets/caprover-logo.png","image"]
+:HL["/homepage-assets/slack-icon.png","image"]
+:HL["/homepage-assets/caprover-hero-dashboard.webp","image",{"fetchPriority":"high"}]
+:HL["/homepage-assets/one-click/postgres.svg","image"]
+:HL["/homepage-assets/one-click/redis.svg","image"]
+:HL["/homepage-assets/one-click/wordpress.svg","image"]
+:HL["/homepage-assets/one-click/n8n-io.svg","image"]
+:HL["/homepage-assets/one-click/nextcloud.svg","image"]
+:HL["/homepage-assets/one-click/uptime-kuma.svg","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":0,"slots":{"children":{"name":"(english)","param":null,"prefetchHints":16,"slots":{"children":{"name":"en","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"DvGdxrVXick5tAVquPKSQ"}

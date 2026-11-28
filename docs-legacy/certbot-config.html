@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/domains/advanced-certbot"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/domains/advanced-certbot">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/domains/advanced-certbot">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/domains/advanced-certbot","fragments":{"1-certbot-docker-image":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"1-create-config-file":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"2-configure-the-values":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"2-store-your-dns-credentials":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"3-override-the-certbot-command":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"3-restart-certbot":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"4-caa-record":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"4-restart-caprover":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"configure-certbot-to-use-a-new-acme-server":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"customize-certbot-command-to-use-dns-01-challenge":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"},"note":{"target":"/docs/domains/advanced-certbot","policy":"page-fallback"}}}, window.location.href));</script>
+</body></html>

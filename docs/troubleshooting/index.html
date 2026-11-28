@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/troubleshooting"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/troubleshooting">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/troubleshooting">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/troubleshooting","fragments":{"arm-processor":{"target":"/docs/get-started#requirements","policy":"equivalent"},"aws-setup":{"target":"/docs/troubleshooting","policy":"page-fallback"},"cannot-connect-ip_server3000":{"target":"/docs/troubleshooting/diagnostics#dashboard-unavailable-on-port-3000","policy":"equivalent"},"cloudflare-ssl-setup":{"target":"/docs/domains/cloudflare-reverse-proxies","policy":"page-fallback"},"connection-timeouts":{"target":"/docs/troubleshooting#source-domains-troubleshooting","policy":"equivalent"},"customize-config-settings":{"target":"/docs/reference/server-environment#source-reference-config-override","policy":"equivalent"},"domain-verification-failed---error-1107":{"target":"/docs/troubleshooting#source-domains-troubleshooting","policy":"equivalent"},"first":{"target":"/docs/troubleshooting/diagnostics#dashboard-unavailable-on-port-3000","policy":"equivalent"},"how-to-restart-caprover":{"target":"/docs/troubleshooting/diagnostics#source-server-diagnostics","policy":"equivalent"},"how-to-restart-my-application":{"target":"/docs/troubleshooting/diagnostics#restart-or-inspect-an-app","policy":"equivalent"},"how-to-run-shell-inside-my-application-inside-container":{"target":"/docs/troubleshooting/diagnostics#restart-or-inspect-an-app","policy":"equivalent"},"how-to-stop-and-remove-captain":{"target":"/docs/server/uninstall","policy":"page-fallback"},"how-to-use-the-edge-version":{"target":"/docs/server/upgrade#switch-to-edge","policy":"equivalent"},"how-to-view-my-applications-log":{"target":"/docs/troubleshooting/diagnostics#source-server-diagnostics","policy":"equivalent"},"i-got-an-email-from-lets-encrypt-saying-my-domains-ssl-certificate-is-expiring-and-it-shouldnt-be":{"target":"/docs/domains#source-domains-certificate-renewal","policy":"equivalent"},"ive-made-a-change-to-the-nginx-config-that-broke-the-admin-ui":{"target":"/docs/domains/advanced-nginx#recover-from-a-configuration-that-broke-the-dashboard","policy":"equivalent"},"reset-password":{"target":"/docs/server#recover-a-forgotten-dashboard-password","policy":"equivalent"},"second":{"target":"/docs/troubleshooting/diagnostics#dashboard-unavailable-on-port-3000","policy":"equivalent"},"something-bad-happened":{"target":"/docs/troubleshooting/diagnostics#collect-a-full-server-report","policy":"equivalent"},"successful-deploy-but-502-bad-gateway-error":{"target":"/docs/troubleshooting#successful-deploy-but-502-bad-gateway-error","policy":"current"},"third":{"target":"/docs/troubleshooting/diagnostics#dashboard-unavailable-on-port-3000","policy":"equivalent"},"use-existing-swarm":{"target":"/docs/installation/advanced#source-installation-advanced-existing-swarm","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

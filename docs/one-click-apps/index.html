@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/one-click-apps"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/one-click-apps">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/one-click-apps">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/one-click-apps","fragments":{"blogging-and-content":{"target":"/docs/one-click-apps","policy":"page-fallback"},"configuration-settings":{"target":"/docs/one-click-apps#configuration-settings","policy":"current"},"connecting-remotely":{"target":"/docs/data-persistence/deploy-databases#connect-to-databases-externally","policy":"equivalent"},"connecting-to-databases":{"target":"/docs/one-click-apps#source-one-click-apps-connect","policy":"equivalent"},"connecting-within-caprover-cluster":{"target":"/docs/data-persistence/deploy-databases#connect-to-databases-internally","policy":"equivalent"},"databases-and-database-gui":{"target":"/docs/one-click-apps","policy":"page-fallback"},"dev-tools":{"target":"/docs/one-click-apps","policy":"page-fallback"},"other-apps":{"target":"/docs/one-click-apps","policy":"page-fallback"},"other-cases":{"target":"/docs/one-click-apps#source-one-click-apps-upgrade","policy":"equivalent"},"simple-image-update":{"target":"/docs/one-click-apps#source-one-click-apps-upgrade","policy":"equivalent"},"upgrading-one-click-apps":{"target":"/docs/one-click-apps#upgrading-one-click-apps","policy":"current"},"what-about-other-apps":{"target":"/docs/one-click-apps","policy":"page-fallback"}}}, window.location.href));</script>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/docs/get-started"></noscript>
+<link rel="canonical" href="https://caprover.com/docs/get-started">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/docs/get-started">Continue to the documentation</a></p>
+<script>try { localStorage.setItem("caprover.locale", "en"); } catch {}window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/docs/get-started","fragments":{"a-domain-name":{"target":"/docs/get-started#dns","policy":"equivalent"},"b-server":{"target":"/docs/get-started#requirements","policy":"equivalent"},"b1-public-ip":{"target":"/docs/get-started#requirements","policy":"equivalent"},"b2-server-specs":{"target":"/docs/get-started#requirements","policy":"equivalent"},"b3-docker":{"target":"/docs/installation/manual#2-install-docker","policy":"equivalent"},"b4-configure-firewall":{"target":"/docs/installation/manual#1-ports-and-firewall","policy":"equivalent"},"caprover-setup":{"target":"/docs/get-started#configure-caprover","policy":"equivalent"},"prerequisites":{"target":"/docs/get-started#requirements","policy":"equivalent"},"simple-setup":{"target":"/docs/get-started#install-caprover","policy":"equivalent"},"step-1-caprover-installation":{"target":"/docs/get-started#install-caprover","policy":"equivalent"},"step-2-connect-root-domain":{"target":"/docs/get-started#dns","policy":"equivalent"},"step-3-configure-and-initialize-caprover":{"target":"/docs/get-started#configure-caprover","policy":"equivalent"},"step-3-install-caprover-cli":{"target":"/docs/reference/cli#install-cli","policy":"equivalent"},"step-4-optional-set-up-swap-file":{"target":"/docs/get-started#low-memory-builds-optional","policy":"equivalent"},"step-5-deploy-the-test-app":{"target":"/docs/get-started#deploy-your-first-app","policy":"equivalent"},"with-cli-recommended":{"target":"/docs/get-started#configure-caprover","policy":"equivalent"},"with-the-web-interface-doesnt-require-npm":{"target":"/docs/get-started#configure-caprover","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>

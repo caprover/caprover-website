@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<noscript><meta http-equiv="refresh" content="0; url=/zh-CN/docs/troubleshooting"></noscript>
+<link rel="canonical" href="https://caprover.com/zh-CN/docs/troubleshooting">
+<meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
+<p><a href="/zh-CN/docs/troubleshooting">Continue to the documentation</a></p>
+<script>window.location.replace((function resolveRedirect(entry, href) {
+  const incoming = new URL(href, "https://caprover.com");
+  let fragment = incoming.hash.slice(1);
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    /* Preserve malformed unknown hashes. */
+  }
+  const mapped =
+    fragment && Object.hasOwn(entry.fragments, fragment)
+      ? entry.fragments[fragment]
+      : null;
+  const target = new URL(mapped?.target ?? entry.target, incoming.origin);
+  if (target.origin !== incoming.origin)
+    throw new Error("External redirect destination");
+  target.search = incoming.search;
+  if (fragment && !mapped) target.hash = incoming.hash;
+  return target.pathname + target.search + target.hash;
+})({"target":"/zh-CN/docs/troubleshooting","fragments":{"arm-处理器":{"target":"/zh-CN/docs/get-started#系统要求","policy":"equivalent"},"aws-设置":{"target":"/zh-CN/docs/troubleshooting","policy":"page-fallback"},"cloudflare-ssl-设置":{"target":"/zh-CN/docs/domains/cloudflare-reverse-proxies","policy":"page-fallback"},"使用现有-swarm":{"target":"/zh-CN/docs/installation/advanced#source-installation-advanced-existing-swarm","policy":"equivalent"},"发生了某些问题":{"target":"/zh-CN/docs/troubleshooting/diagnostics#收集完整服务器报告","policy":"equivalent"},"域名验证失败---错误-1107":{"target":"/zh-CN/docs/troubleshooting#source-domains-troubleshooting","policy":"equivalent"},"如何使用-edge-版本":{"target":"/zh-CN/docs/server/upgrade#切换到-edge","policy":"equivalent"},"如何停止并移除-captain":{"target":"/zh-CN/docs/server/uninstall","policy":"page-fallback"},"如何在应用内运行-shell在-container-内":{"target":"/zh-CN/docs/troubleshooting/diagnostics#重启或检查应用","policy":"equivalent"},"如何查看应用日志":{"target":"/zh-CN/docs/troubleshooting/diagnostics#source-server-diagnostics","policy":"equivalent"},"如何重启-caprover":{"target":"/zh-CN/docs/troubleshooting/diagnostics#source-server-diagnostics","policy":"equivalent"},"如何重启应用":{"target":"/zh-CN/docs/troubleshooting/diagnostics#重启或检查应用","policy":"equivalent"},"我修改-nginx-config-后破坏了-admin-ui":{"target":"/zh-CN/docs/troubleshooting","policy":"page-fallback"},"我收到-lets-encrypt-发来的邮件说我的-domain-的-ssl-certificate-即将过期但它不应该过期":{"target":"/zh-CN/docs/domains#source-domains-certificate-renewal","policy":"equivalent"},"无法连接到-ip_server3000":{"target":"/zh-CN/docs/troubleshooting/diagnostics#无法通过-3000-端口访问-dashboard","policy":"equivalent"},"第一":{"target":"/zh-CN/docs/troubleshooting/diagnostics#无法通过-3000-端口访问-dashboard","policy":"equivalent"},"第三":{"target":"/zh-CN/docs/troubleshooting/diagnostics#无法通过-3000-端口访问-dashboard","policy":"equivalent"},"第二":{"target":"/zh-CN/docs/troubleshooting/diagnostics#无法通过-3000-端口访问-dashboard","policy":"equivalent"},"自定义配置项":{"target":"/zh-CN/docs/reference/server-environment#source-reference-config-override","policy":"equivalent"},"连接超时":{"target":"/zh-CN/docs/troubleshooting#source-domains-troubleshooting","policy":"equivalent"},"部署成功但出现-502-bad-gateway-错误":{"target":"/zh-CN/docs/troubleshooting#应用无法访问或返回-http-502","policy":"equivalent"},"重置密码":{"target":"/zh-CN/docs/server#忘记-dashboard-密码时如何恢复","policy":"equivalent"}}}, window.location.href));</script>
+</body></html>
