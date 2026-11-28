@@ -6,6 +6,10 @@ import {
   type OneClickCatalog as OneClickCatalogData,
 } from "./caprover-data";
 import { CodeBlock, type SupportedCodeLang } from "./code-block";
+import {
+  ControlsArchitecture,
+  type ArchitectureStage,
+} from "./controls-architecture";
 import type { CopyButtonLabels } from "./copy-button";
 import { DemoPasswordCopy } from "./demo-password-copy";
 import { DeploymentTabs } from "./deployment-tabs";
@@ -14,6 +18,8 @@ import { getMessages, messageList, type Messages } from "../i18n/messages";
 import { LocaleSwitcher } from "./locale-switcher";
 import { NewsletterForm } from "./newsletter-form";
 import { OneClickCatalog } from "./one-click-catalog";
+import { OperationsShowcase, type OperationsItem } from "./operations-showcase";
+import { ThemeToggle } from "./theme-toggle";
 
 const GITHUB = "https://github.com/caprover/caprover";
 const SLACK =
@@ -30,6 +36,27 @@ const RAM_SEGMENTS = [
   { key: "os", percent: 21.5 },
   { key: "caprover", percent: 12.7 },
   { key: "headroom", percent: 65.8 },
+] as const;
+
+const OPERATIONS_CAPTURES = [
+  {
+    id: "runtime",
+    file: "/caprover-ops-runtime.webp",
+    width: 1520,
+    height: 1130,
+  },
+  {
+    id: "rollback",
+    file: "/caprover-ops-rollback.webp",
+    width: 1520,
+    height: 835,
+  },
+  {
+    id: "https",
+    file: "/caprover-ops-https.webp",
+    width: 1140,
+    height: 1060,
+  },
 ] as const;
 
 const controlExamples: {
@@ -261,8 +288,11 @@ function CapabilityProofSection({ messages }: { messages: HomeMessages }) {
   return (
     <section
       className="capability-section shell"
-      aria-label={messages.proofsAriaLabel}
+      aria-labelledby="capabilities-title"
     >
+      <h2 id="capabilities-title" className="sr-only">
+        {messages.proofsAriaLabel}
+      </h2>
       <div className="proof-panel">
         <dl className="capability-strip">
           {messageList(messages.proofs).map(({ value, label }) => (
@@ -428,6 +458,7 @@ function DeploymentExamples({
                   'FROM python:3.13-slim\nWORKDIR /app\nCOPY worker.py .\nCMD ["python", "worker.py"]'
                 }
                 footerStep="$ caprover deploy"
+                footerStatus={messages.deployConfirm}
                 copyLabels={copyLabels}
               />
               <p className="deployment-example-note">
@@ -452,6 +483,7 @@ function DeploymentExamples({
                   "FROM nginx:alpine\nCOPY ./public/ /usr/share/nginx/html/"
                 }
                 footerStep="$ caprover deploy"
+                footerStatus={messages.deployConfirm}
                 copyLabels={copyLabels}
               />
               <p className="deployment-example-note">
@@ -476,6 +508,7 @@ function DeploymentExamples({
                   "services:\n  web:\n    image: nginx:alpine\n  cache:\n    image: redis:7-alpine"
                 }
                 footerStep={compose.step}
+                footerStatus={messages.composeConfirm}
                 copyLabels={copyLabels}
               />
             </>
@@ -562,6 +595,56 @@ export async function HomePage({
   const messages = allMessages.homepage;
   const docs = docsUrl("get-started", locale);
   const controlItems = messageList(messages.controls.items);
+  const architectureStageCopy = messageList(
+    messages.controls.architecture.stages,
+  );
+  const architectureStages: ArchitectureStage[] = [
+    {
+      id: "https",
+      label: "HTTPS",
+      meta: architectureStageCopy[0]?.meta ?? "Let’s Encrypt TLS",
+      icon: "https",
+    },
+    {
+      id: "nginx",
+      label: "CapRover NGINX",
+      meta: architectureStageCopy[1]?.meta ?? "TLS + Custom Template",
+      icon: "nginx",
+      cardIndex: 0,
+    },
+    {
+      id: "swarm",
+      label: "Docker Swarm Overlay",
+      meta: architectureStageCopy[2]?.meta ?? "Service Update + Hooks",
+      icon: "swarm",
+      cardIndex: 1,
+    },
+    {
+      id: "replicas",
+      label: "App Replicas",
+      secondaryLabel: "Private Registry",
+      meta: architectureStageCopy[3]?.meta ?? "Private Registry",
+      icon: "replicas",
+      cardIndex: 2,
+    },
+  ];
+  const operationsItems: OperationsItem[] = messageList(
+    messages.operations.items,
+  ).map((item, index) => {
+    const capture = OPERATIONS_CAPTURES[index] ?? OPERATIONS_CAPTURES[0];
+    return {
+      id: capture.id,
+      title: item.title,
+      description: item.description,
+      viewTitle: item.viewTitle,
+      viewMeta: item.viewMeta,
+      imageSrc: asset(capture.file),
+      imageWidth: capture.width,
+      imageHeight: capture.height,
+      imageAlt: item.imageAlt,
+      caption: item.caption,
+    };
+  });
   const copyLabels: CopyButtonLabels = {
     copy: messages.code.copy,
     copied: messages.code.copied,
@@ -569,7 +652,11 @@ export async function HomePage({
   };
 
   return (
-    <main lang={locale}>
+    <div className="page-frame" id="top">
+      <a className="skip-link" href="#main-content">
+        {allMessages.common.skipToContent}
+      </a>
+
       <header className="nav shell">
         <a className="logo" href="#top" aria-label={messages.brandAriaLabel}>
           <Mark />
@@ -587,6 +674,13 @@ export async function HomePage({
           </a>
         </nav>
         <div className="nav-actions">
+          <ThemeToggle
+            labels={{
+              ariaLabel: allMessages.common.themeToggle.ariaLabel,
+              switchToDark: allMessages.common.themeToggle.switchToDark,
+              switchToLight: allMessages.common.themeToggle.switchToLight,
+            }}
+          />
           <LocaleSwitcher
             locale={locale}
             path="/"
@@ -595,148 +689,138 @@ export async function HomePage({
         </div>
       </header>
 
-      <section className="hero shell" id="top">
-        <div className="hero-copy">
-          <a
-            className="hero-release-link"
-            href={release.url}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label={formatMessage(messages.hero.releaseLinkAriaLabel, {
-              tag: release.tag,
-            })}
-          >
-            <span className="hero-release-dot" aria-hidden="true" />
-            <span className="hero-release-tag">{release.tag}</span>
-            <span className="hero-release-sep" aria-hidden="true">
-              ·
-            </span>
-            <span>{messages.hero.eyebrow}</span>
-            <ArrowIcon className="hero-release-arrow" />
-          </a>
+      <main lang={locale} id="main-content" tabIndex={-1}>
+        <section className="hero shell">
+          <div className="hero-copy">
+            <a
+              className="hero-release-link"
+              href={release.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={formatMessage(messages.hero.releaseLinkAriaLabel, {
+                tag: release.tag,
+              })}
+            >
+              <span className="hero-release-dot" aria-hidden="true" />
+              <span className="hero-release-tag">{release.tag}</span>
+              <span className="hero-release-sep" aria-hidden="true">
+                ·
+              </span>
+              <span>{messages.hero.eyebrow}</span>
+              <ArrowIcon className="hero-release-arrow" />
+            </a>
 
-          <h1>
-            {messages.hero.titleLine1}
-            <br />
-            {messages.hero.titleLine2}
-          </h1>
-          <p className="hero-text">{messages.hero.description}</p>
-          <div className="hero-cta-group">
+            <h1>
+              {messages.hero.titleLine1}
+              <br />
+              {messages.hero.titleLine2}
+            </h1>
+            <p className="hero-text">{messages.hero.description}</p>
+            <div className="hero-cta-group">
+              <div className="actions">
+                <a className="primary" href={docs}>
+                  {messages.hero.getStarted} <ArrowIcon />
+                </a>
+                <a className="secondary" href={LIVE_DEMO}>
+                  {messages.hero.liveDemo}
+                </a>
+              </div>
+              <DemoPasswordCopy
+                label={messages.hero.demoPasswordLabel}
+                password="captain42"
+                copiedLabel={messages.hero.demoPasswordCopied}
+                copyAriaLabel={messages.hero.demoPasswordCopyAriaLabel}
+              />
+            </div>
+          </div>
+          <HeroSpecimen messages={messages.hero} />
+        </section>
+
+        <CapabilityProofSection messages={messages} />
+
+        <OneClickApps messages={messages.oneClick} catalog={oneClickCatalog} />
+
+        <section className="app-controls" aria-labelledby="app-controls-title">
+          <div className="shell">
+            <div className="controls-header">
+              <h2 id="app-controls-title">{messages.controls.title}</h2>
+              <p className="controls-subtitle">{messages.controls.subtitle}</p>
+            </div>
+            <ControlsArchitecture
+              ariaLabel={messages.controls.architecture.ariaLabel}
+              eyebrow={messages.controls.architecture.eyebrow}
+              stages={architectureStages}
+              cards={controlItems.map(
+                ({ title, description, snippetLabel, link }, index) => {
+                  const example = controlExamples[index];
+                  return {
+                    id: example.docSlug,
+                    content: (
+                      <>
+                        <h3>{title}</h3>
+                        <p>{description}</p>
+                        <CodeBlock
+                          className="control-code-block"
+                          label={snippetLabel}
+                          lang={example.lang}
+                          code={example.code}
+                          showPrompt={example.showPrompt}
+                          copyLabels={copyLabels}
+                        />
+                        <a
+                          className="text-link"
+                          href={docsUrl(example.docSlug, locale)}
+                        >
+                          <InlineArrowLabel text={link} />
+                        </a>
+                      </>
+                    ),
+                  };
+                },
+              )}
+            />
+          </div>
+        </section>
+
+        <DeploymentExamples
+          messages={messages.deploymentExamples}
+          copyLabels={copyLabels}
+          locale={locale}
+        />
+
+        <section
+          className="operations-section shell"
+          id="features"
+          aria-labelledby="operations-title"
+        >
+          <h2 id="operations-title">{messages.operations.title}</h2>
+          <OperationsShowcase
+            switcherAriaLabel={messages.operations.switcherAriaLabel}
+            items={operationsItems}
+          />
+        </section>
+
+        <section className="final-cta shell">
+          <div>
+            <h2>{messages.finalCta.title}</h2>
+            <p>{messages.finalCta.description}</p>
             <div className="actions">
               <a className="primary" href={docs}>
-                {messages.hero.getStarted} <ArrowIcon />
+                {messages.finalCta.getStarted} <ArrowIcon />
               </a>
               <a className="secondary" href={LIVE_DEMO}>
-                {messages.hero.liveDemo}
+                {messages.finalCta.liveDemo}
               </a>
             </div>
-            <DemoPasswordCopy
-              label={messages.hero.demoPasswordLabel}
-              password="captain42"
-              copiedLabel={messages.hero.demoPasswordCopied}
-              copyAriaLabel={messages.hero.demoPasswordCopyAriaLabel}
-            />
           </div>
-        </div>
-        <HeroSpecimen messages={messages.hero} />
-      </section>
+        </section>
 
-      <CapabilityProofSection messages={messages} />
-
-      <OneClickApps messages={messages.oneClick} catalog={oneClickCatalog} />
-
-      <section className="app-controls" aria-labelledby="app-controls-title">
-        <div className="shell">
-          <div className="controls-header">
-            <h2 id="app-controls-title">{messages.controls.title}</h2>
-            <p className="controls-subtitle">{messages.controls.subtitle}</p>
-          </div>
-          <div className="control-cards">
-            {controlItems.map(
-              ({ title, description, snippetLabel, link }, index) => {
-                const example = controlExamples[index];
-                return (
-                  <article className="control-card" key={title}>
-                    <h3>{title}</h3>
-                    <p>{description}</p>
-                    <CodeBlock
-                      className="control-code-block"
-                      label={snippetLabel}
-                      lang={example.lang}
-                      code={example.code}
-                      showPrompt={example.showPrompt}
-                      copyLabels={copyLabels}
-                    />
-                    <a
-                      className="text-link"
-                      href={docsUrl(example.docSlug, locale)}
-                    >
-                      <InlineArrowLabel text={link} />
-                    </a>
-                  </article>
-                );
-              },
-            )}
-          </div>
-        </div>
-      </section>
-
-      <DeploymentExamples
-        messages={messages.deploymentExamples}
-        copyLabels={copyLabels}
-        locale={locale}
-      />
-
-      <section
-        className="operations-section shell"
-        id="features"
-        aria-labelledby="operations-title"
-      >
-        <h2 id="operations-title">{messages.operations.title}</h2>
-        <div className="operations-layout">
-          <dl className="operations-list">
-            {messageList(messages.operations.items).map(
-              ({ title, description }) => (
-                <div key={title}>
-                  <dt>{title}</dt>
-                  <dd>{description}</dd>
-                </div>
-              ),
-            )}
-          </dl>
-          <figure className="deployment-result">
-            <img
-              src={asset("/caprover-runtime-status.webp")}
-              width={440}
-              height={480}
-              loading="lazy"
-              alt={messages.operations.runtimeAlt}
-            />
-            <figcaption>{messages.operations.runtimeCaption}</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section className="final-cta shell">
-        <div>
-          <h2>{messages.finalCta.title}</h2>
-          <p>{messages.finalCta.description}</p>
-          <div className="actions">
-            <a className="primary" href={docs}>
-              {messages.finalCta.getStarted} <ArrowIcon />
-            </a>
-            <a className="secondary" href={LIVE_DEMO}>
-              {messages.finalCta.liveDemo}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <CommunitySupport messages={messages.community} />
+        <CommunitySupport messages={messages.community} />
+      </main>
 
       <footer>
         <div className="shell footer-grid">
-          <a className="logo" href="#top">
+          <a className="logo" href="#top" aria-label={messages.brandAriaLabel}>
             <Mark />
             <span>CapRover</span>
           </a>
@@ -749,6 +833,6 @@ export async function HomePage({
           <small>{messages.footer.copyright}</small>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }

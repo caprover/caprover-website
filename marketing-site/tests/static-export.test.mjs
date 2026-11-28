@@ -4,7 +4,9 @@ import path from "node:path";
 import test from "node:test";
 
 const expectedAssets = [
-  "caprover-runtime-status.webp",
+  "caprover-ops-runtime.webp",
+  "caprover-ops-rollback.webp",
+  "caprover-ops-https.webp",
   "caprover-hero-dashboard.webp",
   "caprover-logo.png",
   "slack-icon.png",
@@ -115,6 +117,18 @@ test("exports complete localized website routes", async () => {
     assert.match(homepage, /class="one-click-grid"/);
     assert.doesNotMatch(homepage, /homepage-assets\/one-click\/[^"']+\.png/);
     assert.match(homepage, /class="control-cards"/);
+    assert.match(homepage, /class="architecture-strip"/);
+    assert.match(homepage, /CapRover NGINX/);
+    assert.match(homepage, /Docker Swarm Overlay/);
+    assert.match(homepage, /App Replicas/);
+    assert.match(homepage, /Private Registry/);
+    assert.match(homepage, /id="caprover-theme-init"/);
+    assert.match(homepage, /class="theme-toggle"/);
+    assert.match(homepage, /class="skip-link"/);
+    assert.match(homepage, /class="code-block-footer-status"/);
+    assert(
+      homepage.includes(catalog["homepage.deploymentExamples.deployConfirm"]),
+    );
     assert.match(homepage, /<ul class="featured-apps">/);
     assert.match(
       homepage,
@@ -129,12 +143,15 @@ test("exports complete localized website routes", async () => {
     assert.match(homepage, /MemoryBytes: 536870912/);
     assert.doesNotMatch(
       homepage,
-      /hero-proofs|deployment-path-index|demo-nodejs\.server\.demo\.caprover\.com|another-empty-app/,
+      /hero-proofs|deployment-path-index|demo-nodejs\.server\.demo\.caprover\.com|another-empty-app|caprover-runtime-status/,
     );
-    assert.match(homepage, /<dl class="operations-list">/);
+    assert.match(homepage, /class="operations-list"/);
+    assert.match(homepage, /class="operations-bento-frame"/);
     assert.match(homepage, /id="features"/);
     assert.match(homepage, /caprover deploy/);
-    assert.match(homepage, /caprover-runtime-status\.webp/);
+    assert.match(homepage, /caprover-ops-runtime\.webp/);
+    assert.match(homepage, /caprover-ops-rollback\.webp/);
+    assert.match(homepage, /caprover-ops-https\.webp/);
     const hero = homepage.match(
       /<section class="hero shell"[\s\S]*?<\/section>/,
     )?.[0];
@@ -191,10 +208,7 @@ test("exports complete localized website routes", async () => {
   );
 
   for (const asset of expectedAssets) {
-    assert.match(
-      defaultHtml,
-      new RegExp(`(?:href|src)=["']${basePath}/${assetPath}/${asset}["']`),
-    );
+    assert.match(defaultHtml, new RegExp(`${basePath}/${assetPath}/${asset}`));
   }
 
   if (basePath) {

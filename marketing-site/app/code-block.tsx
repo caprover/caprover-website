@@ -18,6 +18,7 @@ export async function CodeBlock({
   lang,
   label,
   footerStep,
+  footerStatus,
   showPrompt = false,
   copyLabels,
   className,
@@ -26,6 +27,7 @@ export async function CodeBlock({
   lang: SupportedCodeLang;
   label?: string;
   footerStep?: string;
+  footerStatus?: string;
   showPrompt?: boolean;
   copyLabels: CopyButtonLabels;
   className?: string;
@@ -57,18 +59,30 @@ export async function CodeBlock({
         className="code-block-body"
         dangerouslySetInnerHTML={{ __html: html }}
       />
-      {footerStep ? (
+      {footerStep || footerStatus ? (
         <div className="code-block-footer">
-          {isTerminalStep ? (
-            <>
-              <span className="terminal-prompt" aria-hidden="true">
-                $
+          {footerStep ? (
+            <div className="code-block-footer-step">
+              {isTerminalStep ? (
+                <>
+                  <span className="terminal-prompt" aria-hidden="true">
+                    $
+                  </span>{" "}
+                  <span>{stepText}</span>
+                </>
+              ) : (
+                <span>{stepText}</span>
+              )}
+            </div>
+          ) : null}
+          {footerStatus ? (
+            <div className="code-block-footer-status">
+              <span className="code-block-status-check" aria-hidden="true">
+                ✓
               </span>{" "}
-              <span>{stepText}</span>
-            </>
-          ) : (
-            <span>{stepText}</span>
-          )}
+              <span>{footerStatus}</span>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>

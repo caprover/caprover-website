@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Locale } from "@/i18n/config";
+import { THEME_INIT_SCRIPT } from "./theme-script";
 import "./globals.css";
 import "@/features/comparison/comparison.css";
 
@@ -34,7 +35,13 @@ export function RootDocument({
   locale: Locale;
 }>) {
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script
+          id="caprover-theme-init"
+          dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
