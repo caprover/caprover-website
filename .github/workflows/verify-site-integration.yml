@@ -25,9 +25,6 @@ jobs:
             docs-site/package-lock.json
             marketing-site/package-lock.json
 
-      - name: Check documentation consolidation inventory
-        run: node scripts/check-docs-consolidation.mjs
-
       - name: Verify translated documentation integrity
         run: node scripts/check-docs-translations.mjs
 

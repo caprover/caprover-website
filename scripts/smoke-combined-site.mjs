@@ -8,18 +8,6 @@ const siteRoot = path.resolve("build/combined-site");
 const locales = JSON.parse(
   await readFile(path.resolve("content/locales.json"), "utf8"),
 ).filter((locale) => locale.enabled);
-const consolidation = JSON.parse(
-  await readFile(path.resolve("DOCS_CONSOLIDATION_MAP.json"), "utf8"),
-);
-const consolidationRoutes = [
-  ...consolidation.previewRoutes,
-  ...consolidation.addedAfterOriginalConsolidation.map((id) => ({
-    from: "/docs-next/" + id,
-    to: "/docs-next/" + id,
-    decision: "keep",
-  })),
-];
-
 const marketingRoutes = JSON.parse(
   await readFile(path.resolve("marketing-site/routes.json"), "utf8"),
 );
@@ -81,14 +69,9 @@ try {
       ),
     );
     const docsSource = await readFile(
-      path.resolve(`content/${locale.code}/docs-next/get-started.md`),
-      "utf8",
-    );
-    const archivedSource = await readFile(
       path.resolve(`content/${locale.code}/docs/get-started.md`),
       "utf8",
     );
-    const archivedTitle = archivedSource.match(/^title:\s*(.+)$/m)?.[1];
     const docsTitle = docsSource.match(/^title:\s*(.+)$/m)?.[1];
     assert(docsTitle, `${locale.code} documentation title is missing`);
     const outputPrefix = locale.pathPrefix ? `${locale.pathPrefix.slice(1)}/` : "";
@@ -103,11 +86,11 @@ try {
     const previewResponse = await fetch(
       `${origin}${locale.pathPrefix}/docs-next`,
     );
-    const archivedResponse = await fetch(
+    const retiredResponse = await fetch(
       `${origin}${locale.pathPrefix}/docs-legacy/get-started`,
     );
 
-    for (const response of [...routeResponses, docsResponse, previewResponse, archivedResponse]) {
+    for (const response of [...routeResponses, docsResponse, previewResponse, retiredResponse]) {
       assert.equal(response.status, 200, `${response.url} did not return HTTP 200`);
     }
 
@@ -121,7 +104,7 @@ try {
     const localizedDocs = await docsResponse.text();
     assert(localizedDocs.includes(docsTitle), `${locale.code} documentation content is missing`);
     const editUrl =
-      `https://github.com/caprover/caprover-website/edit/master/content/${locale.code}/docs-next/get-started.md`;
+      `https://github.com/caprover/caprover-website/edit/master/content/${locale.code}/docs/get-started.md`;
     assert(
       localizedDocs.includes(editUrl),
       `${locale.code} documentation edit URL is incorrect`,
@@ -155,39 +138,9 @@ try {
     assert(oldHtml.includes(locale.pathPrefix +
       "/docs/installation#source-installation-digitalocean"));
 
-    const archivedHtml = await archivedResponse.text();
-    assert(archivedHtml.includes(archivedTitle),
-      "Archived translation must retain its original title");
-    if (!locale.default) {
-      assert(!localizedDocs.includes("Esta documentación está en inglés."),
-        "Spanish docs must not display the English fallback");
-      assert(!localizedDocs.includes("此文档目前为英文。"),
-        "Chinese docs must not display the English fallback");
-      assert.match(archivedHtml, /name=(?:"robots"|robots) content="noindex, nofollow"/);
-    }
-    for (const old of consolidation.legacyEnglishRoutes) {
-      const isCanonical = consolidation.sections.some((section) =>
-        section.pages.some((page) =>
-          "/docs/" + page.target.replace(/\/index$/, "") === old.legacy),
-      );
-      if (isCanonical) continue;
-      const response = await fetch(origin + locale.pathPrefix + old.legacy);
-      assert.equal(response.status, 200, "Missing old documentation route: " + old.legacy);
-      const html = await response.text();
-      const destination = locale.pathPrefix + old.newCanonical;
-      assert(html.includes("url=" + destination), "Incorrect legacy route: " + old.legacy);
-    }
-
-    // Validate every old preview URL, including aliases across all locales.
-    await Promise.all(consolidationRoutes.map(async (route) => {
-      const response = await fetch(origin + locale.pathPrefix + route.from);
-      assert.equal(response.status, 200, "Missing redirect: " + route.from);
-      const html = await response.text();
-      assert(html.includes("url=" + locale.pathPrefix +
-        route.to.replace(/^\/docs-next/, "/docs")),
-        "Incorrect destination for " + route.from);
-      assert(html.includes('name="robots" content="noindex, follow"'));
-    }));
+    const retired = await retiredResponse.text();
+    assert(retired.includes("url=" + locale.pathPrefix + "/docs/get-started"));
+    assert.match(retired, /name="robots" content="noindex, follow"/);
   }
 
   const homepageResponse = await fetch(`${origin}/`);

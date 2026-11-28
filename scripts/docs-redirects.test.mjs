@@ -1,14 +1,18 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import vm from "node:vm";
+import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import {
+  buildManifest,
   contentIds,
   localTarget,
   normalizeRoute,
   renderRedirect,
   resolveRedirect,
-  routeCatalog,
-  readJson,
+  writeCompatibility,
+  writeJson,
 } from "./docs-redirects.mjs";
 const entry = {
   source: "/docs/old",
@@ -16,7 +20,7 @@ const entry = {
   target: "/docs/new#source-old",
   fragments: {
     old: { target: "/docs/new#equivalent" },
-    removed: { target: "/docs-legacy/old#removed" },
+    removed: { target: "/docs/new" },
     中文: { target: "/docs/new#中文" },
     "a&b": { target: "/docs/new#a%26b" },
   },
@@ -28,7 +32,11 @@ for (const [description, input, expected] of [
     "/docs/new#source-old",
   ],
   ["equivalent fragment", "/docs/old#old", "/docs/new#equivalent"],
-  ["archive-only fragment", "/docs/old#removed", "/docs-legacy/old#removed"],
+  [
+    "removed heading falls back to the page",
+    "/docs/old?utm=1#removed",
+    "/docs/new?utm=1",
+  ],
   ["query string", "/docs/old?utm=1&x=2#old", "/docs/new?utm=1&x=2#equivalent"],
   ["encoded fragment", "/docs/old#%6fld", "/docs/new#equivalent"],
   [
@@ -54,22 +62,6 @@ test("current valid canonical fragment is retained", () => {
     "/docs/new#current",
   );
 });
-for (const locale of ["es-ES", "zh-CN"])
-  test(locale + " locale and archive selection", () => {
-    const translated = {
-      ...entry,
-      target: `/${locale}/docs/new`,
-      fragments: { removed: { target: `/${locale}/docs-legacy/old#removed` } },
-    };
-    assert.equal(
-      resolveRedirect(translated, "/docs/old"),
-      `/${locale}/docs/new`,
-    );
-    assert.equal(
-      resolveRedirect(translated, "/docs/old#removed"),
-      `/${locale}/docs-legacy/old#removed`,
-    );
-  });
 test("route variants normalize consistently", () => {
   for (const p of [
     "/docs/old",
@@ -126,121 +118,76 @@ test("rendered article IDs include explicit and localized aliases; duplicate ali
     contentIds('<article><span id="x"></span><h2 id=x>x</h2></article>'),
   );
 });
-test("route catalog rejects duplicate sources and unsafe destinations", async () => {
-  const catalog = await readJson("DOCS_CONSOLIDATION_MAP.json");
-  const locales = (await readJson("content/locales.json")).filter(
-    (l) => l.enabled,
-  );
-  assert.throws(() =>
-    routeCatalog(
-      {
-        ...catalog,
-        previewRoutes: [...catalog.previewRoutes, catalog.previewRoutes[0]],
-      },
-      locales,
-    ),
-  );
-  assert.throws(() =>
-    routeCatalog(
-      {
-        ...catalog,
-        legacyEnglishRoutes: [
-          { legacy: "/docs/bad", newCanonical: "//evil.test", source: "bad" },
-        ],
-      },
-      locales,
-    ),
-  );
-});
-
-test("cycles and redirect chains are rejected before output is published", async () => {
-  const { validateFinalTargets } = await import("./docs-redirects.mjs");
-  assert.throws(
-    () =>
-      validateFinalTargets(
-        [
-          { target: "/b", fragments: {} },
-          { target: "/a", fragments: {} },
-        ],
-        new Set(["/docs/current"]),
-      ),
-    /cycle or non-final/,
-  );
-  assert.throws(
-    () =>
-      validateFinalTargets(
-        [{ target: "/docs/current", fragments: { old: { target: "/b#old" } } }],
-        new Set(["/docs/current"]),
-      ),
-    /cycle or non-final/,
-  );
-});
-test("regression: missing final heading and missing translated output fail the build", async () => {
-  const { mkdtemp, mkdir, writeFile, rm } = await import("node:fs/promises");
-  const { tmpdir } = await import("node:os");
-  const path = await import("node:path");
-  const { buildManifest, writeJson } = await import("./docs-redirects.mjs");
+test("the build checks every historical destination and heading", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "docs-compat-test-"));
   const site = path.join(root, "site");
+  const compat = path.join(root, "docs-compat");
+  const source = "/docs-legacy/old";
+  const routes = [
+    {
+      source,
+      evidence: "/docs/old",
+      kind: "archive",
+      locale: "en",
+      canonical: false,
+    },
+  ];
+  const inventory = { routes };
+  const targets = { "/docs/old": "/docs/get-started" };
+  const overrides = { routes: {}, previewFallbacks: {} };
+  const output = path.join(site, "docs/get-started.html");
   try {
-    await writeJson(path.join(root, "DOCS_CONSOLIDATION_MAP.json"), {
-      sections: [{ pages: [{ target: "current" }] }],
-      legacyEnglishRoutes: [
-        { legacy: "/docs/old", newCanonical: "/docs/current" },
-      ],
-      previewRoutes: [],
-      addedAfterOriginalConsolidation: [],
+    await writeJson(path.join(compat, "historical-routes.json"), inventory);
+    await writeJson(path.join(compat, "route-targets.json"), targets);
+    await writeJson(path.join(compat, "anchor-overrides.json"), overrides);
+    await writeJson(path.join(compat, "historical-anchors.json"), {
+      pages: { "/docs/old": { ids: ["old-heading"] } },
     });
     await writeJson(path.join(root, "content/locales.json"), [
-      { code: "en", enabled: true, default: true, pathPrefix: "" },
-      { code: "es-ES", enabled: true, pathPrefix: "/es-ES" },
+      { code: "en", enabled: true, pathPrefix: "" },
     ]);
-    await writeJson(path.join(root, "docs-compat/historical-anchors.json"), {
-      pages: {
-        "/docs/old": { ids: ["old-heading"] },
-        "/es-ES/docs/old": { ids: ["old-heading"] },
-      },
-    });
-    const overrides = { routes: {}, previewFallbacks: {} };
-    await writeJson(
-      path.join(root, "docs-compat/anchor-overrides.json"),
-      overrides,
+    await mkdir(path.dirname(output), { recursive: true });
+    await writeFile(
+      output,
+      '<article><h2 id="current-heading">Heading</h2></article>',
     );
-    for (const prefix of ["", "/es-ES"])
-      for (const dir of ["/docs", "/docs-legacy"]) {
-        const file = path.join(
-          site,
-          prefix,
-          dir,
-          dir === "/docs" ? "current.html" : "old.html",
-        );
-        await mkdir(path.dirname(file), { recursive: true });
-        await writeFile(
-          file,
-          '<article><h2 id="' +
-            (dir === "/docs" ? "new-heading" : "old-heading") +
-            '">Heading</h2></article>',
-        );
-      }
-    await buildManifest(root, site); // A known missing current heading safely uses the archive.
+    await writeFile(
+      path.join(site, "sitemap.xml"),
+      "<urlset><url><loc>https://caprover.com/docs/get-started</loc></url></urlset>",
+    );
+
+    const { routes: manifest } = await buildManifest(root, site);
+    assert.equal(
+      manifest[0].fragments["old-heading"].target,
+      "/docs/get-started",
+    );
+
     overrides.routes["/docs/old"] = {
-      "old-heading": {
-        target: "/docs/current#missing-heading",
-        policy: "equivalent",
-        reason: "Test erroneous mapping",
-      },
+      "old-heading": "/docs/get-started#missing",
     };
-    await writeJson(
-      path.join(root, "docs-compat/anchor-overrides.json"),
-      overrides,
-    );
+    await writeJson(path.join(compat, "anchor-overrides.json"), overrides);
     await assert.rejects(buildManifest(root, site), /Missing target anchor/);
-    overrides.routes = {};
-    await writeJson(
-      path.join(root, "docs-compat/anchor-overrides.json"),
-      overrides,
+    await writeJson(path.join(compat, "anchor-overrides.json"), {
+      ...overrides,
+      routes: {},
+    });
+
+    targets["/docs/old"] = source;
+    await writeJson(path.join(compat, "route-targets.json"), targets);
+    await assert.rejects(
+      buildManifest(root, site),
+      /Redirect cycle, non-canonical destination/,
     );
-    await rm(path.join(site, "es-ES/docs/current.html"));
+    targets["/docs/old"] = "/docs/get-started";
+    await writeJson(path.join(compat, "route-targets.json"), targets);
+
+    await writeJson(path.join(compat, "historical-routes.json"), {
+      routes: [...routes, ...routes],
+    });
+    await assert.rejects(buildManifest(root, site), /Duplicate source/);
+    await writeJson(path.join(compat, "historical-routes.json"), inventory);
+
+    await rm(output);
     await assert.rejects(buildManifest(root, site), /ENOENT/);
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -248,11 +195,6 @@ test("regression: missing final heading and missing translated output fail the b
 });
 
 test("canonical output collisions fail, while overlapping canonical HTML stays intact", async () => {
-  const { mkdtemp, mkdir, writeFile, readFile, rm } =
-    await import("node:fs/promises");
-  const { tmpdir } = await import("node:os");
-  const path = await import("node:path");
-  const { writeCompatibility } = await import("./docs-redirects.mjs");
   const root = await mkdtemp(path.join(tmpdir(), "docs-output-test-"));
   try {
     const file = path.join(root, "docs/current.html");
@@ -263,7 +205,6 @@ test("canonical output collisions fail, while overlapping canonical HTML stays i
       locale: "en",
       target: "/docs/current",
       fragments: {},
-      currentIds: [],
     };
     await assert.rejects(
       writeCompatibility(root, { routes: [route] }),

@@ -1,148 +1,112 @@
 ---
 id: get-started
 title: Getting Started
-sidebar_label: Getting Started
+slug: /get-started
 ---
 
-## Simple Setup
+Install CapRover on a fresh Ubuntu 24.04 server.
 
-The recommended method to install CapRover is via DigitalOcean one-click app. CapRover is available as a One-Click app in DigitalOcean marketplace.
+## Requirements
 
-Note that if you are a new DigitalOcean user, you will receive **\$100 Free Credit** once you sign up for the first two months. This is enough for two months of multiple servers!
+- AMD64 or ARM64 server, public IPv4, sudo/root access.
+- At least 1 GiB RAM and 5 GiB free disk space.
+- A domain with wildcard DNS access.
+- Public inbound TCP ports **80**, **443**, and **3000** allowed by your hosting provider.
 
-If you use this method, you can skip **Prerequisites** section and step 1 of **CapRover Setup** below!
+<span id="step-1-caprover-installation"></span>
 
-<br/>
+## Install CapRover
 
-<a href="https://marketplace.digitalocean.com/apps/caprover?action=deploy&refcode=6410aa23d3f3" target="_blank" rel="noreferrer noopener">
-<img src="/img/do-btn-blue.svg" alt="CreateDroplet" width="300" />
-</a>
-
-<br/>
-
-## Prerequisites
-
-### A) Domain Name
-
-During installation, you'll be asked to point a wildcard DNS entry to your CapRover IP Address. This will cost you as low as \$2 a year (or [even less](https://www.reddit.com/r/selfhosted/comments/sp8etq/comment/hwdgztx/?utm_source=reddit&utm_medium=web2x&context=3)!)
-
-Note that you can use CapRover without a domain too. But you won't be able to setup HTTPS.
-
-### B) Server
-
-#### B1) Public IP
-
-_Side note: You can [install CapRover locally](run-locally.md) on your laptop on a private network which is behind NAT (your router). But if you want to enable HTTPS and/or access the apps from outside of your private network, it requires some special setup, like port forwarding._
-
-In standard installation, CapRover has to be installed on a machine with a public IP address. If you need help with Public IP, see [Server & Public IP address](server-purchase/digitalocean.md). This will cost you as low as $5 a month. If you use the DigitalOcean referral code, you'll get $100 credit - two months worth of free server: https://m.do.co/c/6410aa23d3f3
-
-#### B2) Server Specs
-
-_**CPU Architecture**:_ Published CapRover images target AMD64 (x86-64) and ARM64. The 32-bit ARMv7 image is no longer published.
-
-_**Recommended Stack**:_ CapRover is tested on Ubuntu 24.04 and Docker 25+. If you're using CapRover on a different OS, you might want to look at [Docker Docs](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#supported-storage-drivers-per-linux-distribution).
-
-_**Minimum RAM**:_ Note that the build process sometimes consumes too much RAM, and 512MB RAM might not be enough (see [this issue](https://github.com/caprover/caprover/issues/28)). Most providers offer a minimum of 1GB RAM on \$5 instance including DigitalOcean, Vultr, Scaleway, Linode, SSD Nodes and etc.
-
-#### B3) Docker
-
-Your server must have Docker installed on it. If you get your server from DigitalOcean, you can select a server with CapRover one-click app and everything will be installed for you automatically. Otherwise, you can install Docker CE by following [this instruction](https://docs.docker.com/engine/installation). Note that your Docker version needs to be, at least, version 25.x+.
-
-**AVOID snap installation** [snap installation of Docker is buggy](https://github.com/caprover/caprover/issues/501#issuecomment-554764942). Use the official installation instructions for Docker.
-
-#### B4) Configure Firewall
-
-Some server providers have strict firewall settings. For a single-node Ubuntu server, allow the public CapRover ports:
+On the server:
 
 ```bash
-ufw allow 80/tcp
-ufw allow 443/tcp
-ufw allow 443/udp
-ufw allow 3000/tcp
+sudo apt update && sudo apt install -y curl
+curl -fsSL https://get.caprover.com -o caprover-install.sh
+sudo bash caprover-install.sh
 ```
 
-See [firewall settings](firewall.md) for multi-node Swarm ports and registry access.
+[Installer source and options](https://github.com/caprover/caprover/tree/master/scripts/user/installer)
 
-<br/>
-<br/>
+For a read-only check, run `sudo bash caprover-install.sh --check`.
 
-# CapRover Setup
+**Other methods:** [Manual Setup](installation/manual.md) (Docker and CapRover commands), [DigitalOcean Marketplace](installation/index.md), or [Advanced Installation](installation/advanced/index.md) for private networks, existing Swarms, and custom ports.
 
-## Step 1: CapRover Installation
+<span id="step-2-connect-root-domain"></span>
 
-Just run the following line, sit back and enjoy!
+## DNS
+
+Create an A record in your DNS provider:
+
+| Type | Name (in `example.com`) | Value |
+| --- | --- | --- |
+| A | `*.apps` | Your server's public IPv4 address |
+
+This guide uses `apps.example.com` as the CapRover root domain. The wildcard covers `captain.apps.example.com` and app domains such as `my-first-app.apps.example.com`.
+
+Verify DNS:
 
 ```bash
-docker run -p 80:80 -p 443:443 -p 3000:3000 -e ACCEPTED_TERMS=true -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
+dig +short captain.apps.example.com
+dig +short test.apps.example.com
 ```
 
-The command above uses the recommended default ports. Advanced installations can change the published ports by setting `CAPTAIN_HOST_HTTP_PORT`, `CAPTAIN_HOST_HTTPS_PORT`, and `CAPTAIN_HOST_ADMIN_PORT` to match the host side of each `-p` mapping. Keep the container ports at `80`, `443`, and `3000`.
+Both should return your server's IP. If using a DNS proxy such as Cloudflare, switch to **DNS only** during setup. The root hostname `apps.example.com` needs a separate record only if you plan to use it directly.
 
-You will see a bunch of outputs on your screen. Once the CapRover is initialized, you can visit `http://[IP_OF_YOUR_SERVER]:3000` in your browser and login to CapRover using the default password `captain42`. You can change your password later. **However, do not make any changes in the dashboard**. We'll use the command line tool to setup the server (recommended).
+<span id="step-3-configure-and-initialize-caprover"></span>
 
-## Step 2: Connect Root Domain
+## Configure CapRover
 
-Let's say you own `mydomain.com`. You can set `*.something.mydomain.com` as an `A-record` in your DNS settings to point to the IP address of the server where you installed CapRover. Note that it can take several hours for this change to take into effect. It will show up like this in your DNS configs:
+Open `http://YOUR_SERVER_IP:3000`. **Initial password:** `captain42`.
 
-- **TYPE**: A record
-- **HOST**: `*.something`
-- **POINTS TO**: (IP Address of your server)
-- **TTL**: (doesn't really matter)
+- Change the password and set the root domain to `apps.example.com` (without `*.` or `captain.`).
+- Dashboard hostname: `captain.apps.example.com`. Enable HTTPS and Force HTTPS once DNS and certificate issuance work.
+- Restrict public access to `3000/tcp` after dashboard HTTPS is working.
 
-To confirm, go to https://mxtoolbox.com/DNSLookup.aspx and enter `randomthing123.something.mydomain.com` and check if IP address resolves to the IP you set in your DNS. Note that `randomthing123` is needed because you set a wildcard entry in your DNS by setting `*.something` as your host, not `something`.
+For certificate failures, check DNS and inbound TCP 80/443. See [Domains & HTTPS](domains/index.md).
 
-> **NOTE**: CapRover requires A Record to be pointing to CapRover's IP Address. If you use proxy services, such as Cloudflare, you may face difficulties. CapRover does not officially support such use cases.
+**CLI alternative:** Install the CLI with `npm install -g caprover` and run `caprover serversetup` from your computer. See [CLI Commands](reference/cli.md).
 
-## Step 3: Configure and initialize CapRover
+<span id="step-5-deploy-the-test-app"></span>
 
-### With CLI (recommended)
+## Deploy your first app
 
-Assuming you have npm installed on your local machine (e.g., your laptop), simply run (add `sudo` if needed):
+1. Open **Apps** and create `my-first-app` as a web app.
+2. Under **Deployment**, paste this Captain Definition and deploy:
+
+   ```json
+   {
+     "schemaVersion": 2,
+     "imageName": "nginx:stable-alpine"
+   }
+   ```
+
+3. Set **Container HTTP Port** to `80`.
+4. Open `http://my-first-app.apps.example.com`. You should see the NGINX welcome page.
+5. Set up HTTPS for the app in its HTTP settings when DNS and port 80 are reachable.
+
+**Next:** [Deploy your own code](deployments/index.md) · [Configure apps](applications/index.md) · [Persistent data](data-persistence/index.md)
+
+## Low-memory builds (optional)
+
+If a build runs out of memory, check `free -h` and `swapon --show`. If you have spare disk space and `/swapfile` does not already exist:
 
 ```bash
- npm install -g caprover
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
 ```
 
-Then, run
+To keep swap after reboot, add `/swapfile none swap sw 0 0` **once** to `/etc/fstab`. For frequent builds, use more RAM or build in CI.
 
-```bash
- caprover serversetup
-```
+<span id="source-index"></span>
 
-Follow the steps and login to your CapRover instance. When prompted to enter the root domain, enter `something.mydomain.com` assuming that you set `*.something.mydomain.com` to point to your IP address in step #2. Now you can access your CapRover from `captain.something.mydomain.com`. You can read more about hiding the root domain [here](./best-practices.md#hidden-root-domain).
+## Start
 
-> **NOTE**: **It will not be possible to carry through with the `caprover serversetup` if you've already forced https on your CapRover instance.**
-> In such case go straight to logging in with the `caprover login` command. To change the password go to the settings menu in the app.
+Find what you need:
 
-### With the web interface (doesn't require npm)
-
-1. Login to `http://[IP_OF_YOUR_SERVER]:3000`
-2. Configure the root domain
-3. Enable HTTPS, then force it
-4. Once you are connected through HTTPS, change the default password (`captain42`)
-
-## Step 4: (Optional) Set up Swap file
-
-In some cases you may run into problems due to not having enough physical RAM.
-For example, when building a Docker image, if it starts to take up too much memory, the build will fail.
-To work around these problems (without purchasing more RAM) you can set up a Swap file (which is used as virtual RAM),
-by following these instructions on [How To Create A Linux Swap File](https://linuxize.com/post/create-a-linux-swap-file/).
-
-## Step 5: Deploy the Test App
-
-Go to the CapRover in your browser, from the left menu select Apps and create a new app. Name it `my-first-app`. Then, download any of the test apps <a href="https://github.com/caprover/caprover/tree/master/captain-sample-apps">here</a>, unzip the content. and while inside the directory of the test app, run:
-
-```bash
-/home/Desktop/captain-examples/captain-node$  caprover deploy
-```
-
-Follow the instructions, enter `my-first-app` when asked for app name. First time build takes about two minutes. After build is completed, visit `my-first-app.something.mydomain.com` where `something.mydomain.com` is your root domain.
-CONGRATS! Your app is live!!
-
-You can connect multiple custom domains (like `www.my-app.com`) to a single app and enable HTTPS and do much more in the app's settings page.
-
-Note that when you run `caprover deploy`, the current git commit will be sent over to your server.
-
-> **IMPORTANT**: Uncommitted files and files in `gitignore` WILL NOT be sent to the server.
-
-You can visit CapRover in the browser and set custom parameters for your app such as environment variables, and do much more! For more details regarding deployment, please see [CLI docs](cli-commands.md). For details on `captain-definition` file, see [Captain Definition File](captain-definition-file.md).
+- **New installation:** [Getting Started](get-started.md)
+- **Apps and settings:** [Applications](applications/index.md)
+- **Deployments:** [Deployments](deployments/index.md)
+- **Server maintenance:** [Server Administration](server/index.md)
+- **Problems:** [Troubleshooting](troubleshooting/index.md)

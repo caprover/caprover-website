@@ -178,35 +178,20 @@ function copyDirectory(source, destination) {
   }
 }
 
-const canonicalDocs = path.join(contentRoot, "en", "docs-next");
-const canonicalDocFiles = relativeFiles(canonicalDocs);
-const canonicalCategories = require(path.join(root, "docs-site", "sidebars.js"))
-  .docs.filter((entry) => entry.type === "category").map((entry) => entry.label);
-const translatedCategories = {
-  "es-ES": [
-    "Inicio y guías", "Aplicaciones y despliegues", "Aplicaciones de un clic",
-    "Dominios y redes", "Datos y persistencia", "Servidor y clústeres",
-    "Solución de problemas", "Referencia",
-  ],
-  "zh-CN": [
-    "入门与指南", "应用与部署", "一键应用", "域名与网络",
-    "数据与持久化", "服务器与集群", "故障排查", "参考资料",
-  ],
-};
-if (canonicalCategories.length !== 8) {
-  throw new Error("Unexpected canonical documentation category inventory");
-}
-
 const defaultRoot = path.join(contentRoot, defaultLocale.code);
-// These sources remain available as a translated, noindex archive.
 const defaultDocs = path.join(defaultRoot, "docs");
 const defaultDocFiles = relativeFiles(defaultDocs);
 const defaultMarketing = require(path.join(defaultRoot, "marketing.json"));
 const defaultMarketingKeys = Object.keys(defaultMarketing).sort();
 const defaultDocsUi = require(path.join(defaultRoot, "docs-ui.json"));
 const defaultDocsUiKeys = objectKeys(defaultDocsUi, "");
-const sidebarIds = sidebarDocumentIds(
-  require(path.join(root, "docs-site", "sidebars-legacy.js")),
+const sidebar = require(path.join(root, "docs-site", "sidebars.js"));
+const sidebarIds = sidebarDocumentIds(sidebar);
+const categories = sidebar.docs.filter((entry) => entry.type === "category");
+assertSameList(
+  Object.keys(defaultDocsUi).filter((key) => key.startsWith("sidebar.")).sort(),
+  categories.map(({ label }) => `sidebar.${label}`).sort(),
+  "Sidebar category translations",
 );
 const defaultMarkdownFiles = defaultDocFiles.filter((file) => file.endsWith(".md"));
 const documentIds = new Set(
@@ -274,54 +259,12 @@ for (const locale of enabledLocales) {
   const localeRoot = path.join(contentRoot, locale.code);
   if (!locale.default) {
     const localeI18n = path.join(generatedI18n, locale.code);
-    copyDirectory(
-      path.join(localeRoot, "docs"),
-      path.join(
-        localeI18n,
-        "docusaurus-plugin-content-docs-archive",
-        "current",
-      ),
-    );
-
-    const translatedDocs = path.join(localeRoot, "docs-next");
-    if (!fs.existsSync(translatedDocs)) {
-      throw new Error(`Missing translated documentation for ${locale.code}`);
-    }
-    assertSameList(relativeFiles(translatedDocs), canonicalDocFiles,
-      `${locale.code} current documentation files`);
-    for (const relative of canonicalDocFiles.filter((file) => file.endsWith(".md"))) {
-      const sourceId = frontmatterId(path.join(canonicalDocs, relative));
-      const translatedId = frontmatterId(path.join(translatedDocs, relative));
-      if (sourceId !== translatedId) {
-        throw new Error(`${locale.code}/docs-next/${relative} changes the document ID`);
-      }
-    }
-    copyDirectory(translatedDocs,
-      path.join(localeI18n, "docusaurus-plugin-content-docs", "current"));
-    const translatedLabels = translatedCategories[locale.code];
-    if (!translatedLabels || translatedLabels.length !== canonicalCategories.length) {
-      throw new Error(`Missing canonical sidebar translations for ${locale.code}`);
-    }
-    writeCatalog(
-      path.join(localeI18n, "docusaurus-plugin-content-docs", "current.json"),
-      Object.fromEntries([
-        ["version.label", "current"],
-        ...canonicalCategories.map((name, i) => [
-          `sidebar.docs.category.${name}`, translatedLabels[i],
-        ]),
-      ]),
-    );
+    const docsI18n = path.join(localeI18n, "docusaurus-plugin-content-docs");
+    copyDirectory(path.join(localeRoot, "docs"), path.join(docsI18n, "current"));
 
     const docsUi = require(path.join(localeRoot, "docs-ui.json"));
     const catalogs = toDocusaurusCatalogs(docsUi);
-    writeCatalog(
-      path.join(
-        localeI18n,
-        "docusaurus-plugin-content-docs-archive",
-        "current.json",
-      ),
-      catalogs.docs,
-    );
+    writeCatalog(path.join(docsI18n, "current.json"), catalogs.docs);
     writeCatalog(
       path.join(localeI18n, "docusaurus-theme-classic", "navbar.json"),
       catalogs.navbar,

@@ -10,10 +10,12 @@
   "footer.X": "X",
   "footer.Slack Group": "Slack Group",
   "footer.GitHub": "GitHub",
-  "sidebar.Basics": "Basics",
-  "sidebar.Do More": "Do More",
-  "sidebar.Recipes and Tips": "Recipes and Tips",
-  "sidebar.CI/CD Integration": "CI/CD Integration",
-  "sidebar.Help": "Help",
-  "sidebar.Server Purchase": "Server Purchase"
+  "sidebar.Start & Guides": "Start & Guides",
+  "sidebar.Applications & Deployments": "Applications & Deployments",
+  "sidebar.One-Click Apps": "One-Click Apps",
+  "sidebar.Domains & Networking": "Domains & Networking",
+  "sidebar.Data & Persistence": "Data & Persistence",
+  "sidebar.Server & Clusters": "Server & Clusters",
+  "sidebar.Troubleshooting": "Troubleshooting",
+  "sidebar.Reference": "Reference"
 }

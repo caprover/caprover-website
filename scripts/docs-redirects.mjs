@@ -29,21 +29,10 @@ export function documentMetadata(html) {
       .map((_, el) => $(el).attr("href"))
       .get(),
     robots: $('meta[name="robots"]').attr("content"),
+    alternates: $('link[rel="alternate"][hreflang]')
+      .map((_, el) => $(el).attr("href"))
+      .get(),
   };
-}
-export function validateFinalTargets(routes, finalPaths) {
-  for (const entry of routes) {
-    for (const target of [
-      entry.target,
-      ...Object.values(entry.fragments).map((m) => m.target),
-    ]) {
-      localTarget(target);
-      assert(
-        finalPaths.has(new URL(target, "https://caprover.com").pathname),
-        "Redirect cycle or non-final destination: " + target,
-      );
-    }
-  }
 }
 export function normalizeRoute(route) {
   assert(
@@ -119,168 +108,163 @@ export function resolveRedirect(entry, href) {
   return target.pathname + target.search + target.hash;
 }
 
-export function routeCatalog(catalog, locales) {
-  const canonical = new Set(
-    catalog.sections.flatMap((s) =>
-      s.pages.map((p) => "/docs/" + p.target.replace(/\/index$/, "")),
-    ),
-  );
-  const routes = [];
-  for (const locale of locales) {
-    const prefix = locale.pathPrefix;
-    for (const old of catalog.legacyEnglishRoutes) {
-      const source = prefix + old.legacy;
-      const entry = {
-        source,
-        kind: "legacy",
-        locale: locale.code,
-        evidence: source,
-        target: prefix + old.newCanonical,
-        archive: prefix + old.legacy.replace("/docs/", "/docs-legacy/"),
-        canonical: canonical.has(old.legacy),
-      };
-      routes.push(entry, {
-        ...entry,
-        source: "/docs/" + locale.code + old.legacy.slice("/docs".length),
-        kind: "alias",
-        canonical: false,
-      });
+export async function readCanonicalDocs(site, locales) {
+  const pages = new Map();
+  for (const { code, pathPrefix } of locales) {
+    const sitemap = await readFile(
+      path.join(site, pathPrefix, "sitemap.xml"),
+      "utf8",
+    );
+    for (const [, pathname] of sitemap.matchAll(
+      /<loc>https:\/\/caprover\.com([^<]+)<\/loc>/g,
+    )) {
+      if (!pathname.startsWith(pathPrefix + "/docs/")) continue;
+      assert(!pages.has(pathname), "Duplicate canonical page: " + pathname);
+      pages.set(pathname, code);
     }
-    for (const old of [
-      ...catalog.previewRoutes,
-      ...catalog.addedAfterOriginalConsolidation.map((id) => ({
-        from: "/docs-next/" + id,
-        to: "/docs-next/" + id,
-        decision: "keep",
-      })),
-    ]) {
-      const relative = old.from.slice("/docs-next/".length).replace(/\/$/, "");
-      const marker =
-        old.decision === "merge" && relative !== "installation/play-with-docker"
-          ? "#source-" + relative.replace(/[^a-z0-9]+/gi, "-")
-          : "";
-      routes.push({
-        source: prefix + old.from,
-        kind: "preview",
-        locale: locale.code,
-        evidence: prefix + old.from,
-        target: prefix + old.to.replace("/docs-next/", "/docs/") + marker,
-        canonical: false,
-      });
-    }
+    assert.equal(pages.get(pathPrefix + "/docs/get-started"), code);
   }
-  const seen = new Set();
-  for (const route of routes) {
-    route.source = normalizeRoute(route.source);
-    route.evidence = route.evidence && normalizeRoute(route.evidence);
-    assert(!seen.has(route.source), "Duplicate source: " + route.source);
-    seen.add(route.source);
-    localTarget(route.target);
-  }
-  return routes.sort((a, b) => a.source.localeCompare(b.source, "en"));
+  return pages;
 }
 
 export async function buildManifest(root, site) {
-  const catalog = await readJson(
-    path.join(root, "DOCS_CONSOLIDATION_MAP.json"),
+  const [inventory, targets, history, overrides, config] = await Promise.all(
+    [
+      "docs-compat/historical-routes.json",
+      "docs-compat/route-targets.json",
+      "docs-compat/historical-anchors.json",
+      "docs-compat/anchor-overrides.json",
+      "content/locales.json",
+    ].map((file) => readJson(path.join(root, file))),
   );
-  const locales = (
-    await readJson(path.join(root, "content/locales.json"))
-  ).filter((l) => l.enabled);
-  const history = await readJson(
-    path.join(root, "docs-compat/historical-anchors.json"),
+  const locales = config.filter(({ enabled }) => enabled);
+  const prefixes = new Map(
+    locales.map(({ code, pathPrefix }) => [code, pathPrefix]),
   );
-  const overrides = await readJson(
-    path.join(root, "docs-compat/anchor-overrides.json"),
-  );
-  const routes = routeCatalog(catalog, locales);
+  const canonical = await readCanonicalDocs(site, locales);
+  const seen = new Set();
+  const evidence = new Set();
+  const targetKeys = new Set();
   const cache = new Map();
-  async function ids(route) {
-    const pathname = new URL(route, "https://caprover.com").pathname;
-    if (!cache.has(pathname))
-      cache.set(
-        pathname,
-        contentIds(await readFile(htmlFile(site, pathname), "utf8")),
-      );
-    return cache.get(pathname);
-  }
-  async function validate(target) {
+
+  async function validate(target, locale) {
     localTarget(target);
     const url = new URL(target, "https://caprover.com");
-    const anchors = await ids(target);
-    if (url.hash)
+    assert.equal(
+      canonical.get(url.pathname),
+      locale,
+      "Redirect cycle, non-canonical destination, or wrong locale: " + target,
+    );
+    if (!cache.has(url.pathname)) {
+      cache.set(
+        url.pathname,
+        contentIds(await readFile(htmlFile(site, url.pathname), "utf8")),
+      );
+    }
+    const ids = cache.get(url.pathname);
+    if (url.hash) {
       assert(
-        anchors.includes(decodeURIComponent(url.hash.slice(1))),
+        ids.includes(decodeURIComponent(url.hash.slice(1))),
         "Missing target anchor: " + target,
       );
-  }
-  for (const entry of routes) {
-    await validate(entry.target);
-    const current = await ids(entry.target);
-    const historical = history.pages[entry.evidence]?.ids ?? [];
-    assert(
-      history.pages[entry.evidence],
-      "Missing historical evidence: " + entry.source,
-    );
-    entry.fragments = {};
-    const explicit = overrides.routes[entry.evidence] ?? {};
-    for (const anchor of [
-      ...new Set([...historical, ...Object.keys(explicit)]),
-    ].sort()) {
-      let target, policy;
-      if (explicit[anchor]) {
-        ({ target, policy } = explicit[anchor]);
-      } else if (current.includes(anchor)) {
-        target = entry.target.split("#")[0] + "#" + anchor;
-        policy = "current";
-      } else if (entry.archive) {
-        target = entry.archive + "#" + anchor;
-        policy = "archive";
-      } else {
-        // All changed preview headings require a reviewed section fallback.
-        const fallback = overrides.previewFallbacks[entry.evidence];
-        target =
-          fallback ?? (entry.target.includes("#source-") ? entry.target : null);
-        assert(
-          target,
-          "Missing reviewed preview fallback: " + entry.evidence + "#" + anchor,
-        );
-        policy = "source-section";
-      }
-      await validate(target);
-      assert.equal(
-        new URL(target, "https://caprover.com").pathname.startsWith(
-          "/" + entry.locale + "/",
-        ),
-        entry.locale !== "en",
-        "Wrong target locale: " + target,
-      );
-      entry.fragments[anchor] = { target, policy };
     }
-    entry.currentIds = current;
+    return ids;
   }
-  for (const [source, anchors] of Object.entries(overrides.routes)) {
-    assert(
-      routes.some((r) => r.evidence === source),
-      "Unused override route: " + source,
+
+  const routes = [];
+  for (const route of inventory.routes) {
+    if (!prefixes.has(route.locale)) continue;
+    const prefix = prefixes.get(route.locale);
+    assert.equal(normalizeRoute(route.source), route.source);
+    assert(!seen.has(route.source), "Duplicate source: " + route.source);
+    seen.add(route.source);
+    assert.equal(
+      canonical.has(route.source),
+      route.canonical,
+      "Canonical collision: " + route.source,
     );
-    for (const [anchor, mapping] of Object.entries(anchors))
-      assert(
-        mapping.reason,
-        "Missing semantic rationale: " + source + "#" + anchor,
+    const historical = history.pages[route.evidence];
+    assert(historical, "Missing historical evidence: " + route.source);
+    evidence.add(route.evidence);
+
+    assert(
+      route.evidence.startsWith(prefix + "/docs"),
+      "Wrong evidence locale: " + route.source,
+    );
+    const targetKey = route.evidence.slice(prefix.length);
+    assert(
+      Object.hasOwn(targets, targetKey),
+      "Missing destination: " + route.source,
+    );
+    targetKeys.add(targetKey);
+    const target = prefix + localTarget(targets[targetKey]);
+    const targetPath = target.split("#")[0];
+    if (route.canonical) {
+      assert.equal(
+        target,
+        route.source,
+        "Canonical page must retain its URL: " + route.source,
       );
+    }
+    const currentIds = await validate(target, route.locale);
+    const explicit = overrides.routes[route.evidence] ?? {};
+    const fallback = overrides.previewFallbacks[route.evidence] ?? target;
+    const fragments = Object.fromEntries(
+      [...new Set([...historical.ids, ...Object.keys(explicit)])]
+        .sort()
+        .map((anchor) => {
+          if (
+            currentIds.includes(anchor) &&
+            (route.canonical || !Object.hasOwn(explicit, anchor))
+          ) {
+            return [
+              anchor,
+              {
+                target: targetPath + "#" + encodeURIComponent(anchor),
+                policy: "current",
+              },
+            ];
+          }
+          if (Object.hasOwn(explicit, anchor)) {
+            const destination = explicit[anchor];
+            return [
+              anchor,
+              {
+                target: destination,
+                policy: destination.includes("#")
+                  ? "equivalent"
+                  : "page-fallback",
+              },
+            ];
+          }
+          return [
+            anchor,
+            {
+              target: fallback,
+              policy: fallback.includes("#")
+                ? "section-fallback"
+                : "page-fallback",
+            },
+          ];
+        }),
+    );
+    for (const mapping of Object.values(fragments))
+      await validate(mapping.target, route.locale);
+    routes.push({ ...route, target, fragments });
   }
-  const finalPaths = new Set(
-    catalog.sections.flatMap((s) =>
-      s.pages.flatMap((p) =>
-        locales.map(
-          (l) => l.pathPrefix + "/docs/" + p.target.replace(/\/index$/, ""),
-        ),
-      ),
-    ),
-  );
-  for (const route of routes) if (route.archive) finalPaths.add(route.archive);
-  validateFinalTargets(routes, finalPaths);
+
+  // A historical source can back several URL formats, including old locale aliases.
+  // Keep the evidence and destinations covered when the route inventory changes.
+  for (const source of Object.keys(history.pages)) {
+    const locale = locales.find(
+      ({ pathPrefix }) => pathPrefix && source.startsWith(pathPrefix + "/"),
+    );
+    if (!locale && !source.startsWith("/docs")) continue;
+    assert(evidence.has(source), "Uncovered historical evidence: " + source);
+  }
+  for (const key of Object.keys(targets))
+    assert(targetKeys.has(key), "Unused destination: " + key);
+  assert.equal(inventory.previewRevision, history.previewRevision);
   return { version: 1, routes };
 }
 
@@ -299,7 +283,7 @@ export function renderRedirect(entry) {
 <link rel="canonical" href="https://caprover.com${escapeHtml(canonical)}">
 <meta name="robots" content="noindex, follow"><title>Redirecting…</title></head><body>
 <p><a href="${target}">Continue to the documentation</a></p>
-<script>${entry.source.startsWith("/docs/en/") ? 'try { localStorage.setItem("caprover.locale", "en"); } catch {}' : ""}window.location.replace((${resolveRedirect.toString()})(${scriptJson({ target: entry.target, fragments: entry.fragments })}, window.location.href));</script>
+<script>${/^\/docs\/en(?:\/|$)/.test(entry.source) ? 'try { localStorage.setItem("caprover.locale", "en"); } catch {}' : ""}window.location.replace((${resolveRedirect.toString()})(${scriptJson({ target: entry.target, fragments: entry.fragments })}, window.location.href));</script>
 </body></html>\n`;
 }
 
@@ -327,17 +311,21 @@ export async function writeCompatibility(site, manifest) {
       await writeFile(file, renderRedirect(entry));
     }
   }
-  const active = manifest.routes
-    .filter((e) => e.canonical)
-    .map((e) => ({
-      source: e.source,
-      target: e.target,
-      fragments: Object.fromEntries(
-        Object.entries(e.fragments).filter(
-          ([id]) => !e.currentIds.includes(id),
-        ),
-      ),
-    }));
+  const active = Object.fromEntries(
+    manifest.routes
+      .filter((entry) => entry.canonical)
+      .map(({ source, target, fragments }) => [
+        source,
+        {
+          target,
+          fragments: Object.fromEntries(
+            Object.entries(fragments).filter(
+              ([, mapping]) => mapping.policy !== "current",
+            ),
+          ),
+        },
+      ]),
+  );
   await writeFile(
     path.join(site, "docs-compat.js"),
     `(() => {
@@ -345,17 +333,17 @@ const entries = ${scriptJson(active)};
 const resolve = ${resolveRedirect.toString()};
 function navigate() {
   const pathname = location.pathname.replace(/\\.html$/, '').replace(/\\/$/, '');
-  const entry = entries.find(e => e.source === pathname);
+  const entry = entries[pathname];
   if (!entry) return;
-  if (location.pathname !== entry.source) {
-    location.replace(resolve(entry, location.href));
-    return;
+  const current = location.pathname + location.search + location.hash;
+  const destination = resolve(entry, location.href);
+  if (destination === current) return;
+  if (destination === location.pathname + location.search) {
+    history.replaceState(history.state, "", destination);
+    window.scrollTo(0, 0);
+  } else {
+    location.replace(destination);
   }
-  if (!location.hash) return;
-  let id; try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
-  if (!Object.hasOwn(entry.fragments, id)) return;
-  const target = resolve(entry, location.href);
-  if (target !== location.pathname + location.search + location.hash) location.replace(target);
 }
 navigate();
 window.addEventListener('hashchange', navigate);
