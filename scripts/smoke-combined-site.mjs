@@ -89,8 +89,16 @@ async function checkLocalReferences(pages, origin) {
       }
       const srcset = node.attr("srcset");
       if (srcset) {
-        for (const [, url] of srcset.matchAll(/(?:^|,\s*)(\S+)(?:\s+[^,]*)?/g)) {
-          addReference(url, page);
+        const urls = /[^\t\n\f\r ,][^\t\n\f\r ]*/g;
+        for (let match = urls.exec(srcset); match; match = urls.exec(srcset)) {
+          const url = match[0];
+          // Commas inside a URL are valid. A trailing comma ends a candidate
+          // without a descriptor.
+          addReference(url.replace(/,+$/, ""), page);
+          if (url.endsWith(",")) continue;
+          const separator = srcset.indexOf(",", urls.lastIndex);
+          if (separator === -1) break;
+          urls.lastIndex = separator + 1;
         }
       }
     }
